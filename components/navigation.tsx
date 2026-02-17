@@ -31,8 +31,8 @@ export function Navigation() {
 
   const colors = heroColorMap[pathname] ?? heroColorMap["/"]
 
-  /* Dark logo on all backgrounds except dark grey; white when scrolled (dark bg) */
-  const logoVariant = scrolled ? "white" : colors.isDark ? "white" : "dark"
+  /* Dark logo on all backgrounds except dark grey hero; stays same on scroll */
+  const logoVariant = colors.isDark ? "white" : "dark"
 
   useEffect(() => {
     function onScroll() {
@@ -47,7 +47,7 @@ export function Navigation() {
       {/* ─── Top bar: logo only on mobile, logo + nav lozenge on desktop ─── */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "backdrop-blur-lg bg-brand-dark/70" : colors.bg
+          scrolled ? "backdrop-blur-xl bg-brand-dark/80" : colors.bg
         }`}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 lg:px-12 lg:py-5">
