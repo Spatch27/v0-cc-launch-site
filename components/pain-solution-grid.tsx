@@ -59,7 +59,7 @@ export function PainSolutionGrid() {
           key={item.pain}
           variants={fadeInUp}
           custom={i}
-          className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark"
+          className="group flex flex-col bg-brand-light p-8 transition-colors duration-300 hover:bg-brand-dark"
         >
           {/* Accent line */}
           <div className={`mb-6 h-1 w-10 rounded-full ${item.accent}`} />
@@ -70,7 +70,7 @@ export function PainSolutionGrid() {
           </span>
 
           {/* Quote */}
-          <p className="mb-8 text-sm italic leading-relaxed text-brand-dark/50 transition-colors duration-300 group-hover:text-brand-white/50">
+          <p className="mb-8 text-sm italic leading-relaxed text-brand-dark/50 transition-colors duration-300 group-hover:text-brand-white/60">
             &ldquo;{item.quote}&rdquo;
           </p>
 

@@ -65,12 +65,12 @@ export function ContactForm() {
       </section>
 
       {/* Form section */}
-      <Section background="white">
+      <Section background="light">
         <div className="grid gap-20 lg:grid-cols-2">
           {/* Form */}
           <motion.div variants={fadeInUp}>
             {submitted ? (
-              <div className="flex flex-col gap-6 rounded-2xl bg-brand-light p-12">
+              <div className="flex flex-col gap-6 rounded-2xl bg-brand-white p-12">
                 <CheckCircle size={48} className="text-brand-pink" />
                 <h2 className="font-display text-3xl font-bold text-brand-dark">
                   Thanks for reaching out.

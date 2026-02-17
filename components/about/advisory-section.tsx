@@ -29,7 +29,7 @@ const advisors = [
 
 export function AdvisorySection() {
   return (
-    <Section background="white">
+    <Section background="light">
       <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
         <motion.div variants={fadeInUp} className="lg:w-1/4">
           <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
@@ -51,7 +51,7 @@ export function AdvisorySection() {
             custom={i}
             className="group flex gap-6 border-b border-brand-dark/10 pb-8 last:border-0"
           >
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-brand-light font-display text-sm font-bold text-brand-dark">
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-brand-white font-display text-sm font-bold text-brand-dark">
               {advisor.initials}
             </div>
             <div>

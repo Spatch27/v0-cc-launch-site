@@ -35,7 +35,7 @@ export function FrameworkDiagram() {
           key={fw.name}
           variants={fadeInUp}
           custom={i}
-          className="group relative overflow-hidden rounded-2xl bg-brand-light p-10 transition-colors duration-500 hover:bg-brand-dark"
+          className="group relative overflow-hidden rounded-2xl bg-brand-white p-10 transition-colors duration-500 hover:bg-brand-dark"
         >
           {/* Accent bar */}
           <div

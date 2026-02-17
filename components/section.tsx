@@ -4,12 +4,19 @@ import { motion } from "framer-motion"
 import { staggerContainer } from "@/lib/animations"
 import { cn } from "@/lib/utils"
 
-type BackgroundStyle = "white" | "dark" | "light" | "pink" | "orange" | "yellow-light" | "yellow-deep"
+type BackgroundStyle =
+  | "light"
+  | "dark"
+  | "white"
+  | "pink"
+  | "orange"
+  | "yellow-light"
+  | "yellow-deep"
 
 const bgClasses: Record<BackgroundStyle, string> = {
-  white: "bg-brand-white text-brand-dark",
-  dark: "bg-brand-dark text-brand-white",
   light: "bg-brand-light text-brand-dark",
+  dark: "bg-brand-dark text-brand-white",
+  white: "bg-brand-white text-brand-dark",
   pink: "bg-brand-pink text-brand-dark",
   orange: "bg-brand-orange text-brand-dark",
   "yellow-light": "bg-brand-yellow-light text-brand-dark",
@@ -27,7 +34,7 @@ interface SectionProps {
 
 export function Section({
   children,
-  background = "white",
+  background = "light",
   className,
   id,
   noPadding = false,

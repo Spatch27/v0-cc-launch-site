@@ -35,7 +35,7 @@ const features = [
 
 export function WhatChangesSection() {
   return (
-    <Section background="white">
+    <Section background="light">
       <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
         <motion.div variants={fadeInUp} className="lg:w-1/4">
           <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">

@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      <Section background="white" narrow>
+      <Section background="light" narrow>
         <div className="prose prose-lg max-w-none text-brand-dark/70">
           <h2 className="font-display text-2xl font-bold text-brand-dark">
             Introduction

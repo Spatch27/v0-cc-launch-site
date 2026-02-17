@@ -29,7 +29,7 @@ const sampleInsights = [
 
 export function InsightsPreviewSection() {
   return (
-    <Section background="light">
+    <Section background="white">
       <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
           <div className="lg:w-auto">
@@ -56,7 +56,7 @@ export function InsightsPreviewSection() {
             key={insight.slug}
             variants={fadeInUp}
             custom={i}
-            className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
+            className="group flex flex-col bg-brand-light p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
           >
             <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
               {insight.category}

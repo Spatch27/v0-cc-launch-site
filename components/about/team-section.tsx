@@ -29,7 +29,7 @@ const founders = [
 
 export function TeamSection() {
   return (
-    <Section background="light">
+    <Section background="white">
       <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
         <motion.div variants={fadeInUp} className="lg:w-1/4">
           <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
@@ -49,7 +49,7 @@ export function TeamSection() {
             key={member.name}
             variants={fadeInUp}
             custom={i}
-            className="group flex flex-col rounded-2xl bg-brand-white p-10 transition-shadow duration-300 hover:shadow-lg"
+            className="group flex flex-col rounded-2xl bg-brand-light p-10 transition-shadow duration-300 hover:shadow-lg"
           >
             <div className="mb-6 flex items-center gap-5">
               {/* Initials avatar */}

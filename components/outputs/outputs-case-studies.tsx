@@ -65,7 +65,7 @@ const allCaseStudies: OutputStudy[] = [
 
 export function OutputsCaseStudies() {
   return (
-    <Section background="white">
+    <Section background="light">
       <div className="flex flex-col gap-16">
         {allCaseStudies.map((study, i) => (
           <motion.div

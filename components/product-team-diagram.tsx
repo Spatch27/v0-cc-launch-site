@@ -44,7 +44,7 @@ export function ProductTeamDiagram() {
           key={d.name}
           variants={fadeInUp}
           custom={i}
-          className="flex flex-col bg-brand-white p-8"
+          className="flex flex-col bg-brand-light p-8"
         >
           <div
             className="mb-6 h-1 w-10 rounded-full"

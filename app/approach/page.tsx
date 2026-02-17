@@ -22,7 +22,7 @@ export default function ApproachPage() {
       <ProductsSection />
       <CtaBand
         heading="Want to talk through a challenge?"
-        background="dark"
+        background="yellow-deep"
       />
     </>
   )

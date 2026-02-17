@@ -88,7 +88,7 @@ export function InsightsListing() {
 
       {/* Featured article */}
       {featured && (
-        <Section background="white">
+        <Section background="light">
           <motion.article
             variants={fadeInUp}
             className="group grid gap-12 md:grid-cols-2 md:items-center"
@@ -123,7 +123,7 @@ export function InsightsListing() {
       )}
 
       {/* Article grid */}
-      <Section background="light">
+      <Section background="white">
         {/* Category filters */}
         <div className="mb-12 flex flex-wrap gap-3">
           {categories.map((cat) => (
@@ -133,7 +133,7 @@ export function InsightsListing() {
               className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
                   ? "bg-brand-dark text-brand-white"
-                  : "bg-brand-white text-brand-dark hover:bg-brand-dark hover:text-brand-white"
+                  : "bg-brand-light text-brand-dark hover:bg-brand-dark hover:text-brand-white"
               }`}
             >
               {cat}
@@ -151,7 +151,7 @@ export function InsightsListing() {
             <motion.article
               key={article.slug}
               variants={fadeInUp}
-              className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
+              className="group flex flex-col bg-brand-light p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
             >
               <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
                 {article.category}
