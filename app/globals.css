@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Brand Colors */
+  --brand-dark: #181716;
+  --brand-pink: #fc66a7;
+  --brand-orange: #ff8600;
+  --brand-light: #e3dcdc;
+  --brand-yellow-light: #ffeb3e;
+  --brand-yellow-deep: #ffd100;
+  --brand-white: #ffffff;
+
+  /* Semantic tokens */
+  --background: #ffffff;
+  --foreground: #181716;
+  --card: #ffffff;
+  --card-foreground: #181716;
+  --popover: #ffffff;
+  --popover-foreground: #181716;
+  --primary: #fc66a7;
+  --primary-foreground: #181716;
+  --secondary: #e3dcdc;
+  --secondary-foreground: #181716;
+  --muted: #e3dcdc;
+  --muted-foreground: #5a5654;
+  --accent: #ff8600;
+  --accent-foreground: #181716;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e3dcdc;
+  --input: #e3dcdc;
+  --ring: #fc66a7;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Bricolage Grotesque Fallback', sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+
+  /* Brand Colors */
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-light: var(--brand-light);
+  --color-brand-yellow-light: var(--brand-yellow-light);
+  --color-brand-yellow-deep: var(--brand-yellow-deep);
+  --color-brand-white: var(--brand-white);
+
+  /* Semantic Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--brand-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-dark);
+  border-radius: 4px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
