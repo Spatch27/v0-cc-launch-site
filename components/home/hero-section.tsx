@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react"
 export function HeroSection() {
   return (
     <section className="relative min-h-screen bg-brand-orange px-6 lg:px-12">
-      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-end pb-16 pt-32 lg:pb-24">
+      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pb-16 pt-24 lg:pt-28">
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
