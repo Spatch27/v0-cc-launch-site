@@ -7,13 +7,13 @@ import { ArrowRight } from "lucide-react"
 export function HeroSection() {
   return (
     <section className="relative min-h-screen bg-brand-orange px-6 lg:px-12">
-      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-end pb-16 pt-32 lg:pb-24">
+      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pb-16 pt-24 lg:pt-28">
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-dark/60"
+          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-white"
         >
           Embedded Consultancy for CMOs
         </motion.p>
@@ -44,7 +44,7 @@ export function HeroSection() {
 
           <Link
             href="/contact"
-            className="group inline-flex w-fit items-center gap-3 self-start bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+            className="group inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
           >
             Talk to us
             <ArrowRight
@@ -52,25 +52,6 @@ export function HeroSection() {
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
           </Link>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-16 hidden lg:block"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-xs tracking-[0.2em] uppercase text-brand-dark/30">
-              Scroll
-            </span>
-            <div className="h-12 w-px bg-brand-dark/20" />
-          </motion.div>
         </motion.div>
       </div>
     </section>

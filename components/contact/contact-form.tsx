@@ -49,7 +49,7 @@ export function ContactForm() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-dark/60"
+            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-dark"
           >
             Contact
           </motion.p>
@@ -147,7 +147,7 @@ export function ContactForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group mt-4 inline-flex w-fit items-center gap-3 self-start bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
+                  className="group mt-4 inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
                 >
                   {loading ? "Sending..." : "Send message"}
                   <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" />

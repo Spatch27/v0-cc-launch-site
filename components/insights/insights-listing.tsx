@@ -7,60 +7,77 @@ import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { ArrowRight } from "lucide-react"
 
-const categories = ["All", "What we\u2019re creating", "What we\u2019re consuming"]
+const categories = ["All", "What we're creating", "What we're consuming"]
 
 const articles = [
   {
-    title: "Your operating model is your biggest competitor",
+    id: "1",
+    title: "Removing operational drag from marketing teams",
     excerpt:
-      "Most marketing teams don\u2019t have a strategy problem. They have an execution problem \u2014 and the root cause is almost always the operating model.",
-    category: "What we\u2019re creating",
+      "How CMOs can identify and eliminate the hidden inefficiencies that slow down their teams and reduce marketing effectiveness.",
+    category: "What we're creating",
+    date: "November 2024",
+    readTime: "8 min read",
+  },
+  {
+    id: "2",
+    title: "Why marketing operations is the new competitive advantage",
+    excerpt:
+      "In a world where every brand has access to the same tools, operational excellence is what separates the leaders from the followers.",
+    category: "What we're creating",
+    date: "October 2024",
     readTime: "6 min read",
-    date: "February 2026",
-    slug: "operating-model-competitor",
-    featured: true,
   },
   {
-    title: "Stop transforming. Start clearing.",
+    id: "3",
+    title: "The embedded consultancy model explained",
     excerpt:
-      "Transformation has become a dirty word. Teams are exhausted by it. Here\u2019s why clearing operational drag delivers faster, more durable results.",
-    category: "What we\u2019re creating",
-    readTime: "4 min read",
-    date: "February 2026",
-    slug: "stop-transforming-start-clearing",
-    featured: false,
+      "What makes embedded consultancy different from traditional consulting, and why it's more effective for modern marketing teams.",
+    category: "What we're creating",
+    date: "September 2024",
+    readTime: "10 min read",
   },
   {
-    title: "Half your marketing budget is fighting your own operating model",
+    id: "4",
+    title: "Building resilient marketing systems",
     excerpt:
-      "We\u2019ve audited dozens of marketing teams. The finding is always the same: the biggest source of waste is internal, not external.",
-    category: "What we\u2019re creating",
-    readTime: "5 min read",
-    date: "January 2026",
-    slug: "marketing-budget-operating-model",
-    featured: false,
-  },
-  {
-    title: "The case for marketing metabolic rate",
-    excerpt:
-      "Speed isn\u2019t about doing more. It\u2019s about the rate at which your marketing system can learn, adapt, and deliver.",
-    category: "What we\u2019re creating",
+      "How to create marketing workflows that scale with your business and adapt to changing market conditions without breaking.",
+    category: "What we're creating",
+    date: "August 2024",
     readTime: "7 min read",
-    date: "January 2026",
-    slug: "marketing-metabolic-rate",
-    featured: false,
+  },
+  {
+    id: "5",
+    title: "The case for marketing product teams",
+    excerpt:
+      "Why the most effective marketing organizations are structured like product teams, with clear ownership and continuous improvement.",
+    category: "What we're creating",
+    date: "July 2024",
+    readTime: "9 min read",
+  },
+  {
+    id: "6",
+    title: "Rethinking marketing velocity",
+    excerpt:
+      "Speed isn't always better. How to find the right balance between moving fast and maintaining quality in your marketing execution.",
+    category: "What we're consuming",
+    date: "June 2024",
+    readTime: "5 min read",
   },
 ]
 
 export function InsightsListing() {
   const [activeCategory, setActiveCategory] = useState("All")
-  const featured = articles.find((a) => a.featured)
+
+  // Featured article is the most recent one
+  const featured = articles[0]
+
+  // Filter remaining articles
+  const remainingArticles = articles.slice(1)
   const filtered =
     activeCategory === "All"
-      ? articles.filter((a) => !a.featured)
-      : articles.filter(
-          (a) => a.category === activeCategory && !a.featured
-        )
+      ? remainingArticles
+      : remainingArticles.filter((article) => article.category === activeCategory)
 
   return (
     <>
@@ -71,7 +88,7 @@ export function InsightsListing() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-dark/60"
+            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
           >
             Insights
           </motion.p>
@@ -89,36 +106,38 @@ export function InsightsListing() {
       {/* Featured article */}
       {featured && (
         <Section background="white">
-          <motion.article
-            variants={fadeInUp}
-            className="group grid gap-12 md:grid-cols-2 md:items-center"
-          >
-            {/* Left: illustration area */}
-            <div className="flex aspect-[4/3] items-center justify-center bg-brand-dark">
-              <div className="flex flex-col items-center gap-4 text-brand-white/20">
-                <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
-                <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
+          <Link href={`/insights/${featured.id}`}>
+            <motion.article
+              variants={fadeInUp}
+              className="group grid gap-12 md:grid-cols-2 md:items-center"
+            >
+              {/* Left: illustration area */}
+              <div className="flex aspect-[4/3] items-center justify-center bg-brand-dark">
+                <div className="flex flex-col items-center gap-4 text-brand-white/20">
+                  <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
+                  <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
+                </div>
               </div>
-            </div>
 
-            {/* Right: content */}
-            <div>
-              <span className="mb-4 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
-                Featured
-              </span>
-              <h2 className="mb-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
-                {featured.title}
-              </h2>
-              <p className="mb-8 text-lg leading-relaxed text-brand-dark/60">
-                {featured.excerpt}
-              </p>
-              <div className="flex items-center gap-4 text-sm text-brand-dark/40">
-                <span>{featured.date}</span>
-                <span className="h-1 w-1 rounded-full bg-brand-dark/20" />
-                <span>{featured.readTime}</span>
+              {/* Right: content */}
+              <div>
+                <span className="mb-4 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
+                  Featured
+                </span>
+                <h2 className="mb-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
+                  {featured.title}
+                </h2>
+                <p className="mb-8 text-lg leading-relaxed text-brand-dark/60">
+                  {featured.excerpt}
+                </p>
+                <div className="flex items-center gap-4 text-sm text-brand-dark/40">
+                  <span>{featured.date}</span>
+                  <span className="h-1 w-1 rounded-full bg-brand-dark/20" />
+                  <span>{featured.readTime}</span>
+                </div>
               </div>
-            </div>
-          </motion.article>
+            </motion.article>
+          </Link>
         </Section>
       )}
 
@@ -148,30 +167,31 @@ export function InsightsListing() {
           className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((article) => (
-            <motion.article
-              key={article.slug}
-              variants={fadeInUp}
-              className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
-            >
-              <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
-                {article.category}
-              </span>
-              <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
-                {article.title}
-              </h3>
-              <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
-                {article.excerpt}
-              </p>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
-                  {article.date} &middot; {article.readTime}
+            <Link key={article.id} href={`/insights/${article.id}`}>
+              <motion.article
+                variants={fadeInUp}
+                className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
+              >
+                <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
+                  {article.category}
                 </span>
-                <ArrowRight
-                  size={16}
-                  className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
-                />
-              </div>
-            </motion.article>
+                <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
+                  {article.title}
+                </h3>
+                <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
+                  {article.excerpt}
+                </p>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
+                    {article.date} &middot; {article.readTime}
+                  </span>
+                  <ArrowRight
+                    size={16}
+                    className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
+                  />
+                </div>
+              </motion.article>
+            </Link>
           ))}
         </motion.div>
       </Section>
@@ -198,7 +218,7 @@ export function InsightsListing() {
             href="https://substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex w-fit items-center gap-3 self-start bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white lg:self-auto"
+            className="group inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white lg:self-auto"
           >
             Subscribe on Substack
             <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
