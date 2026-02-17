@@ -100,14 +100,14 @@ export function Navigation() {
         className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 pb-5 pt-2 lg:hidden"
         aria-label="Mobile navigation"
       >
-        <div className="flex w-full max-w-md items-center justify-between rounded-full bg-brand-dark px-2 py-2 shadow-lg shadow-brand-dark/25">
+        <div className="flex items-center gap-0.5 rounded-full bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2">
           {navLinks.map((link) => {
             const isActive = pathname === link.href
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative px-3 py-2 sm:px-4"
+                className="group relative flex-shrink-0 px-2.5 py-1.5 sm:px-3.5 sm:py-2"
               >
                 {isActive && (
                   <motion.span
@@ -117,7 +117,7 @@ export function Navigation() {
                   />
                 )}
                 <span
-                  className={`relative z-10 text-xs font-medium tracking-wide transition-colors duration-300 sm:text-sm ${
+                  className={`relative z-10 whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-300 sm:text-xs ${
                     isActive
                       ? "text-brand-white"
                       : "text-brand-white/50 group-hover:text-brand-white"
