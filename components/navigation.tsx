@@ -13,10 +13,23 @@ const navLinks = [
   { label: "Contact", href: "/contact" },
 ]
 
+/* Map each route to its hero background color */
+const heroColorMap: Record<string, { bg: string; text: string; logoAccent: string }> = {
+  "/":         { bg: "bg-brand-orange",      text: "text-brand-dark",  logoAccent: "text-brand-dark" },
+  "/approach": { bg: "bg-brand-pink",        text: "text-brand-dark",  logoAccent: "text-brand-dark" },
+  "/outputs":  { bg: "bg-brand-dark",        text: "text-brand-white", logoAccent: "text-brand-pink" },
+  "/insights": { bg: "bg-brand-light",       text: "text-brand-dark",  logoAccent: "text-brand-dark" },
+  "/about":    { bg: "bg-brand-yellow-deep", text: "text-brand-dark",  logoAccent: "text-brand-dark" },
+  "/contact":  { bg: "bg-brand-yellow-light",text: "text-brand-dark",  logoAccent: "text-brand-dark" },
+  "/privacy":  { bg: "bg-brand-dark",        text: "text-brand-white", logoAccent: "text-brand-pink" },
+}
+
 export function Navigation() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
+  const colors = heroColorMap[pathname] ?? heroColorMap["/"]
 
   useEffect(() => {
     function onScroll() {
@@ -35,54 +48,64 @@ export function Navigation() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-brand-dark/95 backdrop-blur-md"
-          : "bg-transparent"
+          : colors.bg
       }`}
     >
-      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 lg:px-12 lg:py-7">
+      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 lg:px-12 lg:py-6">
         {/* Logo */}
         <Link
           href="/"
           className="group relative z-50 flex items-center gap-3"
           aria-label="Committed Citizens home"
         >
-          <span className="font-display text-[1.3rem] font-bold leading-none tracking-tight text-brand-white transition-opacity group-hover:opacity-80">
+          <span
+            className={`font-display text-[1.3rem] font-bold leading-none tracking-tight transition-colors duration-500 ${
+              scrolled ? "text-brand-white" : colors.text
+            }`}
+          >
             Committed
             <br />
-            <span className="text-[0.75rem] font-medium tracking-[0.2em] uppercase text-brand-pink">
+            <span
+              className={`text-[0.75rem] font-medium tracking-[0.2em] uppercase transition-colors duration-500 ${
+                scrolled ? "text-brand-pink" : colors.logoAccent
+              }`}
+            >
               Citizens
             </span>
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden items-center gap-10 md:flex">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="group relative py-2"
-              >
-                <span
-                  className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
-                    isActive
-                      ? "text-brand-pink"
-                      : "text-brand-white/70 group-hover:text-brand-white"
-                  }`}
+        {/* Desktop nav - dark grey lozenge */}
+        <div className="hidden md:block">
+          <div className="flex items-center gap-1 rounded-full bg-brand-dark px-2 py-2">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="group relative px-5 py-2"
                 >
-                  {link.label}
-                </span>
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 h-px w-full bg-brand-pink"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
-            )
-          })}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-full bg-brand-white/15"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                    />
+                  )}
+                  <span
+                    className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-300 ${
+                      isActive
+                        ? "text-brand-white"
+                        : "text-brand-white/50 group-hover:text-brand-white"
+                    }`}
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -94,17 +117,23 @@ export function Navigation() {
           <div className="flex w-6 flex-col gap-1.5">
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              className="block h-px w-full bg-brand-white origin-center"
+              className={`block h-px w-full origin-center transition-colors duration-500 ${
+                mobileOpen || scrolled ? "bg-brand-white" : colors.text === "text-brand-white" ? "bg-brand-white" : "bg-brand-dark"
+              }`}
               transition={{ duration: 0.3 }}
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block h-px w-full bg-brand-white"
+              className={`block h-px w-full transition-colors duration-500 ${
+                mobileOpen || scrolled ? "bg-brand-white" : colors.text === "text-brand-white" ? "bg-brand-white" : "bg-brand-dark"
+              }`}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className="block h-px w-full bg-brand-white origin-center"
+              className={`block h-px w-full origin-center transition-colors duration-500 ${
+                mobileOpen || scrolled ? "bg-brand-white" : colors.text === "text-brand-white" ? "bg-brand-white" : "bg-brand-dark"
+              }`}
               transition={{ duration: 0.3 }}
             />
           </div>

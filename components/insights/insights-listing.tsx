@@ -65,13 +65,13 @@ export function InsightsListing() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
+      <section className="relative bg-brand-light px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
+            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-dark/60"
           >
             Insights
           </motion.p>
@@ -79,7 +79,7 @@ export function InsightsListing() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
+            className="max-w-3xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
           >
             Thinking that drives action.
           </motion.h1>
@@ -88,7 +88,7 @@ export function InsightsListing() {
 
       {/* Featured article */}
       {featured && (
-        <Section background="light">
+        <Section background="white">
           <motion.article
             variants={fadeInUp}
             className="group grid gap-12 md:grid-cols-2 md:items-center"
@@ -123,7 +123,7 @@ export function InsightsListing() {
       )}
 
       {/* Article grid */}
-      <Section background="white">
+      <Section background="light">
         {/* Category filters */}
         <div className="mb-12 flex flex-wrap gap-3">
           {categories.map((cat) => (
@@ -133,7 +133,7 @@ export function InsightsListing() {
               className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
                   ? "bg-brand-dark text-brand-white"
-                  : "bg-brand-light text-brand-dark hover:bg-brand-dark hover:text-brand-white"
+                  : "bg-brand-white text-brand-dark hover:bg-brand-dark hover:text-brand-white"
               }`}
             >
               {cat}
@@ -151,7 +151,7 @@ export function InsightsListing() {
             <motion.article
               key={article.slug}
               variants={fadeInUp}
-              className="group flex flex-col bg-brand-light p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
+              className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
             >
               <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
                 {article.category}

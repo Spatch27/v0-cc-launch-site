@@ -4,13 +4,13 @@ import { motion } from "framer-motion"
 
 export function AboutHero() {
   return (
-    <section className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
+    <section className="relative bg-brand-yellow-deep px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
       <div className="mx-auto max-w-[1400px]">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
+          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-dark/60"
         >
           Why we exist
         </motion.p>
@@ -18,7 +18,7 @@ export function AboutHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl font-display text-[clamp(1.8rem,4vw,3.5rem)] font-bold italic leading-snug text-brand-white"
+          className="max-w-4xl font-display text-[clamp(1.8rem,4vw,3.5rem)] font-bold italic leading-snug text-brand-dark"
         >
           &ldquo;Never doubt that a small group of thoughtful, committed
           citizens can change the world. In fact, it&apos;s the only thing that
@@ -28,7 +28,7 @@ export function AboutHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-8 block text-base font-medium not-italic text-brand-white/40"
+          className="mt-8 block text-base font-medium not-italic text-brand-dark/50"
         >
           &mdash; Margaret Mead
         </motion.cite>

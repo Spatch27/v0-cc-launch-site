@@ -6,14 +6,14 @@ import { ArrowRight } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-brand-dark px-6 lg:px-12">
+    <section className="relative min-h-screen bg-brand-orange px-6 lg:px-12">
       <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-end pb-16 pt-32 lg:pb-24">
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
+          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-dark/60"
         >
           Embedded Consultancy for CMOs
         </motion.p>
@@ -23,7 +23,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-5xl font-display text-[clamp(3rem,8vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
+          className="max-w-5xl font-display text-[clamp(3rem,8vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
           Freedom
           <br />
@@ -37,14 +37,14 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
         >
-          <p className="max-w-lg text-lg leading-relaxed text-brand-white/60">
+          <p className="max-w-lg text-lg leading-relaxed text-brand-dark/70">
             We redesign how marketing work flows. Removing operational
             drag so your team builds momentum.
           </p>
 
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-3 rounded-full bg-brand-pink px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-pink/90"
+            className="group inline-flex items-center gap-3 rounded-full bg-brand-dark px-8 py-4 text-base font-semibold text-brand-white transition-all duration-300 hover:bg-brand-dark/85"
           >
             Talk to us
             <ArrowRight
@@ -66,10 +66,10 @@ export function HeroSection() {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="text-xs tracking-[0.2em] uppercase text-brand-white/30">
+            <span className="text-xs tracking-[0.2em] uppercase text-brand-dark/30">
               Scroll
             </span>
-            <div className="h-12 w-px bg-brand-white/20" />
+            <div className="h-12 w-px bg-brand-dark/20" />
           </motion.div>
         </motion.div>
       </div>

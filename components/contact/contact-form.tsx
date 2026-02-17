@@ -43,13 +43,13 @@ export function ContactForm() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
+      <section className="relative bg-brand-yellow-light px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
+            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-dark/60"
           >
             Contact
           </motion.p>
@@ -57,7 +57,7 @@ export function ContactForm() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
+            className="max-w-3xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
           >
             Let&apos;s talk.
           </motion.h1>
