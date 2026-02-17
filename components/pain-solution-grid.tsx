@@ -53,7 +53,7 @@ const painSolutions = [
 
 export function PainSolutionGrid() {
   return (
-    <div className="grid gap-px overflow-hidden rounded-2xl bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-5">
+    <div className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-5">
       {painSolutions.map((item, i) => (
         <motion.div
           key={item.pain}

@@ -38,7 +38,7 @@ const disciplines = [
 
 export function ProductTeamDiagram() {
   return (
-    <div className="grid gap-px overflow-hidden rounded-2xl bg-brand-dark/10 md:grid-cols-5">
+    <div className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-5">
       {disciplines.map((d, i) => (
         <motion.div
           key={d.name}

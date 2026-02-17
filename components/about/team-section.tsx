@@ -49,7 +49,7 @@ export function TeamSection() {
             key={member.name}
             variants={fadeInUp}
             custom={i}
-            className="group flex flex-col rounded-2xl bg-brand-light p-10 transition-shadow duration-300 hover:shadow-lg"
+            className="group flex flex-col bg-brand-light p-10 transition-shadow duration-300 hover:shadow-lg"
           >
             <div className="mb-6 flex items-center gap-5">
               {/* Initials avatar */}

@@ -58,7 +58,7 @@ export function ProductsSection() {
             key={product.name}
             variants={fadeInUp}
             custom={i}
-            className="group flex flex-col rounded-2xl bg-brand-white/5 p-10 backdrop-blur-sm transition-colors duration-500 hover:bg-brand-white/10"
+            className="group flex flex-col bg-brand-white/5 p-10 backdrop-blur-sm transition-colors duration-500 hover:bg-brand-white/10"
           >
             {/* Accent bar */}
             <div

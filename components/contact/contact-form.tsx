@@ -70,7 +70,7 @@ export function ContactForm() {
           {/* Form */}
           <motion.div variants={fadeInUp}>
             {submitted ? (
-              <div className="flex flex-col gap-6 rounded-2xl bg-brand-white p-12">
+              <div className="flex flex-col gap-6 bg-brand-white p-12">
                 <CheckCircle size={48} className="text-brand-pink" />
                 <h2 className="font-display text-3xl font-bold text-brand-dark">
                   Thanks for reaching out.
@@ -147,7 +147,7 @@ export function ContactForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group mt-4 inline-flex w-fit items-center gap-3 rounded-full bg-brand-pink px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-pink/90 disabled:opacity-50"
+                  className="group mt-4 inline-flex w-fit items-center gap-3 bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
                 >
                   {loading ? "Sending..." : "Send message"}
                   <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" />

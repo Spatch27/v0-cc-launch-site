@@ -39,7 +39,7 @@ export function CaseStudyCards({ studies, limit }: Props) {
           key={study.client}
           variants={fadeInUp}
           custom={i}
-          className={`flex flex-col rounded-2xl border-l-4 bg-brand-white/5 p-8 backdrop-blur-sm ${accentMap[study.accentColor] || "border-brand-pink"}`}
+          className={`flex flex-col border-l-4 bg-brand-white/5 p-8 backdrop-blur-sm ${accentMap[study.accentColor] || "border-brand-pink"}`}
         >
           {/* Client */}
           <p className="mb-2 text-xs font-semibold tracking-[0.15em] uppercase text-brand-white/40">

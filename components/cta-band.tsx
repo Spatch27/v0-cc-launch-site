@@ -28,10 +28,10 @@ const textMap = {
 }
 
 const btnMap = {
-  pink: "bg-brand-dark text-brand-white hover:bg-brand-dark/90",
-  orange: "bg-brand-dark text-brand-white hover:bg-brand-dark/90",
-  "yellow-deep": "bg-brand-dark text-brand-white hover:bg-brand-dark/90",
-  dark: "bg-brand-pink text-brand-dark hover:bg-brand-pink/90",
+  pink: "bg-brand-light text-brand-dark hover:bg-brand-white",
+  orange: "bg-brand-light text-brand-dark hover:bg-brand-white",
+  "yellow-deep": "bg-brand-light text-brand-dark hover:bg-brand-white",
+  dark: "bg-brand-light text-brand-dark hover:bg-brand-white",
 }
 
 export function CtaBand({
@@ -62,7 +62,7 @@ export function CtaBand({
         </div>
         <Link
           href={ctaHref}
-          className={`group inline-flex items-center gap-3 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
+          className={`group inline-flex items-center gap-3 px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
         >
           {ctaLabel}
           <ArrowRight

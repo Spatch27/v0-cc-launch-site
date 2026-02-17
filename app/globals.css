@@ -34,7 +34,7 @@
   --border: #cbc4c4;
   --input: #cbc4c4;
   --ring: #fc66a7;
-  --radius: 0.5rem;
+  --radius: 0rem;
 }
 
 @theme inline {

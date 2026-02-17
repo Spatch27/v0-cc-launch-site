@@ -94,7 +94,7 @@ export function InsightsListing() {
             className="group grid gap-12 md:grid-cols-2 md:items-center"
           >
             {/* Left: illustration area */}
-            <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-brand-dark">
+            <div className="flex aspect-[4/3] items-center justify-center bg-brand-dark">
               <div className="flex flex-col items-center gap-4 text-brand-white/20">
                 <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
                 <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
@@ -130,7 +130,7 @@ export function InsightsListing() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
+              className={`px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
                   ? "bg-brand-dark text-brand-white"
                   : "bg-brand-white text-brand-dark hover:bg-brand-dark hover:text-brand-white"
@@ -145,7 +145,7 @@ export function InsightsListing() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid gap-px overflow-hidden rounded-2xl bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((article) => (
             <motion.article
@@ -198,7 +198,7 @@ export function InsightsListing() {
             href="https://substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 rounded-full bg-brand-pink px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-pink/90"
+            className="group inline-flex items-center gap-3 bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
           >
             Subscribe on Substack
             <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />

@@ -50,7 +50,7 @@ export function InsightsPreviewSection() {
         </Link>
       </div>
 
-      <div className="grid gap-px overflow-hidden rounded-2xl bg-brand-dark/10 md:grid-cols-3">
+      <div className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-3">
         {sampleInsights.map((insight, i) => (
           <motion.article
             key={insight.slug}
