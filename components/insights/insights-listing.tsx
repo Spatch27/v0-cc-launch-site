@@ -6,35 +6,78 @@ import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { ArrowRight } from "lucide-react"
-import type { Content } from "@prismicio/client"
-import { asText } from "@prismicio/client"
 
 const categories = ["All", "What we're creating", "What we're consuming"]
 
-interface InsightsListingProps {
-  articles: Content.InsightArticleDocument[]
-}
+const articles = [
+  {
+    id: "1",
+    title: "Removing operational drag from marketing teams",
+    excerpt:
+      "How CMOs can identify and eliminate the hidden inefficiencies that slow down their teams and reduce marketing effectiveness.",
+    category: "What we're creating",
+    date: "November 2024",
+    readTime: "8 min read",
+  },
+  {
+    id: "2",
+    title: "Why marketing operations is the new competitive advantage",
+    excerpt:
+      "In a world where every brand has access to the same tools, operational excellence is what separates the leaders from the followers.",
+    category: "What we're creating",
+    date: "October 2024",
+    readTime: "6 min read",
+  },
+  {
+    id: "3",
+    title: "The embedded consultancy model explained",
+    excerpt:
+      "What makes embedded consultancy different from traditional consulting, and why it's more effective for modern marketing teams.",
+    category: "What we're creating",
+    date: "September 2024",
+    readTime: "10 min read",
+  },
+  {
+    id: "4",
+    title: "Building resilient marketing systems",
+    excerpt:
+      "How to create marketing workflows that scale with your business and adapt to changing market conditions without breaking.",
+    category: "What we're creating",
+    date: "August 2024",
+    readTime: "7 min read",
+  },
+  {
+    id: "5",
+    title: "The case for marketing product teams",
+    excerpt:
+      "Why the most effective marketing organizations are structured like product teams, with clear ownership and continuous improvement.",
+    category: "What we're creating",
+    date: "July 2024",
+    readTime: "9 min read",
+  },
+  {
+    id: "6",
+    title: "Rethinking marketing velocity",
+    excerpt:
+      "Speed isn't always better. How to find the right balance between moving fast and maintaining quality in your marketing execution.",
+    category: "What we're consuming",
+    date: "June 2024",
+    readTime: "5 min read",
+  },
+]
 
-export function InsightsListing({ articles }: InsightsListingProps) {
+export function InsightsListing() {
   const [activeCategory, setActiveCategory] = useState("All")
-  
-  // Featured article is the most recent one (first in array)
+
+  // Featured article is the most recent one
   const featured = articles[0]
-  
+
   // Filter remaining articles
   const remainingArticles = articles.slice(1)
   const filtered =
     activeCategory === "All"
       ? remainingArticles
-      : remainingArticles.filter(
-          (article) => article.data.category === activeCategory
-        )
-
-  const formatDate = (dateString: string | null) => {
-    if (!dateString) return ""
-    const date = new Date(dateString)
-    return date.toLocaleDateString("en-GB", { month: "long", year: "numeric" })
-  }
+      : remainingArticles.filter((article) => article.category === activeCategory)
 
   return (
     <>
@@ -63,7 +106,7 @@ export function InsightsListing({ articles }: InsightsListingProps) {
       {/* Featured article */}
       {featured && (
         <Section background="white">
-          <Link href={`/insights/${featured.uid}`}>
+          <Link href={`/insights/${featured.id}`}>
             <motion.article
               variants={fadeInUp}
               className="group grid gap-12 md:grid-cols-2 md:items-center"
@@ -82,15 +125,15 @@ export function InsightsListing({ articles }: InsightsListingProps) {
                   Featured
                 </span>
                 <h2 className="mb-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
-                  {featured.data.title}
+                  {featured.title}
                 </h2>
                 <p className="mb-8 text-lg leading-relaxed text-brand-dark/60">
-                  {asText(featured.data.excerpt)}
+                  {featured.excerpt}
                 </p>
                 <div className="flex items-center gap-4 text-sm text-brand-dark/40">
-                  <span>{formatDate(featured.data.publication_date)}</span>
+                  <span>{featured.date}</span>
                   <span className="h-1 w-1 rounded-full bg-brand-dark/20" />
-                  <span>{featured.data.read_time}</span>
+                  <span>{featured.readTime}</span>
                 </div>
               </div>
             </motion.article>
@@ -124,23 +167,23 @@ export function InsightsListing({ articles }: InsightsListingProps) {
           className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((article) => (
-            <Link key={article.uid} href={`/insights/${article.uid}`}>
+            <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}
                 className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
               >
                 <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
-                  {article.data.category}
+                  {article.category}
                 </span>
                 <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
-                  {article.data.title}
+                  {article.title}
                 </h3>
                 <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
-                  {asText(article.data.excerpt)}
+                  {article.excerpt}
                 </p>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
-                    {formatDate(article.data.publication_date)} &middot; {article.data.read_time}
+                    {article.date} &middot; {article.readTime}
                   </span>
                   <ArrowRight
                     size={16}
