@@ -67,6 +67,10 @@ export function Navigation() {
                 const isActive = pathname === link.href
                 const linkColors = heroColorMap[link.href] ?? heroColorMap["/"]
                 
+                // Special case: Outputs uses white lozenge instead of dark
+                const activeBg = link.href === "/outputs" ? "bg-brand-white" : linkColors.bg
+                const activeText = link.href === "/outputs" ? "text-brand-dark" : (linkColors.isDark ? "text-brand-white" : "text-brand-dark")
+                
                 return (
                   <Link
                     key={link.href}
@@ -76,14 +80,14 @@ export function Navigation() {
                     {isActive && (
                       <motion.span
                         layoutId="nav-pill"
-                        className={`absolute inset-0 rounded-full ${linkColors.bg}`}
+                        className={`absolute inset-0 rounded-full ${activeBg}`}
                         transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                       />
                     )}
                     <span
                       className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-300 ${
                         isActive
-                          ? linkColors.isDark ? "text-brand-white" : "text-brand-dark"
+                          ? activeText
                           : "text-brand-white group-hover:text-brand-dark"
                       }`}
                     >
@@ -113,6 +117,10 @@ export function Navigation() {
             const isActive = pathname === link.href
             const linkColors = heroColorMap[link.href] ?? heroColorMap["/"]
             
+            // Special case: Outputs uses white lozenge instead of dark
+            const activeBg = link.href === "/outputs" ? "bg-brand-white" : linkColors.bg
+            const activeText = link.href === "/outputs" ? "text-brand-dark" : (linkColors.isDark ? "text-brand-white" : "text-brand-dark")
+            
             return (
               <Link
                 key={link.href}
@@ -122,14 +130,14 @@ export function Navigation() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill-mobile"
-                    className={`absolute inset-0 rounded-full ${linkColors.bg}`}
+                    className={`absolute inset-0 rounded-full ${activeBg}`}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}
                 <span
                   className={`relative z-10 whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-300 sm:text-xs ${
                     isActive
-                      ? linkColors.isDark ? "text-brand-white" : "text-brand-dark"
+                      ? activeText
                       : "text-brand-white group-hover:text-brand-dark"
                   }`}
                 >
