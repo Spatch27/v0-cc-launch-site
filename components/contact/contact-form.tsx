@@ -147,7 +147,7 @@ export function ContactForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group mt-4 inline-flex w-fit items-center gap-3 bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
+                  className="group mt-4 inline-flex w-fit items-center gap-3 self-start bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
                 >
                   {loading ? "Sending..." : "Send message"}
                   <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" />

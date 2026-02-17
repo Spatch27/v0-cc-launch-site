@@ -62,7 +62,7 @@ export function CtaBand({
         </div>
         <Link
           href={ctaHref}
-          className={`group inline-flex items-center gap-3 px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
+          className={`group inline-flex w-fit items-center gap-3 self-start px-8 py-4 text-base font-semibold transition-all duration-300 lg:self-auto ${btnMap[background]}`}
         >
           {ctaLabel}
           <ArrowRight

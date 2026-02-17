@@ -44,7 +44,7 @@ export function HeroSection() {
 
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-3 bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+            className="group inline-flex w-fit items-center gap-3 self-start bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
           >
             Talk to us
             <ArrowRight
