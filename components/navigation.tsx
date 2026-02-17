@@ -8,7 +8,7 @@ import { Logo } from "@/components/logo"
 
 const navLinks = [
   { label: "Approach", href: "/approach" },
-  { label: "Outputs", href: "/outputs" },
+  { label: "Outcomes", href: "/outcomes" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -18,7 +18,7 @@ const navLinks = [
 const heroColorMap: Record<string, { bg: string; isDark: boolean }> = {
   "/":         { bg: "bg-brand-orange",       isDark: false },
   "/approach": { bg: "bg-brand-pink",         isDark: false },
-  "/outputs":  { bg: "bg-brand-dark",         isDark: true },
+  "/outcomes": { bg: "bg-brand-dark",         isDark: true },
   "/insights": { bg: "bg-brand-light",        isDark: false },
   "/about":    { bg: "bg-brand-yellow-deep",  isDark: false },
   "/contact":  { bg: "bg-brand-yellow-light", isDark: false },
@@ -69,9 +69,9 @@ export function Navigation() {
                 const isActive = pathname === link.href
                 const linkColors = heroColorMap[link.href] ?? heroColorMap["/"]
                 
-                // Special case: Outputs uses white lozenge instead of dark
-                const activeBg = link.href === "/outputs" ? "bg-brand-white" : linkColors.bg
-                const activeText = link.href === "/outputs" ? "text-brand-dark" : (linkColors.isDark ? "text-brand-white" : "text-brand-dark")
+                // Special case: Outcomes uses white lozenge instead of dark
+                const activeBg = link.href === "/outcomes" ? "bg-brand-white" : linkColors.bg
+                const activeText = link.href === "/outcomes" ? "text-brand-dark" : (linkColors.isDark ? "text-brand-white" : "text-brand-dark")
                 
                 return (
                   <Link
@@ -124,9 +124,9 @@ export function Navigation() {
             const isActive = pathname === link.href
             const linkColors = heroColorMap[link.href] ?? heroColorMap["/"]
             
-            // Special case: Outputs uses white lozenge instead of dark
-            const activeBg = link.href === "/outputs" ? "bg-brand-white" : linkColors.bg
-            const activeText = link.href === "/outputs" ? "text-brand-dark" : (linkColors.isDark ? "text-brand-white" : "text-brand-dark")
+            // Special case: Outcomes uses white lozenge instead of dark
+            const activeBg = link.href === "/outcomes" ? "bg-brand-white" : linkColors.bg
+            const activeText = link.href === "/outcomes" ? "text-brand-dark" : (linkColors.isDark ? "text-brand-white" : "text-brand-dark")
             
             return (
               <Link

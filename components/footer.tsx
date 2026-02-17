@@ -7,7 +7,7 @@ import { Logo } from "@/components/logo"
 
 const navigateLinks = [
   { label: "Approach", href: "/approach" },
-  { label: "Outputs", href: "/outputs" },
+  { label: "Outcomes", href: "/outcomes" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
