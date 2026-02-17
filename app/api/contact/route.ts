@@ -36,9 +36,6 @@ export async function POST(request: Request) {
       })
     }
 
-    // Log submission for now (always)
-    console.log("[v0] Contact form submission:", { name, email, company, role, message })
-
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("[v0] Contact form error:", error)
