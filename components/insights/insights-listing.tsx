@@ -218,7 +218,7 @@ export function InsightsListing() {
             href="https://substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex w-fit items-center gap-3 self-start bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white lg:self-auto"
+            className="group inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white lg:self-auto"
           >
             Subscribe on Substack
             <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />

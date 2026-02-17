@@ -28,10 +28,10 @@ const textMap = {
 }
 
 const btnMap = {
-  pink: "bg-brand-light text-brand-dark hover:bg-brand-white",
-  orange: "bg-brand-light text-brand-dark hover:bg-brand-white",
-  "yellow-deep": "bg-brand-light text-brand-dark hover:bg-brand-white",
-  dark: "bg-brand-light text-brand-dark hover:bg-brand-white",
+  pink: "border-2 border-brand-dark bg-brand-light text-brand-dark hover:bg-brand-white",
+  orange: "border-2 border-brand-dark bg-brand-light text-brand-dark hover:bg-brand-white",
+  "yellow-deep": "border-2 border-brand-dark bg-brand-light text-brand-dark hover:bg-brand-white",
+  dark: "border-2 border-brand-dark bg-brand-light text-brand-dark hover:bg-brand-white",
 }
 
 export function CtaBand({
