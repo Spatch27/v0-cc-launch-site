@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
-import { User } from "lucide-react"
 
 const founders = [
   {
@@ -31,19 +30,17 @@ const founders = [
 export function TeamSection() {
   return (
     <Section background="light">
-      <div className="mb-12">
-        <motion.p
-          variants={fadeInUp}
-          className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-pink"
-        >
-          Founders
-        </motion.p>
-        <motion.h2
-          variants={fadeInUp}
-          className="text-balance font-display text-3xl font-bold text-brand-dark md:text-5xl"
-        >
-          Committed Citizens
-        </motion.h2>
+      <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
+        <motion.div variants={fadeInUp} className="lg:w-1/4">
+          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
+            Founders
+          </span>
+        </motion.div>
+        <motion.div variants={fadeInUp} className="lg:w-3/4">
+          <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+            The team.
+          </h2>
+        </motion.div>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
@@ -52,12 +49,12 @@ export function TeamSection() {
             key={member.name}
             variants={fadeInUp}
             custom={i}
-            className="flex flex-col gap-6 rounded-xl bg-brand-white p-8"
+            className="group flex flex-col rounded-2xl bg-brand-white p-10 transition-shadow duration-300 hover:shadow-lg"
           >
-            <div className="flex items-center gap-4">
-              {/* Photo placeholder */}
-              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-brand-dark text-brand-white">
-                <User size={28} />
+            <div className="mb-6 flex items-center gap-5">
+              {/* Initials avatar */}
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-brand-dark font-display text-lg font-bold text-brand-white">
+                {member.initials}
               </div>
               <div>
                 <h3 className="font-display text-xl font-bold text-brand-dark">
@@ -66,7 +63,7 @@ export function TeamSection() {
                 <p className="text-sm text-brand-pink">Founder</p>
               </div>
             </div>
-            <p className="leading-relaxed text-brand-dark/70">{member.bio}</p>
+            <p className="leading-relaxed text-brand-dark/60">{member.bio}</p>
           </motion.div>
         ))}
       </div>

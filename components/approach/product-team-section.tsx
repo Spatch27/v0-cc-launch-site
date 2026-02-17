@@ -8,26 +8,21 @@ import { ProductTeamDiagram } from "@/components/product-team-diagram"
 export function ProductTeamSection() {
   return (
     <Section background="light">
-      <div className="mb-12">
-        <motion.p
-          variants={fadeInUp}
-          className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-pink"
-        >
-          How we work
-        </motion.p>
-        <motion.h2
-          variants={fadeInUp}
-          className="mb-4 text-balance font-display text-3xl font-bold text-brand-dark md:text-5xl"
-        >
-          We operate like a Product Team
-        </motion.h2>
-        <motion.p
-          variants={fadeInUp}
-          className="max-w-2xl text-lg leading-relaxed text-brand-dark/70"
-        >
-          Five interconnected disciplines, all oriented around a marketing
-          outcome. Managed by an embedded pod of experts.
-        </motion.p>
+      <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
+        <motion.div variants={fadeInUp} className="lg:w-1/4">
+          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
+            How we work
+          </span>
+        </motion.div>
+        <motion.div variants={fadeInUp} className="lg:w-3/4">
+          <h2 className="mb-4 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+            We operate like a Product Team.
+          </h2>
+          <p className="max-w-2xl text-lg leading-relaxed text-brand-dark/60">
+            Five interconnected disciplines, all oriented around a marketing
+            outcome. Managed by an embedded pod of experts.
+          </p>
+        </motion.div>
       </div>
       <ProductTeamDiagram />
     </Section>

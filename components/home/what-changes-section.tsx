@@ -36,22 +36,20 @@ const features = [
 export function WhatChangesSection() {
   return (
     <Section background="white">
-      <div className="mb-12 text-center">
-        <motion.p
-          variants={fadeInUp}
-          className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-pink"
-        >
-          What changes
-        </motion.p>
-        <motion.h2
-          variants={fadeInUp}
-          className="text-balance font-display text-3xl font-bold text-brand-dark md:text-5xl"
-        >
-          Building marketing momentum
-        </motion.h2>
+      <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
+        <motion.div variants={fadeInUp} className="lg:w-1/4">
+          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
+            What changes
+          </span>
+        </motion.div>
+        <motion.div variants={fadeInUp} className="lg:w-3/4">
+          <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+            Building marketing momentum.
+          </h2>
+        </motion.div>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
         {features.map((feature, i) => {
           const Icon = feature.icon
           return (
@@ -59,15 +57,15 @@ export function WhatChangesSection() {
               key={feature.title}
               variants={fadeInUp}
               custom={i}
-              className="flex flex-col gap-4 rounded-xl border border-brand-light bg-brand-white p-8 transition-shadow hover:shadow-md"
+              className="group flex flex-col gap-5"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-brand-pink/10">
-                <Icon size={24} className="text-brand-pink" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
+                <Icon size={22} />
               </div>
               <h3 className="font-display text-xl font-bold text-brand-dark">
                 {feature.title}
               </h3>
-              <p className="leading-relaxed text-brand-dark/70">
+              <p className="leading-relaxed text-brand-dark/60">
                 {feature.description}
               </p>
             </motion.div>

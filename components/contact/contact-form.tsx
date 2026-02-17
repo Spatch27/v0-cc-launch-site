@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
-import { Mail, Linkedin, Send, CheckCircle } from "lucide-react"
+import { Mail, Linkedin, Send, CheckCircle, ArrowRight } from "lucide-react"
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -34,7 +34,7 @@ export function ContactForm() {
         setSubmitted(true)
       }
     } catch {
-      // Silently handle error for now
+      // Silently handle error
     } finally {
       setLoading(false)
     }
@@ -42,39 +42,47 @@ export function ContactForm() {
 
   return (
     <>
-      <section className="bg-brand-dark px-6 pt-32 pb-20 lg:px-8 lg:pt-40 lg:pb-28">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          className="mx-auto max-w-4xl text-center"
-        >
+      {/* Hero */}
+      <section className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
+        <div className="mx-auto max-w-[1400px]">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
+          >
+            Contact
+          </motion.p>
           <motion.h1
-            variants={fadeInUp}
-            className="font-display text-4xl font-bold text-brand-white md:text-6xl"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-3xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
           >
             Let&apos;s talk.
           </motion.h1>
-        </motion.div>
+        </div>
       </section>
 
+      {/* Form section */}
       <Section background="white">
-        <div className="mx-auto grid max-w-5xl gap-16 lg:grid-cols-2">
+        <div className="grid gap-20 lg:grid-cols-2">
           {/* Form */}
           <motion.div variants={fadeInUp}>
             {submitted ? (
-              <div className="flex flex-col items-center gap-4 rounded-xl bg-brand-light p-12 text-center">
+              <div className="flex flex-col gap-6 rounded-2xl bg-brand-light p-12">
                 <CheckCircle size={48} className="text-brand-pink" />
-                <h2 className="font-display text-2xl font-bold text-brand-dark">
-                  Thanks for getting in touch
+                <h2 className="font-display text-3xl font-bold text-brand-dark">
+                  Thanks for reaching out.
                 </h2>
-                <p className="text-brand-dark/70">
+                <p className="text-lg text-brand-dark/60">
                   We&apos;ll be back to you shortly.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                 <div>
-                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-brand-dark">
+                  <label htmlFor="name" className="mb-3 block text-sm font-medium text-brand-dark">
                     Name <span className="text-brand-pink">*</span>
                   </label>
                   <input
@@ -82,11 +90,12 @@ export function ContactForm() {
                     name="name"
                     type="text"
                     required
-                    className="w-full rounded-lg border border-brand-light bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
+                    className="w-full border-0 border-b-2 border-brand-dark/10 bg-transparent px-0 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/30 focus:border-brand-pink"
+                    placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-brand-dark">
+                  <label htmlFor="email" className="mb-3 block text-sm font-medium text-brand-dark">
                     Email <span className="text-brand-pink">*</span>
                   </label>
                   <input
@@ -94,11 +103,12 @@ export function ContactForm() {
                     name="email"
                     type="email"
                     required
-                    className="w-full rounded-lg border border-brand-light bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
+                    className="w-full border-0 border-b-2 border-brand-dark/10 bg-transparent px-0 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/30 focus:border-brand-pink"
+                    placeholder="your@email.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="company" className="mb-2 block text-sm font-medium text-brand-dark">
+                  <label htmlFor="company" className="mb-3 block text-sm font-medium text-brand-dark">
                     Company <span className="text-brand-pink">*</span>
                   </label>
                   <input
@@ -106,85 +116,89 @@ export function ContactForm() {
                     name="company"
                     type="text"
                     required
-                    className="w-full rounded-lg border border-brand-light bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
+                    className="w-full border-0 border-b-2 border-brand-dark/10 bg-transparent px-0 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/30 focus:border-brand-pink"
+                    placeholder="Company name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="role" className="mb-2 block text-sm font-medium text-brand-dark">
+                  <label htmlFor="role" className="mb-3 block text-sm font-medium text-brand-dark">
                     Role
                   </label>
                   <input
                     id="role"
                     name="role"
                     type="text"
-                    className="w-full rounded-lg border border-brand-light bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
+                    className="w-full border-0 border-b-2 border-brand-dark/10 bg-transparent px-0 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/30 focus:border-brand-pink"
+                    placeholder="Your role"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="mb-2 block text-sm font-medium text-brand-dark">
+                  <label htmlFor="message" className="mb-3 block text-sm font-medium text-brand-dark">
                     What can we help with?
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={4}
-                    className="w-full rounded-lg border border-brand-light bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
+                    className="w-full border-0 border-b-2 border-brand-dark/10 bg-transparent px-0 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/30 focus:border-brand-pink"
+                    placeholder="Tell us about your challenge..."
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-pink px-8 py-4 text-base font-semibold text-brand-dark transition-opacity hover:opacity-90 disabled:opacity-50"
+                  className="group mt-4 inline-flex w-fit items-center gap-3 rounded-full bg-brand-pink px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-pink/90 disabled:opacity-50"
                 >
                   {loading ? "Sending..." : "Send message"}
-                  <Send size={18} />
+                  <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </form>
             )}
           </motion.div>
 
-          {/* Contact details */}
-          <motion.div variants={fadeInUp} className="flex flex-col gap-8">
+          {/* Right: contact details */}
+          <motion.div variants={fadeInUp} className="flex flex-col gap-10">
             <div>
               <h2 className="mb-4 font-display text-2xl font-bold text-brand-dark">
-                Direct contact
+                Prefer a direct line?
               </h2>
-              <p className="mb-8 leading-relaxed text-brand-dark/70">
-                Prefer to reach out directly? Drop us an email or connect on
-                LinkedIn.
+              <p className="text-lg leading-relaxed text-brand-dark/60">
+                Drop us an email or connect on LinkedIn.
               </p>
             </div>
 
             <a
               href="mailto:hello@committedcitizens.co.uk"
-              className="flex items-center gap-4 rounded-xl border border-brand-light p-6 transition-shadow hover:shadow-md"
+              className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-pink/10">
-                <Mail size={24} className="text-brand-pink" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
+                <Mail size={22} />
               </div>
               <div>
-                <p className="font-semibold text-brand-dark">Email us</p>
-                <p className="text-sm text-brand-dark/60">
+                <p className="font-semibold text-brand-dark">Email</p>
+                <p className="text-sm text-brand-dark/50">
                   hello@committedcitizens.co.uk
                 </p>
               </div>
+              <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
             </a>
 
             <a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 rounded-xl border border-brand-light p-6 transition-shadow hover:shadow-md"
+              className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-pink/10">
-                <Linkedin size={24} className="text-brand-pink" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
+                <Linkedin size={22} />
               </div>
               <div>
                 <p className="font-semibold text-brand-dark">LinkedIn</p>
-                <p className="text-sm text-brand-dark/60">
+                <p className="text-sm text-brand-dark/50">
                   Connect with us
                 </p>
               </div>
+              <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
             </a>
           </motion.div>
         </div>

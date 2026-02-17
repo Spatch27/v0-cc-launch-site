@@ -1,4 +1,8 @@
+"use client"
+
 import Link from "next/link"
+import { motion } from "framer-motion"
+import { fadeInUp, staggerContainer } from "@/lib/animations"
 
 const navigateLinks = [
   { label: "Approach", href: "/approach" },
@@ -14,37 +18,49 @@ const connectLinks = [
   { label: "Substack", href: "https://substack.com", external: true },
 ]
 
-const legalLinks = [
-  { label: "Privacy", href: "/privacy" },
-]
-
 export function Footer() {
   return (
     <footer className="bg-brand-dark text-brand-white">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="flex flex-col gap-12 lg:flex-row lg:justify-between">
-          {/* Logo and tagline */}
-          <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2" aria-label="Committed Citizens home">
-              <FooterLogo />
+      {/* Large CTA area */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={staggerContainer}
+        className="mx-auto max-w-[1400px] px-6 pt-24 pb-16 lg:px-12 lg:pt-32 lg:pb-20"
+      >
+        <div className="flex flex-col gap-16 lg:flex-row lg:justify-between">
+          {/* Left: big footer headline */}
+          <motion.div variants={fadeInUp} className="max-w-lg">
+            <Link href="/" className="group mb-8 inline-block" aria-label="Committed Citizens home">
+              <span className="font-display text-[1.5rem] font-bold leading-none tracking-tight text-brand-white">
+                Committed
+                <br />
+                <span className="text-[0.85rem] font-medium tracking-[0.2em] uppercase text-brand-pink">
+                  Citizens
+                </span>
+              </span>
             </Link>
-            <p className="text-lg font-display text-brand-light/80 italic">
+            <p className="mt-6 font-display text-3xl font-bold leading-snug text-brand-white lg:text-4xl">
               Freedom from drag.
             </p>
-          </div>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-brand-white/50">
+              We redesign how marketing work flows. Embedded consultancy that helps CMOs remove operational drag.
+            </p>
+          </motion.div>
 
-          {/* Link columns */}
-          <div className="grid grid-cols-3 gap-8 lg:gap-16">
+          {/* Right: link columns */}
+          <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-12 lg:gap-20">
             <div>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-brand-pink">
+              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-grey">
                 Navigate
               </h3>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-4">
                 {navigateLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-brand-light/70 transition-colors hover:text-brand-white"
+                      className="text-sm text-brand-white/60 transition-colors duration-300 hover:text-brand-white"
                     >
                       {link.label}
                     </Link>
@@ -54,17 +70,17 @@ export function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-brand-pink">
+              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-grey">
                 Connect
               </h3>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-4">
                 {connectLinks.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
-                      className="text-sm text-brand-light/70 transition-colors hover:text-brand-white"
+                      className="text-sm text-brand-white/60 transition-colors duration-300 hover:text-brand-white"
                     >
                       {link.label}
                     </a>
@@ -72,51 +88,24 @@ export function Footer() {
                 ))}
               </ul>
             </div>
-
-            <div>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-brand-pink">
-                Legal
-              </h3>
-              <ul className="flex flex-col gap-3">
-                {legalLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-brand-light/70 transition-colors hover:text-brand-white"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          </motion.div>
         </div>
+      </motion.div>
 
-        {/* Copyright */}
-        <div className="mt-16 border-t border-brand-white/10 pt-8">
-          <p className="text-sm text-brand-light/50">
-            &copy; {new Date().getFullYear()} Committed Citizens
+      {/* Copyright bar */}
+      <div className="border-t border-brand-white/10">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 lg:px-12">
+          <p className="text-xs text-brand-white/30">
+            &copy; {new Date().getFullYear()} Committed Citizens. All rights reserved.
           </p>
+          <Link
+            href="/privacy"
+            className="text-xs text-brand-white/30 transition-colors hover:text-brand-white/60"
+          >
+            Privacy
+          </Link>
         </div>
       </div>
     </footer>
-  )
-}
-
-function FooterLogo() {
-  return (
-    <div className="flex items-center gap-3">
-      <svg viewBox="0 0 40 40" fill="none" className="h-8 w-8" aria-hidden="true">
-        <path d="M20 0C8.954 0 0 8.954 0 20h20V0z" fill="#fc66a7" />
-        <path d="M20 0v20h20C40 8.954 31.046 0 20 0z" fill="#ffffff" />
-        <path d="M0 20c0 11.046 8.954 20 20 20V20H0z" fill="#ffffff" opacity="0.6" />
-        <path d="M20 20v20c11.046 0 20-8.954 20-20H20z" fill="#ff8600" />
-      </svg>
-      <span className="font-display text-lg font-bold leading-tight tracking-tight text-brand-white">
-        <span className="block text-[0.85em] font-bold">Committed</span>
-        <span className="block text-[0.7em] font-medium tracking-widest uppercase">Citizens</span>
-      </span>
-    </div>
   )
 }

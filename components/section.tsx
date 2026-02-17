@@ -22,6 +22,7 @@ interface SectionProps {
   className?: string
   id?: string
   noPadding?: boolean
+  narrow?: boolean
 }
 
 export function Section({
@@ -30,21 +31,24 @@ export function Section({
   className,
   id,
   noPadding = false,
+  narrow = false,
 }: SectionProps) {
   return (
     <motion.section
       id={id}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-80px" }}
       variants={staggerContainer}
       className={cn(
         bgClasses[background],
-        !noPadding && "px-6 py-20 lg:px-8 lg:py-28",
+        !noPadding && "px-6 py-24 lg:px-12 lg:py-32",
         className
       )}
     >
-      <div className="mx-auto max-w-7xl">{children}</div>
+      <div className={cn("mx-auto", narrow ? "max-w-4xl" : "max-w-[1400px]")}>
+        {children}
+      </div>
     </motion.section>
   )
 }

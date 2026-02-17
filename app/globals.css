@@ -4,14 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Brand Colors */
+  /* Brand Colors - Committed Citizens */
   --brand-dark: #181716;
   --brand-pink: #fc66a7;
   --brand-orange: #ff8600;
-  --brand-light: #e3dcdc;
+  --brand-light: #f5f2f0;
   --brand-yellow-light: #ffeb3e;
   --brand-yellow-deep: #ffd100;
   --brand-white: #ffffff;
+  --brand-grey: #9a9490;
 
   /* Semantic tokens */
   --background: #ffffff;
@@ -22,16 +23,16 @@
   --popover-foreground: #181716;
   --primary: #fc66a7;
   --primary-foreground: #181716;
-  --secondary: #e3dcdc;
+  --secondary: #f5f2f0;
   --secondary-foreground: #181716;
-  --muted: #e3dcdc;
-  --muted-foreground: #5a5654;
+  --muted: #f5f2f0;
+  --muted-foreground: #9a9490;
   --accent: #ff8600;
   --accent-foreground: #181716;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e3dcdc;
-  --input: #e3dcdc;
+  --border: #e8e4e1;
+  --input: #e8e4e1;
   --ring: #fc66a7;
   --radius: 0.5rem;
 }
@@ -49,6 +50,7 @@
   --color-brand-yellow-light: var(--brand-yellow-light);
   --color-brand-yellow-deep: var(--brand-yellow-deep);
   --color-brand-white: var(--brand-white);
+  --color-brand-grey: var(--brand-grey);
 
   /* Semantic Colors */
   --color-background: var(--background);
@@ -86,21 +88,17 @@
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--brand-light);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--brand-dark);
-  border-radius: 4px;
-}
-
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--brand-pink);
+  color: var(--brand-dark);
 }
 
 /* Respect reduced motion */

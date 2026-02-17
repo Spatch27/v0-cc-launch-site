@@ -30,49 +30,49 @@ const sampleInsights = [
 export function InsightsPreviewSection() {
   return (
     <Section background="light">
-      <div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-        <div>
-          <motion.p
-            variants={fadeInUp}
-            className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-pink"
-          >
-            Insights
-          </motion.p>
-          <motion.h2
-            variants={fadeInUp}
-            className="text-balance font-display text-3xl font-bold text-brand-dark md:text-4xl"
-          >
-            Latest thinking
-          </motion.h2>
+      <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
+          <div className="lg:w-auto">
+            <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
+              Insights
+            </span>
+          </div>
+          <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+            Latest thinking.
+          </h2>
         </div>
-        <motion.div variants={fadeInUp}>
-          <Link
-            href="/insights"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-pink hover:underline"
-          >
-            View all insights
-            <ArrowRight size={16} />
-          </Link>
-        </motion.div>
+        <Link
+          href="/insights"
+          className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-pink"
+        >
+          View all
+          <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-px overflow-hidden rounded-2xl bg-brand-dark/10 md:grid-cols-3">
         {sampleInsights.map((insight, i) => (
           <motion.article
             key={insight.slug}
             variants={fadeInUp}
             custom={i}
-            className="group flex flex-col rounded-xl bg-brand-white p-6 transition-shadow hover:shadow-md"
+            className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
           >
-            <span className="mb-3 text-xs font-semibold uppercase tracking-widest text-brand-orange">
+            <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
               {insight.category}
             </span>
-            <h3 className="mb-4 font-display text-xl font-bold text-brand-dark group-hover:text-brand-pink transition-colors">
+            <h3 className="mb-6 flex-1 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
               {insight.title}
             </h3>
-            <p className="mt-auto text-sm text-muted-foreground">
-              {insight.readTime}
-            </p>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
+                {insight.readTime}
+              </span>
+              <ArrowRight
+                size={16}
+                className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
+              />
+            </div>
           </motion.article>
         ))}
       </div>

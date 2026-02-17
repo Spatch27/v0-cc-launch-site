@@ -45,19 +45,17 @@ const caseStudies: CaseStudy[] = [
 export function SocialProofSection() {
   return (
     <Section background="dark">
-      <div className="mb-12">
-        <motion.p
-          variants={fadeInUp}
-          className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-pink"
-        >
-          Results
-        </motion.p>
-        <motion.h2
-          variants={fadeInUp}
-          className="text-balance font-display text-3xl font-bold text-brand-white md:text-5xl"
-        >
-          Proof, not promises
-        </motion.h2>
+      <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
+        <motion.div variants={fadeInUp} className="lg:w-1/4">
+          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
+            Results
+          </span>
+        </motion.div>
+        <motion.div variants={fadeInUp} className="lg:w-3/4">
+          <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
+            Proof, not promises.
+          </h2>
+        </motion.div>
       </div>
       <CaseStudyCards studies={caseStudies} limit={3} />
     </Section>

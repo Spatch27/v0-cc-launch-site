@@ -1,37 +1,38 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { fadeInUp } from "@/lib/animations"
 
 export function AboutHero() {
   return (
-    <section className="bg-brand-dark px-6 pt-32 pb-20 lg:px-8 lg:pt-40 lg:pb-28">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        className="mx-auto max-w-4xl text-center"
-      >
+    <section className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
+      <div className="mx-auto max-w-[1400px]">
         <motion.p
-          variants={fadeInUp}
-          className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-pink"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
         >
           Why we exist
         </motion.p>
         <motion.blockquote
-          variants={fadeInUp}
-          className="font-display text-2xl font-semibold italic leading-relaxed text-brand-white md:text-4xl"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl font-display text-[clamp(1.8rem,4vw,3.5rem)] font-bold italic leading-snug text-brand-white"
         >
           &ldquo;Never doubt that a small group of thoughtful, committed
           citizens can change the world. In fact, it&apos;s the only thing that
           ever has.&rdquo;
         </motion.blockquote>
         <motion.cite
-          variants={fadeInUp}
-          className="mt-6 block text-base font-medium not-italic text-brand-light/70"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-8 block text-base font-medium not-italic text-brand-white/40"
         >
           &mdash; Margaret Mead
         </motion.cite>
-      </motion.div>
+      </div>
     </section>
   )
 }

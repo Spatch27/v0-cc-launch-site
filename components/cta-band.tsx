@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react"
 
 interface CtaBandProps {
   heading: string
+  description?: string
   ctaLabel?: string
   ctaHref?: string
   background?: "pink" | "orange" | "yellow-deep" | "dark"
@@ -35,28 +36,39 @@ const btnMap = {
 
 export function CtaBand({
   heading,
+  description,
   ctaLabel = "Get in touch",
   ctaHref = "/contact",
   background = "pink",
 }: CtaBandProps) {
   return (
-    <section className={`${bgMap[background]} ${textMap[background]} px-6 py-20 lg:px-8 lg:py-24`}>
+    <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-80px" }}
         variants={fadeInUp}
-        className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center"
+        className="mx-auto flex max-w-[1400px] flex-col items-start gap-8 lg:flex-row lg:items-end lg:justify-between"
       >
-        <h2 className="text-balance font-display text-3xl font-bold md:text-5xl">
-          {heading}
-        </h2>
+        <div className="max-w-2xl">
+          <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
+            {heading}
+          </h2>
+          {description && (
+            <p className="mt-4 max-w-lg text-lg leading-relaxed opacity-70">
+              {description}
+            </p>
+          )}
+        </div>
         <Link
           href={ctaHref}
-          className={`inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold transition-all ${btnMap[background]}`}
+          className={`group inline-flex items-center gap-3 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
         >
           {ctaLabel}
-          <ArrowRight size={18} />
+          <ArrowRight
+            size={18}
+            className="transition-transform duration-300 group-hover:translate-x-1"
+          />
         </Link>
       </motion.div>
     </section>

@@ -1,9 +1,19 @@
 "use client"
 
+import { motion } from "framer-motion"
+import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
-import { CaseStudyCards, type CaseStudy } from "@/components/case-study-cards"
+import { Quote } from "lucide-react"
 
-const allCaseStudies: CaseStudy[] = [
+interface OutputStudy {
+  client: string
+  project: string
+  metrics: { value: string; label: string }[]
+  testimonial: string
+  accentColor: string
+}
+
+const allCaseStudies: OutputStudy[] = [
   {
     client: "Global home security company",
     project: "Email marketing workflow re-engineering across EMEA",
@@ -14,7 +24,7 @@ const allCaseStudies: CaseStudy[] = [
     ],
     testimonial:
       "They\u2019ve enabled us to get the results we always wanted out of an expensive, integrated system.",
-    accentColor: "pink",
+    accentColor: "#fc66a7",
   },
   {
     client: "Leading IT consultancy",
@@ -25,7 +35,7 @@ const allCaseStudies: CaseStudy[] = [
     ],
     testimonial:
       "They delivered a brilliant experience \u2014 great stakeholder mapping, flawless execution, and well-embedded adoption.",
-    accentColor: "orange",
+    accentColor: "#ff8600",
   },
   {
     client: "Top 10 wealth and asset management company",
@@ -37,7 +47,7 @@ const allCaseStudies: CaseStudy[] = [
     ],
     testimonial:
       "A business critical transformation at a crucial time for us \u2014 they executed it brilliantly.",
-    accentColor: "yellow-deep",
+    accentColor: "#ffd100",
   },
   {
     client: "Top 5 UK retailer",
@@ -49,14 +59,57 @@ const allCaseStudies: CaseStudy[] = [
     ],
     testimonial:
       "They demonstrated a great understanding of the way we work, and quickly delivered tech and tools as part of an evolved workflow.",
-    accentColor: "yellow-light",
+    accentColor: "#fc66a7",
   },
 ]
 
 export function OutputsCaseStudies() {
   return (
-    <Section background="light">
-      <CaseStudyCards studies={allCaseStudies} />
+    <Section background="white">
+      <div className="flex flex-col gap-16">
+        {allCaseStudies.map((study, i) => (
+          <motion.div
+            key={study.client}
+            variants={fadeInUp}
+            custom={i}
+            className="group grid gap-10 border-b border-brand-dark/10 pb-16 last:border-0 last:pb-0 md:grid-cols-2"
+          >
+            {/* Left: info */}
+            <div>
+              <div
+                className="mb-6 h-1 w-12 rounded-full"
+                style={{ backgroundColor: study.accentColor }}
+              />
+              <p className="mb-2 text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
+                {study.client}
+              </p>
+              <h3 className="mb-8 font-display text-2xl font-bold leading-snug text-brand-dark lg:text-3xl">
+                {study.project}
+              </h3>
+
+              {/* Metrics */}
+              <div className="flex flex-wrap gap-8">
+                {study.metrics.map((m) => (
+                  <div key={m.label}>
+                    <span className="font-display text-4xl font-bold text-brand-dark">
+                      {m.value}
+                    </span>
+                    <p className="mt-1 text-sm text-brand-dark/50">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: testimonial */}
+            <div className="flex flex-col justify-center">
+              <Quote size={20} className="mb-4 text-brand-dark/15" />
+              <blockquote className="font-display text-xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-2xl">
+                &ldquo;{study.testimonial}&rdquo;
+              </blockquote>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </Section>
   )
 }

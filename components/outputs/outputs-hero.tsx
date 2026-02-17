@@ -1,29 +1,36 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { fadeInUp } from "@/lib/animations"
 
 export function OutputsHero() {
   return (
-    <section className="bg-brand-dark px-6 pt-32 pb-20 lg:px-8 lg:pt-40 lg:pb-28">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        className="mx-auto max-w-4xl text-center"
-      >
+    <section className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
+      <div className="mx-auto max-w-[1400px]">
         <motion.p
-          variants={fadeInUp}
-          className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-pink"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
         >
           Our outputs
         </motion.p>
         <motion.h1
-          variants={fadeInUp}
-          className="text-balance font-display text-4xl font-bold leading-tight text-brand-white md:text-6xl"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
         >
-          When the work flows, results fly
+          When the work flows, results fly.
         </motion.h1>
-      </motion.div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-8 max-w-xl text-lg leading-relaxed text-brand-white/50"
+        >
+          Tangible evidence of operational uplift across marketing teams. Every metric is real, every testimonial is verified.
+        </motion.p>
+      </div>
     </section>
   )
 }

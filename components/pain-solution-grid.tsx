@@ -10,15 +10,17 @@ const painSolutions = [
     solution: "We fix journeys",
     description:
       "We recognise customer signals and orchestrate the right real-time response.",
-    color: "bg-brand-pink",
+    accent: "bg-brand-pink",
+    accentText: "text-brand-pink",
   },
   {
     pain: "Unclear impact",
-    quote: "Our data is unreliable and our dashboards can't be trusted",
+    quote: "Our data is unreliable and our dashboards can\u2019t be trusted",
     solution: "We prove progress",
     description:
       "We build telemetry to show throughput, quality, and cycle-time improvements.",
-    color: "bg-brand-orange",
+    accent: "bg-brand-orange",
+    accentText: "text-brand-orange",
   },
   {
     pain: "Slow work",
@@ -26,7 +28,8 @@ const painSolutions = [
     solution: "We increase velocity",
     description:
       "We redesign workflows and deploy agents where they can shorten cycles.",
-    color: "bg-brand-yellow-deep",
+    accent: "bg-brand-yellow-deep",
+    accentText: "text-brand-yellow-deep",
   },
   {
     pain: "Messy stacks",
@@ -34,43 +37,49 @@ const painSolutions = [
     solution: "We streamline stacks",
     description:
       "We rationalise platforms, improve data flows and operationalise agents.",
-    color: "bg-brand-yellow-light",
+    accent: "bg-brand-pink",
+    accentText: "text-brand-pink",
   },
   {
     pain: "Burnt out teams",
     quote: "Too much time is wasted on workarounds and firefighting",
     solution: "We reignite teams",
     description:
-      'We restore rhythm, confidence and clarity. "Everyone gets a jetpack."',
-    color: "bg-brand-pink",
+      "We restore rhythm, confidence and clarity. \u201CEveryone gets a jetpack.\u201D",
+    accent: "bg-brand-orange",
+    accentText: "text-brand-orange",
   },
 ]
 
 export function PainSolutionGrid() {
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+    <div className="grid gap-px overflow-hidden rounded-2xl bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-5">
       {painSolutions.map((item, i) => (
         <motion.div
           key={item.pain}
           variants={fadeInUp}
           custom={i}
-          className="group flex flex-col"
+          className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark"
         >
-          {/* Pain card top */}
-          <div className="flex flex-1 flex-col rounded-t-xl bg-brand-dark p-6 text-brand-white">
-            <span className="mb-2 text-xs font-semibold uppercase tracking-widest text-brand-pink">
-              {item.pain}
-            </span>
-            <p className="mt-auto text-sm italic leading-relaxed text-brand-light/80">
-              &ldquo;{item.quote}&rdquo;
-            </p>
-          </div>
-          {/* Solution card bottom */}
-          <div className={`rounded-b-xl ${item.color} p-6 text-brand-dark transition-transform duration-300 group-hover:-translate-y-1`}>
-            <h3 className="mb-2 font-display text-lg font-bold">
+          {/* Accent line */}
+          <div className={`mb-6 h-1 w-10 rounded-full ${item.accent}`} />
+
+          {/* Pain label */}
+          <span className={`mb-3 text-xs font-semibold tracking-[0.15em] uppercase ${item.accentText} transition-colors duration-300`}>
+            {item.pain}
+          </span>
+
+          {/* Quote */}
+          <p className="mb-8 text-sm italic leading-relaxed text-brand-dark/50 transition-colors duration-300 group-hover:text-brand-white/50">
+            &ldquo;{item.quote}&rdquo;
+          </p>
+
+          {/* Solution */}
+          <div className="mt-auto">
+            <h3 className="mb-2 font-display text-lg font-bold text-brand-dark transition-colors duration-300 group-hover:text-brand-white">
               {item.solution}
             </h3>
-            <p className="text-sm leading-relaxed opacity-80">
+            <p className="text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/60">
               {item.description}
             </p>
           </div>

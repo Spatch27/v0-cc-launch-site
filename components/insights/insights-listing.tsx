@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 const categories = ["All", "What we\u2019re creating", "What we\u2019re consuming"]
@@ -65,25 +65,25 @@ export function InsightsListing() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-dark px-6 pt-32 pb-20 lg:px-8 lg:pt-40 lg:pb-28">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          className="mx-auto max-w-4xl text-center"
-        >
+      <section className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
+        <div className="mx-auto max-w-[1400px]">
           <motion.p
-            variants={fadeInUp}
-            className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-pink"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
           >
             Insights
           </motion.p>
           <motion.h1
-            variants={fadeInUp}
-            className="font-display text-4xl font-bold text-brand-white md:text-6xl"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-3xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
           >
-            Thinking that drives action
+            Thinking that drives action.
           </motion.h1>
-        </motion.div>
+        </div>
       </section>
 
       {/* Featured article */}
@@ -91,27 +91,30 @@ export function InsightsListing() {
         <Section background="white">
           <motion.article
             variants={fadeInUp}
-            className="group flex flex-col gap-6 rounded-2xl bg-brand-light p-8 md:flex-row md:items-center md:p-12"
+            className="group grid gap-12 md:grid-cols-2 md:items-center"
           >
-            {/* Placeholder illustration area */}
-            <div className="flex h-48 w-full items-center justify-center rounded-xl bg-brand-dark md:h-auto md:w-1/3 md:self-stretch">
-              <svg viewBox="0 0 120 120" className="h-20 w-20 opacity-30" aria-hidden="true">
-                <circle cx="60" cy="60" r="50" fill="#fc66a7" />
-                <path d="M60 20L90 80H30Z" fill="#ff8600" />
-              </svg>
+            {/* Left: illustration area */}
+            <div className="flex aspect-[4/3] items-center justify-center rounded-2xl bg-brand-dark">
+              <div className="flex flex-col items-center gap-4 text-brand-white/20">
+                <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
+                <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
+              </div>
             </div>
-            <div className="flex-1">
-              <span className="mb-2 inline-block text-xs font-semibold uppercase tracking-widest text-brand-orange">
+
+            {/* Right: content */}
+            <div>
+              <span className="mb-4 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
                 Featured
               </span>
-              <h2 className="mb-4 font-display text-2xl font-bold text-brand-dark md:text-3xl">
+              <h2 className="mb-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
                 {featured.title}
               </h2>
-              <p className="mb-6 leading-relaxed text-brand-dark/70">
+              <p className="mb-8 text-lg leading-relaxed text-brand-dark/60">
                 {featured.excerpt}
               </p>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-4 text-sm text-brand-dark/40">
                 <span>{featured.date}</span>
+                <span className="h-1 w-1 rounded-full bg-brand-dark/20" />
                 <span>{featured.readTime}</span>
               </div>
             </div>
@@ -122,15 +125,15 @@ export function InsightsListing() {
       {/* Article grid */}
       <Section background="light">
         {/* Category filters */}
-        <div className="mb-10 flex flex-wrap gap-3">
+        <div className="mb-12 flex flex-wrap gap-3">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
                   ? "bg-brand-dark text-brand-white"
-                  : "bg-brand-white text-brand-dark hover:bg-brand-dark/10"
+                  : "bg-brand-white text-brand-dark hover:bg-brand-dark hover:text-brand-white"
               }`}
             >
               {cat}
@@ -142,30 +145,30 @@ export function InsightsListing() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-px overflow-hidden rounded-2xl bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((article) => (
             <motion.article
               key={article.slug}
               variants={fadeInUp}
-              className="group flex flex-col rounded-xl bg-brand-white p-6 transition-shadow hover:shadow-md"
+              className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
             >
-              <span className="mb-3 text-xs font-semibold uppercase tracking-widest text-brand-orange">
+              <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
                 {article.category}
               </span>
-              <h3 className="mb-3 font-display text-xl font-bold text-brand-dark group-hover:text-brand-pink transition-colors">
+              <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
                 {article.title}
               </h3>
-              <p className="mb-6 flex-1 text-sm leading-relaxed text-brand-dark/70">
+              <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
                 {article.excerpt}
               </p>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">
+                <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
                   {article.date} &middot; {article.readTime}
                 </span>
                 <ArrowRight
                   size={16}
-                  className="text-brand-pink opacity-0 transition-opacity group-hover:opacity-100"
+                  className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
                 />
               </div>
             </motion.article>
@@ -173,30 +176,32 @@ export function InsightsListing() {
         </motion.div>
       </Section>
 
-      {/* Newsletter signup */}
-      <section className="bg-brand-dark px-6 py-20 lg:px-8 lg:py-28">
+      {/* Newsletter */}
+      <section className="bg-brand-dark px-6 py-24 lg:px-12 lg:py-32">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center"
+          className="mx-auto flex max-w-[1400px] flex-col items-start gap-8 lg:flex-row lg:items-end lg:justify-between"
         >
-          <h2 className="font-display text-3xl font-bold text-brand-white md:text-4xl">
-            Sign up for our occasional newsletter
-          </h2>
-          <p className="text-brand-light/70">
-            Original thinking on marketing operations, transformation, and
-            removing operational drag. No spam, ever.
-          </p>
+          <div className="max-w-2xl">
+            <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
+              Stay sharp.
+            </h2>
+            <p className="mt-4 text-lg text-brand-white/50">
+              Original thinking on marketing operations, transformation, and
+              removing operational drag. No spam, ever.
+            </p>
+          </div>
           <Link
             href="https://substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-brand-pink px-8 py-4 text-base font-semibold text-brand-dark transition-opacity hover:opacity-90"
+            className="group inline-flex items-center gap-3 rounded-full bg-brand-pink px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-pink/90"
           >
             Subscribe on Substack
-            <ArrowRight size={18} />
+            <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </motion.div>
       </section>
