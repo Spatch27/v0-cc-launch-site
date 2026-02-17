@@ -64,7 +64,10 @@ export function Navigation() {
 
           {/* Desktop nav lozenge -- hidden below lg */}
           <nav className="hidden lg:block" aria-label="Main navigation">
-            <div className="flex items-center gap-1 rounded-full bg-brand-dark px-2 py-2">
+            <div
+              className="flex items-center gap-1 rounded-full bg-brand-dark px-2 py-2"
+              onMouseLeave={() => setHoveredLink(null)}
+            >
               {navLinks.map((link) => {
                 const isActive = pathname === link.href
                 const linkColors = heroColorMap[link.href] ?? heroColorMap["/"]
@@ -73,13 +76,14 @@ export function Navigation() {
                 const activeBg = link.href === "/outcomes" ? "bg-brand-white" : linkColors.bg
                 const activeText = link.href === "/outcomes" ? "text-brand-dark" : (linkColors.isDark ? "text-brand-white" : "text-brand-dark")
                 
+                const isHovered = !isActive && hoveredLink === link.href
+
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
                     className="group relative px-5 py-2"
                     onMouseEnter={() => setHoveredLink(link.href)}
-                    onMouseLeave={() => setHoveredLink(null)}
                   >
                     {isActive && (
                       <motion.span
@@ -88,18 +92,18 @@ export function Navigation() {
                         transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                       />
                     )}
-                    {!isActive && hoveredLink === link.href && (
+                    {isHovered && (
                       <motion.span
                         layoutId="nav-hover"
                         className="absolute inset-0 rounded-full bg-brand-white"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                        transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                       />
                     )}
                     <span
-                      className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-300 ${
+                      className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-200 ${
                         isActive
                           ? activeText
-                          : hoveredLink === link.href
+                          : isHovered
                             ? "text-brand-dark"
                             : "text-brand-white"
                       }`}
@@ -119,7 +123,10 @@ export function Navigation() {
         className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 pb-5 pt-2 lg:hidden"
         aria-label="Mobile navigation"
       >
-        <div className="flex items-center gap-0.5 rounded-full bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2">
+        <div
+          className="flex items-center gap-0.5 rounded-full bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2"
+          onMouseLeave={() => setHoveredMobileLink(null)}
+        >
           {navLinks.map((link) => {
             const isActive = pathname === link.href
             const linkColors = heroColorMap[link.href] ?? heroColorMap["/"]
@@ -128,13 +135,14 @@ export function Navigation() {
             const activeBg = link.href === "/outcomes" ? "bg-brand-white" : linkColors.bg
             const activeText = link.href === "/outcomes" ? "text-brand-dark" : (linkColors.isDark ? "text-brand-white" : "text-brand-dark")
             
+            const isHovered = !isActive && hoveredMobileLink === link.href
+
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 className="group relative flex-shrink-0 px-2.5 py-1.5 sm:px-3.5 sm:py-2"
                 onMouseEnter={() => setHoveredMobileLink(link.href)}
-                onMouseLeave={() => setHoveredMobileLink(null)}
               >
                 {isActive && (
                   <motion.span
@@ -143,18 +151,18 @@ export function Navigation() {
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}
-                {!isActive && hoveredMobileLink === link.href && (
+                {isHovered && (
                   <motion.span
                     layoutId="nav-hover-mobile"
                     className="absolute inset-0 rounded-full bg-brand-white"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                    transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                   />
                 )}
                 <span
-                  className={`relative z-10 whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-300 sm:text-xs ${
+                  className={`relative z-10 whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
                     isActive
                       ? activeText
-                      : hoveredMobileLink === link.href
+                      : isHovered
                         ? "text-brand-dark"
                         : "text-brand-white"
                   }`}
