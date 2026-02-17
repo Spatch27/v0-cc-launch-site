@@ -6,61 +6,35 @@ import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { ArrowRight } from "lucide-react"
+import type { Content } from "@prismicio/client"
+import { asText } from "@prismicio/client"
 
-const categories = ["All", "What we\u2019re creating", "What we\u2019re consuming"]
+const categories = ["All", "What we're creating", "What we're consuming"]
 
-const articles = [
-  {
-    title: "Your operating model is your biggest competitor",
-    excerpt:
-      "Most marketing teams don\u2019t have a strategy problem. They have an execution problem \u2014 and the root cause is almost always the operating model.",
-    category: "What we\u2019re creating",
-    readTime: "6 min read",
-    date: "February 2026",
-    slug: "operating-model-competitor",
-    featured: true,
-  },
-  {
-    title: "Stop transforming. Start clearing.",
-    excerpt:
-      "Transformation has become a dirty word. Teams are exhausted by it. Here\u2019s why clearing operational drag delivers faster, more durable results.",
-    category: "What we\u2019re creating",
-    readTime: "4 min read",
-    date: "February 2026",
-    slug: "stop-transforming-start-clearing",
-    featured: false,
-  },
-  {
-    title: "Half your marketing budget is fighting your own operating model",
-    excerpt:
-      "We\u2019ve audited dozens of marketing teams. The finding is always the same: the biggest source of waste is internal, not external.",
-    category: "What we\u2019re creating",
-    readTime: "5 min read",
-    date: "January 2026",
-    slug: "marketing-budget-operating-model",
-    featured: false,
-  },
-  {
-    title: "The case for marketing metabolic rate",
-    excerpt:
-      "Speed isn\u2019t about doing more. It\u2019s about the rate at which your marketing system can learn, adapt, and deliver.",
-    category: "What we\u2019re creating",
-    readTime: "7 min read",
-    date: "January 2026",
-    slug: "marketing-metabolic-rate",
-    featured: false,
-  },
-]
+interface InsightsListingProps {
+  articles: Content.InsightArticleDocument[]
+}
 
-export function InsightsListing() {
+export function InsightsListing({ articles }: InsightsListingProps) {
   const [activeCategory, setActiveCategory] = useState("All")
-  const featured = articles.find((a) => a.featured)
+  
+  // Featured article is the most recent one (first in array)
+  const featured = articles[0]
+  
+  // Filter remaining articles
+  const remainingArticles = articles.slice(1)
   const filtered =
     activeCategory === "All"
-      ? articles.filter((a) => !a.featured)
-      : articles.filter(
-          (a) => a.category === activeCategory && !a.featured
+      ? remainingArticles
+      : remainingArticles.filter(
+          (article) => article.data.category === activeCategory
         )
+
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return ""
+    const date = new Date(dateString)
+    return date.toLocaleDateString("en-GB", { month: "long", year: "numeric" })
+  }
 
   return (
     <>
@@ -89,36 +63,38 @@ export function InsightsListing() {
       {/* Featured article */}
       {featured && (
         <Section background="white">
-          <motion.article
-            variants={fadeInUp}
-            className="group grid gap-12 md:grid-cols-2 md:items-center"
-          >
-            {/* Left: illustration area */}
-            <div className="flex aspect-[4/3] items-center justify-center bg-brand-dark">
-              <div className="flex flex-col items-center gap-4 text-brand-white/20">
-                <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
-                <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
+          <Link href={`/insights/${featured.uid}`}>
+            <motion.article
+              variants={fadeInUp}
+              className="group grid gap-12 md:grid-cols-2 md:items-center"
+            >
+              {/* Left: illustration area */}
+              <div className="flex aspect-[4/3] items-center justify-center bg-brand-dark">
+                <div className="flex flex-col items-center gap-4 text-brand-white/20">
+                  <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
+                  <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
+                </div>
               </div>
-            </div>
 
-            {/* Right: content */}
-            <div>
-              <span className="mb-4 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
-                Featured
-              </span>
-              <h2 className="mb-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
-                {featured.title}
-              </h2>
-              <p className="mb-8 text-lg leading-relaxed text-brand-dark/60">
-                {featured.excerpt}
-              </p>
-              <div className="flex items-center gap-4 text-sm text-brand-dark/40">
-                <span>{featured.date}</span>
-                <span className="h-1 w-1 rounded-full bg-brand-dark/20" />
-                <span>{featured.readTime}</span>
+              {/* Right: content */}
+              <div>
+                <span className="mb-4 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
+                  Featured
+                </span>
+                <h2 className="mb-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
+                  {featured.data.title}
+                </h2>
+                <p className="mb-8 text-lg leading-relaxed text-brand-dark/60">
+                  {asText(featured.data.excerpt)}
+                </p>
+                <div className="flex items-center gap-4 text-sm text-brand-dark/40">
+                  <span>{formatDate(featured.data.publication_date)}</span>
+                  <span className="h-1 w-1 rounded-full bg-brand-dark/20" />
+                  <span>{featured.data.read_time}</span>
+                </div>
               </div>
-            </div>
-          </motion.article>
+            </motion.article>
+          </Link>
         </Section>
       )}
 
@@ -148,30 +124,31 @@ export function InsightsListing() {
           className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((article) => (
-            <motion.article
-              key={article.slug}
-              variants={fadeInUp}
-              className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
-            >
-              <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
-                {article.category}
-              </span>
-              <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
-                {article.title}
-              </h3>
-              <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
-                {article.excerpt}
-              </p>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
-                  {article.date} &middot; {article.readTime}
+            <Link key={article.uid} href={`/insights/${article.uid}`}>
+              <motion.article
+                variants={fadeInUp}
+                className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
+              >
+                <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
+                  {article.data.category}
                 </span>
-                <ArrowRight
-                  size={16}
-                  className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
-                />
-              </div>
-            </motion.article>
+                <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
+                  {article.data.title}
+                </h3>
+                <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
+                  {asText(article.data.excerpt)}
+                </p>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
+                    {formatDate(article.data.publication_date)} &middot; {article.data.read_time}
+                  </span>
+                  <ArrowRight
+                    size={16}
+                    className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
+                  />
+                </div>
+              </motion.article>
+            </Link>
           ))}
         </motion.div>
       </Section>

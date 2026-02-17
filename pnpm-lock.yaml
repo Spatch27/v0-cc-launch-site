@@ -17,6 +17,9 @@ importers:
       '@prismicio/next':
         specifier: ^1.7.0
         version: 1.7.2(@prismicio/client@7.21.6)(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+      '@prismicio/react':
+        specifier: ^3.3.0
+        version: 3.3.0(@prismicio/client@7.21.6)(react@19.2.4)
       '@radix-ui/react-accordion':
         specifier: 1.2.12
         version: 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -464,6 +467,13 @@ packages:
       '@prismicio/client': ^6 || ^7
       next: ^13.4.5 || ^14 || ^15.0.0-rc.0
       react: ^18 || ^19.0.0-rc.0
+
+  '@prismicio/react@3.3.0':
+    resolution: {integrity: sha512-M9u0iKkU/Ir1JCmEhTLYcUf86n6+o3fTWw74CGW91E+cPwJZ5UZDqqwWSSUU++ByaEfbjoYOhvvaxlPlBzuicg==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@prismicio/client': ^7
+      react: ^18 || ^19
 
   '@radix-ui/number@1.1.1':
     resolution: {integrity: sha512-MkKCwxlXTgz6CFoJx3pCwn07GKp36+aZyu/u2Ln2VrA5DcdyCZkASEDBTd8x5whTQQL5CiYf4prXKLcgQdv29g==}
@@ -1409,6 +1419,9 @@ packages:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
     engines: {node: '>=6'}
 
+  esm-env@1.2.2:
+    resolution: {integrity: sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA==}
+
   eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
 
@@ -2001,6 +2014,12 @@ snapshots:
       imgix-url-builder: 0.0.4
       negotiator: 0.6.4
       next: 16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+
+  '@prismicio/react@3.3.0(@prismicio/client@7.21.6)(react@19.2.4)':
+    dependencies:
+      '@prismicio/client': 7.21.6
+      esm-env: 1.2.2
       react: 19.2.4
 
   '@radix-ui/number@1.1.1': {}
@@ -2932,6 +2951,8 @@ snapshots:
       tapable: 2.3.0
 
   escalade@3.2.0: {}
+
+  esm-env@1.2.2: {}
 
   eventemitter3@4.0.7: {}
 
