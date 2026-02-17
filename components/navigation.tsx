@@ -47,7 +47,7 @@ export function Navigation() {
       {/* ─── Top bar: logo only on mobile, logo + nav lozenge on desktop ─── */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "backdrop-blur-xl bg-brand-dark/80" : colors.bg
+          scrolled ? "backdrop-blur-2xl bg-brand-light/20" : colors.bg
         }`}
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 lg:px-12 lg:py-5">
