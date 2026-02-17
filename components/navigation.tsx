@@ -65,6 +65,8 @@ export function Navigation() {
             <div className="flex items-center gap-1 rounded-full bg-brand-dark px-2 py-2">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href
+                const linkColors = heroColorMap[link.href] ?? heroColorMap["/"]
+                
                 return (
                   <Link
                     key={link.href}
@@ -74,19 +76,25 @@ export function Navigation() {
                     {isActive && (
                       <motion.span
                         layoutId="nav-pill"
-                        className="absolute inset-0 rounded-full bg-brand-white/15"
+                        className={`absolute inset-0 rounded-full ${linkColors.bg}`}
                         transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                       />
                     )}
                     <span
                       className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-300 ${
                         isActive
-                          ? "text-brand-white"
-                          : "text-brand-white/50 group-hover:text-brand-white"
+                          ? linkColors.isDark ? "text-brand-white" : "text-brand-dark"
+                          : "text-brand-white group-hover:text-brand-dark"
                       }`}
                     >
                       {link.label}
                     </span>
+                    {!isActive && (
+                      <motion.span
+                        className="absolute inset-0 rounded-full bg-brand-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                        initial={false}
+                      />
+                    )}
                   </Link>
                 )
               })}
@@ -103,6 +111,8 @@ export function Navigation() {
         <div className="flex items-center gap-0.5 rounded-full bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2">
           {navLinks.map((link) => {
             const isActive = pathname === link.href
+            const linkColors = heroColorMap[link.href] ?? heroColorMap["/"]
+            
             return (
               <Link
                 key={link.href}
@@ -112,19 +122,25 @@ export function Navigation() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill-mobile"
-                    className="absolute inset-0 rounded-full bg-brand-white/15"
+                    className={`absolute inset-0 rounded-full ${linkColors.bg}`}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}
                 <span
                   className={`relative z-10 whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-300 sm:text-xs ${
                     isActive
-                      ? "text-brand-white"
-                      : "text-brand-white/50 group-hover:text-brand-white"
+                      ? linkColors.isDark ? "text-brand-white" : "text-brand-dark"
+                      : "text-brand-white group-hover:text-brand-dark"
                   }`}
                 >
                   {link.label}
                 </span>
+                {!isActive && (
+                  <motion.span
+                    className="absolute inset-0 rounded-full bg-brand-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    initial={false}
+                  />
+                )}
               </Link>
             )
           })}
