@@ -4,6 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { Logo } from "@/components/logo"
 
 const navLinks = [
   { label: "Approach", href: "/approach" },
@@ -13,15 +14,15 @@ const navLinks = [
   { label: "Contact", href: "/contact" },
 ]
 
-/* Map each route to its hero background color */
-const heroColorMap: Record<string, { bg: string; text: string; logoAccent: string }> = {
-  "/":         { bg: "bg-brand-orange",      text: "text-brand-dark",  logoAccent: "text-brand-dark" },
-  "/approach": { bg: "bg-brand-pink",        text: "text-brand-dark",  logoAccent: "text-brand-dark" },
-  "/outputs":  { bg: "bg-brand-dark",        text: "text-brand-white", logoAccent: "text-brand-pink" },
-  "/insights": { bg: "bg-brand-light",       text: "text-brand-dark",  logoAccent: "text-brand-dark" },
-  "/about":    { bg: "bg-brand-yellow-deep", text: "text-brand-dark",  logoAccent: "text-brand-dark" },
-  "/contact":  { bg: "bg-brand-yellow-light",text: "text-brand-dark",  logoAccent: "text-brand-dark" },
-  "/privacy":  { bg: "bg-brand-dark",        text: "text-brand-white", logoAccent: "text-brand-pink" },
+/* Map each route to its hero background color and whether the bg is dark */
+const heroColorMap: Record<string, { bg: string; isDark: boolean }> = {
+  "/":         { bg: "bg-brand-orange",       isDark: false },
+  "/approach": { bg: "bg-brand-pink",         isDark: false },
+  "/outputs":  { bg: "bg-brand-dark",         isDark: true },
+  "/insights": { bg: "bg-brand-light",        isDark: false },
+  "/about":    { bg: "bg-brand-yellow-deep",  isDark: false },
+  "/contact":  { bg: "bg-brand-yellow-light", isDark: false },
+  "/privacy":  { bg: "bg-brand-dark",         isDark: true },
 }
 
 export function Navigation() {
@@ -30,6 +31,15 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
 
   const colors = heroColorMap[pathname] ?? heroColorMap["/"]
+
+  /* Dark logo on all backgrounds except dark grey, where white is used */
+  const logoVariant = scrolled || mobileOpen ? "white" : colors.isDark ? "white" : "dark"
+
+  /* Hamburger bar color: dark bars on light hero, white bars on dark hero / scrolled / menu open */
+  const barColor =
+    mobileOpen || scrolled || colors.isDark
+      ? "bg-brand-white"
+      : "bg-brand-dark"
 
   useEffect(() => {
     function onScroll() {
@@ -46,33 +56,17 @@ export function Navigation() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-brand-dark/95 backdrop-blur-md"
-          : colors.bg
+        scrolled ? "bg-brand-dark/95 backdrop-blur-md" : colors.bg
       }`}
     >
-      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 lg:px-12 lg:py-6">
+      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 lg:px-12 lg:py-5">
         {/* Logo */}
         <Link
           href="/"
-          className="group relative z-50 flex items-center gap-3"
+          className="group relative z-50 flex items-center"
           aria-label="Committed Citizens home"
         >
-          <span
-            className={`font-display text-[1.3rem] font-bold leading-none tracking-tight transition-colors duration-500 ${
-              scrolled ? "text-brand-white" : colors.text
-            }`}
-          >
-            Committed
-            <br />
-            <span
-              className={`text-[0.75rem] font-medium tracking-[0.2em] uppercase transition-colors duration-500 ${
-                scrolled ? "text-brand-pink" : colors.logoAccent
-              }`}
-            >
-              Citizens
-            </span>
-          </span>
+          <Logo variant={logoVariant} className="h-10 w-auto lg:h-12" />
         </Link>
 
         {/* Desktop nav - dark grey lozenge */}
@@ -117,23 +111,17 @@ export function Navigation() {
           <div className="flex w-6 flex-col gap-1.5">
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              className={`block h-px w-full origin-center transition-colors duration-500 ${
-                mobileOpen || scrolled ? "bg-brand-white" : colors.text === "text-brand-white" ? "bg-brand-white" : "bg-brand-dark"
-              }`}
+              className={`block h-px w-full origin-center ${barColor}`}
               transition={{ duration: 0.3 }}
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className={`block h-px w-full transition-colors duration-500 ${
-                mobileOpen || scrolled ? "bg-brand-white" : colors.text === "text-brand-white" ? "bg-brand-white" : "bg-brand-dark"
-              }`}
+              className={`block h-px w-full ${barColor}`}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className={`block h-px w-full origin-center transition-colors duration-500 ${
-                mobileOpen || scrolled ? "bg-brand-white" : colors.text === "text-brand-white" ? "bg-brand-white" : "bg-brand-dark"
-              }`}
+              className={`block h-px w-full origin-center ${barColor}`}
               transition={{ duration: 0.3 }}
             />
           </div>

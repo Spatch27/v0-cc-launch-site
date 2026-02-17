@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
+import { Logo } from "@/components/logo"
 
 const navigateLinks = [
   { label: "Approach", href: "/approach" },
@@ -33,13 +34,7 @@ export function Footer() {
           {/* Left: big footer headline */}
           <motion.div variants={fadeInUp} className="max-w-lg">
             <Link href="/" className="group mb-8 inline-block" aria-label="Committed Citizens home">
-              <span className="font-display text-[1.5rem] font-bold leading-none tracking-tight text-brand-white">
-                Committed
-                <br />
-                <span className="text-[0.85rem] font-medium tracking-[0.2em] uppercase text-brand-pink">
-                  Citizens
-                </span>
-              </span>
+              <Logo variant="white" className="h-12 w-auto" />
             </Link>
             <p className="mt-6 font-display text-3xl font-bold leading-snug text-brand-white lg:text-4xl">
               Freedom from drag.
