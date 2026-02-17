@@ -28,6 +28,8 @@ const heroColorMap: Record<string, { bg: string; isDark: boolean }> = {
 export function Navigation() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+  const [hoveredMobileLink, setHoveredMobileLink] = useState<string | null>(null)
 
   const colors = heroColorMap[pathname] ?? heroColorMap["/"]
 
@@ -76,6 +78,8 @@ export function Navigation() {
                     key={link.href}
                     href={link.href}
                     className="group relative px-5 py-2"
+                    onMouseEnter={() => setHoveredLink(link.href)}
+                    onMouseLeave={() => setHoveredLink(null)}
                   >
                     {isActive && (
                       <motion.span
@@ -84,21 +88,24 @@ export function Navigation() {
                         transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                       />
                     )}
+                    {!isActive && hoveredLink === link.href && (
+                      <motion.span
+                        layoutId="nav-hover"
+                        className="absolute inset-0 rounded-full bg-brand-white"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                      />
+                    )}
                     <span
                       className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-300 ${
                         isActive
                           ? activeText
-                          : "text-brand-white group-hover:text-brand-dark"
+                          : hoveredLink === link.href
+                            ? "text-brand-dark"
+                            : "text-brand-white"
                       }`}
                     >
                       {link.label}
                     </span>
-                    {!isActive && (
-                      <motion.span
-                        className="absolute inset-0 rounded-full bg-brand-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        initial={false}
-                      />
-                    )}
                   </Link>
                 )
               })}
@@ -126,6 +133,8 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 className="group relative flex-shrink-0 px-2.5 py-1.5 sm:px-3.5 sm:py-2"
+                onMouseEnter={() => setHoveredMobileLink(link.href)}
+                onMouseLeave={() => setHoveredMobileLink(null)}
               >
                 {isActive && (
                   <motion.span
@@ -134,21 +143,24 @@ export function Navigation() {
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}
+                {!isActive && hoveredMobileLink === link.href && (
+                  <motion.span
+                    layoutId="nav-hover-mobile"
+                    className="absolute inset-0 rounded-full bg-brand-white"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                  />
+                )}
                 <span
                   className={`relative z-10 whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-300 sm:text-xs ${
                     isActive
                       ? activeText
-                      : "text-brand-white group-hover:text-brand-dark"
+                      : hoveredMobileLink === link.href
+                        ? "text-brand-dark"
+                        : "text-brand-white"
                   }`}
                 >
                   {link.label}
                 </span>
-                {!isActive && (
-                  <motion.span
-                    className="absolute inset-0 rounded-full bg-brand-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    initial={false}
-                  />
-                )}
               </Link>
             )
           })}
