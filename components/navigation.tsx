@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Logo } from "@/components/logo"
 
 const navLinks = [
@@ -27,19 +27,12 @@ const heroColorMap: Record<string, { bg: string; isDark: boolean }> = {
 
 export function Navigation() {
   const pathname = usePathname()
-  const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   const colors = heroColorMap[pathname] ?? heroColorMap["/"]
 
-  /* Dark logo on all backgrounds except dark grey, where white is used */
-  const logoVariant = scrolled || mobileOpen ? "white" : colors.isDark ? "white" : "dark"
-
-  /* Hamburger bar color: dark bars on light hero, white bars on dark hero / scrolled / menu open */
-  const barColor =
-    mobileOpen || scrolled || colors.isDark
-      ? "bg-brand-white"
-      : "bg-brand-dark"
+  /* Dark logo on all backgrounds except dark grey; white when scrolled (dark bg) */
+  const logoVariant = scrolled ? "white" : colors.isDark ? "white" : "dark"
 
   useEffect(() => {
     function onScroll() {
@@ -49,121 +42,94 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  useEffect(() => {
-    setMobileOpen(false)
-  }, [pathname])
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-brand-dark/95 backdrop-blur-md" : colors.bg
-      }`}
-    >
-      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 lg:px-12 lg:py-5">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="group relative z-50 flex items-center"
-          aria-label="Committed Citizens home"
-        >
-          <Logo variant={logoVariant} className="h-10 w-auto lg:h-12" />
-        </Link>
-
-        {/* Desktop nav - dark grey lozenge */}
-        <div className="hidden md:block">
-          <div className="flex items-center gap-1 rounded-full bg-brand-dark px-2 py-2">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="group relative px-5 py-2"
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 rounded-full bg-brand-white/15"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                    />
-                  )}
-                  <span
-                    className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-300 ${
-                      isActive
-                        ? "text-brand-white"
-                        : "text-brand-white/50 group-hover:text-brand-white"
-                    }`}
-                  >
-                    {link.label}
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          <div className="flex w-6 flex-col gap-1.5">
-            <motion.span
-              animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              className={`block h-px w-full origin-center ${barColor}`}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.span
-              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className={`block h-px w-full ${barColor}`}
-              transition={{ duration: 0.2 }}
-            />
-            <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className={`block h-px w-full origin-center ${barColor}`}
-              transition={{ duration: 0.3 }}
-            />
-          </div>
-        </button>
-      </nav>
-
-      {/* Full-screen mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-40 flex items-center justify-center bg-brand-dark md:hidden"
+    <>
+      {/* ─── Top bar: logo only on mobile, logo + nav lozenge on desktop ─── */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? "bg-brand-dark/95 backdrop-blur-md" : colors.bg
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 lg:px-12 lg:py-5">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="group relative z-50 flex items-center"
+            aria-label="Committed Citizens home"
           >
-            <nav className="flex flex-col items-center gap-8">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: i * 0.08, duration: 0.4 }}
-                >
+            <Logo variant={logoVariant} className="h-10 w-auto lg:h-12" />
+          </Link>
+
+          {/* Desktop nav lozenge -- hidden below lg */}
+          <nav className="hidden lg:block" aria-label="Main navigation">
+            <div className="flex items-center gap-1 rounded-full bg-brand-dark px-2 py-2">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href
+                return (
                   <Link
+                    key={link.href}
                     href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`font-display text-4xl font-bold transition-colors ${
-                      pathname === link.href
-                        ? "text-brand-pink"
-                        : "text-brand-white hover:text-brand-pink"
-                    }`}
+                    className="group relative px-5 py-2"
                   >
-                    {link.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 rounded-full bg-brand-white/15"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                      />
+                    )}
+                    <span
+                      className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-300 ${
+                        isActive
+                          ? "text-brand-white"
+                          : "text-brand-white/50 group-hover:text-brand-white"
+                      }`}
+                    >
+                      {link.label}
+                    </span>
                   </Link>
-                </motion.div>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+                )
+              })}
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      {/* ─── Bottom bar: mobile / tablet only (below lg) ─── */}
+      <nav
+        className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 pb-5 pt-2 lg:hidden"
+        aria-label="Mobile navigation"
+      >
+        <div className="flex w-full max-w-md items-center justify-between rounded-full bg-brand-dark px-2 py-2 shadow-lg shadow-brand-dark/25">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="group relative px-3 py-2 sm:px-4"
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-pill-mobile"
+                    className="absolute inset-0 rounded-full bg-brand-white/15"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                  />
+                )}
+                <span
+                  className={`relative z-10 text-xs font-medium tracking-wide transition-colors duration-300 sm:text-sm ${
+                    isActive
+                      ? "text-brand-white"
+                      : "text-brand-white/50 group-hover:text-brand-white"
+                  }`}
+                >
+                  {link.label}
+                </span>
+              </Link>
+            )
+          })}
+        </div>
+      </nav>
+    </>
   )
 }
