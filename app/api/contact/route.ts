@@ -6,9 +6,9 @@ export async function POST(request: Request) {
     const { name, email, company, role, message } = body
 
     // Validate required fields
-    if (!name || !email || !company) {
+    if (!name || !email) {
       return NextResponse.json(
-        { error: "Name, email, and company are required." },
+        { error: "Name and email are required." },
         { status: 400 }
       )
     }
