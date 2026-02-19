@@ -2,13 +2,15 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { fadeInUp } from "@/lib/animations"
+import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { Mail, Linkedin, Send, CheckCircle, ArrowRight } from "lucide-react"
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [isMessageHovered, setIsMessageHovered] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -53,14 +55,124 @@ export function ContactForm() {
           >
             Let&apos;s talk.
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark/80"
+          >
+            We&apos;re building something great and we&apos;d love you to be part of it.
+          </motion.p>
         </div>
       </section>
 
-      {/* Form section */}
+      {/* Waitlist Section */}
+      <section className="relative bg-brand-dark px-6 py-20 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mx-auto max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h2 className="font-display text-4xl font-bold text-brand-white">
+                  Join the waitlist.
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-brand-white/70">
+                  Be first to hear when we're ready to take on new engagements. We'll keep you close, share our thinking, and make sure you're front of the queue when the time is right.
+                </p>
+              </div>
+
+              {submitted ? (
+                <div className="flex flex-col gap-6 bg-brand-dark/50 border border-brand-white/10 p-12">
+                  <CheckCircle size={48} className="text-brand-pink" />
+                  <h3 className="font-display text-2xl font-bold text-brand-white">
+                    Thanks for joining!
+                  </h3>
+                  <p className="text-lg text-brand-white/60">
+                    We'll be in touch soon with exciting updates.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-4">
+                  <div className="flex-1">
+                    <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-brand-white">
+                      First name
+                    </label>
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      required
+                      className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
+                      placeholder="Your first name"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label htmlFor="waitlistEmail" className="mb-2 block text-sm font-medium text-brand-white">
+                      Email
+                    </label>
+                    <input
+                      id="waitlistEmail"
+                      name="waitlistEmail"
+                      type="email"
+                      required
+                      className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="group inline-flex items-center gap-3 border-2 border-brand-light bg-brand-light px-8 py-3 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <span className="relative inline-block overflow-hidden">
+                      <motion.span
+                        initial="initial"
+                        animate={isHovered ? "hover" : "initial"}
+                        variants={textRollUp}
+                        className="block"
+                      >
+                        {loading ? "Joining..." : "Join"}
+                      </motion.span>
+                      <motion.span
+                        initial="initial"
+                        animate={isHovered ? "hover" : "initial"}
+                        variants={textRollDown}
+                        className="absolute inset-0 block"
+                      >
+                        {loading ? "Joining..." : "Join"}
+                      </motion.span>
+                    </span>
+                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </section>
       <Section background="light">
-        <div className="grid gap-20 lg:grid-cols-2">
-          {/* Form */}
-          <motion.div variants={fadeInUp}>
+        <div className="space-y-16">
+          {/* Intro text */}
+          <motion.div variants={fadeInUp} className="max-w-2xl">
+            <h2 className="font-display text-3xl font-bold text-brand-dark">
+              Can't wait? Neither can we.
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-brand-dark/70">
+              If you have a challenge that won't sit still, jump the queue and get in touch directly.
+            </p>
+          </motion.div>
+
+          {/* Form + Contact links */}
+          <div className="grid gap-20 lg:grid-cols-2">
+            {/* Form */}
+            <motion.div variants={fadeInUp}>
             {submitted ? (
               <div className="flex flex-col gap-6 bg-brand-white p-12">
                 <CheckCircle size={48} className="text-brand-pink" />
@@ -140,59 +252,70 @@ export function ContactForm() {
                   type="submit"
                   disabled={loading}
                   className="group mt-4 inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
+                  onMouseEnter={() => setIsMessageHovered(true)}
+                  onMouseLeave={() => setIsMessageHovered(false)}
                 >
-                  {loading ? "Sending..." : "Send message"}
+                  <span className="relative inline-block overflow-hidden">
+                    <motion.span
+                      initial="initial"
+                      animate={isMessageHovered ? "hover" : "initial"}
+                      variants={textRollUp}
+                      className="block"
+                    >
+                      {loading ? "Sending..." : "Send message"}
+                    </motion.span>
+                    <motion.span
+                      initial="initial"
+                      animate={isMessageHovered ? "hover" : "initial"}
+                      variants={textRollDown}
+                      className="absolute inset-0 block"
+                    >
+                      {loading ? "Sending..." : "Send message"}
+                    </motion.span>
+                  </span>
                   <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </form>
             )}
-          </motion.div>
+            </motion.div>
 
-          {/* Right: contact details */}
-          <motion.div variants={fadeInUp} className="flex flex-col gap-10">
-            <div>
-              <h2 className="mb-4 font-display text-2xl font-bold text-brand-dark">
-                Prefer a direct line?
-              </h2>
-              <p className="text-lg leading-relaxed text-brand-dark/60">
-                Drop us an email or connect on LinkedIn.
-              </p>
-            </div>
+            {/* Contact links */}
+            <motion.div variants={fadeInUp} className="flex flex-col gap-10">
+              <a
+                href="mailto:hello@committedcitizens.co.uk"
+                className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
+                  <Mail size={22} />
+                </div>
+                <div>
+                  <p className="font-semibold text-brand-dark">Email</p>
+                  <p className="text-sm text-brand-dark/50">
+                    hello@committedcitizens.co.uk
+                  </p>
+                </div>
+                <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
+              </a>
 
-            <a
-              href="mailto:hello@committedcitizens.co.uk"
-              className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
-            >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
-                <Mail size={22} />
-              </div>
-              <div>
-                <p className="font-semibold text-brand-dark">Email</p>
-                <p className="text-sm text-brand-dark/50">
-                  hello@committedcitizens.co.uk
-                </p>
-              </div>
-              <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
-            </a>
-
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
-            >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
-                <Linkedin size={22} />
-              </div>
-              <div>
-                <p className="font-semibold text-brand-dark">LinkedIn</p>
-                <p className="text-sm text-brand-dark/50">
-                  Connect with us
-                </p>
-              </div>
-              <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
-            </a>
-          </motion.div>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
+                  <Linkedin size={22} />
+                </div>
+                <div>
+                  <p className="font-semibold text-brand-dark">LinkedIn</p>
+                  <p className="text-sm text-brand-dark/50">
+                    Connect with us
+                  </p>
+                </div>
+                <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
+              </a>
+            </motion.div>
+          </div>
         </div>
       </Section>
     </>
