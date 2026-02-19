@@ -9,12 +9,14 @@ import { Mail, Linkedin, Send, CheckCircle, ArrowRight } from "lucide-react"
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [isMessageHovered, setIsMessageHovered] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
+    setError(null)
 
     const form = e.currentTarget
     const formData = new FormData(form)
@@ -34,9 +36,13 @@ export function ContactForm() {
 
       if (res.ok) {
         setSubmitted(true)
+      } else {
+        const data = await res.json()
+        setError(data.error || "Failed to submit form")
       }
-    } catch {
-      // Silently handle error
+    } catch (err) {
+      console.error("[v0] Form submission error:", err)
+      setError("An error occurred. Please try again.")
     } finally {
       setLoading(false)
     }
@@ -99,16 +105,16 @@ export function ContactForm() {
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-4">
                   <div className="flex-1">
-                    <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-brand-white">
-                      First name
+                    <label htmlFor="waitlistName" className="mb-2 block text-sm font-medium text-brand-white">
+                      Name
                     </label>
                     <input
-                      id="firstName"
-                      name="firstName"
+                      id="waitlistName"
+                      name="name"
                       type="text"
                       required
                       className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
-                      placeholder="Your first name"
+                      placeholder="Your name"
                     />
                   </div>
                   <div className="flex-1">
@@ -117,11 +123,24 @@ export function ContactForm() {
                     </label>
                     <input
                       id="waitlistEmail"
-                      name="waitlistEmail"
+                      name="email"
                       type="email"
                       required
                       className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
                       placeholder="your@email.com"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label htmlFor="waitlistCompany" className="mb-2 block text-sm font-medium text-brand-white">
+                      Company
+                    </label>
+                    <input
+                      id="waitlistCompany"
+                      name="company"
+                      type="text"
+                      required
+                      className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
+                      placeholder="Company name"
                     />
                   </div>
                   <button
@@ -185,6 +204,11 @@ export function ContactForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                {error && (
+                  <div className="rounded-lg border border-red-200 bg-red-50 p-4">
+                    <p className="text-sm text-red-700">{error}</p>
+                  </div>
+                )}
                 <div>
                   <label htmlFor="name" className="mb-3 block text-sm font-medium text-brand-dark">
                     Name <span className="text-brand-pink">*</span>
