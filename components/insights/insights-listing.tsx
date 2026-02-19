@@ -175,25 +175,27 @@ export function InsightsListing() {
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-col p-8 lg:p-10">
+                <div className="flex flex-col p-8 lg:p-10 pb-8 lg:pb-10">
                   <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
                     {article.category}
                   </span>
                   <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
                     {article.title}
                   </h3>
-                  <p className="mb-12 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
+                  <p className="flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
                     {article.excerpt}
                   </p>
-                  <div className="mt-auto flex items-center justify-between text-sm">
-                    <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
-                      {article.date} &middot; {article.readTime}
-                    </span>
-                    <ArrowRight
-                      size={16}
-                      className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
-                    />
-                  </div>
+                </div>
+
+                {/* Footer - sticky to bottom */}
+                <div className="mt-auto flex items-center justify-between px-8 pb-8 lg:px-10 lg:pb-10 text-sm">
+                  <span className="text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/60">
+                    {article.date} &middot; {article.readTime}
+                  </span>
+                  <ArrowRight
+                    size={16}
+                    className="text-brand-dark/30 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
+                  />
                 </div>
               </motion.article>
             </Link>
