@@ -162,7 +162,7 @@ export function InsightsListing() {
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}
-                className="group flex flex-col bg-brand-white transition-colors duration-300 hover:bg-brand-dark overflow-hidden"
+                className="group flex h-full flex-col bg-brand-white transition-colors duration-300 hover:bg-brand-dark overflow-hidden"
               >
                 {/* Placeholder image */}
                 <div className="aspect-video w-full overflow-hidden bg-gradient-to-br from-brand-pink/20 to-brand-orange/20">
@@ -182,7 +182,7 @@ export function InsightsListing() {
                   <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
                     {article.title}
                   </h3>
-                  <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
+                  <p className="mb-12 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
                     {article.excerpt}
                   </p>
                   <div className="flex items-center justify-between text-sm">
