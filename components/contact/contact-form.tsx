@@ -56,7 +56,78 @@ export function ContactForm() {
         </div>
       </section>
 
-      {/* Form section */}
+      {/* Waitlist Section */}
+      <section className="relative bg-brand-light px-6 py-20 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mx-auto max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h2 className="font-display text-4xl font-bold text-brand-dark">
+                  Join the waitlist.
+                </h2>
+                <p className="mt-4 text-lg leading-relaxed text-brand-dark/70">
+                  Be first to hear when we're ready to take on new engagements. We'll keep you close, share our thinking, and make sure you're front of the queue when the time is right.
+                </p>
+              </div>
+
+              {submitted ? (
+                <div className="flex flex-col gap-6 bg-brand-white p-12">
+                  <CheckCircle size={48} className="text-brand-pink" />
+                  <h3 className="font-display text-2xl font-bold text-brand-dark">
+                    Thanks for joining!
+                  </h3>
+                  <p className="text-lg text-brand-dark/60">
+                    We'll be in touch soon with exciting updates.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-4">
+                  <div className="flex-1">
+                    <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-brand-dark">
+                      First name
+                    </label>
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      required
+                      className="w-full border border-brand-dark/20 bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/40 focus:border-brand-dark"
+                      placeholder="Your first name"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label htmlFor="waitlistEmail" className="mb-2 block text-sm font-medium text-brand-dark">
+                      Email
+                    </label>
+                    <input
+                      id="waitlistEmail"
+                      name="waitlistEmail"
+                      type="email"
+                      required
+                      className="w-full border border-brand-dark/20 bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/40 focus:border-brand-dark"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="group inline-flex items-center gap-2 border-2 border-brand-dark bg-brand-dark px-8 py-3 text-base font-semibold text-brand-white transition-all duration-300 hover:bg-brand-white hover:text-brand-dark disabled:opacity-50"
+                  >
+                    {loading ? "Joining..." : "Join"}
+                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </section>
       <Section background="light">
         <div className="grid gap-20 lg:grid-cols-2">
           {/* Form */}
