@@ -89,7 +89,7 @@ export function Footer() {
 
       {/* Copyright bar */}
       <div className="border-t border-brand-white/10">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 lg:px-12">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 pb-24 lg:px-12 lg:pb-6">
           <p className="text-xs text-brand-white/30">
             &copy; {new Date().getFullYear()} Committed Citizens. All rights reserved.
           </p>
