@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import { ArticleSidebar } from "@/components/insights/article-sidebar"
+import { BackToInsights } from "@/components/insights/back-to-insights"
 import { Section } from "@/components/section"
 
 /**
@@ -211,13 +212,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Article Header */}
       <section className="bg-brand-light px-6 pt-40 pb-12 lg:px-12 lg:pt-48 lg:pb-16">
         <div className="mx-auto max-w-[1400px]">
-          <Link
-            href="/insights"
-            className="inline-flex items-center gap-2 text-sm font-medium text-brand-dark/60 transition-colors hover:text-brand-dark"
-          >
-            <ArrowLeft size={16} />
-            Back to Insights
-          </Link>
+          <BackToInsights />
 
           <div className="mt-10">
             <span className="mb-6 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
