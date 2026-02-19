@@ -8,22 +8,22 @@ import { ArrowRight } from "lucide-react"
 
 const sampleInsights = [
   {
-    title: "Your operating model is your biggest competitor",
+    title: "Removing operational drag from marketing teams",
+    category: "What we\u2019re creating",
+    readTime: "8 min read",
+    slug: "removing-operational-drag",
+  },
+  {
+    title: "Why marketing operations is the new competitive advantage",
     category: "What we\u2019re creating",
     readTime: "6 min read",
-    slug: "operating-model-competitor",
+    slug: "marketing-operations-competitive-advantage",
   },
   {
-    title: "Stop transforming. Start clearing.",
+    title: "The embedded consultancy model explained",
     category: "What we\u2019re creating",
-    readTime: "4 min read",
-    slug: "stop-transforming-start-clearing",
-  },
-  {
-    title: "Half your marketing budget is fighting your own operating model",
-    category: "What we\u2019re creating",
-    readTime: "5 min read",
-    slug: "marketing-budget-operating-model",
+    readTime: "10 min read",
+    slug: "embedded-consultancy-model",
   },
 ]
 
@@ -52,8 +52,8 @@ export function InsightsPreviewSection() {
 
       <div className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-3">
         {sampleInsights.map((insight, i) => (
+          <Link key={insight.slug} href={`/insights/${insight.slug}`}>
           <motion.article
-            key={insight.slug}
             variants={fadeInUp}
             custom={i}
             className="group flex flex-col bg-brand-light p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
@@ -74,6 +74,7 @@ export function InsightsPreviewSection() {
               />
             </div>
           </motion.article>
+          </Link>
         ))}
       </div>
     </Section>

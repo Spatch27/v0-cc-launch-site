@@ -11,7 +11,7 @@ const categories = ["All", "What we're creating", "What we're consuming"]
 
 const articles = [
   {
-    id: "1",
+    id: "removing-operational-drag",
     title: "Removing operational drag from marketing teams",
     excerpt:
       "How CMOs can identify and eliminate the hidden inefficiencies that slow down their teams and reduce marketing effectiveness.",
@@ -20,7 +20,7 @@ const articles = [
     readTime: "8 min read",
   },
   {
-    id: "2",
+    id: "marketing-operations-competitive-advantage",
     title: "Why marketing operations is the new competitive advantage",
     excerpt:
       "In a world where every brand has access to the same tools, operational excellence is what separates the leaders from the followers.",
@@ -29,7 +29,7 @@ const articles = [
     readTime: "6 min read",
   },
   {
-    id: "3",
+    id: "embedded-consultancy-model",
     title: "The embedded consultancy model explained",
     excerpt:
       "What makes embedded consultancy different from traditional consulting, and why it's more effective for modern marketing teams.",
@@ -38,7 +38,7 @@ const articles = [
     readTime: "10 min read",
   },
   {
-    id: "4",
+    id: "building-resilient-marketing-systems",
     title: "Building resilient marketing systems",
     excerpt:
       "How to create marketing workflows that scale with your business and adapt to changing market conditions without breaking.",
@@ -47,16 +47,16 @@ const articles = [
     readTime: "7 min read",
   },
   {
-    id: "5",
+    id: "case-for-marketing-product-teams",
     title: "The case for marketing product teams",
     excerpt:
-      "Why the most effective marketing organizations are structured like product teams, with clear ownership and continuous improvement.",
+      "Why the most effective marketing organisations are structured like product teams, with clear ownership and continuous improvement.",
     category: "What we're creating",
     date: "July 2024",
     readTime: "9 min read",
   },
   {
-    id: "6",
+    id: "rethinking-marketing-velocity",
     title: "Rethinking marketing velocity",
     excerpt:
       "Speed isn't always better. How to find the right balance between moving fast and maintaining quality in your marketing execution.",
