@@ -53,7 +53,7 @@ export function Section({
         className
       )}
     >
-      <div className={cn("mx-auto", narrow ? "max-w-4xl" : "max-w-[1400px]")}>
+      <div className={cn("mx-auto max-w-[1400px]", narrow && "max-w-4xl")}>
         {children}
       </div>
     </motion.section>
