@@ -3,8 +3,12 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import { useState } from "react"
+import { textRollUp, textRollDown } from "@/lib/animations"
 
 export function HeroSection() {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <section className="relative min-h-screen bg-brand-orange px-6 lg:px-12">
       <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pb-16 pt-24 lg:pt-28">
@@ -45,8 +49,27 @@ export function HeroSection() {
           <Link
             href="/contact"
             className="group inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            Talk to us
+            <span className="relative inline-block overflow-hidden">
+              <motion.span
+                initial="initial"
+                animate={isHovered ? "hover" : "initial"}
+                variants={textRollUp}
+                className="block"
+              >
+                Talk to us
+              </motion.span>
+              <motion.span
+                initial="initial"
+                animate={isHovered ? "hover" : "initial"}
+                variants={textRollDown}
+                className="absolute inset-0 block"
+              >
+                Talk to us
+              </motion.span>
+            </span>
             <ArrowRight
               size={18}
               className="transition-transform duration-300 group-hover:translate-x-1"
