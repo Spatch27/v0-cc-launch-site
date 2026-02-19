@@ -185,7 +185,7 @@ export function InsightsListing() {
                   <p className="mb-12 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
                     {article.excerpt}
                   </p>
-                  <div className="flex items-center justify-between text-sm">
+                  <div className="mt-auto flex items-center justify-between text-sm">
                     <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
                       {article.date} &middot; {article.readTime}
                     </span>
