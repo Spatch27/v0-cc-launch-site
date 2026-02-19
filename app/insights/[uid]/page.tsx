@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft } from "lucide-react"
 import { Section } from "@/components/section"
 import { ArticleSidebar } from "@/components/insights/article-sidebar"
 import { BackToInsights } from "@/components/insights/back-to-insights"
+import { BackToInsightsCta } from "@/components/insights/back-to-insights-cta"
 
 /**
  * Static article data used until Prismic is fully configured.
@@ -289,16 +288,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Back to Insights */}
       <Section background="light">
         <div className="flex justify-center">
-          <Link
-            href="/insights"
-            className="group inline-flex items-center gap-3 bg-brand-dark px-8 py-4 text-base font-semibold text-brand-white transition-all duration-300 hover:bg-brand-dark/90"
-          >
-            <ArrowLeft
-              size={18}
-              className="transition-transform duration-300 group-hover:-translate-x-1"
-            />
-            Back to all insights
-          </Link>
+          <BackToInsightsCta />
         </div>
       </Section>
     </>
