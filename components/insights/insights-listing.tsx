@@ -84,14 +84,6 @@ export function InsightsListing() {
       {/* Hero */}
       <section className="relative bg-brand-light px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
         <div className="mx-auto max-w-[1400px]">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink"
-          >
-            Insights
-          </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -164,30 +156,45 @@ export function InsightsListing() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}
-                className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
+                className="group flex h-full flex-col bg-brand-white transition-colors duration-300 hover:bg-brand-dark overflow-hidden"
               >
-                <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
-                  {article.category}
-                </span>
-                <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
-                  {article.title}
-                </h3>
-                <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
-                  {article.excerpt}
-                </p>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
+                {/* Placeholder image */}
+                <div className="aspect-video w-full overflow-hidden bg-gradient-to-br from-brand-pink/20 to-brand-orange/20">
+                  <div className="flex h-full items-center justify-center">
+                    <div className="flex flex-col items-center gap-2 text-brand-dark/20 transition-colors duration-300 group-hover:text-brand-white/20">
+                      <div className="h-12 w-12 rounded-full bg-brand-pink/10" />
+                      <span className="text-xs">Article Image</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col p-8 lg:p-10 pb-8 lg:pb-10">
+                  <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
+                    {article.category}
+                  </span>
+                  <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
+                    {article.title}
+                  </h3>
+                  <p className="flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
+                    {article.excerpt}
+                  </p>
+                </div>
+
+                {/* Footer - sticky to bottom */}
+                <div className="mt-auto flex items-center justify-between px-8 pb-8 lg:px-10 lg:pb-10 text-sm">
+                  <span className="text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/60">
                     {article.date} &middot; {article.readTime}
                   </span>
                   <ArrowRight
                     size={16}
-                    className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
+                    className="text-brand-dark/30 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
                   />
                 </div>
               </motion.article>

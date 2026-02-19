@@ -12,16 +12,6 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen bg-brand-orange px-6 lg:px-12">
       <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pb-16 pt-24 lg:pt-28">
-        {/* Eyebrow */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-white"
-        >
-          Embedded Consultancy for CMOs
-        </motion.p>
-
         {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
