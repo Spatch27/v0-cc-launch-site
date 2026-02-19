@@ -43,7 +43,7 @@ export function ContactForm() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-brand-yellow-light px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
+      <section className="relative bg-brand-yellow-deep px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
