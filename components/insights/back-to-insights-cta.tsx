@@ -12,7 +12,7 @@ export function BackToInsightsCta() {
   return (
     <Link
       href="/insights"
-      className="group inline-flex items-center gap-3 border-2 border-brand-dark/30 bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:border-brand-dark"
+      className="group inline-flex items-center gap-3 border-2 border-brand-dark/30 bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:border-brand-dark hover:bg-white"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
