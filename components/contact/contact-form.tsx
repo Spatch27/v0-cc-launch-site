@@ -130,19 +130,6 @@ export function ContactForm() {
                       placeholder="your@email.com"
                     />
                   </div>
-                  <div className="flex-1">
-                    <label htmlFor="waitlistCompany" className="mb-2 block text-sm font-medium text-brand-white">
-                      Company
-                    </label>
-                    <input
-                      id="waitlistCompany"
-                      name="company"
-                      type="text"
-                      required
-                      className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
-                      placeholder="Company name"
-                    />
-                  </div>
                   <button
                     type="submit"
                     disabled={loading}
