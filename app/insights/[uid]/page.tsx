@@ -3,9 +3,9 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
+import { Section } from "@/components/section"
 import { ArticleSidebar } from "@/components/insights/article-sidebar"
 import { BackToInsights } from "@/components/insights/back-to-insights"
-import { Section } from "@/components/section"
 
 /**
  * Static article data used until Prismic is fully configured.
