@@ -157,7 +157,17 @@ export function ContactForm() {
         </div>
       </section>
       <Section background="light">
-        <div className="grid gap-20 lg:grid-cols-2">
+        <div className="space-y-16">
+          {/* Intro text */}
+          <motion.div variants={fadeInUp} className="max-w-2xl">
+            <h2 className="font-display text-3xl font-bold text-brand-dark">
+              Can't wait? Neither can we.
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-brand-dark/70">
+              If you have a challenge that won't sit still, jump the queue and get in touch directly.
+            </p>
+          </motion.div>
+
           {/* Form */}
           <motion.div variants={fadeInUp}>
             {submitted ? (
@@ -245,52 +255,6 @@ export function ContactForm() {
                 </button>
               </form>
             )}
-          </motion.div>
-
-          {/* Right: contact details */}
-          <motion.div variants={fadeInUp} className="flex flex-col gap-10">
-            <div>
-              <h2 className="mb-4 font-display text-2xl font-bold text-brand-dark">
-                Prefer a direct line?
-              </h2>
-              <p className="text-lg leading-relaxed text-brand-dark/60">
-                Drop us an email or connect on LinkedIn.
-              </p>
-            </div>
-
-            <a
-              href="mailto:hello@committedcitizens.co.uk"
-              className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
-            >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
-                <Mail size={22} />
-              </div>
-              <div>
-                <p className="font-semibold text-brand-dark">Email</p>
-                <p className="text-sm text-brand-dark/50">
-                  hello@committedcitizens.co.uk
-                </p>
-              </div>
-              <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
-            </a>
-
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
-            >
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
-                <Linkedin size={22} />
-              </div>
-              <div>
-                <p className="font-semibold text-brand-dark">LinkedIn</p>
-                <p className="text-sm text-brand-dark/50">
-                  Connect with us
-                </p>
-              </div>
-              <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
-            </a>
           </motion.div>
         </div>
       </Section>
