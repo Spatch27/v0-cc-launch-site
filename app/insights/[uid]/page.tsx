@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { Section } from "@/components/section"
+import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
+import { ArticleSidebar } from "@/components/insights/article-sidebar"
+import { Section } from "@/components/section"
 
 /**
  * Static article data used until Prismic is fully configured.
@@ -16,6 +18,9 @@ const articles: Record<
     category: string
     date: string
     readTime: string
+    author: string
+    authorRole: string
+    heroImage: string
     body: { type: "heading2" | "paragraph"; text: string }[]
     seoTitle?: string
     seoDescription?: string
@@ -28,6 +33,9 @@ const articles: Record<
     category: "What we're creating",
     date: "November 2024",
     readTime: "8 min read",
+    author: "Committed Citizens",
+    authorRole: "Editorial",
+    heroImage: "/images/insights/hero-default.jpg",
     body: [
       {
         type: "heading2",
@@ -58,6 +66,9 @@ const articles: Record<
     category: "What we're creating",
     date: "October 2024",
     readTime: "6 min read",
+    author: "Committed Citizens",
+    authorRole: "Editorial",
+    heroImage: "/images/insights/hero-default.jpg",
     body: [
       {
         type: "heading2",
@@ -80,6 +91,9 @@ const articles: Record<
     category: "What we're creating",
     date: "September 2024",
     readTime: "10 min read",
+    author: "Committed Citizens",
+    authorRole: "Editorial",
+    heroImage: "/images/insights/hero-default.jpg",
     body: [
       {
         type: "heading2",
@@ -106,6 +120,9 @@ const articles: Record<
     category: "What we're creating",
     date: "August 2024",
     readTime: "7 min read",
+    author: "Committed Citizens",
+    authorRole: "Editorial",
+    heroImage: "/images/insights/hero-default.jpg",
     body: [
       {
         type: "heading2",
@@ -124,6 +141,9 @@ const articles: Record<
     category: "What we're creating",
     date: "July 2024",
     readTime: "9 min read",
+    author: "Committed Citizens",
+    authorRole: "Editorial",
+    heroImage: "/images/insights/hero-default.jpg",
     body: [
       {
         type: "heading2",
@@ -142,6 +162,9 @@ const articles: Record<
     category: "What we're consuming",
     date: "June 2024",
     readTime: "5 min read",
+    author: "Committed Citizens",
+    authorRole: "Editorial",
+    heroImage: "/images/insights/hero-default.jpg",
     body: [
       {
         type: "heading2",
@@ -186,8 +209,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <>
       {/* Article Header */}
-      <section className="relative bg-brand-light px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
-        <div className="mx-auto max-w-[900px]">
+      <section className="bg-brand-light px-6 pt-40 pb-12 lg:px-12 lg:pt-48 lg:pb-16">
+        <div className="mx-auto max-w-[1400px]">
           <Link
             href="/insights"
             className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-brand-dark/60 transition-colors hover:text-brand-dark"
@@ -200,47 +223,71 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {article.category}
           </span>
 
-          <h1 className="mb-8 font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight text-brand-dark">
+          <h1 className="max-w-4xl font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight text-brand-dark text-balance">
             {article.title}
           </h1>
+        </div>
+      </section>
 
-          <p className="mb-8 text-xl leading-relaxed text-brand-dark/60">
-            {article.excerpt}
-          </p>
-
-          <div className="flex items-center gap-4 text-sm text-brand-dark/40">
-            <span>{article.date}</span>
-            <span className="h-1 w-1 rounded-full bg-brand-dark/20" />
-            <span>{article.readTime}</span>
+      {/* Full-width Hero Image */}
+      <section className="bg-brand-light px-6 pb-0 lg:px-12">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="relative aspect-[21/9] w-full overflow-hidden">
+            <Image
+              src={article.heroImage}
+              alt={article.title}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 1400px) 100vw, 1400px"
+            />
           </div>
         </div>
       </section>
 
-      {/* Article Body */}
-      <Section background="white" narrow>
-        <article className="mx-auto max-w-none">
-          {article.body.map((block, i) => {
-            if (block.type === "heading2") {
+      {/* Two-column: Sidebar + Article Body */}
+      <section className="bg-brand-white px-6 py-16 lg:px-12 lg:py-24">
+        <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[280px_1fr] lg:gap-20">
+          {/* Left narrow column: metadata sidebar */}
+          <ArticleSidebar
+            author={article.author}
+            authorRole={article.authorRole}
+            date={article.date}
+            readTime={article.readTime}
+            title={article.title}
+          />
+
+          {/* Right wide column: article content */}
+          <article className="max-w-[720px]">
+            <p className="mb-10 text-xl leading-relaxed text-brand-dark/70">
+              {article.excerpt}
+            </p>
+
+            <hr className="mb-10 border-brand-dark/10" />
+
+            {article.body.map((block, i) => {
+              if (block.type === "heading2") {
+                return (
+                  <h2
+                    key={i}
+                    className="mb-6 mt-12 first:mt-0 font-display text-3xl font-bold leading-tight text-brand-dark"
+                  >
+                    {block.text}
+                  </h2>
+                )
+              }
               return (
-                <h2
+                <p
                   key={i}
-                  className="mb-6 mt-12 first:mt-0 font-display text-3xl font-bold leading-tight text-brand-dark"
+                  className="mb-6 text-lg leading-relaxed text-brand-dark/80"
                 >
                   {block.text}
-                </h2>
+                </p>
               )
-            }
-            return (
-              <p
-                key={i}
-                className="mb-6 text-lg leading-relaxed text-brand-dark/80"
-              >
-                {block.text}
-              </p>
-            )
-          })}
-        </article>
-      </Section>
+            })}
+          </article>
+        </div>
+      </section>
 
       {/* Back to Insights */}
       <Section background="light">
