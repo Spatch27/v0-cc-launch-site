@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Logo } from "@/components/logo"
+import { textRollUp, textRollDown } from "@/lib/animations"
 
 const navLinks = [
   { label: "Approach", href: "/approach" },
@@ -99,17 +100,36 @@ export function Navigation() {
                         transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                       />
                     )}
-                    <span
-                      className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-200 ${
-                        isActive
-                          ? activeText
-                          : isHovered
-                            ? "text-brand-dark"
-                            : "text-brand-white"
-                      }`}
-                    >
-                      {link.label}
-                    </span>
+                    <div className="relative z-10 h-[1.2em] overflow-hidden">
+                      <motion.span
+                        initial="initial"
+                        animate={isHovered ? "hover" : "initial"}
+                        variants={textRollUp}
+                        className={`inline-block text-sm font-medium tracking-wide transition-colors duration-200 ${
+                          isActive
+                            ? activeText
+                            : isHovered
+                              ? "text-brand-dark"
+                              : "text-brand-white"
+                        }`}
+                      >
+                        {link.label}
+                      </motion.span>
+                      <motion.span
+                        initial="initial"
+                        animate={isHovered ? "hover" : "initial"}
+                        variants={textRollDown}
+                        className={`inline-block text-sm font-medium tracking-wide transition-colors duration-200 ${
+                          isActive
+                            ? activeText
+                            : isHovered
+                              ? "text-brand-dark"
+                              : "text-brand-white"
+                        }`}
+                      >
+                        {link.label}
+                      </motion.span>
+                    </div>
                   </Link>
                 )
               })}
@@ -158,17 +178,36 @@ export function Navigation() {
                     transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                   />
                 )}
-                <span
-                  className={`relative z-10 whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
-                    isActive
-                      ? activeText
-                      : isHovered
-                        ? "text-brand-dark"
-                        : "text-brand-white"
-                  }`}
-                >
-                  {link.label}
-                </span>
+                <div className="relative z-10 h-[1.2em] overflow-hidden">
+                  <motion.span
+                    initial="initial"
+                    animate={isHovered ? "hover" : "initial"}
+                    variants={textRollUp}
+                    className={`inline-block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
+                      isActive
+                        ? activeText
+                        : isHovered
+                          ? "text-brand-dark"
+                          : "text-brand-white"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.span>
+                  <motion.span
+                    initial="initial"
+                    animate={isHovered ? "hover" : "initial"}
+                    variants={textRollDown}
+                    className={`inline-block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
+                      isActive
+                        ? activeText
+                        : isHovered
+                          ? "text-brand-dark"
+                          : "text-brand-white"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.span>
+                </div>
               </Link>
             )
           })}
