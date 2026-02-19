@@ -19,9 +19,7 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-5xl font-display text-[clamp(3rem,8vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
-          Freedom
-          <br />
-          from drag.
+          Let's talk
         </motion.h1>
 
         {/* Subtitle + CTA row */}
@@ -31,10 +29,17 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
         >
-          <p className="max-w-lg text-lg leading-relaxed text-brand-dark/70">
-            We redesign how marketing work flows. Removing operational
-            drag so your team builds momentum.
-          </p>
+          <div className="max-w-lg">
+            <p className="text-lg leading-relaxed text-brand-dark/70">
+              We're building something great and we'd love you to be part of it.
+            </p>
+            <div className="mt-8 space-y-3">
+              <h3 className="text-base font-semibold text-brand-dark">Join the waitlist.</h3>
+              <p className="text-base leading-relaxed text-brand-dark/70">
+                Be first to hear when we're ready to take on new engagements. We'll keep you close, share our thinking, and make sure you're front of the queue when the time is right.
+              </p>
+            </div>
+          </div>
 
           <Link
             href="/contact"
