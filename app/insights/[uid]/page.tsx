@@ -1,11 +1,159 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { createClient } from "@/lib/prismicio"
-import { PrismicRichText } from "@prismicio/react"
-import { asText } from "@prismicio/client"
 import { Section } from "@/components/section"
 import { ArrowLeft } from "lucide-react"
+
+/**
+ * Static article data used until Prismic is fully configured.
+ * Keys match the slugs used in the insights listing.
+ */
+const articles: Record<
+  string,
+  {
+    title: string
+    excerpt: string
+    category: string
+    date: string
+    readTime: string
+    body: { type: "heading2" | "paragraph"; text: string }[]
+    seoTitle?: string
+    seoDescription?: string
+  }
+> = {
+  "removing-operational-drag": {
+    title: "Removing operational drag from marketing teams",
+    excerpt:
+      "How CMOs can identify and eliminate the hidden inefficiencies that slow down their teams and reduce marketing effectiveness.",
+    category: "What we're creating",
+    date: "November 2024",
+    readTime: "8 min read",
+    body: [
+      {
+        type: "heading2",
+        text: "The Hidden Cost of Operational Drag",
+      },
+      {
+        type: "paragraph",
+        text: "Most marketing teams spend more time managing work than doing work. The constant context switching, tool sprawl, and approval bottlenecks create an invisible tax on productivity that compounds over time.",
+      },
+      {
+        type: "paragraph",
+        text: "We call this operational drag \u2014 the accumulated friction that slows down marketing velocity and prevents teams from reaching their full potential.",
+      },
+      {
+        type: "heading2",
+        text: "What Changes When You Remove the Drag",
+      },
+      {
+        type: "paragraph",
+        text: "When operational friction disappears, marketing teams transform. Decision-making accelerates. Creative energy flows to where it matters. Teams start shipping work that moves the needle instead of fighting their own processes.",
+      },
+    ],
+  },
+  "marketing-operations-competitive-advantage": {
+    title: "Why marketing operations is the new competitive advantage",
+    excerpt:
+      "In a world where every brand has access to the same tools, operational excellence is what separates the leaders from the followers.",
+    category: "What we're creating",
+    date: "October 2024",
+    readTime: "6 min read",
+    body: [
+      {
+        type: "heading2",
+        text: "Beyond the Tool Stack",
+      },
+      {
+        type: "paragraph",
+        text: "Every marketing team has access to essentially the same platforms, data sources, and AI tools. The differentiator isn\u2019t what you buy \u2014 it\u2019s how you orchestrate it.",
+      },
+      {
+        type: "paragraph",
+        text: "Operational excellence in marketing means faster decisions, cleaner handoffs, and teams that spend their energy on creative and strategic work rather than admin and workarounds.",
+      },
+    ],
+  },
+  "embedded-consultancy-model": {
+    title: "The embedded consultancy model explained",
+    excerpt:
+      "What makes embedded consultancy different from traditional consulting, and why it\u2019s more effective for modern marketing teams.",
+    category: "What we're creating",
+    date: "September 2024",
+    readTime: "10 min read",
+    body: [
+      {
+        type: "heading2",
+        text: "Why Traditional Consulting Falls Short",
+      },
+      {
+        type: "paragraph",
+        text: "Traditional consultancies parachute in, produce a deck, and leave. The recommendations are often sound, but the implementation stalls because the team wasn\u2019t part of building the solution.",
+      },
+      {
+        type: "heading2",
+        text: "The Embedded Difference",
+      },
+      {
+        type: "paragraph",
+        text: "Embedded consultancy means working inside your team, not alongside it. We sit in your workflows, attend your stand-ups, and build solutions with the people who\u2019ll run them long after we leave.",
+      },
+    ],
+  },
+  "building-resilient-marketing-systems": {
+    title: "Building resilient marketing systems",
+    excerpt:
+      "How to create marketing workflows that scale with your business and adapt to changing market conditions without breaking.",
+    category: "What we're creating",
+    date: "August 2024",
+    readTime: "7 min read",
+    body: [
+      {
+        type: "heading2",
+        text: "Resilience Over Rigidity",
+      },
+      {
+        type: "paragraph",
+        text: "The best marketing systems aren\u2019t the most complex \u2014 they\u2019re the ones that bend without breaking. Resilient systems absorb change, scale smoothly, and keep teams productive through uncertainty.",
+      },
+    ],
+  },
+  "case-for-marketing-product-teams": {
+    title: "The case for marketing product teams",
+    excerpt:
+      "Why the most effective marketing organisations are structured like product teams, with clear ownership and continuous improvement.",
+    category: "What we're creating",
+    date: "July 2024",
+    readTime: "9 min read",
+    body: [
+      {
+        type: "heading2",
+        text: "From Campaigns to Continuous Delivery",
+      },
+      {
+        type: "paragraph",
+        text: "Traditional marketing organises around campaigns \u2014 discrete projects with clear start and end dates. But modern marketing demands continuous iteration, experimentation, and optimisation. Product teams have solved this problem. They ship value continuously and maintain momentum without the stop-start nature of campaigns.",
+      },
+    ],
+  },
+  "rethinking-marketing-velocity": {
+    title: "Rethinking marketing velocity",
+    excerpt:
+      "Speed isn\u2019t always better. How to find the right balance between moving fast and maintaining quality in your marketing execution.",
+    category: "What we're consuming",
+    date: "June 2024",
+    readTime: "5 min read",
+    body: [
+      {
+        type: "heading2",
+        text: "The Velocity Trap",
+      },
+      {
+        type: "paragraph",
+        text: "There\u2019s a difference between moving fast and making progress. Many teams optimise for speed and end up shipping mediocre work at high volume. True marketing velocity is about the rate of meaningful output \u2014 work that actually shifts metrics and builds brand equity.",
+      },
+    ],
+  },
+}
 
 interface ArticlePageProps {
   params: Promise<{ uid: string }>
@@ -15,41 +163,24 @@ export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const { uid } = await params
-  const client = createClient()
+  const article = articles[uid]
 
-  try {
-    const article = await client.getByUID("insight_article", uid)
-    
-    return {
-      title: article.data.seo_title || article.data.title,
-      description: article.data.seo_description || asText(article.data.excerpt),
-    }
-  } catch {
-    return {
-      title: "Article Not Found",
-    }
+  if (!article) {
+    return { title: "Article Not Found" }
+  }
+
+  return {
+    title: article.seoTitle || article.title,
+    description: article.seoDescription || article.excerpt,
   }
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { uid } = await params
-  const client = createClient()
+  const article = articles[uid]
 
-  let article
-  try {
-    article = await client.getByUID("insight_article", uid)
-  } catch {
+  if (!article) {
     notFound()
-  }
-
-  const formatDate = (dateString: string | null) => {
-    if (!dateString) return ""
-    const date = new Date(dateString)
-    return date.toLocaleDateString("en-GB", { 
-      day: "numeric",
-      month: "long", 
-      year: "numeric" 
-    })
   }
 
   return (
@@ -64,83 +195,50 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <ArrowLeft size={16} />
             Back to Insights
           </Link>
-          
+
           <span className="mb-6 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
-            {article.data.category}
+            {article.category}
           </span>
-          
+
           <h1 className="mb-8 font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight text-brand-dark">
-            {article.data.title}
+            {article.title}
           </h1>
-          
+
           <p className="mb-8 text-xl leading-relaxed text-brand-dark/60">
-            {asText(article.data.excerpt)}
+            {article.excerpt}
           </p>
-          
+
           <div className="flex items-center gap-4 text-sm text-brand-dark/40">
-            <span>{formatDate(article.data.publication_date)}</span>
+            <span>{article.date}</span>
             <span className="h-1 w-1 rounded-full bg-brand-dark/20" />
-            <span>{article.data.read_time}</span>
+            <span>{article.readTime}</span>
           </div>
         </div>
       </section>
 
       {/* Article Body */}
       <Section background="white" narrow>
-        <article className="prose prose-lg prose-slate mx-auto max-w-none">
-          <PrismicRichText
-            field={article.data.body}
-            components={{
-              heading1: ({ children }) => (
-                <h1 className="mb-8 font-display text-4xl font-bold leading-tight text-brand-dark">
-                  {children}
-                </h1>
-              ),
-              heading2: ({ children }) => (
-                <h2 className="mb-6 mt-12 font-display text-3xl font-bold leading-tight text-brand-dark">
-                  {children}
-                </h2>
-              ),
-              heading3: ({ children }) => (
-                <h3 className="mb-4 mt-8 font-display text-2xl font-bold leading-tight text-brand-dark">
-                  {children}
-                </h3>
-              ),
-              paragraph: ({ children }) => (
-                <p className="mb-6 text-lg leading-relaxed text-brand-dark/80">
-                  {children}
-                </p>
-              ),
-              strong: ({ children }) => (
-                <strong className="font-semibold text-brand-dark">{children}</strong>
-              ),
-              em: ({ children }) => (
-                <em className="italic">{children}</em>
-              ),
-              hyperlink: ({ node, children }) => (
-                <a
-                  href={node.data.url}
-                  target={node.data.target}
-                  rel="noopener noreferrer"
-                  className="font-medium text-brand-pink underline decoration-brand-pink/30 underline-offset-4 transition-colors hover:text-brand-orange hover:decoration-brand-orange/50"
+        <article className="mx-auto max-w-none">
+          {article.body.map((block, i) => {
+            if (block.type === "heading2") {
+              return (
+                <h2
+                  key={i}
+                  className="mb-6 mt-12 first:mt-0 font-display text-3xl font-bold leading-tight text-brand-dark"
                 >
-                  {children}
-                </a>
-              ),
-              list: ({ children }) => (
-                <ul className="mb-6 ml-6 list-disc space-y-2 text-lg text-brand-dark/80">
-                  {children}
-                </ul>
-              ),
-              oList: ({ children }) => (
-                <ol className="mb-6 ml-6 list-decimal space-y-2 text-lg text-brand-dark/80">
-                  {children}
-                </ol>
-              ),
-              listItem: ({ children }) => <li>{children}</li>,
-              oListItem: ({ children }) => <li>{children}</li>,
-            }}
-          />
+                  {block.text}
+                </h2>
+              )
+            }
+            return (
+              <p
+                key={i}
+                className="mb-6 text-lg leading-relaxed text-brand-dark/80"
+              >
+                {block.text}
+              </p>
+            )
+          })}
         </article>
       </Section>
 
@@ -151,7 +249,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             href="/insights"
             className="group inline-flex items-center gap-3 bg-brand-dark px-8 py-4 text-base font-semibold text-brand-white transition-all duration-300 hover:bg-brand-dark/90"
           >
-            <ArrowLeft size={18} className="transition-transform duration-300 group-hover:-translate-x-1" />
+            <ArrowLeft
+              size={18}
+              className="transition-transform duration-300 group-hover:-translate-x-1"
+            />
             Back to all insights
           </Link>
         </div>

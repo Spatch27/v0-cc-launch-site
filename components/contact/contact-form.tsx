@@ -37,8 +37,12 @@ export function ContactForm() {
       if (res.ok) {
         setSubmitted(true)
       } else {
-        const data = await res.json()
-        setError(data.error || "Failed to submit form")
+        try {
+          const data = await res.json()
+          setError(data.error || "Failed to submit form")
+        } catch {
+          setError("Failed to submit form")
+        }
       }
     } catch (err) {
       console.error("[v0] Form submission error:", err)
