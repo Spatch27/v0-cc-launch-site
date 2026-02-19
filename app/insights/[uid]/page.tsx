@@ -213,19 +213,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <div className="mx-auto max-w-[1400px]">
           <Link
             href="/insights"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-brand-dark/60 transition-colors hover:text-brand-dark"
+            className="inline-flex items-center gap-2 text-sm font-medium text-brand-dark/60 transition-colors hover:text-brand-dark"
           >
             <ArrowLeft size={16} />
             Back to Insights
           </Link>
 
-          <span className="mb-6 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
-            {article.category}
-          </span>
+          <div className="mt-10">
+            <span className="mb-6 inline-block text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange">
+              {article.category}
+            </span>
 
-          <h1 className="max-w-4xl font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight text-brand-dark text-balance">
-            {article.title}
-          </h1>
+            <h1 className="max-w-4xl font-display text-[clamp(2rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight text-brand-dark text-balance">
+              {article.title}
+            </h1>
+          </div>
         </div>
       </section>
 
