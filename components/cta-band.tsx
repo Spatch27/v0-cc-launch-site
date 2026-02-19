@@ -69,12 +69,12 @@ export function CtaBand({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative h-[1.2em] overflow-hidden">
+          <span className="relative inline-block overflow-hidden">
             <motion.span
               initial="initial"
               animate={isHovered ? "hover" : "initial"}
               variants={textRollUp}
-              className="inline-block"
+              className="block"
             >
               {ctaLabel}
             </motion.span>
@@ -82,11 +82,11 @@ export function CtaBand({
               initial="initial"
               animate={isHovered ? "hover" : "initial"}
               variants={textRollDown}
-              className="inline-block"
+              className="absolute inset-0 block"
             >
               {ctaLabel}
             </motion.span>
-          </div>
+          </span>
           <ArrowRight
             size={18}
             className="transition-transform duration-300 group-hover:translate-x-1"

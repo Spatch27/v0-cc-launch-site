@@ -100,12 +100,12 @@ export function Navigation() {
                         transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                       />
                     )}
-                    <div className="relative z-10 h-[1.2em] overflow-hidden">
+                    <span className="relative z-10 inline-block overflow-hidden">
                       <motion.span
                         initial="initial"
                         animate={isHovered ? "hover" : "initial"}
                         variants={textRollUp}
-                        className={`inline-block text-sm font-medium tracking-wide transition-colors duration-200 ${
+                        className={`block text-sm font-medium tracking-wide transition-colors duration-200 ${
                           isActive
                             ? activeText
                             : isHovered
@@ -119,7 +119,7 @@ export function Navigation() {
                         initial="initial"
                         animate={isHovered ? "hover" : "initial"}
                         variants={textRollDown}
-                        className={`inline-block text-sm font-medium tracking-wide transition-colors duration-200 ${
+                        className={`absolute inset-0 block text-sm font-medium tracking-wide transition-colors duration-200 ${
                           isActive
                             ? activeText
                             : isHovered
@@ -129,7 +129,7 @@ export function Navigation() {
                       >
                         {link.label}
                       </motion.span>
-                    </div>
+                    </span>
                   </Link>
                 )
               })}
@@ -178,12 +178,12 @@ export function Navigation() {
                     transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                   />
                 )}
-                <div className="relative z-10 h-[1.2em] overflow-hidden">
+                <span className="relative z-10 inline-block overflow-hidden">
                   <motion.span
                     initial="initial"
                     animate={isHovered ? "hover" : "initial"}
                     variants={textRollUp}
-                    className={`inline-block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
+                    className={`block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
                       isActive
                         ? activeText
                         : isHovered
@@ -197,7 +197,7 @@ export function Navigation() {
                     initial="initial"
                     animate={isHovered ? "hover" : "initial"}
                     variants={textRollDown}
-                    className={`inline-block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
+                    className={`absolute inset-0 block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
                       isActive
                         ? activeText
                         : isHovered
@@ -207,7 +207,7 @@ export function Navigation() {
                   >
                     {link.label}
                   </motion.span>
-                </div>
+                </span>
               </Link>
             )
           })}
