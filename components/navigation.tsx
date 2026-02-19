@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Logo } from "@/components/logo"
+import { textRollUp, textRollDown } from "@/lib/animations"
 
 const navLinks = [
   { label: "Approach", href: "/approach" },
@@ -82,7 +83,7 @@ export function Navigation() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="group relative px-5 py-2"
+                    className="group relative flex items-center px-5 py-2"
                     onMouseEnter={() => setHoveredLink(link.href)}
                   >
                     {isActive && (
@@ -99,16 +100,35 @@ export function Navigation() {
                         transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                       />
                     )}
-                    <span
-                      className={`relative z-10 text-sm font-medium tracking-wide transition-colors duration-200 ${
-                        isActive
-                          ? activeText
-                          : isHovered
-                            ? "text-brand-dark"
-                            : "text-brand-white"
-                      }`}
-                    >
-                      {link.label}
+                    <span className="relative z-10 inline-block overflow-hidden">
+                      <motion.span
+                        initial="initial"
+                        animate={isHovered ? "hover" : "initial"}
+                        variants={textRollUp}
+                        className={`block text-sm font-medium tracking-wide transition-colors duration-200 ${
+                          isActive
+                            ? activeText
+                            : isHovered
+                              ? "text-brand-dark"
+                              : "text-brand-white"
+                        }`}
+                      >
+                        {link.label}
+                      </motion.span>
+                      <motion.span
+                        initial="initial"
+                        animate={isHovered ? "hover" : "initial"}
+                        variants={textRollDown}
+                        className={`absolute inset-0 block text-sm font-medium tracking-wide transition-colors duration-200 ${
+                          isActive
+                            ? activeText
+                            : isHovered
+                              ? "text-brand-dark"
+                              : "text-brand-white"
+                        }`}
+                      >
+                        {link.label}
+                      </motion.span>
                     </span>
                   </Link>
                 )
@@ -141,7 +161,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative flex-shrink-0 px-2.5 py-1.5 sm:px-3.5 sm:py-2"
+                className="group relative flex flex-shrink-0 items-center px-2.5 py-1.5 sm:px-3.5 sm:py-2"
                 onMouseEnter={() => setHoveredMobileLink(link.href)}
               >
                 {isActive && (
@@ -158,16 +178,35 @@ export function Navigation() {
                     transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
                   />
                 )}
-                <span
-                  className={`relative z-10 whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
-                    isActive
-                      ? activeText
-                      : isHovered
-                        ? "text-brand-dark"
-                        : "text-brand-white"
-                  }`}
-                >
-                  {link.label}
+                <span className="relative z-10 inline-block overflow-hidden">
+                  <motion.span
+                    initial="initial"
+                    animate={isHovered ? "hover" : "initial"}
+                    variants={textRollUp}
+                    className={`block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
+                      isActive
+                        ? activeText
+                        : isHovered
+                          ? "text-brand-dark"
+                          : "text-brand-white"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.span>
+                  <motion.span
+                    initial="initial"
+                    animate={isHovered ? "hover" : "initial"}
+                    variants={textRollDown}
+                    className={`absolute inset-0 block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
+                      isActive
+                        ? activeText
+                        : isHovered
+                          ? "text-brand-dark"
+                          : "text-brand-white"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.span>
                 </span>
               </Link>
             )

@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { fadeInUp } from "@/lib/animations"
+import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
 import { ArrowRight } from "lucide-react"
+import { useState } from "react"
 
 interface CtaBandProps {
   heading: string
@@ -41,6 +42,8 @@ export function CtaBand({
   ctaHref = "/contact",
   background = "pink",
 }: CtaBandProps) {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
       <motion.div
@@ -63,8 +66,27 @@ export function CtaBand({
         <Link
           href={ctaHref}
           className={`group inline-flex w-fit items-center gap-3 self-start px-8 py-4 text-base font-semibold transition-all duration-300 lg:self-auto ${btnMap[background]}`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {ctaLabel}
+          <span className="relative inline-block overflow-hidden">
+            <motion.span
+              initial="initial"
+              animate={isHovered ? "hover" : "initial"}
+              variants={textRollUp}
+              className="block"
+            >
+              {ctaLabel}
+            </motion.span>
+            <motion.span
+              initial="initial"
+              animate={isHovered ? "hover" : "initial"}
+              variants={textRollDown}
+              className="absolute inset-0 block"
+            >
+              {ctaLabel}
+            </motion.span>
+          </span>
           <ArrowRight
             size={18}
             className="transition-transform duration-300 group-hover:translate-x-1"
