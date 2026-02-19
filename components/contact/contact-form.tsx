@@ -2,13 +2,14 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { fadeInUp } from "@/lib/animations"
+import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { Mail, Linkedin, Send, CheckCircle, ArrowRight } from "lucide-react"
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -65,7 +66,7 @@ export function ContactForm() {
       </section>
 
       {/* Waitlist Section */}
-      <section className="relative bg-brand-light px-6 py-20 lg:px-12 lg:py-32">
+      <section className="relative bg-brand-dark px-6 py-20 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-[1400px]">
           <div className="mx-auto max-w-2xl">
             <motion.div
@@ -76,28 +77,28 @@ export function ContactForm() {
               className="space-y-8"
             >
               <div>
-                <h2 className="font-display text-4xl font-bold text-brand-dark">
+                <h2 className="font-display text-4xl font-bold text-brand-white">
                   Join the waitlist.
                 </h2>
-                <p className="mt-4 text-lg leading-relaxed text-brand-dark/70">
+                <p className="mt-4 text-lg leading-relaxed text-brand-white/70">
                   Be first to hear when we're ready to take on new engagements. We'll keep you close, share our thinking, and make sure you're front of the queue when the time is right.
                 </p>
               </div>
 
               {submitted ? (
-                <div className="flex flex-col gap-6 bg-brand-white p-12">
+                <div className="flex flex-col gap-6 bg-brand-dark/50 border border-brand-white/10 p-12">
                   <CheckCircle size={48} className="text-brand-pink" />
-                  <h3 className="font-display text-2xl font-bold text-brand-dark">
+                  <h3 className="font-display text-2xl font-bold text-brand-white">
                     Thanks for joining!
                   </h3>
-                  <p className="text-lg text-brand-dark/60">
+                  <p className="text-lg text-brand-white/60">
                     We'll be in touch soon with exciting updates.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-4">
                   <div className="flex-1">
-                    <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-brand-dark">
+                    <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-brand-white">
                       First name
                     </label>
                     <input
@@ -105,12 +106,12 @@ export function ContactForm() {
                       name="firstName"
                       type="text"
                       required
-                      className="w-full border border-brand-dark/20 bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/40 focus:border-brand-dark"
+                      className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
                       placeholder="Your first name"
                     />
                   </div>
                   <div className="flex-1">
-                    <label htmlFor="waitlistEmail" className="mb-2 block text-sm font-medium text-brand-dark">
+                    <label htmlFor="waitlistEmail" className="mb-2 block text-sm font-medium text-brand-white">
                       Email
                     </label>
                     <input
@@ -118,16 +119,35 @@ export function ContactForm() {
                       name="waitlistEmail"
                       type="email"
                       required
-                      className="w-full border border-brand-dark/20 bg-brand-white px-4 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/40 focus:border-brand-dark"
+                      className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
                       placeholder="your@email.com"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="group inline-flex items-center gap-2 border-2 border-brand-dark bg-brand-dark px-8 py-3 text-base font-semibold text-brand-white transition-all duration-300 hover:bg-brand-white hover:text-brand-dark disabled:opacity-50"
+                    className="group inline-flex items-center gap-3 border-2 border-brand-light bg-brand-light px-8 py-3 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                   >
-                    {loading ? "Joining..." : "Join"}
+                    <span className="relative inline-block overflow-hidden">
+                      <motion.span
+                        initial="initial"
+                        animate={isHovered ? "hover" : "initial"}
+                        variants={textRollUp}
+                        className="block"
+                      >
+                        {loading ? "Joining..." : "Join"}
+                      </motion.span>
+                      <motion.span
+                        initial="initial"
+                        animate={isHovered ? "hover" : "initial"}
+                        variants={textRollDown}
+                        className="absolute inset-0 block"
+                      >
+                        {loading ? "Joining..." : "Join"}
+                      </motion.span>
+                    </span>
                     <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
                 </form>
