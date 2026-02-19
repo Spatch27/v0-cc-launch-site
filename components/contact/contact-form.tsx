@@ -10,6 +10,7 @@ export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [isMessageHovered, setIsMessageHovered] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -251,8 +252,27 @@ export function ContactForm() {
                   type="submit"
                   disabled={loading}
                   className="group mt-4 inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
+                  onMouseEnter={() => setIsMessageHovered(true)}
+                  onMouseLeave={() => setIsMessageHovered(false)}
                 >
-                  {loading ? "Sending..." : "Send message"}
+                  <span className="relative inline-block overflow-hidden">
+                    <motion.span
+                      initial="initial"
+                      animate={isMessageHovered ? "hover" : "initial"}
+                      variants={textRollUp}
+                      className="block"
+                    >
+                      {loading ? "Sending..." : "Send message"}
+                    </motion.span>
+                    <motion.span
+                      initial="initial"
+                      animate={isMessageHovered ? "hover" : "initial"}
+                      variants={textRollDown}
+                      className="absolute inset-0 block"
+                    >
+                      {loading ? "Sending..." : "Send message"}
+                    </motion.span>
+                  </span>
                   <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </form>
