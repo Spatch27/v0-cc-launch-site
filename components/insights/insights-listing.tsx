@@ -156,31 +156,44 @@ export function InsightsListing() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {filtered.map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}
-                className="group flex flex-col bg-brand-white p-8 transition-colors duration-300 hover:bg-brand-dark lg:p-10"
+                className="group flex flex-col bg-brand-white transition-colors duration-300 hover:bg-brand-dark overflow-hidden"
               >
-                <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
-                  {article.category}
-                </span>
-                <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
-                  {article.title}
-                </h3>
-                <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
-                  {article.excerpt}
-                </p>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
-                    {article.date} &middot; {article.readTime}
+                {/* Placeholder image */}
+                <div className="aspect-video w-full overflow-hidden bg-gradient-to-br from-brand-pink/20 to-brand-orange/20">
+                  <div className="flex h-full items-center justify-center">
+                    <div className="flex flex-col items-center gap-2 text-brand-dark/20 transition-colors duration-300 group-hover:text-brand-white/20">
+                      <div className="h-12 w-12 rounded-full bg-brand-pink/10" />
+                      <span className="text-xs">Article Image</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col p-8 lg:p-10">
+                  <span className="mb-4 text-xs font-semibold tracking-[0.15em] uppercase text-brand-orange transition-colors duration-300 group-hover:text-brand-orange">
+                    {article.category}
                   </span>
-                  <ArrowRight
-                    size={16}
-                    className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
-                  />
+                  <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
+                    {article.title}
+                  </h3>
+                  <p className="mb-8 flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
+                    {article.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-brand-dark/40 transition-colors duration-300 group-hover:text-brand-white/40">
+                      {article.date} &middot; {article.readTime}
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      className="text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink"
+                    />
+                  </div>
                 </div>
               </motion.article>
             </Link>
