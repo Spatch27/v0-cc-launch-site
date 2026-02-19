@@ -1,17 +1,11 @@
 "use client"
 
-import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import { useState } from "react"
-import { textRollUp, textRollDown } from "@/lib/animations"
 
 export function HeroSection() {
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
-    <section className="relative min-h-screen bg-brand-orange px-6 lg:px-12">
-      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pb-16 pt-24 lg:pt-28">
+    <section className="relative bg-brand-yellow-deep px-6 lg:px-12">
+      <div className="mx-auto flex max-w-[1400px] flex-col justify-center py-32 lg:py-48">
         {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -22,55 +16,15 @@ export function HeroSection() {
           Let's talk
         </motion.h1>
 
-        {/* Subtitle + CTA row */}
-        <motion.div
+        {/* Supporting copy */}
+        <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
+          className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark/80"
         >
-          <div className="max-w-lg">
-            <p className="text-lg leading-relaxed text-brand-dark/70">
-              We're building something great and we'd love you to be part of it.
-            </p>
-            <div className="mt-8 space-y-3">
-              <h3 className="text-base font-semibold text-brand-dark">Join the waitlist.</h3>
-              <p className="text-base leading-relaxed text-brand-dark/70">
-                Be first to hear when we're ready to take on new engagements. We'll keep you close, share our thinking, and make sure you're front of the queue when the time is right.
-              </p>
-            </div>
-          </div>
-
-          <Link
-            href="/contact"
-            className="group inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <span className="relative inline-block overflow-hidden">
-              <motion.span
-                initial="initial"
-                animate={isHovered ? "hover" : "initial"}
-                variants={textRollUp}
-                className="block"
-              >
-                Talk to us
-              </motion.span>
-              <motion.span
-                initial="initial"
-                animate={isHovered ? "hover" : "initial"}
-                variants={textRollDown}
-                className="absolute inset-0 block"
-              >
-                Talk to us
-              </motion.span>
-            </span>
-            <ArrowRight
-              size={18}
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </Link>
-        </motion.div>
+          We're building something great and we'd love you to be part of it.
+        </motion.p>
       </div>
     </section>
   )
