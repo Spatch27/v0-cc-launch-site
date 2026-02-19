@@ -32,7 +32,11 @@ export function Navigation() {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
   const [hoveredMobileLink, setHoveredMobileLink] = useState<string | null>(null)
 
-  const colors = heroColorMap[pathname] ?? heroColorMap["/"]
+  /* Match exact routes first, then fall back to prefix match for sub-routes */
+  const colors =
+    heroColorMap[pathname] ??
+    Object.entries(heroColorMap).find(([key]) => pathname.startsWith(key + "/"))?.[1] ??
+    heroColorMap["/"]
 
   /* Dark logo on all backgrounds except dark grey hero; stays same on scroll */
   const logoVariant = colors.isDark ? "white" : "dark"
