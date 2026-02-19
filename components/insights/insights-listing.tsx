@@ -92,6 +92,14 @@ export function InsightsListing() {
           >
             Thinking that drives action.
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 max-w-2xl text-lg text-brand-dark/60"
+          >
+            Short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. Written by practitioners, not theorists.
+          </motion.p>
         </div>
       </section>
 
