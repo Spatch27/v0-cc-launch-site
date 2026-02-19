@@ -83,7 +83,7 @@ export function Navigation() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="group relative px-5 py-2"
+                    className="group relative flex items-center px-5 py-2"
                     onMouseEnter={() => setHoveredLink(link.href)}
                   >
                     {isActive && (
@@ -161,7 +161,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative flex-shrink-0 px-2.5 py-1.5 sm:px-3.5 sm:py-2"
+                className="group relative flex flex-shrink-0 items-center px-2.5 py-1.5 sm:px-3.5 sm:py-2"
                 onMouseEnter={() => setHoveredMobileLink(link.href)}
               >
                 {isActive && (
