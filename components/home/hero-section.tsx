@@ -11,7 +11,7 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen bg-brand-orange px-6 lg:px-12">
-      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pb-16 pt-24 lg:pt-28">
+      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pt-24 lg:pt-28">
         {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}

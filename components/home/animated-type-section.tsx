@@ -19,7 +19,7 @@ export function AnimatedTypeSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[80vh] overflow-hidden px-6 py-24 lg:px-12 lg:py-32"
+      className="relative min-h-[80vh] overflow-hidden"
     >
       {/* Background image with parallax */}
       <motion.div
@@ -36,7 +36,7 @@ export function AnimatedTypeSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
       </motion.div>
 
-      <div className="mx-auto flex min-h-[60vh] max-w-[1400px] flex-col justify-center">
+      <div className="mx-auto flex min-h-[80vh] max-w-[1400px] flex-col justify-center px-6 py-24 lg:px-12 lg:py-32">
         <div className="space-y-2">
           {lines.map((line, i) => {
             const lineRef = useRef(null)
