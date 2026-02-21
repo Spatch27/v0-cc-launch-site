@@ -7,10 +7,12 @@ import { Section } from "@/components/section"
 const founders = [
   {
     name: "Ben Scoggins",
+    title: "Founder & CEO",
     bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury's Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter.",
   },
   {
     name: "Tim Burley",
+    title: "Founder & Chief Strategist",
     bio: "Tim brings 25 years of senior marketing and strategy experience across Argos, Capita and the NHS. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable.",
   },
 ]
@@ -43,7 +45,7 @@ export function TeamSection() {
               <h3 className="mb-2 font-display text-xl font-bold text-brand-dark">
                 {member.name}
               </h3>
-              <p className="mb-6 text-sm text-brand-pink">Founder</p>
+              <p className="mb-6 text-sm text-brand-pink">{member.title}</p>
               <p className="leading-relaxed text-brand-dark/60">{member.bio}</p>
             </div>
           </motion.div>
