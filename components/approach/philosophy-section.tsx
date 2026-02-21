@@ -7,7 +7,7 @@ import { OperatingModelDiagram } from "@/components/approach/operating-model-dia
 
 export function PhilosophySection() {
   return (
-    <Section background="white">
+    <Section background="light">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -45,7 +45,7 @@ export function PhilosophySection() {
       </motion.div>
 
       {/* Operating Model Diagram */}
-      <div className="mt-20">
+      <div className="mt-12">
         <OperatingModelDiagram />
       </div>
     </Section>
