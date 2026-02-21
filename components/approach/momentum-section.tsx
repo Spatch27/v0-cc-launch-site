@@ -16,7 +16,7 @@ export function MomentumSection() {
         className="w-full"
       >
         {/* Heading */}
-        <motion.h2 variants={fadeInUp} className="font-display text-4xl md:text-5xl font-bold text-brand-white mb-16 text-center">
+        <motion.h2 variants={fadeInUp} className="font-display text-4xl md:text-5xl font-bold text-brand-white mb-16">
           Momentum, by design
         </motion.h2>
 
