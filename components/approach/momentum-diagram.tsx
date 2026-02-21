@@ -105,7 +105,7 @@ export function MomentumDiagram() {
           <div className="absolute inset-0">
             {/* Left circle (C1) - yellow accent */}
             <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center" style={{ left: '19%' }}>
-              <div className="text-center w-32">
+              <div className="text-center w-40">
                 <h4 className="font-display text-base lg:text-lg font-bold text-white leading-tight mb-2">
                   {momentumItems[0].name}
                 </h4>
@@ -116,7 +116,7 @@ export function MomentumDiagram() {
             </div>
             {/* Center circle (C2) - orange accent */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center px-4">
-              <div className="text-center w-32">
+              <div className="text-center w-40">
                 <h4 className="font-display text-base lg:text-lg font-bold text-white leading-tight mb-2">
                   {momentumItems[1].name}
                 </h4>
@@ -127,7 +127,7 @@ export function MomentumDiagram() {
             </div>
             {/* Right circle (C3) - pink accent */}
             <div className="absolute top-1/2 -translate-y-1/2 translate-x-1/2 flex items-center justify-center" style={{ right: '19%' }}>
-              <div className="text-center w-32">
+              <div className="text-center w-40">
                 <h4 className="font-display text-base lg:text-lg font-bold text-white leading-tight mb-2">
                   {momentumItems[2].name}
                 </h4>
