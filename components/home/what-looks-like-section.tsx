@@ -1,9 +1,6 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Section } from "@/components/section"
-import { fadeInUp } from "@/lib/animations"
 import { 
   Link as LinkIcon, 
   Eye, 
@@ -45,52 +42,57 @@ const problems = [
 ]
 
 export function WhatLooksLikeSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
   return (
-    <Section background="white">
-      <div ref={ref} className="mb-16">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
-        >
+    <section className="relative bg-brand-white py-24">
+      {/* Header - not sticky */}
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        <h2 className="mb-16 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
           What it looks like.
-        </motion.h2>
+        </h2>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {/* Stacking cards container */}
+      <div className="relative">
         {problems.map((item, i) => {
           const Icon = item.icon
+          const isLast = i === problems.length - 1
+          
           return (
-            <motion.div
+            <div
               key={item.problem}
-              initial={{ opacity: 0, y: 40 }}
-              animate={
-                isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-              }
-              transition={{
-                duration: 0.6,
-                delay: i * 0.1,
-                ease: [0.22, 1, 0.36, 1],
+              className="sticky"
+              style={{ 
+                top: `${80 + i * 60}px`,
+                zIndex: problems.length - i 
               }}
-              className="group flex flex-col gap-6 border-2 border-brand-dark/10 bg-brand-light p-8 transition-all duration-300 hover:border-brand-pink hover:shadow-lg"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-pink/20 text-brand-dark transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-white">
-                <Icon size={22} />
+              <div className="mx-auto max-w-[1400px] px-6 pb-4 lg:px-12">
+                <div className="w-full border-2 border-brand-dark bg-brand-light p-8 shadow-lg lg:p-12">
+                  {/* Visible part: Icon and headline */}
+                  <div className="flex items-start gap-6">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-pink text-brand-white">
+                      <Icon size={26} />
+                    </div>
+                    <h3 className="font-display text-2xl font-bold leading-tight text-brand-dark md:text-3xl">
+                      {item.problem}
+                    </h3>
+                  </div>
+                  
+                  {/* Text that gets covered by next card */}
+                  <div className="ml-20 mt-6">
+                    <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
+                      {item.solution}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <h3 className="font-display text-xl font-bold leading-tight text-brand-dark">
-                {item.problem}
-              </h3>
-              <p className="leading-relaxed text-brand-dark/60">
-                {item.solution}
-              </p>
-            </motion.div>
+            </div>
           )
         })}
+        
+        {/* Spacer to allow last card to be fully visible */}
+        <div className="h-[40vh]" />
       </div>
-    </Section>
+    </section>
   )
 }
