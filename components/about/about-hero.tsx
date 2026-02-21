@@ -20,7 +20,7 @@ export function AboutHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-8 block text-base font-medium not-italic text-brand-dark/50"
+          className="mt-8 block text-base font-medium not-italic text-brand-dark"
         >
           &mdash; Margaret Mead
         </motion.cite>
