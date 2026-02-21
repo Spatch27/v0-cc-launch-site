@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { HeroPhilosophy } from "@/components/approach/hero-philosophy"
 import { PhilosophySection } from "@/components/approach/philosophy-section"
+import { MomentumSection } from "@/components/approach/momentum-section"
 import { EngagementsSection } from "@/components/approach/engagements-section"
 import { CheckpointSection } from "@/components/approach/checkpoint-section"
 import { CtaBand } from "@/components/cta-band"
@@ -16,6 +17,7 @@ export default function ApproachPage() {
     <>
       <HeroPhilosophy />
       <PhilosophySection />
+      <MomentumSection />
       <EngagementsSection />
       <CheckpointSection />
       <CtaBand
