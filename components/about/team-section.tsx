@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { motion } from "framer-motion"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
@@ -9,12 +8,10 @@ const founders = [
   {
     name: "Ben Scoggins",
     bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury's Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter.",
-    image: "/images/ben-scoggins.jpg",
   },
   {
     name: "Tim Burley",
     bio: "Tim brings 25 years of senior marketing and strategy experience across Argos, Capita and the NHS. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable.",
-    image: "/images/tim-burley.jpg",
   },
 ]
 
@@ -39,13 +36,8 @@ export function TeamSection() {
             custom={i}
             className="group flex flex-col overflow-hidden bg-brand-light transition-shadow duration-300 hover:shadow-lg"
           >
-            <div className="relative h-64 w-full overflow-hidden bg-brand-light">
-              <Image
-                src={member.image}
-                alt={member.name}
-                fill
-                className="object-cover"
-              />
+            <div className="relative h-64 w-full overflow-hidden bg-gray-300 flex items-center justify-center">
+              <span className="text-gray-400 text-sm font-medium">Image placeholder</span>
             </div>
             <div className="p-10">
               <h3 className="mb-2 font-display text-xl font-bold text-brand-dark">
