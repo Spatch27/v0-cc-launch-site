@@ -8,10 +8,10 @@ export function PurposeSection() {
   return (
     <Section background="light">
       <motion.div variants={fadeInUp}>
+        <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+          We've long believed that lasting change comes from people, not platforms.
+        </h2>
         <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark/70">
-          <p>
-            We've long believed that lasting change comes from people, not platforms.
-          </p>
           <p>
             So we started Committed Citizens. A small team of senior practitioners with the conviction
             and capability to make transformation stick. Not from the sidelines. Not via slide deck. From
