@@ -11,26 +11,30 @@ export function AnimatedTypeSection() {
     offset: ["start start", "end start"],
   })
 
-  // Line 1: "Remove drag." - longer fade in/out for smoother feel
-  const line1Word1Opacity = useTransform(scrollYProgress, [0, 0.1, 0.15, 0.22, 0.3], [0, 1, 1, 1, 0])
-  const line1Word1Y = useTransform(scrollYProgress, [0.15, 0.3], [0, -150])
+  // Line 1: "Remove drag." - fade in, hold, then fade out
+  const line1Word1Opacity = useTransform(scrollYProgress, [0, 0.08, 0.18, 0.22, 0.28], [0, 1, 1, 1, 0])
+  const line1Word1Y = useTransform(scrollYProgress, [0.18, 0.28], [0, -150])
   
-  const line1Word2Opacity = useTransform(scrollYProgress, [0.02, 0.12, 0.15, 0.22, 0.32], [0, 1, 1, 1, 0])
-  const line1Word2Y = useTransform(scrollYProgress, [0.15, 0.32], [0, -150])
+  const line1Word2Opacity = useTransform(scrollYProgress, [0.02, 0.1, 0.18, 0.22, 0.3], [0, 1, 1, 1, 0])
+  const line1Word2Y = useTransform(scrollYProgress, [0.18, 0.3], [0, -150])
 
-  // Line 2: "Build momentum." - overlaps with line 1 fade out for seamless transition
-  const line2Word1Opacity = useTransform(scrollYProgress, [0.25, 0.35, 0.4, 0.47, 0.55], [0, 1, 1, 1, 0])
-  const line2Word1Y = useTransform(scrollYProgress, [0.4, 0.55], [0, -150])
+  // Pause between line 1 and line 2 (0.3 - 0.35)
   
-  const line2Word2Opacity = useTransform(scrollYProgress, [0.27, 0.37, 0.4, 0.47, 0.57], [0, 1, 1, 1, 0])
-  const line2Word2Y = useTransform(scrollYProgress, [0.4, 0.57], [0, -150])
+  // Line 2: "Build momentum." - fade in, hold, then fade out
+  const line2Word1Opacity = useTransform(scrollYProgress, [0.35, 0.43, 0.53, 0.57, 0.63], [0, 1, 1, 1, 0])
+  const line2Word1Y = useTransform(scrollYProgress, [0.53, 0.63], [0, -150])
+  
+  const line2Word2Opacity = useTransform(scrollYProgress, [0.37, 0.45, 0.53, 0.57, 0.65], [0, 1, 1, 1, 0])
+  const line2Word2Y = useTransform(scrollYProgress, [0.53, 0.65], [0, -150])
 
-  // Line 3: "Unlock growth." - overlaps with line 2, holds longer at end
-  const line3Word1Opacity = useTransform(scrollYProgress, [0.5, 0.6, 1], [0, 1, 1])
-  const line3Word1Y = useTransform(scrollYProgress, [0.5, 0.6], [50, 0])
+  // Pause between line 2 and line 3 (0.65 - 0.7)
   
-  const line3Word2Opacity = useTransform(scrollYProgress, [0.52, 0.62, 1], [0, 1, 1])
-  const line3Word2Y = useTransform(scrollYProgress, [0.52, 0.62], [50, 0])
+  // Line 3: "Unlock growth." - fade in, hold until end with long pause
+  const line3Word1Opacity = useTransform(scrollYProgress, [0.7, 0.78, 0.85, 1], [0, 1, 1, 1])
+  const line3Word1Y = useTransform(scrollYProgress, [0.7, 0.78], [50, 0])
+  
+  const line3Word2Opacity = useTransform(scrollYProgress, [0.72, 0.8, 0.85, 1], [0, 1, 1, 1])
+  const line3Word2Y = useTransform(scrollYProgress, [0.72, 0.8], [50, 0])
 
   return (
     <section
