@@ -47,9 +47,6 @@ export function HeroPhilosophy() {
           transition={{ delay: 0.4 }}
           className="mt-12"
         >
-          <p className="font-display text-2xl font-semibold text-brand-dark/60">
-            Momentum, by design.
-          </p>
         </motion.div>
       </div>
     </section>
