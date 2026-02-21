@@ -31,9 +31,14 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
         >
-          <p className="max-w-lg text-lg leading-relaxed text-brand-dark/70">
-            We redesign how marketing work flows. Removing operational
-            drag so your team builds momentum.
+          <p className="max-w-2xl text-lg leading-relaxed text-brand-dark/70">
+            You hired brilliant marketers. And then they got buried. The workflows don&apos;t match how people actually work. The platforms generate data nobody trusts. The processes implemented last year are routinely worked around. It&apos;s the story of many marketing teams. Frustrated. Stretched. Moving, but not fast enough.
+          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-brand-dark/70">
+            That&apos;s operational drag. And it&apos;s quietly killing your momentum.
+          </p>
+          <p className="mt-6 max-w-2xl text-lg font-semibold leading-relaxed text-brand-dark">
+            We are the consultancy for CMOs who want their marketing to move faster.
           </p>
 
           <Link
