@@ -7,35 +7,28 @@ import { Section } from "@/components/section"
 export function PurposeSection() {
   return (
     <Section background="light">
-      <div className="flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
-        <motion.div variants={fadeInUp} className="lg:w-1/4">
-          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
-            Our belief
-          </span>
-        </motion.div>
-        <motion.div variants={fadeInUp} className="lg:w-3/4">
-          <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark/70">
-            <p>
-              We've long believed that lasting change comes from people, not platforms.
-            </p>
-            <p>
-              So we started Committed Citizens. A small team of senior practitioners with the conviction
-              and capability to make transformation stick. Not from the sidelines. Not via slide deck. From
-              inside the marketing function.
-            </p>
-            <p>
-              We've seen that when there is freedom from operational drag, something remarkable
-              happens. Teams who were exhausted become energised. Marketers who were firefighting
-              start doing the work they came to do. The system serves the people, the work flies. A
-              marketing function ready to drive growth.
-            </p>
-            <p className="font-medium text-brand-dark">
-              We leave behind teams that are fast, confident, and in control. That's what committed
-              citizens look like. And that's what we create.
-            </p>
-          </div>
-        </motion.div>
-      </div>
+      <motion.div variants={fadeInUp}>
+        <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark/70">
+          <p>
+            We've long believed that lasting change comes from people, not platforms.
+          </p>
+          <p>
+            So we started Committed Citizens. A small team of senior practitioners with the conviction
+            and capability to make transformation stick. Not from the sidelines. Not via slide deck. From
+            inside the marketing function.
+          </p>
+          <p>
+            We've seen that when there is freedom from operational drag, something remarkable
+            happens. Teams who were exhausted become energised. Marketers who were firefighting
+            start doing the work they came to do. The system serves the people, the work flies. A
+            marketing function ready to drive growth.
+          </p>
+          <p className="font-medium text-brand-dark">
+            We leave behind teams that are fast, confident, and in control. That's what committed
+            citizens look like. And that's what we create.
+          </p>
+        </div>
+      </motion.div>
     </Section>
   )
 }
