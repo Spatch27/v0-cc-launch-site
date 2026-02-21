@@ -55,18 +55,6 @@ export function AnimatedTypeSection() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
         </div>
 
-        {/* Decorative triangles on sides */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2">
-          <svg width="60" height="120" viewBox="0 0 60 120" className="text-brand-pink">
-            <polygon points="60,0 0,60 60,120" fill="currentColor" />
-          </svg>
-        </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2">
-          <svg width="60" height="120" viewBox="0 0 60 120" className="text-brand-pink">
-            <polygon points="0,0 60,60 0,120" fill="currentColor" />
-          </svg>
-        </div>
-
         {/* Text content that animates as you scroll */}
         <div className="flex h-full items-center justify-center">
           <div className="relative text-center">
