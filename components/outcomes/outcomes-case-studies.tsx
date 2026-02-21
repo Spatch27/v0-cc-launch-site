@@ -82,7 +82,7 @@ export function OutcomesCaseStudies() {
             key={study.client}
             variants={fadeInUp}
             custom={i}
-            className="group grid gap-10 border-b border-brand-dark/10 pb-16 last:border-0 last:pb-0 md:grid-cols-2"
+            className="group relative grid gap-10 border-b border-brand-dark/10 pb-16 last:border-0 last:pb-0 md:grid-cols-2"
           >
             {/* Left: info */}
             <div>
