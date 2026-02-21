@@ -11,17 +11,17 @@ export function AnimatedTypeSection() {
     offset: ["start start", "end start"],
   })
 
-  // Line 1: "Remove drag." - visible from 0 to 0.33, rolls up
-  const line1Opacity = useTransform(scrollYProgress, [0, 0.1, 0.25, 0.33], [0, 1, 1, 0])
-  const line1Y = useTransform(scrollYProgress, [0.25, 0.33], [0, -100])
+  // Line 1: "Remove drag." - visible from 0 to 0.25, rolls up
+  const line1Opacity = useTransform(scrollYProgress, [0, 0.08, 0.18, 0.25], [0, 1, 1, 0])
+  const line1Y = useTransform(scrollYProgress, [0.18, 0.25], [0, -100])
 
-  // Line 2: "Build momentum." - visible from 0.33 to 0.66, rolls up
-  const line2Opacity = useTransform(scrollYProgress, [0.3, 0.38, 0.58, 0.66], [0, 1, 1, 0])
-  const line2Y = useTransform(scrollYProgress, [0.58, 0.66], [0, -100])
+  // Line 2: "Build momentum." - visible from 0.25 to 0.5, rolls up
+  const line2Opacity = useTransform(scrollYProgress, [0.22, 0.3, 0.43, 0.5], [0, 1, 1, 0])
+  const line2Y = useTransform(scrollYProgress, [0.43, 0.5], [0, -100])
 
-  // Line 3: "Unlock growth." - visible from 0.66 onwards, stays
-  const line3Opacity = useTransform(scrollYProgress, [0.63, 0.73], [0, 1])
-  const line3Y = useTransform(scrollYProgress, [0.63, 0.73], [50, 0])
+  // Line 3: "Unlock growth." - visible from 0.5 onwards, holds longer
+  const line3Opacity = useTransform(scrollYProgress, [0.47, 0.55], [0, 1])
+  const line3Y = useTransform(scrollYProgress, [0.47, 0.55], [50, 0])
 
   return (
     <section
