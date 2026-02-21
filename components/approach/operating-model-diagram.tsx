@@ -78,13 +78,27 @@ function CircleButton({
   const startY = item.cy - totalHeight / 2
 
   return (
-    <motion.g
+    <g
       key={id}
-      onMouseEnter={() => setHoveredId(id)}
-      onMouseLeave={() => setHoveredId(null)}
+      onMouseEnter={() => {
+        console.log("[v0] Hovering on:", id)
+        setHoveredId(id)
+      }}
+      onMouseLeave={() => {
+        console.log("[v0] Leaving:", id)
+        setHoveredId(null)
+      }}
       style={{ cursor: "pointer" }}
     >
-      {/* Circle */}
+      {/* Invisible larger circle for better hover detection */}
+      <circle
+        cx={item.cx}
+        cy={item.cy}
+        r={radius + 10}
+        fill="transparent"
+        style={{ pointerEvents: "all" }}
+      />
+      {/* Visible Circle */}
       <motion.circle
         cx={item.cx}
         cy={item.cy}
@@ -97,28 +111,26 @@ function CircleButton({
           strokeWidth: isHovered ? 6 : isSupporting ? 3 : 4,
         }}
         transition={{ duration: 0.2 }}
+        style={{ pointerEvents: "none" }}
       />
       {/* Multi-line text - always visible */}
-      <motion.text
+      <text
         x={item.cx}
         y={startY}
         textAnchor="middle"
-        fontSize="15"
+        fontSize={isHovered ? 16 : 15}
         fontWeight="bold"
         fill="#181716"
-        className="font-display pointer-events-none select-none"
-        animate={{
-          fontSize: isHovered ? 16 : 15,
-        }}
-        transition={{ duration: 0.2 }}
+        className="font-display select-none"
+        style={{ pointerEvents: "none" }}
       >
         {item.lines.map((line, idx) => (
           <tspan key={idx} x={item.cx} dy={idx === 0 ? 0 : lineHeight}>
             {line}
           </tspan>
         ))}
-      </motion.text>
-    </motion.g>
+      </text>
+    </g>
   )
 }
 
@@ -137,6 +149,9 @@ export function OperatingModelDiagram() {
 
   const hoveredItem = getHoveredItem()
 
+  console.log("[v0] Hovered ID:", hoveredId)
+  console.log("[v0] Hovered Item:", hoveredItem)
+
   return (
     <motion.div
       initial="hidden"
@@ -144,7 +159,7 @@ export function OperatingModelDiagram() {
       viewport={{ once: true, margin: "-80px" }}
       className="w-full"
     >
-      <div className="relative w-full">
+      <div className="relative w-full min-h-[600px]">
         {/* Desktop SVG Diagram */}
         <div className="hidden lg:block mb-12 relative">
           <svg
@@ -153,28 +168,30 @@ export function OperatingModelDiagram() {
             preserveAspectRatio="xMidYMid meet"
           >
             {/* Center label */}
-            <motion.text
+            <text
               x="500"
               y="290"
               textAnchor="middle"
               fontSize="13"
               fontWeight="bold"
               fill="#181716"
-              className="font-display pointer-events-none select-none"
+              className="font-display select-none"
+              style={{ pointerEvents: "none" }}
             >
               CLIENT
-            </motion.text>
-            <motion.text
+            </text>
+            <text
               x="500"
               y="310"
               textAnchor="middle"
               fontSize="13"
               fontWeight="bold"
               fill="#181716"
-              className="font-display pointer-events-none select-none"
+              className="font-display select-none"
+              style={{ pointerEvents: "none" }}
             >
               OUTCOME
-            </motion.text>
+            </text>
 
             {/* Interactive circles */}
             {operatingModelItems.primary.map((item, idx) => (
@@ -200,17 +217,18 @@ export function OperatingModelDiagram() {
             ))}
           </svg>
 
-          {/* Floating tooltip panel */}
+          {/* Floating tooltip panel - positioned absolutely over the diagram */}
           {hoveredItem && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              key={hoveredId}
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
+              className="absolute top-1/3 left-1/2 -translate-x-1/2 pointer-events-none z-10"
             >
-              <div className="bg-[#ffd700] px-6 py-4 rounded-lg shadow-lg max-w-xs">
-                <p className="text-sm text-brand-dark font-medium leading-relaxed">
+              <div className="bg-[#FFD700] px-6 py-4 rounded-lg shadow-xl border-2 border-brand-dark/10">
+                <p className="text-sm text-brand-dark font-medium leading-relaxed max-w-sm">
                   {hoveredItem.description}
                 </p>
               </div>
