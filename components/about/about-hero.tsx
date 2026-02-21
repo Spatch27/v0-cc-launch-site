@@ -12,8 +12,8 @@ export function AboutHero() {
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-4xl font-display text-[clamp(1.8rem,4vw,3.5rem)] font-bold leading-snug text-brand-dark"
         >
-          &ldquo;Never doubt that a small group of thoughtful, committed
-          citizens can change the world. In fact, it&apos;s the only thing that
+          &ldquo;Never doubt that a small group of thoughtful, <i>committed
+          citizens</i> can change the world. In fact, it&apos;s the only thing that
           ever has.&rdquo;
         </motion.blockquote>
         <motion.cite
