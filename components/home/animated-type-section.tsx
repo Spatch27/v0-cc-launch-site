@@ -11,29 +11,26 @@ export function AnimatedTypeSection() {
     offset: ["start start", "end start"],
   })
 
-  // Easing function for smoother transitions
-  const easeOut = [0.32, 0.72, 0, 1]
-
-  // Line 1: "Remove drag." - visible from 0 to 0.25, rolls up
+  // Line 1: "Remove drag." - visible from 0 to 0.25, rolls up with smoother easing
   const line1Word1Opacity = useTransform(scrollYProgress, [0, 0.08, 0.18, 0.24], [0, 1, 1, 0])
-  const line1Word1Y = useTransform(scrollYProgress, [0.18, 0.25], [0, -150], { ease: easeOut })
+  const line1Word1Y = useTransform(scrollYProgress, [0.18, 0.25], [0, -150])
   
   const line1Word2Opacity = useTransform(scrollYProgress, [0.02, 0.1, 0.18, 0.25], [0, 1, 1, 0])
-  const line1Word2Y = useTransform(scrollYProgress, [0.18, 0.26], [0, -150], { ease: easeOut })
+  const line1Word2Y = useTransform(scrollYProgress, [0.18, 0.26], [0, -150])
 
-  // Line 2: "Build momentum." - visible from 0.25 to 0.5, rolls up
+  // Line 2: "Build momentum." - visible from 0.25 to 0.5, rolls up with smoother easing
   const line2Word1Opacity = useTransform(scrollYProgress, [0.22, 0.3, 0.43, 0.49], [0, 1, 1, 0])
-  const line2Word1Y = useTransform(scrollYProgress, [0.43, 0.5], [0, -150], { ease: easeOut })
+  const line2Word1Y = useTransform(scrollYProgress, [0.43, 0.5], [0, -150])
   
   const line2Word2Opacity = useTransform(scrollYProgress, [0.24, 0.32, 0.43, 0.5], [0, 1, 1, 0])
-  const line2Word2Y = useTransform(scrollYProgress, [0.43, 0.51], [0, -150], { ease: easeOut })
+  const line2Word2Y = useTransform(scrollYProgress, [0.43, 0.51], [0, -150])
 
   // Line 3: "Unlock growth." - visible from 0.5 onwards, holds longer
   const line3Word1Opacity = useTransform(scrollYProgress, [0.47, 0.55], [0, 1])
-  const line3Word1Y = useTransform(scrollYProgress, [0.47, 0.55], [50, 0], { ease: easeOut })
+  const line3Word1Y = useTransform(scrollYProgress, [0.47, 0.55], [50, 0])
   
   const line3Word2Opacity = useTransform(scrollYProgress, [0.49, 0.57], [0, 1])
-  const line3Word2Y = useTransform(scrollYProgress, [0.49, 0.57], [50, 0], { ease: easeOut })
+  const line3Word2Y = useTransform(scrollYProgress, [0.49, 0.57], [50, 0])
 
   return (
     <section
