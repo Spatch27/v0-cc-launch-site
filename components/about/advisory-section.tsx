@@ -30,18 +30,25 @@ const advisors = [
 export function AdvisorySection() {
   return (
     <Section background="light">
-      <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
-        <motion.div variants={fadeInUp} className="lg:w-1/4">
-          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
-            Advisors
-          </span>
-        </motion.div>
-        <motion.div variants={fadeInUp} className="lg:w-3/4">
-          <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Advisory Board.
-          </h2>
-        </motion.div>
-      </div>
+      <motion.div variants={fadeInUp} className="mb-12">
+        <h2 className="mb-6 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+          Built small. And mighty.
+        </h2>
+        <div className="max-w-2xl space-y-6 text-lg leading-relaxed text-brand-dark/60">
+          <p>
+            We operate a highly capable core, drawing on the talents of a network of specialist
+            practitioners in martech, agentic AI, data architecture, FS, and governance.
+          </p>
+          <p>
+            Our advisory board is working, not ornamental. Senior operators we draw on directly in
+            delivery - shaping thinking, pressure-testing decisions, strengthening outcomes.
+          </p>
+          <p className="font-medium text-brand-dark">
+            We have no generalists posing as experts. No paying for bench time. Just the right depth, at
+            the right moment, aligned to a single Committed Citizens method.
+          </p>
+        </div>
+      </motion.div>
 
       <div className="grid gap-8 md:grid-cols-2">
         {advisors.map((advisor, i) => (

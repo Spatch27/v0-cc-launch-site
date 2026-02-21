@@ -17,10 +17,10 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <PurposeSection />
+      <CultureSection />
       <TeamSection />
       <AdvisorySection />
-      <CultureSection />
-      <CtaBand heading="Say hello" background="pink" />
+      <CtaBand heading="Want to talk through a challenge?" background="pink" />
     </>
   )
 }

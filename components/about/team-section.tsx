@@ -6,42 +6,29 @@ import { Section } from "@/components/section"
 
 const founders = [
   {
-    name: "Ben Bushby",
-    bio: "Ben is a behaviour-change specialist with a decade spent helping teams at the BBC and Not-On-The-High-Street adopt new ways of working. He ensures transformation actually sticks by building confidence, capability and the conditions for fast adoption.",
-    initials: "BB",
+    name: "Ben Scoggins",
+    title: "Founder & CEO",
+    bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury's Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter.",
   },
   {
     name: "Tim Burley",
+    title: "Founder & Chief Strategist",
     bio: "Tim brings 25 years of senior marketing and strategy experience across Argos, Capita and the NHS. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable.",
-    initials: "TB",
-  },
-  {
-    name: "Kate Salter",
-    bio: "Kate has ten years designing workflows and operating models for tech firms, agencies and NASA. She maps how work really happens, rebuilds end-to-end systems, and fits people and agents together in a way that removes friction.",
-    initials: "KS",
-  },
-  {
-    name: "Ben Scoggins",
-    bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury\u2019s Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter.",
-    initials: "BS",
   },
 ]
 
 export function TeamSection() {
   return (
     <Section background="white">
-      <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
-        <motion.div variants={fadeInUp} className="lg:w-1/4">
-          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
-            Founders
-          </span>
-        </motion.div>
-        <motion.div variants={fadeInUp} className="lg:w-3/4">
-          <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            The team.
-          </h2>
-        </motion.div>
-      </div>
+      <motion.div variants={fadeInUp} className="mb-12">
+        <h2 className="mb-6 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+          The founders.
+        </h2>
+        <p className="max-w-2xl text-lg leading-relaxed text-brand-dark/60">
+          You won't be handed to a team you haven't met. You'll work with the founders and a handful
+          of discipline specialists.
+        </p>
+      </motion.div>
 
       <div className="grid gap-8 md:grid-cols-2">
         {founders.map((member, i) => (
@@ -49,21 +36,18 @@ export function TeamSection() {
             key={member.name}
             variants={fadeInUp}
             custom={i}
-            className="group flex flex-col bg-brand-light p-10 transition-shadow duration-300 hover:shadow-lg"
+            className="group flex flex-col overflow-hidden bg-brand-light transition-shadow duration-300 hover:shadow-lg"
           >
-            <div className="mb-6 flex items-center gap-5">
-              {/* Initials avatar */}
-              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-brand-dark font-display text-lg font-bold text-brand-white">
-                {member.initials}
-              </div>
-              <div>
-                <h3 className="font-display text-xl font-bold text-brand-dark">
-                  {member.name}
-                </h3>
-                <p className="text-sm text-brand-pink">Founder</p>
-              </div>
+            <div className="relative h-64 w-full overflow-hidden bg-gray-300 flex items-center justify-center">
+              <span className="text-gray-400 text-sm font-medium">Image placeholder</span>
             </div>
-            <p className="leading-relaxed text-brand-dark/60">{member.bio}</p>
+            <div className="p-10">
+              <h3 className="mb-2 font-display text-xl font-bold text-brand-dark">
+                {member.name}
+              </h3>
+              <p className="mb-6 text-sm text-brand-pink">{member.title}</p>
+              <p className="leading-relaxed text-brand-dark/60">{member.bio}</p>
+            </div>
           </motion.div>
         ))}
       </div>

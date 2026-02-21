@@ -48,6 +48,7 @@ export function Section({
       viewport={{ once: true, margin: "-80px" }}
       variants={staggerContainer}
       className={cn(
+        "relative",
         bgClasses[background],
         !noPadding && "px-6 py-24 lg:px-12 lg:py-32",
         className
