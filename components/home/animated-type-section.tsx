@@ -57,35 +57,53 @@ export function AnimatedTypeSection() {
         {/* Text content that animates as you scroll */}
         <div className="flex h-full items-center justify-center">
           <div className="relative text-center">
-            {/* Line 1: Remove drag. */}
-            <motion.h2
-              style={{ opacity: line1Opacity, y: line1Y }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
-            >
-              Remove
-              <br />
-              drag.
-            </motion.h2>
+            {/* Line 1: Remove drag. - words animate separately */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <motion.div
+                style={{ opacity: line1Word1Opacity, y: line1Word1Y }}
+                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+              >
+                Remove
+              </motion.div>
+              <motion.div
+                style={{ opacity: line1Word2Opacity, y: line1Word2Y }}
+                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+              >
+                drag.
+              </motion.div>
+            </div>
 
-            {/* Line 2: Build momentum. */}
-            <motion.h2
-              style={{ opacity: line2Opacity, y: line2Y }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
-            >
-              Build
-              <br />
-              momentum.
-            </motion.h2>
+            {/* Line 2: Build momentum. - words animate separately */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <motion.div
+                style={{ opacity: line2Word1Opacity, y: line2Word1Y }}
+                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+              >
+                Build
+              </motion.div>
+              <motion.div
+                style={{ opacity: line2Word2Opacity, y: line2Word2Y }}
+                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+              >
+                momentum.
+              </motion.div>
+            </div>
 
-            {/* Line 3: Unlock growth. */}
-            <motion.h2
-              style={{ opacity: line3Opacity, y: line3Y }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
-            >
-              Unlock
-              <br />
-              growth.
-            </motion.h2>
+            {/* Line 3: Unlock growth. - words animate separately */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <motion.div
+                style={{ opacity: line3Word1Opacity, y: line3Word1Y }}
+                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
+              >
+                Unlock
+              </motion.div>
+              <motion.div
+                style={{ opacity: line3Word2Opacity, y: line3Word2Y }}
+                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
+              >
+                growth.
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
