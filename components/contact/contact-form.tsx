@@ -171,7 +171,13 @@ export function ContactForm() {
         <div className="space-y-16">
           {/* Intro text */}
           <div className="relative">
-          <motion.div variants={fadeInUp} className="max-w-2xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="max-w-2xl"
+          >
             <h2 className="font-display text-3xl font-bold text-brand-dark">
               Can't wait? Neither can we.
             </h2>
@@ -185,7 +191,12 @@ export function ContactForm() {
           <div className="relative grid gap-20 lg:grid-cols-2">
             {/* Form */}
             <div className="relative">
-            <motion.div variants={fadeInUp}>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
             {submitted ? (
               <div className="flex flex-col gap-6 bg-brand-white p-12">
                 <CheckCircle size={48} className="text-brand-pink" />
@@ -300,7 +311,13 @@ export function ContactForm() {
 
             {/* Contact links */}
             <div className="relative">
-            <motion.div variants={fadeInUp} className="flex flex-col gap-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex flex-col gap-10"
+            >
               <a
                 href="mailto:hello@committedcitizens.co.uk"
                 className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
