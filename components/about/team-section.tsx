@@ -6,24 +6,14 @@ import { Section } from "@/components/section"
 
 const founders = [
   {
-    name: "Ben Bushby",
-    bio: "Ben is a behaviour-change specialist with a decade spent helping teams at the BBC and Not-On-The-High-Street adopt new ways of working. He ensures transformation actually sticks by building confidence, capability and the conditions for fast adoption.",
-    initials: "BB",
+    name: "Ben Scoggins",
+    bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury's Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter.",
+    initials: "BS",
   },
   {
     name: "Tim Burley",
     bio: "Tim brings 25 years of senior marketing and strategy experience across Argos, Capita and the NHS. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable.",
     initials: "TB",
-  },
-  {
-    name: "Kate Salter",
-    bio: "Kate has ten years designing workflows and operating models for tech firms, agencies and NASA. She maps how work really happens, rebuilds end-to-end systems, and fits people and agents together in a way that removes friction.",
-    initials: "KS",
-  },
-  {
-    name: "Ben Scoggins",
-    bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury\u2019s Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter.",
-    initials: "BS",
   },
 ]
 
