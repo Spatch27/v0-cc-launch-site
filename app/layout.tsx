@@ -5,6 +5,20 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import './globals.css'
 
+// Suppress Framer Motion scroll positioning warnings
+if (typeof window !== 'undefined') {
+  const originalWarn = console.warn
+  console.warn = (...args: any[]) => {
+    if (
+      args[0]?.includes?.('non-static position') ||
+      args[0]?.includes?.('scroll offset')
+    ) {
+      return
+    }
+    originalWarn(...args)
+  }
+}
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
