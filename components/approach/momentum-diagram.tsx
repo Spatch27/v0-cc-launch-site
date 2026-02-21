@@ -19,18 +19,21 @@ const momentumItems = [
 ]
 
 /**
- * Three interlocking rings from two continuous paths, both at radius R.
+ * Three interlocking rings from 6 arcs, all at radius R.
  *
- * Forward (left→right): UP(1) → DOWN(2) → UP(3)
- * Return  (right→left): DOWN(3) → UP(2) → DOWN(1)
+ * Forward: F1(up over C1) → F2(down under C2) → F3(up over C3)
+ * Return:  R3(down under C3) → R2(up over C2) → R1(down under C1)
  *
- * Both paths use the same radius R. Centres spaced 2R apart so
- * arcs connect seamlessly. Ring thickness = stroke width.
- * Forward drawn on top of return for chain-link overlap.
+ * Chain-link overlap:
+ *   - At C1/C2 junction: C1 arcs (F1, R1) in FRONT of C2 arcs (F2, R2)
+ *   - At C2/C3 junction: C3 arcs (F3, R3) in FRONT of C2 arcs (F2, R2)
+ *
+ * Uses gradientUnits="userSpaceOnUse" so one gradient flows
+ * continuously across all 6 arc segments.
  */
 function FlowingCirclesSVG() {
   const R = 130
-  const sw = 52    // stroke width = ring thickness
+  const sw = 52
   const pad = sw / 2 + 4
 
   const cx1 = pad + R
@@ -41,23 +44,18 @@ function FlowingCirclesSVG() {
   const vw = cx3 + R + pad
   const vh = 2 * R + 2 * pad
 
-  // Forward: UP over 1, DOWN under 2, UP over 3
-  // sweep=0 (CCW) arcs upward left→right, sweep=1 (CW) arcs downward
-  const forwardPath = [
-    `M ${cx1 - R} ${cy}`,
-    `A ${R} ${R} 0 0 0 ${cx1 + R} ${cy}`,  // up over 1
-    `A ${R} ${R} 0 0 1 ${cx2 + R} ${cy}`,  // down under 2
-    `A ${R} ${R} 0 0 0 ${cx3 + R} ${cy}`,  // up over 3
-  ].join(" ")
+  // Forward arcs (left → right)
+  const F1 = `M ${cx1 - R} ${cy} A ${R} ${R} 0 0 0 ${cx1 + R} ${cy}` // up over C1
+  const F2 = `M ${cx2 - R} ${cy} A ${R} ${R} 0 0 1 ${cx2 + R} ${cy}` // down under C2
+  const F3 = `M ${cx3 - R} ${cy} A ${R} ${R} 0 0 0 ${cx3 + R} ${cy}` // up over C3
 
-  // Return: DOWN under 3, UP over 2, DOWN under 1
-  // From right→left: sweep=0 (CCW) arcs downward, sweep=1 (CW) arcs upward
-  const returnPath = [
-    `M ${cx3 + R} ${cy}`,
-    `A ${R} ${R} 0 0 0 ${cx3 - R} ${cy}`,  // down under 3
-    `A ${R} ${R} 0 0 1 ${cx2 - R} ${cy}`,  // up over 2
-    `A ${R} ${R} 0 0 0 ${cx1 - R} ${cy}`,  // down under 1
-  ].join(" ")
+  // Return arcs (right → left)
+  const R3 = `M ${cx3 + R} ${cy} A ${R} ${R} 0 0 0 ${cx3 - R} ${cy}` // down under C3
+  const R2 = `M ${cx2 + R} ${cy} A ${R} ${R} 0 0 1 ${cx2 - R} ${cy}` // up over C2
+  const R1 = `M ${cx1 + R} ${cy} A ${R} ${R} 0 0 0 ${cx1 - R} ${cy}` // down under C1
+
+  const x0 = cx1 - R - sw / 2 // leftmost pixel
+  const x1 = cx3 + R + sw / 2 // rightmost pixel
 
   return (
     <svg
@@ -67,33 +65,23 @@ function FlowingCirclesSVG() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="forwardGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        {/* Single gradient spanning full width in user-space coords */}
+        <linearGradient id="ringGrad" gradientUnits="userSpaceOnUse" x1={x0} y1={cy} x2={x1} y2={cy}>
           <stop offset="0%" stopColor="#ffd100" />
           <stop offset="50%" stopColor="#ff8600" />
           <stop offset="100%" stopColor="#fc66a7" />
         </linearGradient>
-        <linearGradient id="returnGrad" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%" stopColor="#fc66a7" />
-          <stop offset="50%" stopColor="#ff8600" />
-          <stop offset="100%" stopColor="#ffd100" />
-        </linearGradient>
       </defs>
 
-      {/* Layer 1 (back): return path */}
-      <path
-        d={returnPath}
-        fill="none"
-        stroke="url(#returnGrad)"
-        strokeWidth={sw}
-      />
+      {/* Layer 1 (back): C2 arcs - always behind at both junctions */}
+      <path d={F2} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
+      <path d={R2} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
 
-      {/* Layer 2 (front): forward path overlaps at crossings */}
-      <path
-        d={forwardPath}
-        fill="none"
-        stroke="url(#forwardGrad)"
-        strokeWidth={sw}
-      />
+      {/* Layer 2 (front): C1 and C3 arcs - overlap C2 at the junctions */}
+      <path d={F1} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
+      <path d={R1} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
+      <path d={F3} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
+      <path d={R3} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
     </svg>
   )
 }
