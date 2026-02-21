@@ -12,7 +12,7 @@ export function OutcomesHero() {
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
         >
-          When the work flows, results fly.
+          When the work flows, results <i>fly</i>.
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
