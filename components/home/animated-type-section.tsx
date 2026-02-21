@@ -62,13 +62,13 @@ export function AnimatedTypeSection() {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <motion.div
                 style={{ opacity: line1Word1Opacity, y: line1Word1Y }}
-                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+                className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
               >
                 Remove
               </motion.div>
               <motion.div
                 style={{ opacity: line1Word2Opacity, y: line1Word2Y }}
-                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+                className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
               >
                 drag.
               </motion.div>
@@ -78,13 +78,13 @@ export function AnimatedTypeSection() {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <motion.div
                 style={{ opacity: line2Word1Opacity, y: line2Word1Y }}
-                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+                className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
               >
                 Build
               </motion.div>
               <motion.div
                 style={{ opacity: line2Word2Opacity, y: line2Word2Y }}
-                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+                className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
               >
                 momentum.
               </motion.div>
@@ -94,13 +94,13 @@ export function AnimatedTypeSection() {
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <motion.div
                 style={{ opacity: line3Word1Opacity, y: line3Word1Y }}
-                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
+                className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
               >
                 Unlock
               </motion.div>
               <motion.div
                 style={{ opacity: line3Word2Opacity, y: line3Word2Y }}
-                className="font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
+                className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
               >
                 growth.
               </motion.div>
