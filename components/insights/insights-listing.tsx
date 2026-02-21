@@ -215,8 +215,7 @@ export function InsightsListing() {
       <section className="bg-brand-dark px-6 py-24 lg:px-12 lg:py-32">
         <motion.div
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           variants={fadeInUp}
           className="mx-auto flex max-w-[1400px] flex-col items-start gap-8 lg:flex-row lg:items-end lg:justify-between"
         >

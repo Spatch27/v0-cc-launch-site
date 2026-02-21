@@ -44,8 +44,7 @@ export function Section({
     <motion.section
       id={id}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      animate="visible"
       variants={staggerContainer}
       className={cn(
         "relative",

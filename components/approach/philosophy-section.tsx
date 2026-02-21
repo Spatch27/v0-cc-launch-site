@@ -10,8 +10,7 @@ export function PhilosophySection() {
     <Section background="light">
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
+        animate="visible"
         variants={fadeInUp}
       >
         <h2 className="mb-6 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">

@@ -10,8 +10,7 @@ export function MomentumSection() {
     <Section background="dark" className="py-24">
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
+        animate="visible"
         variants={staggerContainer}
         className="w-full"
       >

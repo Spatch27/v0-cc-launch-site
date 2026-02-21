@@ -157,8 +157,7 @@ export function OperatingModelDiagram() {
   return (
     <motion.div
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      animate="visible"
       className="w-full"
     >
       <div className="relative w-full min-h-[600px]">
