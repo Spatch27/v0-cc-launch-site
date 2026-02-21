@@ -30,6 +30,7 @@ export function Footer() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          transform: 'rotate(180deg)',
         }}
       />
       
