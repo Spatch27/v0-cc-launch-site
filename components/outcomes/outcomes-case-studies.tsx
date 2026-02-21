@@ -18,9 +18,9 @@ const allCaseStudies: OutcomeStudy[] = [
     client: "Global home security company",
     project: "Email marketing workflow re-engineering across EMEA",
     metrics: [
-      { value: "57%", label: "Improvement in CTR" },
-      { value: "25%", label: "Increase in CTOR" },
-      { value: "15%", label: "Decrease in bounce rates" },
+      { value: "57%", label: "improvement in CTR" },
+      { value: "25%", label: "increase in CTOR" },
+      { value: "15%", label: "decrease in bounce rates" },
     ],
     testimonial:
       "They've enabled us to get the results we always wanted out of an expensive, integrated system.",
@@ -30,8 +30,8 @@ const allCaseStudies: OutcomeStudy[] = [
     client: "Leading IT consultancy",
     project: "Stack simplification and realignment / CX improvements",
     metrics: [
-      { value: "22%", label: "Reduction in journey breaks" },
-      { value: "12%", label: "Increase in page conversions" },
+      { value: "22%", label: "reduction in journey breaks" },
+      { value: "12%", label: "increase in page conversions" },
     ],
     testimonial:
       "They delivered a brilliant experience — great stakeholder mapping, flawless execution, and well-embedded adoption.",
@@ -40,10 +40,10 @@ const allCaseStudies: OutcomeStudy[] = [
   {
     client: "Top 10 wealth and asset management company",
     project:
-      "Business transformation, web integration, and marketing team alignment. Impact over 12 weeks.",
+      "Business transformation, web integration, and marketing team alignment",
     metrics: [
-      { value: "30%", label: "Reduction in workarounds" },
-      { value: "57%", label: "Licence fee reduction" },
+      { value: "30%", label: "reduction in workarounds" },
+      { value: "57%", label: "licence fee reduction" },
     ],
     testimonial:
       "A business critical transformation at a crucial time for us — they executed it brilliantly.",
@@ -52,10 +52,10 @@ const allCaseStudies: OutcomeStudy[] = [
   {
     client: "Top 5 UK retailer",
     project:
-      "Workflow assessment, tool creation, training and change management programme. Impact felt within 6 weeks.",
+      "Workflow assessment, agentic tool creation, training and change management",
     metrics: [
-      { value: "100%", label: "Team adoption" },
-      { value: "1,300", label: "Man-hours saved in Year 1" },
+      { value: "100%", label: "team adoption" },
+      { value: "1,300", label: "man-hours saved in Year 1" },
     ],
     testimonial:
       "They demonstrated a great understanding of the way we work, and quickly delivered tech and tools as part of an evolved workflow.",

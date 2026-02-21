@@ -18,9 +18,9 @@ export function OutcomesHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-8 max-w-xl text-lg leading-relaxed text-brand-white/50"
+          className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-white/50"
         >
-          Tangible evidence of operational uplift across marketing teams. Every metric is real, every testimonial is verified.
+          Marketing teams don't collapse, they get dragged down. Timelines stretch. Reporting gets contested. Smart people spend more time unblocking than building. The energy is there, but the momentum isn't. This is when we get called in. Here are four examples of the work we do.
         </motion.p>
       </div>
     </section>

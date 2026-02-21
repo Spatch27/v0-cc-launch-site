@@ -37,12 +37,13 @@ export function AnimatedTypeSection() {
   const line3Word2Y = useTransform(scrollYProgress, [0.64, 0.7], [50, 0])
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative -mt-1 h-[600vh]"
-    >
-      {/* Sticky container that holds both background and text */}
-      <div className="sticky top-0 h-screen overflow-hidden">
+    <div className="relative -mt-1">
+      <section
+        ref={sectionRef}
+        className="h-[600vh]"
+      >
+        {/* Sticky container that holds both background and text */}
+        <div className="sticky top-0 h-screen overflow-hidden">
         {/* Background image - fixed in place */}
         <div className="absolute inset-0 -z-10">
           <Image
@@ -108,6 +109,7 @@ export function AnimatedTypeSection() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </div>
   )
 }

@@ -243,7 +243,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
       {/* Two-column: Sidebar + Article Body */}
       <section className="bg-brand-white px-6 py-16 lg:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[280px_1fr] lg:gap-20">
+        <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[280px_1fr] lg:gap-20 relative">
           {/* Left narrow column: metadata sidebar */}
           <ArticleSidebar
             author={article.author}
