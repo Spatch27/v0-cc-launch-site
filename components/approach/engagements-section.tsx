@@ -110,15 +110,13 @@ export function EngagementsSection() {
         ))}
       </motion.div>
 
-      {/* CTA */}
-      <motion.div variants={fadeInUp} className="flex justify-center">
-        <Link
-          href="/contact"
-          className="group inline-flex items-center gap-3 text-sm font-semibold text-brand-white/60 transition-colors hover:text-brand-pink"
-        >
-          Discuss which engagement is right for you
-          <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-        </Link>
+      {/* Supporting Copy */}
+      <motion.div variants={fadeInUp} className="mt-16">
+        <div className="max-w-3xl">
+          <p className="text-lg leading-relaxed text-brand-white/70">
+            Most clients start with Ignition6™. Every new engagement begins with a two-week checkpoint. If you can't feel the momentum building, you walk away. No full invoice, no awkward conversations. This approach removes the risk and lets us prove value before you commit further.
+          </p>
+        </div>
       </motion.div>
     </Section>
   )
