@@ -82,9 +82,8 @@ export function ContactForm() {
           <div className="relative mx-auto max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
               className="space-y-8"
             >
               <div>
@@ -173,9 +172,8 @@ export function ContactForm() {
           <div className="relative">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
             className="max-w-2xl"
           >
             <h2 className="font-display text-3xl font-bold text-brand-dark">
@@ -193,9 +191,8 @@ export function ContactForm() {
             <div className="relative">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
             >
             {submitted ? (
               <div className="flex flex-col gap-6 bg-brand-white p-12">
@@ -313,9 +310,8 @@ export function ContactForm() {
             <div className="relative">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
               className="flex flex-col gap-10"
             >
               <a
