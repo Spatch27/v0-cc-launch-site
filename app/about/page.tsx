@@ -17,6 +17,14 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <PurposeSection />
+      {/* Full-viewport-width image */}
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mb-12">
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-Ay2PtJjOqos-unsplash-vUHj2qivOSVTrWKgIlJbBrI1a9A9J2.jpg"
+          alt="Scenic tower overlooking valley landscape"
+          className="w-full h-96 object-cover"
+        />
+      </div>
       <CultureSection />
       <TeamSection />
       <AdvisorySection />

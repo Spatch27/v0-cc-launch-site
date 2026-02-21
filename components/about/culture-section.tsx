@@ -7,13 +7,6 @@ import { Section } from "@/components/section"
 export function CultureSection() {
   return (
     <Section background="dark">
-      <div className="-mx-6 mb-12 lg:-mx-12">
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-Ay2PtJjOqos-unsplash-vUHj2qivOSVTrWKgIlJbBrI1a9A9J2.jpg"
-          alt="Scenic tower overlooking valley landscape"
-          className="w-[calc(100%+48px)] lg:w-[calc(100%+96px)] h-96 object-cover"
-        />
-      </div>
       <motion.div variants={fadeInUp}>
         <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
           More human, in every interaction.
