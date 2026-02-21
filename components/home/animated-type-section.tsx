@@ -39,7 +39,7 @@ export function AnimatedTypeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-1 h-[600vh]"
+      className="relative -mt-1 h-[600vh] w-full"
     >
       {/* Sticky container that holds both background and text */}
       <div className="sticky top-0 h-screen overflow-hidden">
