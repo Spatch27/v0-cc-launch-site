@@ -14,7 +14,7 @@ export function HeroPhilosophy() {
           variants={fadeInUp}
           className="mb-16"
         >
-          <h1 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold leading-[0.9] tracking-tight text-brand-dark text-balance">
+          <h1 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold leading-[0.95] tracking-tight text-brand-dark text-balance">
             Only people <br />
             create <i>flow.</i>
           </h1>
