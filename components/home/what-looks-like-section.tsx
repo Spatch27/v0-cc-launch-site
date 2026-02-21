@@ -60,7 +60,7 @@ export function WhatLooksLikeSection() {
           return (
             <div
               key={item.problem}
-              className="sticky"
+              className="sticky relative"
               style={{ 
                 top: `${80 + i * 80}px`,
                 zIndex: i + 1

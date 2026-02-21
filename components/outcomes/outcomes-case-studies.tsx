@@ -7,7 +7,9 @@ import { Quote } from "lucide-react"
 
 interface OutcomeStudy {
   client: string
+  title: string
   project: string
+  description: string
   metrics: { value: string; label: string }[]
   testimonial: string
   accentColor: string
@@ -16,7 +18,9 @@ interface OutcomeStudy {
 const allCaseStudies: OutcomeStudy[] = [
   {
     client: "Global home security company",
+    title: "Customers falling through the gaps",
     project: "Email marketing workflow re-engineering across EMEA",
+    description: "The signals were there. Customer intent was being missed because the workflows connecting teams and platforms couldn't respond in real time. A system that should have been orchestrating personalised responses was generating data nobody trusted and emails nobody opened.",
     metrics: [
       { value: "57%", label: "improvement in CTR" },
       { value: "25%", label: "increase in CTOR" },
@@ -28,7 +32,9 @@ const allCaseStudies: OutcomeStudy[] = [
   },
   {
     client: "Leading IT consultancy",
+    title: "Flying blind on what's working",
     project: "Stack simplification and realignment / CX improvements",
+    description: "The stack had grown. So had the complexity. Dashboards existed but couldn't be trusted. Decisions were being made on instinct because the data couldn't be relied on. Journey breaks were going undetected until customers had already left.",
     metrics: [
       { value: "22%", label: "reduction in journey breaks" },
       { value: "12%", label: "increase in page conversions" },
@@ -39,8 +45,10 @@ const allCaseStudies: OutcomeStudy[] = [
   },
   {
     client: "Top 10 wealth and asset management company",
+    title: "Paying for tech nobody's really using",
     project:
       "Business transformation, web integration, and marketing team alignment",
+    description: "A business critical moment demanded that the marketing function move faster and cost less. The stack was bloated, workarounds were endemic, and licence fees were consuming budget that should have been driving growth.",
     metrics: [
       { value: "30%", label: "reduction in workarounds" },
       { value: "57%", label: "licence fee reduction" },
@@ -51,8 +59,10 @@ const allCaseStudies: OutcomeStudy[] = [
   },
   {
     client: "Top 5 UK retailer",
+    title: "Workarounds become the work",
     project:
       "Workflow assessment, agentic tool creation, training and change management",
+    description: "The team was capable. The tools weren't serving them. Time that should have been spent on marketing was being spent on workarounds that had quietly become standard practice. A workflow assessment revealed the scale of the problem - and the scale of the opportunity.",
     metrics: [
       { value: "100%", label: "team adoption" },
       { value: "1,300", label: "man-hours saved in Year 1" },
@@ -81,11 +91,14 @@ export function OutcomesCaseStudies() {
                 style={{ backgroundColor: study.accentColor }}
               />
               <p className="mb-2 text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
-                {study.client}
+                {study.title}
               </p>
               <h3 className="mb-8 font-display text-2xl font-bold leading-snug text-brand-dark lg:text-3xl">
                 {study.project}
               </h3>
+              <p className="mb-8 leading-relaxed text-brand-dark/70">
+                {study.description}
+              </p>
 
               {/* Metrics */}
               <div className="flex flex-wrap gap-8">
@@ -101,11 +114,16 @@ export function OutcomesCaseStudies() {
             </div>
 
             {/* Right: testimonial */}
-            <div className="flex flex-col justify-center">
-              <Quote size={20} className="mb-4 text-brand-dark/15" />
-              <blockquote className="font-display text-xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-2xl">
-                &ldquo;{study.testimonial}&rdquo;
-              </blockquote>
+            <div className="flex flex-col justify-between">
+              <div>
+                <Quote size={20} className="mb-4 text-brand-dark/15" />
+                <blockquote className="font-display text-xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-2xl">
+                  &ldquo;{study.testimonial}&rdquo;
+                </blockquote>
+              </div>
+              <p className="mt-8 text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
+                {study.client}
+              </p>
             </div>
           </motion.div>
         ))}
