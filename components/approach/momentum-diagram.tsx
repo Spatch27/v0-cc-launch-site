@@ -19,29 +19,20 @@ const momentumItems = [
 ]
 
 /**
- * Two continuous paths forming three interlocking rings.
+ * Three interlocking rings from two continuous paths, both at radius R.
  *
- * Forward path (big arcs): UP(1) → DOWN(2) → UP(3)
- * Return path (small arcs): DOWN(1) → line → UP(2) → line → DOWN(3)
+ * Forward (left→right): UP(1) → DOWN(2) → UP(3)
+ * Return  (right→left): DOWN(3) → UP(2) → DOWN(1)
  *
- * Centres spaced 2R apart. Small arcs have gaps bridged by
- * horizontal lines on the centre line.
- *
- * Layering creates chain-link overlap at the 2 crossing points.
+ * Both paths use the same radius R. Centres spaced 2R apart so
+ * arcs connect seamlessly. Ring thickness = stroke width.
+ * Forward drawn on top of return for chain-link overlap.
  */
 function FlowingCirclesSVG() {
-  // The ring thickness comes from the difference between
-  // the big arc radius and the small arc radius.
-  // The stroke on each path = half that difference so they
-  // meet in the middle and form a solid ring.
-  const R = 140    // big (outer) arc radius
-  const r = 60     // small (inner) arc radius
-  const sw = R - r // stroke width = 80, so each path paints 40px
-                   // inward/outward from its centre, filling the ring.
+  const R = 130
+  const sw = 52    // stroke width = ring thickness
   const pad = sw / 2 + 4
 
-  // Centres spaced 2R apart so big arcs connect at centre line.
-  // Small arc centres are at the same x positions.
   const cx1 = pad + R
   const cx2 = cx1 + 2 * R
   const cx3 = cx2 + 2 * R
@@ -50,34 +41,22 @@ function FlowingCirclesSVG() {
   const vw = cx3 + R + pad
   const vh = 2 * R + 2 * pad
 
-  // Mid-radius for each path (halfway between R and r)
-  const Rm = (R + r) / 2  // 100 - the radius the forward stroke centres on
-  const rm = (R + r) / 2  // 100 - same for return path, but we use r-based arcs
-
-  // Actually, simpler: draw the forward path at radius R with strokeWidth sw.
-  // The stroke extends sw/2 inward and sw/2 outward from R.
-  // Outer edge = R + sw/2 = 180, inner edge = R - sw/2 = 100.
-  // Draw the return path at radius r with strokeWidth sw.
-  // Outer edge = r + sw/2 = 100, inner edge = r - sw/2 = 20.
-  // The forward inner edge (100) meets the return outer edge (100). 
-
-  // Forward path: single continuous path along big arcs
+  // Forward: UP over 1, DOWN under 2, UP over 3
+  // sweep=0 (CCW) arcs upward left→right, sweep=1 (CW) arcs downward
   const forwardPath = [
     `M ${cx1 - R} ${cy}`,
-    `A ${R} ${R} 0 0 0 ${cx1 + R} ${cy}`,
-    `A ${R} ${R} 0 0 1 ${cx2 + R} ${cy}`,
-    `A ${R} ${R} 0 0 0 ${cx3 + R} ${cy}`,
+    `A ${R} ${R} 0 0 0 ${cx1 + R} ${cy}`,  // up over 1
+    `A ${R} ${R} 0 0 1 ${cx2 + R} ${cy}`,  // down under 2
+    `A ${R} ${R} 0 0 0 ${cx3 + R} ${cy}`,  // up over 3
   ].join(" ")
 
-  // Return path: single continuous path along small arcs
-  // Small arcs don't reach each other, so horizontal lines bridge the gaps
+  // Return: DOWN under 3, UP over 2, DOWN under 1
+  // From right→left: sweep=0 (CCW) arcs downward, sweep=1 (CW) arcs upward
   const returnPath = [
-    `M ${cx3 + r} ${cy}`,
-    `A ${r} ${r} 0 0 1 ${cx3 - r} ${cy}`,
-    `L ${cx2 + r} ${cy}`,
-    `A ${r} ${r} 0 0 0 ${cx2 - r} ${cy}`,
-    `L ${cx1 + r} ${cy}`,
-    `A ${r} ${r} 0 0 1 ${cx1 - r} ${cy}`,
+    `M ${cx3 + R} ${cy}`,
+    `A ${R} ${R} 0 0 0 ${cx3 - R} ${cy}`,  // down under 3
+    `A ${R} ${R} 0 0 1 ${cx2 - R} ${cy}`,  // up over 2
+    `A ${R} ${R} 0 0 0 ${cx1 - R} ${cy}`,  // down under 1
   ].join(" ")
 
   return (
@@ -94,13 +73,13 @@ function FlowingCirclesSVG() {
           <stop offset="100%" stopColor="#fc66a7" />
         </linearGradient>
         <linearGradient id="returnGrad" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%" stopColor="#ffd100" />
+          <stop offset="0%" stopColor="#fc66a7" />
           <stop offset="50%" stopColor="#ff8600" />
-          <stop offset="100%" stopColor="#fc66a7" />
+          <stop offset="100%" stopColor="#ffd100" />
         </linearGradient>
       </defs>
 
-      {/* Layer 1 (back): return path drawn first */}
+      {/* Layer 1 (back): return path */}
       <path
         d={returnPath}
         fill="none"
@@ -108,7 +87,7 @@ function FlowingCirclesSVG() {
         strokeWidth={sw}
       />
 
-      {/* Layer 2 (front): forward path drawn on top for overlap */}
+      {/* Layer 2 (front): forward path overlaps at crossings */}
       <path
         d={forwardPath}
         fill="none"
