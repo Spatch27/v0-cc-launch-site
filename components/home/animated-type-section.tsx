@@ -11,26 +11,26 @@ export function AnimatedTypeSection() {
     offset: ["start start", "end start"],
   })
 
-  // Line 1: "Remove drag." - visible from 0 to 0.25, rolls up with smoother easing
-  const line1Word1Opacity = useTransform(scrollYProgress, [0, 0.08, 0.18, 0.24], [0, 1, 1, 0])
-  const line1Word1Y = useTransform(scrollYProgress, [0.18, 0.25], [0, -150])
+  // Line 1: "Remove drag." - longer fade in/out for smoother feel
+  const line1Word1Opacity = useTransform(scrollYProgress, [0, 0.1, 0.15, 0.22, 0.3], [0, 1, 1, 1, 0])
+  const line1Word1Y = useTransform(scrollYProgress, [0.15, 0.3], [0, -150])
   
-  const line1Word2Opacity = useTransform(scrollYProgress, [0.02, 0.1, 0.18, 0.25], [0, 1, 1, 0])
-  const line1Word2Y = useTransform(scrollYProgress, [0.18, 0.26], [0, -150])
+  const line1Word2Opacity = useTransform(scrollYProgress, [0.02, 0.12, 0.15, 0.22, 0.32], [0, 1, 1, 1, 0])
+  const line1Word2Y = useTransform(scrollYProgress, [0.15, 0.32], [0, -150])
 
-  // Line 2: "Build momentum." - visible from 0.25 to 0.5, rolls up with smoother easing
-  const line2Word1Opacity = useTransform(scrollYProgress, [0.22, 0.3, 0.43, 0.49], [0, 1, 1, 0])
-  const line2Word1Y = useTransform(scrollYProgress, [0.43, 0.5], [0, -150])
+  // Line 2: "Build momentum." - overlaps with line 1 fade out for seamless transition
+  const line2Word1Opacity = useTransform(scrollYProgress, [0.25, 0.35, 0.4, 0.47, 0.55], [0, 1, 1, 1, 0])
+  const line2Word1Y = useTransform(scrollYProgress, [0.4, 0.55], [0, -150])
   
-  const line2Word2Opacity = useTransform(scrollYProgress, [0.24, 0.32, 0.43, 0.5], [0, 1, 1, 0])
-  const line2Word2Y = useTransform(scrollYProgress, [0.43, 0.51], [0, -150])
+  const line2Word2Opacity = useTransform(scrollYProgress, [0.27, 0.37, 0.4, 0.47, 0.57], [0, 1, 1, 1, 0])
+  const line2Word2Y = useTransform(scrollYProgress, [0.4, 0.57], [0, -150])
 
-  // Line 3: "Unlock growth." - visible from 0.5 onwards, holds longer
-  const line3Word1Opacity = useTransform(scrollYProgress, [0.47, 0.55], [0, 1])
-  const line3Word1Y = useTransform(scrollYProgress, [0.47, 0.55], [50, 0])
+  // Line 3: "Unlock growth." - overlaps with line 2, holds longer at end
+  const line3Word1Opacity = useTransform(scrollYProgress, [0.5, 0.6, 1], [0, 1, 1])
+  const line3Word1Y = useTransform(scrollYProgress, [0.5, 0.6], [50, 0])
   
-  const line3Word2Opacity = useTransform(scrollYProgress, [0.49, 0.57], [0, 1])
-  const line3Word2Y = useTransform(scrollYProgress, [0.49, 0.57], [50, 0])
+  const line3Word2Opacity = useTransform(scrollYProgress, [0.52, 0.62, 1], [0, 1, 1])
+  const line3Word2Y = useTransform(scrollYProgress, [0.52, 0.62], [50, 0])
 
   return (
     <section
