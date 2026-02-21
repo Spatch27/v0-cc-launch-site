@@ -43,18 +43,11 @@ export function EngagementsSection() {
   return (
     <Section background="dark">
       {/* Header */}
-      <div className="mb-20 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
-        <motion.div variants={fadeInUp} className="lg:w-1/4">
-          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
-            Our engagements
-          </span>
-        </motion.div>
-        <motion.div variants={fadeInUp} className="lg:w-3/4">
-          <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-            Three engagements, one goal.
-          </h2>
-        </motion.div>
-      </div>
+      <motion.div variants={fadeInUp} className="mb-20">
+        <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
+          Three engagements, one goal.
+        </h2>
+      </motion.div>
 
       {/* Cards Grid */}
       <motion.div
@@ -117,15 +110,13 @@ export function EngagementsSection() {
         ))}
       </motion.div>
 
-      {/* CTA */}
-      <motion.div variants={fadeInUp} className="flex justify-center">
-        <Link
-          href="/contact"
-          className="group inline-flex items-center gap-3 text-sm font-semibold text-brand-white/60 transition-colors hover:text-brand-pink"
-        >
-          Discuss which engagement is right for you
-          <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-        </Link>
+      {/* Supporting Copy */}
+      <motion.div variants={fadeInUp} className="mt-16">
+        <div className="max-w-3xl">
+          <p className="text-lg leading-relaxed text-brand-white/70">
+            Most clients start with Ignition6™. Every new engagement begins with a two-week checkpoint. If you can't feel the momentum building, you walk away. No full invoice, no awkward conversations. This approach removes the risk and lets us prove value before you commit further.
+          </p>
+        </div>
       </motion.div>
     </Section>
   )
