@@ -8,43 +8,48 @@ const operatingModelItems = {
   primary: [
     {
       name: "Transformation Lead",
+      lines: ["Transformation", "Lead"],
       description:
         "Sharpens the problem. Aligns your C-Suite around a clear value case. Makes sure progress is visible from week one.",
       position: "top",
       cx: 500,
-      cy: 200,
+      cy: 180,
     },
     {
       name: "Process & Ops Model Lead",
+      lines: ["Process &", "Ops Model", "Lead"],
       description:
         "Maps how work actually flows today. Redesigns the system, removes the handshake moments, installs governance that sticks.",
       position: "left",
-      cx: 360,
-      cy: 300,
+      cx: 390,
+      cy: 320,
     },
     {
       name: "People & Culture Lead",
+      lines: ["People &", "Culture", "Lead"],
       description:
         "New systems only stick if people believe in them. Builds capability, runs adoption programmes, embeds new habits at pace.",
       position: "right",
-      cx: 640,
-      cy: 300,
+      cx: 610,
+      cy: 320,
     },
   ],
   supporting: [
     {
       name: "MarTech & Automation",
+      lines: ["MarTech &", "Automation"],
       description:
         "Brought in for your stack, not ours. Simplifies what you have, fits automation and agents where they'll actually shorten cycles.",
-      cx: 430,
-      cy: 380,
+      cx: 450,
+      cy: 420,
     },
     {
       name: "Data & Analytics",
+      lines: ["Data &", "Analytics"],
       description:
         "Gets data clean, connected and trustworthy. Builds reporting that proves progress is real - so dashboards become something people rely on.",
-      cx: 570,
-      cy: 380,
+      cx: 550,
+      cy: 420,
     },
   ],
 }
@@ -63,7 +68,11 @@ function CircleButton({
   id: string
 }) {
   const isHovered = hoveredId === id
-  const radius = 80 // Same size for all circles
+  const radius = 110 // Larger circles for overlapping
+
+  const lineHeight = 18
+  const totalHeight = (item.lines.length - 1) * lineHeight
+  const startY = item.cy - totalHeight / 2
 
   return (
     <motion.g
@@ -79,30 +88,32 @@ function CircleButton({
         r={radius}
         fill="none"
         stroke="#fc66a7"
-        strokeWidth={isHovered ? 8 : 4}
+        strokeWidth={isHovered ? 6 : 4}
         strokeDasharray={isSupporting ? "8,8" : "0"}
         animate={{
-          strokeWidth: isHovered ? 8 : isSupporting ? 3 : 4,
+          strokeWidth: isHovered ? 6 : isSupporting ? 3 : 4,
         }}
         transition={{ duration: 0.2 }}
       />
-      {/* Center text - always visible */}
+      {/* Multi-line text - always visible */}
       <motion.text
         x={item.cx}
-        y={item.cy}
+        y={startY}
         textAnchor="middle"
-        dominantBaseline="middle"
-        fontSize="13"
+        fontSize="15"
         fontWeight="bold"
         fill="#181716"
         className="font-display pointer-events-none select-none"
         animate={{
-          fontSize: isHovered ? 14 : 13,
+          fontSize: isHovered ? 16 : 15,
         }}
         transition={{ duration: 0.2 }}
-        style={{ maxWidth: `${radius * 1.5}px` }}
       >
-        {item.name}
+        {item.lines.map((line, idx) => (
+          <tspan key={idx} x={item.cx} dy={idx === 0 ? 0 : lineHeight}>
+            {line}
+          </tspan>
+        ))}
       </motion.text>
     </motion.g>
   )
@@ -129,9 +140,9 @@ export function OperatingModelDiagram() {
             {/* Center label */}
             <motion.text
               x="500"
-              y="285"
+              y="290"
               textAnchor="middle"
-              fontSize="14"
+              fontSize="13"
               fontWeight="bold"
               fill="#181716"
               className="font-display pointer-events-none select-none"
@@ -140,9 +151,9 @@ export function OperatingModelDiagram() {
             </motion.text>
             <motion.text
               x="500"
-              y="305"
+              y="310"
               textAnchor="middle"
-              fontSize="14"
+              fontSize="13"
               fontWeight="bold"
               fill="#181716"
               className="font-display pointer-events-none select-none"
