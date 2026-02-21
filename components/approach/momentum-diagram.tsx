@@ -7,20 +7,17 @@ const momentumItems = [
   {
     name: "3A Framework™",
     benefit: "We align objectives, activate teams, amplify results.",
-    color: "from-brand-yellow-deep to-brand-orange",
-    textColor: "text-brand-yellow-deep",
+    color: "text-brand-yellow-deep",
   },
   {
     name: "Cadence Loop™",
     benefit: "Proof of progress every six weeks. Guaranteed.",
-    color: "from-brand-orange to-brand-pink",
-    textColor: "text-brand-orange",
+    color: "text-brand-orange",
   },
   {
     name: "Telemetry Stack™",
     benefit: "Live dashboards. No waiting for the end-of-quarter report.",
-    color: "from-brand-pink to-brand-pink",
-    textColor: "text-brand-pink",
+    color: "text-brand-pink",
   },
 ]
 
@@ -34,75 +31,117 @@ export function MomentumDiagram() {
       className="w-full"
     >
       {/* Title */}
-      <motion.h3 variants={fadeInUp} className="font-display text-3xl font-bold text-brand-dark mb-12">
+      <motion.h3 variants={fadeInUp} className="font-display text-3xl font-bold text-brand-dark mb-16">
         Momentum, by design
       </motion.h3>
 
       {/* Diagram Container */}
       <div className="relative w-full">
-        {/* SVG Background with Circles */}
+        {/* SVG with Flowing Circles */}
         <svg
-          viewBox="0 0 1200 400"
+          viewBox="0 0 960 540"
           className="w-full h-auto"
           preserveAspectRatio="xMidYMid meet"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="flowYellow" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#ffd100" />
               <stop offset="100%" stopColor="#ff8600" />
             </linearGradient>
-            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="flowOrange" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#ff8600" />
               <stop offset="100%" stopColor="#fc66a7" />
             </linearGradient>
-            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="flowPink" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#fc66a7" />
               <stop offset="100%" stopColor="#fc66a7" />
             </linearGradient>
           </defs>
 
-          {/* Circle 1 */}
-          <circle cx="250" cy="200" r="120" fill="none" stroke="url(#grad1)" strokeWidth="40" />
+          {/* Left Circle - Yellow to Orange */}
+          <circle cx="220" cy="270" r="100" fill="none" stroke="url(#flowYellow)" strokeWidth="50" />
 
-          {/* Circle 2 */}
-          <circle cx="600" cy="200" r="120" fill="none" stroke="url(#grad2)" strokeWidth="40" />
+          {/* Center Circle - Orange to Pink */}
+          <circle cx="480" cy="270" r="100" fill="none" stroke="url(#flowOrange)" strokeWidth="50" />
 
-          {/* Circle 3 */}
-          <circle cx="950" cy="200" r="120" fill="none" stroke="url(#grad3)" strokeWidth="40" />
+          {/* Right Circle - Pink */}
+          <circle cx="740" cy="270" r="100" fill="none" stroke="url(#flowPink)" strokeWidth="50" />
+
+          {/* Flow connectors between circles */}
+          <path
+            d="M 320 270 Q 400 250 380 270"
+            fill="none"
+            stroke="url(#flowOrange)"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 580 270 Q 660 250 640 270"
+            fill="none"
+            stroke="url(#flowPink)"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
         </svg>
 
-        {/* Text Overlays */}
-        <div className="absolute inset-0 flex items-center justify-between px-4 md:px-8">
-          {momentumItems.map((item, idx) => (
-            <motion.div
-              key={item.name}
-              variants={fadeInUp}
-              custom={idx}
-              className="flex flex-col items-center gap-4"
-              style={{ width: "calc(33.333% - 1rem)" }}
-            >
-              {/* Product Name */}
-              <h4 className="font-display text-lg font-bold text-brand-dark text-center leading-tight">
-                {item.name}
+        {/* Text Overlays - Desktop */}
+        <div className="hidden lg:block absolute inset-0">
+          {/* Left Item */}
+          <motion.div
+            variants={fadeInUp}
+            className="absolute top-1/2 left-[12%] -translate-y-1/2 translate-x-0"
+          >
+            <div className="text-center max-w-[140px]">
+              <h4 className="font-display text-lg font-bold text-brand-dark mb-2 leading-tight">
+                {momentumItems[0].name}
               </h4>
-
-              {/* Benefit Text */}
-              <p className="text-sm text-brand-pink font-medium text-center leading-snug">
-                {item.benefit}
+              <p className="text-sm text-brand-pink font-medium leading-snug">
+                {momentumItems[0].benefit}
               </p>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
+
+          {/* Center Item */}
+          <motion.div
+            variants={fadeInUp}
+            className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+          >
+            <div className="text-center max-w-[140px]">
+              <h4 className="font-display text-lg font-bold text-brand-dark mb-2 leading-tight">
+                {momentumItems[1].name}
+              </h4>
+              <p className="text-sm text-brand-pink font-medium leading-snug">
+                {momentumItems[1].benefit}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right Item */}
+          <motion.div
+            variants={fadeInUp}
+            className="absolute top-1/2 right-[12%] -translate-y-1/2 translate-x-0"
+          >
+            <div className="text-center max-w-[140px]">
+              <h4 className="font-display text-lg font-bold text-brand-dark mb-2 leading-tight">
+                {momentumItems[2].name}
+              </h4>
+              <p className="text-sm text-brand-pink font-medium leading-snug">
+                {momentumItems[2].benefit}
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
 
       {/* Mobile fallback - stacked cards */}
-      <div className="lg:hidden space-y-6 mt-12">
+      <div className="lg:hidden space-y-6 mt-8">
         {momentumItems.map((item, idx) => (
           <motion.div
             key={item.name}
             variants={fadeInUp}
             custom={idx}
-            className={`p-6 rounded-lg border-l-4 border-brand-dark/10 bg-gradient-to-r ${item.color} bg-opacity-5`}
+            className="p-6 rounded-lg border-l-4 border-brand-dark/10 bg-gradient-to-r from-brand-yellow-deep/5 to-brand-pink/5"
           >
             <h4 className="font-display font-bold text-brand-dark mb-2">{item.name}</h4>
             <p className="text-sm text-brand-dark/70">{item.benefit}</p>
