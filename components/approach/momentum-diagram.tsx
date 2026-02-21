@@ -30,39 +30,54 @@ const momentumItems = [
  * Layering creates chain-link overlap at the 2 crossing points.
  */
 function FlowingCirclesSVG() {
-  const R = 130    // big arc radius
-  const r = 55     // small arc radius
-  const sw = 6     // stroke width
-  const pad = 20   // padding
+  // The ring thickness comes from the difference between
+  // the big arc radius and the small arc radius.
+  // The stroke on each path = half that difference so they
+  // meet in the middle and form a solid ring.
+  const R = 140    // big (outer) arc radius
+  const r = 60     // small (inner) arc radius
+  const sw = R - r // stroke width = 80, so each path paints 40px
+                   // inward/outward from its centre, filling the ring.
+  const pad = sw / 2 + 4
 
-  // Centres spaced 2R apart
+  // Centres spaced 2R apart so big arcs connect at centre line.
+  // Small arc centres are at the same x positions.
   const cx1 = pad + R
   const cx2 = cx1 + 2 * R
   const cx3 = cx2 + 2 * R
-  const cy = pad + R // centre line
+  const cy = pad + R
 
   const vw = cx3 + R + pad
   const vh = 2 * R + 2 * pad
 
-  // Forward path: single continuous path
-  // UP over 1, then DOWN under 2, then UP over 3
-  // Arcs share endpoints since centres are 2R apart
+  // Mid-radius for each path (halfway between R and r)
+  const Rm = (R + r) / 2  // 100 - the radius the forward stroke centres on
+  const rm = (R + r) / 2  // 100 - same for return path, but we use r-based arcs
+
+  // Actually, simpler: draw the forward path at radius R with strokeWidth sw.
+  // The stroke extends sw/2 inward and sw/2 outward from R.
+  // Outer edge = R + sw/2 = 180, inner edge = R - sw/2 = 100.
+  // Draw the return path at radius r with strokeWidth sw.
+  // Outer edge = r + sw/2 = 100, inner edge = r - sw/2 = 20.
+  // The forward inner edge (100) meets the return outer edge (100). 
+
+  // Forward path: single continuous path along big arcs
   const forwardPath = [
     `M ${cx1 - R} ${cy}`,
-    `A ${R} ${R} 0 0 0 ${cx1 + R} ${cy}`, // up over 1
-    `A ${R} ${R} 0 0 1 ${cx2 + R} ${cy}`, // down under 2
-    `A ${R} ${R} 0 0 0 ${cx3 + R} ${cy}`, // up over 3
+    `A ${R} ${R} 0 0 0 ${cx1 + R} ${cy}`,
+    `A ${R} ${R} 0 0 1 ${cx2 + R} ${cy}`,
+    `A ${R} ${R} 0 0 0 ${cx3 + R} ${cy}`,
   ].join(" ")
 
-  // Return path: single continuous path
-  // DOWN under 3, line, UP over 2, line, DOWN under 1
+  // Return path: single continuous path along small arcs
+  // Small arcs don't reach each other, so horizontal lines bridge the gaps
   const returnPath = [
     `M ${cx3 + r} ${cy}`,
-    `A ${r} ${r} 0 0 1 ${cx3 - r} ${cy}`,  // down under 3
-    `L ${cx2 + r} ${cy}`,                    // line to circle 2
-    `A ${r} ${r} 0 0 0 ${cx2 - r} ${cy}`,  // up over 2
-    `L ${cx1 + r} ${cy}`,                    // line to circle 1
-    `A ${r} ${r} 0 0 1 ${cx1 - r} ${cy}`,  // down under 1
+    `A ${r} ${r} 0 0 1 ${cx3 - r} ${cy}`,
+    `L ${cx2 + r} ${cy}`,
+    `A ${r} ${r} 0 0 0 ${cx2 - r} ${cy}`,
+    `L ${cx1 + r} ${cy}`,
+    `A ${r} ${r} 0 0 1 ${cx1 - r} ${cy}`,
   ].join(" ")
 
   return (
