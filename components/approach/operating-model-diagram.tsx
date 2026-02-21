@@ -4,9 +4,9 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { fadeInUp } from "@/lib/animations"
 
-// Pentagon formation with equal overlaps
-// Center point: (500, 300), radius from center: 120px
-// Pentagon angles: 0°, 72°, 144°, 216°, 288° (starting from top)
+// Pentagon formation with moderate overlaps
+// Center point: (500, 300), radius from center: 160px for better spacing
+// Pentagon angles: -90°, -18°, 54°, 126°, 198° (starting from top)
 const operatingModelItems = {
   primary: [
     {
@@ -16,7 +16,7 @@ const operatingModelItems = {
         "Sharpens the problem. Aligns your C-Suite around a clear value case. Makes sure progress is visible from week one.",
       position: "top",
       cx: 500,
-      cy: 180, // Top position
+      cy: 140, // Top position
     },
     {
       name: "Process & Ops Model Lead",
@@ -24,8 +24,8 @@ const operatingModelItems = {
       description:
         "Maps how work actually flows today. Redesigns the system, removes the handshake moments, installs governance that sticks.",
       position: "left",
-      cx: 386, // Upper left
-      cy: 264,
+      cx: 348, // Upper left
+      cy: 251,
     },
     {
       name: "People & Culture Lead",
@@ -33,8 +33,8 @@ const operatingModelItems = {
       description:
         "New systems only stick if people believe in them. Builds capability, runs adoption programmes, embeds new habits at pace.",
       position: "right",
-      cx: 614, // Upper right
-      cy: 264,
+      cx: 652, // Upper right
+      cy: 251,
     },
   ],
   supporting: [
@@ -43,16 +43,16 @@ const operatingModelItems = {
       lines: ["MarTech &", "Automation"],
       description:
         "Brought in for your stack, not ours. Simplifies what you have, fits automation and agents where they'll actually shorten cycles.",
-      cx: 427, // Lower left
-      cy: 397,
+      cx: 403, // Lower left
+      cy: 429,
     },
     {
       name: "Data & Analytics",
       lines: ["Data &", "Analytics"],
       description:
         "Gets data clean, connected and trustworthy. Builds reporting that proves progress is real - so dashboards become something people rely on.",
-      cx: 573, // Lower right
-      cy: 397,
+      cx: 597, // Lower right
+      cy: 429,
     },
   ],
 }
