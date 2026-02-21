@@ -19,49 +19,51 @@ const momentumItems = [
 ]
 
 /**
- * Three interlocking rings from a single thick-stroked path.
+ * Two continuous paths forming three interlocking rings.
  *
- * The path is 3 semicircular arcs (like a sine wave):
- *   Arc 1: UP over circle 1
- *   Arc 2: DOWN under circle 2
- *   Arc 3: UP over circle 3
+ * Forward path (big arcs): UP(1) → DOWN(2) → UP(3)
+ * Return path (small arcs): DOWN(1) → line → UP(2) → line → DOWN(3)
  *
- * All arcs share the same radius R. Centres are spaced 2R apart
- * so endpoints meet exactly on the centre line.
+ * Centres spaced 2R apart. Small arcs have gaps bridged by
+ * horizontal lines on the centre line.
  *
- * A thick stroke gives the rings their width.
- * Arcs 1 & 3 are drawn in front of arc 2 to create the
- * chain-link overlap at the two crossing points.
+ * Layering creates chain-link overlap at the 2 crossing points.
  */
 function FlowingCirclesSVG() {
-  const R = 130    // arc radius
-  const sw = 48    // stroke width (ring thickness)
-  const pad = sw   // padding around edges
+  const R = 130    // big arc radius
+  const r = 55     // small arc radius
+  const sw = 6     // stroke width
+  const pad = 20   // padding
 
-  // Centres of the 3 arcs, spaced 2R apart
-  const cx1 = pad + R           // 178
-  const cx2 = cx1 + 2 * R      // 438
-  const cx3 = cx2 + 2 * R      // 698
-  const cy = pad + R            // 178 (centre line)
+  // Centres spaced 2R apart
+  const cx1 = pad + R
+  const cx2 = cx1 + 2 * R
+  const cx3 = cx2 + 2 * R
+  const cy = pad + R // centre line
 
-  const vw = cx3 + R + pad     // 876
-  const vh = 2 * R + 2 * pad   // 356
+  const vw = cx3 + R + pad
+  const vh = 2 * R + 2 * pad
 
-  // Arc 1: UP over circle 1 (sweep=0 = counter-clockwise in SVG = visually upward)
-  const arc1 = `M ${cx1 - R} ${cy} A ${R} ${R} 0 0 0 ${cx1 + R} ${cy}`
+  // Forward path: single continuous path
+  // UP over 1, then DOWN under 2, then UP over 3
+  // Arcs share endpoints since centres are 2R apart
+  const forwardPath = [
+    `M ${cx1 - R} ${cy}`,
+    `A ${R} ${R} 0 0 0 ${cx1 + R} ${cy}`, // up over 1
+    `A ${R} ${R} 0 0 1 ${cx2 + R} ${cy}`, // down under 2
+    `A ${R} ${R} 0 0 0 ${cx3 + R} ${cy}`, // up over 3
+  ].join(" ")
 
-  // Arc 2: DOWN under circle 2 (sweep=1 = clockwise in SVG = visually downward)
-  const arc2 = `M ${cx2 - R} ${cy} A ${R} ${R} 0 0 1 ${cx2 + R} ${cy}`
-
-  // Arc 3: UP over circle 3 (sweep=0 = visually upward)
-  const arc3 = `M ${cx3 - R} ${cy} A ${R} ${R} 0 0 0 ${cx3 + R} ${cy}`
-
-  const strokeProps = {
-    fill: "none",
-    strokeWidth: sw,
-    strokeLinejoin: "round" as const,
-    strokeLinecap: "butt" as const,
-  }
+  // Return path: single continuous path
+  // DOWN under 3, line, UP over 2, line, DOWN under 1
+  const returnPath = [
+    `M ${cx3 + r} ${cy}`,
+    `A ${r} ${r} 0 0 1 ${cx3 - r} ${cy}`,  // down under 3
+    `L ${cx2 + r} ${cy}`,                    // line to circle 2
+    `A ${r} ${r} 0 0 0 ${cx2 - r} ${cy}`,  // up over 2
+    `L ${cx1 + r} ${cy}`,                    // line to circle 1
+    `A ${r} ${r} 0 0 1 ${cx1 - r} ${cy}`,  // down under 1
+  ].join(" ")
 
   return (
     <svg
@@ -71,19 +73,33 @@ function FlowingCirclesSVG() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <linearGradient id="forwardGrad" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#ffd100" />
-          <stop offset="35%" stopColor="#ff8600" />
+          <stop offset="50%" stopColor="#ff8600" />
+          <stop offset="100%" stopColor="#fc66a7" />
+        </linearGradient>
+        <linearGradient id="returnGrad" x1="100%" y1="0%" x2="0%" y2="0%">
+          <stop offset="0%" stopColor="#ffd100" />
+          <stop offset="50%" stopColor="#ff8600" />
           <stop offset="100%" stopColor="#fc66a7" />
         </linearGradient>
       </defs>
 
-      {/* Layer 1 (back): arc 2 goes DOWN, drawn first so it sits behind */}
-      <path d={arc2} stroke="url(#flowGrad)" {...strokeProps} />
+      {/* Layer 1 (back): return path drawn first */}
+      <path
+        d={returnPath}
+        fill="none"
+        stroke="url(#returnGrad)"
+        strokeWidth={sw}
+      />
 
-      {/* Layer 2 (front): arcs 1 & 3 go UP, drawn on top to overlap at crossings */}
-      <path d={arc1} stroke="url(#flowGrad)" {...strokeProps} />
-      <path d={arc3} stroke="url(#flowGrad)" {...strokeProps} />
+      {/* Layer 2 (front): forward path drawn on top for overlap */}
+      <path
+        d={forwardPath}
+        fill="none"
+        stroke="url(#forwardGrad)"
+        strokeWidth={sw}
+      />
     </svg>
   )
 }
