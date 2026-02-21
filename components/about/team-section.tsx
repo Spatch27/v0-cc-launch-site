@@ -30,16 +30,20 @@ const founders = [
 export function TeamSection() {
   return (
     <Section background="white">
-      <div className="mb-16 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
+      <div className="mb-8 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
         <motion.div variants={fadeInUp} className="lg:w-1/4">
           <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
             Founders
           </span>
         </motion.div>
         <motion.div variants={fadeInUp} className="lg:w-3/4">
-          <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            The team.
+          <h2 className="mb-6 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+            The founders.
           </h2>
+          <p className="max-w-2xl text-lg leading-relaxed text-brand-dark/60">
+            You won't be handed to a team you haven't met. You'll work with the founders and a handful
+            of discipline specialists.
+          </p>
         </motion.div>
       </div>
 
