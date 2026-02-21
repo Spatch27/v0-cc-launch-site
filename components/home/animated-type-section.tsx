@@ -31,7 +31,7 @@ export function AnimatedTypeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[80vh] overflow-hidden"
+      className="relative -mt-1 min-h-[80vh] overflow-hidden"
     >
       {/* Background image with parallax */}
       <motion.div
