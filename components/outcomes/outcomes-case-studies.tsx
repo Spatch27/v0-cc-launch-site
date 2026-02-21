@@ -91,14 +91,11 @@ export function OutcomesCaseStudies() {
                 style={{ backgroundColor: study.accentColor }}
               />
               <p className="mb-2 text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
-                {study.client}
-              </p>
-              <h3 className="mb-2 font-display text-2xl font-bold leading-snug text-brand-dark lg:text-3xl">
                 {study.title}
-              </h3>
-              <p className="mb-8 text-sm leading-relaxed text-brand-dark/60">
-                {study.project}
               </p>
+              <h3 className="mb-8 font-display text-2xl font-bold leading-snug text-brand-dark lg:text-3xl">
+                {study.project}
+              </h3>
               <p className="mb-8 leading-relaxed text-brand-dark/70">
                 {study.description}
               </p>
@@ -117,11 +114,16 @@ export function OutcomesCaseStudies() {
             </div>
 
             {/* Right: testimonial */}
-            <div className="flex flex-col justify-center">
-              <Quote size={20} className="mb-4 text-brand-dark/15" />
-              <blockquote className="font-display text-xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-2xl">
-                &ldquo;{study.testimonial}&rdquo;
-              </blockquote>
+            <div className="flex flex-col justify-between">
+              <div>
+                <Quote size={20} className="mb-4 text-brand-dark/15" />
+                <blockquote className="font-display text-xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-2xl">
+                  &ldquo;{study.testimonial}&rdquo;
+                </blockquote>
+              </div>
+              <p className="mt-8 text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
+                {study.client}
+              </p>
             </div>
           </motion.div>
         ))}
