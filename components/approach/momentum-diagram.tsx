@@ -7,19 +7,147 @@ const momentumItems = [
   {
     name: "3A Framework™",
     benefit: "We align objectives, activate teams, amplify results.",
-    position: { desktop: "left-[12%]" }
   },
   {
     name: "Cadence Loop™",
     benefit: "Proof of progress every six weeks. Guaranteed.",
-    position: { desktop: "left-1/2 -translate-x-1/2" }
   },
   {
     name: "Telemetry Stack™",
     benefit: "Live dashboards. No waiting for the end-of-quarter report.",
-    position: { desktop: "right-[12%]" }
   },
 ]
+
+/**
+ * Three interlocking thick rings flowing into each other.
+ * Each ring is drawn as two concentric arcs with connecting caps,
+ * clipped so the overlaps create the chain-link illusion.
+ *
+ * Centres: C1(200, 220)  C2(420, 220)  C3(640, 220)
+ * Outer radius 130, inner radius 80  -> ring stroke ~50
+ * Overlap region ~90 px wide between adjacent circles.
+ */
+function FlowingCirclesSVG() {
+  // Circle centres
+  const cx1 = 200, cx2 = 420, cx3 = 640, cy = 220
+  const R = 130 // outer radius
+  const r = 80  // inner radius
+
+  // Helper: full circle path (clockwise outer, counter-clockwise inner = ring)
+  const ringPath = (cx: number) =>
+    `M ${cx + R} ${cy} A ${R} ${R} 0 1 1 ${cx - R} ${cy} A ${R} ${R} 0 1 1 ${cx + R} ${cy} Z ` +
+    `M ${cx + r} ${cy} A ${r} ${r} 0 1 0 ${cx - r} ${cy} A ${r} ${r} 0 1 0 ${cx + r} ${cy} Z`
+
+  // For the interlocking effect we split each ring into front and back halves.
+  // The "back" half of the left ring goes behind the centre ring,
+  // and the "front" half of the centre ring goes over the left ring, etc.
+  //
+  // We achieve this by drawing full rings but using clip-paths so
+  // the overlap regions show the correct "over / under" ordering.
+
+  // Intersection x-coordinates (approximate midpoints of overlap)
+  const overlapLeftX = (cx1 + cx2) / 2   // 310
+  const overlapRightX = (cx2 + cx3) / 2  // 530
+
+  return (
+    <svg
+      viewBox="0 0 840 440"
+      className="w-full h-auto"
+      preserveAspectRatio="xMidYMid meet"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        {/* Gradients */}
+        <linearGradient id="gradYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffd100" />
+          <stop offset="100%" stopColor="#ff8600" />
+        </linearGradient>
+        <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ff8600" />
+          <stop offset="100%" stopColor="#fc66a7" />
+        </linearGradient>
+        <linearGradient id="gradPink" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#fc66a7" />
+          <stop offset="100%" stopColor="#e8457a" />
+        </linearGradient>
+
+        {/* Clip: left side of overlap 1 (for left ring's back portion) */}
+        <clipPath id="clipLeftBack">
+          <rect x="0" y="0" width={overlapLeftX} height="440" />
+        </clipPath>
+        {/* Clip: right side of overlap 1 + left side of overlap 2 (center ring front) */}
+        <clipPath id="clipCenterFront">
+          <rect x={overlapLeftX} y="0" width={overlapRightX - overlapLeftX} height="440" />
+        </clipPath>
+        {/* Clip: right side only */}
+        <clipPath id="clipRightBack">
+          <rect x={overlapRightX} y="0" width="840" height="440" />
+        </clipPath>
+
+        {/* Full-width clips for the non-overlapping portions */}
+        <clipPath id="clipLeftFull">
+          <rect x="0" y="0" width={overlapLeftX - 1} height="440" />
+        </clipPath>
+        <clipPath id="clipRightFull">
+          <rect x={overlapRightX + 1} y="0" width="440" height="440" />
+        </clipPath>
+      </defs>
+
+      {/*
+        Layer order (bottom to top):
+        1. Left ring back half (behind center)
+        2. Right ring back half (behind center)
+        3. Center ring (full - goes over left and right at the overlaps' top)
+        4. Left ring front half (goes over center at the overlap bottom)
+        5. Right ring front half (goes over center at the overlap bottom)
+
+        For the chain-link effect: at the TOP of each overlap, the center
+        ring passes in front. At the BOTTOM, the outer rings pass in front.
+      */}
+
+      {/* === BACK LAYERS === */}
+
+      {/* Left ring - back portion (top of overlap goes behind center) */}
+      <path
+        d={ringPath(cx1)}
+        fill="url(#gradYellow)"
+        fillRule="evenodd"
+      />
+
+      {/* Right ring - back portion */}
+      <path
+        d={ringPath(cx3)}
+        fill="url(#gradPink)"
+        fillRule="evenodd"
+      />
+
+      {/* === CENTER RING (middle layer) === */}
+      <path
+        d={ringPath(cx2)}
+        fill="url(#gradOrange)"
+        fillRule="evenodd"
+      />
+
+      {/* === FRONT LAYERS - outer rings overlap bottom in front === */}
+
+      {/* Left ring - front portion at bottom of overlap */}
+      <path
+        d={ringPath(cx1)}
+        fill="url(#gradYellow)"
+        fillRule="evenodd"
+        clipPath="url(#clipLeftBack)"
+      />
+
+      {/* Right ring - front portion at bottom of overlap */}
+      <path
+        d={ringPath(cx3)}
+        fill="url(#gradPink)"
+        fillRule="evenodd"
+        clipPath="url(#clipRightBack)"
+      />
+    </svg>
+  )
+}
 
 export function MomentumDiagram() {
   return (
@@ -35,106 +163,52 @@ export function MomentumDiagram() {
         Momentum, by design
       </motion.h3>
 
-      {/* Desktop Diagram */}
-      <div className="hidden md:block relative w-full max-w-5xl mx-auto">
-        {/* SVG with Flowing Circles - from original design */}
-        <svg
-          viewBox="0 0 960 540"
-          className="w-full h-auto"
-          preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            {/* Gradients for circles */}
-            <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#ffd100" />
-              <stop offset="50%" stopColor="#ffb800" />
-              <stop offset="100%" stopColor="#ff8600" />
-            </linearGradient>
-            <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#ff8600" />
-              <stop offset="50%" stopColor="#fe7533" />
-              <stop offset="100%" stopColor="#fc66a7" />
-            </linearGradient>
-            <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#fc66a7" />
-              <stop offset="100%" stopColor="#fc66a7" />
-            </linearGradient>
-          </defs>
+      {/* Desktop / Tablet Diagram */}
+      <motion.div variants={fadeInUp} className="hidden md:block w-full max-w-5xl mx-auto">
+        <div className="relative">
+          {/* SVG Flowing Circles */}
+          <FlowingCirclesSVG />
 
-          {/* Left Circle (Yellow) - 3A Framework */}
-          <path 
-            fill="none" 
-            stroke="url(#yellowGrad)" 
-            strokeWidth="32"
-            d="M 248.25 352.75
-               Q 284.48 351.94 314.15 331.82
-               Q 340.91 313.98 355.78 285.65
-               Q 356.25 285.27 356.40 285.19
-               Q 346.40 139.35 332.27 126.23
-               Q 296.39 92.93 246.46 92.09
-               Q 214.25 91.55 186.30 105.57
-               C 134.03 131.79 108.16 189.76 118.42 246.57
-               C 124.00 277.47 140.59 304.84 164.96 324.58
-               Q 197.76 351.15 242.82 352.83
-               Q 245.59 352.94 248.25 352.75 Z"
-          />
-
-          {/* Center Circle (Orange) - Cadence Loop */}
-          <path 
-            fill="none" 
-            stroke="url(#orangeGrad)" 
-            strokeWidth="32"
-            d="M 477.00 352.54
-               Q 492.76 351.98 507.83 346.92
-               C 536.54 338.11 561.47 316.44 576.74 291.12
-               Q 577.02 290.65 578.33 288.02
-               Q 579.37 285.93 580.48 285.35
-               C 563.19 127.47 535.34 104.88 502.23 96.33
-               C 462.37 86.03 419.69 93.86 388.15 120.64
-               C 375.54 131.35 365.61 143.86 356.90 158.04
-               Q 361.63 294.44 363.96 297.77
-               C 389.97 335.04 431.54 355.20 477.00 352.54 Z"
-          />
-
-          {/* Right Circle (Pink) - Telemetry Stack */}
-          <path 
-            fill="none" 
-            stroke="url(#pinkGrad)" 
-            strokeWidth="32"
-            d="M 720.58 350.14
-               C 773.38 338.66 813.97 292.02 819.76 238.74
-               C 823.24 206.75 814.93 172.49 796.20 145.99
-               Q 783.59 128.15 765.58 115.16
-               C 721.11 83.11 658.65 84.50 615.17 117.93
-               Q 594.67 133.70 581.37 156.88
-               Q 580.97 157.58 580.20 157.30
-               Q 606.99 333.29 657.74 348.01
-               Q 687.89 356.76 720.58 350.14 Z"
-          />
-        </svg>
-
-        {/* Text Overlays */}
-        <div className="absolute inset-0 flex items-center justify-between px-8">
-          {momentumItems.map((item, idx) => (
-            <motion.div
-              key={item.name}
-              variants={fadeInUp}
-              custom={idx}
-              className={`absolute top-1/2 -translate-y-1/2 ${item.position.desktop} max-w-[180px]`}
-            >
-              <div className="text-center space-y-3">
-                <h4 className="font-display text-lg md:text-xl font-bold text-brand-yellow-deep leading-tight">
-                  {item.name}
+          {/* Text overlays positioned over each circle */}
+          <div className="absolute inset-0 flex items-center">
+            {/* Left circle text */}
+            <div className="flex-1 flex justify-center">
+              <div className="text-center max-w-[160px] -translate-y-2">
+                <h4 className="font-display text-base lg:text-lg font-bold text-brand-dark leading-tight mb-1">
+                  {momentumItems[0].name}
                 </h4>
-                <p className="text-sm md:text-base text-brand-pink font-medium leading-snug">
-                  {item.benefit}
-                </p>
               </div>
-            </motion.div>
+            </div>
+            {/* Center circle text */}
+            <div className="flex-1 flex justify-center">
+              <div className="text-center max-w-[160px] -translate-y-2">
+                <h4 className="font-display text-base lg:text-lg font-bold text-brand-dark leading-tight mb-1">
+                  {momentumItems[1].name}
+                </h4>
+              </div>
+            </div>
+            {/* Right circle text */}
+            <div className="flex-1 flex justify-center">
+              <div className="text-center max-w-[160px] -translate-y-2">
+                <h4 className="font-display text-base lg:text-lg font-bold text-brand-dark leading-tight mb-1">
+                  {momentumItems[2].name}
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Benefit text below each circle */}
+        <div className="flex items-start mt-8 gap-4">
+          {momentumItems.map((item) => (
+            <div key={item.name} className="flex-1 text-center px-4">
+              <p className="text-sm lg:text-base text-brand-pink font-medium leading-snug">
+                {item.benefit}
+              </p>
+            </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Mobile fallback - stacked cards */}
       <div className="md:hidden space-y-6">
