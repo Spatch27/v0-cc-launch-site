@@ -1,27 +1,28 @@
 import type { Metadata } from "next"
-import { ApproachHero } from "@/components/approach/approach-hero"
-import { FrameworkSection } from "@/components/approach/framework-section"
-import { ProductTeamSection } from "@/components/approach/product-team-section"
-import { DifferentiatorsSection } from "@/components/approach/differentiators-section"
-import { ProductsSection } from "@/components/approach/products-section"
+import { HeroPhilosophy } from "@/components/approach/hero-philosophy"
+import { PhilosophySection } from "@/components/approach/philosophy-section"
+import { MomentumSection } from "@/components/approach/momentum-section"
+import { EngagementsSection } from "@/components/approach/engagements-section"
+import { CheckpointSection } from "@/components/approach/checkpoint-section"
 import { CtaBand } from "@/components/cta-band"
 
 export const metadata: Metadata = {
   title: "Approach",
   description:
-    "Our operating model, frameworks, and delivery approach. See how we remove operational drag from marketing teams.",
+    "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
 }
 
 export default function ApproachPage() {
   return (
     <>
-      <ApproachHero />
-      <FrameworkSection />
-      <ProductTeamSection />
-      <DifferentiatorsSection />
-      <ProductsSection />
+      <HeroPhilosophy />
+      <MomentumSection />
+      <PhilosophySection />
+      <EngagementsSection />
+      <CheckpointSection />
       <CtaBand
-        heading="Want to talk through a challenge?"
+        heading="Discuss which engagement is right for you"
+        ctaLabel="Get in touch"
         background="yellow-deep"
       />
     </>
