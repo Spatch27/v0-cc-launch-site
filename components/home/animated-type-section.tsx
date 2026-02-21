@@ -1,46 +1,36 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
 
 const lines = ["Remove drag.", "Build momentum.", "Unlock growth."]
 
-function AnimatedLine({ text, index }: { text: string; index: number }) {
-  const lineRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: lineRef,
-    offset: ["start 0.8", "start 0.3"],
-  })
-
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.2, 1])
-  const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1])
-
-  return (
-    <div ref={lineRef} className="relative">
-      <motion.h2
-        style={{ opacity, scale }}
-        className="font-display text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
-      >
-        {text}
-      </motion.h2>
-    </div>
-  )
-}
-
 export function AnimatedTypeSection() {
-  const ref = useRef(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: sectionRef,
     offset: ["start end", "end start"],
   })
 
   // Parallax effect for background image
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
 
+  // Transform for text based on scroll
+  const opacity1 = useTransform(scrollYProgress, [0, 0.3, 0.5], [0.2, 1, 1])
+  const opacity2 = useTransform(scrollYProgress, [0.1, 0.4, 0.6], [0.2, 1, 1])
+  const opacity3 = useTransform(scrollYProgress, [0.2, 0.5, 0.7], [0.2, 1, 1])
+
+  const scale1 = useTransform(scrollYProgress, [0, 0.3], [0.95, 1])
+  const scale2 = useTransform(scrollYProgress, [0.1, 0.4], [0.95, 1])
+  const scale3 = useTransform(scrollYProgress, [0.2, 0.5], [0.95, 1])
+
+  const opacities = [opacity1, opacity2, opacity3]
+  const scales = [scale1, scale2, scale3]
+
   return (
     <section
-      ref={ref}
+      ref={sectionRef}
       className="relative min-h-[80vh] overflow-hidden"
     >
       {/* Background image with parallax */}
@@ -61,7 +51,13 @@ export function AnimatedTypeSection() {
       <div className="mx-auto flex min-h-[80vh] max-w-[1400px] flex-col justify-center px-6 py-24 lg:px-12 lg:py-32">
         <div className="space-y-2">
           {lines.map((line, i) => (
-            <AnimatedLine key={line} text={line} index={i} />
+            <motion.h2
+              key={line}
+              style={{ opacity: opacities[i], scale: scales[i] }}
+              className="font-display text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
+            >
+              {line}
+            </motion.h2>
           ))}
         </div>
       </div>
