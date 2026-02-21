@@ -19,132 +19,90 @@ const momentumItems = [
 ]
 
 /**
- * Three interlocking thick rings flowing into each other.
- * Each ring is drawn as two concentric arcs with connecting caps,
- * clipped so the overlaps create the chain-link illusion.
+ * Three interlocking rings built from 6 semicircular arcs.
  *
- * Centres: C1(200, 220)  C2(420, 220)  C3(640, 220)
- * Outer radius 130, inner radius 80  -> ring stroke ~50
- * Overlap region ~90 px wide between adjacent circles.
+ * The single continuous path is:
+ *   1. Top half of big circle 1 (left → right)
+ *   2. Top half of small circle 2 (left → right)
+ *   3. Top half of big circle 3 (left → right)
+ *   4. Bottom half of big circle 3 (right → left)
+ *   5. Bottom half of small circle 2 (right → left)
+ *   6. Bottom half of big circle 1 (right → left, back to start)
+ *
+ * Key constraint: distance between centres = R + r
+ * so the arcs connect seamlessly at the centre line.
+ *
+ * The line overlaps itself at 2 crossing points on the centre line.
+ * We draw back arcs first, then front arcs on top.
  */
 function FlowingCirclesSVG() {
-  // Circle centres
-  const cx1 = 200, cx2 = 420, cx3 = 640, cy = 220
-  const R = 130 // outer radius
-  const r = 80  // inner radius
+  const R = 140   // big circle radius
+  const r = 65    // small circle radius
+  const sw = 28   // stroke width
+  const d = R + r // distance between centres = 205
 
-  // Helper: full circle path (clockwise outer, counter-clockwise inner = ring)
-  const ringPath = (cx: number) =>
-    `M ${cx + R} ${cy} A ${R} ${R} 0 1 1 ${cx - R} ${cy} A ${R} ${R} 0 1 1 ${cx + R} ${cy} Z ` +
-    `M ${cx + r} ${cy} A ${r} ${r} 0 1 0 ${cx - r} ${cy} A ${r} ${r} 0 1 0 ${cx + r} ${cy} Z`
+  const cx1 = R + sw  // 168
+  const cx2 = cx1 + d // 373
+  const cx3 = cx2 + d // 578
+  const cy = R + sw    // 168
 
-  // For the interlocking effect we split each ring into front and back halves.
-  // The "back" half of the left ring goes behind the centre ring,
-  // and the "front" half of the centre ring goes over the left ring, etc.
-  //
-  // We achieve this by drawing full rings but using clip-paths so
-  // the overlap regions show the correct "over / under" ordering.
+  const vw = cx3 + R + sw  // 746
+  const vh = cy + R + sw   // 336
 
-  // Intersection x-coordinates (approximate midpoints of overlap)
-  const overlapLeftX = (cx1 + cx2) / 2   // 310
-  const overlapRightX = (cx2 + cx3) / 2  // 530
+  // The 6 arcs as individual path strings
+  // Top arcs go left-to-right (sweep-flag = 1 for clockwise)
+  // Bottom arcs go right-to-left (sweep-flag = 1 for clockwise)
+
+  // Arc 1: Top half big circle 1
+  const arc1 = `M ${cx1 - R} ${cy} A ${R} ${R} 0 0 1 ${cx1 + R} ${cy}`
+  // Arc 2: Top half small circle 2
+  const arc2 = `M ${cx2 - r} ${cy} A ${r} ${r} 0 0 1 ${cx2 + r} ${cy}`
+  // Arc 3: Top half big circle 3
+  const arc3 = `M ${cx3 - R} ${cy} A ${R} ${R} 0 0 1 ${cx3 + R} ${cy}`
+  // Arc 4: Bottom half big circle 3
+  const arc4 = `M ${cx3 + R} ${cy} A ${R} ${R} 0 0 1 ${cx3 - R} ${cy}`
+  // Arc 5: Bottom half small circle 2
+  const arc5 = `M ${cx2 + r} ${cy} A ${r} ${r} 0 0 1 ${cx2 - r} ${cy}`
+  // Arc 6: Bottom half big circle 1
+  const arc6 = `M ${cx1 + R} ${cy} A ${R} ${R} 0 0 1 ${cx1 - R} ${cy}`
+
+  const strokeProps = {
+    fill: "none",
+    strokeWidth: sw,
+    strokeLinecap: "round" as const,
+  }
 
   return (
     <svg
-      viewBox="0 0 840 440"
+      viewBox={`0 0 ${vw} ${vh}`}
       className="w-full h-auto"
       preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        {/* Gradients */}
-        <linearGradient id="gradYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+        {/* Gradient flows across the full width: yellow → orange → pink */}
+        <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#ffd100" />
-          <stop offset="100%" stopColor="#ff8600" />
-        </linearGradient>
-        <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ff8600" />
+          <stop offset="35%" stopColor="#ff8600" />
           <stop offset="100%" stopColor="#fc66a7" />
         </linearGradient>
-        <linearGradient id="gradPink" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#fc66a7" />
-          <stop offset="100%" stopColor="#e8457a" />
-        </linearGradient>
-
-        {/* Clip: left side of overlap 1 (for left ring's back portion) */}
-        <clipPath id="clipLeftBack">
-          <rect x="0" y="0" width={overlapLeftX} height="440" />
-        </clipPath>
-        {/* Clip: right side of overlap 1 + left side of overlap 2 (center ring front) */}
-        <clipPath id="clipCenterFront">
-          <rect x={overlapLeftX} y="0" width={overlapRightX - overlapLeftX} height="440" />
-        </clipPath>
-        {/* Clip: right side only */}
-        <clipPath id="clipRightBack">
-          <rect x={overlapRightX} y="0" width="840" height="440" />
-        </clipPath>
-
-        {/* Full-width clips for the non-overlapping portions */}
-        <clipPath id="clipLeftFull">
-          <rect x="0" y="0" width={overlapLeftX - 1} height="440" />
-        </clipPath>
-        <clipPath id="clipRightFull">
-          <rect x={overlapRightX + 1} y="0" width="440" height="440" />
-        </clipPath>
       </defs>
 
       {/*
-        Layer order (bottom to top):
-        1. Left ring back half (behind center)
-        2. Right ring back half (behind center)
-        3. Center ring (full - goes over left and right at the overlaps' top)
-        4. Left ring front half (goes over center at the overlap bottom)
-        5. Right ring front half (goes over center at the overlap bottom)
-
-        For the chain-link effect: at the TOP of each overlap, the center
-        ring passes in front. At the BOTTOM, the outer rings pass in front.
+        Layer 1 (back): bottom arcs (4, 5, 6)
+        These sit behind at the crossing points.
       */}
+      <path d={arc6} stroke="url(#flowGrad)" {...strokeProps} />
+      <path d={arc5} stroke="url(#flowGrad)" {...strokeProps} />
+      <path d={arc4} stroke="url(#flowGrad)" {...strokeProps} />
 
-      {/* === BACK LAYERS === */}
-
-      {/* Left ring - back portion (top of overlap goes behind center) */}
-      <path
-        d={ringPath(cx1)}
-        fill="url(#gradYellow)"
-        fillRule="evenodd"
-      />
-
-      {/* Right ring - back portion */}
-      <path
-        d={ringPath(cx3)}
-        fill="url(#gradPink)"
-        fillRule="evenodd"
-      />
-
-      {/* === CENTER RING (middle layer) === */}
-      <path
-        d={ringPath(cx2)}
-        fill="url(#gradOrange)"
-        fillRule="evenodd"
-      />
-
-      {/* === FRONT LAYERS - outer rings overlap bottom in front === */}
-
-      {/* Left ring - front portion at bottom of overlap */}
-      <path
-        d={ringPath(cx1)}
-        fill="url(#gradYellow)"
-        fillRule="evenodd"
-        clipPath="url(#clipLeftBack)"
-      />
-
-      {/* Right ring - front portion at bottom of overlap */}
-      <path
-        d={ringPath(cx3)}
-        fill="url(#gradPink)"
-        fillRule="evenodd"
-        clipPath="url(#clipRightBack)"
-      />
+      {/*
+        Layer 2 (front): top arcs (1, 2, 3)
+        These pass over the bottom arcs at the crossings.
+      */}
+      <path d={arc1} stroke="url(#flowGrad)" {...strokeProps} />
+      <path d={arc2} stroke="url(#flowGrad)" {...strokeProps} />
+      <path d={arc3} stroke="url(#flowGrad)" {...strokeProps} />
     </svg>
   )
 }
