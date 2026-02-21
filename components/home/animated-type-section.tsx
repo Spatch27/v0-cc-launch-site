@@ -6,6 +6,28 @@ import Image from "next/image"
 
 const lines = ["Remove drag.", "Build momentum.", "Unlock growth."]
 
+function AnimatedLine({ text, index }: { text: string; index: number }) {
+  const lineRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: lineRef,
+    offset: ["start 0.8", "start 0.3"],
+  })
+
+  const opacity = useTransform(scrollYProgress, [0, 1], [0.2, 1])
+  const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1])
+
+  return (
+    <div ref={lineRef} className="relative">
+      <motion.h2
+        style={{ opacity, scale }}
+        className="font-display text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
+      >
+        {text}
+      </motion.h2>
+    </div>
+  )
+}
+
 export function AnimatedTypeSection() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -38,27 +60,9 @@ export function AnimatedTypeSection() {
 
       <div className="mx-auto flex min-h-[80vh] max-w-[1400px] flex-col justify-center px-6 py-24 lg:px-12 lg:py-32">
         <div className="space-y-2">
-          {lines.map((line, i) => {
-            const lineRef = useRef(null)
-            const { scrollYProgress: lineProgress } = useScroll({
-              target: lineRef,
-              offset: ["start 0.8", "start 0.3"],
-            })
-
-            const opacity = useTransform(lineProgress, [0, 1], [0.2, 1])
-            const scale = useTransform(lineProgress, [0, 1], [0.95, 1])
-
-            return (
-              <motion.div key={line} ref={lineRef} className="relative">
-                <motion.h2
-                  style={{ opacity, scale }}
-                  className="font-display text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
-                >
-                  {line}
-                </motion.h2>
-              </motion.div>
-            )
-          })}
+          {lines.map((line, i) => (
+            <AnimatedLine key={line} text={line} index={i} />
+          ))}
         </div>
       </div>
     </section>
