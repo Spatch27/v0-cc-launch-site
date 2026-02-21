@@ -62,16 +62,16 @@ export function WhatLooksLikeSection() {
               key={item.problem}
               className="sticky"
               style={{ 
-                top: `${80 + i * 60}px`,
+                top: `${80 + i * 80}px`,
                 zIndex: i + 1
               }}
             >
               <div className="mx-auto max-w-[1400px] px-6 pb-4 lg:px-12">
                 <div className="w-full border-2 border-brand-dark bg-brand-light p-8 shadow-lg lg:p-12">
                   {/* Visible part: Icon and headline */}
-                  <div className="flex items-start gap-6">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-pink text-brand-white">
-                      <Icon size={26} />
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-pink text-brand-white">
+                      <Icon size={20} />
                     </div>
                     <h3 className="font-display text-2xl font-bold leading-tight text-brand-dark md:text-3xl">
                       {item.problem}
@@ -79,7 +79,7 @@ export function WhatLooksLikeSection() {
                   </div>
                   
                   {/* Text that gets covered by next card */}
-                  <div className="ml-20 mt-6">
+                  <div className="ml-14 mt-6">
                     <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
                       {item.solution}
                     </p>
