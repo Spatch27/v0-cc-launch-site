@@ -35,10 +35,10 @@ export function HeroSection() {
             You hired brilliant marketers. And then they got buried. The workflows don&apos;t match how people actually work. The platforms generate data nobody trusts. The processes implemented last year are routinely worked around. It&apos;s the story of many marketing teams. Frustrated. Stretched. Moving, but not fast enough.
           </p>
           <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
-            That&apos;s operational drag. And it&apos;s quietly killing your momentum.
-          </p>
-          <p className="max-w-3xl text-lg font-semibold leading-relaxed text-brand-dark">
-            We are the consultancy for CMOs who want their marketing to move faster.
+            That&apos;s operational drag. And it&apos;s quietly killing your momentum.{" "}
+            <span className="font-semibold text-brand-dark">
+              We are the consultancy for CMOs who want their marketing to move faster.
+            </span>
           </p>
         </motion.div>
 
