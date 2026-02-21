@@ -56,7 +56,7 @@ export function CtaBand({
         variants={fadeInUp}
         className="mx-auto flex max-w-[1400px] flex-col items-center gap-8 text-center"
       >
-        <div className="max-w-2xl">
+        <div className="max-w-4xl">
           <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
             {heading}
           </h2>
