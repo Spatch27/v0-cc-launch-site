@@ -29,17 +29,17 @@ export function AnimatedTypeSection() {
 
   // Pause between line 2 and line 3 (0.57 - 0.62)
   
-  // Line 3: "Unlock growth." - fade in early, hold until end with very long pause
-  const line3Word1Opacity = useTransform(scrollYProgress, [0.62, 0.68, 0.74, 1], [0, 1, 1, 1])
+  // Line 3: "Unlock growth." - fade in early, hold until end with extra long pause
+  const line3Word1Opacity = useTransform(scrollYProgress, [0.62, 0.68, 0.72, 1], [0, 1, 1, 1])
   const line3Word1Y = useTransform(scrollYProgress, [0.62, 0.68], [50, 0])
   
-  const line3Word2Opacity = useTransform(scrollYProgress, [0.64, 0.7, 0.74, 1], [0, 1, 1, 1])
+  const line3Word2Opacity = useTransform(scrollYProgress, [0.64, 0.7, 0.72, 1], [0, 1, 1, 1])
   const line3Word2Y = useTransform(scrollYProgress, [0.64, 0.7], [50, 0])
 
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-1 h-[400vh]"
+      className="relative -mt-1 h-[600vh]"
     >
       {/* Sticky container that holds both background and text */}
       <div className="sticky top-0 h-screen overflow-hidden">
