@@ -17,6 +17,7 @@ const operatingModelItems = {
       position: "top",
       cx: 500,
       cy: 140, // Top position
+      color: "#FC66A7", // Pink
     },
     {
       name: "Process & Ops Model Lead",
@@ -26,6 +27,7 @@ const operatingModelItems = {
       position: "left",
       cx: 348, // Upper left
       cy: 251,
+      color: "#FF8600", // Orange
     },
     {
       name: "People & Culture Lead",
@@ -35,6 +37,7 @@ const operatingModelItems = {
       position: "right",
       cx: 652, // Upper right
       cy: 251,
+      color: "#FFD100", // Yellow
     },
   ],
   supporting: [
@@ -45,6 +48,7 @@ const operatingModelItems = {
         "Brought in for your stack, not ours. Simplifies what you have, fits automation and agents where they'll actually shorten cycles.",
       cx: 403, // Lower left
       cy: 429,
+      color: "#181716", // Dark
     },
     {
       name: "Data & Analytics",
@@ -53,6 +57,7 @@ const operatingModelItems = {
         "Gets data clean, connected and trustworthy. Builds reporting that proves progress is real - so dashboards become something people rely on.",
       cx: 597, // Lower right
       cy: 429,
+      color: "#181716", // Dark
     },
   ],
 }
@@ -63,12 +68,14 @@ function CircleButton({
   hoveredId,
   setHoveredId,
   id,
+  color,
 }: {
   item: (typeof operatingModelItems.primary[0]) | (typeof operatingModelItems.supporting[0])
   isSupporting: boolean
   hoveredId: string | null
   setHoveredId: (id: string | null) => void
   id: string
+  color: string
 }) {
   const isHovered = hoveredId === id
   const radius = 110 // Larger circles for overlapping
@@ -81,11 +88,9 @@ function CircleButton({
     <g
       key={id}
       onMouseEnter={() => {
-        console.log("[v0] Hovering on:", id)
         setHoveredId(id)
       }}
       onMouseLeave={() => {
-        console.log("[v0] Leaving:", id)
         setHoveredId(null)
       }}
       style={{ cursor: "pointer" }}
@@ -104,7 +109,7 @@ function CircleButton({
         cy={item.cy}
         r={radius}
         fill="none"
-        stroke="#fc66a7"
+        stroke={color}
         strokeWidth={isHovered ? 6 : 4}
         strokeDasharray={isSupporting ? "8,8" : "0"}
         animate={{
@@ -148,9 +153,6 @@ export function OperatingModelDiagram() {
   }
 
   const hoveredItem = getHoveredItem()
-
-  console.log("[v0] Hovered ID:", hoveredId)
-  console.log("[v0] Hovered Item:", hoveredItem)
 
   return (
     <motion.div
@@ -202,6 +204,7 @@ export function OperatingModelDiagram() {
                 hoveredId={hoveredId}
                 setHoveredId={setHoveredId}
                 id={`primary-${idx}`}
+                color={item.color}
               />
             ))}
 
@@ -213,6 +216,7 @@ export function OperatingModelDiagram() {
                 hoveredId={hoveredId}
                 setHoveredId={setHoveredId}
                 id={`supporting-${idx}`}
+                color={item.color}
               />
             ))}
           </svg>
@@ -227,7 +231,7 @@ export function OperatingModelDiagram() {
               transition={{ duration: 0.2 }}
               className="absolute top-1/3 left-1/2 -translate-x-1/2 pointer-events-none z-10"
             >
-              <div className="bg-[#FFD700] px-6 py-4 rounded-lg shadow-xl border-2 border-brand-dark/10">
+              <div className="bg-[#FFEB3E] px-6 py-4 rounded-lg shadow-xl border-2 border-brand-dark/10">
                 <p className="text-sm text-brand-dark font-medium leading-relaxed max-w-sm">
                   {hoveredItem.description}
                 </p>
