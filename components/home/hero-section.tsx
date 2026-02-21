@@ -24,26 +24,34 @@ export function HeroSection() {
           from drag.
         </motion.h1>
 
-        {/* Subtitle + CTA row */}
+        {/* Subtitle copy */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
+          className="mt-10 space-y-6"
         >
-          <p className="max-w-2xl text-lg leading-relaxed text-brand-dark/70">
+          <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
             You hired brilliant marketers. And then they got buried. The workflows don&apos;t match how people actually work. The platforms generate data nobody trusts. The processes implemented last year are routinely worked around. It&apos;s the story of many marketing teams. Frustrated. Stretched. Moving, but not fast enough.
           </p>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-brand-dark/70">
+          <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
             That&apos;s operational drag. And it&apos;s quietly killing your momentum.
           </p>
-          <p className="mt-6 max-w-2xl text-lg font-semibold leading-relaxed text-brand-dark">
+          <p className="max-w-3xl text-lg font-semibold leading-relaxed text-brand-dark">
             We are the consultancy for CMOs who want their marketing to move faster.
           </p>
+        </motion.div>
 
+        {/* CTA button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="mt-12"
+        >
           <Link
             href="/contact"
-            className="group inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+            className="group inline-flex w-fit items-center gap-3 border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
