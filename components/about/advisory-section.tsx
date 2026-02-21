@@ -31,10 +31,10 @@ export function AdvisorySection() {
   return (
     <Section background="light">
       <motion.div variants={fadeInUp} className="mb-12">
-        <h2 className="mb-6 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+        <h2 className="mb-6 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
           Built small. And mighty.
         </h2>
-        <div className="max-w-2xl space-y-6 text-lg leading-relaxed text-brand-dark/60">
+        <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark/60">
           <p>
             We operate a highly capable core, drawing on the talents of a network of specialist
             practitioners in martech, agentic AI, data architecture, FS, and governance.
