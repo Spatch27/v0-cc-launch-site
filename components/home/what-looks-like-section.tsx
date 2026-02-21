@@ -63,7 +63,7 @@ export function WhatLooksLikeSection() {
               className="sticky"
               style={{ 
                 top: `${80 + i * 60}px`,
-                zIndex: problems.length - i 
+                zIndex: i + 1
               }}
             >
               <div className="mx-auto max-w-[1400px] px-6 pb-4 lg:px-12">
