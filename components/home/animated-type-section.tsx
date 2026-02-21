@@ -30,7 +30,7 @@ export function AnimatedTypeSection() {
           src="/images/bridge-aerial-bw.jpg"
           alt=""
           fill
-          className="object-cover brightness-[0.4]"
+          className="object-cover grayscale brightness-[0.4]"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
