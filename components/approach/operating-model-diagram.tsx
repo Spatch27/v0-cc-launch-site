@@ -125,6 +125,18 @@ function CircleButton({
 export function OperatingModelDiagram() {
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
+  const getHoveredItem = () => {
+    if (!hoveredId) return null
+    const [type, idx] = hoveredId.split("-")
+    if (type === "primary") {
+      return operatingModelItems.primary[parseInt(idx)]
+    } else {
+      return operatingModelItems.supporting[parseInt(idx)]
+    }
+  }
+
+  const hoveredItem = getHoveredItem()
+
   return (
     <motion.div
       initial="hidden"
@@ -134,7 +146,7 @@ export function OperatingModelDiagram() {
     >
       <div className="relative w-full">
         {/* Desktop SVG Diagram */}
-        <div className="hidden lg:block mb-12">
+        <div className="hidden lg:block mb-12 relative">
           <svg
             viewBox="0 0 1000 600"
             className="w-full h-auto"
@@ -188,83 +200,22 @@ export function OperatingModelDiagram() {
             ))}
           </svg>
 
-          {/* Hover descriptions positioned around the diagram */}
-          <div className="relative -mt-32 h-64 pointer-events-none">
-            {/* Top description */}
+          {/* Floating tooltip panel */}
+          {hoveredItem && (
             <motion.div
-              className="absolute top-0 left-1/2 -translate-x-1/2 text-center pointer-events-none"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{
-                opacity: hoveredId === "primary-0" ? 1 : 0,
-                y: hoveredId === "primary-0" ? 0 : -10,
-              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
             >
-              <p className="text-sm text-brand-pink font-medium max-w-xs">
-                {operatingModelItems.primary[0].description}
-              </p>
+              <div className="bg-[#ffd700] px-6 py-4 rounded-lg shadow-lg max-w-xs">
+                <p className="text-sm text-brand-dark font-medium leading-relaxed">
+                  {hoveredItem.description}
+                </p>
+              </div>
             </motion.div>
-
-            {/* Left description */}
-            <motion.div
-              className="absolute top-1/2 left-0 -translate-y-1/2 text-right pointer-events-none"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{
-                opacity: hoveredId === "primary-1" ? 1 : 0,
-                x: hoveredId === "primary-1" ? 0 : -10,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <p className="text-sm text-brand-pink font-medium max-w-xs">
-                {operatingModelItems.primary[1].description}
-              </p>
-            </motion.div>
-
-            {/* Right description */}
-            <motion.div
-              className="absolute top-1/2 right-0 -translate-y-1/2 text-left pointer-events-none"
-              initial={{ opacity: 0, x: 10 }}
-              animate={{
-                opacity: hoveredId === "primary-2" ? 1 : 0,
-                x: hoveredId === "primary-2" ? 0 : 10,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <p className="text-sm text-brand-pink font-medium max-w-xs">
-                {operatingModelItems.primary[2].description}
-              </p>
-            </motion.div>
-
-            {/* Bottom left supporting description */}
-            <motion.div
-              className="absolute bottom-0 left-8 text-center pointer-events-none"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{
-                opacity: hoveredId === "supporting-0" ? 1 : 0,
-                y: hoveredId === "supporting-0" ? 0 : 10,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <p className="text-sm text-brand-pink font-medium max-w-xs">
-                {operatingModelItems.supporting[0].description}
-              </p>
-            </motion.div>
-
-            {/* Bottom right supporting description */}
-            <motion.div
-              className="absolute bottom-0 right-8 text-center pointer-events-none"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{
-                opacity: hoveredId === "supporting-1" ? 1 : 0,
-                y: hoveredId === "supporting-1" ? 0 : 10,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <p className="text-sm text-brand-pink font-medium max-w-xs">
-                {operatingModelItems.supporting[1].description}
-              </p>
-            </motion.div>
-          </div>
+          )}
         </div>
 
         {/* Mobile/Tablet Layout */}
