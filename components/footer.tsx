@@ -67,7 +67,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-brand-dark/70 transition-colors duration-300 hover:text-brand-dark"
+                      className="relative inline-block text-sm text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                     >
                       {link.label}
                     </Link>
@@ -87,7 +87,7 @@ export function Footer() {
                       href={link.href}
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
-                      className="text-sm text-brand-dark/70 transition-colors duration-300 hover:text-brand-dark"
+                      className="relative inline-block text-sm text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                     >
                       {link.label}
                     </a>
@@ -107,7 +107,7 @@ export function Footer() {
           </p>
           <Link
             href="/privacy"
-            className="text-xs text-brand-dark/70 transition-colors hover:text-brand-dark"
+            className="relative inline-block text-xs text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
           >
             Privacy
           </Link>
