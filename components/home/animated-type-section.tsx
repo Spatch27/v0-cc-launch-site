@@ -49,14 +49,14 @@ export function AnimatedTypeSection() {
             const scale = useTransform(lineProgress, [0, 1], [0.95, 1])
 
             return (
-              <motion.h2
-                key={line}
-                ref={lineRef}
-                style={{ opacity, scale }}
-                className="font-display text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
-              >
-                {line}
-              </motion.h2>
+              <motion.div key={line} ref={lineRef} className="relative">
+                <motion.h2
+                  style={{ opacity, scale }}
+                  className="font-display text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
+                >
+                  {line}
+                </motion.h2>
+              </motion.div>
             )
           })}
         </div>
