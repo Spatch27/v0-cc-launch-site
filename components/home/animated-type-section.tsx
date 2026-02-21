@@ -26,52 +26,55 @@ export function AnimatedTypeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-1 min-h-[300vh] overflow-hidden"
+      className="relative -mt-1 h-[300vh]"
     >
-      {/* Background image - stays fixed */}
-      <div className="sticky top-0 -z-10 h-screen">
-        <Image
-          src="/images/bridge-aerial-bw.jpg"
-          alt=""
-          fill
-          className="object-cover grayscale brightness-[0.4]"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-      </div>
+      {/* Sticky container that holds both background and text */}
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Background image - fixed in place */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/bridge-aerial-bw.jpg"
+            alt=""
+            fill
+            className="object-cover grayscale brightness-[0.4]"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+        </div>
 
-      {/* Sticky content container */}
-      <div className="sticky top-0 flex h-screen items-center">
-        <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-12">
-          {/* Line 1: Remove drag. */}
-          <motion.h2
-            style={{ opacity: line1Opacity, y: line1Y }}
-            className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
-          >
-            Remove
-            <br />
-            drag.
-          </motion.h2>
+        {/* Text content that animates as you scroll */}
+        <div className="flex h-full items-center">
+          <div className="relative mx-auto w-full max-w-[1400px] px-6 lg:px-12">
+            {/* Line 1: Remove drag. */}
+            <motion.h2
+              style={{ opacity: line1Opacity, y: line1Y }}
+              className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
+            >
+              Remove
+              <br />
+              drag.
+            </motion.h2>
 
-          {/* Line 2: Build momentum. */}
-          <motion.h2
-            style={{ opacity: line2Opacity, y: line2Y }}
-            className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
-          >
-            Build
-            <br />
-            momentum.
-          </motion.h2>
+            {/* Line 2: Build momentum. */}
+            <motion.h2
+              style={{ opacity: line2Opacity, y: line2Y }}
+              className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
+            >
+              Build
+              <br />
+              momentum.
+            </motion.h2>
 
-          {/* Line 3: Unlock growth. */}
-          <motion.h2
-            style={{ opacity: line3Opacity, y: line3Y }}
-            className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-yellow-300"
-          >
-            Unlock
-            <br />
-            growth.
-          </motion.h2>
+            {/* Line 3: Unlock growth. */}
+            <motion.h2
+              style={{ opacity: line3Opacity, y: line3Y }}
+              className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-yellow-300"
+            >
+              Unlock
+              <br />
+              growth.
+            </motion.h2>
+          </div>
         </div>
       </div>
     </section>
