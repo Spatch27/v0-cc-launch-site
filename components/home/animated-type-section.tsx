@@ -43,12 +43,12 @@ export function AnimatedTypeSection() {
         </div>
 
         {/* Text content that animates as you scroll */}
-        <div className="flex h-full items-center">
-          <div className="relative mx-auto w-full max-w-[1400px] px-6 lg:px-12">
+        <div className="flex h-full items-center justify-center">
+          <div className="relative text-center">
             {/* Line 1: Remove drag. */}
             <motion.h2
               style={{ opacity: line1Opacity, y: line1Y }}
-              className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
             >
               Remove
               <br />
@@ -58,7 +58,7 @@ export function AnimatedTypeSection() {
             {/* Line 2: Build momentum. */}
             <motion.h2
               style={{ opacity: line2Opacity, y: line2Y }}
-              className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-brand-pink"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
             >
               Build
               <br />
@@ -68,7 +68,7 @@ export function AnimatedTypeSection() {
             {/* Line 3: Unlock growth. */}
             <motion.h2
               style={{ opacity: line3Opacity, y: line3Y }}
-              className="absolute font-display text-[clamp(3rem,8vw,7rem)] font-bold leading-[1.1] tracking-tight text-yellow-300"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-[clamp(5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
             >
               Unlock
               <br />
