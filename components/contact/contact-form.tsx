@@ -170,6 +170,7 @@ export function ContactForm() {
       <Section background="light">
         <div className="space-y-16">
           {/* Intro text */}
+          <div className="relative">
           <motion.div variants={fadeInUp} className="max-w-2xl">
             <h2 className="font-display text-3xl font-bold text-brand-dark">
               Can't wait? Neither can we.
@@ -178,9 +179,10 @@ export function ContactForm() {
               If you have a challenge that won't sit still, jump the queue and get in touch directly.
             </p>
           </motion.div>
+          </div>
 
           {/* Form + Contact links */}
-          <div className="grid gap-20 lg:grid-cols-2">
+          <div className="relative grid gap-20 lg:grid-cols-2">
             {/* Form */}
             <motion.div variants={fadeInUp}>
             {submitted ? (
