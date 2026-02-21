@@ -221,15 +221,20 @@ export function OperatingModelDiagram() {
             ))}
           </svg>
 
-          {/* Floating tooltip panel - positioned absolutely over the diagram */}
+          {/* Floating tooltip panel - positioned over each circle */}
           {hoveredItem && (
             <motion.div
               key={hoveredId}
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-1/3 left-1/2 -translate-x-1/2 pointer-events-none z-10"
+              className="absolute pointer-events-none z-10"
+              style={{
+                left: `${(hoveredItem.cx / 1000) * 100}%`,
+                top: `${((hoveredItem.cy - 80) / 600) * 100}%`,
+                transform: 'translate(-50%, -50%)'
+              }}
             >
               <div className="bg-[#FFEB3E] px-6 py-4 rounded-lg shadow-xl border-2 border-brand-dark/10">
                 <p className="text-sm text-brand-dark font-medium leading-relaxed max-w-sm">
