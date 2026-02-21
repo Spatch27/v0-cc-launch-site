@@ -21,7 +21,7 @@ export function HeroSection() {
         >
           Freedom
           <br />
-          from drag.
+          from <em>drag</em>.
         </motion.h1>
 
         {/* Subtitle copy */}
