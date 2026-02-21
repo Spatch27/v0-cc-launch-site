@@ -79,7 +79,7 @@ export function ContactForm() {
       {/* Waitlist Section */}
       <section className="relative bg-brand-dark px-6 py-20 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-[1400px]">
-          <div className="mx-auto max-w-2xl">
+          <div className="relative mx-auto max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -184,6 +184,7 @@ export function ContactForm() {
           {/* Form + Contact links */}
           <div className="relative grid gap-20 lg:grid-cols-2">
             {/* Form */}
+            <div className="relative">
             <motion.div variants={fadeInUp}>
             {submitted ? (
               <div className="flex flex-col gap-6 bg-brand-white p-12">
@@ -295,8 +296,10 @@ export function ContactForm() {
               </form>
             )}
             </motion.div>
+            </div>
 
             {/* Contact links */}
+            <div className="relative">
             <motion.div variants={fadeInUp} className="flex flex-col gap-10">
               <a
                 href="mailto:hello@committedcitizens.co.uk"
@@ -332,6 +335,7 @@ export function ContactForm() {
                 <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
               </a>
             </motion.div>
+            </div>
           </div>
         </div>
       </Section>
