@@ -101,44 +101,36 @@ export function MomentumDiagram() {
           {/* SVG Flowing Circles */}
           <FlowingCirclesSVG />
 
-          {/* Text overlays positioned over each circle */}
-          <div className="absolute inset-0 flex items-center">
-            {/* Left circle text */}
-            <div className="flex-1 flex justify-center">
-              <div className="text-center max-w-[160px] -translate-y-2">
-                <h4 className="font-display text-base lg:text-lg font-bold text-brand-dark leading-tight mb-1">
-                  {momentumItems[0].name}
-                </h4>
-              </div>
-            </div>
-            {/* Center circle text */}
-            <div className="flex-1 flex justify-center">
-              <div className="text-center max-w-[160px] -translate-y-2">
-                <h4 className="font-display text-base lg:text-lg font-bold text-brand-dark leading-tight mb-1">
-                  {momentumItems[1].name}
-                </h4>
-              </div>
-            </div>
-            {/* Right circle text */}
-            <div className="flex-1 flex justify-center">
-              <div className="text-center max-w-[160px] -translate-y-2">
-                <h4 className="font-display text-base lg:text-lg font-bold text-brand-dark leading-tight mb-1">
-                  {momentumItems[2].name}
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Benefit text below each circle */}
-        <div className="flex items-start mt-8 gap-4">
-          {momentumItems.map((item) => (
-            <div key={item.name} className="flex-1 text-center px-4">
-              <p className="text-sm lg:text-base text-brand-pink font-medium leading-snug">
-                {item.benefit}
+          {/* Text overlays positioned inside each circle */}
+          <div className="absolute inset-0 flex items-center justify-center gap-[260px]">
+            {/* Left circle (C1) - yellow accent */}
+            <div className="text-center w-32">
+              <h4 className="font-display text-base lg:text-lg font-bold text-white leading-tight mb-2">
+                {momentumItems[0].name}
+              </h4>
+              <p className="text-xs lg:text-sm text-brand-yellow-deep font-medium leading-snug">
+                {momentumItems[0].benefit}
               </p>
             </div>
-          ))}
+            {/* Center circle (C2) - orange accent */}
+            <div className="text-center w-32">
+              <h4 className="font-display text-base lg:text-lg font-bold text-white leading-tight mb-2">
+                {momentumItems[1].name}
+              </h4>
+              <p className="text-xs lg:text-sm text-brand-orange font-medium leading-snug">
+                {momentumItems[1].benefit}
+              </p>
+            </div>
+            {/* Right circle (C3) - pink accent */}
+            <div className="text-center w-32">
+              <h4 className="font-display text-base lg:text-lg font-bold text-white leading-tight mb-2">
+                {momentumItems[2].name}
+              </h4>
+              <p className="text-xs lg:text-sm text-brand-pink font-medium leading-snug">
+                {momentumItems[2].benefit}
+              </p>
+            </div>
+          </div>
         </div>
       </motion.div>
 
