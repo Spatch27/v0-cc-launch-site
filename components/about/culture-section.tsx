@@ -14,7 +14,7 @@ export function CultureSection() {
           className="w-full h-96 object-cover"
         />
       </div>
-      <div className="px-6 py-24 lg:px-12 lg:py-32">
+      <div className="px-6 py-16 lg:px-12 lg:py-24">
         <motion.div variants={fadeInUp}>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
             More human, in every interaction.
