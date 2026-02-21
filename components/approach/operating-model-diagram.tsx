@@ -12,23 +12,23 @@ const operatingModelItems = {
         "Sharpens the problem. Aligns your C-Suite around a clear value case. Makes sure progress is visible from week one.",
       position: "top",
       cx: 500,
-      cy: 150,
+      cy: 200,
     },
     {
       name: "Process & Ops Model Lead",
       description:
         "Maps how work actually flows today. Redesigns the system, removes the handshake moments, installs governance that sticks.",
       position: "left",
-      cx: 250,
-      cy: 320,
+      cx: 360,
+      cy: 300,
     },
     {
       name: "People & Culture Lead",
       description:
         "New systems only stick if people believe in them. Builds capability, runs adoption programmes, embeds new habits at pace.",
       position: "right",
-      cx: 750,
-      cy: 320,
+      cx: 640,
+      cy: 300,
     },
   ],
   supporting: [
@@ -36,15 +36,15 @@ const operatingModelItems = {
       name: "MarTech & Automation",
       description:
         "Brought in for your stack, not ours. Simplifies what you have, fits automation and agents where they'll actually shorten cycles.",
-      cx: 350,
-      cy: 450,
+      cx: 430,
+      cy: 380,
     },
     {
       name: "Data & Analytics",
       description:
         "Gets data clean, connected and trustworthy. Builds reporting that proves progress is real - so dashboards become something people rely on.",
-      cx: 650,
-      cy: 450,
+      cx: 570,
+      cy: 380,
     },
   ],
 }
@@ -63,7 +63,7 @@ function CircleButton({
   id: string
 }) {
   const isHovered = hoveredId === id
-  const radius = isSupporting ? 50 : 70
+  const radius = 80 // Same size for all circles
 
   return (
     <motion.g
@@ -92,14 +92,15 @@ function CircleButton({
         y={item.cy}
         textAnchor="middle"
         dominantBaseline="middle"
-        fontSize="14"
+        fontSize="13"
         fontWeight="bold"
         fill="#181716"
-        className="font-display pointer-events-none"
+        className="font-display pointer-events-none select-none"
         animate={{
-          fontSize: isHovered ? 16 : 14,
+          fontSize: isHovered ? 14 : 13,
         }}
         transition={{ duration: 0.2 }}
+        style={{ maxWidth: `${radius * 1.5}px` }}
       >
         {item.name}
       </motion.text>
@@ -121,30 +122,30 @@ export function OperatingModelDiagram() {
         {/* Desktop SVG Diagram */}
         <div className="hidden lg:block mb-12">
           <svg
-            viewBox="0 0 1000 700"
+            viewBox="0 0 1000 600"
             className="w-full h-auto"
             preserveAspectRatio="xMidYMid meet"
           >
             {/* Center label */}
             <motion.text
               x="500"
-              y="320"
+              y="285"
               textAnchor="middle"
-              fontSize="16"
+              fontSize="14"
               fontWeight="bold"
               fill="#181716"
-              className="font-display pointer-events-none"
+              className="font-display pointer-events-none select-none"
             >
               CLIENT
             </motion.text>
             <motion.text
               x="500"
-              y="345"
+              y="305"
               textAnchor="middle"
-              fontSize="16"
+              fontSize="14"
               fontWeight="bold"
               fill="#181716"
-              className="font-display pointer-events-none"
+              className="font-display pointer-events-none select-none"
             >
               OUTCOME
             </motion.text>
