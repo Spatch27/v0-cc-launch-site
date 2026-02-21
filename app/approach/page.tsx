@@ -16,8 +16,8 @@ export default function ApproachPage() {
   return (
     <>
       <HeroPhilosophy />
-      <PhilosophySection />
       <MomentumSection />
+      <PhilosophySection />
       <EngagementsSection />
       <CheckpointSection />
       <CtaBand
