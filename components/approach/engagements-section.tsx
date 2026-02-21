@@ -43,18 +43,11 @@ export function EngagementsSection() {
   return (
     <Section background="dark">
       {/* Header */}
-      <div className="mb-20 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-24">
-        <motion.div variants={fadeInUp} className="lg:w-1/4">
-          <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
-            Our engagements
-          </span>
-        </motion.div>
-        <motion.div variants={fadeInUp} className="lg:w-3/4">
-          <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-            Three engagements, one goal.
-          </h2>
-        </motion.div>
-      </div>
+      <motion.div variants={fadeInUp} className="mb-20">
+        <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
+          Three engagements, one goal.
+        </h2>
+      </motion.div>
 
       {/* Cards Grid */}
       <motion.div
