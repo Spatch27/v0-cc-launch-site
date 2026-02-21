@@ -79,12 +79,11 @@ export function ContactForm() {
       {/* Waitlist Section */}
       <section className="relative bg-brand-dark px-6 py-20 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-[1400px]">
-          <div className="mx-auto max-w-2xl">
+          <div className="relative mx-auto max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
               className="space-y-8"
             >
               <div>
@@ -170,7 +169,13 @@ export function ContactForm() {
       <Section background="light">
         <div className="space-y-16">
           {/* Intro text */}
-          <motion.div variants={fadeInUp} className="max-w-2xl">
+          <div className="relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl"
+          >
             <h2 className="font-display text-3xl font-bold text-brand-dark">
               Can't wait? Neither can we.
             </h2>
@@ -178,11 +183,17 @@ export function ContactForm() {
               If you have a challenge that won't sit still, jump the queue and get in touch directly.
             </p>
           </motion.div>
+          </div>
 
           {/* Form + Contact links */}
-          <div className="grid gap-20 lg:grid-cols-2">
+          <div className="relative grid gap-20 lg:grid-cols-2">
             {/* Form */}
-            <motion.div variants={fadeInUp}>
+            <div className="relative">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
             {submitted ? (
               <div className="flex flex-col gap-6 bg-brand-white p-12">
                 <CheckCircle size={48} className="text-brand-pink" />
@@ -293,9 +304,16 @@ export function ContactForm() {
               </form>
             )}
             </motion.div>
+            </div>
 
             {/* Contact links */}
-            <motion.div variants={fadeInUp} className="flex flex-col gap-10">
+            <div className="relative">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col gap-10"
+            >
               <a
                 href="mailto:hello@committedcitizens.co.uk"
                 className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
@@ -330,6 +348,7 @@ export function ContactForm() {
                 <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
               </a>
             </motion.div>
+            </div>
           </div>
         </div>
       </Section>

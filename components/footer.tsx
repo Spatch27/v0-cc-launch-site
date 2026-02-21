@@ -37,8 +37,7 @@ export function Footer() {
       {/* Large CTA area */}
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
+        animate="visible"
         variants={staggerContainer}
         className="relative z-10 mx-auto max-w-[1400px] px-6 pt-24 pb-16 lg:px-12 lg:pt-32 lg:pb-20"
       >

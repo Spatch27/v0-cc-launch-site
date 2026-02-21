@@ -51,8 +51,7 @@ export function CtaBand({
     <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
+        animate="visible"
         variants={fadeInUp}
         className="mx-auto flex max-w-[1400px] flex-col items-center gap-8 text-center"
       >

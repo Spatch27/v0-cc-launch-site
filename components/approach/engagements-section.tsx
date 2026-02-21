@@ -52,8 +52,7 @@ export function EngagementsSection() {
       {/* Cards Grid */}
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
+        animate="visible"
         variants={staggerContainer}
         className="grid gap-8 md:grid-cols-3 mb-16"
       >

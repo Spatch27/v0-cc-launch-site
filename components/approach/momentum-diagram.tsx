@@ -150,8 +150,7 @@ export function MomentumDiagram() {
   return (
     <motion.div
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      animate="visible"
       variants={staggerContainer}
       className="w-full"
     >
