@@ -95,13 +95,8 @@ export function MomentumDiagram() {
       variants={staggerContainer}
       className="w-full"
     >
-      {/* Title */}
-      <motion.h3 variants={fadeInUp} className="font-display text-3xl font-bold text-brand-dark mb-12 md:mb-16">
-        Momentum, by design
-      </motion.h3>
-
       {/* Desktop / Tablet Diagram */}
-      <motion.div variants={fadeInUp} className="hidden md:block w-full max-w-5xl mx-auto">
+      <motion.div variants={fadeInUp} className="hidden md:block w-full">
         <div className="relative">
           {/* SVG Flowing Circles */}
           <FlowingCirclesSVG />
