@@ -13,9 +13,6 @@ export function AnimatedTypeSection() {
     offset: ["start end", "end start"],
   })
 
-  // Parallax effect for background image
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
-
   // Transform for text based on scroll
   const opacity1 = useTransform(scrollYProgress, [0, 0.3, 0.5], [0.2, 1, 1])
   const opacity2 = useTransform(scrollYProgress, [0.1, 0.4, 0.6], [0.2, 1, 1])
@@ -33,11 +30,8 @@ export function AnimatedTypeSection() {
       ref={sectionRef}
       className="relative -mt-1 min-h-[80vh] overflow-hidden"
     >
-      {/* Background image with parallax */}
-      <motion.div
-        style={{ y }}
-        className="absolute inset-0 -z-10"
-      >
+      {/* Background image */}
+      <div className="absolute inset-0 -z-10">
         <Image
           src="/images/bridge-aerial-bw.jpg"
           alt=""
@@ -46,7 +40,7 @@ export function AnimatedTypeSection() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-      </motion.div>
+      </div>
 
       <div className="mx-auto flex min-h-[80vh] max-w-[1400px] flex-col justify-center px-6 py-24 lg:px-12 lg:py-32">
         <div className="space-y-2">
