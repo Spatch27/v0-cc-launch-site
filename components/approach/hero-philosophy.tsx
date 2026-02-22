@@ -5,7 +5,7 @@ import { fadeInUp } from "@/lib/animations"
 
 export function HeroPhilosophy() {
   return (
-    <section className="relative bg-brand-pink px-6 pt-40 pb-32 lg:px-12 lg:pt-48 lg:pb-48">
+    <section className="relative bg-brand-pink px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-24">
       <div className="mx-auto max-w-[1400px]">
         {/* Main headline */}
         <motion.div
