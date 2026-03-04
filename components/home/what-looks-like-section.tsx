@@ -116,7 +116,7 @@ export function WhatLooksLikeSection() {
         </div>
 
         {/* Card stack — cards translate in from below, stacking on top of each other */}
-        <div className="relative" style={{ height: `${600 + titleHeight + problems.length * CARD_HEADER_H}px` }}>
+        <div className="relative" style={{ height: `${600 + problems.length * CARD_HEADER_H}px` }}>
           {problems.map((item, i) => {
             const Icon = item.icon
             // Each card's final resting top = i * CARD_HEADER_H (stacked headers)
