@@ -49,6 +49,7 @@ const problems = [
 
 const HEADER_HEIGHT = 64
 const CARD_CONTENT_HEIGHT = 600 // Approximate height of card content
+const CARD_GAP = 50 // Gap between cards
 
 export function WhatLooksLikeSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -90,7 +91,7 @@ export function WhatLooksLikeSection() {
       <div className="relative">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           {/* Card stack wrapper */}
-          <div className="relative" style={{ height: `${(problems.length * CARD_CONTENT_HEIGHT) + ((problems.length - 1) * HEADER_HEIGHT)}px` }}>
+          <div className="relative" style={{ height: `${(problems.length * CARD_CONTENT_HEIGHT) + ((problems.length - 1) * (HEADER_HEIGHT + CARD_GAP))}px` }}>
             {problems.map((item, i) => {
               const Icon = item.icon
               
@@ -114,7 +115,7 @@ export function WhatLooksLikeSection() {
                   key={item.heading}
                   className="absolute w-full"
                   style={{
-                    top: `${i * (CARD_CONTENT_HEIGHT - HEADER_HEIGHT)}px`,
+                    top: `${i * (CARD_CONTENT_HEIGHT - HEADER_HEIGHT + CARD_GAP)}px`,
                     transform: `translateY(${translateY}px)`,
                     zIndex: problems.length - i,
                   }}
