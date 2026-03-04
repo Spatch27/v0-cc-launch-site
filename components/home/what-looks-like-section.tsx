@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { 
   Link as LinkIcon,
   Eye, 
@@ -47,9 +47,38 @@ const problems = [
   },
 ]
 
+const HEADER_HEIGHT = 64
+const CARD_CONTENT_HEIGHT = 600 // Approximate height of card content
+
 export function WhatLooksLikeSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return
+
+      const sectionTop = sectionRef.current.offsetTop
+      const sectionHeight = sectionRef.current.offsetHeight
+      const windowHeight = window.innerHeight
+      const scrollTop = window.scrollY
+
+      // Calculate how far into the section we are
+      const sectionScrollStart = sectionTop
+      const sectionScrollEnd = sectionTop + sectionHeight
+      const currentScroll = scrollTop + windowHeight / 2
+
+      // Progress from 0 to 1 as we scroll through the section
+      const progress = Math.max(0, Math.min(1, (currentScroll - sectionScrollStart) / (sectionScrollEnd - sectionScrollStart)))
+      setScrollProgress(progress)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <section className="relative bg-brand-white py-24">
+    <section ref={sectionRef} className="relative bg-brand-white py-24">
       {/* Header */}
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
         <h2 className="mb-16 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
@@ -57,71 +86,82 @@ export function WhatLooksLikeSection() {
         </h2>
       </div>
 
-      {/* Stacking cards container */}
+      {/* Stacking cards container - Use overflow hidden to clip cards */}
       <div className="relative">
-        {problems.map((item, i) => {
-          const Icon = item.icon
-          
-          return (
-            <div
-              key={item.heading}
-              className="relative"
-              style={{ 
-                zIndex: problems.length - i
-              }}
-            >
-              <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-                {/* Sticky Header Bar */}
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+          {/* Card stack wrapper */}
+          <div className="relative" style={{ height: `${(problems.length * CARD_CONTENT_HEIGHT) + ((problems.length - 1) * HEADER_HEIGHT)}px` }}>
+            {problems.map((item, i) => {
+              const Icon = item.icon
+              
+              // Calculate when this card should start animating
+              const cardStartProgress = (i / (problems.length - 1)) * 0.8
+              const cardEndProgress = ((i + 1) / (problems.length - 1)) * 0.95
+              
+              // Calculate this card's animation progress
+              let cardProgress = 0
+              if (scrollProgress >= cardStartProgress && scrollProgress <= cardEndProgress) {
+                cardProgress = (scrollProgress - cardStartProgress) / (cardEndProgress - cardStartProgress)
+              } else if (scrollProgress > cardEndProgress) {
+                cardProgress = 1
+              }
+              
+              // Translate up based on progress
+              const translateY = -cardProgress * (CARD_CONTENT_HEIGHT - HEADER_HEIGHT)
+              
+              return (
                 <div
-                  className="sticky flex items-center gap-3 bg-brand-pink px-8 py-4 text-brand-white lg:px-12"
+                  key={item.heading}
+                  className="absolute w-full"
                   style={{
-                    top: `${i * 64}px`,
-                    zIndex: problems.length - i + 100
+                    top: `${i * (CARD_CONTENT_HEIGHT - HEADER_HEIGHT)}px`,
+                    transform: `translateY(${translateY}px)`,
+                    zIndex: problems.length - i,
                   }}
                 >
-                  <Icon size={20} className="shrink-0" />
-                  <span className="text-sm font-bold tracking-widest">
-                    {item.eyebrow}
-                  </span>
-                </div>
+                  {/* Header Bar */}
+                  <div className="flex items-center gap-3 bg-brand-pink px-8 py-4 text-brand-white lg:px-12">
+                    <Icon size={20} className="shrink-0" />
+                    <span className="text-sm font-bold tracking-widest">
+                      {item.eyebrow}
+                    </span>
+                  </div>
 
-                {/* Card Content */}
-                <div className="w-full border-2 border-t-0 border-brand-dark bg-brand-white p-8 lg:p-12">
-                  {/* Heading */}
-                  <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
-                    {item.heading}
-                  </h3>
+                  {/* Card Content */}
+                  <div className="w-full border-2 border-t-0 border-brand-dark bg-brand-white p-8 lg:p-12">
+                    {/* Heading */}
+                    <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
+                      {item.heading}
+                    </h3>
 
-                  {/* Two-column body: DRAG and FLOW */}
-                  <div className="grid gap-8 lg:grid-cols-2">
-                    {/* DRAG section */}
-                    <div>
-                      <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">
-                        DRAG
+                    {/* Two-column body: DRAG and FLOW */}
+                    <div className="grid gap-8 lg:grid-cols-2">
+                      {/* DRAG section */}
+                      <div>
+                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">
+                          DRAG
+                        </div>
+                        <p className="text-base leading-relaxed text-brand-dark/70">
+                          {item.drag}
+                        </p>
                       </div>
-                      <p className="text-base leading-relaxed text-brand-dark/70">
-                        {item.drag}
-                      </p>
-                    </div>
 
-                    {/* FLOW section */}
-                    <div>
-                      <div className="mb-3 text-xs font-bold tracking-widest text-brand-orange">
-                        FLOW
+                      {/* FLOW section */}
+                      <div>
+                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-orange">
+                          FLOW
+                        </div>
+                        <p className="text-base leading-relaxed text-brand-dark/70">
+                          {item.flow}
+                        </p>
                       </div>
-                      <p className="text-base leading-relaxed text-brand-dark/70">
-                        {item.flow}
-                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          )
-        })}
-        
-        {/* Spacer to allow last card to be fully visible */}
-        <div className="h-[40vh]" />
+              )
+            })}
+          </div>
+        </div>
       </div>
     </section>
   )
