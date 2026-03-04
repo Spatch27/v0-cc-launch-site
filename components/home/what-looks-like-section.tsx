@@ -12,7 +12,7 @@ const CARD_HEADER_H = 56
 // Scroll distance (px) allocated for each card to animate in
 const SCROLL_PER_CARD = 500
 // Extra scroll buffer after card 5 lands before the module starts scrolling away
-const TAIL_BUFFER = 300
+const TAIL_BUFFER = 50
 
 const problems = [
   {
@@ -116,7 +116,7 @@ export function WhatLooksLikeSection() {
         </div>
 
         {/* Card stack — cards translate in from below, stacking on top of each other */}
-        <div className="relative" style={{ height: `${600 + problems.length * CARD_HEADER_H}px` }}>
+        <div className="relative" style={{ height: `${400 + problems.length * CARD_HEADER_H}px` }}>
           {problems.map((item, i) => {
             const Icon = item.icon
             // Each card's final resting top = i * CARD_HEADER_H (stacked headers)
