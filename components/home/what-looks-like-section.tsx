@@ -92,9 +92,8 @@ export function WhatLooksLikeSection() {
       */}
       <div
         style={{
-          // Total height: enough for 5 cards to each scroll into view (100vh each)
-          // minus the overlap from stacking, plus extra for the last card body
-          height: `${problems.length * 100}vh`,
+          // 4 transitions × 120vh each to scroll each card in, plus ~60vh to view the final stacked state
+          height: `${(problems.length - 1) * 120 + 60}vh`,
         }}
       >
         {problems.map((item, i) => {
