@@ -9,8 +9,10 @@ import {
 } from "lucide-react"
 
 const CARD_HEADER_H = 56
-// How much scroll distance each card transition takes (px)
+// Scroll distance (px) allocated for each card to animate in
 const SCROLL_PER_CARD = 500
+// Extra scroll buffer after card 5 lands before the module starts scrolling away
+const TAIL_BUFFER = 300
 
 const problems = [
   {
@@ -53,9 +55,7 @@ const problems = [
 export function WhatLooksLikeSection() {
   const outerRef = useRef<HTMLDivElement>(null)
   const [navHeight, setNavHeight] = useState(80)
-  const [titleHeight, setTitleHeight] = useState(100)
-  // cardOffsets[i] = how many px from the top of the sticky block each card should sit
-  // when fully stacked. Card 0 = 0, card 1 = CARD_HEADER_H, etc.
+  const [outerHeight, setOuterHeight] = useState(2800)
   const [cardTranslates, setCardTranslates] = useState<number[]>(problems.map(() => 0))
 
   useEffect(() => {
@@ -63,24 +63,27 @@ export function WhatLooksLikeSection() {
     const navH = nav ? nav.offsetHeight : 80
     setNavHeight(navH)
 
+    // Total height = scroll runway for all card transitions + buffer after last card + viewport
+    // The sticky element unsticks when: scrolled >= outerHeight - viewportHeight
+    // We want that to happen after all cards have landed + TAIL_BUFFER
+    // All cards land at: (problems.length - 1) * SCROLL_PER_CARD
+    // So: outerHeight - viewportHeight = (n-1)*SCROLL_PER_CARD + TAIL_BUFFER
+    // outerHeight = (n-1)*SCROLL_PER_CARD + TAIL_BUFFER + viewportHeight
+    setOuterHeight((problems.length - 1) * SCROLL_PER_CARD + TAIL_BUFFER + window.innerHeight)
+
     const handleScroll = () => {
       if (!outerRef.current) return
       const rect = outerRef.current.getBoundingClientRect()
-      // How far we've scrolled into the section (0 = section top just hit viewport top)
-      const scrolled = -rect.top
+      // scrolled = how many px we've scrolled past the top of the outer section
+      const scrolled = Math.max(0, -rect.top)
 
       const translates = problems.map((_, i) => {
-        if (i === 0) return 0 // Card 1 never moves — it sticks immediately
-        // Card i starts moving once (i-1) * SCROLL_PER_CARD px have been scrolled
+        if (i === 0) return 0 // Card 1 is already in place
         const start = (i - 1) * SCROLL_PER_CARD
         const end = i * SCROLL_PER_CARD
-        const raw = (scrolled - start) / (end - start)
-        const progress = Math.max(0, Math.min(1, raw))
-        // Card i slides UP to sit CARD_HEADER_H * i from the top of block
-        // It starts below the viewport (off screen) and ends at its stacked position
-        // We express this as a translateY: starts at a large positive value, ends at 0
-        const totalTravel = 600 // px the card travels upward
-        return (1 - progress) * totalTravel
+        const progress = Math.max(0, Math.min(1, (scrolled - start) / (end - start)))
+        // Starts 600px below its final position, slides up to 0
+        return (1 - progress) * 600
       })
       setCardTranslates(translates)
     }
@@ -89,9 +92,6 @@ export function WhatLooksLikeSection() {
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  // Total outer height: first card loads immediately, then 4 more transitions
-  const outerHeight = (problems.length - 1) * SCROLL_PER_CARD + window.innerHeight
 
   return (
     // Outer section — provides scroll runway. Once exhausted, the sticky block unsticks
@@ -106,8 +106,8 @@ export function WhatLooksLikeSection() {
         className="sticky overflow-hidden bg-white"
         style={{ top: `${navHeight}px` }}
       >
-        {/* Title — always visible at the top of the sticky block */}
-        <div className="bg-white px-6 py-10 lg:px-12">
+        {/* Title — tighter padding */}
+        <div className="bg-white px-6 pb-4 pt-6 lg:px-12">
           <div className="mx-auto max-w-[1400px]">
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
               What it looks like.
