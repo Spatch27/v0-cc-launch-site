@@ -92,8 +92,7 @@ export function WhatLooksLikeSection() {
       */}
       <div
         style={{
-          // 4 transitions × 120vh each to scroll each card in, plus ~60vh to view the final stacked state
-          height: `${(problems.length - 1) * 120 + 60}vh`,
+          height: `${(problems.length - 1) * 120 + 10}vh`,
         }}
       >
         {problems.map((item, i) => {
