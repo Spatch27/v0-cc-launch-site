@@ -1,5 +1,6 @@
 "use client"
 
+import { useRef, useState, useEffect } from "react"
 import { 
   Link as LinkIcon,
   Eye, 
@@ -7,12 +8,7 @@ import {
   CreditCard, 
 } from "lucide-react"
 
-// Height of the fixed navigation bar
-const NAV_HEIGHT = 80
-// Height of the sticky "What it looks like." section header
-const SECTION_HEADER_H = 120
-// Height of each pink card header bar
-const CARD_HEADER_H = 64
+const CARD_HEADER_H = 56
 
 const problems = [
   {
@@ -53,15 +49,26 @@ const problems = [
 ]
 
 export function WhatLooksLikeSection() {
+  const titleRef = useRef<HTMLDivElement>(null)
+  const [navHeight, setNavHeight] = useState(80)
+  const [titleHeight, setTitleHeight] = useState(96)
+
+  useEffect(() => {
+    // Measure actual nav and title heights
+    const nav = document.querySelector("header")
+    if (nav) setNavHeight(nav.offsetHeight)
+    if (titleRef.current) setTitleHeight(titleRef.current.offsetHeight)
+  }, [])
+
   return (
     <section className="bg-brand-white">
-
-      {/* ── Section title: sticky, sits just below the nav ── */}
+      {/* Section title: sticky, pins right under the nav */}
       <div
-        className="sticky z-[100] bg-brand-white py-12"
-        style={{ top: `${NAV_HEIGHT}px` }}
+        ref={titleRef}
+        className="sticky z-[100] bg-brand-white px-6 py-10 lg:px-12"
+        style={{ top: `${navHeight}px` }}
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1400px]">
           <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
             What it looks like.
           </h2>
@@ -69,36 +76,34 @@ export function WhatLooksLikeSection() {
       </div>
 
       {/*
-        ── Card wrappers ──
-        Each wrapper is tall enough that its sticky child has scroll distance
-        to travel before it sticks. z-index increases with each card so later
-        cards visually cover earlier ones.
-
-        Card i sticks at:  NAV + SECTION_HEADER + (i × CARD_HEADER_H)
-        so each stacked header is exactly CARD_HEADER_H below the previous.
-
-        The wrapper height = card body height (≈500px) + some scroll runway
-        so the user scrolls the card into its stuck position before seeing
-        the next card arrive.
+        Each card is wrapped in a div whose height provides scroll runway.
+        The card itself is position:sticky and sticks at the correct top offset.
+        z-index increases with each card so later cards paint over earlier ones.
+        
+        Card 0 sticks at: navHeight + titleHeight  (right under the title)
+        Card 1 sticks at: navHeight + titleHeight + CARD_HEADER_H  (under card 0's header)
+        Card 2 sticks at: navHeight + titleHeight + CARD_HEADER_H * 2
+        etc.
       */}
       {problems.map((item, i) => {
         const Icon = item.icon
-        const stickyTop = NAV_HEIGHT + SECTION_HEADER_H + i * CARD_HEADER_H
+        const stickyTop = navHeight + titleHeight + i * CARD_HEADER_H
+        const isLast = i === problems.length - 1
 
         return (
           <div
             key={item.eyebrow}
-            // Tall enough for the sticky card to have scroll runway + card body visible
             className="relative"
             style={{
-              height: `calc(500px + ${CARD_HEADER_H * (problems.length - i)}px)`,
-              // Later cards sit on top of earlier ones
-              zIndex: 10 + i,
+              // Each wrapper needs enough height so the sticky card
+              // has scroll distance. Last card doesn't need extra runway.
+              height: isLast ? "auto" : "100vh",
+              zIndex: i + 1,
             }}
           >
             <div
-              className="sticky w-full"
-              style={{ top: `${stickyTop}px`, zIndex: 10 + i }}
+              className="sticky"
+              style={{ top: `${stickyTop}px` }}
             >
               <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
                 {/* Pink header bar */}
@@ -110,8 +115,8 @@ export function WhatLooksLikeSection() {
                   <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
                 </div>
 
-                {/* Card body — white so it covers the card below */}
-                <div className="w-full border-2 border-t-0 border-brand-dark bg-brand-white p-8 lg:p-12">
+                {/* Card body */}
+                <div className="border-2 border-t-0 border-brand-dark bg-brand-white p-8 lg:p-12">
                   <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
                     {item.heading}
                   </h3>
@@ -131,9 +136,6 @@ export function WhatLooksLikeSection() {
           </div>
         )
       })}
-
-      {/* Breathing room after final card before next section */}
-      <div className="h-32" />
     </section>
   )
 }
