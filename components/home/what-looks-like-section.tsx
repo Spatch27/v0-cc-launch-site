@@ -1,98 +1,168 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import { 
-  Link as LinkIcon, 
+  Link as LinkIcon,
   Eye, 
   Clock, 
   CreditCard, 
-  AlertCircle 
 } from "lucide-react"
+
+const CARD_HEADER_H = 56
+// Scroll distance (px) allocated for each card to animate in
+const SCROLL_PER_CARD = 500
+// Extra scroll buffer after card 5 lands before the module starts scrolling away
+const TAIL_BUFFER = 50
 
 const problems = [
   {
     icon: LinkIcon,
-    problem: "Customers falling through the gaps",
-    solution:
-      "We rebuild the handoffs between teams and platforms so signals get acted on in real time.",
+    eyebrow: "CUSTOMER",
+    heading: "Falling through the gaps",
+    drag: "Your brand promise and the experience people actually get are drifting apart. Gaps open at the handoffs. Channels contradict each other.",
+    flow: "One orchestrated experience, end-to-end.",
+  },
+  {
+    icon: LinkIcon,
+    eyebrow: "TEAM",
+    heading: "Talented people, underperforming teams",
+    drag: "Great marketers joined to build bold work. They're stuck in approval loops and broken systems. The workaround has become the culture.",
+    flow: "Clear decision rights, protected focus, genuine ownership.",
   },
   {
     icon: Eye,
-    problem: "Flying blind on what's working",
-    solution:
-      "We build telemetry your team will actually use, not another dashboard nobody opens.",
+    eyebrow: "DATA",
+    heading: "Flying blind on what's working",
+    drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
+    flow: "A single, agreed view of what's happening, why, and what matters next.",
   },
   {
     icon: Clock,
-    problem: "Everything takes too long",
-    solution: "We redesign workflows and build agents that shorten cycles. Fast.",
+    eyebrow: "PROCESS",
+    heading: "Everything takes too long",
+    drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
+    flow: "Lean pathways, clean handoffs, fewer loops.",
   },
   {
     icon: CreditCard,
-    problem: "Paying for tech nobody's really using",
-    solution:
-      "We rationalise the stack and make your technology serve your people.",
-  },
-  {
-    icon: AlertCircle,
-    problem: "Workarounds become the work",
-    solution:
-      'We restore confidence, clarity and energy. "Everyone gets a jetpack."',
+    eyebrow: "TECHNOLOGY",
+    heading: "Paying for tech nobody's using",
+    drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
+    flow: "A leaner, better-loved stack built around how people actually work.",
   },
 ]
 
 export function WhatLooksLikeSection() {
-  return (
-    <section className="relative bg-brand-white py-24">
-      {/* Header - not sticky */}
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-        <h2 className="mb-16 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-          What it looks like.
-        </h2>
-      </div>
+  const outerRef = useRef<HTMLDivElement>(null)
+  const [navHeight, setNavHeight] = useState(80)
+  const [outerHeight, setOuterHeight] = useState(2800)
+  const [cardTranslates, setCardTranslates] = useState<number[]>(problems.map(() => 0))
 
-      {/* Stacking cards container */}
-      <div className="relative">
-        {problems.map((item, i) => {
-          const Icon = item.icon
-          const isLast = i === problems.length - 1
-          
-          return (
-            <div
-              key={item.problem}
-              className="sticky relative"
-              style={{ 
-                top: `${80 + i * 80}px`,
-                zIndex: i + 1
-              }}
-            >
-              <div className="mx-auto max-w-[1400px] px-6 pb-4 lg:px-12">
-                <div className="w-full border-2 border-brand-dark bg-brand-light p-8 shadow-lg lg:p-12">
-                  {/* Visible part: Icon and headline */}
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-pink text-brand-white">
-                      <Icon size={20} />
-                    </div>
-                    <h3 className="font-display text-2xl font-bold leading-tight text-brand-dark md:text-3xl">
-                      {item.problem}
-                    </h3>
+  useEffect(() => {
+    const nav = document.querySelector("header")
+    const navH = nav ? nav.offsetHeight : 80
+    setNavHeight(navH)
+
+    // Total height = scroll runway for all card transitions + buffer after last card + viewport
+    // The sticky element unsticks when: scrolled >= outerHeight - viewportHeight
+    // We want that to happen after all cards have landed + TAIL_BUFFER
+    // All cards land at: (problems.length - 1) * SCROLL_PER_CARD
+    // So: outerHeight - viewportHeight = (n-1)*SCROLL_PER_CARD + TAIL_BUFFER
+    // outerHeight = (n-1)*SCROLL_PER_CARD + TAIL_BUFFER + viewportHeight
+    setOuterHeight((problems.length - 1) * SCROLL_PER_CARD + TAIL_BUFFER + window.innerHeight)
+
+    const handleScroll = () => {
+      if (!outerRef.current) return
+      const rect = outerRef.current.getBoundingClientRect()
+      // scrolled = how many px we've scrolled past the top of the outer section
+      const scrolled = Math.max(0, -rect.top)
+
+      const translates = problems.map((_, i) => {
+        if (i === 0) return 0 // Card 1 is already in place
+        const start = (i - 1) * SCROLL_PER_CARD
+        const end = i * SCROLL_PER_CARD
+        const progress = Math.max(0, Math.min(1, (scrolled - start) / (end - start)))
+        // Starts 600px below its final position, slides up to 0
+        return (1 - progress) * 600
+      })
+      setCardTranslates(translates)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  return (
+    // Outer section — provides scroll runway. Once exhausted, the sticky block unsticks
+    // and the whole module (title + all headers + card 5) scrolls away as one.
+    <div
+      ref={outerRef}
+      className="relative bg-white"
+      style={{ height: `${outerHeight}px` }}
+    >
+      {/* Single sticky block — everything inside moves together when section ends */}
+      <div
+        className="sticky overflow-hidden bg-white"
+        style={{ top: `${navHeight}px` }}
+      >
+        {/* Title — tighter padding */}
+        <div className="bg-white px-6 pb-4 pt-6 lg:px-12">
+          <div className="mx-auto max-w-[1400px]">
+            <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+              What it looks like.
+            </h2>
+          </div>
+        </div>
+
+        {/* Card stack — cards translate in from below, stacking on top of each other */}
+        <div className="relative" style={{ height: `${400 + problems.length * CARD_HEADER_H}px` }}>
+          {problems.map((item, i) => {
+            const Icon = item.icon
+            // Each card's final resting top = i * CARD_HEADER_H (stacked headers)
+            const finalTop = i * CARD_HEADER_H
+            const translateY = cardTranslates[i] ?? 0
+
+            return (
+              <div
+                key={item.eyebrow}
+                className="absolute w-full"
+                style={{
+                  top: `${finalTop}px`,
+                  transform: `translateY(${translateY}px)`,
+                  zIndex: i + 1,
+                  willChange: "transform",
+                }}
+              >
+                <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+                  <div
+                    className="flex items-center gap-3 bg-brand-pink px-8 text-brand-white"
+                    style={{ height: `${CARD_HEADER_H}px` }}
+                  >
+                    <Icon size={20} className="shrink-0" />
+                    <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
                   </div>
-                  
-                  {/* Text that gets covered by next card */}
-                  <div className="ml-14 mt-6">
-                    <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
-                      {item.solution}
-                    </p>
+                  <div className="border-2 border-t-0 border-brand-dark bg-white p-8 lg:p-12">
+                    <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
+                      {item.heading}
+                    </h3>
+                    <div className="grid gap-8 lg:grid-cols-2">
+                      <div>
+                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">DRAG</div>
+                        <p className="text-base leading-relaxed text-brand-dark/70">{item.drag}</p>
+                      </div>
+                      <div>
+                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-orange">FLOW</div>
+                        <p className="text-base leading-relaxed text-brand-dark/70">{item.flow}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )
-        })}
-        
-        {/* Spacer to allow last card to be fully visible */}
-        <div className="h-[40vh]" />
+            )
+          })}
+        </div>
       </div>
-    </section>
+    </div>
   )
 }

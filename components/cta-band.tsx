@@ -9,6 +9,7 @@ import { useState } from "react"
 interface CtaBandProps {
   heading: string
   description?: string
+  body?: string[]
   ctaLabel?: string
   ctaHref?: string
   background?: "pink" | "orange" | "yellow-light" | "yellow-deep" | "dark"
@@ -41,6 +42,7 @@ const btnMap = {
 export function CtaBand({
   heading,
   description,
+  body,
   ctaLabel = "Get in touch",
   ctaHref = "/contact",
   background = "yellow-light",
@@ -55,14 +57,23 @@ export function CtaBand({
         variants={fadeInUp}
         className="mx-auto flex max-w-[1400px] flex-col items-center gap-8 text-center"
       >
-        <div className="max-w-4xl">
+        <div className="max-w-3xl">
           <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
             {heading}
           </h2>
           {description && (
-            <p className="mt-4 text-lg leading-relaxed opacity-70">
+            <p className="mt-6 text-lg leading-relaxed opacity-70">
               {description}
             </p>
+          )}
+          {body && body.length > 0 && (
+            <div className="mt-6 space-y-4">
+              {body.map((para, i) => (
+                <p key={i} className="text-lg leading-relaxed opacity-70">
+                  {para}
+                </p>
+              ))}
+            </div>
           )}
         </div>
         <Link

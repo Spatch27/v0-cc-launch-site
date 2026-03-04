@@ -85,11 +85,13 @@
   }
   body {
     @apply bg-background text-foreground;
+    position: relative;
   }
 }
 
 /* Smooth scrolling */
 html {
+  position: relative;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
