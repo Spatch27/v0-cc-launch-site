@@ -48,8 +48,8 @@ const problems = [
 ]
 
 const HEADER_HEIGHT = 64
-const CARD_INITIAL_GAP = 700 // Large gap between cards when spread out
-const CARD_GAP = 50 // Gap between stacked headers
+const CARD_HEIGHT_ESTIMATE = 500 // Approximate full card height
+const CARD_START_GAP = 50 // Small gap between cards at start
 
 export function WhatLooksLikeSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -90,22 +90,22 @@ export function WhatLooksLikeSection() {
       {/* Stacking cards container - Use overflow hidden to clip cards */}
       <div className="relative">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-          {/* Card stack wrapper - total height needed for all cards to scroll through */}
-          <div className="relative" style={{ height: `${problems.length * CARD_INITIAL_GAP + 400}px` }}>
+          {/* Card stack wrapper */}
+          <div className="relative" style={{ height: `${problems.length * (CARD_HEIGHT_ESTIMATE + CARD_START_GAP) + 600}px` }}>
             {problems.map((item, i) => {
               const Icon = item.icon
               
-              // Initial position: cards spread far apart
-              const initialPosition = i * CARD_INITIAL_GAP
+              // Initial position: cards stacked with small gaps
+              const initialTopPosition = i * (CARD_HEIGHT_ESTIMATE + CARD_START_GAP)
               
-              // Final stacked position: each card's header stacks under the previous with CARD_GAP between them
-              const finalPosition = i * (HEADER_HEIGHT + CARD_GAP)
+              // Final stacked position: headers stacked on top of each other with HEADER_HEIGHT + gap spacing
+              const finalTopPosition = i * (HEADER_HEIGHT + CARD_START_GAP)
               
-              // Calculate when this card should start animating
-              const cardStartProgress = (i / problems.length) * 0.8
-              const cardEndProgress = ((i + 1) / problems.length) * 1.0
+              // Each card animates independently over its scroll range
+              const cardStartProgress = (i / problems.length) * 0.75
+              const cardEndProgress = ((i + 1) / problems.length) * 0.95
               
-              // Calculate this card's animation progress
+              // Clamp progress to this card's scroll range
               let cardProgress = 0
               if (scrollProgress >= cardStartProgress && scrollProgress <= cardEndProgress) {
                 cardProgress = (scrollProgress - cardStartProgress) / (cardEndProgress - cardStartProgress)
@@ -113,15 +113,20 @@ export function WhatLooksLikeSection() {
                 cardProgress = 1
               }
               
-              // Interpolate from initial position to final stacked position
-              const currentPosition = initialPosition + (finalPosition - initialPosition) * cardProgress
+              // Smooth easing for the animation
+              const easeProgress = cardProgress < 0.5 
+                ? 2 * cardProgress * cardProgress 
+                : -1 + (4 - 2 * cardProgress) * cardProgress
+              
+              // Interpolate position from initial to final
+              const currentTop = initialTopPosition + (finalTopPosition - initialTopPosition) * easeProgress
               
               return (
                 <div
                   key={item.heading}
                   className="absolute w-full"
                   style={{
-                    top: `${currentPosition}px`,
+                    top: `${currentTop}px`,
                     zIndex: problems.length - i,
                   }}
                 >
