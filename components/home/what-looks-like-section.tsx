@@ -48,7 +48,8 @@ const problems = [
 ]
 
 const HEADER_HEIGHT = 64
-const CARD_GAP = 50 // Gap between cards
+const CARD_CONTENT_HEIGHT = 450 // Approx visible content height per card
+const CARD_GAP = 50 // Gap between stacked headers
 
 export function WhatLooksLikeSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -90,16 +91,16 @@ export function WhatLooksLikeSection() {
       <div className="relative">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           {/* Card stack wrapper - total height needed for all cards to scroll through */}
-          <div className="relative" style={{ height: `${problems.length * (HEADER_HEIGHT + CARD_GAP) + 800}px` }}>
+          <div className="relative" style={{ height: `${problems.length * (HEADER_HEIGHT + CARD_CONTENT_HEIGHT + CARD_GAP) + 200}px` }}>
             {problems.map((item, i) => {
               const Icon = item.icon
               
-              // Simple positioning: each card starts 114px below the previous (64px header + 50px gap)
-              const topPosition = i * (HEADER_HEIGHT + CARD_GAP)
+              // Position each card with full content visible initially
+              const topPosition = i * (HEADER_HEIGHT + CARD_CONTENT_HEIGHT + CARD_GAP)
               
-              // Calculate when this card should start animating
-              const cardStartProgress = (i / (problems.length - 1)) * 0.8
-              const cardEndProgress = ((i + 1) / (problems.length - 1)) * 0.95
+              // Calculate when this card should start animating (spread across scroll)
+              const cardStartProgress = (i / problems.length) * 0.9
+              const cardEndProgress = ((i + 1) / problems.length) * 0.95
               
               // Calculate this card's animation progress
               let cardProgress = 0
@@ -109,8 +110,8 @@ export function WhatLooksLikeSection() {
                 cardProgress = 1
               }
               
-              // Translate up based on progress - push the whole card up to stack headers
-              const translateY = -cardProgress * (HEADER_HEIGHT + CARD_GAP)
+              // Translate up by content height to stack headers with gap
+              const translateY = -cardProgress * (CARD_CONTENT_HEIGHT + CARD_GAP)
               
               return (
                 <div
