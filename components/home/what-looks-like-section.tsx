@@ -7,9 +7,12 @@ import {
   CreditCard, 
 } from "lucide-react"
 
-const NAV_HEIGHT = 80      // height of fixed navigation
-const SECTION_HEADER = 120 // approx height of "What it looks like." heading area
-const HEADER_H = 64        // height of each pink header bar
+// Height of the fixed navigation bar
+const NAV_HEIGHT = 80
+// Height of the sticky "What it looks like." section header
+const SECTION_HEADER_H = 120
+// Height of each pink card header bar
+const CARD_HEADER_H = 64
 
 const problems = [
   {
@@ -51,10 +54,11 @@ const problems = [
 
 export function WhatLooksLikeSection() {
   return (
-    <section className="relative bg-brand-white">
-      {/* Section header — sticky so it stays visible during the card animation */}
+    <section className="bg-brand-white">
+
+      {/* ── Section title: sticky, sits just below the nav ── */}
       <div
-        className="sticky z-50 bg-brand-white py-12"
+        className="sticky z-[100] bg-brand-white py-12"
         style={{ top: `${NAV_HEIGHT}px` }}
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
@@ -64,55 +68,72 @@ export function WhatLooksLikeSection() {
         </div>
       </div>
 
-      {/* Each card wrapper provides the scroll distance needed to trigger sticking */}
+      {/*
+        ── Card wrappers ──
+        Each wrapper is tall enough that its sticky child has scroll distance
+        to travel before it sticks. z-index increases with each card so later
+        cards visually cover earlier ones.
+
+        Card i sticks at:  NAV + SECTION_HEADER + (i × CARD_HEADER_H)
+        so each stacked header is exactly CARD_HEADER_H below the previous.
+
+        The wrapper height = card body height (≈500px) + some scroll runway
+        so the user scrolls the card into its stuck position before seeing
+        the next card arrive.
+      */}
       {problems.map((item, i) => {
         const Icon = item.icon
-        // Each card sticks just below the nav + section header + all previously stacked headers
-        const stickyTop = NAV_HEIGHT + SECTION_HEADER + i * HEADER_H
+        const stickyTop = NAV_HEIGHT + SECTION_HEADER_H + i * CARD_HEADER_H
 
         return (
-          // The wrapper needs enough height so the sticky card has room to scroll into and out of view.
-          // Extra 50px = the visible gap between this card and the one above.
-          <div key={item.eyebrow} className="relative" style={{ zIndex: i + 1 }}>
+          <div
+            key={item.eyebrow}
+            // Tall enough for the sticky card to have scroll runway + card body visible
+            className="relative"
+            style={{
+              height: `calc(500px + ${CARD_HEADER_H * (problems.length - i)}px)`,
+              // Later cards sit on top of earlier ones
+              zIndex: 10 + i,
+            }}
+          >
             <div
-              className="sticky mx-auto max-w-[1400px] px-6 lg:px-12"
-              style={{ top: `${stickyTop}px`, zIndex: i + 1 }}
+              className="sticky w-full"
+              style={{ top: `${stickyTop}px`, zIndex: 10 + i }}
             >
-              {/* Pink header bar */}
-              <div
-                className="flex items-center gap-3 bg-brand-pink px-8 py-4 text-brand-white"
-                style={{ height: `${HEADER_H}px` }}
-              >
-                <Icon size={20} className="shrink-0" />
-                <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
-              </div>
+              <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+                {/* Pink header bar */}
+                <div
+                  className="flex items-center gap-3 bg-brand-pink px-8 text-brand-white"
+                  style={{ height: `${CARD_HEADER_H}px` }}
+                >
+                  <Icon size={20} className="shrink-0" />
+                  <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
+                </div>
 
-              {/* Card body */}
-              <div className="w-full border-2 border-t-0 border-brand-dark bg-brand-white p-8 lg:p-12">
-                <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
-                  {item.heading}
-                </h3>
-                <div className="grid gap-8 lg:grid-cols-2">
-                  <div>
-                    <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">DRAG</div>
-                    <p className="text-base leading-relaxed text-brand-dark/70">{item.drag}</p>
-                  </div>
-                  <div>
-                    <div className="mb-3 text-xs font-bold tracking-widest text-brand-orange">FLOW</div>
-                    <p className="text-base leading-relaxed text-brand-dark/70">{item.flow}</p>
+                {/* Card body — white so it covers the card below */}
+                <div className="w-full border-2 border-t-0 border-brand-dark bg-brand-white p-8 lg:p-12">
+                  <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
+                    {item.heading}
+                  </h3>
+                  <div className="grid gap-8 lg:grid-cols-2">
+                    <div>
+                      <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">DRAG</div>
+                      <p className="text-base leading-relaxed text-brand-dark/70">{item.drag}</p>
+                    </div>
+                    <div>
+                      <div className="mb-3 text-xs font-bold tracking-widest text-brand-orange">FLOW</div>
+                      <p className="text-base leading-relaxed text-brand-dark/70">{item.flow}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Scroll spacer: card body height + 50px gap before the next card appears */}
-            <div className="h-[550px]" />
           </div>
         )
       })}
 
-      {/* Bottom padding so the last card fully unsticks before the next section */}
-      <div className="h-24" />
+      {/* Breathing room after final card before next section */}
+      <div className="h-32" />
     </section>
   )
 }
