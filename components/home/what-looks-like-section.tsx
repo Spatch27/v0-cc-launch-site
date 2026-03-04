@@ -3,10 +3,10 @@
 import { useRef } from "react"
 import { 
   Users,
+  Users2,
   Eye, 
   Clock, 
-  Zap, 
-  AlertCircle 
+  Package
 } from "lucide-react"
 
 const problems = [
@@ -18,32 +18,32 @@ const problems = [
     flow: "One orchestrated experience, end-to-end.",
   },
   {
+    icon: Users2,
+    eyebrow: "TEAM",
+    heading: "Talented people, underperforming teams",
+    drag: "Great marketers joined to build bold work. They're stuck in approval loops and broken systems. The workaround has become the culture.",
+    flow: "Clear decision rights, protected focus, genuine ownership.",
+  },
+  {
     icon: Eye,
     eyebrow: "DATA",
     heading: "Flying blind on what's working",
-    drag: "Dashboards multiply. Reports say different things. Nobody has the data they need when they need it.",
-    flow: "Telemetry your team will actually use. Real-time clarity.",
+    drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
+    flow: "A single, agreed view of what's happening, why, and what matters next.",
   },
   {
     icon: Clock,
     eyebrow: "PROCESS",
     heading: "Everything takes too long",
-    drag: "Approval loops. Stakeholder consensus. Hand-offs between systems. Briefs that should take days take weeks.",
-    flow: "Workflows redesigned. Cycles shortened. Agents handling routine work.",
+    drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
+    flow: "Lean pathways, clean handoffs, fewer loops.",
   },
   {
-    icon: Zap,
-    eyebrow: "STACK",
-    heading: "Paying for tech nobody's really using",
-    drag: "Six-figure martech investments. Tools that don't talk to each other. Shelfware accumulating.",
-    flow: "Rationalized stack. Technology that serves your people.",
-  },
-  {
-    icon: AlertCircle,
-    eyebrow: "CULTURE",
-    heading: "Workarounds become the work",
-    drag: "Teams invent their own processes. Manual effort thrives. Best people spend time unblocking instead of working.",
-    flow: "Restored clarity and confidence. Everyone gets a jetpack.",
+    icon: Package,
+    eyebrow: "TECHNOLOGY",
+    heading: "Paying for tech nobody's using",
+    drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
+    flow: "A leaner, better-loved stack built around how people actually work.",
   },
 ]
 
