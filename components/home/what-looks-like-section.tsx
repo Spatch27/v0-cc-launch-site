@@ -53,7 +53,6 @@ const CARD_GAP = 50 // Gap between cards
 export function WhatLooksLikeSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [cardHeights, setCardHeights] = useState<number[]>(new Array(problems.length).fill(400))
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,16 +89,13 @@ export function WhatLooksLikeSection() {
       {/* Stacking cards container - Use overflow hidden to clip cards */}
       <div className="relative">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-          {/* Card stack wrapper */}
-          <div className="relative" style={{ height: `${cardHeights.reduce((sum, h) => sum + h + HEADER_HEIGHT + CARD_GAP, 0)}px` }}>
+          {/* Card stack wrapper - total height needed for all cards to scroll through */}
+          <div className="relative" style={{ height: `${problems.length * (HEADER_HEIGHT + CARD_GAP) + 800}px` }}>
             {problems.map((item, i) => {
               const Icon = item.icon
               
-              // Calculate position based on cumulative heights
-              let topPosition = 0
-              for (let j = 0; j < i; j++) {
-                topPosition += cardHeights[j] + HEADER_HEIGHT + CARD_GAP
-              }
+              // Simple positioning: each card starts 114px below the previous (64px header + 50px gap)
+              const topPosition = i * (HEADER_HEIGHT + CARD_GAP)
               
               // Calculate when this card should start animating
               const cardStartProgress = (i / (problems.length - 1)) * 0.8
@@ -113,9 +109,8 @@ export function WhatLooksLikeSection() {
                 cardProgress = 1
               }
               
-              // Translate up based on progress - only move the content, not the header
-              const contentHeight = cardHeights[i] || 400
-              const translateY = -cardProgress * (contentHeight + CARD_GAP)
+              // Translate up based on progress - push the whole card up to stack headers
+              const translateY = -cardProgress * (HEADER_HEIGHT + CARD_GAP)
               
               return (
                 <div
@@ -136,7 +131,7 @@ export function WhatLooksLikeSection() {
                   </div>
 
                   {/* Card Content */}
-                  <div className="w-full border-2 border-t-0 border-brand-dark bg-brand-white p-8 lg:p-12" data-card-content>
+                  <div className="w-full border-2 border-t-0 border-brand-dark bg-brand-white p-8 lg:p-12">
                     {/* Heading */}
                     <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
                       {item.heading}
