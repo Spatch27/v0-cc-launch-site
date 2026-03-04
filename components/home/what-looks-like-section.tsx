@@ -85,25 +85,32 @@ export function WhatLooksLikeSection() {
         Card 2 sticks at: navHeight + titleHeight + CARD_HEADER_H * 2
         etc.
       */}
-      {problems.map((item, i) => {
-        const Icon = item.icon
-        const stickyTop = navHeight + titleHeight + i * CARD_HEADER_H
-        const isLast = i === problems.length - 1
+      {/*
+        All cards live inside ONE tall container.
+        Each card is position:sticky inside this single scroll context.
+        This way earlier cards never lose their sticking context.
+      */}
+      <div
+        style={{
+          // Total height: enough for 5 cards to each scroll into view (100vh each)
+          // minus the overlap from stacking, plus extra for the last card body
+          height: `${problems.length * 100}vh`,
+        }}
+      >
+        {problems.map((item, i) => {
+          const Icon = item.icon
+          // Card 0 sticks right under the title
+          // Card 1 sticks one header-height lower, etc.
+          const stickyTop = navHeight + titleHeight + i * CARD_HEADER_H
 
-        return (
-          <div
-            key={item.eyebrow}
-            className="relative"
-            style={{
-              // Each wrapper needs enough height so the sticky card
-              // has scroll distance. Last card doesn't need extra runway.
-              height: isLast ? "auto" : "100vh",
-              zIndex: i + 1,
-            }}
-          >
+          return (
             <div
+              key={item.eyebrow}
               className="sticky"
-              style={{ top: `${stickyTop}px` }}
+              style={{
+                top: `${stickyTop}px`,
+                zIndex: i + 1,
+              }}
             >
               <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
                 {/* Pink header bar */}
@@ -133,9 +140,9 @@ export function WhatLooksLikeSection() {
                 </div>
               </div>
             </div>
-          </div>
-        )
-      })}
+          )
+        })}
+      </div>
     </section>
   )
 }
