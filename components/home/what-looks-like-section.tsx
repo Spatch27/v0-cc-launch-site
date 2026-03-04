@@ -48,7 +48,7 @@ const problems = [
 ]
 
 const HEADER_HEIGHT = 64
-const CARD_CONTENT_HEIGHT = 450 // Approx visible content height per card
+const CARD_INITIAL_GAP = 700 // Large gap between cards when spread out
 const CARD_GAP = 50 // Gap between stacked headers
 
 export function WhatLooksLikeSection() {
@@ -91,16 +91,19 @@ export function WhatLooksLikeSection() {
       <div className="relative">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           {/* Card stack wrapper - total height needed for all cards to scroll through */}
-          <div className="relative" style={{ height: `${problems.length * (HEADER_HEIGHT + CARD_CONTENT_HEIGHT + CARD_GAP) + 200}px` }}>
+          <div className="relative" style={{ height: `${problems.length * CARD_INITIAL_GAP + 400}px` }}>
             {problems.map((item, i) => {
               const Icon = item.icon
               
-              // Position each card with full content visible initially
-              const topPosition = i * (HEADER_HEIGHT + CARD_CONTENT_HEIGHT + CARD_GAP)
+              // Initial position: cards spread far apart
+              const initialPosition = i * CARD_INITIAL_GAP
               
-              // Calculate when this card should start animating (spread across scroll)
-              const cardStartProgress = (i / problems.length) * 0.9
-              const cardEndProgress = ((i + 1) / problems.length) * 0.95
+              // Final stacked position: each card's header stacks under the previous with CARD_GAP between them
+              const finalPosition = i * (HEADER_HEIGHT + CARD_GAP)
+              
+              // Calculate when this card should start animating
+              const cardStartProgress = (i / problems.length) * 0.8
+              const cardEndProgress = ((i + 1) / problems.length) * 1.0
               
               // Calculate this card's animation progress
               let cardProgress = 0
@@ -110,16 +113,15 @@ export function WhatLooksLikeSection() {
                 cardProgress = 1
               }
               
-              // Translate up by content height to stack headers with gap
-              const translateY = -cardProgress * (CARD_CONTENT_HEIGHT + CARD_GAP)
+              // Interpolate from initial position to final stacked position
+              const currentPosition = initialPosition + (finalPosition - initialPosition) * cardProgress
               
               return (
                 <div
                   key={item.heading}
                   className="absolute w-full"
                   style={{
-                    top: `${topPosition}px`,
-                    transform: `translateY(${translateY}px)`,
+                    top: `${currentPosition}px`,
                     zIndex: problems.length - i,
                   }}
                 >
