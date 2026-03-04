@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { 
   Link as LinkIcon,
   Eye, 
@@ -49,66 +49,50 @@ const problems = [
 ]
 
 export function WhatLooksLikeSection() {
-  const titleRef = useRef<HTMLDivElement>(null)
   const [navHeight, setNavHeight] = useState(80)
-  const [titleHeight, setTitleHeight] = useState(96)
 
   useEffect(() => {
-    // Measure actual nav and title heights
     const nav = document.querySelector("header")
     if (nav) setNavHeight(nav.offsetHeight)
-    if (titleRef.current) setTitleHeight(titleRef.current.offsetHeight)
   }, [])
 
   return (
-    <section className="bg-brand-white">
-      {/* Section title: sticky, pins right under the nav */}
+    /*
+      Outer section provides scroll runway.
+      Height = enough for 4 card-slide transitions + a brief pause after card 5 loads.
+      Once this section is scrolled past, the inner sticky block unsticks and
+      the whole module (title + all headers) scrolls away as one.
+    */
+    <section
+      className="bg-brand-white"
+      style={{ height: `${(problems.length - 1) * 110 + 20}vh` }}
+    >
+      {/* Single sticky wrapper — pins at nav bottom, unsticks when outer section ends */}
       <div
-        ref={titleRef}
-        className="sticky z-[100] bg-brand-white px-6 py-10 lg:px-12"
+        className="sticky"
         style={{ top: `${navHeight}px` }}
       >
-        <div className="mx-auto max-w-[1400px]">
-          <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            What it looks like.
-          </h2>
+        {/* Section title */}
+        <div className="bg-brand-white px-6 py-10 lg:px-12">
+          <div className="mx-auto max-w-[1400px]">
+            <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+              What it looks like.
+            </h2>
+          </div>
         </div>
-      </div>
 
-      {/*
-        Each card is wrapped in a div whose height provides scroll runway.
-        The card itself is position:sticky and sticks at the correct top offset.
-        z-index increases with each card so later cards paint over earlier ones.
-        
-        Card 0 sticks at: navHeight + titleHeight  (right under the title)
-        Card 1 sticks at: navHeight + titleHeight + CARD_HEADER_H  (under card 0's header)
-        Card 2 sticks at: navHeight + titleHeight + CARD_HEADER_H * 2
-        etc.
-      */}
-      {/*
-        All cards live inside ONE tall container.
-        Each card is position:sticky inside this single scroll context.
-        This way earlier cards never lose their sticking context.
-      */}
-      <div
-        style={{
-          height: `${(problems.length - 1) * 120 + 10}vh`,
-        }}
-      >
+        {/* Cards — each sticky relative to the outer section, stacking on top of each other */}
         {problems.map((item, i) => {
           const Icon = item.icon
-          // Card 0 sticks right under the title
-          // Card 1 sticks one header-height lower, etc.
-          const stickyTop = navHeight + titleHeight + i * CARD_HEADER_H
+          // Each card sticks at: i * CARD_HEADER_H below the title
+          // so they stack header-by-header as scroll proceeds
+          const stickyTop = navHeight + i * CARD_HEADER_H
 
           return (
             <div
               key={item.eyebrow}
               className="sticky"
-              style={{
-                top: `${stickyTop}px`,
-                zIndex: i + 1,
-              }}
+              style={{ top: `${stickyTop}px`, zIndex: i + 1 }}
             >
               <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
                 {/* Pink header bar */}
