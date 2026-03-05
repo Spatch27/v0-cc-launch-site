@@ -142,11 +142,11 @@ export function WhatLooksLikeSection() {
                     <div className="grid gap-8 lg:grid-cols-2">
                       <div>
                         <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">DRAG</div>
-                        <p className="text-base leading-relaxed" style={{ color: "#876176" }}>{item.drag}</p>
+                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.drag}</p>
                       </div>
                       <div>
                         <div className="mb-3 text-xs font-bold tracking-widest text-brand-orange">FLOW</div>
-                        <p className="text-base leading-relaxed" style={{ color: "#876176" }}>{item.flow}</p>
+                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.flow}</p>
                       </div>
                     </div>
                   </div>
