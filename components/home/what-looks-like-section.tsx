@@ -135,7 +135,7 @@ export function WhatLooksLikeSection() {
                     <img src={item.icon} alt={item.eyebrow} className="h-10 w-10 shrink-0" />
                     <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
                   </div>
-                  <div className="border-2 border-t-0 border-brand-dark bg-white p-8 lg:p-12">
+                  <div className="bg-gray-100 p-8 lg:p-12">
                     <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
                       {item.heading}
                     </h3>
