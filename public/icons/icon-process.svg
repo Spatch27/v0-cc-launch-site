@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <style>
+    .line { stroke: #ffffff; stroke-width: 3.5; fill: none; }
+    .dot { fill: #ffffff; }
+    .circle-outline { stroke: #ffffff; stroke-width: 3.5; fill: none; }
+  </style>
+  <!-- Connecting horizontal lines -->
+  <line x1="22" y1="60" x2="36" y2="60" class="line"/>
+  <line x1="50" y1="60" x2="58" y2="60" class="line"/>
+  <line x1="66" y1="60" x2="74" y2="60" class="line"/>
+  <line x1="82" y1="60" x2="90" y2="60" class="line"/>
+  <!-- Arrow at end -->
+  <line x1="90" y1="60" x2="105" y2="60" class="line"/>
+  <line x1="99" y1="53" x2="105" y2="60" class="line"/>
+  <line x1="99" y1="67" x2="105" y2="60" class="line"/>
+  <!-- Dot 1 (small) -->
+  <circle cx="15" cy="60" r="2" class="dot"/>
+  <!-- Dot 2 with circle -->
+  <circle cx="43" cy="60" r="3" class="dot"/>
+  <circle cx="43" cy="60" r="7" class="circle-outline"/>
+  <!-- Dot 3 (small, no circle) -->
+  <circle cx="62" cy="60" r="2" class="dot"/>
+  <!-- Dot 4 with circle -->
+  <circle cx="78" cy="60" r="3" class="dot"/>
+  <circle cx="78" cy="60" r="7" class="circle-outline"/>
+  <!-- Dots above/below to suggest branching -->
+  <circle cx="43" cy="42" r="1.5" class="dot"/>
+  <line x1="43" y1="45" x2="43" y2="53" class="line"/>
+  <circle cx="78" cy="78" r="1.5" class="dot"/>
+  <line x1="78" y1="67" x2="78" y2="75" class="line"/>
+</svg>

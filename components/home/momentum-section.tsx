@@ -19,7 +19,7 @@ export function MomentumSection() {
           className="space-y-6"
         >
           <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Increase marketing momentum.
+            How we work.
           </h2>
           <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
             We redesign workflows, simplify stacks, and get AI agents working inside your team. We embed inside the marketing function, working alongside your team in focused six-week cycles - redesigning how work actually flows across people, process and technology. Measurable progress, not slideware.
@@ -33,7 +33,7 @@ export function MomentumSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="space-y-6 border-t border-brand-dark/10 pt-12"
         >
-          <h3 className="font-display text-3xl font-bold leading-snug text-brand-dark md:text-4xl">
+          <h3 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
             Systems launch agents.
           </h3>
           <div className="space-y-4">
