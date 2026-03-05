@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <style>
+    .line { stroke: #4a4a4a; stroke-width: 1; fill: none; }
+    .dot { fill: #4a4a4a; }
+    .circle-outline { stroke: #4a4a4a; stroke-width: 1; fill: none; }
+  </style>
+  <!-- Outer rounded square -->
+  <rect x="30" y="30" width="60" height="60" rx="3" class="circle-outline"/>
+  <!-- Centre dot with ring -->
+  <circle cx="60" cy="60" r="5" class="dot"/>
+  <circle cx="60" cy="60" r="11" class="circle-outline"/>
+  <!-- Pin traces - top side -->
+  <line x1="45" y1="30" x2="45" y2="16" class="line"/>
+  <line x1="60" y1="30" x2="60" y2="16" class="line"/>
+  <line x1="75" y1="30" x2="75" y2="16" class="line"/>
+  <!-- Pin traces - bottom side -->
+  <line x1="45" y1="90" x2="45" y2="104" class="line"/>
+  <line x1="60" y1="90" x2="60" y2="104" class="line"/>
+  <line x1="75" y1="90" x2="75" y2="104" class="line"/>
+  <!-- Pin traces - left side -->
+  <line x1="30" y1="45" x2="16" y2="45" class="line"/>
+  <line x1="30" y1="60" x2="16" y2="60" class="line"/>
+  <line x1="30" y1="75" x2="16" y2="75" class="line"/>
+  <!-- Pin traces - right side -->
+  <line x1="90" y1="45" x2="104" y2="45" class="line"/>
+  <line x1="90" y1="60" x2="104" y2="60" class="line"/>
+  <line x1="90" y1="75" x2="104" y2="75" class="line"/>
+  <!-- Pin end dots - top -->
+  <circle cx="45" cy="16" r="2" class="dot"/>
+  <circle cx="60" cy="16" r="2" class="dot"/>
+  <circle cx="75" cy="16" r="2" class="dot"/>
+  <!-- Pin end dots - bottom -->
+  <circle cx="45" cy="104" r="2" class="dot"/>
+  <circle cx="60" cy="104" r="2" class="dot"/>
+  <circle cx="75" cy="104" r="2" class="dot"/>
+  <!-- Pin end dots - left -->
+  <circle cx="16" cy="45" r="2" class="dot"/>
+  <circle cx="16" cy="60" r="2" class="dot"/>
+  <circle cx="16" cy="75" r="2" class="dot"/>
+  <!-- Pin end dots - right -->
+  <circle cx="104" cy="45" r="2" class="dot"/>
+  <circle cx="104" cy="60" r="2" class="dot"/>
+  <circle cx="104" cy="75" r="2" class="dot"/>
+  <!-- Corner dots with rings on the square -->
+  <circle cx="30" cy="30" r="2.5" class="dot"/>
+  <circle cx="30" cy="30" r="6" class="circle-outline"/>
+  <circle cx="90" cy="30" r="2.5" class="dot"/>
+  <circle cx="90" cy="30" r="6" class="circle-outline"/>
+  <circle cx="30" cy="90" r="2.5" class="dot"/>
+  <circle cx="30" cy="90" r="6" class="circle-outline"/>
+  <circle cx="90" cy="90" r="2.5" class="dot"/>
+  <circle cx="90" cy="90" r="6" class="circle-outline"/>
+</svg>

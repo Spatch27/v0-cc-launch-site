@@ -1,12 +1,6 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { 
-  Link as LinkIcon,
-  Eye, 
-  Clock, 
-  CreditCard, 
-} from "lucide-react"
 
 const CARD_HEADER_H = 56
 // Scroll distance (px) allocated for each card to animate in
@@ -16,35 +10,35 @@ const TAIL_BUFFER = 50
 
 const problems = [
   {
-    icon: LinkIcon,
+    icon: "/icons/icon-customer.svg",
     eyebrow: "CUSTOMER",
     heading: "Falling through the gaps",
     drag: "Your brand promise and the experience people actually get are drifting apart. Gaps open at the handoffs. Channels contradict each other.",
     flow: "One orchestrated experience, end-to-end.",
   },
   {
-    icon: LinkIcon,
+    icon: "/icons/icon-team.svg",
     eyebrow: "TEAM",
     heading: "Talented people, underperforming teams",
     drag: "Great marketers joined to build bold work. They're stuck in approval loops and broken systems. The workaround has become the culture.",
     flow: "Clear decision rights, protected focus, genuine ownership.",
   },
   {
-    icon: Eye,
+    icon: "/icons/icon-data.svg",
     eyebrow: "DATA",
     heading: "Flying blind on what's working",
     drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
     flow: "A single, agreed view of what's happening, why, and what matters next.",
   },
   {
-    icon: Clock,
+    icon: "/icons/icon-process.svg",
     eyebrow: "PROCESS",
     heading: "Everything takes too long",
     drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
     flow: "Lean pathways, clean handoffs, fewer loops.",
   },
   {
-    icon: CreditCard,
+    icon: "/icons/icon-technology.svg",
     eyebrow: "TECHNOLOGY",
     heading: "Paying for tech nobody's using",
     drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
@@ -118,7 +112,6 @@ export function WhatLooksLikeSection() {
         {/* Card stack — cards translate in from below, stacking on top of each other */}
         <div className="relative" style={{ height: `${400 + problems.length * CARD_HEADER_H}px` }}>
           {problems.map((item, i) => {
-            const Icon = item.icon
             // Each card's final resting top = i * CARD_HEADER_H (stacked headers)
             const finalTop = i * CARD_HEADER_H
             const translateY = cardTranslates[i] ?? 0
@@ -139,7 +132,7 @@ export function WhatLooksLikeSection() {
                     className="flex items-center gap-3 bg-brand-pink px-8 text-brand-white"
                     style={{ height: `${CARD_HEADER_H}px` }}
                   >
-                    <Icon size={20} className="shrink-0" />
+                    <img src={item.icon} alt={item.eyebrow} className="h-5 w-5 shrink-0" />
                     <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
                   </div>
                   <div className="border-2 border-t-0 border-brand-dark bg-white p-8 lg:p-12">
