@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
   <style>
-    .line { stroke: #ffffff; stroke-width: 1; fill: none; }
+    .line { stroke: #ffffff; stroke-width: 3.5; fill: none; }
     .dot { fill: #ffffff; }
-    .circle-outline { stroke: #ffffff; stroke-width: 1; fill: none; }
+    .circle-outline { stroke: #ffffff; stroke-width: 3.5; fill: none; }
   </style>
   <!-- Equilateral triangle centred in viewbox -->
   <!-- Side length 80, height = 69.28 -->
