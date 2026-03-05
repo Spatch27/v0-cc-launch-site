@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
   <style>
-    .line { stroke: #4a4a4a; stroke-width: 1; fill: none; }
-    .dot { fill: #4a4a4a; }
-    .circle-outline { stroke: #4a4a4a; stroke-width: 1; fill: none; }
+    .line { stroke: #ffffff; stroke-width: 1; fill: none; }
+    .dot { fill: #ffffff; }
+    .circle-outline { stroke: #ffffff; stroke-width: 1; fill: none; }
   </style>
   <!-- Connecting horizontal lines -->
   <line x1="22" y1="60" x2="36" y2="60" class="line"/>

@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
   <style>
-    .line { stroke: #4a4a4a; stroke-width: 1; fill: none; }
-    .dot { fill: #4a4a4a; }
-    .circle-outline { stroke: #4a4a4a; stroke-width: 1; fill: none; }
-    .axis { stroke: #4a4a4a; stroke-width: 0.75; fill: none; opacity: 0.4; }
+    .line { stroke: #ffffff; stroke-width: 1; fill: none; }
+    .dot { fill: #ffffff; }
+    .circle-outline { stroke: #ffffff; stroke-width: 1; fill: none; }
+    .axis { stroke: #ffffff; stroke-width: 0.75; fill: none; opacity: 0.4; }
   </style>
   <!-- Axes -->
   <line x1="18" y1="100" x2="108" y2="100" class="axis"/>

@@ -132,7 +132,7 @@ export function WhatLooksLikeSection() {
                     className="flex items-center gap-3 bg-brand-pink px-8 text-brand-white"
                     style={{ height: `${CARD_HEADER_H}px` }}
                   >
-                    <img src={item.icon} alt={item.eyebrow} className="h-5 w-5 shrink-0" />
+                    <img src={item.icon} alt={item.eyebrow} className="h-8 w-8 shrink-0" />
                     <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
                   </div>
                   <div className="border-2 border-t-0 border-brand-dark bg-white p-8 lg:p-12">
