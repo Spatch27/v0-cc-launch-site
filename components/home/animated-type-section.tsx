@@ -91,13 +91,13 @@ export function AnimatedTypeSection() {
               </motion.div>
             </div>
 
-            {/* Line 3: Predictable growth. - words animate separately */}
+            {/* Line 3: Unlock growth. - words animate separately */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <motion.div
                 style={{ opacity: line3Word1Opacity, y: line3Word1Y }}
                 className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
               >
-                Predictable
+                Unlock
               </motion.div>
               <motion.div
                 style={{ opacity: line3Word2Opacity, y: line3Word2Y }}
