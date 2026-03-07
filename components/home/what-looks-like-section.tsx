@@ -117,9 +117,10 @@ export function WhatLooksLikeSection() {
             const translateY = cardTranslates[i] ?? 0
             // Alternate header colors: pink for indices 0,2,4 (CUSTOMER, DATA, TECHNOLOGY)
             // text-brand-dark for indices 1,3 (TEAM, PROCESS)
-            const isPink = i % 2 === 0
-            const headerBgColor = isPink ? "bg-brand-pink" : "bg-[#FFEB3E]"
-            const headerTextColor = isPink ? "text-brand-white" : "text-brand-dark"
+            const isOrange = i % 2 === 0
+            const headerBgColor = isOrange ? "bg-[#FF8600]" : "bg-[#FFEB3E]"
+            const headerTextColor = isOrange ? "text-brand-white" : "text-brand-dark"
+            const iconFilter = isOrange ? "" : "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)"
 
             return (
               <div
@@ -137,7 +138,7 @@ export function WhatLooksLikeSection() {
                     className={`flex items-center gap-3 ${headerBgColor} px-8 ${headerTextColor}`}
                     style={{ height: `${CARD_HEADER_H}px` }}
                   >
-                    <img src={item.icon} alt={item.eyebrow} className="h-10 w-10 shrink-0" />
+                    <img src={item.icon} alt={item.eyebrow} className="h-10 w-10 shrink-0" style={{ filter: iconFilter }} />
                     <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
                   </div>
                   <div className="bg-gray-100 p-8 lg:p-12">
