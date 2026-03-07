@@ -32,6 +32,7 @@ export function MomentumSection() {
               src="/images/how-we-work.jpg"
               alt="How we work - team collaboration"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
               priority
             />
@@ -50,6 +51,7 @@ export function MomentumSection() {
               src="/images/systems-launch-agents.jpg"
               alt="Systems launch agents - AI integration"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
               priority
             />
