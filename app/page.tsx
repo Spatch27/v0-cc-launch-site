@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/home/hero-section"
+import { BuriedSection } from "@/components/home/buried-section"
 import { AnimatedTypeSection } from "@/components/home/animated-type-section"
 import { MomentumSection } from "@/components/home/momentum-section"
 import { WhatLooksLikeSection } from "@/components/home/what-looks-like-section"
@@ -9,6 +10,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <BuriedSection />
       <AnimatedTypeSection />
       <MomentumSection />
       <WhatLooksLikeSection />

@@ -29,16 +29,10 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10 space-y-6"
+          className="mt-10"
         >
-          <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
-            You hired brilliant marketers. And then they got buried. Briefs that should take days take weeks. Platforms generate data nobody trusts. Approval loops are three people too long. Six-figure martech has become shelfware. AI isn&apos;t getting out of pilot. The processes you implemented six months ago are routinely worked around. Your best people spend more time unblocking work than doing it. For most CMOs, a quarter of the marketing budget goes on technology. And half of it isn&apos;t being used.
-          </p>
-          <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
-            That&apos;s operational drag. And it&apos;s a handbrake on your momentum.{" "}
-            <span className="font-semibold text-brand-dark">
-              We are the consultancy for CMOs who want their marketing to move faster.
-            </span>
+          <p className="max-w-2xl text-xl leading-relaxed text-brand-dark/70">
+            We are the consultancy for CMOs who want their marketing to move faster.
           </p>
         </motion.div>
 
