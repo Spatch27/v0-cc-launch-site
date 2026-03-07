@@ -40,7 +40,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-10 flex justify-end"
         >
-          <p className="max-w-[24rem] text-2xl leading-relaxed text-brand-dark/70 text-right">
+          <p className="max-w-[28rem] text-2xl leading-relaxed text-brand-dark/70 text-right">
             We are the consultancy for CMOs who want their marketing to move faster.
           </p>
         </motion.div>
