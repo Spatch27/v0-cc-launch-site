@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { HeroPhilosophy } from "@/components/approach/hero-philosophy"
-import { AIPropellantSection } from "@/components/approach/ai-propellant-section"
-import { OutcomesSection } from "@/components/approach/outcomes-section"
+import { ApproachPhilosophySection } from "@/components/approach/approach-philosophy-section"
 import { PhilosophySection } from "@/components/approach/philosophy-section"
 import { MomentumSection } from "@/components/approach/momentum-section"
 import { EngagementsSection } from "@/components/approach/engagements-section"
@@ -17,10 +16,9 @@ export default function ApproachPage() {
   return (
     <>
       <HeroPhilosophy />
-      <AIPropellantSection />
-      <OutcomesSection />
-      <MomentumSection />
+      <ApproachPhilosophySection />
       <PhilosophySection />
+      <MomentumSection />
       <EngagementsSection />
       <CtaBand
         heading="Before committing a budget, commit an hour."
