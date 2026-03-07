@@ -118,8 +118,8 @@ export function WhatLooksLikeSection() {
             // Alternate header colors: pink for indices 0,2,4 (CUSTOMER, DATA, TECHNOLOGY)
             // text-brand-dark for indices 1,3 (TEAM, PROCESS)
             const isPink = i % 2 === 0
-            const headerBgColor = isPink ? "bg-brand-pink" : "bg-gray-200"
-            const headerTextColor = isPink ? "text-brand-white" : "text-brand-dark"
+            const headerBgColor = isPink ? "bg-brand-pink" : "bg-brand-dark"
+            const headerTextColor = isPink ? "text-brand-white" : "text-brand-white"
 
             return (
               <div
