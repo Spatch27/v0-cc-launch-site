@@ -48,7 +48,7 @@ const allCaseStudies: OutcomeStudy[] = [
     title: "Paying for tech nobody's really using",
     project:
       "Business transformation, web integration, and marketing team alignment",
-    description: "A business critical moment demanded that the marketing function move faster and cost less. The stack was bloated, workarounds were endemic, and licence fees were consuming budget that should have been driving growth.",
+    description: "The stack was bloated, workarounds were endemic, and licence fees were consuming budget that should have been driving growth. The team needed to move faster and cost less - in 12 weeks.\n\nWe rationalised the platforms, removed the workarounds, and aligned the team around a single operating model. Impact over 12 weeks:",
     metrics: [
       { value: "30%", label: "reduction in workarounds" },
       { value: "57%", label: "licence fee reduction" },
