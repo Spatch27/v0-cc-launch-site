@@ -23,8 +23,9 @@ export default function ApproachPage() {
       <PhilosophySection />
       <EngagementsSection />
       <CtaBand
-        heading="Discuss which engagement is right for you"
-        ctaLabel="Get in touch"
+        heading="Before committing a budget, commit an hour."
+        description="Book a free Drag Diagnostic - a structured 60-minute conversation that shows you exactly where operational drag is costing you the most."
+        ctaLabel="Book a Drag Diagnostic"
         background="yellow-deep"
       />
     </>
