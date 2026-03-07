@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
 
@@ -13,44 +13,6 @@ const textContainer = {
 const textChild = {
   hidden: { opacity: 0, y: 32 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-}
-
-function ParallaxImage({ src, alt }: { src: string; alt: string }) {
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  // Track scroll progress of this specific element against the viewport
-  const { scrollYProgress } = useScroll({
-    target: wrapperRef,
-    offset: ["start end", "end start"],
-  })
-
-  // Smooth spring on top of the scroll progress
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20 })
-
-  // Map 0→1 progress to -60px→60px — wrapper is 20% taller so edges never show
-  const y = useTransform(smoothProgress, [0, 1], [-60, 60])
-
-  return (
-    // Outer clip — fixed height, hides overflow from the parallax shift
-    <div ref={wrapperRef} className="relative h-96 overflow-hidden rounded-lg">
-      {/* Inner wrapper: 20% taller, centred, shifts on scroll */}
-      <motion.div
-        style={{ y }}
-        className="absolute left-0 right-0"
-        // Start 10% above and extend 10% below so there's always room to shift
-        initial={{ top: "-10%", bottom: "-10%" }}
-      >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover"
-          priority
-        />
-      </motion.div>
-    </div>
-  )
 }
 
 export function MomentumSection() {
@@ -84,22 +46,38 @@ export function MomentumSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView1 ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+            className="relative h-96 overflow-hidden rounded-lg"
+            initial={{ opacity: 0, x: 40, scale: 0.97 }}
+            animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <ParallaxImage src="/images/how-we-work.jpg" alt="How we work - team collaboration" />
+            <Image
+              src="/images/how-we-work.jpg"
+              alt="How we work - team collaboration"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+              priority
+            />
           </motion.div>
         </div>
 
         {/* Systems launch agents — Image Left, Text Right */}
         <div ref={ref2} className="grid items-center gap-12 border-t border-brand-dark/10 pt-12 lg:grid-cols-2">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView2 ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+            className="relative h-96 overflow-hidden rounded-lg"
+            initial={{ opacity: 0, x: -40, scale: 0.97 }}
+            animate={inView2 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <ParallaxImage src="/images/systems-launch-agents.jpg" alt="Systems launch agents - AI integration" />
+            <Image
+              src="/images/systems-launch-agents.jpg"
+              alt="Systems launch agents - AI integration"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+              priority
+            />
           </motion.div>
 
           <motion.div
