@@ -28,7 +28,14 @@ export default function AboutPage() {
       <CultureSection />
       <TeamSection />
       <AdvisorySection />
-      <CtaBand heading="Want to talk through a challenge?" background="pink" />
+      <CtaBand 
+        heading="Want to meet the team? Start with a conversation." 
+        body={[
+          "Book a free Drag Diagnostic - 60 minutes with the founders, focused on where your drag is and what to do about it first."
+        ]}
+        ctaLabel="Book a Drag Diagnostic"
+        background="pink" 
+      />
     </>
   )
 }
