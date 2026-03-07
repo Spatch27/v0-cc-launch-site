@@ -22,9 +22,9 @@ export function HeroSection() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="relative min-h-screen bg-brand-orange px-6 py-24 lg:px-12 lg:py-32"
+      className="relative h-screen bg-brand-orange px-6 lg:px-12"
     >
-      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pt-24 lg:pt-28">
+      <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-center pt-24 lg:pt-28">
         {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
