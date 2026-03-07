@@ -116,10 +116,11 @@ export function WhatLooksLikeSection() {
             const finalTop = i * CARD_HEADER_H
             const translateY = cardTranslates[i] ?? 0
             // Alternate header colors: pink for indices 0,2,4 (CUSTOMER, DATA, TECHNOLOGY)
-            // Orange for indices 1,3 (TEAM, PROCESS)
-            const isPink = i % 2 === 0
-            const headerBgColor = isPink ? "bg-brand-pink" : "bg-[#FF8600]"
-            const flowColor = isPink ? "text-brand-pink" : "text-[#FF8600]"
+            // text-brand-dark for indices 1,3 (TEAM, PROCESS)
+            const isOrange = i % 2 === 0
+            const headerBgColor = isOrange ? "bg-[#FF8600]" : "bg-[#FFD100]"
+            const headerTextColor = isOrange ? "text-brand-dark" : "text-brand-dark"
+            const iconFilter = isOrange ? "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)" : "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)"
 
             return (
               <div
@@ -134,10 +135,10 @@ export function WhatLooksLikeSection() {
               >
                 <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
                   <div
-                    className={`flex items-center gap-3 ${headerBgColor} px-8 text-brand-white`}
+                    className={`flex items-center gap-3 ${headerBgColor} px-8 ${headerTextColor}`}
                     style={{ height: `${CARD_HEADER_H}px` }}
                   >
-                    <img src={item.icon} alt={item.eyebrow} className="h-10 w-10 shrink-0" />
+                    <img src={item.icon} alt={item.eyebrow} className="h-10 w-10 shrink-0" style={{ filter: iconFilter }} />
                     <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
                   </div>
                   <div className="bg-gray-100 p-8 lg:p-12">
@@ -150,7 +151,7 @@ export function WhatLooksLikeSection() {
                         <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.drag}</p>
                       </div>
                       <div>
-                        <div className={`mb-3 text-xs font-bold tracking-widest ${flowColor}`}>FLOW</div>
+                        <div className="mb-3 text-xs font-bold tracking-widest text-[#FF8600]">FLOW</div>
                         <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.flow}</p>
                       </div>
                     </div>
