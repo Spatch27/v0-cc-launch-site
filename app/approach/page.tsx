@@ -17,8 +17,8 @@ export default function ApproachPage() {
     <>
       <HeroPhilosophy />
       <ApproachPhilosophySection />
-      <PhilosophySection />
       <MomentumSection />
+      <PhilosophySection />
       <EngagementsSection />
       <CtaBand
         heading="Before committing a budget, commit an hour."
