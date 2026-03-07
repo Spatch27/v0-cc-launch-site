@@ -151,7 +151,7 @@ export function WhatLooksLikeSection() {
                         <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.drag}</p>
                       </div>
                       <div>
-                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-pink">FLOW</div>
+                        <div className="mb-3 text-xs font-bold tracking-widest text-[#FF8600]">FLOW</div>
                         <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.flow}</p>
                       </div>
                     </div>
