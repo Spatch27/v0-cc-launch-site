@@ -88,11 +88,19 @@ export function ContactForm() {
             >
               <div>
                 <h2 className="font-display text-4xl font-bold text-brand-white">
-                  Join the waitlist.
+                  Uncover what's actually slowing your team down.
                 </h2>
-                <p className="mt-4 text-lg leading-relaxed text-brand-white/70">
-                  Be first to hear when we're ready to take on new engagements. We'll keep you close, share our thinking, and make sure you're front of the queue when the time is right.
-                </p>
+                <div className="mt-4 space-y-4 text-lg leading-relaxed text-brand-white/70">
+                  <p>
+                    The Drag Diagnostic is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most - and what to fix first.
+                  </p>
+                  <p>
+                    You'll walk away with a Flow Map: a single-page view of where friction is concentrated, what it's costing you, and which fix would yield the fastest return. Board-ready language for a budget conversation, not a feelings conversation.
+                  </p>
+                  <p>
+                    Yours to keep, whether or not we work together.
+                  </p>
+                </div>
               </div>
 
               {submitted ? (
@@ -147,7 +155,7 @@ export function ContactForm() {
                         variants={textRollUp}
                         className="block"
                       >
-                        {loading ? "Joining..." : "Join"}
+                        {loading ? "Booking..." : "Book a Drag Diagnostic"}
                       </motion.span>
                       <motion.span
                         initial="initial"
@@ -155,7 +163,7 @@ export function ContactForm() {
                         variants={textRollDown}
                         className="absolute inset-0 block"
                       >
-                        {loading ? "Joining..." : "Join"}
+                        {loading ? "Booking..." : "Book a Drag Diagnostic"}
                       </motion.span>
                     </span>
                     <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
