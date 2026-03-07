@@ -1,35 +1,44 @@
 "use client"
 
 import Image from "next/image"
-import { motion, useInView, useScroll, useTransform } from "framer-motion"
+import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
 
-// Stagger container for text children
 const textContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.14 } },
 }
 
 const textChild = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 }
 
 function ParallaxImage({ src, alt }: { src: string; alt: string }) {
-  const containerRef = useRef(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  // Track scroll progress of this specific element against the viewport
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: wrapperRef,
     offset: ["start end", "end start"],
   })
-  // Translate in px — image is taller than container so edges never show
-  const y = useTransform(scrollYProgress, [0, 1], [-40, 40])
+
+  // Smooth spring on top of the scroll progress
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20 })
+
+  // Map 0→1 progress to -60px→60px — wrapper is 20% taller so edges never show
+  const y = useTransform(smoothProgress, [0, 1], [-60, 60])
 
   return (
-    <div ref={containerRef} className="relative h-96 overflow-hidden rounded-lg">
+    // Outer clip — fixed height, hides overflow from the parallax shift
+    <div ref={wrapperRef} className="relative h-96 overflow-hidden rounded-lg">
+      {/* Inner wrapper: 20% taller, centred, shifts on scroll */}
       <motion.div
-        className="absolute inset-0"
-        style={{ y, top: "-10%", bottom: "-10%", height: "120%" }}
+        style={{ y }}
+        className="absolute left-0 right-0"
+        // Start 10% above and extend 10% below so there's always room to shift
+        initial={{ top: "-10%", bottom: "-10%" }}
       >
         <Image
           src={src}
@@ -45,13 +54,11 @@ function ParallaxImage({ src, alt }: { src: string; alt: string }) {
 }
 
 export function MomentumSection() {
-  // Section 1 refs
   const ref1 = useRef(null)
-  const inView1 = useInView(ref1, { once: true, margin: "-100px" })
+  const inView1 = useInView(ref1, { once: true, margin: "-80px" })
 
-  // Section 2 refs
   const ref2 = useRef(null)
-  const inView2 = useInView(ref2, { once: true, margin: "-100px" })
+  const inView2 = useInView(ref2, { once: true, margin: "-80px" })
 
   return (
     <Section background="light">
@@ -77,9 +84,9 @@ export function MomentumSection() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={inView1 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={inView1 ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <ParallaxImage src="/images/how-we-work.jpg" alt="How we work - team collaboration" />
           </motion.div>
@@ -88,9 +95,9 @@ export function MomentumSection() {
         {/* Systems launch agents — Image Left, Text Right */}
         <div ref={ref2} className="grid items-center gap-12 border-t border-brand-dark/10 pt-12 lg:grid-cols-2">
           <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={inView2 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: -40 }}
+            animate={inView2 ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <ParallaxImage src="/images/systems-launch-agents.jpg" alt="Systems launch agents - AI integration" />
           </motion.div>
