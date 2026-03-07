@@ -1,13 +1,9 @@
 "use client"
 
-import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import { useState, useRef } from "react"
-import { textRollUp, textRollDown } from "@/lib/animations"
+import { useRef } from "react"
 
 export function HeroSection() {
-  const [isHovered, setIsHovered] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -42,49 +38,11 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10"
+          className="mt-10 flex justify-end"
         >
-          <p className="max-w-2xl text-xl leading-relaxed text-brand-dark/70">
+          <p className="max-w-2xl text-xl leading-relaxed text-brand-dark/70 text-right">
             We are the consultancy for CMOs who want their marketing to move faster.
           </p>
-        </motion.div>
-
-        {/* CTA button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-12"
-        >
-          <Link
-            href="/contact"
-            className="group inline-flex w-fit items-center gap-3 border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <span className="relative inline-block overflow-hidden">
-              <motion.span
-                initial="initial"
-                animate={isHovered ? "hover" : "initial"}
-                variants={textRollUp}
-                className="block"
-              >
-                Talk to us
-              </motion.span>
-              <motion.span
-                initial="initial"
-                animate={isHovered ? "hover" : "initial"}
-                variants={textRollDown}
-                className="absolute inset-0 block"
-              >
-                Talk to us
-              </motion.span>
-            </span>
-            <ArrowRight
-              size={18}
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </Link>
         </motion.div>
       </div>
     </motion.section>
