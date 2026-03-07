@@ -107,68 +107,47 @@ export function ContactForm() {
                 <div className="flex flex-col gap-6 bg-brand-dark/50 border border-brand-white/10 p-12">
                   <CheckCircle size={48} className="text-brand-pink" />
                   <h3 className="font-display text-2xl font-bold text-brand-white">
-                    Thanks for joining!
+                    Thanks for booking!
                   </h3>
                   <p className="text-lg text-brand-white/60">
-                    We'll be in touch soon with exciting updates.
+                    We'll be in touch soon to confirm your diagnostic session.
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-4">
-                  <div className="flex-1">
-                    <label htmlFor="waitlistName" className="mb-2 block text-sm font-medium text-brand-white">
-                      Name
-                    </label>
-                    <input
-                      id="waitlistName"
-                      name="name"
-                      type="text"
-                      required
-                      className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label htmlFor="waitlistEmail" className="mb-2 block text-sm font-medium text-brand-white">
-                      Email
-                    </label>
-                    <input
-                      id="waitlistEmail"
-                      name="email"
-                      type="email"
-                      required
-                      className="w-full border border-brand-white/20 bg-brand-dark/50 px-4 py-3 text-brand-white outline-none transition-colors placeholder:text-brand-white/40 focus:border-brand-white"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="group inline-flex items-center gap-3 border-2 border-brand-light bg-brand-light px-8 py-3 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                  >
-                    <span className="relative inline-block overflow-hidden">
-                      <motion.span
-                        initial="initial"
-                        animate={isHovered ? "hover" : "initial"}
-                        variants={textRollUp}
-                        className="block"
-                      >
-                        {loading ? "Booking..." : "Book a Drag Diagnostic"}
-                      </motion.span>
-                      <motion.span
-                        initial="initial"
-                        animate={isHovered ? "hover" : "initial"}
-                        variants={textRollDown}
-                        className="absolute inset-0 block"
-                      >
-                        {loading ? "Booking..." : "Book a Drag Diagnostic"}
-                      </motion.span>
-                    </span>
-                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                  </button>
-                </form>
+                <button
+                  onClick={(e) => {
+                    const form = document.createElement('form')
+                    form.method = 'POST'
+                    form.action = '#'
+                    const event = new Event('submit', { bubbles: true, cancelable: true })
+                    form.dispatchEvent(event)
+                    handleSubmit(event as any)
+                  }}
+                  disabled={loading}
+                  className="group inline-flex items-center gap-3 border-2 border-brand-light bg-brand-light px-8 py-3 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <span className="relative inline-block overflow-hidden">
+                    <motion.span
+                      initial="initial"
+                      animate={isHovered ? "hover" : "initial"}
+                      variants={textRollUp}
+                      className="block"
+                    >
+                      {loading ? "Booking..." : "Book a Drag Diagnostic"}
+                    </motion.span>
+                    <motion.span
+                      initial="initial"
+                      animate={isHovered ? "hover" : "initial"}
+                      variants={textRollDown}
+                      className="absolute inset-0 block"
+                    >
+                      {loading ? "Booking..." : "Book a Drag Diagnostic"}
+                    </motion.span>
+                  </span>
+                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </button>
               )}
             </motion.div>
           </div>
