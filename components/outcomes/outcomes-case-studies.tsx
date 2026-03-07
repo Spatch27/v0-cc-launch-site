@@ -34,7 +34,7 @@ const allCaseStudies: OutcomeStudy[] = [
     client: "Leading IT consultancy",
     title: "Flying blind on what's working",
     project: "Stack simplification and realignment / CX improvements",
-    description: "The stack had grown. So had the complexity. Dashboards existed but couldn't be trusted. Decisions were being made on instinct because the data couldn't be relied on. Journey breaks were going undetected until customers had already left.",
+    description: "The stack had grown but trust in the data hadn't. Decisions were being made on instinct because dashboards couldn't be relied on. Journey breaks were going undetected until customers had already left.\n\nWe simplified the stack, rebuilt the data flows, and gave the team reporting they could actually act on:",
     metrics: [
       { value: "22%", label: "reduction in journey breaks" },
       { value: "12%", label: "increase in page conversions" },
