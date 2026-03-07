@@ -96,9 +96,9 @@ export function OutcomesCaseStudies() {
               <h3 className="mb-8 font-display text-2xl font-bold leading-snug text-brand-dark lg:text-3xl">
                 {study.project}
               </h3>
-              <p className="mb-8 leading-relaxed text-brand-dark/70">
+              <div className="mb-8 leading-relaxed text-brand-dark/70 whitespace-pre-line">
                 {study.description}
-              </p>
+              </div>
 
               {/* Metrics */}
               <div className="flex flex-wrap gap-8">
