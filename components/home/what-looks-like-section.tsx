@@ -92,16 +92,16 @@ export function WhatLooksLikeSection() {
     // and the whole module (title + all headers + card 5) scrolls away as one.
     <div
       ref={outerRef}
-      className="relative bg-white"
+      className="relative bg-white pt-16 lg:pt-24"
       style={{ height: `${outerHeight}px` }}
     >
-      {/* Single sticky block — everything inside moves together when section ends */}
+      {/* Single sticky block — sits flush under nav when stuck, padded at rest via outer pt */}
       <div
         className="sticky overflow-hidden bg-white"
         style={{ top: `${navHeight}px` }}
       >
-        {/* Title — generous top padding at rest, sticks close to nav when scrolling */}
-        <div className="bg-white px-6 pb-4 pt-16 lg:px-12 lg:pt-24">
+        {/* Title */}
+        <div className="bg-white px-6 pb-4 pt-4 lg:px-12">
           <div className="mx-auto max-w-[1400px]">
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
               What it looks like.
