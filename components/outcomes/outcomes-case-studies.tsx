@@ -20,7 +20,7 @@ const allCaseStudies: OutcomeStudy[] = [
     client: "Global home security company",
     title: "Customers falling through the gaps",
     project: "Email marketing workflow re-engineering across EMEA",
-    description: "The signals were there. Customer intent was being missed because the workflows connecting teams and platforms couldn't respond in real time. A system that should have been orchestrating personalised responses was generating data nobody trusted and emails nobody opened.",
+    description: "Customer intent was being missed because the handoffs between teams and platforms couldn't respond fast enough. Emails were going out late, to the wrong segments, or not at all. The workflow - not the platform - was the problem.\n\nWe re-engineered the end-to-end email workflow. Campaign cycle time dropped from 3 weeks to 6 days, resulting in:",
     metrics: [
       { value: "57%", label: "improvement in CTR" },
       { value: "25%", label: "increase in CTOR" },
