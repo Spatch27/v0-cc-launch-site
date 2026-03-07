@@ -15,7 +15,9 @@ export default function OutcomesPage() {
       <OutcomesHero />
       <OutcomesCaseStudies />
       <CtaBand
-        heading="Let's talk about what's slowing your team down."
+        heading="See how we'd approach your challenge."
+        description="Book a free Drag Diagnostic - 60 minutes, no pitch, and you'll walk away with a clear picture of what to fix first."
+        ctaLabel="Book a Drag Diagnostic"
         background="orange"
       />
     </>
