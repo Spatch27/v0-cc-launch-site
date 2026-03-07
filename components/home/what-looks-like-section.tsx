@@ -100,8 +100,8 @@ export function WhatLooksLikeSection() {
         className="sticky overflow-hidden bg-white"
         style={{ top: `${navHeight}px` }}
       >
-        {/* Title — tighter padding */}
-        <div className="bg-white px-6 pb-4 pt-6 lg:px-12">
+        {/* Title — generous top padding at rest, sticks close to nav when scrolling */}
+        <div className="bg-white px-6 pb-4 pt-16 lg:px-12 lg:pt-24">
           <div className="mx-auto max-w-[1400px]">
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
               What it looks like.
