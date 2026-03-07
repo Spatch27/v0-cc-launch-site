@@ -26,7 +26,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-5xl font-display text-[clamp(3rem,8vw,7.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
+          className="max-w-5xl font-display text-[clamp(3.5rem,9.5vw,9.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
           Freedom
           <br />
@@ -40,7 +40,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-10 flex justify-end"
         >
-          <p className="max-w-[24rem] text-xl leading-relaxed text-brand-dark/70 text-right">
+          <p className="max-w-[24rem] text-2xl leading-relaxed text-brand-dark/70 text-right">
             We are the consultancy for CMOs who want their marketing to move faster.
           </p>
         </motion.div>
