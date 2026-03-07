@@ -9,7 +9,7 @@ import Link from "next/link"
 const engagements = [
   {
     name: "Ignition6™",
-    tagline: "Your transformation story, your blockers mapped, your first six wins identified.",
+    tagline: "Your transformation story, your blockers mapped, your first six wins identified - including where AI agents would genuinely shorten cycles.",
     outcome: "Board-ready in six weeks.",
     duration: "6 weeks",
     price: "£40K",
