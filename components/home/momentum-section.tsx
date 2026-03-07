@@ -46,7 +46,7 @@ export function MomentumSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid items-center gap-12 border-t border-brand-dark/10 pt-12 lg:grid-cols-2"
         >
-          <div className="relative h-96 overflow-hidden rounded-lg lg:order-2">
+          <div className="relative h-96 overflow-hidden rounded-lg">
             <Image
               src="/images/systems-launch-agents.jpg"
               alt="Systems launch agents - AI integration"
@@ -56,7 +56,7 @@ export function MomentumSection() {
               priority
             />
           </div>
-          <div className="space-y-6 lg:order-1">
+          <div className="space-y-6">
             <h3 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
               Systems launch agents.
             </h3>
