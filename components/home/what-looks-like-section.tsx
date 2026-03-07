@@ -119,8 +119,8 @@ export function WhatLooksLikeSection() {
             // text-brand-dark for indices 1,3 (TEAM, PROCESS)
             const isOrange = i % 2 === 0
             const headerBgColor = isOrange ? "bg-[#FF8600]" : "bg-[#FFD100]"
-            const headerTextColor = isOrange ? "text-brand-white" : "text-brand-dark"
-            const iconFilter = isOrange ? "" : "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)"
+            const headerTextColor = isOrange ? "text-brand-dark" : "text-brand-dark"
+            const iconFilter = isOrange ? "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)" : "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)"
 
             return (
               <div
