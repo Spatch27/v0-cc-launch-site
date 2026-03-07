@@ -10,7 +10,7 @@ export function HeroSection() {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <section className="relative min-h-screen bg-brand-orange px-6 lg:px-12">
+    <section className="relative min-h-screen bg-brand-orange px-6 py-24 lg:px-12 lg:py-32">
       <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pt-24 lg:pt-28">
         {/* Main headline */}
         <motion.h1
