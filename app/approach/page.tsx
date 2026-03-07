@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { HeroPhilosophy } from "@/components/approach/hero-philosophy"
 import { AIPropellantSection } from "@/components/approach/ai-propellant-section"
+import { OutcomesSection } from "@/components/approach/outcomes-section"
 import { PhilosophySection } from "@/components/approach/philosophy-section"
 import { MomentumSection } from "@/components/approach/momentum-section"
 import { EngagementsSection } from "@/components/approach/engagements-section"
@@ -17,6 +18,7 @@ export default function ApproachPage() {
     <>
       <HeroPhilosophy />
       <AIPropellantSection />
+      <OutcomesSection />
       <MomentumSection />
       <PhilosophySection />
       <EngagementsSection />
