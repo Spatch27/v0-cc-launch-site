@@ -1,17 +1,30 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { textRollUp, textRollDown } from "@/lib/animations"
 
 export function HeroSection() {
   const [isHovered, setIsHovered] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  })
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.93])
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   return (
-    <section className="relative min-h-screen bg-brand-orange px-6 py-24 lg:px-12 lg:py-32">
-      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center pt-24 lg:pt-28">
+    <motion.section
+      ref={sectionRef}
+      style={{ scale, opacity }}
+      className="relative h-screen bg-brand-orange px-6 lg:px-12"
+    >
+      <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-center pt-24 lg:pt-28">
         {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -24,21 +37,15 @@ export function HeroSection() {
           from <em>drag</em>.
         </motion.h1>
 
-        {/* Subtitle copy */}
+        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10 space-y-6"
+          className="mt-10"
         >
-          <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
-            You hired brilliant marketers. And then they got buried. Briefs that should take days take weeks. Platforms generate data nobody trusts. Approval loops are three people too long. Six-figure martech has become shelfware. AI isn&apos;t getting out of pilot. The processes you implemented six months ago are routinely worked around. Your best people spend more time unblocking work than doing it. For most CMOs, a quarter of the marketing budget goes on technology. And half of it isn&apos;t being used.
-          </p>
-          <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
-            That&apos;s operational drag. And it&apos;s a handbrake on your momentum.{" "}
-            <span className="font-semibold text-brand-dark">
-              We are the consultancy for CMOs who want their marketing to move faster.
-            </span>
+          <p className="max-w-2xl text-xl leading-relaxed text-brand-dark/70">
+            We are the consultancy for CMOs who want their marketing to move faster.
           </p>
         </motion.div>
 
@@ -80,6 +87,6 @@ export function HeroSection() {
           </Link>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

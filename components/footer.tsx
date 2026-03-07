@@ -39,9 +39,9 @@ export function Footer() {
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="relative z-10 px-6 pt-24 pb-16 lg:px-12 lg:pt-32 lg:pb-20"
+        className="relative z-10 pt-24 pb-16 lg:pt-32 lg:pb-20"
       >
-        <div className="mx-auto max-w-[1400px] flex flex-col gap-16 lg:flex-row lg:justify-between">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 flex flex-col gap-16 lg:flex-row lg:justify-between">
           {/* Left: big footer headline */}
           <motion.div variants={fadeInUp} className="max-w-lg">
             <Link href="/" className="group mb-8 inline-block" aria-label="Committed Citizens home">
@@ -99,8 +99,8 @@ export function Footer() {
       </motion.div>
 
       {/* Copyright bar */}
-      <div className="relative z-10 border-t border-brand-dark/10 px-6 lg:px-12">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between py-6 pb-24 lg:pb-6">
+      <div className="relative z-10 border-t border-brand-dark/10">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 pb-24 lg:px-12 lg:pb-6">
           <p className="text-xs text-brand-dark/70">
             &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
           </p>
