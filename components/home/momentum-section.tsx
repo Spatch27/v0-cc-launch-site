@@ -17,20 +17,26 @@ const textChild = {
 }
 
 function ParallaxImage({ src, alt }: { src: string; alt: string }) {
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
-  // Image shifts slightly slower than scroll — classic parallax
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"])
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  })
+  // Translate in px — image is taller than container so edges never show
+  const y = useTransform(scrollYProgress, [0, 1], [-40, 40])
 
   return (
-    <div ref={ref} className="relative h-96 overflow-hidden rounded-lg">
-      <motion.div className="absolute inset-0" style={{ y }}>
+    <div ref={containerRef} className="relative h-96 overflow-hidden rounded-lg">
+      <motion.div
+        className="absolute inset-0"
+        style={{ y, top: "-10%", bottom: "-10%", height: "120%" }}
+      >
         <Image
           src={src}
           alt={alt}
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover scale-110"
+          className="object-cover"
           priority
         />
       </motion.div>
