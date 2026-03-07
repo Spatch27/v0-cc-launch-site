@@ -62,7 +62,7 @@ const allCaseStudies: OutcomeStudy[] = [
     title: "Workarounds become the work",
     project:
       "Workflow assessment, agentic tool creation, training and change management",
-    description: "The team was capable. The tools weren't serving them. Time that should have been spent on marketing was being spent on workarounds that had quietly become standard practice. A workflow assessment revealed the scale of the problem - and the scale of the opportunity.",
+    description: "The team was capable but the tools weren't serving them. A workflow assessment revealed that time which should have been spent on marketing was being lost to workarounds that had quietly become standard practice.\n\nWe redesigned the workflow, built agentic AI tools to eliminate the manual steps, and ran the change programme to embed new ways of working. Impact felt within six weeks:",
     metrics: [
       { value: "100%", label: "team adoption" },
       { value: "1,300", label: "man-hours saved in Year 1" },
