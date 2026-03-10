@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { HeroPhilosophy } from "@/components/approach/hero-philosophy"
+import { WorkflowsBehaviourSection } from "@/components/approach/workflows-behaviour-section"
 import { AIPropellantSection } from "@/components/approach/ai-propellant-section"
 import { OutcomesSection } from "@/components/approach/outcomes-section"
 import { ApproachPhilosophySection } from "@/components/approach/approach-philosophy-section"
@@ -18,6 +19,7 @@ export default function ApproachPage() {
   return (
     <>
       <HeroPhilosophy />
+      <WorkflowsBehaviourSection />
       <AIPropellantSection />
       <OutcomesSection />
       <ApproachPhilosophySection />
