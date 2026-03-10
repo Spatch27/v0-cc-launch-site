@@ -34,39 +34,34 @@ export function Footer() {
         }}
       />
       
-      {/* Large CTA area */}
+      {/* Main footer content */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="relative z-10 pt-24 pb-16 lg:pt-32 lg:pb-20"
+        className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 flex flex-col gap-16 lg:flex-row lg:justify-between">
-          {/* Left: big footer headline */}
-          <motion.div variants={fadeInUp} className="max-w-lg">
-            <Link href="/" className="group mb-8 inline-block" aria-label="Committed Citizens home">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+          {/* Left: logo */}
+          <motion.div variants={fadeInUp}>
+            <Link href="/" className="group inline-block" aria-label="Committed Citizens home">
               <Logo variant="dark" className="h-12 w-auto" />
             </Link>
-            <p className="mt-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
-              Freedom from drag.
-            </p>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-brand-dark">
-              We redesign how marketing work flows. Embedded consultancy that helps CMOs remove operational drag.
-            </p>
           </motion.div>
 
           {/* Right: link columns */}
-          <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-12 lg:gap-20">
+          <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-10 lg:gap-16">
+            {/* Navigate col 1 */}
             <div>
-              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Navigate
               </h3>
-              <ul className="flex flex-col gap-4">
-                {navigateLinks.map((link) => (
+              <ul className="flex flex-col gap-3">
+                {navigateLinks.slice(0, 3).map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                     >
                       {link.label}
                     </Link>
@@ -75,18 +70,38 @@ export function Footer() {
               </ul>
             </div>
 
+            {/* Navigate col 2 */}
             <div>
-              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-transparent select-none">
+                Navigate
+              </h3>
+              <ul className="flex flex-col gap-3">
+                {navigateLinks.slice(3).map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Connect */}
+            <div>
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Connect
               </h3>
-              <ul className="flex flex-col gap-4">
+              <ul className="flex flex-col gap-3">
                 {connectLinks.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
-                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                     >
                       {link.label}
                     </a>
@@ -100,7 +115,7 @@ export function Footer() {
 
       {/* Copyright bar */}
       <div className="relative z-10 border-t border-brand-dark/10">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 pb-24 lg:px-12 lg:pb-6">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 pb-16 lg:px-12 lg:pb-4">
           <p className="text-xs text-brand-dark">
             &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
           </p>
