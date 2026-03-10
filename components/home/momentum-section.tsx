@@ -53,7 +53,7 @@ export function MomentumSection() {
             <img
               src="/images/rocket-cropped.svg"
               alt="How we work illustration"
-              className="w-full h-auto max-w-2xl object-contain"
+              className="w-full h-auto max-w-4xl lg:max-w-5xl object-contain"
             />
           </motion.div>
         </div>
@@ -69,7 +69,7 @@ export function MomentumSection() {
 <img
               src="/images/clock-cropped.svg"
               alt="Systems launch agents illustration"
-              className="w-full h-auto max-w-2xl object-contain"
+              className="w-full h-auto max-w-4xl lg:max-w-5xl object-contain"
             />
           </motion.div>
 
