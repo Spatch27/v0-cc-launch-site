@@ -20,9 +20,9 @@ export default function AboutPage() {
       {/* Full-viewport-width image */}
       <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw]">
         <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-Ay2PtJjOqos-unsplash-vUHj2qivOSVTrWKgIlJbBrI1a9A9J2.jpg"
-          alt="Scenic tower overlooking valley landscape"
-          className="w-full h-96 object-cover"
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/P1000737-4-DlltoCjcAMPIrtcyQx1FpNnM5hxanl.jpg"
+          alt="Two men standing on beach promenade overlooking coastal landscape"
+          className="w-full h-[500px] object-cover object-right-top md:object-top"
         />
       </div>
       <CultureSection />

@@ -58,7 +58,7 @@ export function BuriedSection() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
-            src="/images/buried-marketers.jpg"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-ynAo7ZSZWO0-unsplash-JVZGy5yOe96UKscotdU9DkFBZ2dMs3.jpg"
             alt="Marketing team overwhelmed by operational drag"
             fill
             priority

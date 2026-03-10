@@ -5,7 +5,7 @@ import { useRef } from "react"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
 
-export function AIPropellantSection() {
+export function BuiltForOutcomesSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
@@ -16,9 +16,9 @@ export function AIPropellantSection() {
         <div className="relative h-80 overflow-hidden">
           {/* Image */}
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-8cmFI3Y7Xt4-unsplash-UNqMNqXAg0GfkjEdfa1Af4pjveokXW.jpg"
-            alt="Road through yellow fields - AI as a propellant"
-            className="w-full h-full object-cover object-bottom"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-QgFAMvj8JXY-unsplash-Atf9xL7jMAn8ReluQk9GxfCPn3akwg.jpg"
+            alt="Colorful forest from above - Built for outcomes"
+            className="w-full h-full object-cover object-center"
           />
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/70" />
@@ -31,7 +31,7 @@ export function AIPropellantSection() {
               className="font-display text-6xl font-bold text-center md:text-7xl"
               style={{ color: "#FFD100" }}
             >
-              AI as a propellant.
+              Built for outcomes, not renewals.
             </motion.h2>
           </div>
         </div>
@@ -48,10 +48,10 @@ export function AIPropellantSection() {
         >
           <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We're not an AI consultancy. We're a transformation consultancy that knows how to put AI to work. We start with how your marketing actually works — and work out where AI removes drag and where it creates new capability. Sometimes that's automating handoffs. Sometimes it's surfacing insights your team couldn't reach before. Sometimes it's giving a lean team the output of one twice its size.
+              Most transformation programmes are designed to sell you a platform, not fix how you work. Over 40% of the average marketing budget goes on technology and the agencies that implement it. Less than a third reaches your customers. The recommendation is the implementation. The implementation is the licence. The licence is the lock-in.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              We push back where it adds complexity but little value. Not every workflow needs an agent. Not every process needs automating. Most consultancies sell AI as the solution. We treat it as part of the solution — powerful when it's embedded properly, wasteful when it isn't.
+              We're platform-agnostic. No tech tie-ins. No renewal cycles to protect. Your operating model gets shaped around your team's needs, not someone else's contract terms.
             </p>
           </div>
         </motion.div>
