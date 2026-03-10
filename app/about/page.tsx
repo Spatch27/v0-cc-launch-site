@@ -22,7 +22,7 @@ export default function AboutPage() {
         <img
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/P1000737-4-xZ24xj852BfBuyXy9BzyT6AKZl0hKl.jpg"
           alt="Two men standing on beach promenade overlooking coastal landscape"
-          className="w-full h-96 object-cover"
+          className="w-full h-[500px] object-cover object-center"
         />
       </div>
       <CultureSection />
