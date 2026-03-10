@@ -18,7 +18,7 @@ export function OutcomesHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-white/50"
+          className="mt-8 ml-auto max-w-2xl text-lg leading-relaxed text-brand-white/50 text-right"
         >
           Marketing teams don't collapse, they get dragged down. Timelines stretch. Reporting gets contested. Smart people spend more time unblocking than building. The energy is there, but the momentum isn't.{' '}
           <br />
