@@ -82,8 +82,8 @@ export function InsightsListing() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-brand-light px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
-        <div className="mx-auto max-w-[1400px]">
+      <section className="relative bg-brand-light px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-20">
+        <div className="mx-auto flex min-h-[18rem] max-w-[1400px] flex-col justify-between gap-16">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -96,7 +96,7 @@ export function InsightsListing() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 max-w-2xl text-lg text-brand-dark"
+            className="max-w-2xl self-end text-right text-lg text-brand-dark"
           >
             Short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. Written by practitioners, not theorists.
           </motion.p>
