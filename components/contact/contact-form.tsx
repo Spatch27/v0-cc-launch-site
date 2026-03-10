@@ -116,42 +116,7 @@ export function ContactForm() {
                     We'll be in touch soon to confirm your diagnostic session.
                   </p>
                 </div>
-              ) : (
-                <button
-                  onClick={(e) => {
-                    const form = document.createElement('form')
-                    form.method = 'POST'
-                    form.action = '#'
-                    const event = new Event('submit', { bubbles: true, cancelable: true })
-                    form.dispatchEvent(event)
-                    handleSubmit(event as any)
-                  }}
-                  disabled={loading}
-                  className="group inline-flex items-center gap-3 border-2 border-brand-light bg-brand-light px-8 py-3 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                >
-                  <span className="relative inline-block overflow-hidden">
-                    <motion.span
-                      initial="initial"
-                      animate={isHovered ? "hover" : "initial"}
-                      variants={textRollUp}
-                      className="block"
-                    >
-                      {loading ? "Booking..." : "Book a Drag Diagnostic"}
-                    </motion.span>
-                    <motion.span
-                      initial="initial"
-                      animate={isHovered ? "hover" : "initial"}
-                      variants={textRollDown}
-                      className="absolute inset-0 block"
-                    >
-                      {loading ? "Booking..." : "Book a Drag Diagnostic"}
-                    </motion.span>
-                  </span>
-                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                </button>
-              )}
+              ) : null}
             </motion.div>
           </div>
         </div>
