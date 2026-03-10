@@ -88,7 +88,7 @@ export function ContactForm() {
             >
               <div>
                 <h2 className="font-display text-4xl font-bold text-brand-white">
-                  Uncover what's actually slowing your team down.
+                  Release the handbrake.
                 </h2>
                 <div className="mt-4 space-y-4 text-lg leading-relaxed text-brand-white">
                   <p>
@@ -99,6 +99,9 @@ export function ContactForm() {
                   </p>
                   <p>
                     Yours to keep, whether or not we work together.
+                  </p>
+                  <p className="font-medium">
+                    Just fill in the form below and we'll start the ball rolling.
                   </p>
                 </div>
               </div>
@@ -155,23 +158,6 @@ export function ContactForm() {
       </section>
       <Section background="light">
         <div className="space-y-16">
-          {/* Intro text */}
-          <div className="relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl"
-          >
-            <h2 className="font-display text-3xl font-bold text-brand-dark">
-              Release the handbrake.
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-brand-dark">
-              Just fill in the form below and we'll start the ball rolling.
-            </p>
-          </motion.div>
-          </div>
-
           {/* Form + Contact links */}
           <div className="relative grid gap-20 lg:grid-cols-2">
             {/* Form */}
