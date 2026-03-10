@@ -17,12 +17,12 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <PurposeSection />
-      <section className="bg-brand-light px-6 py-16 lg:px-12 lg:py-24">
+      <section className="bg-gray-800 px-6 py-16 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-4xl">
-          <blockquote className="font-display text-2xl font-bold leading-relaxed text-brand-dark md:text-3xl">
+          <blockquote className="font-display text-2xl font-bold leading-relaxed text-white md:text-3xl">
             "Never doubt that a small group of thoughtful, committed citizens can change the world. In fact, it's the only thing that ever has."
           </blockquote>
-          <p className="mt-6 text-base font-medium text-brand-dark">
+          <p className="mt-6 text-base font-medium text-white">
             — Margaret Mead
           </p>
         </div>
