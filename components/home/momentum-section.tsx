@@ -3,7 +3,6 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
-import Icon42866 from "@/components/home/how-we-work-illustration"
 
 const textContainer = {
   hidden: {},
@@ -51,8 +50,9 @@ export function MomentumSection() {
             animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Icon42866
-              title="How we work illustration"
+            <img
+              src="/images/how-we-work.svg"
+              alt="How we work illustration"
               className="w-full h-auto"
             />
           </motion.div>
