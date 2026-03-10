@@ -71,7 +71,7 @@ export function ContactForm() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark"
           >
-            We&apos;re building something great and we&apos;d love you to be part of it.
+            We&apos;re building a business that makes marketing work better. If you&apos;re a marketing leader who&apos;s frustrated by drag and ready for momentum, we&apos;d love to hear from you.
           </motion.p>
         </div>
       </section>
