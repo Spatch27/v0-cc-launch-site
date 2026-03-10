@@ -17,7 +17,7 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <PurposeSection />
-      <section className="bg-gray-800 px-6 py-16 lg:px-12 lg:py-24">
+      <section className="px-6 py-16 lg:px-12 lg:py-24" style={{ backgroundColor: '#181716' }}>
         <div className="mx-auto max-w-4xl">
           <blockquote className="font-display text-2xl font-bold leading-relaxed text-white md:text-3xl">
             "Never doubt that a small group of thoughtful, committed citizens can change the world. In fact, it's the only thing that ever has."
