@@ -71,7 +71,7 @@ export function MomentumSection() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
-              src="/images/systems-launch-agents.jpg"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-ueZdfhOteaU-unsplash-oFhT2ReZ6GjcTkBQgZO0hpelu9zRjU.jpg"
               alt="Systems launch agents - AI integration"
               fill
               priority
