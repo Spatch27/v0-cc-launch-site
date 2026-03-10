@@ -93,12 +93,12 @@ export function InsightsListing() {
             Thinking that drives <i>action</i>.
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 max-w-2xl text-lg text-brand-dark"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-8 ml-auto max-w-2xl text-lg leading-relaxed text-brand-dark/70 text-right"
           >
-            Short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. Written by practitioners, not theorists.
+            We've spent years inside marketing functions watching the same gaps appear between what transformation promises and what it actually delivers. Here we share what we've learned - short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. Written by practitioners, not theorists.
           </motion.p>
         </div>
       </section>
