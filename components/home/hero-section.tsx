@@ -26,7 +26,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-5xl font-display text-[clamp(3.5rem,9.5vw,9.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
+          className="mt-20 max-w-5xl font-display text-[clamp(3.5rem,9.5vw,9.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
           Freedom
           <br />
