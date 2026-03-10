@@ -34,7 +34,7 @@ export function AdvisorySection() {
         <h2 className="mb-6 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
           Built small. And mighty.
         </h2>
-        <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark/60">
+        <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark">
           <p>
             We operate a highly capable core, drawing on the talents of a network of specialist
             practitioners in martech, agentic AI, data architecture, FS, and governance.
@@ -65,7 +65,7 @@ export function AdvisorySection() {
               <h3 className="mb-2 font-display text-lg font-bold text-brand-dark">
                 {advisor.name}
               </h3>
-              <p className="text-sm leading-relaxed text-brand-dark/60">
+              <p className="text-sm leading-relaxed text-brand-dark">
                 {advisor.bio}
               </p>
             </div>

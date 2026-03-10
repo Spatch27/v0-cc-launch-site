@@ -70,7 +70,7 @@ export function PainSolutionGrid() {
           </span>
 
           {/* Quote */}
-          <p className="mb-8 text-sm italic leading-relaxed text-brand-dark/50 transition-colors duration-300 group-hover:text-brand-white/60">
+          <p className="mb-8 text-sm italic leading-relaxed text-brand-dark transition-colors duration-300 group-hover:text-brand-white/60">
             &ldquo;{item.quote}&rdquo;
           </p>
 
@@ -79,7 +79,7 @@ export function PainSolutionGrid() {
             <h3 className="mb-2 font-display text-lg font-bold text-brand-dark transition-colors duration-300 group-hover:text-brand-white">
               {item.solution}
             </h3>
-            <p className="text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/60">
+            <p className="text-sm leading-relaxed text-brand-dark transition-colors duration-300 group-hover:text-brand-white/60">
               {item.description}
             </p>
           </div>

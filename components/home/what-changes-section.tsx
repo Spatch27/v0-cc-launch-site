@@ -65,7 +65,7 @@ export function WhatChangesSection() {
               <h3 className="font-display text-xl font-bold text-brand-dark">
                 {feature.title}
               </h3>
-              <p className="leading-relaxed text-brand-dark/60">
+              <p className="leading-relaxed text-brand-dark">
                 {feature.description}
               </p>
             </motion.div>

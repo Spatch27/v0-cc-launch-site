@@ -20,7 +20,7 @@ export function ProblemSection() {
           <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl lg:text-6xl">
             Growth is an operating model challenge.
           </h2>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark/60">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark">
             Marketing ambition isn&apos;t the issue. Workflow, orchestration and
             adoption are. We fix how work flows across people, process, tech and
             agents.

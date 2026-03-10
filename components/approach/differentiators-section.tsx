@@ -62,7 +62,7 @@ export function DifferentiatorsSection() {
               <h3 className="mb-3 font-display text-xl font-bold text-brand-dark">
                 {d.title}
               </h3>
-              <p className="leading-relaxed text-brand-dark/60">
+              <p className="leading-relaxed text-brand-dark">
                 {d.description}
               </p>
             </div>

@@ -11,7 +11,7 @@ export function PurposeSection() {
         <h2 className="mb-8 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
           We believe that lasting change comes from people, not platforms.
         </h2>
-        <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark/70">
+        <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark">
           <p>
             So we started Committed Citizens. A small team of senior practitioners with the conviction
             and capability to make transformation stick. Not from the sidelines. Not via slide deck. From

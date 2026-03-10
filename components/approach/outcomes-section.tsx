@@ -34,10 +34,10 @@ export function OutcomesSection() {
             Built for outcomes, not renewals.
           </h2>
           <div className="max-w-3xl space-y-4">
-            <p className="text-lg leading-relaxed text-brand-dark/70">
+            <p className="text-lg leading-relaxed text-brand-dark">
               Most transformation programmes are designed to sell you a platform, not fix how you work. Over 40% of the average marketing budget goes on technology and the agencies that implement it. Less than a third reaches your customers. The recommendation is the implementation. The implementation is the licence. The licence is the lock-in.
             </p>
-            <p className="text-lg leading-relaxed text-brand-dark/70">
+            <p className="text-lg leading-relaxed text-brand-dark">
               We're platform-agnostic. No tech tie-ins. No renewal cycles to protect. Your operating model gets shaped around your team's needs, not someone else's contract terms.
             </p>
           </div>

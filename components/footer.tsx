@@ -50,7 +50,7 @@ export function Footer() {
             <p className="mt-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
               Freedom from drag.
             </p>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-brand-dark/70">
+            <p className="mt-4 max-w-md text-base leading-relaxed text-brand-dark">
               We redesign how marketing work flows. Embedded consultancy that helps CMOs remove operational drag.
             </p>
           </motion.div>
@@ -58,7 +58,7 @@ export function Footer() {
           {/* Right: link columns */}
           <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-12 lg:gap-20">
             <div>
-              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark/60">
+              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Navigate
               </h3>
               <ul className="flex flex-col gap-4">
@@ -66,7 +66,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="relative inline-block text-sm text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                     >
                       {link.label}
                     </Link>
@@ -76,7 +76,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark/60">
+              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Connect
               </h3>
               <ul className="flex flex-col gap-4">
@@ -86,7 +86,7 @@ export function Footer() {
                       href={link.href}
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
-                      className="relative inline-block text-sm text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                     >
                       {link.label}
                     </a>
@@ -101,7 +101,7 @@ export function Footer() {
       {/* Copyright bar */}
       <div className="relative z-10 border-t border-brand-dark/10">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 pb-24 lg:px-12 lg:pb-6">
-          <p className="text-xs text-brand-dark/70">
+          <p className="text-xs text-brand-dark">
             &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
           </p>
           <Link

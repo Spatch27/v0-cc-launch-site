@@ -62,7 +62,7 @@ export function WhatFeelsLikeSection() {
             <h3 className="font-display text-2xl font-bold text-brand-dark">
               {item.title}
             </h3>
-            <p className="leading-relaxed text-brand-dark/60">
+            <p className="leading-relaxed text-brand-dark">
               {item.description}
             </p>
           </motion.div>
