@@ -9,11 +9,13 @@ const founders = [
     name: "Ben Scoggins",
     title: "Founder & CEO",
     bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury's Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Ben-0RROh8GKMj3uugyp2FPDwNpQNuvQRh.jpeg",
   },
   {
     name: "Tim Burley",
     title: "Founder & Chief Strategist",
     bio: "Tim brings 25 years of senior marketing and strategy experience across Argos, Capita and the NHS. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable.",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Tim-ARcry0CzD5L1O89DkgYSRzltBxg0Qv.jpeg",
   },
 ]
 
@@ -38,8 +40,12 @@ export function TeamSection() {
             custom={i}
             className="group flex flex-col overflow-hidden bg-brand-light transition-shadow duration-300 hover:shadow-lg"
           >
-            <div className="relative h-64 w-full overflow-hidden bg-gray-300 flex items-center justify-center">
-              <span className="text-gray-400 text-sm font-medium">Image placeholder</span>
+            <div className="relative h-64 w-full overflow-hidden bg-gray-300">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="p-10">
               <h3 className="mb-2 font-display text-xl font-bold text-brand-dark">
