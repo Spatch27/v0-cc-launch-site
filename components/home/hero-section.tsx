@@ -20,7 +20,7 @@ export function HeroSection() {
       style={{ scale, opacity }}
       className="relative h-screen bg-brand-orange px-6 lg:px-12"
     >
-      <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-center pt-24 lg:pt-28">
+      <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-24 lg:pt-28">
         {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -38,7 +38,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-10 flex justify-end"
+          className="flex justify-end pb-12"
         >
           <p className="max-w-[28rem] text-lg leading-relaxed text-brand-dark text-right">
             We are the consultancy for CMOs who want their marketing to move faster.
