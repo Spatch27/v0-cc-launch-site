@@ -32,13 +32,13 @@ export function WorkflowsBehaviourSection() {
             </p>
           </div>
         </div>
-        <div className="relative flex h-96 items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
+        <div className="relative flex h-screen max-h-96 items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
           <Image
             src="/images/icon-7.svg"
             alt="Workflows follow behaviour illustration"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-contain p-8"
+            className="object-contain p-12"
           />
         </div>
       </motion.div>

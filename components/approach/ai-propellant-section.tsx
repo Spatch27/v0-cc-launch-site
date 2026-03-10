@@ -19,13 +19,13 @@ export function AIPropellantSection() {
         variants={fadeInUp}
         className="grid items-center gap-12 lg:grid-cols-2"
       >
-        <div className="relative flex h-96 items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
+        <div className="relative flex h-screen max-h-96 items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
           <Image
             src="/images/icon-8.svg"
             alt="AI as a propellant illustration"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-contain p-8"
+            className="object-contain p-12"
           />
         </div>
         <div>
