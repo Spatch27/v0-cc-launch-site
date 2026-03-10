@@ -55,8 +55,8 @@ export function ContactForm() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-brand-yellow-light px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
-        <div className="mx-auto max-w-[1400px]">
+      <section className="relative bg-brand-yellow-light px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-20">
+        <div className="mx-auto flex min-h-[18rem] max-w-[1400px] flex-col justify-between gap-16">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,12 +66,12 @@ export function ContactForm() {
             Let&apos;s <i>talk</i>.
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark"
+            className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark"
           >
-            We&apos;re building something great and we&apos;d love you to be part of it.
+            We&apos;re building a business that makes marketing work better. If you&apos;re a marketing leader who&apos;s frustrated by drag and ready for momentum, we&apos;d love to hear from you.
           </motion.p>
         </div>
       </section>
@@ -84,11 +84,11 @@ export function ContactForm() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-3"
             >
               <div>
                 <h2 className="font-display text-4xl font-bold text-brand-white">
-                  Uncover what's actually slowing your team down.
+                  Release the handbrake.
                 </h2>
                 <div className="mt-4 space-y-4 text-lg leading-relaxed text-brand-white">
                   <p>
@@ -99,6 +99,9 @@ export function ContactForm() {
                   </p>
                   <p>
                     Yours to keep, whether or not we work together.
+                  </p>
+                  <p className="font-medium">
+                    Just fill in the form below and we'll start the ball rolling.
                   </p>
                 </div>
               </div>
@@ -113,65 +116,13 @@ export function ContactForm() {
                     We'll be in touch soon to confirm your diagnostic session.
                   </p>
                 </div>
-              ) : (
-                <button
-                  onClick={(e) => {
-                    const form = document.createElement('form')
-                    form.method = 'POST'
-                    form.action = '#'
-                    const event = new Event('submit', { bubbles: true, cancelable: true })
-                    form.dispatchEvent(event)
-                    handleSubmit(event as any)
-                  }}
-                  disabled={loading}
-                  className="group inline-flex items-center gap-3 border-2 border-brand-light bg-brand-light px-8 py-3 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                >
-                  <span className="relative inline-block overflow-hidden">
-                    <motion.span
-                      initial="initial"
-                      animate={isHovered ? "hover" : "initial"}
-                      variants={textRollUp}
-                      className="block"
-                    >
-                      {loading ? "Booking..." : "Book a Drag Diagnostic"}
-                    </motion.span>
-                    <motion.span
-                      initial="initial"
-                      animate={isHovered ? "hover" : "initial"}
-                      variants={textRollDown}
-                      className="absolute inset-0 block"
-                    >
-                      {loading ? "Booking..." : "Book a Drag Diagnostic"}
-                    </motion.span>
-                  </span>
-                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                </button>
-              )}
+              ) : null}
             </motion.div>
           </div>
         </div>
       </section>
-      <Section background="light">
-        <div className="space-y-16">
-          {/* Intro text */}
-          <div className="relative">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl"
-          >
-            <h2 className="font-display text-3xl font-bold text-brand-dark">
-              Can't wait? Neither can we.
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-brand-dark">
-              If you have a challenge that won't sit still, jump the queue and get in touch directly.
-            </p>
-          </motion.div>
-          </div>
-
+      <Section background="light" compact>
+        <div className="space-y-4">
           {/* Form + Contact links */}
           <div className="relative grid gap-20 lg:grid-cols-2">
             {/* Form */}
