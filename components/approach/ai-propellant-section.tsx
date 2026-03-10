@@ -18,17 +18,17 @@ export function AIPropellantSection() {
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-8cmFI3Y7Xt4-unsplash-UNqMNqXAg0GfkjEdfa1Af4pjveokXW.jpg"
             alt="Road through yellow fields - AI as a propellant"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-bottom"
           />
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/55" />
           {/* Centered heading overlay */}
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-5xl font-bold text-orange-500 text-center md:text-6xl"
+              className="font-display text-6xl font-bold text-orange-500 text-center md:text-7xl"
             >
               AI as a propellant.
             </motion.h2>
