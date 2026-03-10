@@ -37,7 +37,7 @@ export function AIPropellantSection() {
       </div>
 
       {/* Content section below */}
-      <Section background="light">
+      <Section background="light" className="-mt-8">
         <motion.div
           ref={ref}
           initial="hidden"
