@@ -55,8 +55,8 @@ export function ContactForm() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-brand-yellow-light px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
-        <div className="mx-auto max-w-[1400px]">
+      <section className="relative bg-brand-yellow-light px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-20">
+        <div className="mx-auto flex min-h-[18rem] max-w-[1400px] flex-col justify-between gap-16">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,10 +66,10 @@ export function ContactForm() {
             Let&apos;s <i>talk</i>.
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark"
+            className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark"
           >
             We&apos;re building a business that makes marketing work better. If you&apos;re a marketing leader who&apos;s frustrated by drag and ready for momentum, we&apos;d love to hear from you.
           </motion.p>
