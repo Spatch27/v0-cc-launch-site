@@ -19,7 +19,7 @@ export function AIPropellantSection() {
         variants={fadeInUp}
         className="grid items-center gap-12 lg:grid-cols-2"
       >
-        <div className="relative flex h-[28rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
+        <div className="relative order-last flex h-[28rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc] lg:order-first">
           <Image
             src="/images/icon-8.svg"
             alt="AI as a propellant illustration"
