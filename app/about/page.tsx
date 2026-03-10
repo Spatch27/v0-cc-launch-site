@@ -20,7 +20,7 @@ export default function AboutPage() {
       {/* Full-viewport-width image */}
       <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw]">
         <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/P1000737-4-xZ24xj852BfBuyXy9BzyT6AKZl0hKl.jpg"
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/P1000737-4-vIrIMdMEBjNiP3ACbpqGYAAFq9Mlbl.jpg"
           alt="Two men standing on beach promenade overlooking coastal landscape"
           className="w-full h-[500px] object-cover object-top"
         />
