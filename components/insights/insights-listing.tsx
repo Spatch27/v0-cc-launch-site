@@ -1,13 +1,11 @@
 "use client"
 
-import { useState } from "react"
+
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { ArrowRight } from "lucide-react"
-
-const categories = ["All", "What we're creating", "What we're consuming"]
 
 const articles = [
   {
@@ -67,17 +65,10 @@ const articles = [
 ]
 
 export function InsightsListing() {
-  const [activeCategory, setActiveCategory] = useState("All")
-
   // Featured article is the most recent one
   const featured = articles[0]
 
-  // Filter remaining articles
   const remainingArticles = articles.slice(1)
-  const filtered =
-    activeCategory === "All"
-      ? remainingArticles
-      : remainingArticles.filter((article) => article.category === activeCategory)
 
   return (
     <>
@@ -98,7 +89,7 @@ export function InsightsListing() {
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl self-end text-right text-lg text-brand-dark"
           >
-            Short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. Written by practitioners, not theorists.
+            We've spent years inside marketing functions watching the same gaps appear between what transformation promises and what it actually delivers. Here we share what we've learned - short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. Written by practitioners, not theorists.
           </motion.p>
         </div>
       </section>
@@ -143,30 +134,13 @@ export function InsightsListing() {
 
       {/* Article grid */}
       <Section background="light">
-        {/* Category filters */}
-        <div className="mb-12 flex flex-wrap gap-3">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat
-                  ? "bg-brand-dark text-brand-white"
-                  : "bg-brand-white text-brand-dark hover:bg-brand-dark hover:text-brand-white"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          {filtered.map((article) => (
+          {remainingArticles.slice(0, 3).map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}

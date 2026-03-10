@@ -59,7 +59,7 @@ export function BuriedSection() {
           <img
             src="/images/man-cropped.svg"
             alt="Marketing team overwhelmed by operational drag"
-            className="w-full h-auto"
+            className="w-full h-auto max-w-4xl lg:max-w-5xl"
           />
         </motion.div>
 
