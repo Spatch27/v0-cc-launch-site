@@ -39,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${bricolage.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${bricolage.variable}`}>
       <body className="font-sans antialiased">
         <Navigation />
         <main>{children}</main>
