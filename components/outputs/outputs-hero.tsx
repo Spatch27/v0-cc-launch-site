@@ -18,8 +18,10 @@ export function OutputsHero() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
-      <div className="mx-auto max-w-[1400px]">
+      className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32"
+      layout
+    >
+      <div className="mx-auto max-w-[1400px] pointer-events-none">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
