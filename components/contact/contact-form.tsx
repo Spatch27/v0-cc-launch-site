@@ -121,7 +121,7 @@ export function ContactForm() {
           </div>
         </div>
       </section>
-      <Section background="light">
+      <Section background="light" compact>
         <div className="space-y-4">
           {/* Form + Contact links */}
           <div className="relative grid gap-20 lg:grid-cols-2">
