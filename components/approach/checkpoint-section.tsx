@@ -23,7 +23,7 @@ export function CheckpointSection() {
                 <div className="mt-1.5 h-3 w-3 flex-shrink-0 rounded-full bg-brand-pink" />
                 <div>
                   <h3 className="font-semibold text-brand-dark mb-2">Two-week checkpoint</h3>
-                  <p className="text-brand-dark/60 leading-relaxed">
+                  <p className="text-brand-dark leading-relaxed">
                     Every new engagement begins with a two-week checkpoint. If you can't feel the momentum building, you walk away.
                   </p>
                 </div>
@@ -32,7 +32,7 @@ export function CheckpointSection() {
                 <div className="mt-1.5 h-3 w-3 flex-shrink-0 rounded-full bg-brand-orange" />
                 <div>
                   <h3 className="font-semibold text-brand-dark mb-2">No awkward conversations</h3>
-                  <p className="text-brand-dark/60 leading-relaxed">
+                  <p className="text-brand-dark leading-relaxed">
                     No full invoice. This approach removes the risk and lets us prove value before you commit further.
                   </p>
                 </div>

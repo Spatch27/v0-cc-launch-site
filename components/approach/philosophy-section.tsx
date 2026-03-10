@@ -17,7 +17,7 @@ export function PhilosophySection() {
           We operate like a product team.
         </h2>
         <div className="max-w-3xl space-y-4">
-          <p className="text-lg leading-relaxed text-brand-dark/60">
+          <p className="text-lg leading-relaxed text-brand-dark">
             Not a consulting engagement. No lengthy discovery or dogmatism that your team quietly ignores. Nimble, iterative, focused on outcomes. We work with your team until the new ways of working are simply how things get done.
           </p>
         </div>

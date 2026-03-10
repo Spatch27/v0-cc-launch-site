@@ -96,7 +96,7 @@ export function InsightsListing() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 max-w-2xl text-lg text-brand-dark/60"
+            className="mt-6 max-w-2xl text-lg text-brand-dark"
           >
             Short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. Written by practitioners, not theorists.
           </motion.p>
@@ -127,7 +127,7 @@ export function InsightsListing() {
                 <h2 className="mb-6 font-display text-3xl font-bold leading-snug text-brand-dark lg:text-4xl">
                   {featured.title}
                 </h2>
-                <p className="mb-8 text-lg leading-relaxed text-brand-dark/60">
+                <p className="mb-8 text-lg leading-relaxed text-brand-dark">
                   {featured.excerpt}
                 </p>
                 <div className="flex items-center gap-4 text-sm text-brand-dark/40">
@@ -190,14 +190,14 @@ export function InsightsListing() {
                   <h3 className="mb-4 font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-300 group-hover:text-brand-white lg:text-2xl">
                     {article.title}
                   </h3>
-                  <p className="flex-1 text-sm leading-relaxed text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/50">
+                  <p className="flex-1 text-sm leading-relaxed text-brand-dark transition-colors duration-300 group-hover:text-brand-white/50">
                     {article.excerpt}
                   </p>
                 </div>
 
                 {/* Footer - sticky to bottom */}
                 <div className="mt-auto flex items-center justify-between px-8 pb-8 lg:px-10 lg:pb-10 text-sm">
-                  <span className="text-brand-dark/60 transition-colors duration-300 group-hover:text-brand-white/60">
+                  <span className="text-brand-dark transition-colors duration-300 group-hover:text-brand-white/60">
                     {article.date} &middot; {article.readTime}
                   </span>
                   <ArrowRight
@@ -223,7 +223,7 @@ export function InsightsListing() {
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
               Stay sharp.
             </h2>
-            <p className="mt-4 text-lg text-brand-white/50">
+            <p className="mt-4 text-lg text-brand-white">
               Original thinking on marketing operations, transformation, and
               removing operational drag. No spam, ever.
             </p>

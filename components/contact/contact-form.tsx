@@ -69,7 +69,7 @@ export function ContactForm() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark/80"
+            className="mt-8 max-w-2xl text-lg leading-relaxed text-brand-dark"
           >
             We&apos;re building something great and we&apos;d love you to be part of it.
           </motion.p>
@@ -90,7 +90,7 @@ export function ContactForm() {
                 <h2 className="font-display text-4xl font-bold text-brand-white">
                   Uncover what's actually slowing your team down.
                 </h2>
-                <div className="mt-4 space-y-4 text-lg leading-relaxed text-brand-white/70">
+                <div className="mt-4 space-y-4 text-lg leading-relaxed text-brand-white">
                   <p>
                     The Drag Diagnostic is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most - and what to fix first.
                   </p>
@@ -166,7 +166,7 @@ export function ContactForm() {
             <h2 className="font-display text-3xl font-bold text-brand-dark">
               Can't wait? Neither can we.
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-brand-dark/70">
+            <p className="mt-4 text-lg leading-relaxed text-brand-dark">
               If you have a challenge that won't sit still, jump the queue and get in touch directly.
             </p>
           </motion.div>
@@ -187,7 +187,7 @@ export function ContactForm() {
                 <h2 className="font-display text-3xl font-bold text-brand-dark">
                   Thanks for reaching out.
                 </h2>
-                <p className="text-lg text-brand-dark/60">
+                <p className="text-lg text-brand-dark">
                   We&apos;ll be back to you shortly.
                 </p>
               </div>
@@ -310,7 +310,7 @@ export function ContactForm() {
                 </div>
                 <div>
                   <p className="font-semibold text-brand-dark">Email</p>
-                  <p className="text-sm text-brand-dark/50">
+                  <p className="text-sm text-brand-dark">
                     hello@committedcitizens.co.uk
                   </p>
                 </div>
@@ -328,7 +328,7 @@ export function ContactForm() {
                 </div>
                 <div>
                   <p className="font-semibold text-brand-dark">LinkedIn</p>
-                  <p className="text-sm text-brand-dark/50">
+                  <p className="text-sm text-brand-dark">
                     Connect with us
                   </p>
                 </div>

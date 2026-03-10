@@ -18,7 +18,7 @@ export function ProductTeamSection() {
           <h2 className="mb-4 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
             We operate like a Product Team.
           </h2>
-          <p className="max-w-2xl text-lg leading-relaxed text-brand-dark/60">
+          <p className="max-w-2xl text-lg leading-relaxed text-brand-dark">
             Five interconnected disciplines, all oriented around a marketing
             outcome. Managed by an embedded pod of experts.
           </p>

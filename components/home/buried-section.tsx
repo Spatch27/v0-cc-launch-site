@@ -38,10 +38,10 @@ export function BuriedSection() {
           </motion.h2>
 
           <motion.div variants={textChild} className="space-y-4">
-            <p className="text-lg leading-relaxed text-brand-dark/70">
+            <p className="text-lg leading-relaxed text-brand-dark">
               Briefs that should take days take weeks. Platforms generate data nobody trusts. Approval loops are three people too long. Six-figure martech has become shelfware. AI isn&apos;t getting out of pilot. The processes you implemented six months ago are routinely worked around. Your best people spend more time unblocking work than doing it.
             </p>
-            <p className="text-lg leading-relaxed text-brand-dark/70">
+            <p className="text-lg leading-relaxed text-brand-dark">
               For most CMOs, a quarter of the marketing budget goes on technology. And half of it isn&apos;t being used.
             </p>
             <p className="text-lg font-bold leading-relaxed text-brand-dark">

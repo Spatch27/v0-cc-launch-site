@@ -40,7 +40,7 @@ export function MomentumSection() {
             >
               How we work.
             </motion.h2>
-            <motion.p variants={textChild} className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
+            <motion.p variants={textChild} className="max-w-3xl text-lg leading-relaxed text-brand-dark">
               We redesign workflows, simplify stacks, and get AI agents working inside your team. We embed inside the marketing function, working alongside your team in focused six-week cycles - redesigning how work actually flows across people, process and technology. Measurable progress, not slideware.
             </motion.p>
           </motion.div>

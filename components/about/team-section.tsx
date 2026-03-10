@@ -26,7 +26,7 @@ export function TeamSection() {
         <h2 className="mb-6 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
           The founders.
         </h2>
-        <p className="max-w-2xl text-lg leading-relaxed text-brand-dark/60">
+        <p className="max-w-2xl text-lg leading-relaxed text-brand-dark">
           You won't be handed to a team you haven't met. You'll work with the founders and a handful
           of discipline specialists.
         </p>
@@ -52,7 +52,7 @@ export function TeamSection() {
                 {member.name}
               </h3>
               <p className="mb-6 text-sm text-brand-pink">{member.title}</p>
-              <p className="leading-relaxed text-brand-dark/60">{member.bio}</p>
+              <p className="leading-relaxed text-brand-dark">{member.bio}</p>
             </div>
           </motion.div>
         ))}
