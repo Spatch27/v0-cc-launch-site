@@ -6,7 +6,7 @@ import { useRef } from "react"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
 
-export function OutcomesSection() {
+export function WorkflowsBehaviourSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
@@ -21,21 +21,21 @@ export function OutcomesSection() {
       >
         <div>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Built for outcomes, not renewals.
+            Workflows follow behaviour.
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-6">
             <p className="text-lg leading-relaxed text-brand-dark">
-              Most transformation programmes are designed to sell you a platform, not fix how you work. Over 40% of the average marketing budget goes on technology and the agencies that implement it. Less than a third reaches your customers. The recommendation is the implementation. The implementation is the licence. The licence is the lock-in.
+              We keep hearing the same story. Marketing invests in a new platform. There's a town hall, they train the trainers - and within months the team has rebuilt their old spreadsheets. The technology works but the project failed.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              We're platform-agnostic. No tech tie-ins. No renewal cycles to protect. Your operating model gets shaped around your team's needs, not someone else's contract terms.
+              The same thing is happening with AI - but on steroids. Teams are piloting agents without redesigning the workflows around them. Same pattern, same result: Technology that works in isolation but fails in practice.
             </p>
           </div>
         </div>
         <div className="relative flex h-[28rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
           <Image
-            src="/images/icon-9.svg"
-            alt="Built for outcomes illustration"
+            src="/images/icon-7.svg"
+            alt="Workflows follow behaviour illustration"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-contain p-12"

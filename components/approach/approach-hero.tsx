@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 
 export function ApproachHero() {
   return (
-    <section className="relative bg-brand-pink px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
-      <div className="mx-auto max-w-[1400px]">
+    <section className="relative bg-brand-pink px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-20">
+      <div className="mx-auto flex min-h-[18rem] max-w-[1400px] flex-col justify-between gap-16">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ export function ApproachHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-8 max-w-xl text-lg leading-relaxed text-brand-dark"
+          className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark"
         >
           We combine deep marketing expertise with operational rigour to redesign how your team works.
         </motion.p>

@@ -51,7 +51,7 @@ export function MomentumSection() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <img
-              src="/images/how-we-work.svg"
+              src="/images/rocket-cropped.svg"
               alt="How we work illustration"
               className="w-full h-auto object-contain"
             />
@@ -61,13 +61,13 @@ export function MomentumSection() {
         {/* Systems launch agents — Image Left, Text Right */}
         <div ref={ref2} className="grid items-center gap-12 border-t border-brand-dark/10 pt-12 lg:grid-cols-2">
           <motion.div
-            className="flex items-center justify-center w-full"
+            className="order-last flex items-center justify-center w-full lg:order-first"
             initial={{ opacity: 0, x: -40, scale: 0.97 }}
             animate={inView2 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
 <img
-              src="/images/systems-agents.svg"
+              src="/images/clock-cropped.svg"
               alt="Systems launch agents illustration"
               className="w-full h-auto object-contain"
             />
