@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
@@ -52,18 +51,15 @@ export function BuriedSection() {
 
         {/* Image — right */}
         <motion.div
-          className="relative h-[480px] overflow-hidden rounded-lg"
+          className="flex items-center justify-center w-full"
           initial={{ opacity: 0, x: 40, scale: 0.97 }}
           animate={inView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-ynAo7ZSZWO0-unsplash-JVZGy5yOe96UKscotdU9DkFBZ2dMs3.jpg"
+          <img
+            src="/images/maze.svg"
             alt="Marketing team overwhelmed by operational drag"
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
+            className="w-full h-auto"
           />
         </motion.div>
 

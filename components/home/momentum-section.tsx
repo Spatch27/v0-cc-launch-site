@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
@@ -46,18 +45,15 @@ export function MomentumSection() {
           </motion.div>
 
           <motion.div
-            className="relative h-96 overflow-hidden rounded-lg"
+            className="flex items-center justify-center w-full"
             initial={{ opacity: 0, x: 40, scale: 0.97 }}
             animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-MhG0AIYp4S0-unsplash-QJYUaneLqP5gsSc30O3xg7FqWUhyYU.jpg"
-              alt="How we work - team collaboration"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+            <img
+              src="/images/how-we-work.svg"
+              alt="How we work illustration"
+              className="w-full h-auto object-contain"
             />
           </motion.div>
         </div>
@@ -65,18 +61,15 @@ export function MomentumSection() {
         {/* Systems launch agents — Image Left, Text Right */}
         <div ref={ref2} className="grid items-center gap-12 border-t border-brand-dark/10 pt-12 lg:grid-cols-2">
           <motion.div
-            className="relative h-96 overflow-hidden rounded-lg"
+            className="flex items-center justify-center w-full"
             initial={{ opacity: 0, x: -40, scale: 0.97 }}
             animate={inView2 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-ueZdfhOteaU-unsplash-oFhT2ReZ6GjcTkBQgZO0hpelu9zRjU.jpg"
-              alt="Systems launch agents - AI integration"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+<img
+              src="/images/systems-agents.svg"
+              alt="Systems launch agents illustration"
+              className="w-full h-auto object-contain"
             />
           </motion.div>
 
