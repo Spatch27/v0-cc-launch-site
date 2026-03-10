@@ -1,10 +1,10 @@
 "use client"
 
-import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
 import Icon42866 from "@/components/home/how-we-work-illustration"
+import SystemsAgentsIllustration from "@/components/home/systems-agents-illustration"
 
 const textContainer = {
   hidden: {},
@@ -62,18 +62,14 @@ export function MomentumSection() {
         {/* Systems launch agents — Image Left, Text Right */}
         <div ref={ref2} className="grid items-center gap-12 border-t border-brand-dark/10 pt-12 lg:grid-cols-2">
           <motion.div
-            className="relative h-96 overflow-hidden rounded-lg"
+            className="flex items-center justify-center rounded-lg overflow-hidden"
             initial={{ opacity: 0, x: -40, scale: 0.97 }}
             animate={inView2 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-ueZdfhOteaU-unsplash-oFhT2ReZ6GjcTkBQgZO0hpelu9zRjU.jpg"
-              alt="Systems launch agents - AI integration"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+            <SystemsAgentsIllustration
+              title="Systems launch agents illustration"
+              className="w-full h-auto"
             />
           </motion.div>
 
