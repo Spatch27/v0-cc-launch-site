@@ -28,7 +28,8 @@ export function AIPropellantSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-6xl font-bold text-orange-500 text-center md:text-7xl"
+              className="font-display text-6xl font-bold text-center md:text-7xl"
+              style={{ color: "#FFD100" }}
             >
               AI as a propellant.
             </motion.h2>
