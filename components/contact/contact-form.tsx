@@ -1,17 +1,26 @@
 "use client"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
+import { useState, useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { Mail, Linkedin, Send, CheckCircle, ArrowRight } from "lucide-react"
 
 export function ContactForm() {
+  const sectionRef = useRef<HTMLElement>(null)
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [isMessageHovered, setIsMessageHovered] = useState(false)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  })
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.93])
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -55,7 +64,12 @@ export function ContactForm() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-brand-yellow-light px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-20">
+      <motion.section
+        ref={sectionRef}
+        style={{ scale, opacity }}
+        className="relative bg-brand-yellow-light px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-20"
+        layout
+      >
         <div className="mx-auto flex min-h-[18rem] max-w-[1400px] flex-col justify-between gap-16">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -74,7 +88,7 @@ export function ContactForm() {
             We&apos;re building a business that makes marketing work better. If you&apos;re a marketing leader who&apos;s frustrated by drag and ready for momentum, we&apos;d love to hear from you.
           </motion.p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Waitlist Section */}
       <section className="relative bg-brand-dark px-6 py-20 lg:px-12 lg:py-32">

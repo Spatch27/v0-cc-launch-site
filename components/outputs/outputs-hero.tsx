@@ -1,11 +1,27 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
 
 export function OutputsHero() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  })
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.93])
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+
   return (
-    <section className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
-      <div className="mx-auto max-w-[1400px]">
+    <motion.section
+      ref={sectionRef}
+      style={{ scale, opacity }}
+      className="relative bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32"
+      layout
+    >
+      <div className="mx-auto max-w-[1400px] pointer-events-none">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -23,6 +39,6 @@ export function OutputsHero() {
           Tangible evidence of operational uplift across marketing teams. Every metric is real, every testimonial is verified.
         </motion.p>
       </div>
-    </section>
+    </motion.section>
   )
 }
