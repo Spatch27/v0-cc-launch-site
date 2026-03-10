@@ -1,9 +1,9 @@
 "use client"
 
-import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
+import Icon42866 from "@/components/home/how-we-work-illustration"
 
 const textContainer = {
   hidden: {},
@@ -46,18 +46,14 @@ export function MomentumSection() {
           </motion.div>
 
           <motion.div
-            className="relative h-96 overflow-hidden rounded-lg"
+            className="flex items-center justify-center rounded-lg overflow-hidden"
             initial={{ opacity: 0, x: 40, scale: 0.97 }}
             animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-MhG0AIYp4S0-unsplash-QJYUaneLqP5gsSc30O3xg7FqWUhyYU.jpg"
-              alt="How we work - team collaboration"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+            <Icon42866
+              title="How we work illustration"
+              className="w-full h-auto"
             />
           </motion.div>
         </div>
