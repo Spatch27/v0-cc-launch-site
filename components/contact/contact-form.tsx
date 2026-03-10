@@ -164,10 +164,10 @@ export function ContactForm() {
             className="max-w-2xl"
           >
             <h2 className="font-display text-3xl font-bold text-brand-dark">
-              Can't wait? Neither can we.
+              Release the handbrake.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-brand-dark">
-              If you have a challenge that won't sit still, jump the queue and get in touch directly.
+              Just fill in the form below and we'll start the ball rolling.
             </p>
           </motion.div>
           </div>
