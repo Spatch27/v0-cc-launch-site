@@ -57,7 +57,7 @@ export function BuriedSection() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
-            src="/images/maze.svg"
+            src="/images/man-cropped.svg"
             alt="Marketing team overwhelmed by operational drag"
             className="w-full h-auto"
           />

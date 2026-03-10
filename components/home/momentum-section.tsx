@@ -51,7 +51,7 @@ export function MomentumSection() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <img
-              src="/images/how-we-work.svg"
+              src="/images/rocket-cropped.svg"
               alt="How we work illustration"
               className="w-full h-auto object-contain"
             />
@@ -67,7 +67,7 @@ export function MomentumSection() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
 <img
-              src="/images/systems-agents.svg"
+              src="/images/clock-cropped.svg"
               alt="Systems launch agents illustration"
               className="w-full h-auto object-contain"
             />
