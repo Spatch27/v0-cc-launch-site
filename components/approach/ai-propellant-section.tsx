@@ -19,21 +19,20 @@ export function AIPropellantSection() {
         variants={fadeInUp}
         className="grid items-center gap-12 lg:grid-cols-2"
       >
-        <div className="relative h-96 overflow-hidden rounded-lg">
+        <div className="relative flex h-96 items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/red-zeppelin-8cmFI3Y7Xt4-unsplash-UNqMNqXAg0GfkjEdfa1Af4pjveokXW.jpg"
-            alt="Road through yellow fields - AI as a propellant"
+            src="/images/icon-8.svg"
+            alt="AI as a propellant illustration"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
-            priority
+            className="object-contain p-8"
           />
         </div>
         <div>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
             AI as a propellant.
           </h2>
-          <div className="max-w-3xl space-y-4">
+          <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
               We're not an AI consultancy. We're a transformation consultancy that knows how to put AI to work. We start with how your marketing actually works — and work out where AI removes drag and where it creates new capability. Sometimes that's automating handoffs. Sometimes it's surfacing insights your team couldn't reach before. Sometimes it's giving a lean team the output of one twice its size.
             </p>
