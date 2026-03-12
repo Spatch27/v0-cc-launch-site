@@ -11,16 +11,24 @@ export async function POST(request: Request) {
 
     const results = { resend: null, attio: null }
 
-    // Try Resend
+    // Try Resend - send to tim@committedcitizens.co.uk (verified domain owner)
     if (process.env.RESEND_API_KEY) {
       try {
         const { Resend } = await import("resend")
         const resend = new Resend(process.env.RESEND_API_KEY)
         const result = await resend.emails.send({
           from: "onboarding@resend.dev",
-          to: "info@committedcitizens.co.uk",
-          subject: `Contact: ${name}`,
-          html: `<p>${name} (${email})</p><p>${message}</p>`,
+          to: "tim@committedcitizens.co.uk",
+          subject: `New Contact Form Submission from ${name}`,
+          html: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Company:</strong> ${company || "N/A"}</p>
+            <p><strong>Role:</strong> ${role || "N/A"}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message || "N/A"}</p>
+          `,
         })
         results.resend = result
       } catch (e) {
@@ -31,7 +39,7 @@ export async function POST(request: Request) {
     // Try Attio
     if (process.env.ATTIO_API_KEY) {
       try {
-        const res = await fetch("https://api.attio.com/v2/objects/people/records", {
+        const res = await fetch("https://api.attio.com/v2/objects/people/records?matching_attribute=email_addresses", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${process.env.ATTIO_API_KEY}`,
