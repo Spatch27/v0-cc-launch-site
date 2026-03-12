@@ -58,13 +58,13 @@ export function Footer() {
           {/* Footer bottom row: Substack embed left, nav links right */}
           <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
             {/* Substack embed - left */}
-            <div>
+            <div className="w-full lg:w-auto">
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
               </h3>
               <div data-supascribe-embed-id="351913576742" data-supascribe-subscribe />
-              <p className="mt-4 text-sm text-brand-dark/70">
-                Original thinking on marketing operations, transformation, and removing operational drag. No spam, ever.
+              <p className="mt-4 max-w-xs text-sm text-brand-dark">
+                Original thinking on marketing, transformation, and removing operational drag. No spam, ever.
               </p>
             </div>
 
