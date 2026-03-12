@@ -47,8 +47,17 @@ export function ContactForm() {
       })
 
       console.log("[v0] Response status:", res.status)
-      const data = await res.json()
-      console.log("[v0] Response data:", data)
+      console.log("[v0] Response ok:", res.ok)
+      
+      let data
+      try {
+        data = await res.json()
+        console.log("[v0] Response data:", data)
+      } catch (parseErr) {
+        console.error("[v0] Failed to parse response JSON:", parseErr)
+        console.log("[v0] Response text:", await res.text())
+        throw parseErr
+      }
 
       if (res.ok) {
         setSubmitted(true)
@@ -57,6 +66,7 @@ export function ContactForm() {
       }
     } catch (err) {
       console.error("[v0] Form submission error:", err)
+      console.error("[v0] Error message:", err instanceof Error ? err.message : String(err))
       setError("An error occurred. Please try again.")
     } finally {
       setLoading(false)
