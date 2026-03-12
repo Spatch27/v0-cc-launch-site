@@ -52,13 +52,13 @@ export function CtaBand({
   return (
     <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
       <div className="mx-auto max-w-[1400px]">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24 lg:items-start lg:self-start">
           {/* Left column: heading + CTA anchored to top */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="flex flex-col items-start justify-start gap-8"
+            className="flex flex-col items-start justify-start gap-8 lg:pt-0"
           >
             <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
               {heading}
@@ -99,7 +99,7 @@ export function CtaBand({
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="flex flex-col items-end justify-end text-right"
+            className="flex flex-col items-end justify-end text-right lg:pt-32"
           >
             {description && (
               <p className="text-lg leading-relaxed opacity-70">
@@ -108,11 +108,17 @@ export function CtaBand({
             )}
             {body && body.length > 0 && (
               <div className="space-y-4">
-                {body.map((para, i) => (
-                  <p key={i} className="text-lg leading-relaxed opacity-70">
-                    {para}
-                  </p>
-                ))}
+                {body.map((para, i) => {
+                  const isFinalLine = para.startsWith("Yours to keep");
+                  return (
+                    <p 
+                      key={i} 
+                      className={`text-lg leading-relaxed ${isFinalLine ? "font-bold opacity-100" : "opacity-70"}`}
+                    >
+                      {para}
+                    </p>
+                  );
+                })}
               </div>
             )}
           </motion.div>
