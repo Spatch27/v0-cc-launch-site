@@ -2,9 +2,12 @@ import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
 export async function POST(request: Request) {
+  console.log("[v0] Contact API called")
   try {
+    console.log("[v0] Parsing request body...")
     const body = await request.json()
     const { name, email, company, role, message } = body
+    console.log("[v0] Body parsed:", { name, email })
 
     // Validate required fields
     if (!name || !email) {
@@ -23,6 +26,7 @@ export async function POST(request: Request) {
       try {
         console.log("[v0] Creating Resend client...")
         const resend = new Resend(process.env.RESEND_API_KEY)
+        console.log("[v0] Resend client created successfully")
         console.log("[v0] Sending email via Resend...")
         const emailResult = await resend.emails.send({
           from: "Contact Form <onboarding@resend.dev>",
@@ -39,8 +43,11 @@ export async function POST(request: Request) {
         })
         console.log("[v0] Email sent successfully:", emailResult)
       } catch (err) {
-        console.error("[v0] Resend error:", err instanceof Error ? err.message : err)
+        console.error("[v0] Resend error caught:", err)
+        console.error("[v0] Resend error message:", err instanceof Error ? err.message : String(err))
       }
+    } else {
+      console.log("[v0] RESEND_API_KEY not configured")
     }
 
     // Push to Attio if configured
@@ -71,13 +78,19 @@ export async function POST(request: Request) {
         const attioData = await attioResponse.json()
         console.log("[v0] Attio response:", attioData)
       } catch (err) {
-        console.error("[v0] Attio error:", err instanceof Error ? err.message : err)
+        console.error("[v0] Attio error caught:", err)
+        console.error("[v0] Attio error message:", err instanceof Error ? err.message : String(err))
       }
+    } else {
+      console.log("[v0] ATTIO_API_KEY not configured")
     }
 
+    console.log("[v0] Contact API completing successfully")
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Contact API error:", error)
+    console.error("[v0] Contact API outer error:", error)
+    console.error("[v0] Error details:", error instanceof Error ? error.message : String(error))
+    console.error("[v0] Error stack:", error instanceof Error ? error.stack : "No stack")
     return NextResponse.json({ error: "Failed to process submission." }, { status: 500 })
   }
 }
