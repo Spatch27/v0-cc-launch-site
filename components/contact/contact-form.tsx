@@ -31,27 +31,29 @@ export function ContactForm() {
     const formData = new FormData(form)
 
     try {
+      const body = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        company: formData.get("company"),
+        role: formData.get("role"),
+        message: formData.get("message"),
+      }
+      console.log("[v0] Submitting form with data:", body)
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          company: formData.get("company"),
-          role: formData.get("role"),
-          message: formData.get("message"),
-        }),
+        body: JSON.stringify(body),
       })
+
+      console.log("[v0] Response status:", res.status)
+      const data = await res.json()
+      console.log("[v0] Response data:", data)
 
       if (res.ok) {
         setSubmitted(true)
       } else {
-        try {
-          const data = await res.json()
-          setError(data.error || "Failed to submit form")
-        } catch {
-          setError("Failed to submit form")
-        }
+        setError(data.error || "Failed to submit form")
       }
     } catch (err) {
       console.error("[v0] Form submission error:", err)
