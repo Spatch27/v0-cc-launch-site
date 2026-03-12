@@ -58,42 +58,48 @@ export function CtaBand({
           variants={fadeInUp}
           className="flex flex-col gap-12"
         >
-          {/* Heading and supporting copy - ranged left */}
-          <div className="flex flex-col items-start gap-8 max-w-3xl">
+          {/* Heading - ranged left */}
+          <div className="flex flex-col items-start">
             <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
               {heading}
             </h2>
-            {description && (
-              <p className="text-lg leading-relaxed opacity-70">
-                {description}
-              </p>
-            )}
-            {body && body.length > 0 && (
-              <div className="space-y-4">
-                {body.map((para, i) => {
-                  const isLastParagraph = i === body.length - 1;
-                  const lowerPara = para.toLowerCase();
-                  const yoursIndex = lowerPara.indexOf("yours to keep");
+          </div>
 
-                  if (isLastParagraph && yoursIndex !== -1) {
-                    const beforeYours = para.substring(0, yoursIndex);
-                    const fromYours = para.substring(yoursIndex);
+          {/* Supporting copy - ranged right */}
+          <div className="flex justify-end">
+            <div className="flex flex-col items-end gap-4 max-w-3xl text-right">
+              {description && (
+                <p className="text-lg leading-relaxed opacity-70">
+                  {description}
+                </p>
+              )}
+              {body && body.length > 0 && (
+                <div className="space-y-4">
+                  {body.map((para, i) => {
+                    const isLastParagraph = i === body.length - 1;
+                    const lowerPara = para.toLowerCase();
+                    const yoursIndex = lowerPara.indexOf("yours to keep");
+
+                    if (isLastParagraph && yoursIndex !== -1) {
+                      const beforeYours = para.substring(0, yoursIndex);
+                      const fromYours = para.substring(yoursIndex);
+                      return (
+                        <p key={i} className="text-lg leading-relaxed">
+                          <span className="opacity-70">{beforeYours}</span>
+                          <span className="font-bold opacity-100">{fromYours}</span>
+                        </p>
+                      );
+                    }
+
                     return (
-                      <p key={i} className="text-lg leading-relaxed">
-                        <span className="opacity-70">{beforeYours}</span>
-                        <span className="font-bold opacity-100">{fromYours}</span>
+                      <p key={i} className="text-lg leading-relaxed opacity-70">
+                        {para}
                       </p>
                     );
-                  }
-
-                  return (
-                    <p key={i} className="text-lg leading-relaxed opacity-70">
-                      {para}
-                    </p>
-                  );
-                })}
-              </div>
-            )}
+                  })}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* CTA - ranged right */}
