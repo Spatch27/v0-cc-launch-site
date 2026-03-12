@@ -39,8 +39,11 @@ export async function POST(request: Request) {
     // Try Attio
     if (process.env.ATTIO_API_KEY) {
       try {
-        const res = await fetch("https://api.attio.com/v2/objects/people/records?matching_attribute=email_addresses", {
-          method: "PUT",
+        const url = new URL("https://api.attio.com/v2/objects/people/records")
+        url.searchParams.set("matching_attribute", "email_addresses")
+        
+        const res = await fetch(url.toString(), {
+          method: "POST",
           headers: {
             Authorization: `Bearer ${process.env.ATTIO_API_KEY}`,
             "Content-Type": "application/json",
