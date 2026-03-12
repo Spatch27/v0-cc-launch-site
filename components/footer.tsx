@@ -55,6 +55,12 @@ export function Footer() {
                 scrolling="no"
                 className="w-full lg:w-auto"
               />
+            </div>
+          </motion.div>
+
+          {/* Divider */}
+          <div className="border-t border-brand-dark/10" />
+
           {/* Link columns - right side */}
           <motion.div variants={fadeInUp} className="flex justify-end">
             <div className="grid grid-cols-2 gap-10 lg:gap-16">
@@ -101,6 +107,8 @@ export function Footer() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Copyright bar */}
       <div className="relative z-10 border-t border-brand-dark/10">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 pb-24 lg:px-12 lg:pb-4">
           <p className="text-xs text-brand-dark">
