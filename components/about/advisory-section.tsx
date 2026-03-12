@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
+import Icon42866 from "@/components/home/vector-illustration-animated"
 
 export function AdvisorySection() {
   return (
@@ -28,11 +29,7 @@ export function AdvisorySection() {
           </div>
         </motion.div>
         <motion.div variants={fadeInUp} className="hidden lg:flex lg:justify-end">
-          <img 
-            src="/images/team-illustration-2.svg" 
-            alt="Team illustration" 
-            className="max-h-[500px] w-auto"
-          />
+          <Icon42866 className="max-h-[500px] w-auto" />
         </motion.div>
       </div>
     </Section>
