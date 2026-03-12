@@ -224,7 +224,7 @@ export function ContactForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group mt-4 inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
+                  className="group mt-4 inline-flex w-fit items-center gap-3 self-start rounded-lg border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:opacity-50"
                   onMouseEnter={() => setIsMessageHovered(true)}
                   onMouseLeave={() => setIsMessageHovered(false)}
                 >
