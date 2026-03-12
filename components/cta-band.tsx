@@ -89,7 +89,7 @@ export function CtaBand({
           <div className="flex justify-end">
             <Link
               href={ctaHref}
-              className={`group inline-flex w-fit items-center gap-3 rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
+              className={`group inline-flex w-fit items-center gap-3 rounded-md px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
