@@ -89,7 +89,7 @@ export function InsightsListing() {
         style={{ scale, opacity }}
         className="relative h-screen bg-brand-light px-6 lg:px-12"
       >
-        <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-24 lg:pt-28 pb-12">
+        <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-24 lg:pt-28 pb-20 lg:pb-16">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
