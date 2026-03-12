@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server"
 
-// Contact form API - sends email notifications via Resend
 export async function POST(request: Request) {
   try {
     const body = await request.json()
