@@ -49,6 +49,11 @@ export function ContactForm() {
 
       const data = await res.json()
       console.log("[v0] Response data:", data)
+      
+      if (data.debug) {
+        console.log("[v0] DEBUG - Resend:", data.debug.resend)
+        console.log("[v0] DEBUG - Attio:", data.debug.attio)
+      }
 
       if (res.ok) {
         setSubmitted(true)
