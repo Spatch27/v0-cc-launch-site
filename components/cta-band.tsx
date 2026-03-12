@@ -52,14 +52,14 @@ export function CtaBand({
   return (
     <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
       <div className="mx-auto max-w-[1400px]">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
-          {/* Left column: heading + supporting copy anchored to top */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="flex flex-col items-start justify-start gap-8"
-          >
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="flex flex-col gap-12"
+        >
+          {/* Heading and supporting copy - ranged left */}
+          <div className="flex flex-col items-start gap-8 max-w-3xl">
             <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
               {heading}
             </h2>
@@ -94,15 +94,10 @@ export function CtaBand({
                 })}
               </div>
             )}
-          </motion.div>
+          </div>
 
-          {/* Right column: CTA anchored to bottom */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="flex flex-col items-start justify-end"
-          >
+          {/* CTA - ranged right */}
+          <div className="flex justify-end">
             <Link
               href={ctaHref}
               className={`group inline-flex w-fit items-center gap-3 px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
@@ -132,8 +127,8 @@ export function CtaBand({
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </Link>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
