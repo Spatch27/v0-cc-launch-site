@@ -14,6 +14,10 @@ export async function POST(request: Request) {
       )
     }
 
+    // Debug: Check if env vars are set
+    console.log("[v0] RESEND_API_KEY set:", !!process.env.RESEND_API_KEY)
+    console.log("[v0] ATTIO_API_KEY set:", !!process.env.ATTIO_API_KEY)
+
     // Send email via Resend
     if (process.env.RESEND_API_KEY) {
       try {
