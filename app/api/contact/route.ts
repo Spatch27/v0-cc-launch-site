@@ -36,11 +36,11 @@ export async function POST(request: Request) {
       }
     }
 
-    // Try Attio - using PUT without query params first
+    // Try Attio - create person via POST
     if (process.env.ATTIO_API_KEY) {
       try {
         const res = await fetch("https://api.attio.com/v2/objects/people/records", {
-          method: "PUT",
+          method: "POST",
           headers: {
             Authorization: `Bearer ${process.env.ATTIO_API_KEY}`,
             "Content-Type": "application/json",
