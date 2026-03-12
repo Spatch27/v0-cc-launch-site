@@ -36,15 +36,11 @@ export async function POST(request: Request) {
       }
     }
 
-    // Try Attio
+    // Try Attio - using PUT without query params first
     if (process.env.ATTIO_API_KEY) {
       try {
-        const url = new URL("https://api.attio.com/v2/objects/people/records")
-        url.searchParams.set("matching_attribute", "email_addresses")
-        url.searchParams.set("matching_value", email)
-        
-        const res = await fetch(url.toString(), {
-          method: "POST",
+        const res = await fetch("https://api.attio.com/v2/objects/people/records", {
+          method: "PUT",
           headers: {
             Authorization: `Bearer ${process.env.ATTIO_API_KEY}`,
             "Content-Type": "application/json",
