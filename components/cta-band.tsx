@@ -75,28 +75,11 @@ export function CtaBand({
               )}
               {body && body.length > 0 && (
                 <div className="space-y-4">
-                  {body.map((para, i) => {
-                    const isLastParagraph = i === body.length - 1;
-                    const lowerPara = para.toLowerCase();
-                    const yoursIndex = lowerPara.indexOf("yours to keep");
-
-                    if (isLastParagraph && yoursIndex !== -1) {
-                      const beforeYours = para.substring(0, yoursIndex);
-                      const fromYours = para.substring(yoursIndex);
-                      return (
-                        <p key={i} className="text-lg leading-relaxed">
-                          <span>{beforeYours}</span>
-                          <span className="font-bold">{fromYours}</span>
-                        </p>
-                      );
-                    }
-
-                    return (
-                      <p key={i} className="text-lg leading-relaxed">
-                        {para}
-                      </p>
-                    );
-                  })}
+                  {body.map((para, i) => (
+                    <p key={i} className="text-lg leading-relaxed">
+                      {para}
+                    </p>
+                  ))}
                 </div>
               )}
             </div>
