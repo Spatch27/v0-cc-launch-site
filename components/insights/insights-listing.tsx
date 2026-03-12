@@ -87,9 +87,9 @@ export function InsightsListing() {
       <motion.section
         ref={sectionRef}
         style={{ scale, opacity }}
-        className="relative h-screen bg-brand-light px-6 lg:px-12"
+        className="relative min-h-svh lg:h-screen bg-brand-light px-6 lg:px-12"
       >
-        <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-24 lg:pt-28 pb-20 lg:pb-16">
+        <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-20 lg:pt-28 pb-24 lg:pb-16">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
