@@ -34,7 +34,7 @@ export function AboutHero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark"
         >
-          We started Committed Citizens after seeing what happens when marketing teams are freed from operational drag. The system serves the people, and the work flies.
+          We started Committed Citizens after seeing what happens when marketing teams are freed from operational drag. <strong>The system serves the people, and the work flies.</strong>
         </motion.p>
       </div>
     </motion.section>

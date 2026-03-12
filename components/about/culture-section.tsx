@@ -6,7 +6,7 @@ import { Section } from "@/components/section"
 
 export function CultureSection() {
   return (
-    <Section background="dark">
+    <Section background="dark" compact>
       <motion.div variants={fadeInUp}>
         <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
           More human, in every interaction.
