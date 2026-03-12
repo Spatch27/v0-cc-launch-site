@@ -19,15 +19,15 @@ export function HeroPhilosophy() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="relative bg-brand-pink px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-20"
-      layout
+      className="relative h-screen bg-brand-pink px-6 lg:px-12"
     >
-      <div className="mx-auto flex min-h-[18rem] max-w-[1400px] flex-col justify-between gap-16">
+      <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-24 lg:pt-28 pb-20 lg:pb-16">
         {/* Main headline */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
+          className="mt-20"
         >
           <h1 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold leading-[0.95] tracking-tight text-brand-dark text-balance">
             Only people <br />
