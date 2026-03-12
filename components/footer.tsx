@@ -39,7 +39,22 @@ export function Footer() {
         variants={staggerContainer}
         className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 space-y-12">
+          {/* Substack subscription */}
+          <motion.div variants={fadeInUp} className="flex justify-start">
+            <div className="w-full lg:w-auto">
+              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
+                Subscribe to our Substack
+              </h3>
+              <iframe 
+                src="https://committedcitizens.substack.com/embed" 
+                width="480" 
+                height="320" 
+                style={{ border: "1px solid #EEE", background: "white" }} 
+                frameBorder="0" 
+                scrolling="no"
+                className="w-full lg:w-auto"
+              />
           {/* Link columns - right side */}
           <motion.div variants={fadeInUp} className="flex justify-end">
             <div className="grid grid-cols-2 gap-10 lg:gap-16">
@@ -86,8 +101,6 @@ export function Footer() {
           </motion.div>
         </div>
       </motion.div>
-
-      {/* Copyright bar */}
       <div className="relative z-10 border-t border-brand-dark/10">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 pb-24 lg:px-12 lg:pb-4">
           <p className="text-xs text-brand-dark">
