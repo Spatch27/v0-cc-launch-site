@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
+
 const navigateLinks = [
   { label: "Approach", href: "/approach" },
   { label: "Outcomes", href: "/outcomes" },
@@ -64,45 +65,45 @@ export function Footer() {
           {/* Link columns - right side */}
           <motion.div variants={fadeInUp} className="flex justify-end">
             <div className="grid grid-cols-2 gap-10 lg:gap-16">
-            {/* Navigate column */}
-            <div>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
-                Navigate
-              </h3>
-              <ul className="flex flex-col gap-3">
-                {navigateLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {/* Navigate column */}
+              <div>
+                <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
+                  Navigate
+                </h3>
+                <ul className="flex flex-col gap-3">
+                  {navigateLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* Connect column */}
-            <div>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
-                Connect
-              </h3>
-              <ul className="flex flex-col gap-3">
-                {connectLinks.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {/* Connect column */}
+              <div>
+                <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
+                  Connect
+                </h3>
+                <ul className="flex flex-col gap-3">
+                  {connectLinks.map((link) => (
+                    <li key={link.href}>
+                      <a
+                        href={link.href}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                        className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </motion.div>
         </div>
