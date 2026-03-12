@@ -90,6 +90,7 @@ export function CtaBand({
             <Link
               href={ctaHref}
               className={`group inline-flex w-fit items-center gap-3 rounded-lg px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
+              style={{ borderRadius: "8px" }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
