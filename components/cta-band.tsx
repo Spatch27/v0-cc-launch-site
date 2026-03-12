@@ -109,7 +109,7 @@ export function CtaBand({
             {body && body.length > 0 && (
               <div className="space-y-4">
                 {body.map((para, i) => {
-                  const isFinalLine = para.startsWith("Yours to keep");
+                  const isFinalLine = para.toLowerCase().includes("yours to keep");
                   return (
                     <p 
                       key={i} 
