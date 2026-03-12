@@ -92,46 +92,42 @@ export function ContactForm() {
       {/* Waitlist Section */}
       <section className="relative bg-brand-dark px-6 py-20 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-[1400px]">
-          <div className="relative mx-auto max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-3"
-            >
-              <div>
-                <h2 className="font-display text-4xl font-bold text-brand-white">
-                  Release the handbrake.
-                </h2>
-                <div className="mt-4 space-y-4 text-lg leading-relaxed text-brand-white">
-                  <p>
-                    The Drag Diagnostic is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most - and what to fix first.
-                  </p>
-                  <p>
-                    You'll walk away with a Flow Map: a single-page view of where friction is concentrated, what it's costing you, and which fix would yield the fastest return. Board-ready language for a budget conversation, not a feelings conversation.
-                  </p>
-                  <p>
-                    Yours to keep, whether or not we work together.
-                  </p>
-                  <p className="font-medium">
-                    Just fill in the form below and we'll start the ball rolling.
-                  </p>
-                </div>
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <h2 className="font-display text-5xl md:text-6xl font-bold leading-snug text-brand-white max-w-3xl">
+              Release the handbrake.
+            </h2>
+            <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-white/70">
+              <p>
+                The Drag Diagnostic is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most - and what to fix first.
+              </p>
+              <p>
+                You'll walk away with a Flow Map: a single-page view of where friction is concentrated, what it's costing you, and which fix would yield the fastest return. Board-ready language for a budget conversation, not a feelings conversation.
+              </p>
+              <p>
+                Yours to keep, whether or not we work together.
+              </p>
+              <p className="font-medium text-brand-white">
+                Just fill in the form below and we'll start the ball rolling.
+              </p>
+            </div>
 
-              {submitted ? (
-                <div className="flex flex-col gap-6 bg-brand-dark/50 border border-brand-white/10 p-12">
-                  <CheckCircle size={48} className="text-brand-pink" />
-                  <h3 className="font-display text-2xl font-bold text-brand-white">
-                    Thanks for booking!
-                  </h3>
-                  <p className="text-lg text-brand-white/60">
-                    We'll be in touch soon to confirm your diagnostic session.
-                  </p>
-                </div>
-              ) : null}
-            </motion.div>
-          </div>
+            {submitted && (
+              <div className="flex flex-col gap-6 bg-brand-dark/50 border border-brand-white/10 p-12">
+                <CheckCircle size={48} className="text-brand-pink" />
+                <h3 className="font-display text-2xl font-bold text-brand-white">
+                  Thanks for booking!
+                </h3>
+                <p className="text-lg text-brand-white/60">
+                  We'll be in touch soon to confirm your diagnostic session.
+                </p>
+              </div>
+            )}
+          </motion.div>
         </div>
       </section>
       <Section background="light" compact>
