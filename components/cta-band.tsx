@@ -109,7 +109,8 @@ export function CtaBand({
             {body && body.length > 0 && (
               <div className="space-y-4">
                 {body.map((para, i) => {
-                  const isFinalLine = para.toLowerCase().includes("yours to keep");
+                  const isLastParagraph = i === body.length - 1;
+                  const isFinalLine = isLastParagraph && para.toLowerCase().includes("yours to keep");
                   return (
                     <p 
                       key={i} 
