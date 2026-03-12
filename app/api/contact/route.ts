@@ -41,6 +41,7 @@ export async function POST(request: Request) {
       try {
         const url = new URL("https://api.attio.com/v2/objects/people/records")
         url.searchParams.set("matching_attribute", "email_addresses")
+        url.searchParams.set("matching_value", email)
         
         const res = await fetch(url.toString(), {
           method: "POST",
