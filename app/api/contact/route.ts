@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { Resend } from "resend"
 
 export async function POST(request: Request) {
   try {
@@ -11,6 +12,25 @@ export async function POST(request: Request) {
         { error: "Name and email are required." },
         { status: 400 }
       )
+    }
+
+    // Send email notification via Resend
+    const resendKey = process.env.RESEND_API_KEY
+    if (resendKey) {
+      const resend = new Resend(resendKey)
+      await resend.emails.send({
+        from: "noreply@committedcitizens.co.uk",
+        to: "info@committedcitizens.co.uk",
+        subject: `New Contact Form Submission from ${name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
+          ${role ? `<p><strong>Role:</strong> ${role}</p>` : ""}
+          ${message ? `<p><strong>Message:</strong></p><p>${message.replace(/\n/g, "<br>")}</p>` : ""}
+        `,
+      })
     }
 
     // If ATTIO_API_KEY is configured, send to Attio CRM
