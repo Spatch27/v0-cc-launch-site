@@ -1,60 +1,44 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
 
 export async function POST(request: Request) {
-  console.log("[v0] Contact API called")
   try {
-    console.log("[v0] Parsing request body...")
+    console.log("[v0] API route called")
     const body = await request.json()
     const { name, email, company, role, message } = body
-    console.log("[v0] Body parsed:", { name, email })
 
-    // Validate required fields
     if (!name || !email) {
-      return NextResponse.json(
-        { error: "Name and email are required." },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: "Missing fields" }, { status: 400 })
     }
 
-    // Debug: Check if env vars are set
-    console.log("[v0] RESEND_API_KEY set:", !!process.env.RESEND_API_KEY)
-    console.log("[v0] ATTIO_API_KEY set:", !!process.env.ATTIO_API_KEY)
+    console.log("[v0] Received form data:", { name, email })
+    console.log("[v0] RESEND_API_KEY exists:", !!process.env.RESEND_API_KEY)
+    console.log("[v0] ATTIO_API_KEY exists:", !!process.env.ATTIO_API_KEY)
 
-    // Send email via Resend
+    // Try Resend
     if (process.env.RESEND_API_KEY) {
       try {
-        console.log("[v0] Creating Resend client...")
+        console.log("[v0] Attempting Resend import...")
+        const { Resend } = await import("resend")
+        console.log("[v0] Resend imported, creating client...")
         const resend = new Resend(process.env.RESEND_API_KEY)
-        console.log("[v0] Resend client created successfully")
-        console.log("[v0] Sending email via Resend...")
-        const emailResult = await resend.emails.send({
-          from: "Contact Form <onboarding@resend.dev>",
+        console.log("[v0] Sending email...")
+        const result = await resend.emails.send({
+          from: "onboarding@resend.dev",
           to: "info@committedcitizens.co.uk",
-          subject: `New Contact Form Submission from ${name}`,
-          html: `
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
-            ${role ? `<p><strong>Role:</strong> ${role}</p>` : ""}
-            ${message ? `<p><strong>Message:</strong></p><p>${message.replace(/\n/g, "<br>")}</p>` : ""}
-          `,
+          subject: `Contact: ${name}`,
+          html: `<p>${name} (${email})</p><p>${message}</p>`,
         })
-        console.log("[v0] Email sent successfully:", emailResult)
-      } catch (err) {
-        console.error("[v0] Resend error caught:", err)
-        console.error("[v0] Resend error message:", err instanceof Error ? err.message : String(err))
+        console.log("[v0] Resend result:", result)
+      } catch (e) {
+        console.error("[v0] Resend failed:", e instanceof Error ? e.message : e)
       }
-    } else {
-      console.log("[v0] RESEND_API_KEY not configured")
     }
 
-    // Push to Attio if configured
+    // Try Attio
     if (process.env.ATTIO_API_KEY) {
       try {
-        console.log("[v0] Pushing to Attio...")
-        const attioResponse = await fetch("https://api.attio.com/v2/objects/people/records", {
+        console.log("[v0] Attempting Attio...")
+        const res = await fetch("https://api.attio.com/v2/objects/people/records", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${process.env.ATTIO_API_KEY}`,
@@ -63,34 +47,23 @@ export async function POST(request: Request) {
           body: JSON.stringify({
             data: {
               values: {
-                name: [
-                  {
-                    first_name: name.split(" ")[0],
-                    last_name: name.split(" ").slice(1).join(" ") || "",
-                  },
-                ],
+                name: [{ first_name: name.split(" ")[0], last_name: name.split(" ").slice(1).join(" ") || "" }],
                 email_addresses: [{ email_address: email }],
               },
             },
           }),
         })
-        console.log("[v0] Attio response status:", attioResponse.status)
-        const attioData = await attioResponse.json()
-        console.log("[v0] Attio response:", attioData)
-      } catch (err) {
-        console.error("[v0] Attio error caught:", err)
-        console.error("[v0] Attio error message:", err instanceof Error ? err.message : String(err))
+        console.log("[v0] Attio status:", res.status)
+        const data = await res.json()
+        console.log("[v0] Attio response:", data)
+      } catch (e) {
+        console.error("[v0] Attio failed:", e instanceof Error ? e.message : e)
       }
-    } else {
-      console.log("[v0] ATTIO_API_KEY not configured")
     }
 
-    console.log("[v0] Contact API completing successfully")
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Contact API outer error:", error)
-    console.error("[v0] Error details:", error instanceof Error ? error.message : String(error))
-    console.error("[v0] Error stack:", error instanceof Error ? error.stack : "No stack")
-    return NextResponse.json({ error: "Failed to process submission." }, { status: 500 })
+    console.error("[v0] API error:", error instanceof Error ? error.message : error)
+    return NextResponse.json({ error: "Server error" }, { status: 500 })
   }
 }
