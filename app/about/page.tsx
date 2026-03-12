@@ -17,14 +17,14 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <PurposeSection />
-      <section className="relative w-screen h-[600px] -mx-6 lg:-mx-12 flex items-center justify-center overflow-hidden">
+      <section className="relative w-screen left-1/2 -translate-x-1/2 h-[600px] flex items-center justify-center overflow-hidden">
         <img
           src="/images/about-quote-bg.jpg"
-          alt="Boat on water"
+          alt="Aerial view of an autumn lake"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 px-6 lg:px-12 mx-auto max-w-4xl text-center">
+        <div className="relative z-10 px-6 lg:px-12 mx-auto max-w-5xl text-center">
           <blockquote className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#FFD100]">
             "Never doubt that a small group of thoughtful, committed citizens can change the world. In fact, it's the only thing that ever has."
           </blockquote>
