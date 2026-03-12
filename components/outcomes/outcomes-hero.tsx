@@ -18,13 +18,13 @@ export function OutcomesHero() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="relative bg-brand-dark px-6 pt-40 pb-16 lg:px-12 lg:pt-48 lg:pb-20">
-      <div className="mx-auto flex min-h-[18rem] max-w-[1400px] flex-col justify-between gap-16">
+      className="relative h-screen bg-brand-dark px-6 lg:px-12">
+      <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-24 lg:pt-28 pb-12">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
+          className="mt-20 max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
         >
           When the work flows, results <i>fly</i>.
         </motion.h1>
