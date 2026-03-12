@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 
+// Contact form API - sends email notifications via Resend
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -9,12 +10,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 })
     }
 
-    // Send email via Resend to verified address
+    // Send email via Resend to tim@committedcitizens.co.uk (verified account owner)
     if (process.env.RESEND_API_KEY) {
       try {
         const { Resend } = await import("resend")
         const resend = new Resend(process.env.RESEND_API_KEY)
-        await resend.emails.send({
+        const emailResult = await resend.emails.send({
           from: "onboarding@resend.dev",
           to: "tim@committedcitizens.co.uk",
           subject: `New Contact Form Submission from ${name}`,
@@ -28,6 +29,10 @@ export async function POST(request: Request) {
             <p>${message || "N/A"}</p>
           `,
         })
+        
+        if (emailResult.error) {
+          console.error("[v0] Resend error:", emailResult.error)
+        }
       } catch (e) {
         console.error("[v0] Resend failed:", e instanceof Error ? e.message : e)
       }
