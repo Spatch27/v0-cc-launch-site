@@ -59,7 +59,7 @@ export function CtaBand({
           className="flex flex-col gap-12"
         >
           {/* Heading - ranged left */}
-          <div className="flex flex-col items-start max-w-2xl">
+          <div className="flex flex-col items-start max-w-3xl">
             <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
               {heading}
             </h2>
