@@ -69,34 +69,17 @@ export function CtaBand({
           <div className="flex justify-end">
             <div className="flex flex-col items-end gap-4 max-w-3xl text-right">
               {description && (
-                <p className="text-lg leading-relaxed opacity-70">
+                <p className="text-lg leading-relaxed">
                   {description}
                 </p>
               )}
               {body && body.length > 0 && (
                 <div className="space-y-4">
-                  {body.map((para, i) => {
-                    const isLastParagraph = i === body.length - 1;
-                    const lowerPara = para.toLowerCase();
-                    const yoursIndex = lowerPara.indexOf("yours to keep");
-
-                    if (isLastParagraph && yoursIndex !== -1) {
-                      const beforeYours = para.substring(0, yoursIndex);
-                      const fromYours = para.substring(yoursIndex);
-                      return (
-                        <p key={i} className="text-lg leading-relaxed">
-                          <span className="opacity-70">{beforeYours}</span>
-                          <span className="font-bold opacity-100">{fromYours}</span>
-                        </p>
-                      );
-                    }
-
-                    return (
-                      <p key={i} className="text-lg leading-relaxed opacity-70">
-                        {para}
-                      </p>
-                    );
-                  })}
+                  {body.map((para, i) => (
+                    <p key={i} className="text-lg leading-relaxed">
+                      {para}
+                    </p>
+                  ))}
                 </div>
               )}
             </div>

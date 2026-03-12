@@ -49,7 +49,7 @@ export function BuriedSection() {
           </motion.div>
         </motion.div>
 
-        {/* Image — right */}
+        {/* Illustration — right */}
         <motion.div
           className="flex items-center justify-center w-full"
           initial={{ opacity: 0, x: 40, scale: 0.97 }}

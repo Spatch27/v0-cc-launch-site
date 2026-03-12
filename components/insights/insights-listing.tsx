@@ -199,35 +199,6 @@ export function InsightsListing() {
           ))}
         </motion.div>
       </Section>
-
-      {/* Newsletter */}
-      <section className="bg-brand-dark px-6 py-24 lg:px-12 lg:py-32">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-          className="mx-auto flex max-w-[1400px] flex-col items-start gap-8 lg:flex-row lg:items-end lg:justify-between"
-        >
-          <div className="max-w-2xl">
-            <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-              Stay sharp.
-            </h2>
-            <p className="mt-4 text-lg text-brand-white">
-              Original thinking on marketing operations, transformation, and
-              removing operational drag. No spam, ever.
-            </p>
-          </div>
-          <Link
-            href="https://substack.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex w-fit items-center gap-3 self-start border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white lg:self-auto"
-          >
-            Subscribe on Substack
-            <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
-      </section>
     </>
   )
 }
