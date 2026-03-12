@@ -9,14 +9,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 })
     }
 
-    const results = { resend: null, attio: null }
-
-    // Try Resend - send to tim@committedcitizens.co.uk (verified domain owner)
+    // Send email via Resend to verified address
     if (process.env.RESEND_API_KEY) {
       try {
         const { Resend } = await import("resend")
         const resend = new Resend(process.env.RESEND_API_KEY)
-        const result = await resend.emails.send({
+        await resend.emails.send({
           from: "onboarding@resend.dev",
           to: "tim@committedcitizens.co.uk",
           subject: `New Contact Form Submission from ${name}`,
@@ -30,39 +28,14 @@ export async function POST(request: Request) {
             <p>${message || "N/A"}</p>
           `,
         })
-        results.resend = result
       } catch (e) {
-        results.resend = { error: e instanceof Error ? e.message : String(e) }
+        console.error("[v0] Resend failed:", e instanceof Error ? e.message : e)
       }
     }
 
-    // Try Attio - create person via POST
-    if (process.env.ATTIO_API_KEY) {
-      try {
-        const res = await fetch("https://api.attio.com/v2/objects/people/records", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.ATTIO_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            data: {
-              values: {
-                name: [{ first_name: name.split(" ")[0], last_name: name.split(" ").slice(1).join(" ") || "" }],
-                email_addresses: [{ email_address: email }],
-              },
-            },
-          }),
-        })
-        const data = await res.json()
-        results.attio = { status: res.status, success: res.ok, data }
-      } catch (e) {
-        results.attio = { error: e instanceof Error ? e.message : String(e) }
-      }
-    }
-
-    return NextResponse.json({ success: true, debug: results })
+    return NextResponse.json({ success: true })
   } catch (error) {
+    console.error("[v0] API error:", error)
     return NextResponse.json({ error: "Server error" }, { status: 500 })
   }
 }
