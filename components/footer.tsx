@@ -25,7 +25,6 @@ export function Footer() {
     script.src = "https://js.supascribe.com/v1/loader/Lh6325se05ekSo4cfYYlMSvZLs13.js"
     script.async = true
     document.body.appendChild(script)
-    
     return () => {
       if (script.parentNode) {
         script.parentNode.removeChild(script)
@@ -35,7 +34,7 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden text-brand-dark">
-      <div 
+      <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: 'url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CC%20blend%20background-VpfgyiS6MyAjc7Ce2dMvMIdbEjmz3U.webp)',
@@ -45,7 +44,6 @@ export function Footer() {
           transform: 'rotate(180deg)',
         }}
       />
-      
       <motion.div
         initial="hidden"
         animate="visible"
@@ -63,7 +61,6 @@ export function Footer() {
                 Original thinking on marketing, transformation, and removing operational drag. No spam, ever.
               </p>
             </div>
-
             <div className="grid grid-cols-2 gap-10 lg:gap-16">
               <div>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
@@ -82,7 +79,6 @@ export function Footer() {
                   ))}
                 </ul>
               </div>
-
               <div>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                   Connect
@@ -106,7 +102,6 @@ export function Footer() {
           </motion.div>
         </div>
       </motion.div>
-
       <div className="relative z-10 border-t border-brand-dark/10">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 pb-24 lg:px-12 lg:pb-4">
           <p className="text-xs text-brand-dark">
