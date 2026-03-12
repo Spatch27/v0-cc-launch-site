@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { useEffect } from "react"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 
 const navigateLinks = [
@@ -19,6 +20,19 @@ const connectLinks = [
 ]
 
 export function Footer() {
+  useEffect(() => {
+    // Load Supascribe script
+    const script = document.createElement("script")
+    script.src = "https://js.supascribe.com/v1/loader/Lh6325se05ekSo4cfYYlMSvZLs13.js"
+    script.async = true
+    document.body.appendChild(script)
+    
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script)
+      }
+    }
+  }, [])
   return (
     <footer className="relative overflow-hidden text-brand-dark">
       {/* Background image */}
@@ -41,21 +55,13 @@ export function Footer() {
         className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12 space-y-12">
-          {/* Substack subscription */}
+          {/* Supascribe subscription */}
           <motion.div variants={fadeInUp} className="flex justify-start">
             <div className="w-full lg:w-auto">
               <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
-                Subscribe to our Substack
+                Subscribe to our Newsletter
               </h3>
-              <iframe 
-                src="https://committedcitizens.substack.com/embed" 
-                width="480" 
-                height="320" 
-                style={{ border: "1px solid #EEE", background: "white" }} 
-                frameBorder="0" 
-                scrolling="no"
-                className="w-full lg:w-auto"
-              />
+              <div data-supascribe-embed-id="351913576742" data-supascribe-subscribe />
             </div>
           </motion.div>
 
