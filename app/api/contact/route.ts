@@ -21,8 +21,10 @@ export async function POST(request: Request) {
     // Send email via Resend
     if (process.env.RESEND_API_KEY) {
       try {
+        console.log("[v0] Creating Resend client...")
         const resend = new Resend(process.env.RESEND_API_KEY)
-        await resend.emails.send({
+        console.log("[v0] Sending email via Resend...")
+        const emailResult = await resend.emails.send({
           from: "Contact Form <onboarding@resend.dev>",
           to: "info@committedcitizens.co.uk",
           subject: `New Contact Form Submission from ${name}`,
@@ -35,15 +37,17 @@ export async function POST(request: Request) {
             ${message ? `<p><strong>Message:</strong></p><p>${message.replace(/\n/g, "<br>")}</p>` : ""}
           `,
         })
+        console.log("[v0] Email sent successfully:", emailResult)
       } catch (err) {
-        console.error("[v0] Resend error:", err)
+        console.error("[v0] Resend error:", err instanceof Error ? err.message : err)
       }
     }
 
     // Push to Attio if configured
     if (process.env.ATTIO_API_KEY) {
       try {
-        await fetch("https://api.attio.com/v2/objects/people/records", {
+        console.log("[v0] Pushing to Attio...")
+        const attioResponse = await fetch("https://api.attio.com/v2/objects/people/records", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${process.env.ATTIO_API_KEY}`,
@@ -63,8 +67,11 @@ export async function POST(request: Request) {
             },
           }),
         })
+        console.log("[v0] Attio response status:", attioResponse.status)
+        const attioData = await attioResponse.json()
+        console.log("[v0] Attio response:", attioData)
       } catch (err) {
-        console.error("[v0] Attio error:", err)
+        console.error("[v0] Attio error:", err instanceof Error ? err.message : err)
       }
     }
 
