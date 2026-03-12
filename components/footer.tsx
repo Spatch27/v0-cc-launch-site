@@ -63,6 +63,9 @@ export function Footer() {
                 Subscribe to our Substack
               </h3>
               <div data-supascribe-embed-id="351913576742" data-supascribe-subscribe />
+              <p className="mt-4 text-sm text-brand-dark/70">
+                Original thinking on marketing operations, transformation, and removing operational drag. No spam, ever.
+              </p>
             </div>
 
             {/* Link columns - right */}
