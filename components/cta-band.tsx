@@ -52,17 +52,57 @@ export function CtaBand({
   return (
     <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
       <div className="mx-auto max-w-[1400px]">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24 lg:items-start lg:self-start">
-          {/* Left column: heading + CTA anchored to top */}
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+          {/* Left column: heading + supporting copy anchored to top */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="flex flex-col items-start justify-start gap-8 lg:-mt-12"
+            className="flex flex-col items-start justify-start gap-8"
           >
             <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
               {heading}
             </h2>
+            {description && (
+              <p className="text-lg leading-relaxed opacity-70">
+                {description}
+              </p>
+            )}
+            {body && body.length > 0 && (
+              <div className="space-y-4">
+                {body.map((para, i) => {
+                  const isLastParagraph = i === body.length - 1;
+                  const lowerPara = para.toLowerCase();
+                  const yoursIndex = lowerPara.indexOf("yours to keep");
+
+                  if (isLastParagraph && yoursIndex !== -1) {
+                    const beforeYours = para.substring(0, yoursIndex);
+                    const fromYours = para.substring(yoursIndex);
+                    return (
+                      <p key={i} className="text-lg leading-relaxed">
+                        <span className="opacity-70">{beforeYours}</span>
+                        <span className="font-bold opacity-100">{fromYours}</span>
+                      </p>
+                    );
+                  }
+
+                  return (
+                    <p key={i} className="text-lg leading-relaxed opacity-70">
+                      {para}
+                    </p>
+                  );
+                })}
+              </div>
+            )}
+          </motion.div>
+
+          {/* Right column: CTA anchored to bottom */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="flex flex-col items-start justify-end"
+          >
             <Link
               href={ctaHref}
               className={`group inline-flex w-fit items-center gap-3 px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
@@ -92,49 +132,6 @@ export function CtaBand({
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </Link>
-          </motion.div>
-
-          {/* Right column: supporting copy anchored to bottom */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="flex flex-col items-end justify-end text-right lg:pt-32"
-          >
-            {description && (
-              <p className="text-lg leading-relaxed opacity-70">
-                {description}
-              </p>
-            )}
-            {body && body.length > 0 && (
-              <div className="space-y-4">
-                {body.map((para, i) => {
-                  const isLastParagraph = i === body.length - 1;
-                  const lowerPara = para.toLowerCase();
-                  const yoursIndex = lowerPara.indexOf("yours to keep");
-                  
-                  if (isLastParagraph && yoursIndex !== -1) {
-                    const beforeYours = para.substring(0, yoursIndex);
-                    const fromYours = para.substring(yoursIndex);
-                    return (
-                      <p key={i} className="text-lg leading-relaxed">
-                        <span className="opacity-70">{beforeYours}</span>
-                        <span className="font-bold opacity-100">{fromYours}</span>
-                      </p>
-                    );
-                  }
-                  
-                  return (
-                    <p 
-                      key={i} 
-                      className="text-lg leading-relaxed opacity-70"
-                    >
-                      {para}
-                    </p>
-                  );
-                })}
-              </div>
-            )}
           </motion.div>
         </div>
       </div>
