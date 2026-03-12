@@ -58,7 +58,7 @@ export function CtaBand({
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="flex flex-col items-start justify-start gap-8 lg:-mt-32"
+            className="flex flex-col items-start justify-start gap-8 lg:-mt-12"
           >
             <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
               {heading}
