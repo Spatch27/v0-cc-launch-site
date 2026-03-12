@@ -110,11 +110,24 @@ export function CtaBand({
               <div className="space-y-4">
                 {body.map((para, i) => {
                   const isLastParagraph = i === body.length - 1;
-                  const isFinalLine = isLastParagraph && para.toLowerCase().includes("yours to keep");
+                  const lowerPara = para.toLowerCase();
+                  const yoursIndex = lowerPara.indexOf("yours to keep");
+                  
+                  if (isLastParagraph && yoursIndex !== -1) {
+                    const beforeYours = para.substring(0, yoursIndex);
+                    const fromYours = para.substring(yoursIndex);
+                    return (
+                      <p key={i} className="text-lg leading-relaxed">
+                        <span className="opacity-70">{beforeYours}</span>
+                        <span className="font-bold opacity-100">{fromYours}</span>
+                      </p>
+                    );
+                  }
+                  
                   return (
                     <p 
                       key={i} 
-                      className={`text-lg leading-relaxed ${isFinalLine ? "font-bold opacity-100" : "opacity-70"}`}
+                      className="text-lg leading-relaxed opacity-70"
                     >
                       {para}
                     </p>
