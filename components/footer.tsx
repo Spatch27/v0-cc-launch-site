@@ -55,21 +55,17 @@ export function Footer() {
         className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12 space-y-12">
-          {/* Supascribe subscription */}
-          <motion.div variants={fadeInUp} className="flex justify-start">
-            <div className="w-full lg:w-auto">
-              <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
-                Subscribe to our Newsletter
+          {/* Footer bottom row: Substack embed left, nav links right */}
+          <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+            {/* Substack embed - left */}
+            <div>
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
+                Subscribe to our Substack
               </h3>
               <div data-supascribe-embed-id="351913576742" data-supascribe-subscribe />
             </div>
-          </motion.div>
 
-          {/* Divider */}
-          <div className="border-t border-brand-dark/10" />
-
-          {/* Link columns - right side */}
-          <motion.div variants={fadeInUp} className="flex justify-end">
+            {/* Link columns - right */}
             <div className="grid grid-cols-2 gap-10 lg:gap-16">
               {/* Navigate column */}
               <div>
