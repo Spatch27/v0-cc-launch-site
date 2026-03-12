@@ -20,7 +20,7 @@ export function HeroSection() {
       style={{ scale, opacity }}
       className="relative min-h-svh lg:h-screen bg-brand-orange px-6 lg:px-12"
     >
-      <div className="mx-auto flex max-w-[1400px] flex-col pt-20 lg:pt-28 pb-24 lg:pb-16 gap-32 lg:h-full lg:justify-between">
+      <div className="mx-auto flex max-w-[1400px] flex-col pt-20 lg:pt-28 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
         {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
