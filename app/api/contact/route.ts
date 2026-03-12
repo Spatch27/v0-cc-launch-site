@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 
+// Contact form handler - sends email notifications to tim@committedcitizens.co.uk
 export async function POST(request: Request) {
   try {
     const body = await request.json()
