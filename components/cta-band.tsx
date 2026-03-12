@@ -51,15 +51,15 @@ export function CtaBand({
 
   return (
     <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeInUp}
-        className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24"
-      >
-        {/* Left column: heading + CTA anchored to top */}
-        <div className="flex flex-col items-start justify-start gap-8">
-          <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+        >
+          {/* Left column: heading + CTA anchored to top */}
+          <div className="flex flex-col items-start justify-start gap-8">
+            <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
             {heading}
           </h2>
           <Link
@@ -91,10 +91,10 @@ export function CtaBand({
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
           </Link>
-        </div>
+          </div>
 
-        {/* Right column: supporting copy anchored to bottom */}
-        <div className="flex flex-col items-end justify-end text-right">
+          {/* Right column: supporting copy anchored to bottom */}
+          <div className="flex flex-col items-end justify-end text-right">
           {description && (
             <p className="text-lg leading-relaxed opacity-70">
               {description}
@@ -109,8 +109,9 @@ export function CtaBand({
               ))}
             </div>
           )}
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   )
 }
