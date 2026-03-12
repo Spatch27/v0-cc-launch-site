@@ -3,8 +3,6 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
-import { Logo } from "@/components/logo"
-
 const navigateLinks = [
   { label: "Approach", href: "/approach" },
   { label: "Outcomes", href: "/outcomes" },
@@ -41,23 +39,17 @@ export function Footer() {
         variants={staggerContainer}
         className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-          {/* Left: logo */}
-          <motion.div variants={fadeInUp}>
-            <Link href="/" className="group inline-block" aria-label="Committed Citizens home">
-              <Logo variant="dark" className="h-12 w-auto" />
-            </Link>
-          </motion.div>
-
-          {/* Right: link columns */}
-          <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-10 lg:gap-16">
-            {/* Navigate col 1 */}
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+          {/* Link columns - right side */}
+          <motion.div variants={fadeInUp} className="flex justify-end">
+            <div className="grid grid-cols-2 gap-10 lg:gap-16">
+            {/* Navigate column */}
             <div>
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Navigate
               </h3>
               <ul className="flex flex-col gap-3">
-                {navigateLinks.slice(0, 3).map((link) => (
+                {navigateLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
@@ -70,26 +62,7 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Navigate col 2 */}
-            <div>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-transparent select-none">
-                Navigate
-              </h3>
-              <ul className="flex flex-col gap-3">
-                {navigateLinks.slice(3).map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Connect */}
+            {/* Connect column */}
             <div>
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Connect
@@ -109,13 +82,14 @@ export function Footer() {
                 ))}
               </ul>
             </div>
+            </div>
           </motion.div>
         </div>
       </motion.div>
 
       {/* Copyright bar */}
       <div className="relative z-10 border-t border-brand-dark/10">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 pb-16 lg:px-12 lg:pb-4">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 pb-24 lg:px-12 lg:pb-4">
           <p className="text-xs text-brand-dark">
             &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
           </p>
