@@ -1,47 +1,23 @@
 import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
-  try {
-    const body = await request.json()
-    const { name, email, company, role, message } = body
+  const body = await request.json()
+  const { name, email, company, role, message } = body
 
-    // Validate required fields
-    if (!name || !email) {
-      return NextResponse.json(
-        { error: "Name and email are required." },
-        { status: 400 }
-      )
-    }
-
-    // If ATTIO_API_KEY is configured, send to Attio CRM
-    const attioKey = process.env.ATTIO_API_KEY
-    if (attioKey) {
-      // Create person record in Attio
-      await fetch("https://api.attio.com/v2/objects/people/records", {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${attioKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          data: {
-            values: {
-              name: [{ first_name: name.split(" ")[0], last_name: name.split(" ").slice(1).join(" ") }],
-              email_addresses: [{ email_address: email }],
-              company: [{ value: company }],
-              job_title: role ? [{ value: role }] : [],
-            },
-          },
-        }),
-      })
-    }
-
-    return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error("[v0] Contact form error:", error)
-    return NextResponse.json(
-      { error: "Failed to process submission." },
-      { status: 500 }
-    )
+  if (!name || !email) {
+    return NextResponse.json({ error: "Missing fields" }, { status: 400 })
   }
+
+  if (process.env.RESEND_API_KEY) {
+    const { Resend } = await import("resend")
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: "tim@committedcitizens.co.uk",
+      subject: `New Contact Form: ${name}`,
+      html: `<h2>New Contact</h2><p>Name: ${name}</p><p>Email: ${email}</p><p>Company: ${company || "N/A"}</p><p>Role: ${role || "N/A"}</p><p>Message: ${message || "N/A"}</p>`,
+    })
+  }
+
+  return NextResponse.json({ success: true })
 }
