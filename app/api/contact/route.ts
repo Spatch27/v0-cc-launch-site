@@ -22,7 +22,7 @@ export async function POST(request: Request) {
           subject: `Contact: ${name}`,
           html: `<p>${name} (${email})</p><p>${message}</p>`,
         })
-        results.resend = { success: !result.error, ...result }
+        results.resend = result
       } catch (e) {
         results.resend = { error: e instanceof Error ? e.message : String(e) }
       }

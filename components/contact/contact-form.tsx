@@ -48,11 +48,11 @@ export function ContactForm() {
       console.log("[v0] Response status:", res.status)
 
       const data = await res.json()
-      console.log("[v0] Response data:", data)
+      console.log("[v0] Response data:", JSON.stringify(data, null, 2))
       
       if (data.debug) {
-        console.log("[v0] DEBUG - Resend:", data.debug.resend)
-        console.log("[v0] DEBUG - Attio:", data.debug.attio)
+        console.log("[v0] DEBUG - Resend:", JSON.stringify(data.debug.resend, null, 2))
+        console.log("[v0] DEBUG - Attio:", JSON.stringify(data.debug.attio, null, 2))
       }
 
       if (res.ok) {
