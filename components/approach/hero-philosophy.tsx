@@ -19,9 +19,9 @@ export function HeroPhilosophy() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="relative h-screen bg-brand-pink px-6 lg:px-12"
+      className="relative min-h-svh lg:h-screen bg-brand-pink px-6 lg:px-12"
     >
-      <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-24 lg:pt-28 pb-20 lg:pb-16">
+      <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between pt-20 lg:pt-28 pb-24 lg:pb-16">
         {/* Main headline */}
         <motion.div
           initial="hidden"
