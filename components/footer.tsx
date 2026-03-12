@@ -39,9 +39,10 @@ export function Footer() {
         variants={staggerContainer}
         className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-          {/* Link columns */}
-          <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-10 lg:gap-16 w-full">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+          {/* Link columns - right side */}
+          <motion.div variants={fadeInUp} className="flex justify-end">
+            <div className="grid grid-cols-2 gap-10 lg:gap-16">
             {/* Navigate column */}
             <div>
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
@@ -82,6 +83,7 @@ export function Footer() {
               </ul>
             </div>
           </motion.div>
+        </div>
         </div>
       </motion.div>
 
