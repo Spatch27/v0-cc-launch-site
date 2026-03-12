@@ -10,16 +10,16 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
     dur="1.8s" repeatCount="indefinite"/>
   <path d="M405.81,341c8.4-2.3,9.9-7.39,9.5-8.6-.9-2.5-2.9-3-6.3-.4s-13.7,3-13.7,3C398.51,336.77,405.81,341,405.81,341Z" fill="#fff"/><path d="M405.31,342c0-.1-7.2-4.2-10.4-6a1,1,0,0,1-.5-1.1,1,1,0,0,1,.9-.8c2.8-.1,10.6-.9,13.1-2.8q3.15-2.38,5.4-1.8a3.6,3.6,0,0,1,2.5,2.61,4.48,4.48,0,0,1-.6,3.39c-.9,1.71-3.4,4.9-9.6,6.5h-.3C405.61,342,405.41,341.87,405.31,342Zm4.3-9c-2.3,1.7-7.5,2.5-10.9,2.9,2.8,1.6,6.1,3.5,7.2,4.1,7.6-2.2,8.5-6.6,8.4-7.2-.2-.8-.6-1.3-1.1-1.4-.1-.1-.2-.1-.4-.1A5.86,5.86,0,0,0,409.61,333Z" fill="#181716"/><path d="M374,364.18c5.9-.1,9.3-5.2,9.3-5.2a12,12,0,0,1,.1,5,2.73,2.73,0,0,0,2.7,3.8c2-.1,3.2-2.8,3.8-4.6,2.6,2.5,5,1.3,7.2-.7a4,4,0,0,0,5.3-.7c2.9-3.81,1.2-11.41-.9-14.7,3.4,1.39,7,11.1,9.2,12.5,4.3,1.6,5.3-2.2,4.4-4.9-4-10.91-14.2-19.21-19.7-19.71s-23.3,6.5-23.3,6.5S373.61,360.77,374,364.18Z" fill="#fff"/><path d="M382.91,367.57a4,4,0,0,1-.6-3.7,6.35,6.35,0,0,0,.2-2.4,12.64,12.64,0,0,1-8.6,3.9,1,1,0,0,1-1-.9l-1.8-22.9a1,1,0,0,1,.6-1c.7-.3,18-7,23.7-6.5,6.3.5,16.6,9.5,20.5,20.4.6,1.8.6,4.2-.9,5.6-.8.7-2.3,1.5-4.8.5-.1,0-.1-.1-.2-.1-1-.7-2.1-2.5-3.7-5.3-.7-1.1-1.4-2.4-2.1-3.5.9,3.6,1,7.91-1.1,10.7a4.31,4.31,0,0,1-3.2,1.8,5.19,5.19,0,0,1-2.8-.4c-1.3,1.2-3.9,2.9-6.8,1.1-.8,1.9-2.1,3.9-4.2,4h-.3A3.93,3.93,0,0,1,382.91,367.57Zm7.6-5c1.8,1.69,3.4,1.5,5.8-.71a1,1,0,0,1,1.4,0,3,3,0,0,0,2,.4,2.69,2.69,0,0,0,1.8-1c2.5-3.3,1-10.4-1-13.6a1,1,0,0,1,.1-1.2.91.91,0,0,1,1.1-.3c2.3,1,4.3,4.5,6.3,8,1.1,1.8,2.3,4,3,4.5.9.3,2,.5,2.6-.1s.8-2.2.4-3.5c-3.9-10.9-13.9-18.7-18.8-19.1-4.6-.4-18.8,4.8-22.1,6.1l1.6,21.2c4.7-.6,7.6-4.7,7.6-4.7a1,1,0,0,1,1-.4.85.85,0,0,1,.8.7,12.6,12.6,0,0,1,.1,5.5,2.09,2.09,0,0,0,.3,1.9,2,2,0,0,0,1.5.6c1.1-.1,2.1-1.4,3-4a1.06,1.06,0,0,1,.7-.6h.2A.7.7,0,0,1,390.51,362.58Z" fill="#181716"/><path d="M396.81,363.37a.89.89,0,0,1-.7-1.2c0-.1,1.7-6-.8-11.1a1,1,0,1,1,1.8-.8c2.8,5.8,1,12.2.9,12.5a1.18,1.18,0,0,1-1,.7C396.91,363.47,396.81,363.47,396.81,363.37Z" fill="#181716"/><path d="M389.71,364.28a1.1,1.1,0,0,1-.8-1.2c.6-3.31.6-7.41-.4-8.21a1,1,0,0,1,1.2-1.6c2.6,1.91,1.5,8.81,1.2,10.2a1,1,0,0,1-1,.8Z" fill="#181716"/>
 </g><path d="M464.91,392l42.24,81.68-63.54,18.92-26.7-72-82.8,15.9a29.77,29.77,0,0,1-35.3-28.4l-.3-11.8,131.7-19.5A35.27,35.27,0,0,1,464.91,392Z" fill="#181716"/><path d="M356.41,432.18a1.05,1.05,0,0,1,.8-1.21l75.6-14.5a1,1,0,1,1,.4,2L357.61,433h-.2A1,1,0,0,1,356.41,432.18Z" fill="#181716"/><path d="M442.61,492.87l-26.7-72a1,1,0,0,1,.6-1.29,1,1,0,0,1,1.3.6l26.7,72a1,1,0,0,1-.6,1.29.35.35,0,0,1-.3.11A1.22,1.22,0,0,1,442.61,492.87Z" fill="#181716"/><path d="M474.11,407.07l-9.9-14.7a34.63,34.63,0,0,0-33.8-14.8l-33.3,4.9a1,1,0,0,1-.3-1.9l33.3-4.9a36.45,36.45,0,0,1,35.7,15.7l9.9,14.71a1,1,0,0,1-.3,1.39,1.31,1.31,0,0,1-.6.21C474.51,407.68,474.11,407.58,474.11,407.07Z" fill="#181716"/><polygon points="496.81 363.18 497.01 370.57 380.41 384.57 379.11 377.68 496.81 363.18" fill="#fff"/><path d="M379.41,384.87l-1.2-6.9a1.08,1.08,0,0,1,.2-.8,1,1,0,0,1,.7-.4l117.7-14.6a.89.89,0,0,1,1.1.91l.1,7.5a1.07,1.07,0,0,1-.9,1l-116.6,14h-.1A1,1,0,0,1,379.41,384.87Zm116.4-20.59-115.5,14.3.9,4.89,114.7-13.7Z" fill="#181716"/><polygon points="415.01 373.27 436.71 317.38 519.51 306.98 496.81 363.18 415.01 373.27" fill="#fff"/><path d="M414.21,373.87a1.18,1.18,0,0,1-.1-1l21.7-55.9a.87.87,0,0,1,.8-.6l82.9-10.4a1.09,1.09,0,0,1,.9.4,1.18,1.18,0,0,1,.1,1l-22.7,56.2a.87.87,0,0,1-.8.6l-81.9,10.1H415A.89.89,0,0,1,414.21,373.87ZM518,308.17l-80.6,10.1-20.9,53.8,79.6-9.8Z" fill="#181716"/><path d="M297.41,396.17c0-4.4,2.5-18.5,2.6-19.1a1,1,0,0,1,1.2-.8,1.1,1.1,0,0,1,.8,1.2c0,.2-2.5,14.6-2.5,18.8a.94.94,0,0,1-1,1A1.18,1.18,0,0,1,297.41,396.17Z" fill="#181716"/><rect x="461.31" y="333.12" width="13.3" height="13.3" transform="translate(-103.19 430.42) rotate(-45)" fill="#181716"/><path d="M317.91,443.67c-19.6-3.2-34.4-12.8-42.3-27.6s-11.3-47.2-11.3-47.2l17,3.1s-1.2,10.2,9.7,13.2c33.9,8.1,41.8,26.7,44.4,44.6s18.4,16,18.4,16C337.41,447,337.51,446.87,317.91,443.67Z" fill="#fff"/><path d="M334.51,429.77c-2.4-17-9.5-35.6-43.7-43.7a13.42,13.42,0,0,1-10.4-14.2.94.94,0,0,1,1.1-.9,1,1,0,0,1,.9,1.1c-.1.4-1,9.3,8.9,12.1,35.5,8.5,42.8,28.7,45.2,45.4s16.6,15.2,17.2,15.1a1,1,0,0,1,.2,2,7.31,7.31,0,0,1-1.3.1C348.61,446.77,336.71,445.47,334.51,429.77Z" fill="#181716"/><path d="M304.71,441.37c-22.2-6.9-35.7-25.6-40.1-55.5-4.1-28.09,1.5-54.79,2.2-57.79,4.2-18.81,16.4-28.61,26.4-28.61h.1c9,.11,16.6,6.91,16.9,7.21a1,1,0,0,1-1.3,1.5c-.1-.1-7.4-6.6-15.6-6.71h-.1c-7.4,0-20,7.21-24.4,27.11-.6,2.89-6.2,29.29-2.1,57,4.3,29,17.3,47.19,38.7,53.89,50,15.71,85.1-5.69,85.4-5.89a1,1,0,0,1,1.4.29,1,1,0,0,1-.3,1.4c-.2.2-19.6,12-49.9,12A124.6,124.6,0,0,1,304.71,441.37Z" fill="#181716"/><path d="M326.61,519.47a1,1,0,0,1-.9-1.1l8.9-72.1a1,1,0,1,1,2,.2l-8.9,72.1a1.06,1.06,0,0,1-1,.9Z" fill="#181716"/><path d="M258.31,519.37a1,1,0,0,1-.6-1.3L288,431.58a1,1,0,1,1,1.9.69l-30.3,86.5a1,1,0,0,1-.9.7A.6.6,0,0,1,258.31,519.37Z" fill="#181716"/><path d="M372.6,255.4s6.4-24.4-20.5-20.9c-13.7,2-30,11.8-26.6,21.7-4.3,2.6-12,14.6-9.1,26.4,2.8,11.6,10.6,15.3,20.5,14.1-.2-4-3.6-36.6-3.6-36.6Z" fill="#181716"/><path d="M353.2,297.3V303s-5.6,3.8-15.8.1c-.3-3.3-.7-13.5-.7-13.5a4.75,4.75,0,0,1-5.5,2.4c-4.1-.8-5.1-4.3-5.4-7.3s1.8-8.5,9.3-3.6l-1.7-21,37.1-4.5s9.2-1.4,9.4,3.2-2.7,6.1-8.8,7.5c-.1,2.8,2.4,32.6-14.4,31.4Z" fill="#fff"/><circle cx="352.7" cy="267.3" r="1.5" fill="#181716"/><circle cx="359.3" cy="266.9" r="1.5" fill="#181716"/><path d="M345.8,305.8a24.59,24.59,0,0,1-8.8-1.7,1.11,1.11,0,0,1-.7-.9c-.2-2.3-.5-7.9-.6-11.1a6,6,0,0,1-4.8.9c-3.7-.7-5.8-3.5-6.2-8.2a6.54,6.54,0,0,1,2.6-6c2.1-1.2,4.8-.8,8.2,1.4a1,1,0,1,1-1.1,1.7c-2.7-1.7-4.8-2.2-6.1-1.4s-1.7,2.9-1.6,4.1c.3,3.9,1.8,5.9,4.5,6.4,3.3.6,4.4-1.8,4.4-1.8a1,1,0,0,1,1.1-.6,1,1,0,0,1,.8.9c0,.1.4,9.1.7,12.8,7.7,2.6,12.4.7,13.9,0v-5a1,1,0,0,1,2,0V303a1.23,1.23,0,0,1-.4.8C353.5,304,350.8,305.8,345.8,305.8Z" fill="#181716"/><path d="M357.5,298.7h-1.1l-6.8-.7a1.17,1.17,0,0,1-.9-1.1,1.09,1.09,0,0,1,1.1-.9l6.8.7a9.23,9.23,0,0,0,7.4-2.5c6.4-6.1,6-21.3,5.9-26.3v-1.6a1,1,0,0,1,.8-.9c6.3-1.4,8.1-2.9,8-6.5a1.49,1.49,0,0,0-.6-1.3c-1.7-1.4-6-1.1-7.6-.9a1,1,0,1,1-.3-1.9c.7-.1,6.5-.9,9.1,1.3a3.82,3.82,0,0,1,1.4,2.8c.2,5.6-3.8,7.2-8.8,8.4v.7c.1,5.2.5,21.2-6.5,27.8A11.66,11.66,0,0,1,357.5,298.7Z" fill="#181716"/><path d="M325.5,257.2a1.05,1.05,0,0,1-.9-.5c-.1-.3-3.4-6.1-9.2-4a1,1,0,1,1-.7-1.9c5.9-2.2,10.2,2.2,11.6,4.9a1,1,0,0,1-.4,1.4C325.8,257.1,325.7,257.2,325.5,257.2Z" fill="#181716"/><rect x="410.12" y="229.22" width="48.47" height="48.47" transform="translate(-50.52 120.04) rotate(-14.88)" fill="#fff"/><circle cx="520.93" cy="282.78" r="9.28" fill="#181716"/><polygon points="520.76 209.89 524.91 222.03 537.25 225.69 526.88 233.29 527.28 246.22 516.81 238.72 504.67 243.06 508.62 230.82 500.62 220.65 513.56 220.55 520.76 209.89" fill="#181716"/><path d="M416.41,285.22a.87.87,0,0,1-.49-.1,1.51,1.51,0,0,1-.5-.59l-12.93-48.77a1,1,0,0,1,.69-1.19L452,221.64a1,1,0,0,1,1.18.69l12.94,48.77a1,1,0,0,1-.69,1.18l-48.77,12.94Zm-11.75-49L417.1,283l46.79-12.43-12.43-46.8Z" fill="#181716"/><rect x="422.06" y="248.1" width="6.71" height="20.73" transform="translate(-52.11 117.91) rotate(-14.88)" fill="#181716"/><rect x="432.42" y="252.05" width="6.71" height="14.12" transform="translate(-51.92 120.59) rotate(-14.88)" fill="#181716"/><rect x="440.5" y="237.91" width="6.71" height="25.87" transform="translate(-49.53 122.39) rotate(-14.88)" fill="#181716"/><path d="M423.72,270.61a1.2,1.2,0,0,1-1-.69,1,1,0,0,1,.69-1.19l27.74-7.4a1,1,0,0,1,.49,1.87L424,270.61Z" fill="#181716"/><circle cx="463.55" cy="273.37" r="20.04" fill="#fff"/><path d="M463.55,294.39a21,21,0,1,1,21-21A21,21,0,0,1,463.55,294.39Zm0-40.17a19,19,0,1,0,19.05,19A19.06,19.06,0,0,0,463.55,254.22Z" fill="#181716"/><path d="M454.07,279.49a.89.89,0,0,1-.69-.3.94.94,0,0,1,0-1.38L459.2,272a1,1,0,0,1,1.39,0l3.65,3.66,8.19-8.2a1,1,0,0,1,1.38,1.39l-8.88,8.88a1,1,0,0,1-1.38,0l-3.66-3.65-5.13,5.13A1.06,1.06,0,0,1,454.07,279.49Z" fill="#181716"/><path d="M473,273.66a.92.92,0,0,1-1-1v-3.56h-3.56a1,1,0,0,1,0-2H473a.93.93,0,0,1,1,1v4.55A.93.93,0,0,1,473,273.66Z" fill="#181716"/><path d="M608.71,520.24H230.41a1,1,0,1,1,0-2h378.4a.94.94,0,0,1,1,1A1,1,0,0,1,608.71,520.24Z" fill="#181716"/>
-<!-- Sad/worried mouth -->
+{/* Sad/worried mouth */}
 <path d="M349,278 Q356,274 362,278" stroke="#181716" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
-<!-- Worried eyebrow lines -->
+{/* Worried eyebrow lines */}
 <path d="M349,263 Q352,260 356,262" stroke="#181716" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
 <path d="M357,262.5 Q361,260 364,263" stroke="#181716" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
 
-<!-- Additional floating elements cloud - ANIMATED -->
+{/* Additional floating elements cloud - ANIMATED */}
 <g id="floating_cloud">
 
-<!-- Stars with gentle float -->
+{/* Stars with gentle float */}
 <g>
   <polygon points="350,120 353,130 363,133 355,139 357,149 350,143 343,149 345,139 337,133 347,130" fill="#181716"/>
   <animateTransform attributeName="transform" type="translate" values="0,0;3,-5;0,0" dur="4.2s" repeatCount="indefinite" begin="0s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;8;0;-8;0" dur="6s" repeatCount="indefinite" begin="0.5s" additive="sum"/>
@@ -49,7 +49,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;3,-3;0,0" dur="5.7s" repeatCount="indefinite" begin="1.4s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;6;0;-6;0" dur="6.3s" repeatCount="indefinite" begin="0.3s" additive="sum"/>
 </g>
 
-<!-- Dots with gentle drift -->
+{/* Dots with gentle drift */}
 <g>
   <circle cx="370" cy="85" r="4" fill="#181716"/>
   <animateTransform attributeName="transform" type="translate" values="0,0;2,-3;0,0" dur="3.5s" repeatCount="indefinite" begin="0.2s" additive="sum"/>
@@ -83,7 +83,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;-3,3;0,0" dur="4.7s" repeatCount="indefinite" begin="0.7s" additive="sum"/>
 </g>
 
-<!-- Doc 1 -->
+{/* Doc 1 */}
 <g>
   <g transform="translate(380, 20) rotate(-8)">
     <rect x="0" y="0" width="35" height="44" rx="3" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -95,7 +95,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;-3,5;0,0" dur="5.2s" repeatCount="indefinite" begin="0.3s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;3;0;-3;0" dur="8s" repeatCount="indefinite" begin="0.5s" additive="sum"/>
 </g>
 
-<!-- Doc 2 - checklist -->
+{/* Doc 2 - checklist */}
 <g>
   <g transform="translate(530, 50) rotate(5)">
     <rect x="0" y="0" width="32" height="40" rx="3" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -110,7 +110,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;4,-4;0,0" dur="4.5s" repeatCount="indefinite" begin="0.9s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;-2;0;2;0" dur="7s" repeatCount="indefinite" begin="1.1s" additive="sum"/>
 </g>
 
-<!-- Bar chart -->
+{/* Bar chart */}
 <g>
   <g transform="translate(460, 80) rotate(-5)">
     <rect x="0" y="0" width="38" height="38" rx="4" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -121,7 +121,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;-2,-5;0,0" dur="4.8s" repeatCount="indefinite" begin="0.6s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;2;0;-2;0" dur="6.5s" repeatCount="indefinite" begin="0.2s" additive="sum"/>
 </g>
 
-<!-- Speech bubble ! -->
+{/* Speech bubble ! */}
 <g>
   <g transform="translate(320, -10) rotate(3)">
     <path d="M0,0 Q0,-20 20,-20 L35,-20 Q50,-20 50,0 L50,15 Q50,28 35,28 L18,28 L10,38 L12,28 L5,28 Q0,28 0,15 Z" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -130,7 +130,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;3,-6;0,0" dur="5.5s" repeatCount="indefinite" begin="0.4s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;-3;0;3;0" dur="7.5s" repeatCount="indefinite" begin="0.7s" additive="sum"/>
 </g>
 
-<!-- Speech bubble ? -->
+{/* Speech bubble ? */}
 <g>
   <g transform="translate(555, -30) rotate(-4)">
     <path d="M0,0 Q0,-18 18,-18 L32,-18 Q48,-18 48,0 L48,14 Q48,26 32,26 L16,26 L8,35 L10,26 L5,26 Q0,26 0,14 Z" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -139,7 +139,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;-4,5;0,0" dur="4.3s" repeatCount="indefinite" begin="1.0s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;3;0;-3;0" dur="6.2s" repeatCount="indefinite" begin="0.3s" additive="sum"/>
 </g>
 
-<!-- Pie chart -->
+{/* Pie chart */}
 <g>
   <g transform="translate(340, 140)">
     <circle cx="0" cy="0" r="16" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -148,7 +148,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;3,-3;0,0" dur="4.9s" repeatCount="indefinite" begin="0.8s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;-2;0;2;0" dur="7.8s" repeatCount="indefinite" begin="0.6s" additive="sum"/>
 </g>
 
-<!-- Line chart -->
+{/* Line chart */}
 <g>
   <g transform="translate(480, 140) rotate(6)">
     <rect x="-18" y="-18" width="36" height="36" rx="4" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -157,7 +157,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;-3,4;0,0" dur="5.1s" repeatCount="indefinite" begin="0.2s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;2;0;-2;0" dur="6.8s" repeatCount="indefinite" begin="0.9s" additive="sum"/>
 </g>
 
-<!-- Calendar -->
+{/* Calendar */}
 <g>
   <g transform="translate(590, -5) rotate(-3)">
     <rect x="0" y="0" width="30" height="30" rx="3" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -169,7 +169,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;4,-3;0,0" dur="4.4s" repeatCount="indefinite" begin="1.3s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;-3;0;3;0" dur="5.9s" repeatCount="indefinite" begin="0.4s" additive="sum"/>
 </g>
 
-<!-- Gear -->
+{/* Gear */}
 <g>
   <g transform="translate(430, -40)">
     <circle cx="0" cy="0" r="8" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -187,7 +187,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="rotate" from="0 430 -40" to="360 430 -40" dur="20s" repeatCount="indefinite" additive="sum"/>
 </g>
 
-<!-- Target -->
+{/* Target */}
 <g>
   <g transform="translate(500, -45)">
     <circle cx="0" cy="0" r="14" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -197,7 +197,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;3,-5;0,0" dur="4.7s" repeatCount="indefinite" begin="0.7s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;4;0;-4;0" dur="8.5s" repeatCount="indefinite" begin="1.2s" additive="sum"/>
 </g>
 
-<!-- Envelope -->
+{/* Envelope */}
 <g>
   <g transform="translate(350, -55) rotate(5)">
     <rect x="0" y="0" width="30" height="22" rx="3" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -206,7 +206,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;-3,6;0,0" dur="5.3s" repeatCount="indefinite" begin="0.1s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;-4;0;4;0" dur="7.1s" repeatCount="indefinite" begin="0.8s" additive="sum"/>
 </g>
 
-<!-- Lightning bolt -->
+{/* Lightning bolt */}
 <g>
   <g transform="translate(615, 120)">
     <polygon points="0,-18 -5,0 3,0 -2,18 10,-2 2,-2 8,-18" fill="#181716"/>
@@ -214,7 +214,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;2,-4;0,0" dur="3.6s" repeatCount="indefinite" begin="0.6s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;5;0;-5;0" dur="5.4s" repeatCount="indefinite" begin="0.4s" additive="sum"/>
 </g>
 
-<!-- X mark 1 -->
+{/* X mark 1 */}
 <g>
   <g transform="translate(290, 110)">
     <line x1="-5" y1="-5" x2="5" y2="5" stroke="#181716" strokeWidth="2.5" strokeLinecap="round"/>
@@ -223,7 +223,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;-3,3;0,0" dur="4.2s" repeatCount="indefinite" begin="1.1s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;8;0;-8;0" dur="6s" repeatCount="indefinite" begin="0.5s" additive="sum"/>
 </g>
 
-<!-- X mark 2 -->
+{/* X mark 2 */}
 <g>
   <g transform="translate(560, 200)">
     <line x1="-4" y1="-4" x2="4" y2="4" stroke="#181716" strokeWidth="2" strokeLinecap="round"/>
@@ -232,7 +232,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;2,-3;0,0" dur="5.0s" repeatCount="indefinite" begin="0.3s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;-6;0;6;0" dur="7.3s" repeatCount="indefinite" begin="0.9s" additive="sum"/>
 </g>
 
-<!-- Clock -->
+{/* Clock */}
 <g>
   <g transform="translate(290, -40) rotate(-8)">
     <circle cx="0" cy="0" r="14" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -243,7 +243,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;4,-4;0,0" dur="4.6s" repeatCount="indefinite" begin="0.8s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;3;0;-3;0" dur="6.6s" repeatCount="indefinite" begin="0.2s" additive="sum"/>
 </g>
 
-<!-- Sad emoji -->
+{/* Sad emoji */}
 <g>
   <g transform="translate(475, -15)">
     <circle cx="0" cy="0" r="15" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -254,7 +254,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;-2,5;0,0" dur="5.4s" repeatCount="indefinite" begin="0.4s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;-3;0;3;0" dur="7.7s" repeatCount="indefinite" begin="1.0s" additive="sum"/>
 </g>
 
-<!-- Pound sign -->
+{/* Pound sign */}
 <g>
   <g transform="translate(630, 70)">
     <circle cx="0" cy="0" r="12" fill="#fff" stroke="#181716" strokeWidth="1.8"/>
@@ -263,7 +263,7 @@ const AnimatedIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) =>
   <animateTransform attributeName="transform" type="translate" values="0,0;3,-3;0,0" dur="4.1s" repeatCount="indefinite" begin="1.2s" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0;4;0;-4;0" dur="6.4s" repeatCount="indefinite" begin="0.6s" additive="sum"/>
 </g>
 
-<!-- Wifi bars -->
+{/* Wifi bars */}
 <g>
   <g transform="translate(405, 170)">
     <rect x="0" y="8" width="4" height="6" fill="#181716"/>
