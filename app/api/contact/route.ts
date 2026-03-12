@@ -9,37 +9,34 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 })
     }
 
-    // Send email via Resend to tim@committedcitizens.co.uk (verified account owner)
+    // Send email notification via Resend
     if (process.env.RESEND_API_KEY) {
       try {
         const { Resend } = await import("resend")
         const resend = new Resend(process.env.RESEND_API_KEY)
-        const emailResult = await resend.emails.send({
+        
+        await resend.emails.send({
           from: "onboarding@resend.dev",
           to: "tim@committedcitizens.co.uk",
-          subject: `New Contact Form Submission from ${name}`,
+          subject: `New Contact Form: ${name}`,
           html: `
-            <h2>New Contact Form Submission</h2>
+            <h2>New Website Contact Submission</h2>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Company:</strong> ${company || "N/A"}</p>
-            <p><strong>Role:</strong> ${role || "N/A"}</p>
+            <p><strong>Company:</strong> ${company || "Not provided"}</p>
+            <p><strong>Role:</strong> ${role || "Not provided"}</p>
             <p><strong>Message:</strong></p>
-            <p>${message || "N/A"}</p>
+            <p>${(message || "").replace(/\n/g, "<br>")}</p>
           `,
         })
-        
-        if (emailResult.error) {
-          console.error("[v0] Resend error:", emailResult.error)
-        }
-      } catch (e) {
-        console.error("[v0] Resend failed:", e instanceof Error ? e.message : e)
+      } catch (err) {
+        console.error("[v0] Email send error:", err)
       }
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] API error:", error)
+    console.error("[v0] Contact API error:", error)
     return NextResponse.json({ error: "Server error" }, { status: 500 })
   }
 }
