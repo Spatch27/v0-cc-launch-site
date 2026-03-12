@@ -51,61 +51,91 @@ export function CtaBand({
 
   return (
     <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeInUp}
-        className="mx-auto flex max-w-[1400px] flex-col items-center gap-8 text-center"
-      >
-        <div className="max-w-3xl">
-          <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
-            {heading}
-          </h2>
-          {description && (
-            <p className="mt-6 text-lg leading-relaxed opacity-70">
-              {description}
-            </p>
-          )}
-          {body && body.length > 0 && (
-            <div className="mt-6 space-y-4">
-              {body.map((para, i) => (
-                <p key={i} className="text-lg leading-relaxed opacity-70">
-                  {para}
-                </p>
-              ))}
-            </div>
-          )}
-        </div>
-        <Link
-          href={ctaHref}
-          className={`group inline-flex w-fit items-center gap-3 px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+      <div className="mx-auto max-w-[1400px]">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="flex flex-col gap-12"
         >
-          <span className="relative inline-block overflow-hidden">
-            <motion.span
-              initial="initial"
-              animate={isHovered ? "hover" : "initial"}
-              variants={textRollUp}
-              className="block"
+          {/* Heading - ranged left */}
+          <div className="flex flex-col items-start max-w-3xl">
+            <h2 className="text-balance font-display text-4xl font-bold leading-snug md:text-5xl lg:text-6xl">
+              {heading}
+            </h2>
+          </div>
+
+          {/* Supporting copy - ranged right */}
+          <div className="flex justify-end">
+            <div className="flex flex-col items-end gap-4 max-w-3xl text-right">
+              {description && (
+                <p className="text-lg leading-relaxed opacity-70">
+                  {description}
+                </p>
+              )}
+              {body && body.length > 0 && (
+                <div className="space-y-4">
+                  {body.map((para, i) => {
+                    const isLastParagraph = i === body.length - 1;
+                    const lowerPara = para.toLowerCase();
+                    const yoursIndex = lowerPara.indexOf("yours to keep");
+
+                    if (isLastParagraph && yoursIndex !== -1) {
+                      const beforeYours = para.substring(0, yoursIndex);
+                      const fromYours = para.substring(yoursIndex);
+                      return (
+                        <p key={i} className="text-lg leading-relaxed">
+                          <span className="opacity-70">{beforeYours}</span>
+                          <span className="font-bold opacity-100">{fromYours}</span>
+                        </p>
+                      );
+                    }
+
+                    return (
+                      <p key={i} className="text-lg leading-relaxed opacity-70">
+                        {para}
+                      </p>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* CTA - ranged right */}
+          <div className="flex justify-end">
+            <Link
+              href={ctaHref}
+              className={`group inline-flex w-fit items-center gap-3 px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
-              {ctaLabel}
-            </motion.span>
-            <motion.span
-              initial="initial"
-              animate={isHovered ? "hover" : "initial"}
-              variants={textRollDown}
-              className="absolute inset-0 block"
-            >
-              {ctaLabel}
-            </motion.span>
-          </span>
-          <ArrowRight
-            size={18}
-            className="transition-transform duration-300 group-hover:translate-x-1"
-          />
-        </Link>
-      </motion.div>
+              <span className="relative inline-block overflow-hidden">
+                <motion.span
+                  initial="initial"
+                  animate={isHovered ? "hover" : "initial"}
+                  variants={textRollUp}
+                  className="block"
+                >
+                  {ctaLabel}
+                </motion.span>
+                <motion.span
+                  initial="initial"
+                  animate={isHovered ? "hover" : "initial"}
+                  variants={textRollDown}
+                  className="absolute inset-0 block"
+                >
+                  {ctaLabel}
+                </motion.span>
+              </span>
+              <ArrowRight
+                size={18}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
+        </motion.div>
+      </div>
     </section>
   )
 }
