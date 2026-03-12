@@ -21,7 +21,6 @@ const connectLinks = [
 
 export function Footer() {
   useEffect(() => {
-    // Load Supascribe script
     const script = document.createElement("script")
     script.src = "https://js.supascribe.com/v1/loader/Lh6325se05ekSo4cfYYlMSvZLs13.js"
     script.async = true
@@ -33,9 +32,9 @@ export function Footer() {
       }
     }
   }, [])
+
   return (
     <footer className="relative overflow-hidden text-brand-dark">
-      {/* Background image */}
       <div 
         className="absolute inset-0 z-0"
         style={{
@@ -47,7 +46,6 @@ export function Footer() {
         }}
       />
       
-      {/* Main footer content */}
       <motion.div
         initial="hidden"
         animate="visible"
@@ -55,9 +53,7 @@ export function Footer() {
         className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12 space-y-12">
-          {/* Footer bottom row: Substack embed left, nav links right */}
           <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-            {/* Substack embed - left */}
             <div className="w-full lg:w-auto">
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
@@ -68,9 +64,7 @@ export function Footer() {
               </p>
             </div>
 
-            {/* Link columns - right */}
             <div className="grid grid-cols-2 gap-10 lg:gap-16">
-              {/* Navigate column */}
               <div>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                   Navigate
@@ -89,7 +83,6 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* Connect column */}
               <div>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                   Connect
@@ -114,7 +107,6 @@ export function Footer() {
         </div>
       </motion.div>
 
-      {/* Copyright bar */}
       <div className="relative z-10 border-t border-brand-dark/10">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 pb-24 lg:px-12 lg:pb-4">
           <p className="text-xs text-brand-dark">
