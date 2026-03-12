@@ -82,8 +82,8 @@ export function Footer() {
                 ))}
               </ul>
             </div>
+            </div>
           </motion.div>
-        </div>
         </div>
       </motion.div>
 
