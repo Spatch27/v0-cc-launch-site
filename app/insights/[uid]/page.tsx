@@ -316,8 +316,8 @@ const articles: Record<
         text: "That was the tipping point. This problem wasn't going to fix itself. It was accelerating.",
       },
       {
-        type: "heading2",
-        text: "We know what good looks like",
+        type: "paragraph",
+        text: "We know what good looks like"
       },
       {
         type: "paragraph",
@@ -336,8 +336,8 @@ const articles: Record<
         text: "We didn't start this because we fell out of love with agencies. We started it because we've watched too many good teams held back by fixable problems. And we decided to go and help them.",
       },
       {
-        type: "heading2",
-        text: "Let's start with a conversation",
+        type: "paragraph",
+        text: "Let's start with a conversation"
       },
       {
         type: "paragraph",
