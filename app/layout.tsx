@@ -27,6 +27,14 @@ export const metadata: Metadata = {
   description:
     'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
   metadataBase: new URL('https://committedcitizens.co.uk'),
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-64x64.png', sizes: '64x64', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_GB',
@@ -58,9 +66,7 @@ export default function RootLayout({
         {/* Cookiebot CMP */}
         <Script
           id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
-          data-blockingmode="auto"
+          src="https://consent.cookiebot.com/uc.js?cbid=bc3d8b4b-cf51-4f81-a255-e89443188c10"
           strategy="beforeInteractive"
         />
       </head>

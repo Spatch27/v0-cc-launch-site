@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react"
 
 const CARD_HEADER_H = 56
+const CARD_HEADER_H_MOBILE = 40
 // Scroll distance (px) allocated for each card to animate in
 const SCROLL_PER_CARD = 500
 // Extra scroll buffer after card 5 lands before the module starts scrolling away
@@ -51,11 +52,20 @@ export function WhatLooksLikeSection() {
   const [navHeight, setNavHeight] = useState(80)
   const [outerHeight, setOuterHeight] = useState(2800)
   const [cardTranslates, setCardTranslates] = useState<number[]>(problems.map(() => 0))
+  const [isMobile, setIsMobile] = useState(false)
+
+  const effectiveHeaderH = isMobile ? CARD_HEADER_H_MOBILE : CARD_HEADER_H
 
   useEffect(() => {
     const nav = document.querySelector("header")
     const navH = nav ? nav.offsetHeight : 80
     setNavHeight(navH)
+
+    // Detect if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // md breakpoint
+    }
+    checkMobile()
 
     // Total height = scroll runway for all card transitions + buffer after last card + viewport
     // The sticky element unsticks when: scrolled >= outerHeight - viewportHeight
@@ -83,8 +93,12 @@ export function WhatLooksLikeSection() {
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("resize", checkMobile)
     handleScroll()
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", checkMobile)
+    }
   }, [])
 
   return (
@@ -110,10 +124,10 @@ export function WhatLooksLikeSection() {
         </div>
 
         {/* Card stack — cards translate in from below, stacking on top of each other */}
-        <div className="relative" style={{ height: `${400 + problems.length * CARD_HEADER_H}px` }}>
+        <div className="relative" style={{ height: `${400 + problems.length * effectiveHeaderH}px` }}>
           {problems.map((item, i) => {
-            // Each card's final resting top = i * CARD_HEADER_H (stacked headers)
-            const finalTop = i * CARD_HEADER_H
+            // Each card's final resting top = i * effectiveHeaderH (stacked headers)
+            const finalTop = i * effectiveHeaderH
             const translateY = cardTranslates[i] ?? 0
             // Alternate header colors: pink for indices 0,2,4 (CUSTOMER, DATA, TECHNOLOGY)
             // text-brand-dark for indices 1,3 (TEAM, PROCESS)
@@ -136,7 +150,7 @@ export function WhatLooksLikeSection() {
                 <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
                   <div
                     className={`flex items-center gap-3 ${headerBgColor} px-8 ${headerTextColor}`}
-                    style={{ height: `${CARD_HEADER_H}px` }}
+                    style={{ height: `${effectiveHeaderH}px` }}
                   >
                     <img src={item.icon} alt={item.eyebrow} className="h-10 w-10 shrink-0" style={{ filter: iconFilter }} />
                     <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
