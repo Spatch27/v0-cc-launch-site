@@ -3,6 +3,8 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
+import PaperPlaneIllustration from "@/components/approach/paper-plane-illustration"
+import RocketIllustration from "@/components/home/rocket-illustration"
 
 const textContainer = {
   hidden: {},
@@ -45,32 +47,28 @@ export function MomentumSection() {
           </motion.div>
 
           <motion.div
-            className="flex items-center justify-center w-full"
+            className="flex items-center justify-center w-full h-auto min-h-[600px] overflow-hidden rounded-lg"
             initial={{ opacity: 0, x: 40, scale: 0.97 }}
             animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img
-              src="/images/rocket-cropped.svg"
-              alt="How we work illustration"
-              className="w-full h-auto max-w-4xl lg:max-w-5xl object-contain"
-            />
+            <div className="w-full scale-150 origin-center">
+              <RocketIllustration />
+            </div>
           </motion.div>
         </div>
 
         {/* Systems launch agents — Image Left, Text Right */}
         <div ref={ref2} className="grid items-center gap-12 border-t border-brand-dark/10 pt-12 lg:grid-cols-2">
           <motion.div
-            className="order-last flex items-center justify-center w-full lg:order-first"
+            className="order-last flex items-center justify-center w-full h-auto min-h-[600px] overflow-hidden rounded-lg lg:order-first"
             initial={{ opacity: 0, x: -40, scale: 0.97 }}
             animate={inView2 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-<img
-              src="/images/clock-cropped.svg"
-              alt="Systems launch agents illustration"
-              className="w-full h-auto max-w-4xl lg:max-w-5xl object-contain"
-            />
+            <div className="w-full scale-150 origin-center">
+              <PaperPlaneIllustration />
+            </div>
           </motion.div>
 
           <motion.div
