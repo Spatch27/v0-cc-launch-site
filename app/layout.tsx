@@ -29,8 +29,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://committedcitizens.co.uk'),
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
-      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-64x64.png', sizes: '64x64', type: 'image/png' },
     ],
     apple: '/apple-touch-icon.png',
   },
