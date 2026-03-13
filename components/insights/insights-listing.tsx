@@ -185,14 +185,25 @@ export function InsightsListing() {
                 variants={fadeInUp}
                 className="group flex h-full flex-col bg-brand-white transition-colors duration-300 hover:bg-brand-dark overflow-hidden"
               >
-                {/* Placeholder image */}
+                {/* Image or placeholder */}
                 <div className="aspect-video w-full overflow-hidden bg-gradient-to-br from-brand-pink/20 to-brand-orange/20">
-                  <div className="flex h-full items-center justify-center">
-                    <div className="flex flex-col items-center gap-2 text-brand-dark/20 transition-colors duration-300 group-hover:text-brand-white/20">
-                      <div className="h-12 w-12 rounded-full bg-brand-pink/10" />
-                      <span className="text-xs">Article Image</span>
+                  {article.image ? (
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      width={600}
+                      height={337}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center">
+                      <div className="flex flex-col items-center gap-2 text-brand-dark/20 transition-colors duration-300 group-hover:text-brand-white/20">
+                        <div className="h-12 w-12 rounded-full bg-brand-pink/10" />
+                        <span className="text-xs">Article Image</span>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Content */}
