@@ -17,9 +17,9 @@ export function WorkflowsBehaviourSection() {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={fadeInUp}
-        className="grid items-center gap-12 lg:grid-cols-2"
+        className="grid items-center gap-8 lg:grid-cols-5 lg:gap-12"
       >
-        <div>
+        <div className="lg:col-span-2">
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
             Workflows follow behaviour.
           </h2>
@@ -32,8 +32,8 @@ export function WorkflowsBehaviourSection() {
             </p>
           </div>
         </div>
-        <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-visible rounded-lg bg-[#e3dcdc]">
-          <div className="w-full scale-150 origin-center">
+        <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-visible rounded-lg bg-[#e3dcdc] lg:col-span-3">
+          <div className="w-full scale-150 origin-center lg:scale-125">
             <LightbulbIllustration />
           </div>
         </div>
