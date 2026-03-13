@@ -36,8 +36,9 @@ const allCaseStudies: OutcomeStudy[] = [
     project: "Stack simplification and realignment / CX improvements",
     description: "The stack had grown but trust in the data hadn't. Decisions were being made on instinct because dashboards couldn't be relied on. Journey breaks were going undetected until customers had already left.\n\nWe simplified the stack, rebuilt the data flows, and gave the team reporting they could actually act on:",
     metrics: [
-      { value: "22%", label: "reduction in journey breaks" },
-      { value: "12%", label: "increase in page conversions" },
+      { value: "1", label: "Global strategy to support clearer proposition" },
+      { value: "250%", label: "Traffic growth through organic channels" },
+      { value: "300%", label: "Uplift to conversion rates on campaign forms" },
     ],
     testimonial:
       "They delivered a brilliant experience — great stakeholder mapping, flawless execution, and well-embedded adoption.",
