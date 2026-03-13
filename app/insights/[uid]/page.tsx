@@ -158,7 +158,7 @@ const articles: Record<
   "rethinking-marketing-velocity": {
     title: "Rethinking marketing velocity",
     excerpt:
-      "Speed isn\u2019t always better. How to find the right balance between moving fast and maintaining quality in your marketing execution.",
+      "Speed isn't always better. How to find the right balance between moving fast and maintaining quality in your marketing execution.",
     category: "What we're consuming",
     date: "June 2024",
     readTime: "5 min read",
@@ -172,7 +172,64 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "There\u2019s a difference between moving fast and making progress. Many teams optimise for speed and end up shipping mediocre work at high volume. True marketing velocity is about the rate of meaningful output \u2014 work that actually shifts metrics and builds brand equity.",
+        text: "There's a difference between moving fast and making progress. Many teams optimise for speed and end up shipping mediocre work at high volume. True marketing velocity is about the rate of meaningful output — work that actually shifts metrics and builds brand equity.",
+      },
+    ],
+  },
+  "weve-seen-enough": {
+    title: "We'd seen enough.",
+    excerpt:
+      "Great marketers shouldn't be ground down by the system that was built to serve them. Committed Citizens are here to help.",
+    category: "Getting started",
+    date: "March 2026",
+    readTime: "2 min read",
+    author: "Committed Citizens",
+    authorRole: "Editorial",
+    heroImage: "/images/insights/weve-seen-enough.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "We can't remember when we first saw it. It crept up on us but then we started seeing it everywhere. Marketing teams slowed down - the machinery around them began to seize up.",
+      },
+      {
+        type: "paragraph",
+        text: "Briefs that should have taken days, taking weeks. Approvals running through seven people when two would do. Six-figure martech platforms sitting half-used or barely touched. The best marketers - the ones with the sharpest instincts and the most to give - getting ground down by systems that should have been serving them.",
+      },
+      {
+        type: "paragraph",
+        text: "Then AI arrived. And instead of simplifying things, it added another layer. New tools landing faster than teams could absorb them. Pilots grounded by stubborn processes. Vendors promising efficiency they couldn't deliver. The machinery didn't get lighter - it started weighing teams down.",
+      },
+      {
+        type: "paragraph",
+        text: "That was the tipping point. This problem wasn't going to fix itself. It was accelerating.",
+      },
+      {
+        type: "heading2",
+        text: "We know what good looks like",
+      },
+      {
+        type: "paragraph",
+        text: "Because we've spent 25 years watching what happens without it. We've seen friction take hold from every angle - the missed deadlines, the bloated platforms, the talented people slowly losing faith in the system around them. But we've also seen marketing teams that unlock flow. The energy comes back. The talent you hired starts doing the work you hired them for. Results stop being a fight and start building a rhythm.",
+      },
+      {
+        type: "paragraph",
+        text: "So we built Committed Citizens.",
+      },
+      {
+        type: "paragraph",
+        text: "We don't produce the marketing. We fix the machine that does. We embed inside marketing teams and redesign how work actually flows - across people, process, data, and technology. Six-week cycles. Measurable progress. Change that sticks because it's built around how your team actually works, not how they theoretically should.",
+      },
+      {
+        type: "paragraph",
+        text: "We didn't start this because we fell out of love with agencies. We started it because we've watched too many good teams held back by fixable problems. And we decided to go and help them.",
+      },
+      {
+        type: "heading2",
+        text: "Let's start with a conversation",
+      },
+      {
+        type: "paragraph",
+        text: "If you're a marketing leader who's tired of watching good people fight bad systems, start with a conversation. Our Drag Diagnostic is free, takes an hour, and gives you something useful whether we work together or not.",
       },
     ],
   },

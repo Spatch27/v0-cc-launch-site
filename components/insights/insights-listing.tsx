@@ -10,6 +10,15 @@ import { ArrowRight } from "lucide-react"
 
 const articles = [
   {
+    id: "weve-seen-enough",
+    title: "We'd seen enough.",
+    excerpt:
+      "Great marketers shouldn't be ground down by the system that was built to serve them. Committed Citizens are here to help.",
+    category: "Getting started",
+    date: "March 2026",
+    readTime: "2 min read",
+  },
+  {
     id: "removing-operational-drag",
     title: "Removing operational drag from marketing teams",
     excerpt:
