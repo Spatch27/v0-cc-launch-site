@@ -115,7 +115,7 @@ export function OutcomesCaseStudies() {
             </div>
 
             {/* Right: testimonial */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col justify-between">
               <blockquote className="font-display text-2xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-3xl">
                 &ldquo;{study.testimonial}&rdquo;
               </blockquote>
