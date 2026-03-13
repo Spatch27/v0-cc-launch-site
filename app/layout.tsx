@@ -28,7 +28,11 @@ export const metadata: Metadata = {
     'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
   metadataBase: new URL('https://committedcitizens.co.uk'),
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
   openGraph: {
     type: 'website',
