@@ -189,7 +189,11 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "This is marketing's moneyball moment. The original Moneyball insight wasn't that data beat intuition. It was that a system built on evidence could outperform one built on gut feel - even with fewer resources.",
+        text: "This is marketing's moneyball moment.",
+      },
+      {
+        type: "paragraph",
+        text: "The original Moneyball insight wasn't that data beat intuition. It was that a system built on evidence could outperform one built on gut feel - even with fewer resources.",
       },
       {
         type: "paragraph",
