@@ -12,7 +12,8 @@ export function BackToInsightsCta() {
   return (
     <Link
       href="/insights"
-      className="group inline-flex items-center gap-3 rounded-sm border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+      className="group inline-flex items-center gap-3 border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+      style={{ borderRadius: "4px" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
