@@ -115,13 +115,11 @@ export function OutcomesCaseStudies() {
             </div>
 
             {/* Right: testimonial */}
-            <div className="flex flex-col justify-between">
-              <div>
-                <blockquote className="font-display text-2xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-3xl">
-                  &ldquo;{study.testimonial}&rdquo;
-                </blockquote>
-              </div>
-              <p className="mt-8 text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
+            <div className="flex flex-col gap-8">
+              <blockquote className="font-display text-2xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-3xl">
+                &ldquo;{study.testimonial}&rdquo;
+              </blockquote>
+              <p className="text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
                 {study.client}
               </p>
             </div>
