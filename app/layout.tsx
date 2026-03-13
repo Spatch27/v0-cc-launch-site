@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   description:
     'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
   metadataBase: new URL('https://committedcitizens.co.uk'),
+  icons: {
+    icon: '/favicon.ico',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_GB',
