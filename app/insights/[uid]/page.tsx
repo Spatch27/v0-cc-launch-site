@@ -291,7 +291,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               alt={article.title}
               fill
               className="object-cover"
-              style={{ objectPosition: "center top" }}
+              style={{ objectPosition: "center 35%" }}
               priority
               sizes="(max-width: 1400px) 100vw, 1400px"
             />
