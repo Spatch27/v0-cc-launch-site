@@ -1,10 +1,10 @@
 "use client"
 
-import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
+import LightbulbIllustration from "@/components/approach/lightbulb-illustration"
 
 export function WorkflowsBehaviourSection() {
   const ref = useRef(null)
@@ -33,13 +33,7 @@ export function WorkflowsBehaviourSection() {
           </div>
         </div>
         <div className="relative flex h-[28rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
-          <Image
-            src="/images/icon-7.svg"
-            alt="Workflows follow behaviour illustration"
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-contain p-12"
-          />
+          <LightbulbIllustration />
         </div>
       </motion.div>
     </Section>
