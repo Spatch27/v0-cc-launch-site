@@ -47,11 +47,11 @@ export function Footer() {
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
+        className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10 px-6 lg:px-12"
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 space-y-12">
-          <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-            <div className="w-full lg:w-auto">
+        <div className="mx-auto max-w-[1400px] space-y-12">
+          <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
+            <div className="w-full lg:w-1/3 lg:flex-shrink-0">
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
               </h3>
@@ -101,8 +101,8 @@ export function Footer() {
           </motion.div>
         </div>
       </motion.div>
-      <div className="relative z-10 border-t border-brand-dark/10">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 pb-24 lg:px-12 lg:pb-4">
+      <div className="relative z-10 border-t border-brand-dark/10 px-6 lg:px-12">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between py-4 pb-24 lg:pb-4">
           <p className="text-xs text-brand-dark">
             &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
           </p>
