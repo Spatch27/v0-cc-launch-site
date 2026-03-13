@@ -63,14 +63,16 @@ export default function RootLayout({
             gtag('config', 'G-76PXVCGPES');
           `}
         </Script>
-        {/* Cookiebot CMP */}
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js?cbid=bc3d8b4b-cf51-4f81-a255-e89443188c10"
-          strategy="beforeInteractive"
-        />
       </head>
       <body className="font-sans antialiased">
+        {/* Cookiebot CMP - must be first in body with beforeInteractive */}
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+        />
         <Navigation />
         <main className="relative">{children}</main>
         <Footer />
