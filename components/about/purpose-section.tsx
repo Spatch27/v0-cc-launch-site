@@ -1,13 +1,24 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
+import AdoptionIllustration from "@/components/illustrations/adoption"
 
 export function PurposeSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
   return (
-    <Section background="light">
-      <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+    <Section background="light" compact>
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        className="grid gap-12 lg:grid-cols-2 lg:items-center"
+      >
         <motion.div variants={fadeInUp}>
           <h2 className="mb-8 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
             Adoption is the only option.
@@ -24,14 +35,12 @@ export function PurposeSection() {
             </p>
           </div>
         </motion.div>
-        <motion.div variants={fadeInUp} className="hidden lg:flex lg:justify-end">
-          <img 
-            src="/images/team-illustration.svg" 
-            alt="Team illustration" 
-            className="max-h-[500px] w-auto"
-          />
-        </motion.div>
-      </div>
+        <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
+          <div className="w-full scale-130 origin-center">
+            <AdoptionIllustration />
+          </div>
+        </div>
+      </motion.div>
     </Section>
   )
 }
