@@ -49,8 +49,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable}`} data-scroll-behavior="smooth">
-      <head>
-        {/* Cookiebot CMP - MUST be the first script in HEAD */}
+      <body className="font-sans antialiased">
+        {/* Cookiebot CMP - beforeInteractive scripts must be in body */}
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
@@ -61,8 +61,8 @@ export default function RootLayout({
         />
         {/* Google tag (gtag.js) */}
         <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-76PXVCGPES"
+          strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -72,8 +72,6 @@ export default function RootLayout({
             gtag('config', 'G-76PXVCGPES');
           `}
         </Script>
-      </head>
-      <body className="font-sans antialiased">
         <Navigation />
         <main className="relative">{children}</main>
         <Footer />
