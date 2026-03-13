@@ -50,8 +50,8 @@ export function Footer() {
         className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10"
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12 space-y-12">
-          <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-            <div className="w-full lg:flex-1">
+          <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-0">
+            <div className="w-full lg:max-w-xs lg:flex-shrink-0">
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
               </h3>
