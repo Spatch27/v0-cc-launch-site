@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
+import Link from "next/link"
 import { Section } from "@/components/section"
 import { ArticleSidebar } from "@/components/insights/article-sidebar"
 import { BackToInsights } from "@/components/insights/back-to-insights"
@@ -422,6 +423,31 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   </h2>
                 )
               }
+              
+              // Check if this paragraph contains the Drag Diagnostic link
+              if (block.text.includes("Get in touch to schedule a Drag Diagnostic")) {
+                return (
+                  <p
+                    key={i}
+                    className="mb-6 text-lg leading-relaxed text-brand-dark/80"
+                  >
+                    {block.text.split("Get in touch to schedule a Drag Diagnostic").map((part, idx, arr) => (
+                      <span key={idx}>
+                        {part}
+                        {idx < arr.length - 1 && (
+                          <Link
+                            href="/contact#book"
+                            className="font-semibold text-brand-dark underline hover:text-brand-pink transition-colors"
+                          >
+                            Get in touch to schedule a Drag Diagnostic
+                          </Link>
+                        )}
+                      </span>
+                    ))}
+                  </p>
+                )
+              }
+              
               return (
                 <p
                   key={i}
