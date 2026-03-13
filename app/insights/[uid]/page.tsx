@@ -55,11 +55,7 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "The real change isn't happening inside agencies",
-      },
-      {
-        type: "paragraph",
-        text: "It's happening inside marketing operations.",
+        text: "The real change isn't happening inside agencies. It's happening inside marketing operations.",
       },
       {
         type: "paragraph",
