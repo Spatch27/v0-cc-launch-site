@@ -42,12 +42,13 @@ const articles = [
   },
   {
     id: "embedded-consultancy-model",
-    title: "The embedded consultancy model explained",
+    title: "Marketing's Moneyball moment",
     excerpt:
-      "What makes embedded consultancy different from traditional consulting, and why it's more effective for modern marketing teams.",
-    category: "What we're creating",
-    date: "September 2024",
-    readTime: "10 min read",
+      "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
+    category: "Marketing leadership",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/moneyball-moment.jpg",
   },
   {
     id: "building-resilient-marketing-systems",

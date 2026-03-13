@@ -153,31 +153,75 @@ const articles: Record<
     ],
   },
   "embedded-consultancy-model": {
-    title: "The embedded consultancy model explained",
+    title: "Marketing's Moneyball moment",
     excerpt:
-      "What makes embedded consultancy different from traditional consulting, and why it\u2019s more effective for modern marketing teams.",
-    category: "What we're creating",
-    date: "September 2024",
-    readTime: "10 min read",
-    author: "Committed Citizens",
-    authorRole: "Editorial",
-    heroImage: "/images/insights/hero-default.jpg",
+      "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
+    category: "Marketing leadership",
+    date: "March 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/moneyball-moment.jpg",
     body: [
       {
-        type: "heading2",
-        text: "Why Traditional Consulting Falls Short",
+        type: "paragraph",
+        text: "There's a hard reality for CMOs: few are seen as enterprise leaders.",
       },
       {
         type: "paragraph",
-        text: "Traditional consultancies parachute in, produce a deck, and leave. The recommendations are often sound, but the implementation stalls because the team wasn\u2019t part of building the solution.",
-      },
-      {
-        type: "heading2",
-        text: "The Embedded Difference",
+        text: "Only 10% of CEOs come from marketing backgrounds. Not because marketers lack judgement or ambition, but because marketing rarely looks like the kind of growth engine boards know how to back.",
       },
       {
         type: "paragraph",
-        text: "Embedded consultancy means working inside your team, not alongside it. We sit in your workflows, attend your stand-ups, and build solutions with the people who\u2019ll run them long after we leave.",
+        text: "Recent research from McKinsey highlights the disconnect. More than 70% of CEOs assess marketing on revenue growth and margin. Yet only around a third of CMOs prioritise those same metrics, and barely half are deeply involved in strategic planning.",
+      },
+      {
+        type: "paragraph",
+        text: "The ambition is there. The operating system isn't.",
+      },
+      {
+        type: "heading2",
+        text: "This matters because boards don't promote vision",
+      },
+      {
+        type: "paragraph",
+        text: "They promote predictability. Finance manages risk through models. Operations monitors throughput via dashboards. Both run systems that are legible, repeatable and defensible.",
+      },
+      {
+        type: "paragraph",
+        text: "Marketing, by contrast, tends to run on campaigns, launches and big moments. Sometimes they deliver extraordinary commercial results. But they're hard to forecast, harder to repeat, and almost impossible for a non-marketer to evaluate.",
+      },
+      {
+        type: "paragraph",
+        text: "That's the gap.",
+      },
+      {
+        type: "heading2",
+        text: "It isn't about talent or creativity",
+      },
+      {
+        type: "paragraph",
+        text: "It's about how marketing presents itself as a function.",
+      },
+      {
+        type: "paragraph",
+        text: "The CMOs who break through don't do it by being louder or more strategic. They do it by changing how marketing operates. They introduce cadence, measurement and accountability that the rest of the C-suite already takes for granted. Creative excellence matters more than ever - but it sits on top of consistent performance, rather than compensating for its absence.",
+      },
+      {
+        type: "heading2",
+        text: "This is marketing's moneyball moment",
+      },
+      {
+        type: "paragraph",
+        text: "The original Moneyball insight wasn't that data beat intuition. It was that a system built on evidence could outperform one built on gut feel - even with fewer resources.",
+      },
+      {
+        type: "paragraph",
+        text: "The same logic applies here. CMOs who can show what's working, what it costs, and what it returns build something far more powerful than campaign success. They build operational credibility, which is what turns marketing influence into enterprise authority.",
+      },
+      {
+        type: "paragraph",
+        text: "If you want a marketing engine the board can believe in, you need to start by understanding where you're experiencing operational drag. We can help. Get in touch to schedule a Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
