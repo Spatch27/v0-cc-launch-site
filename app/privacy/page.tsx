@@ -24,7 +24,7 @@ export default function PrivacyPage() {
 
       <Section background="light" narrow>
         <div className="prose prose-lg max-w-none text-brand-dark/70">
-          <h2 className="mt-12 font-display text-2xl font-bold text-brand-dark">
+          <h2 className="mt-6 font-display text-2xl font-bold text-brand-dark">
             Who we are
           </h2>
           <p>
