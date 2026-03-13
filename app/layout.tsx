@@ -55,24 +55,28 @@ export default function RootLayout({
             gtag('config', 'G-76PXVCGPES');
           `}
         </Script>
-        {/* Cookiebot CMP - loaded via inline script to check domain at runtime */}
+        {/* Cookiebot CMP */}
         <Script
           id="Cookiebot"
-          strategy="afterInteractive"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
+          data-blockingmode="auto"
+          type="text/javascript"
+          strategy="beforeInteractive"
+        />
+        {/* Suppress Cookiebot errors on non-production domains */}
+        <Script
+          id="cookiebot-error-handler"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                var hostname = window.location.hostname;
-                if (hostname === 'committedcitizens.co.uk' || hostname === 'www.committedcitizens.co.uk') {
-                  var script = document.createElement('script');
-                  script.id = 'CookiebotDeclaration';
-                  script.src = 'https://consent.cookiebot.com/uc.js';
-                  script.setAttribute('data-cbid', 'bc3d8b4b-cf51-4f81-a255-e89443188c10');
-                  script.setAttribute('data-blockingmode', 'auto');
-                  script.type = 'text/javascript';
-                  document.head.appendChild(script);
+              window.addEventListener('error', function(e) {
+                if (e.message && e.message.includes('not authorized to show the cookie banner')) {
+                  e.stopImmediatePropagation();
+                  e.preventDefault();
+                  return true;
                 }
-              })();
+              }, true);
             `,
           }}
         />
