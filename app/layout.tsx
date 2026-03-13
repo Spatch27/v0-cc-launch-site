@@ -58,25 +58,17 @@ export default function RootLayout({
         {/* Cookiebot CMP */}
         <Script
           id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
-          data-blockingmode="auto"
-          type="text/javascript"
-          strategy="beforeInteractive"
-        />
-        {/* Suppress Cookiebot errors on non-production domains */}
-        <Script
-          id="cookiebot-error-handler"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              window.addEventListener('error', function(e) {
-                if (e.message && e.message.includes('not authorized to show the cookie banner')) {
-                  e.stopImmediatePropagation();
-                  e.preventDefault();
-                  return true;
-                }
-              }, true);
+              var Cookiebot = window.Cookiebot || {};
+              var script = document.createElement('script');
+              script.id = 'CookiebotDeclaration';
+              script.src = 'https://consent.cookiebot.com/uc.js';
+              script.setAttribute('data-cbid', 'bc3d8b4b-cf51-4f81-a255-e89443188c10');
+              script.setAttribute('data-blockingmode', 'auto');
+              script.type = 'text/javascript';
+              document.currentScript.parentNode.insertBefore(script, document.currentScript);
             `,
           }}
         />
