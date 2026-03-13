@@ -33,7 +33,7 @@ export function OutcomesSection() {
           </div>
         </div>
         <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
-          <div className="w-full origin-center scale-130">
+          <div className="w-full scale-130 origin-center">
             <BalloonPopIllustration />
           </div>
         </div>
