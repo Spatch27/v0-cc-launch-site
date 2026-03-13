@@ -115,12 +115,8 @@ const articles: Record<
         text: "Their solution wasn't more computing power or better dashboards. It was better discipline. They stripped back to what a senior engineer called \"small data\" - cherry-picking the handful of measures that genuinely moved performance. Everything else was noise.",
       },
       {
-        type: "heading2",
-        text: "Marketing has the same problem",
-      },
-      {
         type: "paragraph",
-        text: "Only we handle it worse.",
+        text: "Marketing has the same problem. Only we handle it worse.",
       },
       {
         type: "paragraph",
