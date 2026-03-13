@@ -3,6 +3,7 @@
 
 import { useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
@@ -17,6 +18,7 @@ const articles = [
     category: "Getting started",
     date: "March 2026",
     readTime: "2 min read",
+    image: "/images/insights/weve-seen-enough.jpg",
   },
   {
     id: "removing-operational-drag",
@@ -126,12 +128,24 @@ export function InsightsListing() {
               variants={fadeInUp}
               className="group grid gap-12 md:grid-cols-2 md:items-center"
             >
-              {/* Left: illustration area */}
-              <div className="flex aspect-[4/3] items-center justify-center bg-brand-dark">
-                <div className="flex flex-col items-center gap-4 text-brand-white/20">
-                  <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
-                  <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
-                </div>
+              {/* Left: image */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-brand-dark">
+                {featured.image ? (
+                  <Image
+                    src={featured.image}
+                    alt={featured.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <div className="flex flex-col items-center gap-4 text-brand-white/20">
+                      <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
+                      <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Right: content */}

@@ -183,8 +183,8 @@ const articles: Record<
     category: "Getting started",
     date: "March 2026",
     readTime: "2 min read",
-    author: "Committed Citizens",
-    authorRole: "Editorial",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
     heroImage: "/images/insights/weve-seen-enough.jpg",
     body: [
       {
@@ -282,22 +282,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </section>
 
-      {/* Full-width Hero Image */}
-      <section className="bg-brand-light px-6 pb-0 lg:px-12">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="relative aspect-[21/9] w-full overflow-hidden">
-            <Image
-              src={article.heroImage}
-              alt={article.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1400px) 100vw, 1400px"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Two-column: Sidebar + Article Body */}
       <section className="bg-brand-white px-6 py-16 lg:px-12 lg:py-24">
         <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[280px_1fr] lg:gap-20 relative">
@@ -317,6 +301,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </p>
 
             <hr className="mb-10 border-brand-dark/10" />
+
+            {/* Hero image — sits between excerpt and body */}
+            <div className="relative mb-12 aspect-[16/9] w-full overflow-hidden">
+              <Image
+                src={article.heroImage}
+                alt={article.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 1400px) 75vw, 1050px"
+              />
+            </div>
 
             {article.body.map((block, i) => {
               if (block.type === "heading2") {
