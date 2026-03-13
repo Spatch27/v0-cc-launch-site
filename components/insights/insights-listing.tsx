@@ -11,6 +11,16 @@ import { ArrowRight } from "lucide-react"
 
 const articles = [
   {
+    id: "removing-operational-drag",
+    title: "The great agency reset is a sideshow.",
+    excerpt:
+      "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
+    category: "Marketing orchestration",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/agency-reset-sideshow.jpg",
+  },
+  {
     id: "weve-seen-enough",
     title: "We'd seen enough.",
     excerpt:
@@ -19,15 +29,6 @@ const articles = [
     date: "March 2026",
     readTime: "2 min read",
     image: "/images/insights/weve-seen-enough.jpg",
-  },
-  {
-    id: "removing-operational-drag",
-    title: "Removing operational drag from marketing teams",
-    excerpt:
-      "How CMOs can identify and eliminate the hidden inefficiencies that slow down their teams and reduce marketing effectiveness.",
-    category: "What we're creating",
-    date: "November 2024",
-    readTime: "8 min read",
   },
   {
     id: "marketing-operations-competitive-advantage",

@@ -27,35 +27,63 @@ const articles: Record<
   }
 > = {
   "removing-operational-drag": {
-    title: "Removing operational drag from marketing teams",
+    title: "The great agency reset is a sideshow.",
     excerpt:
-      "How CMOs can identify and eliminate the hidden inefficiencies that slow down their teams and reduce marketing effectiveness.",
-    category: "What we're creating",
-    date: "November 2024",
-    readTime: "8 min read",
-    author: "Committed Citizens",
-    authorRole: "Editorial",
-    heroImage: "/images/insights/hero-default.jpg",
+      "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
+    category: "Marketing orchestration",
+    date: "March 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/agency-reset-sideshow.jpg",
     body: [
       {
+        type: "paragraph",
+        text: "The agency model is collapsing. The good news for CMOs is that it isn't their problem.",
+      },
+      {
+        type: "paragraph",
+        text: "The bad news is that they have something much bigger to worry about: the system those agencies sit inside.",
+      },
+      {
+        type: "paragraph",
+        text: "A recent industry report laid bare what many marketing leaders have been feeling for some time. AI is compressing the cost of production work, 82% of brands now run in-house teams, and procurement is shifting from buying hours to buying outcomes. Agencies are caught in a difficult middle ground - unable to charge what they once did, unable to adapt fast enough.",
+      },
+      {
+        type: "paragraph",
+        text: "Piscari's Agency Reset 2026 report is worth reading even if you're not an agency leader, because it describes one half of a much bigger shift.",
+      },
+      {
         type: "heading2",
-        text: "The Hidden Cost of Operational Drag",
+        text: "The real change isn't happening inside agencies",
       },
       {
         type: "paragraph",
-        text: "Most marketing teams spend more time managing work than doing work. The constant context switching, tool sprawl, and approval bottlenecks create an invisible tax on productivity that compounds over time.",
+        text: "It's happening inside marketing operations.",
       },
       {
         type: "paragraph",
-        text: "We call this operational drag \u2014 the accumulated friction that slows down marketing velocity and prevents teams from reaching their full potential.",
-      },
-      {
-        type: "heading2",
-        text: "What Changes When You Remove the Drag",
+        text: "Most CMOs now manage a patchwork of in-house teams, agencies, freelancers, platforms and AI tools. Each part of the marketing machine is optimising for its own specific role and objective.",
       },
       {
         type: "paragraph",
-        text: "When operational friction disappears, marketing teams transform. Decision-making accelerates. Creative energy flows to where it matters. Teams start shipping work that moves the needle instead of fighting their own processes.",
+        text: "But nobody is orchestrating the whole thing.",
+      },
+      {
+        type: "paragraph",
+        text: "And that's where work gets stuck. Handoffs break. Cycle times bloat. Smart people spend half their energy navigating workarounds instead of doing the work that matters. And every time a partner changes shape - or disappears entirely - the cracks widen.",
+      },
+      {
+        type: "paragraph",
+        text: "This isn't fixed by switching agencies, bringing more work in-house, or buying another platform. It's fixed by redesigning how work actually flows across people, process and technology.",
+      },
+      {
+        type: "paragraph",
+        text: "If your marketing operation is feeling bogged down, you can't afford to wait for the agencies to sort themselves out. Redesigning the operating model now creates cleaner handoffs, shorter cycles and a system that works regardless of who's plugged into it.",
+      },
+      {
+        type: "paragraph",
+        text: "If that sounds sensible but you're unsure where to start, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
