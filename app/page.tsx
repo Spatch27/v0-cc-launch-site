@@ -22,7 +22,7 @@ export default function HomePage() {
           "You'll walk away with a Flow Map: a single-page view of where friction is concentrated, what it's costing you, and which fix would yield the fastest return. Board-ready language for a budget conversation, not a feelings conversation. Yours to keep, whether or not we work together."
         ]}
         ctaLabel="Book a Drag Diagnostic"
-        ctaHref="/contact"
+        ctaHref="/contact#book"
         background="pink"
       />
     </>

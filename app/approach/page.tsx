@@ -30,6 +30,7 @@ export default function ApproachPage() {
         heading="Before committing a budget, commit an hour."
         description="Book a free Drag Diagnostic - a structured 60-minute conversation that shows you exactly where operational drag is costing you the most."
         ctaLabel="Book a Drag Diagnostic"
+        ctaHref="/contact#book"
         background="yellow-deep"
       />
     </>
