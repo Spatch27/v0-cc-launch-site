@@ -51,7 +51,7 @@ export function Footer() {
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12 space-y-12">
           <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-            <div className="w-full lg:w-auto">
+            <div className="w-full lg:flex-1">
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
               </h3>
