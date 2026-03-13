@@ -277,11 +277,11 @@ export function ContactForm() {
                 </div>
                 <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
               </a>
-              <div className="w-full max-w-sm">
+              <div className="flex justify-center w-full">
                 <img
                   src="/images/21-pink-dk.svg"
                   alt="Decorative chart illustration"
-                  className="w-full h-auto"
+                  className="w-full max-w-md h-auto"
                 />
               </div>
             </motion.div>
