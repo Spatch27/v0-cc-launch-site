@@ -3,6 +3,7 @@
 
 import { useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
@@ -10,31 +11,44 @@ import { ArrowRight } from "lucide-react"
 
 const articles = [
   {
-    id: "removing-operational-drag",
-    title: "Removing operational drag from marketing teams",
+    id: "weve-seen-enough",
+    title: "We'd seen enough.",
     excerpt:
-      "How CMOs can identify and eliminate the hidden inefficiencies that slow down their teams and reduce marketing effectiveness.",
-    category: "What we're creating",
-    date: "November 2024",
-    readTime: "8 min read",
+      "Great marketers shouldn't be ground down by the system that was built to serve them. Committed Citizens are here to help.",
+    category: "Getting started",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/weve-seen-enough.jpg",
+  },
+  {
+    id: "removing-operational-drag",
+    title: "The great agency reset is a sideshow.",
+    excerpt:
+      "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
+    category: "Marketing orchestration",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/agency-reset-sideshow.jpg",
   },
   {
     id: "marketing-operations-competitive-advantage",
-    title: "Why marketing operations is the new competitive advantage",
+    title: "Small data wins the race",
     excerpt:
-      "In a world where every brand has access to the same tools, operational excellence is what separates the leaders from the followers.",
-    category: "What we're creating",
-    date: "October 2024",
-    readTime: "6 min read",
+      "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
+    category: "Data",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/small-data-wins.jpg",
   },
   {
     id: "embedded-consultancy-model",
-    title: "The embedded consultancy model explained",
+    title: "Marketing's Moneyball moment",
     excerpt:
-      "What makes embedded consultancy different from traditional consulting, and why it's more effective for modern marketing teams.",
-    category: "What we're creating",
-    date: "September 2024",
-    readTime: "10 min read",
+      "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
+    category: "Marketing leadership",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/moneyball-moment.jpg",
   },
   {
     id: "building-resilient-marketing-systems",
@@ -117,12 +131,24 @@ export function InsightsListing() {
               variants={fadeInUp}
               className="group grid gap-12 md:grid-cols-2 md:items-center"
             >
-              {/* Left: illustration area */}
-              <div className="flex aspect-[4/3] items-center justify-center bg-brand-dark">
-                <div className="flex flex-col items-center gap-4 text-brand-white/20">
-                  <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
-                  <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
-                </div>
+              {/* Left: image */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-brand-dark">
+                {featured.image ? (
+                  <Image
+                    src={featured.image}
+                    alt={featured.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <div className="flex flex-col items-center gap-4 text-brand-white/20">
+                      <div className="h-16 w-16 rounded-full bg-brand-pink/20" />
+                      <span className="text-xs tracking-[0.2em] uppercase">Featured</span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Right: content */}
@@ -161,14 +187,25 @@ export function InsightsListing() {
                 variants={fadeInUp}
                 className="group flex h-full flex-col bg-brand-white transition-colors duration-300 hover:bg-brand-dark overflow-hidden"
               >
-                {/* Placeholder image */}
+                {/* Image or placeholder */}
                 <div className="aspect-video w-full overflow-hidden bg-gradient-to-br from-brand-pink/20 to-brand-orange/20">
-                  <div className="flex h-full items-center justify-center">
-                    <div className="flex flex-col items-center gap-2 text-brand-dark/20 transition-colors duration-300 group-hover:text-brand-white/20">
-                      <div className="h-12 w-12 rounded-full bg-brand-pink/10" />
-                      <span className="text-xs">Article Image</span>
+                  {article.image ? (
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      width={600}
+                      height={337}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center">
+                      <div className="flex flex-col items-center gap-2 text-brand-dark/20 transition-colors duration-300 group-hover:text-brand-white/20">
+                        <div className="h-12 w-12 rounded-full bg-brand-pink/10" />
+                        <span className="text-xs">Article Image</span>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Content */}
