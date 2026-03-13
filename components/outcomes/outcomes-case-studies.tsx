@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
-import { Quote } from "lucide-react"
 
 interface OutcomeStudy {
   client: string
@@ -22,9 +21,9 @@ const allCaseStudies: OutcomeStudy[] = [
     project: "Email marketing workflow re-engineering across EMEA",
     description: "Customer intent was being missed because the handoffs between teams and platforms couldn't respond fast enough. Emails were going out late, to the wrong segments, or not at all. The workflow - not the platform - was the problem.\n\nWe re-engineered the end-to-end email workflow. Campaign cycle time dropped from 3 weeks to 6 days, resulting in:",
     metrics: [
-      { value: "57%", label: "improvement in CTR" },
-      { value: "25%", label: "increase in CTOR" },
-      { value: "15%", label: "decrease in bounce rates" },
+      { value: "80%", label: "reduction in errors across 11 languages" },
+      { value: "50%", label: "revenue increase in key campaigns" },
+      { value: "14", label: "customer journeys replatformed in 4 weeks" },
     ],
     testimonial:
       "They've enabled us to get the results we always wanted out of an expensive, integrated system.",
@@ -36,8 +35,9 @@ const allCaseStudies: OutcomeStudy[] = [
     project: "Stack simplification and realignment / CX improvements",
     description: "The stack had grown but trust in the data hadn't. Decisions were being made on instinct because dashboards couldn't be relied on. Journey breaks were going undetected until customers had already left.\n\nWe simplified the stack, rebuilt the data flows, and gave the team reporting they could actually act on:",
     metrics: [
-      { value: "22%", label: "reduction in journey breaks" },
-      { value: "12%", label: "increase in page conversions" },
+      { value: "60%", label: "increase in customer identity resolution" },
+      { value: "250%", label: "traffic growth through organic channels" },
+      { value: "300%", label: "uplift to conversion rates on campaign forms" },
     ],
     testimonial:
       "They delivered a brilliant experience — great stakeholder mapping, flawless execution, and well-embedded adoption.",
@@ -48,10 +48,11 @@ const allCaseStudies: OutcomeStudy[] = [
     title: "Paying for tech nobody's really using",
     project:
       "Business transformation, web integration, and marketing team alignment",
-    description: "The stack was bloated, workarounds were endemic, and licence fees were consuming budget that should have been driving growth. The team needed to move faster and cost less - in 12 weeks.\n\nWe rationalised the platforms, removed the workarounds, and aligned the team around a single operating model. Impact over 12 weeks:",
+    description: "A new digital experience that brought IT and marketing together for the first time. A new composable stack with a unified design system spanning both agency and inhouse platforms.\n\nWe created personalised journeys for key audiences and supported content operations that grew as the team did.",
     metrics: [
-      { value: "30%", label: "reduction in workarounds" },
-      { value: "57%", label: "licence fee reduction" },
+      { value: "100%", label: "increase in content production capability" },
+      { value: "5", label: "different content platforms reduced to a single headless CMS" },
+      { value: "25%", label: "more traffic to a new consolidated site than the 2 it replaced" },
     ],
     testimonial:
       "A business critical transformation at a crucial time for us — they executed it brilliantly.",
@@ -101,13 +102,13 @@ export function OutcomesCaseStudies() {
               </div>
 
               {/* Metrics */}
-              <div className="flex flex-wrap gap-8">
+              <div className="grid grid-cols-3 gap-6">
                 {study.metrics.map((m) => (
                   <div key={m.label}>
                     <span className="font-display text-4xl font-bold text-brand-dark">
                       {m.value}
                     </span>
-                    <p className="mt-1 text-sm text-brand-dark/50">{m.label}</p>
+                    <p className="mt-1 text-sm leading-snug text-brand-dark/50">{m.label}</p>
                   </div>
                 ))}
               </div>
@@ -115,13 +116,10 @@ export function OutcomesCaseStudies() {
 
             {/* Right: testimonial */}
             <div className="flex flex-col justify-between">
-              <div>
-                <Quote size={20} className="mb-4 text-brand-dark/15" />
-                <blockquote className="font-display text-2xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-3xl">
-                  &ldquo;{study.testimonial}&rdquo;
-                </blockquote>
-              </div>
-              <p className="mt-8 text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
+              <blockquote className="pt-10 font-display text-2xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-3xl">
+                &ldquo;{study.testimonial}&rdquo;
+              </blockquote>
+              <p className="text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
                 {study.client}
               </p>
             </div>

@@ -34,7 +34,7 @@ export function ApproachHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark"
+          className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark/100"
         >
           We combine deep marketing expertise with operational rigour to redesign how your team works.
         </motion.p>

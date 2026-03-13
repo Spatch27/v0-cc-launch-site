@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
+import Link from "next/link"
 import { Section } from "@/components/section"
 import { ArticleSidebar } from "@/components/insights/article-sidebar"
 import { BackToInsights } from "@/components/insights/back-to-insights"
@@ -54,12 +55,8 @@ const articles: Record<
         text: "Piscari's Agency Reset 2026 report is worth reading even if you're not an agency leader, because it describes one half of a much bigger shift.",
       },
       {
-        type: "heading2",
-        text: "The real change isn't happening inside agencies",
-      },
-      {
         type: "paragraph",
-        text: "It's happening inside marketing operations.",
+        text: "The real change isn't happening inside agencies. It's happening inside marketing operations.",
       },
       {
         type: "paragraph",
@@ -119,12 +116,8 @@ const articles: Record<
         text: "Their solution wasn't more computing power or better dashboards. It was better discipline. They stripped back to what a senior engineer called \"small data\" - cherry-picking the handful of measures that genuinely moved performance. Everything else was noise.",
       },
       {
-        type: "heading2",
-        text: "Marketing has the same problem",
-      },
-      {
         type: "paragraph",
-        text: "Only we handle it worse.",
+        text: "Marketing has the same problem. Only we handle it worse.",
       },
       {
         type: "paragraph",
@@ -137,10 +130,6 @@ const articles: Record<
       {
         type: "paragraph",
         text: "Most marketing teams do it backwards. We measure because we can and we report because we feel we should. And then we wonder why nothing feels actionable. The data itself becomes the bottleneck: contested numbers, competing dashboards, meeting time spent debating methodology instead of making calls.",
-      },
-      {
-        type: "heading2",
-        text: "Go faster by measuring less",
       },
       {
         type: "paragraph",
@@ -180,12 +169,8 @@ const articles: Record<
         text: "The ambition is there. The operating system isn't.",
       },
       {
-        type: "heading2",
-        text: "This matters because boards don't promote vision",
-      },
-      {
         type: "paragraph",
-        text: "They promote predictability. Finance manages risk through models. Operations monitors throughput via dashboards. Both run systems that are legible, repeatable and defensible.",
+        text: "This matters because boards don't promote vision. They promote predictability. Finance manages risk through models. Operations monitors throughput via dashboards. Both run systems that are legible, repeatable and defensible.",
       },
       {
         type: "paragraph",
@@ -196,20 +181,16 @@ const articles: Record<
         text: "That's the gap.",
       },
       {
-        type: "heading2",
-        text: "It isn't about talent or creativity",
-      },
-      {
         type: "paragraph",
-        text: "It's about how marketing presents itself as a function.",
+        text: "It isn't about talent or creativity. It's about how marketing presents itself as a function.",
       },
       {
         type: "paragraph",
         text: "The CMOs who break through don't do it by being louder or more strategic. They do it by changing how marketing operates. They introduce cadence, measurement and accountability that the rest of the C-suite already takes for granted. Creative excellence matters more than ever - but it sits on top of consistent performance, rather than compensating for its absence.",
       },
       {
-        type: "heading2",
-        text: "This is marketing's moneyball moment",
+        type: "paragraph",
+        text: "This is marketing's moneyball moment.",
       },
       {
         type: "paragraph",
@@ -316,8 +297,8 @@ const articles: Record<
         text: "That was the tipping point. This problem wasn't going to fix itself. It was accelerating.",
       },
       {
-        type: "heading2",
-        text: "We know what good looks like",
+        type: "paragraph",
+        text: "We know what good looks like"
       },
       {
         type: "paragraph",
@@ -336,8 +317,8 @@ const articles: Record<
         text: "We didn't start this because we fell out of love with agencies. We started it because we've watched too many good teams held back by fixable problems. And we decided to go and help them.",
       },
       {
-        type: "heading2",
-        text: "Let's start with a conversation",
+        type: "paragraph",
+        text: "Let's start with a conversation"
       },
       {
         type: "paragraph",
@@ -442,6 +423,31 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   </h2>
                 )
               }
+              
+              // Check if this paragraph contains the Drag Diagnostic link
+              if (block.text.includes("Get in touch to schedule a Drag Diagnostic")) {
+                return (
+                  <p
+                    key={i}
+                    className="mb-6 text-lg leading-relaxed text-brand-dark/80"
+                  >
+                    {block.text.split("Get in touch to schedule a Drag Diagnostic").map((part, idx, arr) => (
+                      <span key={idx}>
+                        {part}
+                        {idx < arr.length - 1 && (
+                          <Link
+                            href="/contact#book"
+                            className="font-semibold text-brand-dark underline hover:text-brand-pink transition-colors"
+                          >
+                            Get in touch to schedule a Drag Diagnostic
+                          </Link>
+                        )}
+                      </span>
+                    ))}
+                  </p>
+                )
+              }
+              
               return (
                 <p
                   key={i}
