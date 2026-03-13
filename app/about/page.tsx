@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { AboutHero } from "@/components/about/about-hero"
 import { PurposeSection } from "@/components/about/purpose-section"
 import { TeamSection } from "@/components/about/team-section"
@@ -18,10 +19,13 @@ export default function AboutPage() {
       <AboutHero />
       <PurposeSection />
       <section className="relative w-screen left-1/2 -translate-x-1/2 h-[600px] flex items-center justify-center overflow-hidden">
-        <img
+        <Image
           src="/images/about-quote-bg.jpg"
           alt="Aerial view of an autumn lake"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          className="absolute inset-0 object-cover"
+          priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 px-6 lg:px-12 mx-auto max-w-5xl text-center">
@@ -34,11 +38,13 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Full-viewport-width image */}
-      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw]">
-        <img
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] h-[500px]">
+        <Image
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/P1000737-4-DlltoCjcAMPIrtcyQx1FpNnM5hxanl.jpg"
           alt="Two men standing on beach promenade overlooking coastal landscape"
-          className="w-full h-[500px] object-cover object-right-top md:object-top"
+          fill
+          className="object-cover object-right-top md:object-top"
+          sizes="100vw"
         />
       </div>
       <CultureSection />

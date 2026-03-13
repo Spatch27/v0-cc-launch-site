@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
@@ -41,10 +42,12 @@ export function TeamSection() {
             className="group flex flex-col overflow-hidden bg-brand-light transition-shadow duration-300 hover:shadow-lg"
           >
             <div className="relative h-64 w-full overflow-hidden bg-gray-300">
-              <img
+              <Image
                 src={member.image}
                 alt={member.name}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="p-10">
