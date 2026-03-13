@@ -1,10 +1,10 @@
 "use client"
 
+import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
-import BalloonPopIllustration from "@/components/illustrations/jigsaw"
 
 export function OutcomesSection() {
   const ref = useRef(null)
@@ -33,9 +33,13 @@ export function OutcomesSection() {
           </div>
         </div>
         <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
-          <div className="w-full origin-center scale-130">
-            <BalloonPopIllustration />
-          </div>
+          <Image
+            src="/images/icon-10.svg"
+            alt="Built for outcomes illustration"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-contain"
+          />
         </div>
       </motion.div>
     </Section>
