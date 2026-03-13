@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Script } from "next/script"
 import { Section } from "@/components/section"
 
 export const metadata: Metadata = {
@@ -10,6 +11,11 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
+      <Script
+        id="CookieDeclaration"
+        src="https://consent.cookiebot.com/bc3d8b4b-cf51-4f81-a255-e89443188c10/cd.js"
+        strategy="afterInteractive"
+      />
       <section className="bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <p className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
