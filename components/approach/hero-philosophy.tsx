@@ -43,7 +43,7 @@ export function HeroPhilosophy() {
           transition={{ delay: 0.2 }}
           className="self-end"
         >
-          <p className="max-w-2xl text-right text-xl leading-relaxed text-brand-dark/80">
+          <p className="max-w-2xl text-right text-xl leading-relaxed text-brand-dark">
             Every failed transformation started with a platform and assumed the people would follow. They rarely do.
           </p>
         </motion.div>
