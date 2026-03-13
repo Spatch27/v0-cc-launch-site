@@ -55,17 +55,23 @@ export default function RootLayout({
             gtag('config', 'G-76PXVCGPES');
           `}
         </Script>
-        {/* Cookiebot CMP - only load on production domain */}
-        {process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV === 'production' && (
-          <Script
-            id="Cookiebot"
-            src="https://consent.cookiebot.com/uc.js"
-            data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
-            data-blockingmode="auto"
-            type="text/javascript"
-            strategy="afterInteractive"
-          />
-        )}
+        {/* Cookiebot CMP */}
+        <Script
+          id="Cookiebot"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              var Cookiebot = window.Cookiebot || {};
+              var script = document.createElement('script');
+              script.id = 'CookiebotDeclaration';
+              script.src = 'https://consent.cookiebot.com/uc.js';
+              script.setAttribute('data-cbid', 'bc3d8b4b-cf51-4f81-a255-e89443188c10');
+              script.setAttribute('data-blockingmode', 'auto');
+              script.type = 'text/javascript';
+              document.currentScript.parentNode.insertBefore(script, document.currentScript);
+            `,
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
         <Navigation />
