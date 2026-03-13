@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
+import BusyWorkIllustration from "@/components/home/busy-work-illustration"
 
 const textContainer = {
   hidden: {},
@@ -56,11 +57,7 @@ export function BuriedSection() {
           animate={inView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <img
-            src="/images/man-cropped.svg"
-            alt="Marketing team overwhelmed by operational drag"
-            className="w-full h-auto max-w-4xl lg:max-w-5xl"
-          />
+          <BusyWorkIllustration />
         </motion.div>
 
       </div>
