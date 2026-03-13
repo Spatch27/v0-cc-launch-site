@@ -131,10 +131,6 @@ const articles: Record<
         text: "Most marketing teams do it backwards. We measure because we can and we report because we feel we should. And then we wonder why nothing feels actionable. The data itself becomes the bottleneck: contested numbers, competing dashboards, meeting time spent debating methodology instead of making calls.",
       },
       {
-        type: "heading2",
-        text: "Go faster by measuring less",
-      },
-      {
         type: "paragraph",
         text: "F1 teams obsess over reducing drag so they can go faster. Marketing teams should do the same. The answer isn't more data. It's less - chosen well, trusted fully, and acted on fast.",
       },
