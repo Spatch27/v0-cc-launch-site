@@ -180,12 +180,8 @@ const articles: Record<
         text: "That's the gap.",
       },
       {
-        type: "heading2",
-        text: "It isn't about talent or creativity",
-      },
-      {
         type: "paragraph",
-        text: "It's about how marketing presents itself as a function.",
+        text: "It isn't about talent or creativity. It's about how marketing presents itself as a function.",
       },
       {
         type: "paragraph",
