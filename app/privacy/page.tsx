@@ -12,22 +12,18 @@ export default function PrivacyPage() {
   return (
     <>
       <section className="bg-brand-dark px-6 pt-40 pb-24 lg:px-12 lg:pt-48 lg:pb-32">
-        <div className="mx-auto max-w-[1400px]">
+        <div className="mx-auto max-w-4xl">
           <p className="mb-6 text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
             Legal
           </p>
-          <h1 className="max-w-3xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white">
-            Privacy Policy
+          <h1 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white">
+            We take your privacy seriously.
           </h1>
         </div>
       </section>
 
       <Section background="light" narrow>
         <div className="prose prose-lg max-w-none text-brand-dark/70">
-          <h2 className="font-display text-2xl font-bold text-brand-dark">
-            We take your privacy seriously.
-          </h2>
-
           <h2 className="mt-12 font-display text-2xl font-bold text-brand-dark">
             Who we are
           </h2>
