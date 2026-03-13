@@ -18,6 +18,7 @@ export default function OutcomesPage() {
         heading="See how we'd approach your challenge."
         description="Book a free Drag Diagnostic - 60 minutes, no pitch, and you'll walk away with a clear picture of what to fix first."
         ctaLabel="Book a Drag Diagnostic"
+        ctaHref="/contact#book"
         background="orange"
       />
     </>

@@ -90,7 +90,7 @@ export function ContactForm() {
       </motion.section>
 
       {/* Waitlist Section */}
-      <section className="relative bg-brand-dark px-6 py-20 lg:px-12 lg:py-32">
+      <section id="book" className="relative bg-brand-dark px-6 py-20 lg:px-12 lg:py-32">
         <div className="mx-auto max-w-[1400px]">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
