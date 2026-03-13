@@ -281,7 +281,7 @@ export function ContactForm() {
                 <img
                   src="/images/21-pink-dk.svg"
                   alt="Decorative chart illustration"
-                  className="w-full max-w-lg h-auto"
+                  className="w-full max-w-xl h-auto"
                 />
               </div>
             </motion.div>
