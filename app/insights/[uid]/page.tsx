@@ -54,7 +54,7 @@ const articles: Record<
         text: "Piscari's Agency Reset 2026 report is worth reading even if you're not an agency leader, because it describes one half of a much bigger shift.",
       },
       {
-        type: "heading2",
+        type: "paragraph",
         text: "The real change isn't happening inside agencies",
       },
       {
