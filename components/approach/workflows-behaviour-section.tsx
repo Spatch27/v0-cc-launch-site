@@ -32,8 +32,8 @@ export function WorkflowsBehaviourSection() {
             </p>
           </div>
         </div>
-        <div className="relative flex h-[28rem] items-center justify-center overflow-visible rounded-lg bg-[#e3dcdc]">
-          <div className="scale-150 origin-center">
+        <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-visible rounded-lg bg-[#e3dcdc]">
+          <div className="w-full scale-150 origin-center">
             <LightbulbIllustration />
           </div>
         </div>
