@@ -4,7 +4,7 @@ import { useState, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
 import { Section } from "@/components/section"
-import { Mail, Linkedin, Send, CheckCircle, ArrowRight } from "lucide-react"
+import { Mail, Send, CheckCircle, ArrowRight } from "lucide-react"
 
 export function ContactForm() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -263,7 +263,7 @@ export function ContactForm() {
               className="flex flex-col gap-10"
             >
               <a
-                href="mailto:hello@committedcitizens.co.uk"
+                href="mailto:info@committedcitizens.co.uk"
                 className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
@@ -272,25 +272,7 @@ export function ContactForm() {
                 <div>
                   <p className="font-semibold text-brand-dark">Email</p>
                   <p className="text-sm text-brand-dark">
-                    hello@committedcitizens.co.uk
-                  </p>
-                </div>
-                <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
-              </a>
-
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-5 border-b border-brand-dark/10 pb-8 transition-colors"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
-                  <Linkedin size={22} />
-                </div>
-                <div>
-                  <p className="font-semibold text-brand-dark">LinkedIn</p>
-                  <p className="text-sm text-brand-dark">
-                    Connect with us
+                    info@committedcitizens.co.uk
                   </p>
                 </div>
                 <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />

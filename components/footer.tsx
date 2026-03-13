@@ -14,8 +14,7 @@ const navigateLinks = [
 ]
 
 const connectLinks = [
-  { label: "LinkedIn", href: "https://linkedin.com", external: true },
-  { label: "Email", href: "mailto:hello@committedcitizens.co.uk", external: false },
+  { label: "Email", href: "mailto:info@committedcitizens.co.uk", external: false },
   { label: "Substack", href: "https://substack.com", external: true },
 ]
 
