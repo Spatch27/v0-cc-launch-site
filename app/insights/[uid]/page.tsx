@@ -188,12 +188,8 @@ const articles: Record<
         text: "The CMOs who break through don't do it by being louder or more strategic. They do it by changing how marketing operates. They introduce cadence, measurement and accountability that the rest of the C-suite already takes for granted. Creative excellence matters more than ever - but it sits on top of consistent performance, rather than compensating for its absence.",
       },
       {
-        type: "heading2",
-        text: "This is marketing's moneyball moment",
-      },
-      {
         type: "paragraph",
-        text: "The original Moneyball insight wasn't that data beat intuition. It was that a system built on evidence could outperform one built on gut feel - even with fewer resources.",
+        text: "This is marketing's moneyball moment. The original Moneyball insight wasn't that data beat intuition. It was that a system built on evidence could outperform one built on gut feel - even with fewer resources.",
       },
       {
         type: "paragraph",
