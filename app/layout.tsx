@@ -55,20 +55,24 @@ export default function RootLayout({
             gtag('config', 'G-76PXVCGPES');
           `}
         </Script>
-        {/* Cookiebot CMP */}
+        {/* Cookiebot CMP - only loads on production domain */}
         <Script
           id="Cookiebot"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              var Cookiebot = window.Cookiebot || {};
-              var script = document.createElement('script');
-              script.id = 'CookiebotDeclaration';
-              script.src = 'https://consent.cookiebot.com/uc.js';
-              script.setAttribute('data-cbid', 'bc3d8b4b-cf51-4f81-a255-e89443188c10');
-              script.setAttribute('data-blockingmode', 'auto');
-              script.type = 'text/javascript';
-              document.currentScript.parentNode.insertBefore(script, document.currentScript);
+              (function() {
+                var host = window.location.hostname;
+                if (host === 'committedcitizens.co.uk' || host === 'www.committedcitizens.co.uk') {
+                  var script = document.createElement('script');
+                  script.id = 'CookiebotDeclaration';
+                  script.src = 'https://consent.cookiebot.com/uc.js';
+                  script.setAttribute('data-cbid', 'bc3d8b4b-cf51-4f81-a255-e89443188c10');
+                  script.setAttribute('data-blockingmode', 'auto');
+                  script.type = 'text/javascript';
+                  document.head.appendChild(script);
+                }
+              })();
             `,
           }}
         />
