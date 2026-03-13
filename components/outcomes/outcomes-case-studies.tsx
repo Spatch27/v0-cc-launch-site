@@ -103,11 +103,11 @@ export function OutcomesCaseStudies() {
               {/* Metrics */}
               <div className="flex flex-wrap gap-8">
                 {study.metrics.map((m) => (
-                  <div key={m.label}>
+                  <div key={m.label} className="max-w-xs">
                     <span className="font-display text-4xl font-bold text-brand-dark">
                       {m.value}
                     </span>
-                    <p className="mt-1 text-sm text-brand-dark/50">{m.label}</p>
+                    <p className="mt-1 text-sm leading-snug text-brand-dark/50">{m.label}</p>
                   </div>
                 ))}
               </div>
