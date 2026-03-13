@@ -88,27 +88,67 @@ const articles: Record<
     ],
   },
   "marketing-operations-competitive-advantage": {
-    title: "Why marketing operations is the new competitive advantage",
+    title: "Small data wins the race",
     excerpt:
-      "In a world where every brand has access to the same tools, operational excellence is what separates the leaders from the followers.",
-    category: "What we're creating",
-    date: "October 2024",
-    readTime: "6 min read",
-    author: "Committed Citizens",
-    authorRole: "Editorial",
-    heroImage: "/images/insights/hero-default.jpg",
+      "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
+    category: "Data",
+    date: "March 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/small-data-wins.jpg",
     body: [
       {
+        type: "paragraph",
+        text: "During the race season, a Formula 1 car is a product permanently in Beta.",
+      },
+      {
+        type: "paragraph",
+        text: "Every surface and component is covered in sensors. Terabytes of data stream back to technicians and engineers during every Grand Prix. In theory, it's a goldmine - every data point a potential refinement, every refinement a potential hundredth of a second.",
+      },
+      {
+        type: "paragraph",
+        text: "But McLaren Racing hit a wall.",
+      },
+      {
+        type: "paragraph",
+        text: "Even with AI processing the telemetry, the sheer volume of data took too long to analyse - and longer still to turn into meaningful change. The engineers had more information than they could act on, and the clock was always ticking.",
+      },
+      {
+        type: "paragraph",
+        text: "Their solution wasn't more computing power or better dashboards. It was better discipline. They stripped back to what a senior engineer called \"small data\" - cherry-picking the handful of measures that genuinely moved performance. Everything else was noise.",
+      },
+      {
         type: "heading2",
-        text: "Beyond the Tool Stack",
+        text: "Marketing has the same problem",
       },
       {
         type: "paragraph",
-        text: "Every marketing team has access to essentially the same platforms, data sources, and AI tools. The differentiator isn\u2019t what you buy \u2014 it\u2019s how you orchestrate it.",
+        text: "Only we handle it worse.",
       },
       {
         type: "paragraph",
-        text: "Operational excellence in marketing means faster decisions, cleaner handoffs, and teams that spend their energy on creative and strategic work rather than admin and workarounds.",
+        text: "There's no shortage of data in most modern marketing functions. More dashboards than anyone opens. More reporting cycles than anyone needs. More time spent measuring and less time spent deciding. For most teams, data isn't the asset it's supposed to be. It's a drag - adding weight to every decision, slowing the very thing it was meant to accelerate.",
+      },
+      {
+        type: "paragraph",
+        text: "The instinct is to fix this with better analytics, a new platform, or another layer of visualisation. But McLaren didn't solve their problem with better tools. They solved it by asking sharper questions. By deciding what mattered before they started measuring, not after.",
+      },
+      {
+        type: "paragraph",
+        text: "Most marketing teams do it backwards. We measure because we can and we report because we feel we should. And then we wonder why nothing feels actionable. The data itself becomes the bottleneck: contested numbers, competing dashboards, meeting time spent debating methodology instead of making calls.",
+      },
+      {
+        type: "heading2",
+        text: "Go faster by measuring less",
+      },
+      {
+        type: "paragraph",
+        text: "F1 teams obsess over reducing drag so they can go faster. Marketing teams should do the same. The answer isn't more data. It's less - chosen well, trusted fully, and acted on fast.",
+      },
+      {
+        type: "paragraph",
+        text: "If you want to swim in data rather than drown in it, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },

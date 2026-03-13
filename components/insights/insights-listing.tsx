@@ -32,12 +32,13 @@ const articles = [
   },
   {
     id: "marketing-operations-competitive-advantage",
-    title: "Why marketing operations is the new competitive advantage",
+    title: "Small data wins the race",
     excerpt:
-      "In a world where every brand has access to the same tools, operational excellence is what separates the leaders from the followers.",
-    category: "What we're creating",
-    date: "October 2024",
-    readTime: "6 min read",
+      "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
+    category: "Data",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/small-data-wins.jpg",
   },
   {
     id: "embedded-consultancy-model",
