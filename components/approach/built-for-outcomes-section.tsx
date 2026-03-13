@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
+import BalloonPopIllustration from "@/components/illustrations/jigsaw"
 
 export function BuiltForOutcomesSection() {
   const ref = useRef(null)
@@ -44,9 +45,14 @@ export function BuiltForOutcomesSection() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeInUp}
-          className="max-w-3xl"
+          className="grid items-center gap-12 lg:grid-cols-2"
         >
-          <div className="space-y-4">
+          <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
+            <div className="w-full origin-center scale-130">
+              <BalloonPopIllustration />
+            </div>
+          </div>
+          <div className="max-w-3xl space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
               Most transformation programmes are designed to sell you a platform, not fix how you work. Over 40% of the average marketing budget goes on technology and the agencies that implement it. Less than a third reaches your customers. The recommendation is the implementation. The implementation is the licence. The licence is the lock-in.
             </p>
