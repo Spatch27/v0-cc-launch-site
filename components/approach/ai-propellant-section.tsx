@@ -19,8 +19,10 @@ export function AIPropellantSection() {
         variants={fadeInUp}
         className="grid items-center gap-12 lg:grid-cols-2"
       >
-        <div className="order-last flex h-[28rem] items-center justify-center overflow-hidden rounded-lg lg:order-first">
-          <RocketWobbleIllustration />
+        <div className="relative order-last flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc] lg:order-first">
+          <div className="w-full origin-center scale-130">
+            <RocketWobbleIllustration />
+          </div>
         </div>
         <div>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
