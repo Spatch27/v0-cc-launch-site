@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
-import { Quote } from "lucide-react"
 
 interface OutcomeStudy {
   client: string
@@ -118,7 +117,6 @@ export function OutcomesCaseStudies() {
             {/* Right: testimonial */}
             <div className="flex flex-col justify-between">
               <div>
-                <Quote size={20} className="mb-4 text-brand-dark/15" />
                 <blockquote className="font-display text-2xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-3xl">
                   &ldquo;{study.testimonial}&rdquo;
                 </blockquote>
