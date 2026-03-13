@@ -168,12 +168,8 @@ const articles: Record<
         text: "The ambition is there. The operating system isn't.",
       },
       {
-        type: "heading2",
-        text: "This matters because boards don't promote vision",
-      },
-      {
         type: "paragraph",
-        text: "They promote predictability. Finance manages risk through models. Operations monitors throughput via dashboards. Both run systems that are legible, repeatable and defensible.",
+        text: "This matters because boards don't promote vision. They promote predictability. Finance manages risk through models. Operations monitors throughput via dashboards. Both run systems that are legible, repeatable and defensible.",
       },
       {
         type: "paragraph",
