@@ -41,7 +41,7 @@ export function HeroSection() {
           className="flex justify-end"
         >
           <p className="max-w-[28rem] text-xl font-semibold leading-relaxed text-brand-dark text-right">
-            We are the consultancy for CMOs who want their marketing to move faster.
+            We are the consultancy for CMOs who want their marketing to move <em>faster</em>.
           </p>
         </motion.div>
       </div>
