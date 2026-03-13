@@ -59,16 +59,11 @@ export default function RootLayout({
           `}
         </Script>
         {/* Cookiebot CMP */}
-        <script
+        <Script
           id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
-          data-blockingmode="auto"
-          async
+          src="https://consent.cookiebot.com/uc.js?cbid=bc3d8b4b-cf51-4f81-a255-e89443188c10"
+          strategy="beforeInteractive"
         />
-        <Script id="cookiebot-init" strategy="beforeInteractive">
-          {`window.CookiebotConfig = { loaded: false };`}
-        </Script>
       </head>
       <body className="font-sans antialiased">
         <Navigation />
