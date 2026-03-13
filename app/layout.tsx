@@ -53,9 +53,7 @@ export default function RootLayout({
         {/* Cookiebot CMP - MUST be the first script in HEAD */}
         <Script
           id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
-          data-blockingmode="auto"
+          src="https://consent.cookiebot.com/bc3d8b4b-cf51-4f81-a255-e89443188c10/cd.js"
           strategy="beforeInteractive"
         />
         {/* Google tag (gtag.js) */}
