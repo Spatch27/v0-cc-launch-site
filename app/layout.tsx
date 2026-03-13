@@ -50,6 +50,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable}`} data-scroll-behavior="smooth">
       <head>
+        {/* Cookiebot CMP - MUST be the first script in HEAD */}
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+        />
         {/* Google tag (gtag.js) */}
         <Script
           async
@@ -65,14 +73,6 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans antialiased">
-        {/* Cookiebot CMP - must be first in body with beforeInteractive */}
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
-          data-blockingmode="auto"
-          strategy="beforeInteractive"
-        />
         <Navigation />
         <main className="relative">{children}</main>
         <Footer />
