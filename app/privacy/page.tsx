@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Script } from "next/script"
+import Script from "next/script"
 import { Section } from "@/components/section"
 
 export const metadata: Metadata = {
