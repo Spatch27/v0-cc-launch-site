@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
 import { ArrowRight } from "lucide-react"
@@ -48,6 +49,26 @@ export function CtaBand({
   background = "yellow-light",
 }: CtaBandProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const router = useRouter()
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Check if this is a hash link to another page
+    if (ctaHref.includes('#')) {
+      e.preventDefault()
+      const [path, hash] = ctaHref.split('#')
+      
+      // Navigate to the page first, then scroll to the hash
+      router.push(path)
+      
+      // Wait for navigation to complete, then scroll to the element
+      setTimeout(() => {
+        const element = document.getElementById(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    }
+  }
 
   return (
     <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
@@ -89,6 +110,8 @@ export function CtaBand({
           <div className="flex justify-end">
             <Link
               href={ctaHref}
+              onClick={handleClick}
+              scroll={false}
               className={`group inline-flex w-fit items-center gap-3 rounded-lg px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
               style={{ borderRadius: "4px" }}
               onMouseEnter={() => setIsHovered(true)}
