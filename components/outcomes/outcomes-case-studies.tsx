@@ -22,9 +22,9 @@ const allCaseStudies: OutcomeStudy[] = [
     project: "Email marketing workflow re-engineering across EMEA",
     description: "Customer intent was being missed because the handoffs between teams and platforms couldn't respond fast enough. Emails were going out late, to the wrong segments, or not at all. The workflow - not the platform - was the problem.\n\nWe re-engineered the end-to-end email workflow. Campaign cycle time dropped from 3 weeks to 6 days, resulting in:",
     metrics: [
-      { value: "57%", label: "improvement in CTR" },
-      { value: "25%", label: "increase in CTOR" },
-      { value: "15%", label: "decrease in bounce rates" },
+      { value: "80%", label: "reduction in errors across 11 languages" },
+      { value: "50%", label: "revenue increase in key campaigns" },
+      { value: "14", label: "customer journeys replatformed in 4 weeks" },
     ],
     testimonial:
       "They've enabled us to get the results we always wanted out of an expensive, integrated system.",
