@@ -36,7 +36,7 @@ const allCaseStudies: OutcomeStudy[] = [
     project: "Stack simplification and realignment / CX improvements",
     description: "The stack had grown but trust in the data hadn't. Decisions were being made on instinct because dashboards couldn't be relied on. Journey breaks were going undetected until customers had already left.\n\nWe simplified the stack, rebuilt the data flows, and gave the team reporting they could actually act on:",
     metrics: [
-      { value: "1", label: "Global strategy to support clearer proposition" },
+      { value: "60%", label: "Increase in customer identity resolution" },
       { value: "250%", label: "Traffic growth through organic channels" },
       { value: "300%", label: "Uplift to conversion rates on campaign forms" },
     ],
@@ -49,10 +49,11 @@ const allCaseStudies: OutcomeStudy[] = [
     title: "Paying for tech nobody's really using",
     project:
       "Business transformation, web integration, and marketing team alignment",
-    description: "The stack was bloated, workarounds were endemic, and licence fees were consuming budget that should have been driving growth. The team needed to move faster and cost less - in 12 weeks.\n\nWe rationalised the platforms, removed the workarounds, and aligned the team around a single operating model. Impact over 12 weeks:",
+    description: "A new digital experience that brought IT and marketing together for the first time. A new composable stack with a unified design system spanning both agency and inhouse platforms.\n\nWe created personalised journeys for key audiences and supported content operations that grew as the team did.",
     metrics: [
-      { value: "30%", label: "reduction in workarounds" },
-      { value: "57%", label: "licence fee reduction" },
+      { value: "60%", label: "increase in content production capability" },
+      { value: "5", label: "different content platforms reduced to a single headless CMS" },
+      { value: "25%", label: "more traffic to a new consolidated site than the 2 it replaced" },
     ],
     testimonial:
       "A business critical transformation at a crucial time for us — they executed it brilliantly.",
