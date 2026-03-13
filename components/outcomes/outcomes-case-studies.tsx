@@ -51,7 +51,7 @@ const allCaseStudies: OutcomeStudy[] = [
       "Business transformation, web integration, and marketing team alignment",
     description: "A new digital experience that brought IT and marketing together for the first time. A new composable stack with a unified design system spanning both agency and inhouse platforms.\n\nWe created personalised journeys for key audiences and supported content operations that grew as the team did.",
     metrics: [
-      { value: "60%", label: "increase in content production capability" },
+      { value: "100%", label: "increase in content production capability" },
       { value: "5", label: "different content platforms reduced to a single headless CMS" },
       { value: "25%", label: "more traffic to a new consolidated site than the 2 it replaced" },
     ],
