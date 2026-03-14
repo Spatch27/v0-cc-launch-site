@@ -33,7 +33,7 @@ const BalloonPopIllustration = () => {
           transform-origin: 433px 407px;
         }
       `}</style>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="280 100 300 450" style={{ width: "100%", height: "auto", display: "block" }}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 800 585" style={{ width: "100%", height: "auto", display: "block" }}>
         <rect x={-3} y={-3} width={847} height={601} rx={0} fill="#e3dcdc" />
         <g dangerouslySetInnerHTML={{ __html: preB1 }} />
         <g className="balloon-1" dangerouslySetInnerHTML={{ __html: balloon1 }} />
