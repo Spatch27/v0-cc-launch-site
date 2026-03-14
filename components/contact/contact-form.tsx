@@ -84,7 +84,7 @@ export function ContactForm() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark"
           >
-            We&apos;re building a business that makes marketing work better. If you&apos;re a marketing leader who&apos;s frustrated by drag and ready for momentum, we&apos;d love to hear from you.
+            We&apos;re building a business that makes marketing work better. If you&apos;re a marketing leader who&apos;s frustrated by drag and ready for momentum, <strong>we&apos;d love to hear from you.</strong>
           </motion.p>
         </div>
       </motion.section>
