@@ -52,7 +52,7 @@ export function MomentumSection() {
             animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="w-full scale-100 lg:scale-130 origin-center">
+            <div className="w-full scale-130 origin-center">
               <RocketIllustration />
             </div>
           </motion.div>
