@@ -17,7 +17,7 @@ export function AIPropellantSection() {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={fadeInUp}
-        className="grid items-center gap-12 lg:grid-cols-2"
+        className="grid items-center gap-6 lg:gap-12 lg:grid-cols-2"
       >
         <div className="relative order-last flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc] lg:order-first">
           <div className="w-full scale-130 origin-center">
