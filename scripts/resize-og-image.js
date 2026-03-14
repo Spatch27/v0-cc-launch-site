@@ -33,7 +33,7 @@ function downloadImage(url) {
     
     await sharp(buffer)
       .resize(1200, 630, {
-        fit: 'cover',
+        fit: 'contain',
         position: 'center',
         background: { r: 255, g: 204, b: 0 } // Yellow background
       })
