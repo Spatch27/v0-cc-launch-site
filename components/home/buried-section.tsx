@@ -21,7 +21,7 @@ export function BuriedSection() {
 
   return (
     <Section background="light">
-      <div ref={ref} className="grid items-center gap-12 lg:grid-cols-2">
+      <div ref={ref} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">
 
         {/* Text — left */}
         <motion.div
@@ -52,12 +52,12 @@ export function BuriedSection() {
 
         {/* Illustration — right */}
         <motion.div
-          className="flex items-center justify-center w-full h-auto min-h-[600px] overflow-hidden rounded-lg"
+          className="flex items-center justify-center w-full h-auto lg:min-h-[600px] overflow-hidden rounded-lg"
           initial={{ opacity: 0, x: 40, scale: 0.97 }}
           animate={inView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="w-full scale-130 origin-center">
+          <div className="w-full lg:scale-130 origin-center">
             <BusyWorkIllustration />
           </div>
         </motion.div>
