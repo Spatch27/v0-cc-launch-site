@@ -45,10 +45,10 @@ export function BuiltForOutcomesSection() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeInUp}
-          className="grid items-center gap-12 lg:grid-cols-2"
+          className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2"
         >
-          <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
-            <div className="w-full origin-center scale-130">
+          <div className="relative flex h-auto lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
+            <div className="w-full origin-center scale-130 max-h-[250px] lg:max-h-none overflow-hidden">
               <BalloonPopIllustration />
             </div>
           </div>

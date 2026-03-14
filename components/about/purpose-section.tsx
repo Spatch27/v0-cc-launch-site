@@ -17,7 +17,7 @@ export function PurposeSection() {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={fadeInUp}
-        className="grid gap-12 lg:grid-cols-2 lg:items-center"
+        className="grid gap-4 lg:gap-12 lg:grid-cols-2 lg:items-center"
       >
         <motion.div variants={fadeInUp}>
           <h2 className="mb-8 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
@@ -35,8 +35,8 @@ export function PurposeSection() {
             </p>
           </div>
         </motion.div>
-        <div className="relative flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
-          <div className="w-full scale-130 origin-center">
+        <div className="relative flex h-auto lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
+          <div className="w-full scale-130 origin-center max-h-[250px] lg:max-h-none overflow-hidden">
             <AdoptionIllustration />
           </div>
         </div>
