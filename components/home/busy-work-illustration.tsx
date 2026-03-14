@@ -81,7 +81,7 @@ const BusyWorkIllustration = () => {
     <svg
       ref={svgRef}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="200 100 450 450"
+      viewBox="100 50 650 520"
       style={{ width: "100%", height: "auto", display: "block" }}
     >
       {/* Background */}
