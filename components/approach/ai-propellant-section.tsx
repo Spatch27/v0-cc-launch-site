@@ -20,7 +20,7 @@ export function AIPropellantSection() {
         className="grid items-center gap-2 lg:gap-12 lg:grid-cols-2"
       >
         <div className="relative order-last flex h-auto lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
-          <div className="w-full scale-130 origin-center max-h-[250px] lg:max-h-none overflow-hidden">
+          <div className="w-full scale-130 origin-center">
             <RocketWobbleIllustration />
           </div>
         </div>

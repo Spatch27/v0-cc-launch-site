@@ -36,7 +36,7 @@ export function PurposeSection() {
           </div>
         </motion.div>
         <div className="relative flex h-auto lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
-          <div className="w-full scale-130 origin-center max-h-[250px] lg:max-h-none overflow-hidden">
+          <div className="w-full scale-130 origin-center">
             <AdoptionIllustration />
           </div>
         </div>

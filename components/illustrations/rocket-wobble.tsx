@@ -17,7 +17,7 @@ const RocketWobbleIllustration = () => {
           transform-origin: 430px 510px;
         }
       `}</style>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 847 601" style={{ width: "100%", height: "auto", display: "block" }}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 847 601" style={{ width: "100%", height: "auto", display: "block", aspectRatio: "847 / 601" }}>
         <rect x={-3} y={-3} width={847} height={601} rx={0} fill="#e3dcdc" />
         <g dangerouslySetInnerHTML={{ __html: staticScene }} />
         <g className="rocket-wobble" dangerouslySetInnerHTML={{ __html: rocketGroup }} />

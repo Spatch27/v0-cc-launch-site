@@ -48,7 +48,7 @@ export function BuiltForOutcomesSection() {
           className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2"
         >
           <div className="relative flex h-auto lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
-            <div className="w-full origin-center scale-130 max-h-[250px] lg:max-h-none overflow-hidden">
+            <div className="w-full origin-center scale-130">
               <BalloonPopIllustration />
             </div>
           </div>
