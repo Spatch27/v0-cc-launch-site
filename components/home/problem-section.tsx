@@ -7,7 +7,7 @@ import { Section } from "@/components/section"
 export function ProblemSection() {
   return (
     <Section background="light">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:gap-24">
+      <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:gap-24">
         {/* Left: label */}
         <motion.div variants={fadeInUp} className="lg:w-1/4">
           <span className="text-sm font-medium tracking-[0.2em] uppercase text-brand-pink">
