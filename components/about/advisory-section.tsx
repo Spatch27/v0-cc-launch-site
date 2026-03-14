@@ -29,7 +29,7 @@ export function AdvisorySection() {
           </div>
         </motion.div>
         <motion.div variants={fadeInUp} className="flex lg:justify-end">
-          <div className="w-full max-w-xl">
+          <div className="w-full scale-130 origin-center">
             <LightbulbIllustration />
           </div>
         </motion.div>
