@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { Mail, Send, CheckCircle, ArrowRight } from "lucide-react"
+import EmailAnimation from "./email-animation"
 
 export function ContactForm() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -278,11 +279,7 @@ export function ContactForm() {
                 <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
               </a>
               <div className="flex justify-center w-full">
-                <img
-                  src="/images/21-pink-dk.svg"
-                  alt="Decorative chart illustration"
-                  className="w-full max-w-xl h-auto"
-                />
+                <EmailAnimation />
               </div>
             </motion.div>
             </div>
