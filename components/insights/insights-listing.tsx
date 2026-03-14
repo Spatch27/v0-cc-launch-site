@@ -118,7 +118,7 @@ export function InsightsListing() {
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl self-end text-right text-lg text-brand-dark"
           >
-            We've spent years inside marketing functions watching the same gaps appear between what transformation promises and what it actually delivers. Here we share what we've learned - short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. Written by practitioners, not theorists.
+            We've spent years inside marketing functions watching the same gaps appear between what transformation promises and what it actually delivers. Here we share what we've learned - short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. <strong>Written by practitioners, not theorists.</strong>
           </motion.p>
         </div>
       </motion.section>
