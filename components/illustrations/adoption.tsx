@@ -32,7 +32,7 @@ const AdoptionIllustration = () => {
         .drift-6 { animation: drift-fast 4.4s ease-in-out infinite; animation-delay: -1.8s; }
         .drift-7 { animation: drift-slow 5.2s ease-in-out infinite; animation-delay: -3s; }
       `}</style>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="280 130 300 420" style={{ width: "100%", height: "auto", display: "block" }}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="20 10 800 585" style={{ width: "100%", height: "auto", display: "block" }}>
         <rect x={-3} y={-3} width={847} height={601} rx={0} fill="#e3dcdc" />
         <g className="drift-1" dangerouslySetInnerHTML={{ __html: star_outline }} />
         <g dangerouslySetInnerHTML={{ __html: staticScene }} />
