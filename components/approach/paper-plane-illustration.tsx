@@ -50,19 +50,18 @@ const PaperPlaneIllustration = () => {
   /*
    * Flight path (in SVG viewBox coordinates):
    *
-   * Start:  Behind the laptop lid top edge (~395, 305)
-   * Step 1: Emerge left past the laptop, dipping slightly (~310, 330)
-   * Step 2: Continue left and start curving up (~240, 290)
-   * Step 3: Arc upward through (~220, 200)
-   * Step 4: Sweep right across the top (~350, 120)
-   * End:    Arrive at the clock centre (~476, 140)
+   * Start:  Behind the laptop lid (~395, 317)
+   * Step 1: Emerge left past the laptop, dipping slightly (~300, 350)
+   * Step 2: Continue left and start curving up (~220, 255)
+   * Step 3: Arc upward through (~350, 140)
+   * End:    Arrive at the clock centre (~476, 138)
    */
   const flightPath = [
-    "M 395 305",
-    "C 365 315, 330 335, 300 330",
-    "C 260 322, 225 285, 220 230",
-    "C 215 175, 270 125, 350 115",
-    "C 410 108, 450 118, 476 138",
+    "M 395 317",
+    "C 365 327, 330 345, 300 340",
+    "C 260 332, 225 295, 220 242",
+    "C 215 187, 270 137, 350 127",
+    "C 410 120, 450 130, 476 138",
   ].join(" ");
 
   return (
