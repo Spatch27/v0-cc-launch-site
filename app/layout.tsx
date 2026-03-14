@@ -39,6 +39,17 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Committed Citizens',
+    title: 'Committed Citizens | Freedom from drag',
+    description: 'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
+    url: 'https://committedcitizens.co.uk',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Committed Citizens - Freedom from drag',
+      },
+    ],
   },
 }
 
