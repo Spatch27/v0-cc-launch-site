@@ -52,7 +52,7 @@ export function Section({
       className={cn(
         "relative",
         bgClasses[background],
-        !noPadding && (compact ? "px-6 py-12 lg:px-12 lg:py-16" : "px-6 py-24 lg:px-12 lg:py-32"),
+        !noPadding && (compact ? "px-6 py-6 lg:px-12 lg:py-16" : "px-6 py-12 lg:px-12 lg:py-32"),
         className
       )}
     >

@@ -7,7 +7,7 @@ import { Section } from "@/components/section"
 export function AdvisorySection() {
   return (
     <Section background="light">
-      <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div className="grid gap-4 lg:gap-12 lg:grid-cols-2 lg:items-center">
         <motion.div variants={fadeInUp}>
           <h2 className="mb-6 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
             Built small. And mighty.
@@ -27,11 +27,11 @@ export function AdvisorySection() {
             </p>
           </div>
         </motion.div>
-        <motion.div variants={fadeInUp} className="hidden lg:flex lg:justify-end">
+        <motion.div variants={fadeInUp} className="flex lg:justify-end">
           <img 
             src="/images/team-illustration-2.svg" 
             alt="Team illustration" 
-            className="max-h-[500px] w-auto"
+            className="max-h-[300px] lg:max-h-[500px] w-auto"
           />
         </motion.div>
       </div>

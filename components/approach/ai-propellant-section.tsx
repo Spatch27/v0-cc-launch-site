@@ -17,9 +17,9 @@ export function AIPropellantSection() {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={fadeInUp}
-        className="grid items-center gap-12 lg:grid-cols-2"
+        className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2"
       >
-        <div className="relative order-last flex h-auto min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc] lg:order-first">
+        <div className="relative order-last flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
           <div className="w-full scale-130 origin-center">
             <RocketWobbleIllustration />
           </div>
@@ -30,7 +30,7 @@ export function AIPropellantSection() {
           </h2>
           <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We're not an AI consultancy. We're a transformation consultancy that knows how to put AI to work. We start with how your marketing actually works — and work out where AI removes drag and where it creates new capability. Sometimes that's automating handoffs. Sometimes it's surfacing insights your team couldn't reach before. Sometimes it's giving a lean team the output of one twice its size.
+              We're not an AI consultancy. We're a transformation consultancy that knows how to put AI to work. We start with how your marketing actually operates — and work out where AI removes drag and where it creates new capability.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
               We push back where it adds complexity but little value. Not every workflow needs an agent. Not every process needs automating. Most consultancies sell AI as the solution. We treat it as part of the solution — powerful when it's embedded properly, wasteful when it isn't.
