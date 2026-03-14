@@ -48,8 +48,15 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: 'Committed Citizens - Freedom from drag',
+        type: 'image/jpeg',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Committed Citizens | Freedom from drag',
+    description: 'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
+    images: ['/og-image.jpg'],
   },
 }
 
