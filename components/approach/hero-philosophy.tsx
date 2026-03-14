@@ -44,7 +44,7 @@ export function HeroPhilosophy() {
           className="self-end"
         >
           <p className="max-w-2xl text-right text-xl leading-relaxed text-brand-dark">
-            Every failed transformation started with a platform and assumed the people would follow. They rarely do.
+            Every failed transformation started with a platform and assumed the people would follow. <strong>They rarely do.</strong>
           </p>
         </motion.div>
       </div>
