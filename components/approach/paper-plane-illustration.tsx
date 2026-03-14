@@ -68,7 +68,7 @@ const PaperPlaneIllustration = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="100 50 650 520"
+      viewBox="20 10 800 585"
       style={{ width: "100%", height: "auto", display: "block" }}
     >
       {/* Background */}
