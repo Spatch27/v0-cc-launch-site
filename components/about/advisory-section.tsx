@@ -28,9 +28,11 @@ export function AdvisorySection() {
             </p>
           </div>
         </motion.div>
-        <motion.div variants={fadeInUp} className="flex lg:justify-end">
-          <div className="w-full scale-130 origin-center">
-            <LightbulbIllustration />
+        <motion.div variants={fadeInUp}>
+          <div className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
+            <div className="w-full scale-130 origin-center">
+              <LightbulbIllustration />
+            </div>
           </div>
         </motion.div>
       </div>
