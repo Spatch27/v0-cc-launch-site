@@ -36,7 +36,7 @@ export function OutcomesHero() {
         >
           Marketing teams don't collapse, they get dragged down. Timelines stretch. Reporting gets contested. Smart people spend more time unblocking than building. The energy is there, but the momentum isn't.{' '}
           <br />
-          <span className="font-semibold text-brand-white">This is when we get called in. Here are four examples of the work we do.</span>
+          <span className="font-semibold text-brand-white">Here are four examples of the work we do.</span>
         </motion.p>
       </div>
     </motion.section>
