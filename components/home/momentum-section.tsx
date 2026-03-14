@@ -24,7 +24,7 @@ export function MomentumSection() {
   const inView2 = useInView(ref2, { once: true, margin: "-80px" })
 
   return (
-    <Section background="light">
+    <Section background="light" compact>
       <div className="space-y-20">
 
         {/* How we work — Text Left, Image Right */}
