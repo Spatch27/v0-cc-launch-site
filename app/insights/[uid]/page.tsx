@@ -28,7 +28,7 @@ const articles: Record<
   }
 > = {
   "removing-operational-drag": {
-    title: "The great agency reset is a sideshow.",
+    title: "The great agency reset is a sideshow",
     excerpt:
       "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
     category: "Marketing orchestration",
