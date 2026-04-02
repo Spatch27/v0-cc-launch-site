@@ -26,7 +26,9 @@ export const metadata: Metadata = {
   },
   description:
     'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
+  applicationName: 'Committed Citizens',
   metadataBase: new URL('https://committedcitizens.co.uk'),
+  manifest: '/manifest.json',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
