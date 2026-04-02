@@ -19,7 +19,7 @@ const engagements = [
   },
   {
     name: "Fly6™",
-    tagline: "Six pilots delivered, live ROI dashboards live, governance embedded.",
+    tagline: "Six pilots delivered, live ROI dashboards, governance embedded.",
     outcome: "Results in a quarter.",
     duration: "6 weeks",
     price: "£60K",
