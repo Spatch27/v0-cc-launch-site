@@ -1,11 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 454.38 490.06">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #181716;
-      }
-    </style>
-  </defs>
-  <rect width="454.38" height="490.06" fill="#FF8600"/>
-  <path class="cls-1" d="M245.03,122.51v245.03c-67.66,0-122.51-54.85-122.51-122.52s54.85-122.51,122.51-122.51ZM331.87,367.55v-108.39l-76.13,108.39h76.13ZM255.74,122.51l76.13,108.39v-108.39h-76.13Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <!-- Orange background -->
+  <rect width="192" height="192" fill="#ff8600"/>
+  <!-- Icon mark from logo (scaled and centered) -->
+  <g transform="translate(96, 96) scale(1.2)">
+    <path fill="#181716" d="M30,0c30.93,0,56,25.07,56,56s-25.07,56-56,56-56-25.07-56-56,25.07-56,56-56ZM50,112V-6l35,112h-35ZM15,0l35,112V0h-35Z"/>
+  </g>
 </svg>
