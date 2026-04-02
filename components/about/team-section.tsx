@@ -15,7 +15,7 @@ const founders = [
   {
     name: "Tim Burley",
     title: "Co-founder",
-    bio: "Tim brings 25 years of senior marketing and strategy experience across Argos, Capita and the NHS. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable.",
+    bio: "Tim brings 25 years of senior marketing and strategy experience across Capita, the Eden Project and Kainos plc. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Tim-ARcry0CzD5L1O89DkgYSRzltBxg0Qv.jpeg",
   },
 ]

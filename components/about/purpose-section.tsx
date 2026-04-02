@@ -25,7 +25,7 @@ export function PurposeSection() {
           </h2>
           <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark">
             <p>
-              We've long believed that lasting change comes from people, not platforms. A small team of senior practitioners with the conviction and capability to make transformation stick. Not from the sidelines. Not via slide deck. From inside the marketing function.
+              We've long believed that lasting change comes from people, not platforms. A small team of senior practitioners with the conviction and capability to make transformation stick. Not from the sidelines. Not via a slide deck. From inside the marketing function.
             </p>
             <p>
               Teams exhausted by transformation fatigue become energised. Marketers who were firefighting start doing the work they came to do.
