@@ -117,7 +117,7 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "Marketing has the same problem. Only we handle it worse.",
+        text: "Marketing has the same problem. Only it's handled worse.",
       },
       {
         type: "paragraph",
