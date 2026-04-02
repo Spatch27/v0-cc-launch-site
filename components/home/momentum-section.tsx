@@ -84,13 +84,13 @@ export function MomentumSection() {
               Systems launch agents.
             </motion.h3>
             <motion.div variants={textChild} className="space-y-4">
-              <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
+              <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
                 AI hasn&apos;t simplified things - it&apos;s added a new layer of complexity to systems that were already struggling. New tools arrive faster than teams can absorb them. Vendors promise efficiency - but the reality is more platforms, more decisions, more noise.
               </p>
               <p className="max-w-3xl text-lg font-semibold leading-relaxed text-brand-dark">
                 AI only rewards the teams that are ready for it.
               </p>
-              <p className="max-w-3xl text-lg leading-relaxed text-brand-dark/70">
+              <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
                 Workflows, data, and governance need to be redesigned. That&apos;s the gap we help you close. We get your system ready for AI - and then we help you deploy agents as working tools, not demo-day theatre.
               </p>
             </motion.div>
