@@ -97,7 +97,7 @@ export function OutcomesCaseStudies() {
               <h3 className="mb-8 font-display text-2xl font-bold leading-snug text-brand-dark lg:text-3xl">
                 {study.project}
               </h3>
-              <div className="mb-8 leading-relaxed text-brand-dark/70 whitespace-pre-line">
+              <div className="mb-8 leading-relaxed text-brand-dark whitespace-pre-line">
                 {study.description}
               </div>
 
@@ -108,7 +108,7 @@ export function OutcomesCaseStudies() {
                     <span className="font-display text-4xl font-bold text-brand-dark">
                       {m.value}
                     </span>
-                    <p className="mt-1 text-sm leading-snug text-brand-dark/50">{m.label}</p>
+                    <p className="mt-1 text-sm leading-snug text-brand-dark">{m.label}</p>
                   </div>
                 ))}
               </div>
@@ -116,7 +116,7 @@ export function OutcomesCaseStudies() {
 
             {/* Right: testimonial */}
             <div className="flex flex-col justify-between text-right">
-              <blockquote className="pt-10 font-display text-2xl font-medium italic leading-relaxed text-brand-dark/70 lg:text-3xl">
+              <blockquote className="pt-10 font-display text-2xl font-medium italic leading-relaxed text-brand-dark lg:text-3xl">
                 &ldquo;{study.testimonial}&rdquo;
               </blockquote>
               <p className="mt-6 md:mt-0 text-xs font-semibold tracking-[0.15em] uppercase text-brand-grey">
