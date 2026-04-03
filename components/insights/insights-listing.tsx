@@ -21,8 +21,58 @@ const articles = [
     image: "/images/insights/weve-seen-enough.jpg",
   },
   {
+    id: "indispensable-and-yet-unheard",
+    title: "Indispensable and yet unheard.",
+    excerpt:
+      "MOps sit in the uncomfortable gap between strategy and execution - they can see it widening and they know what to fix. So why is nobody listening?",
+    category: "Marketing Operations",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/indispensable-and-yet-unheard.jpg",
+  },
+  {
+    id: "the-problem-no-agency-can-solve",
+    title: "The problem no agency can solve.",
+    excerpt:
+      "Too much marketing effort is being lost in the gap between strategy and execution. Committed Citizens make marketing work, work.",
+    category: "Operational drag",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/the-problem-no-agency-can-solve.jpg",
+  },
+  {
+    id: "from-systems-thinking-to-systems-doing",
+    title: "From systems thinking to systems doing.",
+    excerpt:
+      "The role of the CMO is changing. What's required isn't more strategic leadership - it's the ability to orchestrate the system.",
+    category: "The orchestration gap",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/from-systems-thinking-to-systems-doing.jpg",
+  },
+  {
+    id: "shadow-ai-not-it-problem",
+    title: "Shadow AI isn't an IT problem. It's yours.",
+    excerpt:
+      "Shadow AI is a threat to growth and a technical or regulatory solution isn't the answer. Enter the CMO.",
+    category: "Marketing Leadership",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/shadow-ai-not-it-problem.jpg",
+  },
+  {
+    id: "when-more-ai-means-less-progress",
+    title: "When more AI means less progress.",
+    excerpt:
+      "'AI brain fry' is real but not inevitable. The key to stopping it lies in better understanding your operating model.",
+    category: "Marketing orchestration",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/when-more-ai-means-less-progress.jpg",
+  },
+  {
     id: "removing-operational-drag",
-    title: "The great agency reset is a sideshow",
+    title: "The great agency reset is a sideshow.",
     excerpt:
       "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
     category: "Marketing orchestration",
@@ -32,7 +82,7 @@ const articles = [
   },
   {
     id: "marketing-operations-competitive-advantage",
-    title: "Small data wins the race",
+    title: "Small data wins the race.",
     excerpt:
       "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
     category: "Data",
@@ -42,7 +92,7 @@ const articles = [
   },
   {
     id: "embedded-consultancy-model",
-    title: "Marketing's Moneyball moment",
+    title: "Marketing's Moneyball moment.",
     excerpt:
       "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
     category: "Marketing leadership",
@@ -181,7 +231,7 @@ export function InsightsListing() {
           animate="visible"
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          {remainingArticles.slice(0, 3).map((article) => (
+          {remainingArticles.slice(0, 8).map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}
