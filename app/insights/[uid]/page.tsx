@@ -27,6 +27,51 @@ const articles: Record<
     seoDescription?: string
   }
 > = {
+  "shadow-ai-not-it-problem": {
+    title: "Shadow AI isn't an IT problem. It's yours.",
+    excerpt:
+      "Shadow AI is a threat to growth and a technical or regulatory solution isn't the answer. Enter the CMO.",
+    category: "Marketing Leadership",
+    date: "April 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/shadow-ai-not-it-problem.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "Most CMOs have far less control over their operating model than they think.",
+      },
+      {
+        type: "paragraph",
+        text: "Microsoft research published in October 2025 found that 71% of UK employees have used AI tools that aren't approved by their employer. In marketing departments, the number is almost certainly higher. Not because marketers are reckless, but because they're resourceful. Marketing teams move faster than most functions, they struggle to get what they need from bloated martech stacks, and they quietly find workarounds. Always have.",
+      },
+      {
+        type: "paragraph",
+        text: "The difference now is that the workarounds have become intelligent. They learn. They connect to data. And they tend to operate outside any governance framework the organisation has in place.",
+      },
+      {
+        type: "paragraph",
+        text: "The industry has started calling it Shadow AI. It sounds dramatic - a tad 'Smiley's People' - but the risk is real enough. Gartner estimates that 40% of enterprises will suffer an AI-related security or compliance breach by 2030. When that happens, the initial instinct will be to look at IT. But the rise of Shadow AI isn't an IT failure. It's an operating-model failure. Unclear guardrails, inefficient workflows and slow decisions have widened the gap between how risk is managed and how commercial work actually gets done.",
+      },
+      {
+        type: "paragraph",
+        text: "IT's natural response will be to restrict access. That's their modus operandi - act quick and lock things down. But you can't ban your way out of Shadow AI any more than you could ban your way out of BYOD - Bring Your Own Device - a decade or so ago. Restriction doesn't remove demand. It just pushes it further underground.",
+      },
+      {
+        type: "paragraph",
+        text: "This is where the opportunity sits for CMOs willing to step in - and it is an opportunity. Because the only way to close the gap between growth objectives and risk management is to redesign the workflows where the gaps are opening. That means building AI into sanctioned processes, creating guardrails that are embedded in how teams actually work rather than bolted on as policy, and giving people tools that are better than the ones they're finding for themselves.",
+      },
+      {
+        type: "paragraph",
+        text: "Shadow AI is a symptom. The operating model is the cause. And for CMOs prepared to lead the response rather than wait for IT to own it, it's also a route to a bigger seat at the boardroom table.",
+      },
+      {
+        type: "paragraph",
+        text: "If this all sounds sensible but you're unsure where to start in reviewing your own marketing operating model, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+      },
+    ],
+  },
   "removing-operational-drag": {
     title: "The great agency reset is a sideshow",
     excerpt:

@@ -21,6 +21,16 @@ const articles = [
     image: "/images/insights/weve-seen-enough.jpg",
   },
   {
+    id: "shadow-ai-not-it-problem",
+    title: "Shadow AI isn't an IT problem. It's yours.",
+    excerpt:
+      "Shadow AI is a threat to growth and a technical or regulatory solution isn't the answer. Enter the CMO.",
+    category: "Marketing Leadership",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/shadow-ai-not-it-problem.jpg",
+  },
+  {
     id: "removing-operational-drag",
     title: "The great agency reset is a sideshow",
     excerpt:
@@ -181,7 +191,7 @@ export function InsightsListing() {
           animate="visible"
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          {remainingArticles.slice(0, 3).map((article) => (
+          {remainingArticles.slice(0, 4).map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}
