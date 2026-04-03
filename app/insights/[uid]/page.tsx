@@ -72,6 +72,63 @@ const articles: Record<
       },
     ],
   },
+  "when-more-ai-means-less-progress": {
+    title: "When more AI means less progress.",
+    excerpt:
+      "'AI brain fry' is real but not inevitable. The key to stopping it lies in better understanding your operating model.",
+    category: "Marketing orchestration",
+    date: "April 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/when-more-ai-means-less-progress.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "There's a story CMOs are being fed right now, and it goes like this: adopt more AI into your systems, and your team will move faster. It sounds right. It feels right. But the evidence says otherwise.",
+      },
+      {
+        type: "paragraph",
+        text: "An extensive University of California Berkeley study found that AI intensified work rather than freeing up time. Goldman Sachs found no meaningful relationship between AI adoption and productivity at an economy-wide level. And a recent BCG study of nearly 1,500 workers found that the act of overseeing AI - orchestrating outputs, switching between tools, validating decisions - led to a 12% increase in mental fatigue and 19% greater information overload.",
+      },
+      {
+        type: "paragraph",
+        text: "The pattern is consistent. But what's happening?",
+      },
+      {
+        type: "paragraph",
+        text: "The issue is that most organisations are adding AI faster than their teams can absorb it. This means that AI tools are being bolted to existing ways of working without redesigning those workflows. The result isn't efficiency. It's an extra layer of cognitive load on teams that were already stretched.",
+      },
+      {
+        type: "paragraph",
+        text: "And that load is real.",
+      },
+      {
+        type: "paragraph",
+        text: "Every AI output rightly requires human judgement - the need for interpretation, validation, and decision-making to determine what to do next. This isn't a systemic flaw, it's where humans add the most value. But when you multiply those touchpoints across a dozen tools without rethinking how decisions flow through a team, you don't get more leverage. You just get more noise. People spend their time, and mental capacity, orchestrating AI rather than doing the work that the AI were supposed to free them from.",
+      },
+      {
+        type: "paragraph",
+        text: "This matters acutely in marketing, which is one of the most decision-rich environments in any organisation. Every campaign, every customer journey, every piece of content involves calls that can't be automated away, nor should they be. The value humans bring is vital to a company's competitive advantage and their growth - it's in interpretation, context-setting, and the ability to act when the data doesn't give a clean answer. AI should be sharpening those decisions, not multiplying them.",
+      },
+      {
+        type: "paragraph",
+        text: "The AI maximalists will argue these are teething problems - and that agents will eventually strip out the noise and the need for so many human decisions. And for some narrow, repeatable tasks, they're probably right. But most marketing decisions exist precisely because they require human judgement. And the results are better for it.",
+      },
+      {
+        type: "paragraph",
+        text: "The answer isn't to pull back from AI, or even to slow down. But there is a need to stop layering AI on top of roles and processes that weren't designed for it. Workflows need rethinking. Decision rights need clarifying. The relationship between human judgement and machine output needs to be remodelled with intention, not bolted on as an afterthought. Until that happens, more AI will keep meaning less progress.",
+      },
+      {
+        type: "paragraph",
+        text: "That's not a technology problem. It's an operating model problem. And the organisations that treat it as one will be far quicker to realise the benefits of the AI promise.",
+      },
+      {
+        type: "paragraph",
+        text: "If all this sounds sensible enough but you're unsure where to start, book a Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+      },
+    ],
+  },
   "removing-operational-drag": {
     title: "The great agency reset is a sideshow",
     excerpt:
