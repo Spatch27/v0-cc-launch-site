@@ -21,6 +21,16 @@ const articles = [
     image: "/images/insights/weve-seen-enough.jpg",
   },
   {
+    id: "the-problem-no-agency-can-solve",
+    title: "The problem no agency can solve.",
+    excerpt:
+      "Too much marketing effort is being lost in the gap between strategy and execution. Committed Citizens make marketing work, work.",
+    category: "Operational drag",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/the-problem-no-agency-can-solve.jpg",
+  },
+  {
     id: "from-systems-thinking-to-systems-doing",
     title: "From systems thinking to systems doing.",
     excerpt:
@@ -211,7 +221,7 @@ export function InsightsListing() {
           animate="visible"
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          {remainingArticles.slice(0, 6).map((article) => (
+          {remainingArticles.slice(0, 7).map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}

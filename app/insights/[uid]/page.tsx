@@ -27,6 +27,91 @@ const articles: Record<
     seoDescription?: string
   }
 > = {
+  "the-problem-no-agency-can-solve": {
+    title: "The problem no agency can solve.",
+    excerpt:
+      "Too much marketing effort is being lost in the gap between strategy and execution. Committed Citizens make marketing work, work.",
+    category: "Operational drag",
+    date: "April 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/the-problem-no-agency-can-solve.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "We ran an agency for years. The biggest problem our clients had was one no agency is built to solve.",
+      },
+      {
+        type: "paragraph",
+        text: "There's a question we kept running into as digital agency leaders that nobody seemed interested in answering: why does so much good marketing strategy die somewhere between a PowerPoint slide and the customer?",
+      },
+      {
+        type: "paragraph",
+        text: "It wasn't the strategy, the creative, or media plan. In fact, it wasn't 'the work' at all. It was the stuff around the work - the processes, the hand-offs, the sign-off bottlenecks, the technology stack that promised transformation but mostly delivered complexity. The invisible machinery of marketing.",
+      },
+      {
+        type: "paragraph",
+        text: "We call this operational drag. It rarely presents as catastrophic failure. It's usually something quieter and more corrosive: the slow accumulation of friction that means campaigns take twice as long as they should, data becomes untrustworthy, technology becomes a bind, and teams run on heroics instead of rhythm.",
+      },
+      {
+        type: "paragraph",
+        text: "And the uncomfortable position on the agency side was that it was blindingly obvious. We could see it. We just weren't set up to fix it.",
+      },
+      {
+        type: "paragraph",
+        text: "Agencies are structured to produce marketing artifacts - creative, media, content - not to improve how work gets produced. Suggesting to a client that their internal operating model needs redesigning is commercial suicide. It's unwarranted advice, and out of scope. Plus it's clearly out of the agency wheelhouse. Surely there are other outfits better able to help the CMO?",
+      },
+      {
+        type: "paragraph",
+        text: "In theory, yes.",
+      },
+      {
+        type: "paragraph",
+        text: "Consultancies will diagnose the problem rigorously. But they're not incentivised to ensure adoption. Systems Integrators are great at building out platforms but they're not incentivised to deliver ROI. And other internal stakeholders have a range of incentives, but rarely do they completely align with Marketing.",
+      },
+      {
+        type: "paragraph",
+        text: "The result is a gap.",
+      },
+      {
+        type: "paragraph",
+        text: "And this matters more now than ever, because AI is entering our systems - and it's amplifying whatever it finds. Feed an agent into a well-designed workflow with clean data, clear governance and trained people, and you'll see the return. But feed it into a mess, and it accelerates the turmoil. As Bernbach said about advertising - 'a great campaign will make a bad product fail faster'. The same can be said of the impact of AI on a marketing function.",
+      },
+      {
+        type: "paragraph",
+        text: "The problem is not technology.",
+      },
+      {
+        type: "paragraph",
+        text: "Gartner's own data tells the story: only about a third of available martech capability is ever properly used. That's not a technology failure. It's an adoption and operating model failure. And bolting AI on top of underused technology doesn't fix - it compounds.",
+      },
+      {
+        type: "paragraph",
+        text: "So what should CMOs be demanding?",
+      },
+      {
+        type: "paragraph",
+        text: "First, speed to evidence. The transformation industry has normalised asking clients to buy belief before they've seen results. Months of discovery. Year-long roadmaps. Partners must be able to show measurable progress in six weeks, not six months.",
+      },
+      {
+        type: "paragraph",
+        text: "Second, embedded delivery. The hard part of transformation is adoption - getting real people to change real habits in real workflows. That requires being in the room, not advising from the sidelines or letting agents loose.",
+      },
+      {
+        type: "paragraph",
+        text: "Third, honesty about AI. Any partner selling AI as a transformation shortcut is selling a fantasy. AI is a propellant, not a destination. It only works when the system it's entering works first.",
+      },
+      {
+        type: "paragraph",
+        text: "We left the agency world because we got tired of watching the same pattern repeat. Good strategy, broken execution, and a room full of partners pointing at each other. The operating model - the bit that actually determines whether marketing works - was nobody's job.",
+      },
+      {
+        type: "paragraph",
+        text: "Now it's ours.",
+      },
+    ],
+  },
   "from-systems-thinking-to-systems-doing": {
     title: "From systems thinking to systems doing.",
     excerpt:
