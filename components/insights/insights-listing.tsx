@@ -21,6 +21,16 @@ const articles = [
     image: "/images/insights/weve-seen-enough.jpg",
   },
   {
+    id: "indispensable-and-yet-unheard",
+    title: "Indispensable and yet unheard.",
+    excerpt:
+      "MOps sit in the uncomfortable gap between strategy and execution - they can see it widening and they know what to fix. So why is nobody listening?",
+    category: "Marketing Operations",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/indispensable-and-yet-unheard.jpg",
+  },
+  {
     id: "the-problem-no-agency-can-solve",
     title: "The problem no agency can solve.",
     excerpt:
@@ -221,7 +231,7 @@ export function InsightsListing() {
           animate="visible"
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          {remainingArticles.slice(0, 7).map((article) => (
+          {remainingArticles.slice(0, 8).map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}

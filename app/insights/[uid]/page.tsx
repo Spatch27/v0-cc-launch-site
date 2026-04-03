@@ -27,6 +27,87 @@ const articles: Record<
     seoDescription?: string
   }
 > = {
+  "indispensable-and-yet-unheard": {
+    title: "Indispensable and yet unheard.",
+    excerpt:
+      "MOps sit in the uncomfortable gap between strategy and execution - they can see it widening and they know what to fix. So why is nobody listening?",
+    category: "Marketing Operations",
+    date: "April 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/indispensable-and-yet-unheard.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "The most informed person in your marketing team probably isn't in your strategy meetings.",
+      },
+      {
+        type: "paragraph",
+        text: "Marketing Operations leaders know where the bodies are buried. They know which platform no one opens. Which approval loop adds four days to every campaign. Which data source the dashboards quietly ignore. They can trace a broken customer journey back to the exact handoff where it falls apart.",
+      },
+      {
+        type: "paragraph",
+        text: "They know all of this. And yet their opinion is rarely sought when strategic decisions are being made.",
+      },
+      {
+        type: "paragraph",
+        text: "That's not a personality problem. It's a structural one. Marketing Operations MOps was built to implement, not to lead. To configure, not to advise. The function absorbed responsibility for the infrastructure that everything else depends on - and then got positioned a bit like an IT helpdesk: the people you call when something stops working, not the people you listen to before something breaks.",
+      },
+      {
+        type: "paragraph",
+        text: "The result is a peculiar kind of invisibility. Indispensable, but largely unheard.",
+      },
+      {
+        type: "paragraph",
+        text: "Something's getting missed. The friction an ops leader can see isn't just operational detail. It's commercial intelligence.",
+      },
+      {
+        type: "paragraph",
+        text: "When a campaign cycle takes three weeks instead of three days, that's a competitive exposure. When attribution is contested by finance, that's a budget credibility problem. When AI implementation fails because no one redesigned the workflow, that's a growth story that won't be told this quarter.",
+      },
+      {
+        type: "paragraph",
+        text: "The MOps leader sees all of this. But the language used to describe it - bottlenecks, workflow redesign, tech stack rationalisation - rarely translates into the language CMOs use to make cases upward. And so the insight stays inside the MOps function, while the decisions that should follow from it get made on instinct elsewhere.",
+      },
+      {
+        type: "paragraph",
+        text: "This isn't about MOps leaders failing to communicate. It's about organisations failing to build the bridge between operational intelligence and strategic decision-making.",
+      },
+      {
+        type: "paragraph",
+        text: "The arrival of agentic AI is quickly changing the terms of this conversation because AI doesn't just automate tasks - it exposes the inefficiency of legacy workflows. The teams seeing real returns from AI are the ones where someone had already mapped how work actually flows - and redesigned it before the tools arrived. But bolt an agent onto a broken process, and the process breaks faster.",
+      },
+      {
+        type: "paragraph",
+        text: "That work lives in MOps. Which means the function that was treated as infrastructure is now a prerequisite for the thing every CMO is being asked about in every board meeting. And in many organisations, the structural distance is growing - as MOps migrates into RevOps or data teams, the gap between operational intelligence and marketing leadership widens further.",
+      },
+      {
+        type: "paragraph",
+        text: "Organisations that recognise this early will move faster. The MOps leader who gets to make that case - with the language, the framing, and the access to do it - has an unusual opportunity. Not just to be useful, but to be heard.",
+      },
+      {
+        type: "paragraph",
+        text: "The case isn't hard. The path to making it is.",
+      },
+      {
+        type: "paragraph",
+        text: "The insight is there. The operational evidence is there. The skills are there. What's missing is the translation layer - the bridge between what MOps leaders know and the commercial framing that gets it acted on.",
+      },
+      {
+        type: "paragraph",
+        text: "That gap is closeable. But there is rarely enough leverage on the inside of the business. Often it takes an outside perspective to validate what's already known, frame it in terms the C-suite will respond to, and give the MOps lead the ability to lead the conversation rather than just support it.",
+      },
+      {
+        type: "paragraph",
+        text: "The most strategic person in your marketing team is probably already telling you what needs to change. The question is whether they have the mandate to be heard.",
+      },
+      {
+        type: "paragraph",
+        text: "If you're a CMO or an experienced Marketing Ops leader and this sounds familiar but you're unsure where to start, contact us to book a free Drag Diagnostic - a 60-minute conversation about where friction is costing you the most and what to tackle first.",
+      },
+    ],
+  },
   "the-problem-no-agency-can-solve": {
     title: "The problem no agency can solve.",
     excerpt:
