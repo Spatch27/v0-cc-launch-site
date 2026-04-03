@@ -72,7 +72,7 @@ const articles = [
   },
   {
     id: "removing-operational-drag",
-    title: "The great agency reset is a sideshow",
+    title: "The great agency reset is a sideshow.",
     excerpt:
       "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
     category: "Marketing orchestration",
@@ -82,7 +82,7 @@ const articles = [
   },
   {
     id: "marketing-operations-competitive-advantage",
-    title: "Small data wins the race",
+    title: "Small data wins the race.",
     excerpt:
       "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
     category: "Data",
@@ -92,7 +92,7 @@ const articles = [
   },
   {
     id: "embedded-consultancy-model",
-    title: "Marketing's Moneyball moment",
+    title: "Marketing's Moneyball moment.",
     excerpt:
       "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
     category: "Marketing leadership",
