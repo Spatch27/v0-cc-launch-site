@@ -21,6 +21,16 @@ const articles = [
     image: "/images/insights/weve-seen-enough.jpg",
   },
   {
+    id: "from-systems-thinking-to-systems-doing",
+    title: "From systems thinking to systems doing.",
+    excerpt:
+      "The role of the CMO is changing. What's required isn't more strategic leadership - it's the ability to orchestrate the system.",
+    category: "The orchestration gap",
+    date: "April 2026",
+    readTime: "2 min read",
+    image: "/images/insights/from-systems-thinking-to-systems-doing.jpg",
+  },
+  {
     id: "shadow-ai-not-it-problem",
     title: "Shadow AI isn't an IT problem. It's yours.",
     excerpt:
@@ -201,7 +211,7 @@ export function InsightsListing() {
           animate="visible"
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          {remainingArticles.slice(0, 5).map((article) => (
+          {remainingArticles.slice(0, 6).map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}

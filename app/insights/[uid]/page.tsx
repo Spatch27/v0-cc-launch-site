@@ -27,6 +27,63 @@ const articles: Record<
     seoDescription?: string
   }
 > = {
+  "from-systems-thinking-to-systems-doing": {
+    title: "From systems thinking to systems doing.",
+    excerpt:
+      "The role of the CMO is changing. What's required isn't more strategic leadership - it's the ability to orchestrate the system.",
+    category: "The orchestration gap",
+    date: "April 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/from-systems-thinking-to-systems-doing.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "Since late 2025, recruitment briefs for senior marketing roles have shifted noticeably. One experienced recruiter described it as a marked change - something echoed across the industry.",
+      },
+      {
+        type: "paragraph",
+        text: "Boards are hunting for CMOs with evidence of orchestration experience, systems thinking, and broader commercial judgement. Performance depth alone no longer cuts it.",
+      },
+      {
+        type: "paragraph",
+        text: "The honest reality is that systems thinking has been part of senior marketing leadership for years. Most marketers approaching board-level already understand how the pieces connect. The fresh challenge isn't comprehension. It's execution.",
+      },
+      {
+        type: "paragraph",
+        text: "What's required goes beyond systems thinking - it's 'systems doing'.",
+      },
+      {
+        type: "paragraph",
+        text: "McKinsey estimates that even high-performing companies lose around 30% of potential value between strategy origination and its execution. PwC found that 63% of CMOs are missing opportunities because they can't make decisions fast enough. Gartner says marketers use less than half of their tech stack's capability. And IBM's latest CMO study concludes that most marketing organisations are structurally incapable of delivering what boards now demand.",
+      },
+      {
+        type: "paragraph",
+        text: "There's a consistent pattern: marketing leaders know what needs to happen but they can't make the machine do it. That's not a thinking problem. It's a doing problem.",
+      },
+      {
+        type: "paragraph",
+        text: "What I call 'systems doing' involves actively rewiring how the parts work together. Redesigning workflows. Simplifying bloated stacks. Fixing the handoffs where work gets stuck between teams. Making adoption stick rather than letting it slip.",
+      },
+      {
+        type: "paragraph",
+        text: "AI has sharpened the urgency. Every new capability layered onto a system that wasn't built for it creates more complexity, not less. Interventions and products framed as solutions become part of the clutter.",
+      },
+      {
+        type: "paragraph",
+        text: "The CMO's role is becoming one of orchestrator - but orchestration only works when the operating model underneath can keep pace. And that's a tall order when the marketing team also has campaigns to run, a sales team to feed, and quarterly numbers to hit. It's asking for the plane to be rebuilt while in flight.",
+      },
+      {
+        type: "paragraph",
+        text: "So, the job spec is changing but the infrastructure needs to change with it. As has always been the case, the CMOs who thrive won't just be the best strategists - they'll be the ones who can make the system move.",
+      },
+      {
+        type: "paragraph",
+        text: "If all that sounds sensible but daunting, contact us to book a free Drag Diagnostic - a 60-minute conversation about where friction is costing you the most and what to tackle first.",
+      },
+    ],
+  },
   "shadow-ai-not-it-problem": {
     title: "Shadow AI isn't an IT problem. It's yours.",
     excerpt:
