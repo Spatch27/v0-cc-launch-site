@@ -25,12 +25,12 @@ export function AnimatedTypeSection() {
   const line2Word2Opacity = useTransform(scrollYProgress, [0.4, 0.46, 0.6, 0.65, 0.72], [0, 1, 1, 1, 0])
   const line2Word2Y = useTransform(scrollYProgress, [0.6, 0.72], [0, -150])
 
-  // Line 3: "Unlock growth." - fade in, hold until end
-  const line3Word1Opacity = useTransform(scrollYProgress, [0.73, 0.79, 0.82, 1], [0, 1, 1, 1])
-  const line3Word1Y = useTransform(scrollYProgress, [0.73, 0.79], [50, 0])
+  // Line 3: "Unlock growth." - fade in, hold, then fade out at the very end for smooth transition
+  const line3Word1Opacity = useTransform(scrollYProgress, [0.73, 0.79, 0.9, 0.98], [0, 1, 1, 0])
+  const line3Word1Y = useTransform(scrollYProgress, [0.73, 0.79, 0.9, 0.98], [50, 0, 0, -50])
 
-  const line3Word2Opacity = useTransform(scrollYProgress, [0.75, 0.81, 0.82, 1], [0, 1, 1, 1])
-  const line3Word2Y = useTransform(scrollYProgress, [0.75, 0.81], [50, 0])
+  const line3Word2Opacity = useTransform(scrollYProgress, [0.75, 0.81, 0.9, 0.98], [0, 1, 1, 0])
+  const line3Word2Y = useTransform(scrollYProgress, [0.75, 0.81, 0.9, 0.98], [50, 0, 0, -50])
 
   return (
     <div className="relative -mt-1">
