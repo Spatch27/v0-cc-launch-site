@@ -8,7 +8,7 @@ export function AnimatedTypeSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   })
 
   // Line 1: "Remove drag." - fade in quickly, hold for a long time, fade out
@@ -39,7 +39,7 @@ export function AnimatedTypeSection() {
         className="relative h-[600vh] w-full"
       >
         {/* Sticky container that holds both background and text */}
-        <div className="sticky top-0 h-screen w-screen overflow-hidden -mx-[calc((100vw-100%)/2)]">
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* Background image - fixed in place */}
         <div className="absolute inset-0 -z-10">
           <Image
