@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
 
@@ -9,11 +9,6 @@ export function AnimatedTypeSection() {
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
-  })
-
-  // Debug: log scroll progress
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log("[v0] AnimatedTypeSection scrollYProgress:", latest.toFixed(3))
   })
 
   // Line 1: "Remove drag." - fade in quickly, hold for a long time, fade out
