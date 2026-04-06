@@ -25,21 +25,24 @@ export function AnimatedTypeSection() {
   const line2Word2Opacity = useTransform(scrollYProgress, [0.4, 0.46, 0.6, 0.65, 0.72], [0, 1, 1, 1, 0])
   const line2Word2Y = useTransform(scrollYProgress, [0.6, 0.72], [0, -150])
 
-  // Line 3: "Unlock growth." - fade in, hold, then fade out at the very end for smooth transition
-  const line3Word1Opacity = useTransform(scrollYProgress, [0.73, 0.79, 0.9, 0.98], [0, 1, 1, 0])
-  const line3Word1Y = useTransform(scrollYProgress, [0.73, 0.79, 0.9, 0.98], [50, 0, 0, -50])
+  // Line 3: "Unlock growth." - fade in, hold, then fade out gently
+  const line3Word1Opacity = useTransform(scrollYProgress, [0.73, 0.79, 0.88, 0.95], [0, 1, 1, 0])
+  const line3Word1Y = useTransform(scrollYProgress, [0.73, 0.79, 0.88, 0.95], [50, 0, 0, -50])
 
-  const line3Word2Opacity = useTransform(scrollYProgress, [0.75, 0.81, 0.9, 0.98], [0, 1, 1, 0])
-  const line3Word2Y = useTransform(scrollYProgress, [0.75, 0.81, 0.9, 0.98], [50, 0, 0, -50])
+  const line3Word2Opacity = useTransform(scrollYProgress, [0.75, 0.81, 0.88, 0.95], [0, 1, 1, 0])
+  const line3Word2Y = useTransform(scrollYProgress, [0.75, 0.81, 0.88, 0.95], [50, 0, 0, -50])
+
+  // Background fades out at the very end so the section dissolves rather than snapping away
+  const bgOpacity = useTransform(scrollYProgress, [0.88, 1], [1, 0])
 
   return (
     <div className="relative -mt-1">
       <section
         ref={sectionRef}
-        className="relative h-[600vh] w-full"
+        className="relative h-[800vh] md:h-[600vh] w-full"
       >
         {/* Sticky container that holds both background and text */}
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <motion.div style={{ opacity: bgOpacity }} className="sticky top-0 h-screen w-full overflow-hidden">
         {/* Background image - fixed in place */}
         <div className="absolute inset-0 -z-10">
           <Image
@@ -104,7 +107,7 @@ export function AnimatedTypeSection() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       </section>
     </div>
   )
