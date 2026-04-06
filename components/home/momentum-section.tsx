@@ -28,7 +28,7 @@ export function MomentumSection() {
       <div className="space-y-20">
 
         {/* How we work — Text Left, Image Right */}
-        <div ref={ref1} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">
+        <div ref={ref1} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2 grid-cols-1">
           <motion.div
             className="space-y-6"
             variants={textContainer}
