@@ -43,7 +43,7 @@ export function AnimatedTypeSection() {
         className="relative h-[600vh] w-full"
       >
         {/* Sticky container that holds both background and text */}
-        <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="sticky top-0 h-screen w-screen overflow-hidden -mx-[calc((100vw-100%)/2)]">
         {/* Background image - fixed in place */}
         <div className="absolute inset-0 -z-10">
           <Image
