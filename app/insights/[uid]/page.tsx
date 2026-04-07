@@ -114,7 +114,7 @@ const articles: Record<
       "Too much marketing effort is being lost in the gap between strategy and execution. Committed Citizens make marketing work, work.",
     category: "Operational drag",
     date: "April 2026",
-    readTime: "2 min read",
+    readTime: "3 min read",
     author: "Ben Scoggins",
     authorRole: "Co-founder",
     heroImage: "/images/insights/the-problem-no-agency-can-solve.jpg",
