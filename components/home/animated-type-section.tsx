@@ -107,7 +107,7 @@ export function AnimatedTypeSection() {
               </div>
             </div>
           </div>
-      </motion.div>
+        </motion.div>
       </section>
     </div>
   )
