@@ -28,18 +28,6 @@ const articles = [
     id: "when-more-ai-means-less-progress",
     date: "April 2026",
   },
-  {
-    id: "removing-operational-drag",
-    date: "March 2026",
-  },
-  {
-    id: "marketing-operations-competitive-advantage",
-    date: "March 2026",
-  },
-  {
-    id: "embedded-consultancy-model",
-    date: "March 2026",
-  },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -68,12 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    {
-      url: `${BASE_URL}/outputs`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
+
     {
       url: `${BASE_URL}/insights`,
       lastModified: new Date(),
