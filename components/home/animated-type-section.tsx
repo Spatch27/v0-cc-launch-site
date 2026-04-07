@@ -50,7 +50,9 @@ export function AnimatedTypeSection() {
               alt=""
               fill
               className="object-cover grayscale brightness-[0.4]"
-              priority
+              loading="lazy"
+              quality={75}
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
           </div>

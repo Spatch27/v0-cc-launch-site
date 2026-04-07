@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Logo } from "@/components/logo"
 import { textRollUp, textRollDown } from "@/lib/animations"
@@ -31,6 +31,7 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
   const [hoveredMobileLink, setHoveredMobileLink] = useState<string | null>(null)
+  const [animationsReady, setAnimationsReady] = useState(false)
 
   /* Match exact routes first, then fall back to prefix match for sub-routes */
   const colors =
@@ -41,13 +42,24 @@ export function Navigation() {
   /* Dark logo on all backgrounds except dark grey hero; stays same on scroll */
   const logoVariant = colors.isDark ? "white" : "dark"
 
+  // Defer hover animations until after initial paint
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 20)
+    // Use requestIdleCallback to enable animations after LCP
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      window.requestIdleCallback(() => setAnimationsReady(true))
+    } else {
+      setTimeout(() => setAnimationsReady(true), 150)
     }
+  }, [])
+
+  const onScroll = useCallback(() => {
+    setScrolled(window.scrollY > 20)
+  }, [])
+
+  useEffect(() => {
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  }, [onScroll])
 
   return (
     <>
@@ -88,7 +100,7 @@ export function Navigation() {
                     key={link.href}
                     href={link.href}
                     className="group relative flex items-center px-5 py-2"
-                    onMouseEnter={() => setHoveredLink(link.href)}
+                    onMouseEnter={() => animationsReady && setHoveredLink(link.href)}
                   >
                     {isActive && (
                       <motion.span
@@ -97,7 +109,7 @@ export function Navigation() {
                         transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                       />
                     )}
-                    {isHovered && (
+                    {animationsReady && isHovered && (
                       <motion.span
                         layoutId="nav-hover"
                         className="absolute inset-0 rounded-full bg-brand-white"
@@ -107,7 +119,7 @@ export function Navigation() {
                     <span className="relative z-10 inline-block overflow-hidden">
                       <motion.span
                         initial="initial"
-                        animate={isHovered ? "hover" : "initial"}
+                        animate={animationsReady && isHovered ? "hover" : "initial"}
                         variants={textRollUp}
                         className={`block text-sm font-medium tracking-wide transition-colors duration-200 ${
                           isActive
@@ -121,7 +133,7 @@ export function Navigation() {
                       </motion.span>
                       <motion.span
                         initial="initial"
-                        animate={isHovered ? "hover" : "initial"}
+                        animate={animationsReady && isHovered ? "hover" : "initial"}
                         variants={textRollDown}
                         className={`absolute inset-0 block text-sm font-medium tracking-wide transition-colors duration-200 ${
                           isActive
@@ -166,7 +178,7 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 className="group relative flex flex-shrink-0 items-center px-2.5 py-1.5 sm:px-3.5 sm:py-2"
-                onMouseEnter={() => setHoveredMobileLink(link.href)}
+                onMouseEnter={() => animationsReady && setHoveredMobileLink(link.href)}
               >
                 {isActive && (
                   <motion.span
@@ -175,7 +187,7 @@ export function Navigation() {
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}
-                {isHovered && (
+                {animationsReady && isHovered && (
                   <motion.span
                     layoutId="nav-hover-mobile"
                     className="absolute inset-0 rounded-full bg-brand-white"
@@ -185,7 +197,7 @@ export function Navigation() {
                 <span className="relative z-10 inline-block overflow-hidden">
                   <motion.span
                     initial="initial"
-                    animate={isHovered ? "hover" : "initial"}
+                    animate={animationsReady && isHovered ? "hover" : "initial"}
                     variants={textRollUp}
                     className={`block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
                       isActive
@@ -199,7 +211,7 @@ export function Navigation() {
                   </motion.span>
                   <motion.span
                     initial="initial"
-                    animate={isHovered ? "hover" : "initial"}
+                    animate={animationsReady && isHovered ? "hover" : "initial"}
                     variants={textRollDown}
                     className={`absolute inset-0 block whitespace-nowrap text-[11px] font-medium tracking-wide transition-colors duration-200 sm:text-xs ${
                       isActive
