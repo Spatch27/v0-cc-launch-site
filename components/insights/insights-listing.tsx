@@ -70,6 +70,36 @@ const articles = [
     readTime: "3 min read",
     image: "/images/insights/when-more-ai-means-less-progress.jpg",
   },
+  {
+    id: "the-great-agency-reset-is-a-sideshow",
+    title: "The great agency reset is a sideshow.",
+    excerpt:
+      "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
+    category: "Marketing orchestration",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/agency-reset-sideshow.jpg",
+  },
+  {
+    id: "small-data-wins-the-race",
+    title: "Small data wins the race.",
+    excerpt:
+      "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
+    category: "Data",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/small-data-wins.jpg",
+  },
+  {
+    id: "marketings-moneyball-moment",
+    title: "Marketing's Moneyball moment.",
+    excerpt:
+      "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
+    category: "Marketing leadership",
+    date: "March 2026",
+    readTime: "2 min read",
+    image: "/images/insights/moneyball-moment.jpg",
+  },
 ]
 
 export function InsightsListing() {

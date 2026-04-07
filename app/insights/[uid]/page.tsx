@@ -409,6 +409,185 @@ const articles: Record<
       },
     ],
   },
+  "the-great-agency-reset-is-a-sideshow": {
+    title: "The great agency reset is a sideshow.",
+    excerpt:
+      "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
+    category: "Marketing orchestration",
+    date: "March 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/agency-reset-sideshow.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "The agency model is collapsing. The good news for CMOs is that it isn't their problem.",
+      },
+      {
+        type: "paragraph",
+        text: "The bad news is that they have something much bigger to worry about: the system those agencies sit inside.",
+      },
+      {
+        type: "paragraph",
+        text: "A recent industry report laid bare what many marketing leaders have been feeling for some time. AI is compressing the cost of production work, 82% of brands now run in-house teams, and procurement is shifting from buying hours to buying outcomes. Agencies are caught in a difficult middle ground - unable to charge what they once did, unable to adapt fast enough.",
+      },
+      {
+        type: "paragraph",
+        text: "Piscari's Agency Reset 2026 report is worth reading even if you're not an agency leader, because it describes one half of a much bigger shift.",
+      },
+      {
+        type: "paragraph",
+        text: "The real change isn't happening inside agencies. It's happening inside marketing operations.",
+      },
+      {
+        type: "paragraph",
+        text: "Most CMOs now manage a patchwork of in-house teams, agencies, freelancers, platforms and AI tools. Each part of the marketing machine is optimising for its own specific role and objective.",
+      },
+      {
+        type: "paragraph",
+        text: "But nobody is orchestrating the whole thing.",
+      },
+      {
+        type: "paragraph",
+        text: "And that's where work gets stuck. Handoffs break. Cycle times bloat. Smart people spend half their energy navigating workarounds instead of doing the work that matters. And every time a partner changes shape - or disappears entirely - the cracks widen.",
+      },
+      {
+        type: "paragraph",
+        text: "This isn't fixed by switching agencies, bringing more work in-house, or buying another platform. It's fixed by redesigning how work actually flows across people, process and technology.",
+      },
+      {
+        type: "paragraph",
+        text: "If your marketing operation is feeling bogged down, you can't afford to wait for the agencies to sort themselves out. Redesigning the operating model now creates cleaner handoffs, shorter cycles and a system that works regardless of who's plugged into it.",
+      },
+      {
+        type: "paragraph",
+        text: "If that sounds sensible but you're unsure where to start, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+      },
+    ],
+  },
+  "small-data-wins-the-race": {
+    title: "Small data wins the race.",
+    excerpt:
+      "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
+    category: "Data",
+    date: "March 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/small-data-wins.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "During the race season, a Formula 1 car is a product permanently in Beta.",
+      },
+      {
+        type: "paragraph",
+        text: "Every surface and component is covered in sensors. Terabytes of data stream back to technicians and engineers during every Grand Prix. In theory, it's a goldmine - every data point a potential refinement, every refinement a potential hundredth of a second.",
+      },
+      {
+        type: "paragraph",
+        text: "But McLaren Racing hit a wall.",
+      },
+      {
+        type: "paragraph",
+        text: "Even with AI processing the telemetry, the sheer volume of data took too long to analyse - and longer still to turn into meaningful change. The engineers had more information than they could act on, and the clock was always ticking.",
+      },
+      {
+        type: "paragraph",
+        text: "Their solution wasn't more computing power or better dashboards. It was better discipline. They stripped back to what a senior engineer called \"small data\" - cherry-picking the handful of measures that genuinely moved performance. Everything else was noise.",
+      },
+      {
+        type: "paragraph",
+        text: "Marketing has the same problem. Only it's handled worse.",
+      },
+      {
+        type: "paragraph",
+        text: "There's no shortage of data in most modern marketing functions. More dashboards than anyone opens. More reporting cycles than anyone needs. More time spent measuring and less time spent deciding. For most teams, data isn't the asset it's supposed to be. It's a drag - adding weight to every decision, slowing the very thing it was meant to accelerate.",
+      },
+      {
+        type: "paragraph",
+        text: "The instinct is to fix this with better analytics, a new platform, or another layer of visualisation. But McLaren didn't solve their problem with better tools. They solved it by asking sharper questions. By deciding what mattered before they started measuring, not after.",
+      },
+      {
+        type: "paragraph",
+        text: "Most marketing teams do it backwards. We measure because we can and we report because we feel we should. And then we wonder why nothing feels actionable. The data itself becomes the bottleneck: contested numbers, competing dashboards, meeting time spent debating methodology instead of making calls.",
+      },
+      {
+        type: "paragraph",
+        text: "F1 teams obsess over reducing drag so they can go faster. Marketing teams should do the same. The answer isn't more data. It's less - chosen well, trusted fully, and acted on fast.",
+      },
+      {
+        type: "paragraph",
+        text: "If you want to swim in data rather than drown in it, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+      },
+    ],
+  },
+  "marketings-moneyball-moment": {
+    title: "Marketing's Moneyball moment.",
+    excerpt:
+      "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
+    category: "Marketing leadership",
+    date: "March 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/moneyball-moment.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "There's a hard reality for CMOs: few are seen as enterprise leaders.",
+      },
+      {
+        type: "paragraph",
+        text: "Only 10% of CEOs come from marketing backgrounds. Not because marketers lack judgement or ambition, but because marketing rarely looks like the kind of growth engine boards know how to back.",
+      },
+      {
+        type: "paragraph",
+        text: "Recent research from McKinsey highlights the disconnect. More than 70% of CEOs assess marketing on revenue growth and margin. Yet only around a third of CMOs prioritise those same metrics, and barely half are deeply involved in strategic planning.",
+      },
+      {
+        type: "paragraph",
+        text: "The ambition is there. The operating system isn't.",
+      },
+      {
+        type: "paragraph",
+        text: "This matters because boards don't promote vision. They promote predictability. Finance manages risk through models. Operations monitors throughput via dashboards. Both run systems that are legible, repeatable and defensible.",
+      },
+      {
+        type: "paragraph",
+        text: "Marketing, by contrast, tends to run on campaigns, launches and big moments. Sometimes they deliver extraordinary commercial results. But they're hard to forecast, harder to repeat, and almost impossible for a non-marketer to evaluate.",
+      },
+      {
+        type: "paragraph",
+        text: "That's the gap.",
+      },
+      {
+        type: "paragraph",
+        text: "It isn't about talent or creativity. It's about how marketing presents itself as a function.",
+      },
+      {
+        type: "paragraph",
+        text: "The CMOs who break through don't do it by being louder or more strategic. They do it by changing how marketing operates. They introduce cadence, measurement and accountability that the rest of the C-suite already takes for granted. Creative excellence matters more than ever - but it sits on top of consistent performance, rather than compensating for its absence.",
+      },
+      {
+        type: "paragraph",
+        text: "This is marketing's moneyball moment.",
+      },
+      {
+        type: "paragraph",
+        text: "The original Moneyball insight wasn't that data beat intuition. It was that a system built on evidence could outperform one built on gut feel - even with fewer resources.",
+      },
+      {
+        type: "paragraph",
+        text: "The same logic applies here. CMOs who can show what's working, what it costs, and what it returns build something far more powerful than campaign success. They build operational credibility, which is what turns marketing influence into enterprise authority.",
+      },
+      {
+        type: "paragraph",
+        text: "If you want a marketing engine the board can believe in, you need to start by understanding where you're experiencing operational drag. We can help. Get in touch to schedule a Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+      },
+    ],
+  },
 }
 
 interface ArticlePageProps {

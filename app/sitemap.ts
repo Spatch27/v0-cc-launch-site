@@ -28,6 +28,18 @@ const articles = [
     id: "when-more-ai-means-less-progress",
     date: "April 2026",
   },
+  {
+    id: "the-great-agency-reset-is-a-sideshow",
+    date: "March 2026",
+  },
+  {
+    id: "small-data-wins-the-race",
+    date: "March 2026",
+  },
+  {
+    id: "marketings-moneyball-moment",
+    date: "March 2026",
+  },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
