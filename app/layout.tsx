@@ -93,7 +93,7 @@ export default function RootLayout({
           `}
         </Script>
         <Navigation />
-        <main className="relative overflow-x-hidden">{children}</main>
+        <main className="relative">{children}</main>
         <Footer />
         <Analytics />
       </body>
