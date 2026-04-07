@@ -39,7 +39,7 @@ export function AnimatedTypeSection() {
     <div className="relative -mt-1">
       <section
         ref={sectionRef}
-        className="relative h-[800vh] md:h-[600vh] w-full"
+        className="relative h-[800vh] md:h-[600vh] w-full overflow-x-hidden"
       >
         {/* Sticky container that holds both background and text */}
         <motion.div style={{ opacity: bgOpacity }} className="sticky top-0 h-screen w-full overflow-hidden">
