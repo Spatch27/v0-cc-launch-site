@@ -71,7 +71,7 @@ const articles = [
     image: "/images/insights/when-more-ai-means-less-progress.jpg",
   },
   {
-    id: "removing-operational-drag",
+    id: "the-great-agency-reset-is-a-sideshow",
     title: "The great agency reset is a sideshow.",
     excerpt:
       "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
@@ -81,7 +81,7 @@ const articles = [
     image: "/images/insights/agency-reset-sideshow.jpg",
   },
   {
-    id: "marketing-operations-competitive-advantage",
+    id: "small-data-wins-the-race",
     title: "Small data wins the race.",
     excerpt:
       "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
@@ -91,7 +91,7 @@ const articles = [
     image: "/images/insights/small-data-wins.jpg",
   },
   {
-    id: "embedded-consultancy-model",
+    id: "marketings-moneyball-moment",
     title: "Marketing's Moneyball moment.",
     excerpt:
       "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
@@ -99,33 +99,6 @@ const articles = [
     date: "March 2026",
     readTime: "2 min read",
     image: "/images/insights/moneyball-moment.jpg",
-  },
-  {
-    id: "building-resilient-marketing-systems",
-    title: "Building resilient marketing systems",
-    excerpt:
-      "How to create marketing workflows that scale with your business and adapt to changing market conditions without breaking.",
-    category: "What we're creating",
-    date: "August 2024",
-    readTime: "7 min read",
-  },
-  {
-    id: "case-for-marketing-product-teams",
-    title: "The case for marketing product teams",
-    excerpt:
-      "Why the most effective marketing organisations are structured like product teams, with clear ownership and continuous improvement.",
-    category: "What we're creating",
-    date: "July 2024",
-    readTime: "9 min read",
-  },
-  {
-    id: "rethinking-marketing-velocity",
-    title: "Rethinking marketing velocity",
-    excerpt:
-      "Speed isn't always better. How to find the right balance between moving fast and maintaining quality in your marketing execution.",
-    category: "What we're consuming",
-    date: "June 2024",
-    readTime: "5 min read",
   },
 ]
 

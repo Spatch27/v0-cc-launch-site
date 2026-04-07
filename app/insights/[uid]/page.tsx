@@ -352,7 +352,64 @@ const articles: Record<
       },
     ],
   },
-  "removing-operational-drag": {
+  "weve-seen-enough": {
+    title: "We'd seen enough.",
+    excerpt:
+      "Great marketers shouldn't be ground down by the system that was built to serve them. Committed Citizens are here to help.",
+    category: "Getting started",
+    date: "March 2026",
+    readTime: "2 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/weve-seen-enough.jpg",
+    body: [
+      {
+        type: "paragraph",
+        text: "We can't remember when we first saw it. It crept up on us but then we started seeing it everywhere. Marketing teams slowed down - the machinery around them began to seize up.",
+      },
+      {
+        type: "paragraph",
+        text: "Briefs that should have taken days, taking weeks. Approvals running through seven people when two would do. Six-figure martech platforms sitting half-used or barely touched. The best marketers - the ones with the sharpest instincts and the most to give - getting ground down by systems that should have been serving them.",
+      },
+      {
+        type: "paragraph",
+        text: "Then AI arrived. And instead of simplifying things, it added another layer. New tools landing faster than teams could absorb them. Pilots grounded by stubborn processes. Vendors promising efficiency they couldn't deliver. The machinery didn't get lighter - it started weighing teams down.",
+      },
+      {
+        type: "paragraph",
+        text: "That was the tipping point. This problem wasn't going to fix itself. It was accelerating.",
+      },
+      {
+        type: "paragraph",
+        text: "We know what good looks like"
+      },
+      {
+        type: "paragraph",
+        text: "Because we've spent 25 years watching what happens without it. We've seen friction take hold from every angle - the missed deadlines, the bloated platforms, the talented people slowly losing faith in the system around them. But we've also seen marketing teams that unlock flow. The energy comes back. The talent you hired starts doing the work you hired them for. Results stop being a fight and start building a rhythm.",
+      },
+      {
+        type: "paragraph",
+        text: "So we built Committed Citizens.",
+      },
+      {
+        type: "paragraph",
+        text: "We don't produce the marketing. We fix the machine that does. We embed inside marketing teams and redesign how work actually flows - across people, process, data, and technology. Six-week cycles. Measurable progress. Change that sticks because it's built around how your team actually works, not how they theoretically should.",
+      },
+      {
+        type: "paragraph",
+        text: "We didn't start this because we fell out of love with agencies. We started it because we've watched too many good teams held back by fixable problems. And we decided to go and help them.",
+      },
+      {
+        type: "paragraph",
+        text: "Let's start with a conversation"
+      },
+      {
+        type: "paragraph",
+        text: "If you're a marketing leader who's tired of watching good people fight bad systems, start with a conversation. Our Drag Diagnostic is free, takes an hour, and gives you something useful whether we work together or not.",
+      },
+    ],
+  },
+  "the-great-agency-reset-is-a-sideshow": {
     title: "The great agency reset is a sideshow.",
     excerpt:
       "The real challenge for CMOs isn't finding better agency partners. It's orchestrating the system they sit inside.",
@@ -409,7 +466,7 @@ const articles: Record<
       },
     ],
   },
-  "marketing-operations-competitive-advantage": {
+  "small-data-wins-the-race": {
     title: "Small data wins the race.",
     excerpt:
       "Marketing decisions are being slowed by an overabundance of data. We can learn a lesson from Formula 1.",
@@ -466,7 +523,7 @@ const articles: Record<
       },
     ],
   },
-  "embedded-consultancy-model": {
+  "marketings-moneyball-moment": {
     title: "Marketing's Moneyball moment.",
     excerpt:
       "The marketing leaders who win in the boardroom run a function that others in the C-Suite instantly recognise: a reliable, accountable machine.",
@@ -528,126 +585,6 @@ const articles: Record<
       {
         type: "paragraph",
         text: "If you want a marketing engine the board can believe in, you need to start by understanding where you're experiencing operational drag. We can help. Get in touch to schedule a Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
-      },
-    ],
-  },
-  "building-resilient-marketing-systems": {
-    title: "Building resilient marketing systems",
-    excerpt:
-      "How to create marketing workflows that scale with your business and adapt to changing market conditions without breaking.",
-    category: "What we're creating",
-    date: "August 2024",
-    readTime: "7 min read",
-    author: "Committed Citizens",
-    authorRole: "Editorial",
-    heroImage: "/images/insights/hero-default.jpg",
-    body: [
-      {
-        type: "heading2",
-        text: "Resilience Over Rigidity",
-      },
-      {
-        type: "paragraph",
-        text: "The best marketing systems aren\u2019t the most complex \u2014 they\u2019re the ones that bend without breaking. Resilient systems absorb change, scale smoothly, and keep teams productive through uncertainty.",
-      },
-    ],
-  },
-  "case-for-marketing-product-teams": {
-    title: "The case for marketing product teams",
-    excerpt:
-      "Why the most effective marketing organisations are structured like product teams, with clear ownership and continuous improvement.",
-    category: "What we're creating",
-    date: "July 2024",
-    readTime: "9 min read",
-    author: "Committed Citizens",
-    authorRole: "Editorial",
-    heroImage: "/images/insights/hero-default.jpg",
-    body: [
-      {
-        type: "heading2",
-        text: "From Campaigns to Continuous Delivery",
-      },
-      {
-        type: "paragraph",
-        text: "Traditional marketing organises around campaigns \u2014 discrete projects with clear start and end dates. But modern marketing demands continuous iteration, experimentation, and optimisation. Product teams have solved this problem. They ship value continuously and maintain momentum without the stop-start nature of campaigns.",
-      },
-    ],
-  },
-  "rethinking-marketing-velocity": {
-    title: "Rethinking marketing velocity",
-    excerpt:
-      "Speed isn't always better. How to find the right balance between moving fast and maintaining quality in your marketing execution.",
-    category: "What we're consuming",
-    date: "June 2024",
-    readTime: "5 min read",
-    author: "Committed Citizens",
-    authorRole: "Editorial",
-    heroImage: "/images/insights/hero-default.jpg",
-    body: [
-      {
-        type: "heading2",
-        text: "The Velocity Trap",
-      },
-      {
-        type: "paragraph",
-        text: "There's a difference between moving fast and making progress. Many teams optimise for speed and end up shipping mediocre work at high volume. True marketing velocity is about the rate of meaningful output — work that actually shifts metrics and builds brand equity.",
-      },
-    ],
-  },
-  "weve-seen-enough": {
-    title: "We'd seen enough.",
-    excerpt:
-      "Great marketers shouldn't be ground down by the system that was built to serve them. Committed Citizens are here to help.",
-    category: "Getting started",
-    date: "March 2026",
-    readTime: "2 min read",
-    author: "Ben Scoggins",
-    authorRole: "Co-founder",
-    heroImage: "/images/insights/weve-seen-enough.jpg",
-    body: [
-      {
-        type: "paragraph",
-        text: "We can't remember when we first saw it. It crept up on us but then we started seeing it everywhere. Marketing teams slowed down - the machinery around them began to seize up.",
-      },
-      {
-        type: "paragraph",
-        text: "Briefs that should have taken days, taking weeks. Approvals running through seven people when two would do. Six-figure martech platforms sitting half-used or barely touched. The best marketers - the ones with the sharpest instincts and the most to give - getting ground down by systems that should have been serving them.",
-      },
-      {
-        type: "paragraph",
-        text: "Then AI arrived. And instead of simplifying things, it added another layer. New tools landing faster than teams could absorb them. Pilots grounded by stubborn processes. Vendors promising efficiency they couldn't deliver. The machinery didn't get lighter - it started weighing teams down.",
-      },
-      {
-        type: "paragraph",
-        text: "That was the tipping point. This problem wasn't going to fix itself. It was accelerating.",
-      },
-      {
-        type: "paragraph",
-        text: "We know what good looks like"
-      },
-      {
-        type: "paragraph",
-        text: "Because we've spent 25 years watching what happens without it. We've seen friction take hold from every angle - the missed deadlines, the bloated platforms, the talented people slowly losing faith in the system around them. But we've also seen marketing teams that unlock flow. The energy comes back. The talent you hired starts doing the work you hired them for. Results stop being a fight and start building a rhythm.",
-      },
-      {
-        type: "paragraph",
-        text: "So we built Committed Citizens.",
-      },
-      {
-        type: "paragraph",
-        text: "We don't produce the marketing. We fix the machine that does. We embed inside marketing teams and redesign how work actually flows - across people, process, data, and technology. Six-week cycles. Measurable progress. Change that sticks because it's built around how your team actually works, not how they theoretically should.",
-      },
-      {
-        type: "paragraph",
-        text: "We didn't start this because we fell out of love with agencies. We started it because we've watched too many good teams held back by fixable problems. And we decided to go and help them.",
-      },
-      {
-        type: "paragraph",
-        text: "Let's start with a conversation"
-      },
-      {
-        type: "paragraph",
-        text: "If you're a marketing leader who's tired of watching good people fight bad systems, start with a conversation. Our Drag Diagnostic is free, takes an hour, and gives you something useful whether we work together or not.",
       },
     ],
   },
