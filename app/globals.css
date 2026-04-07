@@ -95,10 +95,11 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 
 body {
-  /* Note: overflow-x: hidden was removed to allow position: sticky to work properly */
+  overflow-x: clip;
 }
 
 /* Selection color */
