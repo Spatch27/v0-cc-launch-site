@@ -59,7 +59,7 @@ export function AnimatedTypeSection() {
           <div className="absolute inset-0 flex items-center justify-center px-4">
             <div className="relative text-center">
               {/* Line 1: Remove drag. - positioned absolutely so phrases overlap in center */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-[0.3em] whitespace-nowrap">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-4 whitespace-nowrap">
                 <motion.span
                   style={{ opacity: line1Word1Opacity, y: line1Word1Y }}
                   className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
@@ -75,7 +75,7 @@ export function AnimatedTypeSection() {
               </div>
 
               {/* Line 2: Build momentum. */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-[0.3em] whitespace-nowrap">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-4 whitespace-nowrap">
                 <motion.span
                   style={{ opacity: line2Word1Opacity, y: line2Word1Y }}
                   className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
@@ -91,7 +91,7 @@ export function AnimatedTypeSection() {
               </div>
 
               {/* Line 3: Unlock growth. */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-[0.3em] whitespace-nowrap">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-4 whitespace-nowrap">
                 <motion.span
                   style={{ opacity: line3Word1Opacity, y: line3Word1Y }}
                   className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
