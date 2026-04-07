@@ -67,7 +67,7 @@ const articles = [
       "'AI brain fry' is real but not inevitable. The key to stopping it lies in better understanding your operating model.",
     category: "Marketing orchestration",
     date: "April 2026",
-    readTime: "2 min read",
+    readTime: "3 min read",
     image: "/images/insights/when-more-ai-means-less-progress.jpg",
   },
   {
