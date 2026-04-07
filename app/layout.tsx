@@ -70,14 +70,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable}`} data-scroll-behavior="smooth">
       <body className="font-sans antialiased">
-        {/* Cookiebot CMP - beforeInteractive scripts must be in body */}
+        {/* Cookiebot CMP - lazyOnload to improve LCP while maintaining GDPR compliance */}
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
           data-blockingmode="auto"
           type="text/javascript"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
         />
         {/* Google tag (gtag.js) */}
         <Script

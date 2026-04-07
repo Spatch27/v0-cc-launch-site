@@ -1,10 +1,22 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { useScroll, useTransform, motion } from "framer-motion"
+import { useRef, useEffect, useState } from "react"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  // Defer scroll-based animations until after initial paint
+  useEffect(() => {
+    // Use requestIdleCallback to defer non-critical work
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      window.requestIdleCallback(() => setMounted(true))
+    } else {
+      // Fallback for browsers without requestIdleCallback
+      setTimeout(() => setMounted(true), 100)
+    }
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -17,33 +29,27 @@ export function HeroSection() {
   return (
     <motion.section
       ref={sectionRef}
-      style={{ scale, opacity }}
+      style={mounted ? { scale, opacity } : undefined}
       className="relative min-h-svh lg:h-screen bg-brand-orange px-6 lg:px-12"
     >
       <div className="mx-auto flex max-w-[1400px] flex-col pt-20 lg:pt-28 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
-        {/* Main headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-20 max-w-5xl font-display text-6xl md:text-7xl lg:text-9xl font-bold leading-[0.95] tracking-tight text-brand-dark"
+        {/* Main headline - CSS animation for initial load, no Framer delay */}
+        <h1
+          className="mt-20 max-w-5xl font-display text-6xl md:text-7xl lg:text-9xl font-bold leading-[0.95] tracking-tight text-brand-dark animate-fade-in-up"
         >
           Freedom
           <br />
           from <em>drag</em>.
-        </motion.h1>
+        </h1>
 
-        {/* Subtitle */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex justify-end"
+        {/* Subtitle - CSS animation with staggered delay */}
+        <div
+          className="flex justify-end animate-fade-in-up animation-delay-200"
         >
           <p className="max-w-[28rem] text-xl font-normal lg:font-bold leading-relaxed text-brand-dark text-right">
             We are the consultancy for CMOs who want their marketing to move <em>faster</em>.
           </p>
-        </motion.div>
+        </div>
       </div>
     </motion.section>
   )
