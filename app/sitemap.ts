@@ -40,18 +40,6 @@ const articles = [
     id: "embedded-consultancy-model",
     date: "March 2026",
   },
-  {
-    id: "building-resilient-marketing-systems",
-    date: "August 2024",
-  },
-  {
-    id: "case-for-marketing-product-teams",
-    date: "July 2024",
-  },
-  {
-    id: "rethinking-marketing-velocity",
-    date: "June 2024",
-  },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
