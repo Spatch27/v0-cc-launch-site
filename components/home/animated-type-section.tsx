@@ -43,82 +43,70 @@ export function AnimatedTypeSection() {
       >
         {/* Sticky container that holds both background and text */}
         <motion.div style={{ opacity: bgOpacity }} className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Background image - fixed and sticky */}
-        <div className="fixed inset-0 -z-10 top-0 left-0">
-          <Image
-            src="/images/bridge-aerial-bw.jpg"
-            alt=""
-            fill
-            className="object-cover grayscale brightness-[0.4]"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-        </div>
+          {/* Background image - absolute within sticky container */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/bridge-aerial-bw.jpg"
+              alt=""
+              fill
+              className="object-cover grayscale brightness-[0.4]"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+          </div>
 
-        {/* Text content that animates as you scroll */}
-        <div className="flex h-full items-center justify-center px-4">
-          <div className="relative w-full max-w-4xl text-center">
-            {/* Line 1: Reduce drag. - words animate separately */}
-            <div className="relative h-[clamp(3.5rem,12vw,12rem)] flex items-center justify-center">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
+          {/* Text content that animates as you scroll */}
+          <div className="absolute inset-0 flex items-center justify-center px-4">
+            <div className="text-center">
+              {/* Line 1: Remove drag. */}
+              <div className="flex items-center justify-center gap-[0.3em]">
+                <motion.span
                   style={{ opacity: line1Word1Opacity, y: line1Word1Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink whitespace-nowrap"
+                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
                 >
                   Remove
-                </motion.div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
+                </motion.span>
+                <motion.span
                   style={{ opacity: line1Word2Opacity, y: line1Word2Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink whitespace-nowrap"
+                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
                 >
                   drag.
-                </motion.div>
+                </motion.span>
               </div>
-            </div>
 
-            {/* Line 2: Build momentum. - words animate separately */}
-            <div className="relative h-[clamp(3.5rem,12vw,12rem)] flex items-center justify-center">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
+              {/* Line 2: Build momentum. */}
+              <div className="flex items-center justify-center gap-[0.3em]">
+                <motion.span
                   style={{ opacity: line2Word1Opacity, y: line2Word1Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink whitespace-nowrap"
+                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
                 >
                   Build
-                </motion.div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
+                </motion.span>
+                <motion.span
                   style={{ opacity: line2Word2Opacity, y: line2Word2Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink whitespace-nowrap"
+                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
                 >
                   momentum.
-                </motion.div>
+                </motion.span>
               </div>
-            </div>
 
-            {/* Line 3: Unlock growth. - words animate separately */}
-            <div className="relative h-[clamp(3.5rem,12vw,12rem)] flex items-center justify-center">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
+              {/* Line 3: Unlock growth. */}
+              <div className="flex items-center justify-center gap-[0.3em]">
+                <motion.span
                   style={{ opacity: line3Word1Opacity, y: line3Word1Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300 whitespace-nowrap"
+                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
                 >
                   Unlock
-                </motion.div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
+                </motion.span>
+                <motion.span
                   style={{ opacity: line3Word2Opacity, y: line3Word2Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300 whitespace-nowrap"
+                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
                 >
                   growth.
-                </motion.div>
+                </motion.span>
               </div>
             </div>
           </div>
-        </div>
       </motion.div>
       </section>
     </div>
