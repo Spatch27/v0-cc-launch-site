@@ -43,8 +43,8 @@ export function AnimatedTypeSection() {
       >
         {/* Sticky container that holds both background and text */}
         <motion.div style={{ opacity: bgOpacity }} className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Background image - fixed in place */}
-        <div className="absolute inset-0 -z-10">
+        {/* Background image - fixed and sticky */}
+        <div className="fixed inset-0 -z-10 top-0 left-0">
           <Image
             src="/images/bridge-aerial-bw.jpg"
             alt=""
@@ -65,7 +65,7 @@ export function AnimatedTypeSection() {
                   style={{ opacity: line1Word1Opacity, y: line1Word1Y }}
                   className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink whitespace-nowrap"
                 >
-                  Reduce
+                  Remove
                 </motion.div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
