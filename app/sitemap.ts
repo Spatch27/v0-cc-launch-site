@@ -1,14 +1,60 @@
 import type { MetadataRoute } from "next"
-import { createClient } from "@/lib/prismicio"
 
 const BASE_URL = "https://committedcitizens.co.uk"
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const client = createClient()
+// Import articles from the insights listing component
+const articles = [
+  {
+    id: "weve-seen-enough",
+    date: "March 2026",
+  },
+  {
+    id: "indispensable-and-yet-unheard",
+    date: "April 2026",
+  },
+  {
+    id: "the-problem-no-agency-can-solve",
+    date: "April 2026",
+  },
+  {
+    id: "from-systems-thinking-to-systems-doing",
+    date: "April 2026",
+  },
+  {
+    id: "shadow-ai-not-it-problem",
+    date: "April 2026",
+  },
+  {
+    id: "when-more-ai-means-less-progress",
+    date: "April 2026",
+  },
+  {
+    id: "removing-operational-drag",
+    date: "March 2026",
+  },
+  {
+    id: "marketing-operations-competitive-advantage",
+    date: "March 2026",
+  },
+  {
+    id: "embedded-consultancy-model",
+    date: "March 2026",
+  },
+  {
+    id: "building-resilient-marketing-systems",
+    date: "August 2024",
+  },
+  {
+    id: "case-for-marketing-product-teams",
+    date: "July 2024",
+  },
+  {
+    id: "rethinking-marketing-velocity",
+    date: "June 2024",
+  },
+]
 
-  // Fetch all insight articles from Prismic
-  const insightArticles = await client.getAllByType("insight_article")
-
+export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -60,12 +106,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Dynamically generate routes for all insight articles from Prismic
-  const insightRoutes: MetadataRoute.Sitemap = insightArticles.map((article) => ({
-    url: `${BASE_URL}/insights/${article.uid}`,
-    lastModified: article.last_publication_date
-      ? new Date(article.last_publication_date)
-      : new Date(),
+  // Dynamically generate routes for all hardcoded insight articles
+  const insightRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
+    url: `${BASE_URL}/insights/${article.id}`,
+    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }))
