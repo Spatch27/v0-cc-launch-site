@@ -1,11 +1,11 @@
 {
   "name": "Committed Citizens",
-  "short_name": "Committed Citizens",
+  "short_name": "CC",
   "description": "We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#F97316",
+  "theme_color": "#FF8C00",
   "icons": [
     {
       "src": "/favicon-32x32.png",
@@ -15,6 +15,11 @@
     {
       "src": "/favicon-64x64.png",
       "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png"
     },
     {

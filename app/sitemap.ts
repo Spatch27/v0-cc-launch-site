@@ -2,14 +2,44 @@ import type { MetadataRoute } from "next"
 
 const BASE_URL = "https://committedcitizens.co.uk"
 
-const insightSlugs = [
-  "removing-operational-drag",
-  "marketing-operations-competitive-advantage",
-  "embedded-consultancy-model",
-  "building-resilient-marketing-systems",
-  "case-for-marketing-product-teams",
-  "rethinking-marketing-velocity",
-  "weve-seen-enough",
+// Import articles from the insights listing component
+const articles = [
+  {
+    id: "weve-seen-enough",
+    date: "March 2026",
+  },
+  {
+    id: "indispensable-and-yet-unheard",
+    date: "April 2026",
+  },
+  {
+    id: "the-problem-no-agency-can-solve",
+    date: "April 2026",
+  },
+  {
+    id: "from-systems-thinking-to-systems-doing",
+    date: "April 2026",
+  },
+  {
+    id: "shadow-ai-not-it-problem",
+    date: "April 2026",
+  },
+  {
+    id: "when-more-ai-means-less-progress",
+    date: "April 2026",
+  },
+  {
+    id: "removing-operational-drag",
+    date: "March 2026",
+  },
+  {
+    id: "marketing-operations-competitive-advantage",
+    date: "March 2026",
+  },
+  {
+    id: "embedded-consultancy-model",
+    date: "March 2026",
+  },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -64,8 +94,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const insightRoutes: MetadataRoute.Sitemap = insightSlugs.map((slug) => ({
-    url: `${BASE_URL}/insights/${slug}`,
+  // Dynamically generate routes for all hardcoded insight articles
+  const insightRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
+    url: `${BASE_URL}/insights/${article.id}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
