@@ -56,17 +56,8 @@ export function MomentumSection() {
           </motion.div>
         </div>
 
-        {/* Systems launch agents — Image Left, Text Right */}
+        {/* Systems launch agents — Text Left, Image Right */}
         <div ref={ref2} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">
-          <motion.div
-            className="order-last flex items-center justify-center w-full h-auto overflow-hidden rounded-lg lg:order-first min-h-[300px] md:min-h-[400px] lg:min-h-[600px]"
-            initial={{ opacity: 0, x: -40, scale: 0.97 }}
-            animate={inView2 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <PaperPlaneIllustration />
-          </motion.div>
-
           <motion.div
             className="space-y-6"
             variants={textContainer}
@@ -90,6 +81,15 @@ export function MomentumSection() {
                 Workflows, data, and governance need to be redesigned. That&apos;s the gap we help you close. We get your system ready for AI - and then we help you deploy agents as working tools, not demo-day theatre.
               </p>
             </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="flex items-center justify-center w-full h-auto overflow-hidden rounded-lg min-h-[300px] md:min-h-[400px] lg:min-h-[600px]"
+            initial={{ opacity: 0, x: 40, scale: 0.97 }}
+            animate={inView2 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <PaperPlaneIllustration />
           </motion.div>
         </div>
 
