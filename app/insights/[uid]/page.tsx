@@ -33,7 +33,7 @@ const articles: Record<
       "MOps sit in the uncomfortable gap between strategy and execution - they can see it widening and they know what to fix. So why is nobody listening?",
     category: "Marketing Operations",
     date: "April 2026",
-    readTime: "2 min read",
+    readTime: "3 min read",
     author: "Ben Scoggins",
     authorRole: "Co-founder",
     heroImage: "/images/insights/indispensable-and-yet-unheard.jpg",
