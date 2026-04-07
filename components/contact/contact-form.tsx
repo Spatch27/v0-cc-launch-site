@@ -4,7 +4,7 @@ import { useState, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
 import { Section } from "@/components/section"
-import { Mail, Send, CheckCircle, ArrowRight } from "lucide-react"
+import { Mail, Linkedin, Send, CheckCircle, ArrowRight } from "lucide-react"
 import EmailAnimation from "./email-animation"
 
 export function ContactForm() {
@@ -274,6 +274,23 @@ export function ContactForm() {
                   <p className="font-semibold text-brand-dark">Email</p>
                   <p className="text-sm text-brand-dark">
                     info@committedcitizens.co.uk
+                  </p>
+                </div>
+                <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/committedcitizens/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-5 border-b border-brand-dark/10 py-8 transition-colors"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-brand-white transition-colors duration-300 group-hover:bg-brand-pink group-hover:text-brand-dark">
+                  <Linkedin size={22} />
+                </div>
+                <div>
+                  <p className="font-semibold text-brand-dark">LinkedIn</p>
+                  <p className="text-sm text-brand-dark">
+                    linkedin.com/company/committedcitizens
                   </p>
                 </div>
                 <ArrowRight size={16} className="ml-auto text-brand-dark/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-pink" />
