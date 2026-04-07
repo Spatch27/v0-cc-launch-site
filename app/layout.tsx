@@ -69,15 +69,42 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable}`} data-scroll-behavior="smooth">
+      <head>
+        {/* Google Consent Mode - must load before gtag.js */}
+        <Script
+          id="google-consent-mode"
+          strategy="beforeInteractive"
+          data-cookieconsent="ignore"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("consent", "default", {
+              ad_personalization: "denied",
+              ad_storage: "denied",
+              ad_user_data: "denied",
+              analytics_storage: "denied",
+              functionality_storage: "denied",
+              personalization_storage: "denied",
+              security_storage: "granted",
+              wait_for_update: 500,
+            });
+            gtag("set", "ads_data_redaction", true);
+            gtag("set", "url_passthrough", false);
+          `}
+        </Script>
+      </head>
       <body className="font-sans antialiased">
-        {/* Cookiebot CMP - lazyOnload to improve LCP while maintaining GDPR compliance */}
+        {/* Cookiebot CMP */}
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
           data-blockingmode="auto"
           type="text/javascript"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
         {/* Google tag (gtag.js) */}
         <Script
