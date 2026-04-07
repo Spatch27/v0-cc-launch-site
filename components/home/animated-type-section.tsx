@@ -1,15 +1,26 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 import Image from "next/image"
 
 export function AnimatedTypeSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [imageLoaded, setImageLoaded] = useState(false)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   })
+
+  // Defer image loading until user scrolls
+  useEffect(() => {
+    const handleScroll = () => {
+      setImageLoaded(true)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true, once: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   // Line 1: "Remove drag." - fade in quickly, hold for a long time, fade out
   const line1Word1Opacity = useTransform(scrollYProgress, [0, 0.05, 0.25, 0.3, 0.35], [0, 1, 1, 1, 0])
@@ -43,17 +54,19 @@ export function AnimatedTypeSection() {
       >
         {/* Sticky container that holds both background and text */}
         <motion.div style={{ opacity: bgOpacity }} className="sticky top-0 h-screen w-full overflow-hidden">
-          {/* Background image - absolute within sticky container */}
+          {/* Background image - deferred until scroll to optimize LCP */}
           <div className="absolute inset-0">
-            <Image
-              src="/images/bridge-aerial-bw.jpg"
-              alt=""
-              fill
-              className="object-cover grayscale brightness-[0.4]"
-              loading="lazy"
-              quality={75}
-              sizes="100vw"
-            />
+            {imageLoaded && (
+              <Image
+                src="/images/bridge-aerial-bw.jpg"
+                alt=""
+                fill
+                className="object-cover grayscale brightness-[0.4]"
+                loading="lazy"
+                quality={75}
+                sizes="100vw"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
           </div>
 
