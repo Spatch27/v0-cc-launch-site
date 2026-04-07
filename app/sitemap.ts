@@ -1,18 +1,14 @@
 import type { MetadataRoute } from "next"
+import { createClient } from "@/lib/prismicio"
 
 const BASE_URL = "https://committedcitizens.co.uk"
 
-const insightSlugs = [
-  "removing-operational-drag",
-  "marketing-operations-competitive-advantage",
-  "embedded-consultancy-model",
-  "building-resilient-marketing-systems",
-  "case-for-marketing-product-teams",
-  "rethinking-marketing-velocity",
-  "weve-seen-enough",
-]
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const client = createClient()
 
-export default function sitemap(): MetadataRoute.Sitemap {
+  // Fetch all insight articles from Prismic
+  const insightArticles = await client.getAllByType("insight_article")
+
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -64,9 +60,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const insightRoutes: MetadataRoute.Sitemap = insightSlugs.map((slug) => ({
-    url: `${BASE_URL}/insights/${slug}`,
-    lastModified: new Date(),
+  // Dynamically generate routes for all insight articles from Prismic
+  const insightRoutes: MetadataRoute.Sitemap = insightArticles.map((article) => ({
+    url: `${BASE_URL}/insights/${article.uid}`,
+    lastModified: article.last_publication_date
+      ? new Date(article.last_publication_date)
+      : new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }))
