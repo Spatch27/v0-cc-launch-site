@@ -27,7 +27,7 @@ const articles = [
       "MOps sit in the uncomfortable gap between strategy and execution - they can see it widening and they know what to fix. So why is nobody listening?",
     category: "Marketing Operations",
     date: "April 2026",
-    readTime: "2 min read",
+    readTime: "3 min read",
     image: "/images/insights/indispensable-and-yet-unheard.jpg",
   },
   {
@@ -37,7 +37,7 @@ const articles = [
       "Too much marketing effort is being lost in the gap between strategy and execution. Committed Citizens make marketing work, work.",
     category: "Operational drag",
     date: "April 2026",
-    readTime: "2 min read",
+    readTime: "3 min read",
     image: "/images/insights/the-problem-no-agency-can-solve.jpg",
   },
   {
@@ -67,7 +67,7 @@ const articles = [
       "'AI brain fry' is real but not inevitable. The key to stopping it lies in better understanding your operating model.",
     category: "Marketing orchestration",
     date: "April 2026",
-    readTime: "2 min read",
+    readTime: "3 min read",
     image: "/images/insights/when-more-ai-means-less-progress.jpg",
   },
   {

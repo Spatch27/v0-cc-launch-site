@@ -52,12 +52,12 @@ export function BuriedSection() {
 
         {/* Illustration — right */}
         <motion.div
-          className="flex items-center justify-center w-full h-auto min-h-[300px] lg:min-h-[600px] overflow-hidden rounded-lg"
+          className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]"
           initial={{ opacity: 0, x: 40, scale: 0.97 }}
           animate={inView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="w-full scale-115 lg:scale-130 origin-center">
+          <div className="w-full origin-center">
             <BusyWorkIllustration />
           </div>
         </motion.div>
