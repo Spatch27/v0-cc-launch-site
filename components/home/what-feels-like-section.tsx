@@ -23,7 +23,7 @@ const benefits = [
   {
     title: "Risk free.",
     description:
-      "If you can't feel it within three weeks, you don't pay for it. Guaranteed.",
+      "If you can't feel it within two weeks, you don't pay for it. Guaranteed.",
   },
 ]
 
