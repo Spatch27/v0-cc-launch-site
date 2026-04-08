@@ -21,9 +21,8 @@ const benefits = [
       "Real-time telemetry. See progress as it happens, not at the end of the quarter.",
   },
   {
-    title: "Risk free.",
-    description:
-      "If you can't feel it within three weeks, you don't pay for it. Guaranteed.",
+    title: "If you can't feel it within two weeks, you don't pay for it. Guaranteed.",
+    description: "",
   },
 ]
 
