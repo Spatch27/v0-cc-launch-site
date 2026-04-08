@@ -2,7 +2,7 @@ import sharp from 'sharp';
 import https from 'https';
 import fs from 'fs';
 
-const imageUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BS%20CC%20Creds%20040326-nVwSg2jTej3TNMJNUocYkP2ZF7DEuH.jpg';
+const imageUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BS%20CC%20Creds%20040326%20%281%29-8CFLKXIaEWPJIhQBBS9sQnuvM5rXvv.png';
 const outputPath = 'public/og-image.jpg';
 
 console.log('[v0] Starting image resize process...');
