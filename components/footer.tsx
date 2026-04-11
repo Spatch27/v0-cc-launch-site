@@ -5,6 +5,14 @@ import { motion } from "framer-motion"
 import { useEffect } from "react"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 
+declare global {
+  interface Window {
+    Cookiebot?: {
+      show: () => void
+    }
+  }
+}
+
 const navigateLinks = [
   { label: "Approach", href: "/approach" },
   { label: "Outcomes", href: "/outcomes" },
@@ -31,6 +39,13 @@ export function Footer() {
       }
     }
   }, [])
+
+  const handleCookieSettings = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    if (window.Cookiebot?.show) {
+      window.Cookiebot.show()
+    }
+  }
 
   return (
     <footer className="relative overflow-hidden text-brand-dark">
@@ -107,12 +122,21 @@ export function Footer() {
           <p className="text-xs text-brand-dark">
             &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
           </p>
-          <Link
-            href="/privacy"
-            className="relative inline-block text-xs text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Privacy
-          </Link>
+          <div className="flex items-center gap-6">
+            <a
+              href="#"
+              onClick={handleCookieSettings}
+              className="relative inline-block text-xs text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Cookie Settings
+            </a>
+            <Link
+              href="/privacy"
+              className="relative inline-block text-xs text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Privacy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
