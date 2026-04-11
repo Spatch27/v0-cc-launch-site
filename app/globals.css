@@ -108,6 +108,11 @@ body {
   color: var(--brand-dark);
 }
 
+/* Hide Cookiebot floating widget */
+#CookiebotWidget {
+  display: none !important;
+}
+
 /* LCP-optimized animations - CSS only, no JS overhead */
 @keyframes fade-in-up {
   from {
