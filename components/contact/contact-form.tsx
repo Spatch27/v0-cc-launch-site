@@ -117,17 +117,7 @@ export function ContactForm() {
               </p>
             </div>
 
-            {submitted && (
-              <div className="flex flex-col gap-6 bg-brand-dark/50 border border-brand-white/10 p-12">
-                <CheckCircle size={48} className="text-brand-pink" />
-                <h3 className="font-display text-2xl font-bold text-brand-white">
-                  Thanks for booking!
-                </h3>
-                <p className="text-lg text-brand-white/60">
-                  We'll be in touch soon to confirm your diagnostic session.
-                </p>
-              </div>
-            )}
+
           </motion.div>
         </div>
       </section>
