@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Inter, Bricolage_Grotesque } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+import { PostHogProvider } from '@/components/posthog-provider'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import './globals.css'
@@ -119,10 +120,12 @@ export default function RootLayout({
             gtag('config', 'G-76PXVCGPES');
           `}
         </Script>
-        <Navigation />
-        <main className="relative">{children}</main>
-        <Footer />
-        <Analytics />
+        <PostHogProvider>
+          <Navigation />
+          <main className="relative">{children}</main>
+          <Footer />
+          <Analytics />
+        </PostHogProvider>
       </body>
     </html>
   )
