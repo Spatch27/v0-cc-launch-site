@@ -156,3 +156,78 @@ body {
     transform: none !important;
   }
 }
+
+/* ─── No-JavaScript Fallbacks ─── */
+/* 
+ * These styles ensure content is visible when JavaScript is disabled.
+ * The <noscript> tag in layout.tsx injects styles that override the 
+ * js-lazy-hidden class and reset Framer Motion initial states.
+ */
+
+/* Hide lazy-loaded content by default (JS will reveal) */
+.js-lazy-hidden {
+  display: none;
+}
+
+/* Noscript fallback navigation styles */
+.noscript-nav {
+  background: var(--brand-dark);
+  padding: 1rem 1.5rem;
+}
+
+.noscript-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.noscript-nav a {
+  color: var(--brand-white);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.noscript-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Noscript banner styles */
+.noscript-banner {
+  background: var(--brand-yellow-light);
+  color: var(--brand-dark);
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+/* Ensure noscript footer styles work */
+.noscript-footer {
+  background: var(--brand-light);
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--brand-dark);
+}
+
+.noscript-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.noscript-footer a {
+  color: var(--brand-dark);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.noscript-footer a:hover {
+  text-decoration: underline;
+}

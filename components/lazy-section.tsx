@@ -15,6 +15,9 @@ interface LazySectionProps {
 /**
  * Defers rendering of below-the-fold sections until they're about to enter the viewport.
  * This improves LCP by reducing initial JavaScript execution and DOM size.
+ * 
+ * When JavaScript is disabled, the noscript-visible class in globals.css ensures
+ * content is still visible to users.
  */
 export function LazySection({
   children,
@@ -46,8 +49,16 @@ export function LazySection({
   }, [rootMargin])
 
   return (
-    <div ref={ref} className={className} style={{ minHeight: shouldRender ? undefined : minHeight }}>
-      {shouldRender ? children : null}
+    <div 
+      ref={ref} 
+      className={`${className} noscript-visible`} 
+      style={{ minHeight: shouldRender ? undefined : minHeight }}
+    >
+      {/* Always render children in DOM but hide visually until JS triggers */}
+      {/* noscript-visible class ensures content shows when JS is disabled */}
+      <div className={shouldRender ? undefined : "js-lazy-hidden"}>
+        {children}
+      </div>
     </div>
   )
 }

@@ -97,6 +97,44 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans antialiased">
+        {/* No-JavaScript fallback: show navigation and content notice */}
+        <noscript>
+          <style dangerouslySetInnerHTML={{ __html: `
+            /* When JS is disabled, show all content that would normally be lazy-loaded or animated */
+            .js-lazy-hidden { display: block !important; }
+            .noscript-visible { min-height: auto !important; }
+            
+            /* Reset all Framer Motion initial states - make everything visible */
+            /* Framer Motion sets inline styles for opacity and transform on initial render */
+            [style*="opacity: 0"], 
+            [style*="opacity:0"] { opacity: 1 !important; }
+            [style*="transform"] { transform: none !important; }
+            
+            /* Ensure all motion.div, motion.section, etc. are visible */
+            /* These may have hidden initial states */
+            div[style], section[style], span[style], p[style], h1[style], h2[style], h3[style] {
+              opacity: 1 !important;
+              transform: none !important;
+            }
+            
+            /* CSS animations should still work, so we keep those */
+            .animate-fade-in-up { opacity: 1 !important; animation: none !important; }
+            .animation-delay-200, .animation-delay-400 { opacity: 1 !important; animation: none !important; }
+          `}} />
+          <div className="noscript-banner">
+            This site works best with JavaScript enabled. Some interactive features may be limited.
+          </div>
+          <nav className="noscript-nav" aria-label="Main navigation (no JavaScript)">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/approach">Approach</a></li>
+              <li><a href="/outcomes">Outcomes</a></li>
+              <li><a href="/insights">Insights</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </nav>
+        </noscript>
         {/* Cookiebot CMP */}
         <Script
           id="Cookiebot"

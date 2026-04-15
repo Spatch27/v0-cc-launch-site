@@ -1,6 +1,6 @@
 "use client"
 
-import { useScroll, useTransform, motion } from "framer-motion"
+import { useScroll, useTransform, motion, type MotionStyle } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 
 export function HeroSection() {
@@ -26,11 +26,15 @@ export function HeroSection() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.93])
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
+  // When JS is disabled or not yet mounted, motion.section renders as a regular section
+  // The CSS classes ensure full visibility even without JS
+  const motionStyles: MotionStyle | undefined = mounted ? { scale, opacity } : undefined
+
   return (
     <motion.section
       ref={sectionRef}
-      style={mounted ? { scale, opacity } : undefined}
-      className="relative min-h-svh lg:h-screen bg-brand-orange px-6 lg:px-12"
+      style={motionStyles}
+      className="relative min-h-svh lg:h-screen bg-brand-orange px-6 lg:px-12 noscript-visible"
     >
       <div className="mx-auto flex max-w-[1400px] flex-col pt-20 lg:pt-28 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
         {/* Main headline - CSS animation for initial load, no Framer delay */}
