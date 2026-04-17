@@ -428,7 +428,7 @@ const articles: Record<
         type: "image",
         src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lighthouse_composite-iI6HcEUvMGiYFOS1a79jVxfZfwzbQB.png",
         alt: "Google Lighthouse scores showing Mobile: 73 Performance, 100 Accessibility, 100 Best Practices, 100 SEO – and Desktop: 100 across all four categories",
-        caption: "Lighthouse scores for committedcitizens.co.uk. Desktop scores 100 across all categories; mobile performance comes in at 73.",
+        caption: "Lighthouse scores for committedcitizens.co.uk.",
       },
       {
         type: "paragraph",
