@@ -22,7 +22,7 @@ const articles: Record<
     author: string
     authorRole: string
     heroImage: string
-    body: ({ type: "heading2" | "paragraph"; text: string } | { type: "image"; src: string; alt: string; caption?: string })[]
+    body: ({ type: "heading2" | "paragraph" | "code"; text: string } | { type: "image"; src: string; alt: string; caption?: string } | { type: "paragraph-with-link"; text: string; linkText: string; linkHref: string })[]
     seoTitle?: string
     seoDescription?: string
   }
@@ -364,14 +364,14 @@ const articles: Record<
     heroImage: "/images/insights/i-cant-code.svg",
     seoTitle: "I can't code. I built a professional website anyway. | Committed Citizens",
     seoDescription:
-      "Knowing which job belongs to a human and which belongs to the machine is the key skill. Here's how we built this site for £120 by getting that right.",
+      "Knowing which job belongs to a human and which belongs to the machine is the key skill. Here's how we built this site for ��120 by getting that right.",
     body: [
       {
         type: "paragraph",
         text: "The last program I wrote was in primary school. It looked like this:",
       },
       {
-        type: "paragraph",
+        type: "code",
         text: "10 PRINT \"BOOBS\"\n20 GOTO 10",
       },
       {
@@ -395,10 +395,6 @@ const articles: Record<
         text: "For Committed Citizens I wanted something that lived in GitHub and used established frameworks. I wanted a real codebase - I just couldn't write it.",
       },
       {
-        type: "heading2",
-        text: "The right tool for the job",
-      },
-      {
         type: "paragraph",
         text: "My search led me to a vibe-coding platform called V0, from Vercel - the company that created Next.js, a popular web framework. I understood why that mattered. It meant I was building on the same foundations as the professionals. Once I needed a real engineer to step in, they wouldn't be staring at a black box and wondering how to open it.",
       },
@@ -407,16 +403,22 @@ const articles: Record<
         text: "Before I wrote a single prompt, we made the most important decision of the project: we wouldn't use AI to design the identity. I've worked long enough to know what a brilliant brand designer is worth - and what gets lost when you try to do it yourself. You can vibe-design a logo but they are, without exception, garbage. You get something that looks like everything else and nothing in particular at the same time.",
       },
       {
-        type: "paragraph",
-        text: "I asked Tish England - a designer I've worked with for years - to create our new identity. And I worked hard at being the kind of client that designers want to work with: a clear brief, genuine trust, and a refusal to art-direct someone whose eye is better than mine. If you're building a brand and you haven't worked with Tish, you should.",
+        type: "paragraph-with-link",
+        text: "I asked Tish England - a designer I've worked with for years - to create our new identity. And I worked hard at being the kind of client that designers want to work with: a clear brief, genuine trust, and a refusal to art-direct someone whose eye is better than mine. If you're building a brand and you haven't worked with ",
+        linkText: "Tish",
+        linkHref: "https://www.linkedin.com/in/tish-england/",
       },
       {
         type: "paragraph",
-        text: "The work she came back with far exceeded what we briefed. What she developed - a distinctively human visual language with real character - became the foundation that I took into V0. Knowing which job belongs to a human and which belongs to the machine is, I'd argue, the key skill.",
+        text: " you should.",
+      },
+      {
+        type: "paragraph",
+        text: "The work she came back with far exceeded what we briefed. What she developed - a distinctively human visual language with real character - became the foundation that I took into V0.",
       },
       {
         type: "heading2",
-        text: "Building momentum",
+        text: "Knowing which job belongs to a human and which belongs to the machine is, I'd argue, the key skill.",
       },
       {
         type: "paragraph",
@@ -435,10 +437,6 @@ const articles: Record<
       {
         type: "paragraph",
         text: "The worst thing about vibe-coding is the inverse. Simple tasks that would take an experienced developer minutes can spiral into a marathon, burning through tokens and wasting time, circling the same problem without resolution. On some days the tool feels like genuine magic, while on others you're playing chess with a pigeon - a pigeon with infinite energy and no memory of what you've already tried a hundred times. You learn to walk away. Come back. Reframe the question.",
-      },
-      {
-        type: "heading2",
-        text: "The numbers",
       },
       {
         type: "paragraph",
@@ -792,6 +790,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 )
               }
 
+              if (block.type === "code") {
+                return (
+                  <pre key={i} className="mb-6 overflow-x-auto rounded-sm bg-brand-dark/5 px-4 py-3 font-mono text-sm leading-relaxed text-brand-dark">
+                    <code>{block.text}</code>
+                  </pre>
+                )
+              }
+
               if (block.type === "image") {
                 return (
                   <figure key={i} className="my-10">
@@ -809,6 +815,23 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                       </figcaption>
                     )}
                   </figure>
+                )
+              }
+
+              if (block.type === "paragraph-with-link") {
+                return (
+                  <p key={i} className="mb-6 leading-relaxed text-brand-dark/80">
+                    {block.text}
+                    <a
+                      href={block.linkHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-brand-primary underline hover:text-brand-primary/80"
+                    >
+                      {block.linkText}
+                    </a>
+                    {block.text.includes("If you're building") ? "," : ""}
+                  </p>
                 )
               }
               
