@@ -356,7 +356,7 @@ const articles: Record<
     title: "I can't code. I built a professional website anyway.",
     excerpt:
       "Knowing which job belongs to a human and which belongs to the machine is the key skill. Here's how we built this site for £120 by getting that right.",
-    category: "Technology & tooling",
+    category: "TECHNOLOGY & TOOLS",
     date: "April 2026",
     readTime: "7 min read",
     author: "Tim Burley",
