@@ -22,7 +22,7 @@ const articles: Record<
     author: string
     authorRole: string
     heroImage: string
-    body: ({ type: "heading2" | "paragraph" | "code"; text: string } | { type: "image"; src: string; alt: string; caption?: string } | { type: "paragraph-with-link"; text: string; linkText: string; linkHref: string })[]
+    body: ({ type: "heading2" | "paragraph" | "code"; text: string } | { type: "image"; src: string; alt: string; caption?: string } | { type: "paragraph-with-link"; text: string; linkText: string; linkHref: string; textAfter?: string })[]
     seoTitle?: string
     seoDescription?: string
   }
@@ -407,10 +407,7 @@ const articles: Record<
         text: "I asked Tish England - a designer I've worked with for years - to create our new identity. And I worked hard at being the kind of client that designers want to work with: a clear brief, genuine trust, and a refusal to art-direct someone whose eye is better than mine. If you're building a brand and you haven't worked with ",
         linkText: "Tish",
         linkHref: "https://www.linkedin.com/in/tish-england/",
-      },
-      {
-        type: "paragraph",
-        text: " you should.",
+        textAfter: ", you should.",
       },
       {
         type: "paragraph",
@@ -830,7 +827,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     >
                       {block.linkText}
                     </a>
-                    {block.text.includes("If you're building") ? "," : ""}
+                    {block.textAfter}
                   </p>
                 )
               }
