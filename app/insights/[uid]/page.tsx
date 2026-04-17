@@ -22,7 +22,7 @@ const articles: Record<
     author: string
     authorRole: string
     heroImage: string
-    body: { type: "heading2" | "paragraph"; text: string }[]
+    body: ({ type: "heading2" | "paragraph"; text: string } | { type: "image"; src: string; alt: string; caption?: string })[]
     seoTitle?: string
     seoDescription?: string
   }
@@ -352,6 +352,112 @@ const articles: Record<
       },
     ],
   },
+  "i-cant-code": {
+    title: "I can't code. I built a professional website anyway.",
+    excerpt:
+      "Knowing which job belongs to a human and which belongs to the machine is the key skill. Here's how we built this site for £120 by getting that right.",
+    category: "Technology & tooling",
+    date: "April 2026",
+    readTime: "7 min read",
+    author: "Tim Burley",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/i-cant-code.svg",
+    seoTitle: "I can't code. I built a professional website anyway. | Committed Citizens",
+    seoDescription:
+      "Knowing which job belongs to a human and which belongs to the machine is the key skill. Here's how we built this site for £120 by getting that right.",
+    body: [
+      {
+        type: "paragraph",
+        text: "The last program I wrote was in primary school. It looked like this:",
+      },
+      {
+        type: "paragraph",
+        text: "10 PRINT \"BOOBS\"\n20 GOTO 10",
+      },
+      {
+        type: "paragraph",
+        text: "That's it - the full extent of my engineering career.",
+      },
+      {
+        type: "paragraph",
+        text: "Which makes my professional life slightly awkward. I've spent years working in web design and build - close enough to engineering decisions so that clients assume I'm technical, and close enough to engineers so that they know I'm not. I've lived permanently in the gap.",
+      },
+      {
+        type: "paragraph",
+        text: "When vibe coding arrived, I jumped in immediately. I've tried many options - Lovable, Base44, Google AI Studio, Bolt. Each gave me something, but I kept running into the same wall: I wanted a stack I could evolve.",
+      },
+      {
+        type: "paragraph",
+        text: "This is where most vibe-coded sites quietly fail. The AI generates something that looks great on day one. But nothing is modular. Making a change in one place breaks something somewhere else. The site works, but it can't grow.",
+      },
+      {
+        type: "paragraph",
+        text: "For Committed Citizens I wanted something that lived in GitHub and used established frameworks. I wanted a real codebase - I just couldn't write it.",
+      },
+      {
+        type: "heading2",
+        text: "The right tool for the job",
+      },
+      {
+        type: "paragraph",
+        text: "My search led me to a vibe-coding platform called V0, from Vercel - the company that created Next.js, a popular web framework. I understood why that mattered. It meant I was building on the same foundations as the professionals. Once I needed a real engineer to step in, they wouldn't be staring at a black box and wondering how to open it.",
+      },
+      {
+        type: "paragraph",
+        text: "Before I wrote a single prompt, we made the most important decision of the project: we wouldn't use AI to design the identity. I've worked long enough to know what a brilliant brand designer is worth - and what gets lost when you try to do it yourself. You can vibe-design a logo but they are, without exception, garbage. You get something that looks like everything else and nothing in particular at the same time.",
+      },
+      {
+        type: "paragraph",
+        text: "I asked Tish England - a designer I've worked with for years - to create our new identity. And I worked hard at being the kind of client that designers want to work with: a clear brief, genuine trust, and a refusal to art-direct someone whose eye is better than mine. If you're building a brand and you haven't worked with Tish, you should.",
+      },
+      {
+        type: "paragraph",
+        text: "The work she came back with far exceeded what we briefed. What she developed - a distinctively human visual language with real character - became the foundation that I took into V0. Knowing which job belongs to a human and which belongs to the machine is, I'd argue, the key skill.",
+      },
+      {
+        type: "heading2",
+        text: "Building momentum",
+      },
+      {
+        type: "paragraph",
+        text: "From there, the build took on its own momentum. My co-founder Ben pushed for motion - animated type and illustrations - raising the bar significantly and giving the site a sense of energy. V0 made it straightforward to integrate the services the site needed such as Google Analytics, Search Console and Cookiebot. The Lighthouse scores - which measure site performance, accessibility, best practices and SEO - scored perfectly on desktop: 100 across all four categories. Mobile came in at 73 on performance, with the other three at 100.",
+      },
+      {
+        type: "image",
+        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lighthouse_composite-iI6HcEUvMGiYFOS1a79jVxfZfwzbQB.png",
+        alt: "Google Lighthouse scores showing Mobile: 73 Performance, 100 Accessibility, 100 Best Practices, 100 SEO – and Desktop: 100 across all four categories",
+        caption: "Lighthouse scores for committedcitizens.co.uk. Desktop scores 100 across all categories; mobile performance comes in at 73.",
+      },
+      {
+        type: "paragraph",
+        text: "The best thing about vibe-coding is that you never exhaust your developer's patience. You can keep going, keep refining, keep pushing toward the outcome you want. There's no budget conversation, no 'we can pick that up next quarter.' That creative freedom is unlike anything I've had access to before.",
+      },
+      {
+        type: "paragraph",
+        text: "The worst thing about vibe-coding is the inverse. Simple tasks that would take an experienced developer minutes can spiral into a marathon, burning through tokens and wasting time, circling the same problem without resolution. On some days the tool feels like genuine magic, while on others you're playing chess with a pigeon - a pigeon with infinite energy and no memory of what you've already tried a hundred times. You learn to walk away. Come back. Reframe the question.",
+      },
+      {
+        type: "heading2",
+        text: "The numbers",
+      },
+      {
+        type: "paragraph",
+        text: "Committedcitizens.co.uk is a great first site for a start-up. It won't win any awards and a real expert can peek under the hood and point out the issues. But whatever you think of our new site, it is unquestionably a bargain. Between February 18th and April 14th 2026 I spent a grand total of £150 on V0 credits across 123 pull requests, and I still have £30 left in the account.",
+      },
+      {
+        type: "paragraph",
+        text: "The credits don't capture the full picture. The information architecture and UX - what pages exist, what goes where, how a visitor moves through it - was worked out between us the old-fashioned way. The copy too. Claude helped shape it, but every word was written from scratch with a specific reader in mind.",
+      },
+      {
+        type: "paragraph",
+        text: "I'm sure that my years spent working on web projects helped us get to a good place faster. But I also believe that anyone can build value this way. The only real mistake is letting AI design the identity - everything else you can figure out as you go.",
+      },
+      {
+        type: "paragraph",
+        text: "The developer of committedcitizens.co.uk cost £120 and had never written a line of code in his life - not since primary school, anyway.",
+      },
+    ],
+  },
   "weve-seen-enough": {
     title: "We'd seen enough.",
     excerpt:
@@ -640,13 +746,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Full-width Hero Image */}
       <section className="bg-brand-light px-6 pb-0 lg:px-12">
         <div className="mx-auto max-w-[1400px]">
-          <div className="relative aspect-[21/9] w-full overflow-hidden">
+          <div className={`relative w-full overflow-hidden ${article.heroImage.endsWith(".svg") ? "aspect-[4/3] md:aspect-[21/9] bg-[#e3dcdc]" : "aspect-[21/9]"}`}>
             <Image
               src={article.heroImage}
               alt={article.title}
               fill
-              className="object-cover"
-              style={{ objectPosition: "center 35%" }}
+              className={article.heroImage.endsWith(".svg") ? "object-contain" : "object-cover"}
+              style={article.heroImage.endsWith(".svg") ? undefined : { objectPosition: "center 35%" }}
               priority
               sizes="(max-width: 1400px) 100vw, 1400px"
             />
@@ -683,6 +789,26 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   >
                     {block.text}
                   </h2>
+                )
+              }
+
+              if (block.type === "image") {
+                return (
+                  <figure key={i} className="my-10">
+                    <Image
+                      src={block.src}
+                      alt={block.alt}
+                      width={1200}
+                      height={400}
+                      className="w-full rounded-sm border border-brand-dark/10"
+                      sizes="(max-width: 768px) 100vw, 720px"
+                    />
+                    {block.caption && (
+                      <figcaption className="mt-3 text-sm text-brand-dark/50 text-center leading-relaxed">
+                        {block.caption}
+                      </figcaption>
+                    )}
+                  </figure>
                 )
               }
               
