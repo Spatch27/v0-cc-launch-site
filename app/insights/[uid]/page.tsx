@@ -414,7 +414,7 @@ const articles: Record<
         text: "The work she came back with far exceeded what we briefed. What she developed - a distinctively human visual language with real character - became the foundation that I took into V0.",
       },
       {
-        type: "heading2",
+        type: "paragraph",
         text: "Knowing which job belongs to a human and which belongs to the machine is, I'd argue, the key skill.",
       },
       {
