@@ -445,7 +445,7 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "I'm sure that my years spent working on web projects helped us get to a good place faster. But I also believe that anyone can build value this way. The only real mistake is letting AI design the identity - everything else you can figure out as you go.",
+        text: "I'm sure that my years spent working on web projects helped us get to a good place faster. But I also believe that anyone can build this way. The only real mistake is letting AI design the identity - everything else you can figure out as you go.",
       },
       {
         type: "paragraph",
