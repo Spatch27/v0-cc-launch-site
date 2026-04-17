@@ -437,7 +437,7 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "Committedcitizens.co.uk is a great first site for a start-up. It won't win any awards and a real expert can peek under the hood and point out the issues. But whatever you think of our new site, it is unquestionably a bargain. Between February 18th and April 14th 2026 I spent a grand total of £150 on V0 credits across 123 pull requests, and I still have £30 left in the account.",
+        text: "Committedcitizens.co.uk is a great first site for a start-up. It won't win any awards and a real expert can peek under the hood and point out the issues. But whatever you think of our new site, it is unquestionably a bargain. Between February 18th and April 14th 2026 I spent a grand total of £150 on V0 credits across 123 pull requests (or PRs as we 'engineers' call them - that's how GitHub defines each version of the live site), and I still have £30 left in the account.",
       },
       {
         type: "paragraph",
