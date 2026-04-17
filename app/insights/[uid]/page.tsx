@@ -817,7 +817,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
               if (block.type === "paragraph-with-link") {
                 return (
-                  <p key={i} className="mb-6 leading-relaxed text-brand-dark/80">
+                  <p key={i} className="mb-6 text-lg leading-relaxed text-brand-dark/80">
                     {block.text}
                     <a
                       href={block.linkHref}
