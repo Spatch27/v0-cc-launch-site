@@ -414,7 +414,7 @@ const articles: Record<
         text: "The work she came back with far exceeded what we briefed. What she developed - a distinctively human visual language with real character - became the foundation that I took into V0.",
       },
       {
-        type: "heading2",
+        type: "paragraph",
         text: "Knowing which job belongs to a human and which belongs to the machine is, I'd argue, the key skill.",
       },
       {
@@ -437,7 +437,7 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "Committedcitizens.co.uk is a great first site for a start-up. It won't win any awards and a real expert can peek under the hood and point out the issues. But whatever you think of our new site, it is unquestionably a bargain. Between February 18th and April 14th 2026 I spent a grand total of £150 on V0 credits across 123 pull requests, and I still have £30 left in the account.",
+        text: "Committedcitizens.co.uk is a great first site for a start-up. It won't win any awards and a real expert can peek under the hood and point out the issues. But whatever you think of our new site, it is unquestionably a bargain. Between February 18th and April 14th 2026 I spent a grand total of £150 on V0 credits across 123 pull requests (or PRs as we 'engineers' call them - that's how GitHub defines each version of the live site), and I still have £30 left in the account.",
       },
       {
         type: "paragraph",
@@ -445,7 +445,7 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "I'm sure that my years spent working on web projects helped us get to a good place faster. But I also believe that anyone can build value this way. The only real mistake is letting AI design the identity - everything else you can figure out as you go.",
+        text: "I'm sure that my years spent working on web projects helped us get to a good place faster. But I also believe that anyone can build this way. The only real mistake is letting AI design the identity - everything else you can figure out as you go.",
       },
       {
         type: "paragraph",
