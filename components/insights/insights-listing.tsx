@@ -214,7 +214,7 @@ export function InsightsListing() {
           animate="visible"
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          {remainingArticles.slice(0, 8).map((article) => (
+          {remainingArticles.slice(0, 12).map((article) => (
             <Link key={article.id} href={`/insights/${article.id}`}>
               <motion.article
                 variants={fadeInUp}
