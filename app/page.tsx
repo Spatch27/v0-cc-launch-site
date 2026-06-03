@@ -3,6 +3,7 @@ import { BuriedSection } from "@/components/home/buried-section"
 import { AnimatedTypeSection } from "@/components/home/animated-type-section"
 import { MomentumSection } from "@/components/home/momentum-section"
 import { WhatLooksLikeSection } from "@/components/home/what-looks-like-section"
+import { FourPillarsSection } from "@/components/home/four-pillars-section"
 import { WhatFeelsLikeSection } from "@/components/home/what-feels-like-section"
 import { CtaBand } from "@/components/cta-band"
 import { LazySection } from "@/components/lazy-section"
@@ -25,6 +26,10 @@ export default function HomePage() {
       
       <LazySection minHeight="400px" rootMargin="200px">
         <WhatLooksLikeSection />
+      </LazySection>
+      
+      <LazySection minHeight="500px" rootMargin="200px">
+        <FourPillarsSection />
       </LazySection>
       
       <LazySection minHeight="300px" rootMargin="200px">
