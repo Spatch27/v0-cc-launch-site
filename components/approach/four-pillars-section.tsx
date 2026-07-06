@@ -125,6 +125,15 @@ export function FourPillarsSection() {
         </div>
       </div>
 
+      {/* Supporting copy */}
+      <div className="px-6 py-8 lg:px-12 lg:py-10">
+        <div className="mx-auto max-w-[1400px]">
+          <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
+            This is where drag actually hides – the workaround that&apos;s become the culture, the approvals that loop round six people, the dashboard finance won&apos;t trust. Fix the surface symptom and it comes back. Fix the lever underneath and it sticks.
+          </p>
+        </div>
+      </div>
+
       {/* Mobile: accordion */}
       <div className="md:hidden divide-y divide-brand-dark/20">
         {pillars.map((pillar) => {
