@@ -125,7 +125,7 @@ function CircleButton({
         textAnchor="middle"
         fontSize={isHovered ? 16 : 15}
         fontWeight="bold"
-        fill="#181716"
+        fill="#FFFFFF"
         className="font-display select-none"
         style={{ pointerEvents: "none" }}
       >
@@ -175,7 +175,7 @@ export function OperatingModelDiagram() {
               textAnchor="middle"
               fontSize="13"
               fontWeight="bold"
-              fill="#181716"
+              fill="#FFFFFF"
               className="font-display select-none"
               style={{ pointerEvents: "none" }}
             >
@@ -187,7 +187,7 @@ export function OperatingModelDiagram() {
               textAnchor="middle"
               fontSize="13"
               fontWeight="bold"
-              fill="#181716"
+              fill="#FFFFFF"
               className="font-display select-none"
               style={{ pointerEvents: "none" }}
             >
@@ -252,10 +252,10 @@ export function OperatingModelDiagram() {
               key={item.name}
               variants={fadeInUp}
               custom={idx}
-              className="p-6 border-l-4 border-brand-pink bg-brand-pink/5 rounded"
+              className="p-6 border-l-4 border-brand-pink bg-brand-white/5 rounded"
             >
-              <h4 className="font-display font-bold text-brand-dark mb-2">{item.name}</h4>
-              <p className="text-sm text-brand-dark/70">{item.description}</p>
+              <h4 className="font-display font-bold text-brand-white mb-2">{item.name}</h4>
+              <p className="text-sm text-brand-white/70">{item.description}</p>
             </motion.div>
           ))}
           {/* Supporting items */}
@@ -264,10 +264,10 @@ export function OperatingModelDiagram() {
               key={item.name}
               variants={fadeInUp}
               custom={operatingModelItems.primary.length + idx}
-              className="p-6 border border-dashed border-brand-dark/20 rounded"
+              className="p-6 border border-dashed border-brand-white/20 rounded"
             >
-              <h4 className="font-display font-bold text-brand-dark mb-2">{item.name}</h4>
-              <p className="text-sm text-brand-dark/70">{item.description}</p>
+              <h4 className="font-display font-bold text-brand-white mb-2">{item.name}</h4>
+              <p className="text-sm text-brand-white/70">{item.description}</p>
             </motion.div>
           ))}
         </div>
