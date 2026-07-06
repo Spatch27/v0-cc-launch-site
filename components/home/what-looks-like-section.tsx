@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
-import { Plus, X } from "lucide-react"
+import { Plus } from "lucide-react"
 import { Section } from "@/components/section"
 import { staggerContainer, fadeInUp } from "@/lib/animations"
 
@@ -68,9 +68,13 @@ function AccordionItem({
         <span className="font-display text-xl font-bold leading-snug text-brand-dark md:text-2xl">
           {item.heading}
         </span>
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-brand-dark transition-all duration-200">
-          {isOpen ? <X size={14} strokeWidth={2.5} /> : <Plus size={14} strokeWidth={2.5} />}
-        </span>
+        <motion.span
+          animate={{ rotate: isOpen ? 45 : 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-brand-dark"
+        >
+          <Plus size={14} strokeWidth={2.5} />
+        </motion.span>
       </button>
 
       <AnimatePresence initial={false}>
