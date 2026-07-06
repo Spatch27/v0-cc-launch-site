@@ -21,14 +21,11 @@ export function WorkflowsBehaviourSection() {
       >
         <div>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Workflows follow behaviour.
+            Everyone gets a jetpack.
           </h2>
           <div className="space-y-6">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We keep hearing the same story. Marketing invests in a new platform. There's a town hall, they train the trainers - and within months the team has rebuilt their old spreadsheets. The technology works but the project failed.
-            </p>
-            <p className="text-lg leading-relaxed text-brand-dark">
-              The same thing is happening with AI - but on steroids. Teams are piloting agents without redesigning the workflows around them. Same pattern, same result: Technology that works in isolation but fails in practice.
+              Too many models treat people as another part of the system. In contrast, we measure every part of the system by how it empowers your people: where their time goes, what they can decide, what they can trust, and what gets easier over time. We don&apos;t manage people through change, we build a system that better supports them.
             </p>
           </div>
         </div>
