@@ -53,10 +53,10 @@ export function FourPillarsSection() {
       <div className="px-6 py-8 lg:px-12 lg:py-12">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Where we focus.
+            What holds it all together
           </h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-brand-dark">
-            Every cycle targets one of four areas — the dimensions that shape how marketing actually operates.
+            People run through every part of the system. Wherever you start, we assess your operating system across four people-first levers:
           </p>
         </div>
       </div>
