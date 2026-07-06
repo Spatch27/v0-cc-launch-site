@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 const pillars = [
   {
     id: "people",
-    title: "People",
+    title: "Team",
     icon: "/icons/icon-team.svg",
     shortDescription: "Talented individuals aligned around shared purpose.",
     expandedDescription:
