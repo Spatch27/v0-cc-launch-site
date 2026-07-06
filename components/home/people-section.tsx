@@ -2,8 +2,8 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import Image from "next/image"
 import { Section } from "@/components/section"
+import RocketWobbleIllustration from "@/components/illustrations/rocket-wobble"
 
 const textContainer = {
   hidden: {},
@@ -20,23 +20,19 @@ export function PeopleSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
   return (
-    <Section background="white">
+    <Section background="light">
       <div ref={ref} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">
 
-        {/* Image — left */}
+        {/* Illustration — left */}
         <motion.div
-          className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg"
+          className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]"
           initial={{ opacity: 0, x: -40, scale: 0.97 }}
           animate={inView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Image
-            src="/images/people-together.png"
-            alt="A team of people collaborating around a table"
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
+          <div className="w-full origin-center">
+            <RocketWobbleIllustration />
+          </div>
         </motion.div>
 
         {/* Text — right */}
