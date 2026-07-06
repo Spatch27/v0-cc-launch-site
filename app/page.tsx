@@ -36,12 +36,12 @@ export default function HomePage() {
       
       <LazySection minHeight="300px" rootMargin="200px">
         <CtaBand
-          heading="Not sure where to start? Start here."
+          heading="Momentum starts with a single move."
           body={[
-            "The Drag Diagnostic is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most — and what to fix first.",
-            "You'll walk away with a Flow Map: a single-page view of where friction is concentrated, what it's costing you, and which fix would yield the fastest return. Board-ready language for a budget conversation, not a feelings conversation. Yours to keep, whether or not we work together."
+            "Waypoint is a free 60-minute session. An open, honest conversation, backed by research – one hour spent on you, not on the state of the industry. Everyone's telling you where marketing is heading. But nobody's helping you work out what to do about it right now.",
+            "Within 48 hours you get your Waypoint Marker: a two-page view of where you're being held back and what to focus on first. Board-ready language for a budget conversation – yours to keep, whether we work together or not."
           ]}
-          ctaLabel="Book a Drag Diagnostic"
+          ctaLabel="Book Your Waypoint"
           ctaHref="/contact#book"
           background="pink"
         />
