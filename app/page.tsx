@@ -1,5 +1,6 @@
 import { HeroSection } from "@/components/home/hero-section"
 import { BuriedSection } from "@/components/home/buried-section"
+import { PeopleSection } from "@/components/home/people-section"
 import { AnimatedTypeSection } from "@/components/home/animated-type-section"
 import { MomentumSection } from "@/components/home/momentum-section"
 import { WhatLooksLikeSection } from "@/components/home/what-looks-like-section"
@@ -13,6 +14,10 @@ export default function HomePage() {
       {/* Above the fold - render immediately for fast LCP */}
       <HeroSection />
       <BuriedSection />
+
+      <LazySection minHeight="500px" rootMargin="200px">
+        <PeopleSection />
+      </LazySection>
       
       {/* Below the fold - lazy load for better initial performance */}
       <LazySection minHeight="600px" rootMargin="300px">
