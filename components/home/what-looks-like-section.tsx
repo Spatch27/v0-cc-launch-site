@@ -4,7 +4,7 @@ import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { Plus, X } from "lucide-react"
 import { Section } from "@/components/section"
-import { textContainer, textChild } from "@/lib/animations"
+import { staggerContainer, fadeInUp } from "@/lib/animations"
 
 const items = [
   {
@@ -101,13 +101,13 @@ export function WhatLooksLikeSection() {
     <Section background="white">
       <div ref={ref} className="mx-auto max-w-3xl">
         <motion.div
-          variants={textContainer}
+          variants={staggerContainer}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           className="mb-10"
         >
           <motion.h2
-            variants={textChild}
+            variants={fadeInUp}
             className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
           >
             What it looks like.
