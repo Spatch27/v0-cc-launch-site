@@ -21,7 +21,7 @@ const items = [
   },
   {
     heading: "Data-backed decisions",
-    body: "The ability to see what's working and prove results.",
+    body: "The ability to see what&apos;s working and prove results.",
   },
   {
     heading: "AI that delivers",
@@ -50,22 +50,25 @@ function AccordionItem({
   onToggle: () => void
   inView: boolean
 }) {
+  const isDeep = index % 2 === 0
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.07 }}
-      className="border-b border-brand-dark/20 last:border-b-0"
     >
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="group flex w-full items-center justify-between gap-6 py-5 text-left transition-colors duration-200 hover:text-brand-pink focus-visible:outline-none"
+        className={`group flex w-full items-center justify-between gap-6 px-8 py-5 text-left transition-colors duration-200 focus-visible:outline-none ${
+          isDeep ? "bg-brand-yellow-deep" : "bg-brand-yellow-light"
+        }`}
       >
-        <span className="font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-200 group-hover:text-brand-pink md:text-2xl">
+        <span className="font-display text-xl font-bold leading-snug text-brand-dark md:text-2xl">
           {item.heading}
         </span>
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-brand-dark transition-all duration-200 group-hover:border-brand-pink group-hover:text-brand-pink">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-brand-dark transition-all duration-200">
           {isOpen ? <X size={14} strokeWidth={2.5} /> : <Plus size={14} strokeWidth={2.5} />}
         </span>
       </button>
@@ -80,7 +83,7 @@ function AccordionItem({
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-6 pr-12 text-base leading-relaxed text-brand-dark/80 md:text-lg">
+            <p className="bg-brand-light px-8 py-5 text-base leading-relaxed text-brand-dark md:text-lg">
               {item.body}
             </p>
           </motion.div>
@@ -114,7 +117,7 @@ export function WhatLooksLikeSection() {
           </motion.h2>
         </motion.div>
 
-        <div>
+        <div className="overflow-hidden rounded-sm">
           {items.map((item, i) => (
             <AccordionItem
               key={item.heading}
