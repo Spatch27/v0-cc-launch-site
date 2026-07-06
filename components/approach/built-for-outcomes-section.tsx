@@ -32,7 +32,7 @@ export function BuiltForOutcomesSection() {
               className="font-display text-6xl font-bold text-center md:text-7xl"
               style={{ color: "#FFD100" }}
             >
-              Built for outcomes.
+              Built for outcomes, not renewals.
             </motion.h2>
           </div>
         </div>
