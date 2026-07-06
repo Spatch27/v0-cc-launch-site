@@ -121,7 +121,7 @@ export function WhatLooksLikeSection() {
           </motion.h2>
         </motion.div>
 
-        <div className="overflow-hidden rounded-sm">
+        <div className="overflow-hidden rounded-sm lg:ml-20">
           {items.map((item, i) => (
             <AccordionItem
               key={item.heading}
