@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { ArrowRight } from "lucide-react"
+import { textRollUp, textRollDown } from "@/lib/animations"
 import { Section } from "@/components/section"
 import PaperPlaneIllustration from "@/components/approach/paper-plane-illustration"
 import RocketIllustration from "@/components/home/rocket-illustration"
@@ -19,6 +20,7 @@ const textChild = {
 }
 
 export function MomentumSection() {
+  const [isHovered, setIsHovered] = useState(false)
   const ref1 = useRef(null)
   const inView1 = useInView(ref1, { once: true, margin: "-80px" })
 
@@ -49,10 +51,30 @@ export function MomentumSection() {
             <motion.div variants={textChild}>
               <Link
                 href="/approach"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-pink"
+                className="group inline-flex w-fit items-center gap-3 border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+                style={{ borderRadius: "4px" }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
-                Our Approach
-                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="relative inline-block overflow-hidden">
+                  <motion.span
+                    initial="initial"
+                    animate={isHovered ? "hover" : "initial"}
+                    variants={textRollUp}
+                    className="block"
+                  >
+                    Our Approach
+                  </motion.span>
+                  <motion.span
+                    initial="initial"
+                    animate={isHovered ? "hover" : "initial"}
+                    variants={textRollDown}
+                    className="absolute inset-0 block"
+                  >
+                    Our Approach
+                  </motion.span>
+                </span>
+                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>
           </motion.div>
