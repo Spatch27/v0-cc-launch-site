@@ -19,7 +19,7 @@ const engagements = [
   },
   {
     name: "Momentum Six",
-    tagline: "A rolling programme of 6-week cycles, drawing on a suite of 59 customisable products covering 7 key areas.",
+    tagline: "A programme of 6-week cycles, drawing on a suite of 59 customisable products covering 7 key areas.",
     duration: "6-WEEK ROLLING",
     accentColor: "bg-brand-yellow-deep",
   },
