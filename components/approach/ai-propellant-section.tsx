@@ -30,10 +30,7 @@ export function AIPropellantSection() {
           </h2>
           <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We're not an AI consultancy. We're a transformation consultancy that knows how to put AI to work. We start with how your marketing actually operates — and work out where AI removes drag and where it creates new capability.
-            </p>
-            <p className="text-lg leading-relaxed text-brand-dark">
-              We push back where it adds complexity but little value. Not every workflow needs an agent. Not every process needs automating. Most consultancies sell AI as the solution. We treat it as part of the solution — powerful when it's embedded properly, wasteful when it isn't.
+              AI has made producing things cheap – drafts, decks, variants – which moves the bottleneck up to the judgement layer. So we ready the workflows, data and decision rights first, then put agents to work where they genuinely shorten cycles. Because we don&apos;t sell specific AI solutions, we can be honest about where it works.
             </p>
           </div>
         </div>
