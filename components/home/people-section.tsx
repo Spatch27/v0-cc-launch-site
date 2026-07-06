@@ -23,21 +23,9 @@ export function PeopleSection() {
     <Section background="light">
       <div ref={ref} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">
 
-        {/* Illustration — left */}
+        {/* Text — right on desktop, first on mobile */}
         <motion.div
-          className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]"
-          initial={{ opacity: 0, x: -40, scale: 0.97 }}
-          animate={inView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="w-full origin-center">
-            <RocketIllustration />
-          </div>
-        </motion.div>
-
-        {/* Text — right */}
-        <motion.div
-          className="space-y-6"
+          className="space-y-6 lg:order-last"
           variants={textContainer}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -57,6 +45,18 @@ export function PeopleSection() {
               Marketing needs to change the way it works. That can only happen when people come together around real, specific problems. That&apos;s where we come in &ndash; Committed Citizens, helping to drive change from the inside.
             </p>
           </motion.div>
+        </motion.div>
+
+        {/* Illustration — left on desktop, last on mobile */}
+        <motion.div
+          className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc] lg:order-first"
+          initial={{ opacity: 0, x: -40, scale: 0.97 }}
+          animate={inView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -40, scale: 0.97 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="w-full origin-center">
+            <RocketIllustration />
+          </div>
         </motion.div>
 
       </div>
