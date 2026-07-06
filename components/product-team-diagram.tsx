@@ -38,22 +38,22 @@ const disciplines = [
 
 export function ProductTeamDiagram() {
   return (
-    <div className="grid gap-px overflow-hidden bg-brand-dark/10 md:grid-cols-5">
+    <div className="grid gap-px overflow-hidden bg-brand-white/10 md:grid-cols-5">
       {disciplines.map((d, i) => (
         <motion.div
           key={d.name}
           variants={fadeInUp}
           custom={i}
-          className="flex flex-col bg-brand-light p-8"
+          className="flex flex-col bg-brand-dark p-8"
         >
           <div
             className="mb-6 h-1 w-10 rounded-full"
             style={{ backgroundColor: d.color }}
           />
-          <h4 className="mb-3 font-display text-lg font-bold text-brand-dark">
+          <h4 className="mb-3 font-display text-lg font-bold text-brand-white">
             {d.name}
           </h4>
-          <p className="text-sm leading-relaxed text-brand-dark/60">
+          <p className="text-sm leading-relaxed text-brand-white/60">
             {d.description}
           </p>
         </motion.div>
