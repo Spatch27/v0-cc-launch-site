@@ -1,181 +1,132 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState } from "react"
+import { motion, useInView, AnimatePresence } from "framer-motion"
+import { Plus, X } from "lucide-react"
+import { Section } from "@/components/section"
+import { textContainer, textChild } from "@/lib/animations"
 
-const CARD_HEADER_H = 56
-const CARD_HEADER_H_MOBILE = 40
-// Scroll distance (px) allocated for each card to animate in
-const SCROLL_PER_CARD = 500
-// Extra scroll buffer after card 5 lands before the module starts scrolling away
-const TAIL_BUFFER = 50
-
-const problems = [
+const items = [
   {
-    icon: "/icons/icon-customer.svg",
-    eyebrow: "CUSTOMER",
-    heading: "Falling through the gaps",
-    drag: "Your brand promise and the experience people actually get are drifting apart. Gaps open at the handoffs. Channels contradict each other.",
-    flow: "One orchestrated experience, end-to-end.",
+    heading: "Board-level confidence",
+    body: "Commercial belief, investment and support.",
   },
   {
-    icon: "/icons/icon-team.svg",
-    eyebrow: "TEAM",
-    heading: "Talented people, underperforming teams",
-    drag: "Great marketers joined to build bold work. They're stuck in approval loops and broken systems. The workaround has become the culture.",
-    flow: "Clear decision rights, protected focus, genuine ownership.",
+    heading: "Your team at their best",
+    body: "Capacity and energy going into the work, not holding things together.",
   },
   {
-    icon: "/icons/icon-data.svg",
-    eyebrow: "DATA",
-    heading: "Flying blind on what's working",
-    drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
-    flow: "A single, agreed view of what's happening, why, and what matters next.",
+    heading: "Work that moves",
+    body: "Faster cycles, fewer bottlenecks, less reliance on heroics.",
   },
   {
-    icon: "/icons/icon-process.svg",
-    eyebrow: "PROCESS",
-    heading: "Everything takes too long",
-    drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
-    flow: "Lean pathways, clean handoffs, fewer loops.",
+    heading: "Data-backed decisions",
+    body: "The ability to see what's working and prove results.",
   },
   {
-    icon: "/icons/icon-technology.svg",
-    eyebrow: "TECHNOLOGY",
-    heading: "Paying for tech nobody's using",
-    drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
-    flow: "A leaner, better-loved stack built around how people actually work.",
+    heading: "AI that delivers",
+    body: "From scattered use to governed, working capability.",
+  },
+  {
+    heading: "A tech stack that earns its keep",
+    body: "Paying for what you actually use and need.",
+  },
+  {
+    heading: "Partners who add value",
+    body: "Better alignment with agencies, vendors and specialists.",
   },
 ]
 
+function AccordionItem({
+  item,
+  index,
+  isOpen,
+  onToggle,
+  inView,
+}: {
+  item: (typeof items)[0]
+  index: number
+  isOpen: boolean
+  onToggle: () => void
+  inView: boolean
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.07 }}
+      className="border-b border-brand-dark/20 last:border-b-0"
+    >
+      <button
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="group flex w-full items-center justify-between gap-6 py-5 text-left transition-colors duration-200 hover:text-brand-pink focus-visible:outline-none"
+      >
+        <span className="font-display text-xl font-bold leading-snug text-brand-dark transition-colors duration-200 group-hover:text-brand-pink md:text-2xl">
+          {item.heading}
+        </span>
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-brand-dark transition-all duration-200 group-hover:border-brand-pink group-hover:text-brand-pink">
+          {isOpen ? <X size={14} strokeWidth={2.5} /> : <Plus size={14} strokeWidth={2.5} />}
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="body"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <p className="pb-6 pr-12 text-base leading-relaxed text-brand-dark/80 md:text-lg">
+              {item.body}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
 export function WhatLooksLikeSection() {
-  const outerRef = useRef<HTMLDivElement>(null)
-  const [navHeight, setNavHeight] = useState(80)
-  const [outerHeight, setOuterHeight] = useState(2800)
-  const [cardTranslates, setCardTranslates] = useState<number[]>(problems.map(() => 0))
-  const [isMobile, setIsMobile] = useState(false)
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-80px" })
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
-  const effectiveHeaderH = isMobile ? CARD_HEADER_H_MOBILE : CARD_HEADER_H
-
-  useEffect(() => {
-    const nav = document.querySelector("header")
-    const navH = nav ? nav.offsetHeight : 80
-    setNavHeight(navH)
-
-    // Detect if mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768) // md breakpoint
-    }
-    checkMobile()
-
-    // Total height = scroll runway for all card transitions + buffer after last card + viewport
-    // The sticky element unsticks when: scrolled >= outerHeight - viewportHeight
-    // We want that to happen after all cards have landed + TAIL_BUFFER
-    // All cards land at: (problems.length - 1) * SCROLL_PER_CARD
-    // So: outerHeight - viewportHeight = (n-1)*SCROLL_PER_CARD + TAIL_BUFFER
-    // outerHeight = (n-1)*SCROLL_PER_CARD + TAIL_BUFFER + viewportHeight
-    setOuterHeight((problems.length - 1) * SCROLL_PER_CARD + TAIL_BUFFER + window.innerHeight)
-
-    const handleScroll = () => {
-      if (!outerRef.current) return
-      const rect = outerRef.current.getBoundingClientRect()
-      // scrolled = how many px we've scrolled past the top of the outer section
-      const scrolled = Math.max(0, -rect.top)
-
-      const translates = problems.map((_, i) => {
-        if (i === 0) return 0 // Card 1 is already in place
-        const start = (i - 1) * SCROLL_PER_CARD
-        const end = i * SCROLL_PER_CARD
-        const progress = Math.max(0, Math.min(1, (scrolled - start) / (end - start)))
-        // Starts 600px below its final position, slides up to 0
-        return (1 - progress) * 600
-      })
-      setCardTranslates(translates)
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("resize", checkMobile)
-    handleScroll()
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", checkMobile)
-    }
-  }, [])
+  const toggle = (i: number) => setOpenIndex((prev) => (prev === i ? null : i))
 
   return (
-    // Outer section — provides scroll runway. Once exhausted, the sticky block unsticks
-    // and the whole module (title + all headers + card 5) scrolls away as one.
-    <div
-      ref={outerRef}
-      className="relative bg-white pt-16 lg:pt-24"
-      style={{ height: `${outerHeight}px` }}
-    >
-      {/* Single sticky block — sits flush under nav when stuck, padded at rest via outer pt */}
-      <div
-        className="sticky overflow-hidden bg-white"
-        style={{ top: `${navHeight}px` }}
-      >
-        {/* Title */}
-        <div className="bg-white px-6 pb-4 pt-4 lg:px-12">
-          <div className="mx-auto max-w-[1400px]">
-            <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-              What it looks like.
-            </h2>
-          </div>
-        </div>
+    <Section background="white">
+      <div ref={ref} className="mx-auto max-w-3xl">
+        <motion.div
+          variants={textContainer}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="mb-10"
+        >
+          <motion.h2
+            variants={textChild}
+            className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
+          >
+            What it looks like.
+          </motion.h2>
+        </motion.div>
 
-        {/* Card stack — cards translate in from below, stacking on top of each other */}
-        <div className="relative" style={{ height: `${400 + problems.length * effectiveHeaderH}px` }}>
-          {problems.map((item, i) => {
-            // Each card's final resting top = i * effectiveHeaderH (stacked headers)
-            const finalTop = i * effectiveHeaderH
-            const translateY = cardTranslates[i] ?? 0
-            // Alternate header colors: pink for indices 0,2,4 (CUSTOMER, DATA, TECHNOLOGY)
-            // text-brand-dark for indices 1,3 (TEAM, PROCESS)
-            const isOrange = i % 2 === 0
-            const headerBgColor = isOrange ? "bg-[#FFEB3E]" : "bg-[#FFD100]"
-            const headerTextColor = isOrange ? "text-brand-dark" : "text-brand-dark"
-            const iconFilter = isOrange ? "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)" : "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)"
-
-            return (
-              <div
-                key={item.eyebrow}
-                className="absolute w-full"
-                style={{
-                  top: `${finalTop}px`,
-                  transform: `translateY(${translateY}px)`,
-                  zIndex: i + 1,
-                  willChange: "transform",
-                }}
-              >
-                <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-                  <div
-                    className={`flex items-center gap-3 ${headerBgColor} px-8 ${headerTextColor}`}
-                    style={{ height: `${effectiveHeaderH}px` }}
-                  >
-                    <img src={item.icon} alt={item.eyebrow} className="h-10 w-10 shrink-0" style={{ filter: iconFilter }} />
-                    <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
-                  </div>
-                  <div className="bg-gray-100 p-8 lg:p-12">
-                    <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
-                      {item.heading}
-                    </h3>
-                    <div className="grid gap-8 lg:grid-cols-2">
-                      <div>
-                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">DRAG</div>
-                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.drag}</p>
-                      </div>
-                      <div>
-                        <div className="mb-3 text-xs font-bold tracking-widest text-[#FF8600]">FLOW</div>
-                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.flow}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+        <div>
+          {items.map((item, i) => (
+            <AccordionItem
+              key={item.heading}
+              item={item}
+              index={i}
+              isOpen={openIndex === i}
+              onToggle={() => toggle(i)}
+              inView={inView}
+            />
+          ))}
         </div>
       </div>
-    </div>
+    </Section>
   )
 }
