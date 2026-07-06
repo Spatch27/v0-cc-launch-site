@@ -1,7 +1,9 @@
 "use client"
 
+import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import { ArrowRight } from "lucide-react"
 import { Section } from "@/components/section"
 import PaperPlaneIllustration from "@/components/approach/paper-plane-illustration"
 import RocketIllustration from "@/components/home/rocket-illustration"
@@ -44,6 +46,15 @@ export function MomentumSection() {
             <motion.p variants={textChild} className="max-w-3xl text-lg leading-relaxed text-brand-dark">
               Alongside your people, in focused six-week cycles – addressing how work actually flows across team, process, data and technology. Each cycle targets one problem area and creates a change you can both measure and feel.
             </motion.p>
+            <motion.div variants={textChild}>
+              <Link
+                href="/approach"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-pink"
+              >
+                Our Approach
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
           </motion.div>
 
           <motion.div
