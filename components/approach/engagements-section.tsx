@@ -27,13 +27,13 @@ const engagements = [
 
 export function EngagementsSection() {
   return (
-    <Section background="dark">
+    <Section background="light">
       {/* Header */}
       <motion.div variants={fadeInUp} className="mb-16">
-        <h2 className="mb-4 font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
+        <h2 className="mb-4 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
           How we work together
         </h2>
-        <p className="max-w-2xl text-lg leading-relaxed text-brand-white/70">
+        <p className="max-w-2xl text-lg leading-relaxed text-brand-dark/70">
           Every engagement starts with Waypoint, our structured needs assessment. Having agreed priorities together, we then work in focused 6-week cycles.
         </p>
       </motion.div>
@@ -50,7 +50,7 @@ export function EngagementsSection() {
             key={engagement.name}
             variants={fadeInUp}
             custom={i}
-            className="group relative flex flex-col overflow-hidden bg-brand-white/5 backdrop-blur-sm transition-all duration-500 hover:bg-brand-white/10 hover:shadow-xl"
+            className="group relative flex flex-col overflow-hidden bg-brand-dark transition-all duration-500 hover:shadow-xl"
           >
             {/* Top accent bar */}
             <div className={`h-1 w-full ${engagement.accentColor}`} />
