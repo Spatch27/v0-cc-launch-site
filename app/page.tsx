@@ -15,9 +15,7 @@ export default function HomePage() {
       <HeroSection />
       <BuriedSection />
 
-      <LazySection minHeight="500px" rootMargin="200px">
-        <PeopleSection />
-      </LazySection>
+      <PeopleSection />
       
       {/* Below the fold - lazy load for better initial performance */}
       <LazySection minHeight="600px" rootMargin="300px">
