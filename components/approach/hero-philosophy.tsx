@@ -30,8 +30,8 @@ export function HeroPhilosophy() {
           className="mt-20"
         >
           <h1 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold leading-[0.95] tracking-tight text-brand-dark text-balance">
-            Only people <br />
-            create <i>flow.</i>
+            Pick one thing. <br />
+            Start there.
           </h1>
         </motion.div>
 
@@ -44,7 +44,7 @@ export function HeroPhilosophy() {
           className="self-end"
         >
           <p className="max-w-2xl text-right text-xl leading-relaxed text-brand-dark">
-            Every failed transformation started with a platform and assumed the people would follow. <strong>They rarely do.</strong>
+            We work with CMOs and their teams to remove operational drag, one problem at a time. Every cycle targets a specific outcome and builds the confidence to <strong>go further.</strong>
           </p>
         </motion.div>
       </div>
