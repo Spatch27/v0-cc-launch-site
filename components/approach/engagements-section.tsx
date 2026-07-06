@@ -14,13 +14,13 @@ const engagements = [
   {
     name: "Fix One Thing First",
     tagline: "A targeted piece of work to tackle your most pressing priority – proving rapid progress and building the case for what comes next.",
-    duration: null,
+    duration: "6 WEEKS",
     accentColor: "bg-brand-orange",
   },
   {
     name: "Momentum Six",
     tagline: "A rolling programme of 6-week cycles, drawing on a suite of 59 customisable products covering 7 key areas.",
-    duration: null,
+    duration: "6-WEEK ROLLING",
     accentColor: "bg-brand-yellow-deep",
   },
 ]
