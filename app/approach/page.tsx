@@ -6,7 +6,6 @@ import { AIPropellantSection } from "@/components/approach/ai-propellant-section
 import { OutcomesSection } from "@/components/approach/outcomes-section"
 import { ApproachPhilosophySection } from "@/components/approach/approach-philosophy-section"
 import { PhilosophySection } from "@/components/approach/philosophy-section"
-import { MomentumSection } from "@/components/approach/momentum-section"
 import { EngagementsSection } from "@/components/approach/engagements-section"
 import { CtaBand } from "@/components/cta-band"
 
@@ -25,7 +24,6 @@ export default function ApproachPage() {
       <AIPropellantSection />
       <OutcomesSection />
       <ApproachPhilosophySection />
-      <MomentumSection />
       <PhilosophySection />
       <EngagementsSection />
       <CtaBand
