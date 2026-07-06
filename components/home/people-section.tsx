@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Section } from "@/components/section"
-import RocketWobbleIllustration from "@/components/illustrations/rocket-wobble"
+import RocketIllustration from "@/components/home/rocket-illustration"
 
 const textContainer = {
   hidden: {},
@@ -31,7 +31,7 @@ export function PeopleSection() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="w-full origin-center">
-            <RocketWobbleIllustration />
+            <RocketIllustration />
           </div>
         </motion.div>
 
