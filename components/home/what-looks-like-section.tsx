@@ -106,7 +106,7 @@ export function WhatLooksLikeSection() {
 
   return (
     <Section background="white">
-      <div ref={ref} className="mx-auto max-w-3xl">
+      <div ref={ref}>
         <motion.div
           variants={staggerContainer}
           initial="hidden"
