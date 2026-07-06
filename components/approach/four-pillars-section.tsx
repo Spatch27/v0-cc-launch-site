@@ -88,6 +88,7 @@ export function FourPillarsSection() {
                     alt={pillar.title}
                     width={40}
                     height={40}
+                    style={{ filter: "brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(90%) contrast(90%)" }}
                   />
                 </div>
 
@@ -136,7 +137,7 @@ export function FourPillarsSection() {
                 aria-expanded={isOpen}
               >
                 <div className="flex items-center gap-4">
-                  <Image src={pillar.icon} alt={pillar.title} width={28} height={28} />
+                  <Image src={pillar.icon} alt={pillar.title} width={28} height={28} style={{ filter: "brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(90%) contrast(90%)" }} />
                   <span className="font-display text-xl font-bold text-brand-dark">
                     {pillar.title}
                   </span>
