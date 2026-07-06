@@ -48,7 +48,7 @@ const operatingModelItems = {
         "Brought in for your stack, not ours. Simplifies what you have, fits automation and agents where they'll actually shorten cycles.",
       cx: 403, // Lower left
       cy: 429,
-      color: "#181716", // Dark
+      color: "#FFFFFF",
     },
     {
       name: "Data & Analytics",
@@ -57,7 +57,7 @@ const operatingModelItems = {
         "Gets data clean, connected and trustworthy. Builds reporting that proves progress is real - so dashboards become something people rely on.",
       cx: 597, // Lower right
       cy: 429,
-      color: "#181716", // Dark
+      color: "#FFFFFF",
     },
   ],
 }
