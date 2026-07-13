@@ -8,34 +8,31 @@ import Link from "next/link"
 
 const engagements = [
   {
-    name: "Ignition6™",
-    tagline: "Your transformation story, your blockers mapped, your first six wins identified - including where AI agents would genuinely shorten cycles.",
-    outcome: "Board-ready in six weeks.",
+    name: "Drag Diagnostic",
+    description: [
+      "We trace how work moves across Team, Process, Data and Tech. We gather evidence of where momentum is lost, what that drag is costing and where improved flow is most readily accessible.",
+      "The Diagnostic ends with your Flow Map: a short report that plots Team, Process, Data and Tech on a clear 2x2 matrix, using drag severity and flow readiness as the two axes. The map shows where work is slowing, where the team is ready to move and which fix has the strongest case to go first. Together, we agree the outcome, baseline and success measures.",
+    ],
     duration: "6 weeks",
-    price: "£40K",
-    priceNote: null,
     accentColor: "bg-brand-pink",
-    borderColor: "border-brand-pink",
   },
   {
-    name: "Fly6™",
-    tagline: "Six pilots delivered, live ROI dashboards, governance embedded.",
-    outcome: "Results in a quarter.",
+    name: "Fix One Thing First",
+    description: [
+      "We build the fix with your team and prove it through live work. That could mean clearer roles, a new workflow or an AI-supported way of working. We measure the result against the baseline, capture the evidence and recommend the next move.",
+      "Already know your first fix? You can skip the Diagnostic and start here. We open by setting the start line — the outcome, the baseline and the success measures that will prove impact — then get to work.",
+    ],
     duration: "6 weeks",
-    price: "£60K",
-    priceNote: "+ outcome bonus",
     accentColor: "bg-brand-orange",
-    borderColor: "border-brand-orange",
   },
   {
-    name: "Flow6™",
-    tagline: "Rhythm, adoption and continuous improvement built into your marketing operation.",
-    outcome: "Permanently.",
+    name: "Momentum 6",
+    description: [
+      "Fixing one thing builds momentum. Rolling six-week cycles compound it. Each cycle takes the next priority, delivers it in live work and adds to the evidence. Over time, the cycles combine into something bigger: a marketing operating model built around your team, moving at the speed your business needs.",
+      "The basis for our work never changes: one clear outcome per cycle, delivery in live work and evidence of what changed.",
+    ],
     duration: "6-week rolling",
-    price: "£10K",
-    priceNote: "/ week",
     accentColor: "bg-brand-yellow-deep",
-    borderColor: "border-brand-yellow-deep",
   },
 ]
 
@@ -45,7 +42,7 @@ export function EngagementsSection() {
       {/* Header */}
       <motion.div variants={fadeInUp} className="mb-20">
         <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-          Three engagements, one goal.
+          Find it. Map it. Fix it.
         </h2>
       </motion.div>
 
@@ -78,31 +75,13 @@ export function EngagementsSection() {
                 {engagement.name}
               </h3>
 
-              {/* Tagline */}
-              <p className="mb-4 text-base leading-relaxed text-brand-white/70">
-                {engagement.tagline}
-              </p>
-
-              {/* Outcome */}
-              <p className="mb-8 text-sm font-semibold text-brand-white/50 uppercase tracking-wide">
-                {engagement.outcome}
-              </p>
-
-              {/* Spacer */}
-              <div className="flex-1" />
-
-              {/* Price */}
-              <div className="border-t border-brand-white/10 pt-6">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-display text-3xl font-bold text-brand-white">
-                    {engagement.price}
-                  </span>
-                  {engagement.priceNote && (
-                    <span className="text-sm text-brand-white/40">
-                      {engagement.priceNote}
-                    </span>
-                  )}
-                </div>
+              {/* Description */}
+              <div className="flex flex-col gap-4">
+                {engagement.description.map((paragraph) => (
+                  <p key={paragraph} className="text-base leading-relaxed text-brand-white/70">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </div>
           </motion.div>
