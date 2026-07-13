@@ -32,14 +32,14 @@ const problems = [
     flow: "A single, agreed view of what's happening, why, and what matters next.",
   },
   {
-    icon: "/icons/icon-technology.svg",
+    icon: "/icons/icon-team.svg",
     eyebrow: "TEAM",
     heading: "AI is used in pockets, without the skills, support or systems to make it stick.",
     drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
     flow: "Lean pathways, clean handoffs, fewer loops.",
   },
   {
-    icon: "/icons/icon-team.svg",
+    icon: "/icons/icon-technology.svg",
     eyebrow: "TECH",
     heading: "Your technology grew tool by tool. It cannot support where the organisation needs to go next.",
     drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
