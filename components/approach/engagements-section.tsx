@@ -10,8 +10,8 @@ const engagements = [
   {
     name: "Drag Diagnostic",
     description: [
-      "We trace how work moves across Team, Process, Data and Tech. We gather evidence of where momentum is lost, what that drag is costing and where improved flow is most readily accessible.",
-      "The Diagnostic ends with your Flow Map: a short report that plots Team, Process, Data and Tech on a clear 2x2 matrix, using drag severity and flow readiness as the two axes. The map shows where work is slowing, where the team is ready to move and which fix has the strongest case to go first. Together, we agree the outcome, baseline and success measures.",
+      "We trace how work moves. We gather evidence of where momentum is lost, what that drag is costing and where improved flow is most readily accessible.",
+      "The Diagnostic ends with your Flow Map: a short report that plots Team, Process, Data and Tech. The map shows where work is slowing, where the team is ready to move and which fix has the strongest case to go first. Together, we agree the outcome, baseline and success measures.",
     ],
     duration: "6 weeks",
     accentColor: "bg-brand-pink",
