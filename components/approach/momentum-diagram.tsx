@@ -10,7 +10,7 @@ const momentumItems = [
   },
   {
     name: "Cadence Loop",
-    benefit: "Proof of progress every six weeks. Guaranteed.",
+    benefit: "Progress made in six-week cycles that compound over time",
   },
   {
     name: "Telemetry Stack",
