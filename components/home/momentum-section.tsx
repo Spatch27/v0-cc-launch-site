@@ -48,7 +48,7 @@ export function MomentumSection() {
                 New tools can speed things up. They can also add another layer of noise. The difference is the people using them: what they need, what holds them back, what they can decide and what they can trust.
               </p>
               <p>
-                AI raises the stakes. Drafts, decks and variants get faster, but judgement still sits with people. What to stop, what to change, what deserves confidence.
+                AI raises the stakes. Drafts, decks and variants get faster, but judgement still sits with people. What to stop, what to change and what to defend.
               </p>
             </motion.div>
           </motion.div>
