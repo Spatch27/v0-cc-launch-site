@@ -13,7 +13,7 @@ const problems = [
   {
     icon: "/icons/icon-team.svg",
     eyebrow: "TEAM",
-    heading: "AI is used in pockets, without the skills, support or systems to make it stick.",
+    heading: "Capacity and energy goes into holding things together, rather than doing the work.",
     drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
     flow: "Lean pathways, clean handoffs, fewer loops.",
   },
