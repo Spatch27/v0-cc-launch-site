@@ -88,14 +88,6 @@ export function EngagementsSection() {
         ))}
       </motion.div>
 
-      {/* Supporting Copy */}
-      <motion.div variants={fadeInUp} className="mt-16">
-        <div className="max-w-3xl">
-          <p className="text-lg leading-relaxed text-brand-white/70">
-            Most clients start with Ignition6™. Every new engagement begins with a two-week checkpoint. If you can't feel the momentum building, you walk away. No full invoice, no awkward conversations. This approach removes the risk and lets us prove value before you commit further.
-          </p>
-        </div>
-      </motion.div>
     </Section>
   )
 }
