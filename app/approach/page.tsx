@@ -28,8 +28,11 @@ export default function ApproachPage() {
       <EngagementsSection />
       <CtaBand
         heading="Before committing a budget, commit an hour."
-        description="Book a free Drag Diagnostic - a structured 60-minute conversation that shows you exactly where operational drag is costing you the most."
-        ctaLabel="Book a Drag Diagnostic"
+        body={[
+          "One free hour. A two-page view of where to begin within 48 hours. Then a six-week cycle focused on a result your team can feel and your business can measure.",
+          "Getting started is zero-risk: the Waypoint is free, and if you cannot feel a difference two weeks into your first cycle, we refund everything you’ve spent so far. Guaranteed."
+        ]}
+        ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"
         background="yellow-deep"
       />
