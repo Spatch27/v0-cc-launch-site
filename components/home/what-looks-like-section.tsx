@@ -118,7 +118,7 @@ export function WhatLooksLikeSection() {
         <div className="bg-white px-6 pb-4 pt-4 lg:px-12">
           <div className="mx-auto max-w-[1400px]">
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-              What it looks like.
+              Drag shows up everywhere.
             </h2>
           </div>
         </div>
