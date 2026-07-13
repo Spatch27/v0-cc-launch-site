@@ -18,13 +18,6 @@ const problems = [
     flow: "Clear decision rights, protected focus, genuine ownership.",
   },
   {
-    icon: "/icons/icon-customer.svg",
-    eyebrow: "PROVING THE VALUE",
-    heading: "Marketing's value gets lost in the boardroom, putting the next investment at risk",
-    drag: "Your brand promise and the experience people actually get are drifting apart. Gaps open at the handoffs. Channels contradict each other.",
-    flow: "One orchestrated experience, end-to-end.",
-  },
-  {
     icon: "/icons/icon-data.svg",
     eyebrow: "DATA",
     heading: "Teams debate the numbers because they have no shared view they can trust.",
