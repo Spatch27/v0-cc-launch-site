@@ -79,7 +79,7 @@ export function MomentumSection() {
               variants={textChild}
               className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
             >
-              Start with the people.
+              People-first, not tech-led.
             </motion.h2>
             <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
               <p>
