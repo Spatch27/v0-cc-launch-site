@@ -26,7 +26,7 @@ const problems = [
   },
   {
     icon: "/icons/icon-data.svg",
-    eyebrow: "TRUSTING THE NUMBERS",
+    eyebrow: "DATA",
     heading: "Teams debate the numbers because they have no shared view they can trust.",
     drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
     flow: "A single, agreed view of what's happening, why, and what matters next.",
