@@ -49,7 +49,8 @@ export function MomentumSection() {
               </p>
               <Link
                 href="/approach"
-                className="group inline-flex w-fit items-center gap-3 rounded-sm border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+                className="group inline-flex w-fit items-center gap-3 rounded-lg border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+                style={{ borderRadius: "4px" }}
               >
                 Our approach
                 <ArrowRight size={18} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
