@@ -19,12 +19,12 @@ export default function HomePage() {
         <AnimatedTypeSection />
       </LazySection>
       
-      <LazySection minHeight="500px" rootMargin="200px">
-        <MomentumSection />
-      </LazySection>
-      
       <LazySection minHeight="400px" rootMargin="200px">
         <WhatLooksLikeSection />
+      </LazySection>
+
+      <LazySection minHeight="500px" rootMargin="200px">
+        <MomentumSection />
       </LazySection>
       
       <LazySection minHeight="300px" rootMargin="200px">
