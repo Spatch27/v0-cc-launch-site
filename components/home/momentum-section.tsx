@@ -41,7 +41,7 @@ export function MomentumSection() {
               variants={textChild}
               className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
             >
-              Measurable every six weeks.
+              How we work.
             </motion.h3>
             <motion.div variants={textChild} className="space-y-6">
               <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
