@@ -39,11 +39,16 @@ export function MomentumSection() {
               variants={textChild}
               className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
             >
-              How we work.
+              Start with the people.
             </motion.h2>
-            <motion.p variants={textChild} className="max-w-3xl text-lg leading-relaxed text-brand-dark">
-              We redesign workflows, simplify stacks, and get AI agents working inside your team. We embed inside the marketing function, working alongside your team in focused six-week cycles - redesigning how work actually flows across people, process and technology. Measurable progress, not slideware.
-            </motion.p>
+            <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
+              <p>
+                New tools can speed things up. They can also add another layer of noise. The difference is the people using them: what they need, what holds them back, what they can decide and what they can trust.
+              </p>
+              <p>
+                AI raises the stakes. Drafts, decks and variants get faster, but judgement still sits with people. What to stop, what to change, what deserves confidence.
+              </p>
+            </motion.div>
           </motion.div>
 
           <motion.div
