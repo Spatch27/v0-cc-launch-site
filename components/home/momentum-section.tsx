@@ -2,6 +2,8 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { Section } from "@/components/section"
 import PaperPlaneIllustration from "@/components/approach/paper-plane-illustration"
 import RocketIllustration from "@/components/home/rocket-illustration"
@@ -73,18 +75,19 @@ export function MomentumSection() {
               variants={textChild}
               className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
             >
-              Systems launch agents.
+              Measurable every six weeks.
             </motion.h3>
-            <motion.div variants={textChild} className="space-y-4">
+            <motion.div variants={textChild} className="space-y-6">
               <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
-                AI hasn&apos;t simplified things - it&apos;s added a new layer of complexity to systems that were already struggling. New tools arrive faster than teams can absorb them. Vendors promise efficiency - but the reality is more platforms, more decisions, more noise.
+                We work alongside your people in focused six-week cycles, addressing how work flows across Team, Process, Data and Tech. Each cycle targets a real problem and ends with progress you can measure and your team can feel.
               </p>
-              <p className="max-w-3xl text-lg font-semibold leading-relaxed text-brand-dark">
-                AI only rewards the teams that are ready for it.
-              </p>
-              <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
-                Workflows, data, and governance need to be redesigned. That&apos;s the gap we help you close. We get your system ready for AI - and then we help you deploy agents as working tools, not demo-day theatre.
-              </p>
+              <Link
+                href="/approach"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-dark transition-colors hover:text-brand-pink"
+              >
+                Our approach
+                <ArrowRight size={16} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </motion.div>
           </motion.div>
 
