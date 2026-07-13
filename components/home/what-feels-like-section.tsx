@@ -23,7 +23,7 @@ const benefits = [
   {
     title: "Risk free.",
     description:
-      "If you can't feel it within two weeks, you don't pay for it. Guaranteed.",
+      "If you don’t feel the benefit two weeks into your first six-week cycle, you don’t pay. Guaranteed.",
   },
 ]
 
