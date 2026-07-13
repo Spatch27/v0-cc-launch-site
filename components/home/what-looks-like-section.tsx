@@ -11,6 +11,13 @@ const TAIL_BUFFER = 50
 
 const problems = [
   {
+    icon: "/icons/icon-team.svg",
+    eyebrow: "TEAM",
+    heading: "AI is used in pockets, without the skills, support or systems to make it stick.",
+    drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
+    flow: "Lean pathways, clean handoffs, fewer loops.",
+  },
+  {
     icon: "/icons/icon-process.svg",
     eyebrow: "PROCESS",
     heading: "Campaigns that take so long to produce that the opportunity has moved on.",
@@ -23,13 +30,6 @@ const problems = [
     heading: "Teams debate the numbers because they have no shared view they can trust.",
     drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
     flow: "A single, agreed view of what's happening, why, and what matters next.",
-  },
-  {
-    icon: "/icons/icon-team.svg",
-    eyebrow: "TEAM",
-    heading: "AI is used in pockets, without the skills, support or systems to make it stick.",
-    drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
-    flow: "Lean pathways, clean handoffs, fewer loops.",
   },
   {
     icon: "/icons/icon-technology.svg",
