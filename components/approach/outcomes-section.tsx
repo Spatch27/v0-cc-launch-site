@@ -21,7 +21,7 @@ export function OutcomesSection() {
       >
         <div>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Built for outcomes, not renewals.
+            Built for outcomes.
           </h2>
           <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
