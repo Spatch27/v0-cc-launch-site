@@ -15,7 +15,7 @@ const problems = [
     eyebrow: "TEAM",
     heading: "Capacity and energy goes into holding things together, rather than doing the work.",
     drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
-    flow: "Lean pathways, clean handoffs, fewer loops.",
+    flow: "The right people in the right roles, working effectively together.",
   },
   {
     icon: "/icons/icon-process.svg",
