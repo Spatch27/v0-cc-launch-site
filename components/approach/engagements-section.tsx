@@ -42,7 +42,7 @@ export function EngagementsSection() {
       {/* Header */}
       <motion.div variants={fadeInUp} className="mb-20">
         <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-          Find it. Map it. Fix it.
+          Find it. Fix it. Build on it.
         </h2>
       </motion.div>
 
