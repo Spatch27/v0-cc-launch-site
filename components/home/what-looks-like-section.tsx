@@ -34,7 +34,7 @@ const problems = [
   {
     icon: "/icons/icon-technology.svg",
     eyebrow: "TECH",
-    heading: "Your technology grew tool by tool. It cannot support where the organisation needs to go next.",
+    heading: "Your stack grew tool by tool. It cannot support where the organisation needs to go next.",
     drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
     flow: "A leaner, better-loved stack built around how people actually work.",
   },
