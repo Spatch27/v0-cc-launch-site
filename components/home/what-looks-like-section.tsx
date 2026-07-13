@@ -12,7 +12,7 @@ const TAIL_BUFFER = 50
 const problems = [
   {
     icon: "/icons/icon-process.svg",
-    eyebrow: "GETTING WORK IN THE WORLD",
+    eyebrow: "PROCESS",
     heading: "Campaigns that take so long to produce that the opportunity has moved on.",
     drag: "Great marketers joined to build bold work. They're stuck in approval loops and broken systems. The workaround has become the culture.",
     flow: "Clear decision rights, protected focus, genuine ownership.",
