@@ -29,41 +29,7 @@ export function MomentumSection() {
     <Section background="light" compact className="pt-12 md:pt-0">
       <div className="space-y-20">
 
-        {/* How we work — Text Left, Image Right */}
-        <div ref={ref1} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2 grid-cols-1">
-          <motion.div
-            className="space-y-6"
-            variants={textContainer}
-            initial="hidden"
-            animate={inView1 ? "visible" : "hidden"}
-          >
-            <motion.h2
-              variants={textChild}
-              className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
-            >
-              Start with the people.
-            </motion.h2>
-            <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
-              <p>
-                New tools can speed things up. They can also add another layer of noise. The difference is the people using them: what they need, what holds them back, what they can decide and what they can trust.
-              </p>
-              <p>
-                AI raises the stakes. Drafts, decks and variants get faster, but judgement still sits with people. What to stop, what to change and what to defend.
-              </p>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="flex items-center justify-center w-full h-auto overflow-hidden rounded-lg order-last lg:order-first min-h-[300px] md:min-h-[400px] lg:min-h-[500px]"
-            initial={{ opacity: 0, x: 40, scale: 0.97 }}
-            animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <RocketIllustration />
-          </motion.div>
-        </div>
-
-        {/* Systems launch agents — Text Left, Image Right */}
+        {/* Measurable cycles — Text Left, Image Right */}
         <div ref={ref2} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">
           <motion.div
             className="space-y-6"
@@ -98,6 +64,40 @@ export function MomentumSection() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <PaperPlaneIllustration />
+          </motion.div>
+        </div>
+
+        {/* People-first operating model — Text Right, Image Left */}
+        <div ref={ref1} className="grid grid-cols-1 items-center gap-4 lg:grid-cols-2 lg:gap-12">
+          <motion.div
+            className="space-y-6"
+            variants={textContainer}
+            initial="hidden"
+            animate={inView1 ? "visible" : "hidden"}
+          >
+            <motion.h2
+              variants={textChild}
+              className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
+            >
+              Start with the people.
+            </motion.h2>
+            <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
+              <p>
+                New tools can speed things up. They can also add another layer of noise. The difference is the people using them: what they need, what holds them back, what they can decide and what they can trust.
+              </p>
+              <p>
+                AI raises the stakes. Drafts, decks and variants get faster, but judgement still sits with people. What to stop, what to change and what to defend.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="order-last flex h-auto min-h-[300px] w-full items-center justify-center overflow-hidden rounded-lg md:min-h-[400px] lg:order-first lg:min-h-[500px]"
+            initial={{ opacity: 0, x: 40, scale: 0.97 }}
+            animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <RocketIllustration />
           </motion.div>
         </div>
 
