@@ -6,7 +6,7 @@ import { fadeInUp, staggerContainer } from "@/lib/animations"
 const momentumItems = [
   {
     name: "Fix This First",
-    benefit: "Identify the most pressing need and prove impact.",
+    benefit: "Identify the most pressing need and demonstrate impact.",
   },
   {
     name: "Cadence Loop",
