@@ -8,30 +8,33 @@ import Link from "next/link"
 
 const engagements = [
   {
-    name: "Drag Diagnostic",
+    name: "Flow6",
     description: [
-      "We trace how work moves. We gather evidence of where momentum is lost, what that drag is costing and where improved flow is most readily accessible.",
-      "The Diagnostic ends with your Flow Map: a short report that plots Team, Process, Data and Tech. The map shows where work is slowing, where the team is ready to move and which fix has the strongest case to go first. Together, we agree the outcome, baseline and success measures.",
+      "Our Drag Diagnostic assesses where momentum is lost, what that drag is costing and where improved flow is most readily accessible.",
+      "Our Flow Map plots Team, Process, Data and Tech. The map shows where work is slow, where the team is ready to move and what to fix first.",
+      "Our Progress Plan aligns your team, validates priorities and agrees the metrics for success. Together, a plan to liberate your team and unlock growth.",
+      "BOARD-READY IN SIX WEEKS.",
     ],
-    duration: "2 weeks",
+    duration: "SIX WEEKS",
     accentColor: "bg-brand-pink",
   },
   {
-    name: "Fix One Thing First",
+    name: "Fix6",
     description: [
-      "We build the fix with your team and prove it through live work. That could mean clearer roles, a new workflow or an AI-supported way of working. We measure the result against the baseline, capture the evidence and recommend the next move.",
-      "Already know your first fix? You can skip the Diagnostic and start here. We open by setting the start line — the outcome, the baseline and the success measures that will prove impact — then get to work.",
+      "We always start with a clear focus on the next best action, and we build the fix with your team and prove it through live work. That could mean restructuring roles, remapping workflows, or implementing agentic solutions. We measure the result against the baseline, capture the evidence and recommend the next move.",
+      "RESULTS IN A QUARTER.",
     ],
-    duration: "6 weeks",
+    duration: "SIX WEEKS",
     accentColor: "bg-brand-orange",
   },
   {
-    name: "Momentum 6",
+    name: "Momentum6",
     description: [
-      "Fixing one thing builds momentum. Rolling six-week cycles compound it. Each cycle takes the next priority, delivers it in live work and adds to the evidence. Over time, the cycles combine into something bigger: a marketing operating model built around your team, moving at the speed your business needs.",
-      "The basis for our work never changes: one clear outcome per cycle, delivery in live work and evidence of what changed.",
+      "Continuous improvement compounds to build a better engine.",
+      "A rolling programme of 6-week cycles, drawing on a suite of 59 customisable products covering 7 key areas. Every step creates value while adding up to something bigger: a new, more capable marketing operating model.",
+      "PERMANENTLY.",
     ],
-    duration: "6-week rolling",
+    duration: "SIX-WEEK ROLLING",
     accentColor: "bg-brand-yellow-deep",
   },
 ]
@@ -42,7 +45,7 @@ export function EngagementsSection() {
       {/* Header */}
       <motion.div variants={fadeInUp} className="mb-20">
         <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-          Find it. Fix it. Build on it.
+          A route to growth
         </h2>
       </motion.div>
 
