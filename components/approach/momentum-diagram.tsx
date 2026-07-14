@@ -10,7 +10,7 @@ const momentumItems = [
   },
   {
     name: "Cadence Loop",
-    benefit: "Progress made in six-week cycles that compound over time",
+    benefit: "Progress made in six-week cycles that compound over time.",
   },
   {
     name: "Telemetry Stack",
