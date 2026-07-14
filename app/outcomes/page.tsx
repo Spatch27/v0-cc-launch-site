@@ -16,8 +16,11 @@ export default function OutcomesPage() {
       <OutcomesCaseStudies />
       <CtaBand
         heading="See how we'd approach your challenge."
-        description="Book a free Drag Diagnostic - 60 minutes, no pitch, and you'll walk away with a clear picture of what to fix first."
-        ctaLabel="Book a Drag Diagnostic"
+        body={[
+          "Waypoint is a free 60-minute working session. The hour is spent on your business, your team and the drag getting in their way.",
+          "Within 48 hours, you receive a two-page Waypoint Marker: a clear view of what is holding you back and where to begin, written in language you can take into a budget conversation. It is yours to keep, whether we work together or not."
+        ]}
+        ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"
         background="orange"
       />
