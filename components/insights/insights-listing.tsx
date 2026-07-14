@@ -11,6 +11,16 @@ import { ArrowRight } from "lucide-react"
 
 const articles = [
   {
+    id: "the-plane-in-flight-problem",
+    title: "The plane-in-flight problem.",
+    excerpt:
+      "Most marketing leaders are trapped between this quarter's deadlines and the deeper fixes the function actually needs. The deadlines always win - they don't have to.",
+    category: "Marketing Leadership",
+    date: "June 2026",
+    readTime: "4 min read",
+    image: "/images/insights/plane-in-flight-problem.png",
+  },
+  {
     id: "i-cant-code",
     title: "I can't code. I built a professional website anyway.",
     excerpt:
