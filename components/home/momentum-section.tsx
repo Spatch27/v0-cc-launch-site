@@ -84,10 +84,13 @@ export function MomentumSection() {
             </motion.h2>
             <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
               <p>
-                New tools can speed things up. They can also add another layer of noise. The difference is the people using them: what they need, what holds them back, what they can decide and what they can trust.
+                Transformation doesn&apos;t fail because the tech is wrong. It fails because teams reject it. Implementation isn&apos;t the endgame, adoption is.
               </p>
               <p>
-                AI raises the stakes. Drafts, decks and variants get faster, but judgement still sits with people. What to stop, what to change and what to defend.
+                We start with a belief that tech solutions don&apos;t lead decision-making - people own the thinking. We strip away layers of tech that result in more workaround than work.
+              </p>
+              <p>
+                Similarly, AI raises the stakes but judgement still sits with people. What to stop, what to change and what to defend.
               </p>
             </motion.div>
           </motion.div>
