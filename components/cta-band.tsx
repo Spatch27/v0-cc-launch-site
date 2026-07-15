@@ -69,7 +69,44 @@ export function CtaBand({
   }
 
   return (
-    <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
+    <>
+      <style>{`
+        .cc-cta-button {
+          background-color: var(--brand-light);
+        }
+
+        .cc-cta-label-track {
+          display: flex;
+          flex-direction: column;
+          transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .cc-cta-label-copy {
+          height: 1.5rem;
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+        }
+
+        .cc-cta-button:hover {
+          background-color: var(--brand-white);
+        }
+
+        .cc-cta-button:hover .cc-cta-label-track {
+          transform: translateY(-1.5rem);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .cc-cta-label-track {
+            transition: none;
+          }
+
+          .cc-cta-button:hover .cc-cta-label-track {
+            transform: none;
+          }
+        }
+      `}</style>
+      <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
       <div className="mx-auto max-w-[1400px]">
         <motion.div
           initial="hidden"
@@ -110,10 +147,15 @@ export function CtaBand({
               href={ctaHref}
               onClick={handleClick}
               scroll={false}
-              className={`group inline-flex w-fit items-center gap-3 rounded-lg px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
+              className={`cc-cta-button group inline-flex w-fit items-center gap-3 rounded-lg px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
               style={{ borderRadius: "4px" }}
             >
-              <span>{ctaLabel}</span>
+              <span className="h-6 overflow-hidden">
+                <span className="cc-cta-label-track">
+                  <span className="cc-cta-label-copy">{ctaLabel}</span>
+                  <span className="cc-cta-label-copy" aria-hidden="true">{ctaLabel}</span>
+                </span>
+              </span>
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"
@@ -123,5 +165,6 @@ export function CtaBand({
         </motion.div>
       </div>
     </section>
+    </>
   )
 }
