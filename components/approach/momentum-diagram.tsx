@@ -1,5 +1,6 @@
 "use client"
 
+import { useId } from "react"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 
@@ -32,6 +33,7 @@ const momentumItems = [
  * continuously across all 6 arc segments.
  */
 function FlowingCirclesSVG() {
+  const gradientId = `momentum-desktop-${useId().replaceAll(":", "")}`
   const R = 130
   const sw = 52
   const pad = sw / 2 + 4
@@ -54,9 +56,6 @@ function FlowingCirclesSVG() {
   const R2 = `M ${cx2 + R} ${cy} A ${R} ${R} 0 0 1 ${cx2 - R} ${cy}` // up over C2
   const R1 = `M ${cx1 + R} ${cy} A ${R} ${R} 0 0 0 ${cx1 - R} ${cy}` // down under C1
 
-  const x0 = cx1 - R - sw / 2 // leftmost pixel
-  const x1 = cx3 + R + sw / 2 // rightmost pixel
-
   return (
     <svg
       viewBox={`0 0 ${vw} ${vh}`}
@@ -65,23 +64,22 @@ function FlowingCirclesSVG() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        {/* Single gradient spanning full width in user-space coords */}
-        <linearGradient id="ringGrad" gradientUnits="userSpaceOnUse" x1={x0} y1={cy} x2={x1} y2={cy}>
+        <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1="0" y1={cy} x2={vw} y2={cy}>
           <stop offset="0%" stopColor="#ffd100" />
           <stop offset="50%" stopColor="#ff8600" />
           <stop offset="100%" stopColor="#fc66a7" />
         </linearGradient>
       </defs>
 
-      {/* Layer 1 (back): C2 arcs - always behind at both junctions */}
-      <path d={F2} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-      <path d={R2} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
+      {/* Centre arcs sit behind at both interlocking junctions. */}
+      <path d={F2} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R2} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
 
-      {/* Layer 2 (front): C1 and C3 arcs - overlap C2 at the junctions */}
-      <path d={F1} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-      <path d={R1} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-      <path d={F3} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-      <path d={R3} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
+      {/* Outer arcs overlap the centre ring while sharing one continuous gradient. */}
+      <path d={F1} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R1} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={F3} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R3} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
     </svg>
   )
 }
@@ -91,6 +89,7 @@ function FlowingCirclesSVG() {
  * Same three interlocking rings but rotated 90 degrees
  */
 function FlowingCirclesSVGMobile() {
+  const gradientId = `momentum-mobile-${useId().replaceAll(":", "")}`
   const R = 130
   const sw = 52
   const pad = sw / 2 + 4
@@ -114,9 +113,6 @@ function FlowingCirclesSVGMobile() {
   const R2 = `M ${cx} ${cy2 + R} A ${R} ${R} 0 0 0 ${cx} ${cy2 - R}` // right arc over C2
   const R1 = `M ${cx} ${cy1 + R} A ${R} ${R} 0 0 1 ${cx} ${cy1 - R}` // left arc under C1
 
-  const y0 = cy1 - R - sw / 2
-  const y1 = cy3 + R + sw / 2
-
   return (
     <svg
       viewBox={`0 0 ${vw} ${vh}`}
@@ -125,37 +121,56 @@ function FlowingCirclesSVGMobile() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        {/* Vertical gradient: yellow at top → orange middle → pink at bottom */}
-        <linearGradient id="ringGradMobile" gradientUnits="userSpaceOnUse" x1={cx} y1={y0} x2={cx} y2={y1}>
+        <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1={cx} y1="0" x2={cx} y2={vh}>
           <stop offset="0%" stopColor="#ffd100" />
           <stop offset="50%" stopColor="#ff8600" />
           <stop offset="100%" stopColor="#fc66a7" />
         </linearGradient>
       </defs>
 
-      {/* Layer 1 (back): C2 arcs */}
-      <path d={F2} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-      <path d={R2} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
+      {/* Centre arcs sit behind at both interlocking junctions. */}
+      <path d={F2} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R2} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
 
-      {/* Layer 2 (front): C1 and C3 arcs */}
-      <path d={F1} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-      <path d={R1} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-      <path d={F3} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-      <path d={R3} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
+      {/* Outer arcs overlap the centre ring while sharing one continuous gradient. */}
+      <path d={F1} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R1} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={F3} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R3} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
     </svg>
   )
 }
 
 export function MomentumDiagram() {
   return (
-    <motion.div
+    <>
+      <style>{`
+        .cc-momentum-desktop {
+          display: none;
+        }
+
+        .cc-momentum-mobile {
+          display: block;
+        }
+
+        @media (min-width: 768px) {
+          .cc-momentum-desktop {
+            display: block;
+          }
+
+          .cc-momentum-mobile {
+            display: none;
+          }
+        }
+      `}</style>
+      <motion.div
       initial="hidden"
       animate="visible"
       variants={staggerContainer}
       className="w-full"
     >
       {/* Desktop / Tablet Diagram */}
-      <motion.div variants={fadeInUp} className="hidden md:block w-full">
+      <motion.div variants={fadeInUp} className="cc-momentum-desktop w-full">
         <div className="relative">
           {/* SVG Flowing Circles */}
           <FlowingCirclesSVG />
@@ -200,7 +215,7 @@ export function MomentumDiagram() {
       </motion.div>
 
       {/* Mobile - Rotated circles diagram vertical orientation */}
-      <motion.div variants={fadeInUp} className="md:hidden w-full max-w-md mx-auto">
+      <motion.div variants={fadeInUp} className="cc-momentum-mobile w-full max-w-md mx-auto">
         <div className="relative">
           {/* SVG Flowing Circles - rotated */}
           <FlowingCirclesSVGMobile />
@@ -244,5 +259,6 @@ export function MomentumDiagram() {
         </div>
       </motion.div>
     </motion.div>
+    </>
   )
 }
