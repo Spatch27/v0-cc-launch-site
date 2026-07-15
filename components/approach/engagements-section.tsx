@@ -45,7 +45,7 @@ export function EngagementsSection() {
       {/* Header */}
       <motion.div variants={fadeInUp} className="mb-20">
         <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-          A route to growth
+          Products that drive growth.
         </h2>
       </motion.div>
 
