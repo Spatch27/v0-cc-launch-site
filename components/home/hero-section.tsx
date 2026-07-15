@@ -31,7 +31,19 @@ export function HeroSection() {
   const motionStyles: MotionStyle | undefined = mounted ? { scale, opacity } : undefined
 
   return (
-    <motion.section
+    <>
+      <style>{`
+        .cc-hero-heading {
+          font-size: 3.75rem;
+        }
+
+        @media (min-width: 768px) {
+          .cc-hero-heading {
+            font-size: 8rem;
+          }
+        }
+      `}</style>
+      <motion.section
       ref={sectionRef}
       style={motionStyles}
       className="relative min-h-svh lg:h-screen bg-brand-orange px-6 lg:px-12 noscript-visible"
@@ -39,7 +51,7 @@ export function HeroSection() {
       <div className="mx-auto flex max-w-[1400px] flex-col pt-20 lg:pt-28 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
         {/* Main headline - visible immediately for LCP, no animation delay */}
         <h1
-          className="mt-20 max-w-5xl font-display text-6xl md:text-9xl font-bold leading-[0.95] tracking-tight text-brand-dark"
+          className="cc-hero-heading mt-20 max-w-5xl font-display font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
           Freedom
           <br />
@@ -56,5 +68,6 @@ export function HeroSection() {
         </div>
       </div>
     </motion.section>
+    </>
   )
 }
