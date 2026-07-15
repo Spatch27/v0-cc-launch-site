@@ -45,7 +45,7 @@ export function MomentumSection() {
             </motion.h3>
             <motion.div variants={textChild} className="space-y-6">
               <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
-                We work alongside your people in focused six-week cycles, addressing how work flows across Team, Process, Data and Tech. Each cycle targets a real problem and ends with progress you can measure and your team can feel.
+                Each six-week cycle tackles one pressing problem across Team, Process, Data and Tech - starting with the one that's costing you most right now. Every cycle ends with results you can put in front of the board: greater effectiveness, driven by greater efficiency, that your team can feel day to day.
               </p>
               <Link
                 href="/approach"
