@@ -53,7 +53,8 @@ export default function AboutPage() {
       <CtaBand 
         heading="Want to meet the team?" 
         body={[
-          "Start with a conversation. Book a free Waypoint - 60 minutes with the founders, focused on where drag is and what to do about it first."
+          "Start with a conversation.",
+          "Book a free Waypoint - 60 minutes with the founders, focused on where drag is and what to do about it first."
         ]}
         ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"
