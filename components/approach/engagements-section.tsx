@@ -17,7 +17,7 @@ const engagements = [
     ],
     duration: "SIX WEEKS",
     accentColor: "bg-brand-pink",
-    price: "£40k",
+    price: "From £40k",
   },
   {
     name: "Fix6",
