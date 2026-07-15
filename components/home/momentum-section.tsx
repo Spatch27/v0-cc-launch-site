@@ -53,8 +53,10 @@ export function MomentumSection() {
           transform: translateY(-1.5rem);
         }
 
-        .cc-home-paired-modules > :not([hidden]) ~ :not([hidden]) {
-          margin-top: 3rem;
+        .cc-home-paired-modules {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
         }
 
         @media (prefers-reduced-motion: reduce) {
