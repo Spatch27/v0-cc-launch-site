@@ -60,15 +60,12 @@ export function Footer() {
 
   return (
     <footer data-site-footer className="relative overflow-hidden text-brand-dark">
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CC%20blend%20background-VpfgyiS6MyAjc7Ce2dMvMIdbEjmz3U.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          transform: 'rotate(180deg)',
-        }}
+      <img
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CC%20blend%20background-VpfgyiS6MyAjc7Ce2dMvMIdbEjmz3U.webp"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 z-0 h-full w-full rotate-180 object-cover"
       />
       <div className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10 px-6 lg:px-12">
         <div className="mx-auto max-w-[1400px] space-y-12">
@@ -92,6 +89,7 @@ export function Footer() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
+                        prefetch={false}
                         className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                       >
                         {link.label}
@@ -138,6 +136,7 @@ export function Footer() {
             </a>
             <Link
               href="/privacy"
+              prefetch={false}
               className="relative inline-block text-xs text-brand-dark/70 font-medium transition-all duration-300 hover:text-brand-dark hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
             >
               Privacy

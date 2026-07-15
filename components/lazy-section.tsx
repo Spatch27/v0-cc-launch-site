@@ -52,7 +52,7 @@ export function LazySection({
     <div 
       ref={ref} 
       className={`${className} noscript-visible`} 
-      style={{ minHeight: shouldRender ? undefined : minHeight }}
+      style={{ minHeight }}
     >
       {shouldRender ? children : null}
     </div>
