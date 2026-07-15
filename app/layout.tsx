@@ -665,13 +665,13 @@ p {
             gtag("set", "url_passthrough", false);
           `}
         </Script>
-        {/* Apollo website visitor tracking */}
-        <script
+        {/* Apollo website visitor tracking - deferred until after the page is interactive */}
+        <Script
+          id="apollo-website-tracker"
           src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js"
-          async
-          defer
+          strategy="lazyOnload"
           data-app-id="69d6846b942e8400112c103f"
-        ></script>
+        />
       </head>
       <body className="font-sans antialiased">
         {/* No-JavaScript fallback: show navigation and content notice */}

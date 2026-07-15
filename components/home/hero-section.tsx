@@ -1,35 +1,4 @@
-"use client"
-
-import { useScroll, useTransform, motion, type MotionStyle } from "framer-motion"
-import { useRef, useEffect, useState } from "react"
-
 export function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [mounted, setMounted] = useState(false)
-
-  // Defer scroll-based animations until after initial paint
-  useEffect(() => {
-    // Use requestIdleCallback to defer non-critical work
-    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      window.requestIdleCallback(() => setMounted(true))
-    } else {
-      // Fallback for browsers without requestIdleCallback
-      setTimeout(() => setMounted(true), 100)
-    }
-  }, [])
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  })
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.93])
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
-
-  // When JS is disabled or not yet mounted, motion.section renders as a regular section
-  // The CSS classes ensure full visibility even without JS
-  const motionStyles: MotionStyle | undefined = mounted ? { scale, opacity } : undefined
-
   return (
     <>
       <style>{`
@@ -37,37 +6,48 @@ export function HeroSection() {
           font-size: 3.75rem;
         }
 
+        .cc-hero-subtitle {
+          animation: cc-hero-subtitle-in 700ms 200ms both cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes cc-hero-subtitle-in {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         @media (min-width: 768px) {
           .cc-hero-heading {
             font-size: 8rem;
           }
         }
-      `}</style>
-      <motion.section
-      ref={sectionRef}
-      style={motionStyles}
-      className="relative min-h-svh lg:h-screen bg-brand-orange px-6 lg:px-12 noscript-visible"
-    >
-      <div className="mx-auto flex max-w-[1400px] flex-col pt-40 lg:pt-48 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
-        {/* Main headline - visible immediately for LCP, no animation delay */}
-        <h1
-          className="cc-hero-heading max-w-5xl font-display font-bold leading-[0.95] tracking-tight text-brand-dark"
-        >
-          Freedom
-          <br />
-          from <em>drag</em>.
-        </h1>
 
-        {/* Subtitle - CSS animation with staggered delay */}
-        <div
-          className="flex justify-end animate-fade-in-up animation-delay-200"
-        >
-          <p className="max-w-[28rem] text-xl font-normal lg:font-bold leading-relaxed text-brand-dark text-right">
-            We are the consultancy for CMOs who want their marketing to move <em>faster</em>.
-          </p>
+        @media (prefers-reduced-motion: reduce) {
+          .cc-hero-subtitle {
+            animation: none;
+          }
+        }
+      `}</style>
+      <section className="relative min-h-svh bg-brand-orange px-6 lg:h-screen lg:px-12">
+        <div className="mx-auto flex max-w-[1400px] flex-col gap-52 pt-40 pb-24 lg:h-full lg:justify-between lg:gap-32 lg:pt-48 lg:pb-16">
+          <h1 className="cc-hero-heading max-w-5xl font-display font-bold leading-[0.95] tracking-tight text-brand-dark">
+            Freedom
+            <br />
+            from <em>drag</em>.
+          </h1>
+
+          <div className="cc-hero-subtitle flex justify-end">
+            <p className="max-w-[28rem] text-right text-xl font-normal leading-relaxed text-brand-dark lg:font-bold">
+              We are the consultancy for CMOs who want their marketing to move <em>faster</em>.
+            </p>
+          </div>
         </div>
-      </div>
-    </motion.section>
+      </section>
     </>
   )
 }
