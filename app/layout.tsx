@@ -136,6 +136,14 @@ p {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -156,6 +164,18 @@ p {
   gap: 3rem;
 }
 
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem;
+}
+
+.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.5rem;
+}
+
+.space-y-20 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 5rem;
+}
+
 .items-center {
   align-items: center;
 }
@@ -171,6 +191,11 @@ p {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .py-8 {
@@ -283,12 +308,24 @@ p {
   margin-top: 1rem;
 }
 
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
 }
 
 .hidden {
@@ -508,6 +545,23 @@ p {
 }
 
 @media (min-width: 1024px) {
+  .lg\\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\\:order-first {
+    order: -9999;
+  }
+
+  .lg\\:order-last {
+    order: 9999;
+  }
+
+  .lg\\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
   .lg\\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;

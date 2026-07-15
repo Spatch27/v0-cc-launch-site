@@ -26,8 +26,51 @@ export function MomentumSection() {
   const inView2 = useInView(ref2, { once: true, margin: "-80px" })
 
   return (
-    <Section background="light" compact className="pt-12 md:pt-0">
-      <div className="space-y-20">
+    <>
+      <style>{`
+        .cc-cta-button {
+          background-color: var(--brand-light);
+        }
+
+        .cc-cta-label-track {
+          display: flex;
+          flex-direction: column;
+          transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .cc-cta-label-copy {
+          display: flex;
+          height: 1.5rem;
+          align-items: center;
+          white-space: nowrap;
+        }
+
+        .cc-cta-button:hover {
+          background-color: var(--brand-white);
+        }
+
+        .cc-cta-button:hover .cc-cta-label-track {
+          transform: translateY(-1.5rem);
+        }
+
+        .cc-home-paired-modules {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .cc-cta-label-track {
+            transition: none;
+          }
+
+          .cc-cta-button:hover .cc-cta-label-track {
+            transform: none;
+          }
+        }
+      `}</style>
+      <Section background="light" compact className="pt-12 md:pt-0">
+      <div className="cc-home-paired-modules">
 
         {/* Measurable cycles — Text Left, Image Right */}
         <div ref={ref2} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">
@@ -43,16 +86,21 @@ export function MomentumSection() {
             >
               How we work.
             </motion.h3>
-            <motion.div variants={textChild} className="space-y-6">
+            <motion.div variants={textChild} className="flex flex-col items-start gap-8">
               <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
                 Each six-week cycle tackles one pressing problem across Team, Process, Data and Tech - starting with the one that's costing you most right now. Every cycle ends with results you can put in front of the board: greater effectiveness, driven by greater efficiency, that your team can feel day to day.
               </p>
               <Link
                 href="/approach"
-                className="group inline-flex w-fit items-center gap-3 rounded-lg border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white"
+                className="cc-cta-button group inline-flex w-fit items-center gap-3 rounded-lg border-2 border-brand-dark px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300"
                 style={{ borderRadius: "4px" }}
               >
-                Our approach
+                <span className="h-6 overflow-hidden">
+                  <span className="cc-cta-label-track">
+                    <span className="cc-cta-label-copy">Our approach</span>
+                    <span className="cc-cta-label-copy" aria-hidden="true">Our approach</span>
+                  </span>
+                </span>
                 <ArrowRight size={18} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>
@@ -107,5 +155,6 @@ export function MomentumSection() {
 
       </div>
     </Section>
+    </>
   )
 }
