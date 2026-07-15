@@ -19,12 +19,12 @@ export function AboutHero() {
       ref={sectionRef}
       style={{ scale, opacity }}
       className="relative min-h-svh lg:h-screen bg-brand-yellow-deep px-6 lg:px-12">
-      <div className="mx-auto flex max-w-[1400px] flex-col pt-20 lg:pt-28 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
+      <div className="mx-auto flex max-w-[1400px] flex-col pt-40 lg:pt-48 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeInOut" }}
-          className="mt-20 max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
+          className="max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
           Making marketing work, <em>work.</em>
         </motion.h1>

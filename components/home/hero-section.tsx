@@ -48,10 +48,10 @@ export function HeroSection() {
       style={motionStyles}
       className="relative min-h-svh lg:h-screen bg-brand-orange px-6 lg:px-12 noscript-visible"
     >
-      <div className="mx-auto flex max-w-[1400px] flex-col pt-20 lg:pt-28 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
+      <div className="mx-auto flex max-w-[1400px] flex-col pt-40 lg:pt-48 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
         {/* Main headline - visible immediately for LCP, no animation delay */}
         <h1
-          className="cc-hero-heading mt-20 max-w-5xl font-display font-bold leading-[0.95] tracking-tight text-brand-dark"
+          className="cc-hero-heading max-w-5xl font-display font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
           Freedom
           <br />
