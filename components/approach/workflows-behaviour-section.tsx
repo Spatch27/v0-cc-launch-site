@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
-import LightbulbIllustration from "@/components/approach/lightbulb-illustration"
+import RocketIllustration from "@/components/home/rocket-illustration"
 
 export function WorkflowsBehaviourSection() {
   const ref = useRef(null)
@@ -34,7 +34,7 @@ export function WorkflowsBehaviourSection() {
         </div>
         <div className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
           <div className="w-full origin-center">
-            <LightbulbIllustration />
+            <RocketIllustration />
           </div>
         </div>
       </motion.div>

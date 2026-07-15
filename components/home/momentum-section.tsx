@@ -6,7 +6,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Section } from "@/components/section"
 import PaperPlaneIllustration from "@/components/approach/paper-plane-illustration"
-import RocketIllustration from "@/components/home/rocket-illustration"
+import AnimatedGrowthArrow from "@/components/illustrations/animated-growth-arrow"
 
 const textContainer = {
   hidden: {},
@@ -101,7 +101,7 @@ export function MomentumSection() {
             animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <RocketIllustration />
+            <AnimatedGrowthArrow />
           </motion.div>
         </div>
 
