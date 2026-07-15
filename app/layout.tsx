@@ -69,6 +69,33 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable}`} data-scroll-behavior="smooth">
       <head>
+        {/* Organization Schema */}
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Committed Citizens",
+              url: "https://committedcitizens.co.uk",
+              logo: "https://committedcitizens.co.uk/logo.png",
+              description: "Marketing operations and transformation consultancy helping CMOs remove operational drag and build sustainable marketing workflows.",
+              sameAs: [
+                "https://www.linkedin.com/company/committed-citizens",
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "GB",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "Customer Service",
+                url: "https://committedcitizens.co.uk/contact",
+              },
+            }),
+          }}
+        />
         {/* Google Consent Mode - must load before gtag.js */}
         <Script
           id="google-consent-mode"

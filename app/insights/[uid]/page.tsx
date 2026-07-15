@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -811,8 +812,43 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound()
   }
 
+  const articleUrl = `https://committedcitizens.co.uk/insights/${uid}`
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.seoTitle || article.title,
+    description: article.seoDescription || article.excerpt,
+    image: `https://committedcitizens.co.uk${article.heroImage}`,
+    datePublished: new Date().toISOString(),
+    dateModified: new Date().toISOString(),
+    author: {
+      "@type": "Person",
+      name: article.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Committed Citizens",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://committedcitizens.co.uk/logo.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+  }
+
   return (
     <>
+      {/* Article Schema */}
+      <Script
+        id={`article-schema-${uid}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema),
+        }}
+      />
       {/* Article Header */}
       <section className="bg-brand-light px-6 pt-40 pb-12 lg:px-12 lg:pt-48 lg:pb-16">
         <div className="mx-auto max-w-[1400px]">
