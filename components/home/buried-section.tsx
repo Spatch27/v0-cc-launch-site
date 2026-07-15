@@ -42,7 +42,7 @@ export function BuriedSection() {
               Briefs that should take days, days weeks. Dashboards nobody trusts. Expensive martech gathering dust. AI stuck in pilot. Your best people spending more time unblocking work than doing it.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              Your talent isn&apos;t the problem, your operating model is. We work alongside your team to rebuild it, cycle by cycle, closing the gap between strategy and execution.
+              Your talent isn&apos;t the problem, your operating model is. We work alongside your team to rebuild it, closing the gap between strategy and execution.
             </p>
           </motion.div>
         </motion.div>
