@@ -38,7 +38,7 @@ const engagements = [
     ],
     duration: "SIX-WEEK ROLLING",
     accentColor: "bg-brand-yellow-deep",
-    price: "£10k",
+    price: "From £5k",
     priceNote: "/ week",
   },
 ]
