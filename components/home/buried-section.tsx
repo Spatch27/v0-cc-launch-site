@@ -12,7 +12,7 @@ const textContainer = {
 
 const textChild = {
   hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeInOut" } },
 }
 
 export function BuriedSection() {
@@ -52,7 +52,7 @@ export function BuriedSection() {
           className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]"
           initial={{ opacity: 0, x: 40, scale: 0.97 }}
           animate={inView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           <div className="w-full origin-center">
             <BusyWorkIllustration />

@@ -168,19 +168,23 @@ export default function RootLayout({
             </ul>
           </nav>
         </noscript>
-        {/* Cookiebot CMP */}
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://consent.cookiebot.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://js.supabase.co" />
+        {/* Cookiebot CMP - deferred to improve LCP */}
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
           data-blockingmode="auto"
           type="text/javascript"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        {/* Google tag (gtag.js) */}
+        {/* Google tag (gtag.js) - deferred to reduce blocking */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-76PXVCGPES"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
