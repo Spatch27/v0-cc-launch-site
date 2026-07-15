@@ -18,7 +18,7 @@ export function CultureSection() {
           <p>
             We bring teams together in spaces where real decisions actually get made. Whether it's your boardroom or our barn in Devon, the approach doesn't change - plain talk, practical work, and energy to keep things moving.
           </p>
-          <p>
+          <p className="font-bold text-brand-white/70">
             You'll know it's working when your team stops talking about the work as something being done to them, and starts treating it as something they own.
           </p>
         </div>

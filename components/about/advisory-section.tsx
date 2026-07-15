@@ -20,7 +20,7 @@ export function AdvisorySection() {
             <p>
               Our advisory board is working, not ornamental. Senior operators we draw on directly in delivery - shaping thinking, pressure-testing decisions, strengthening outcomes.
             </p>
-            <p>
+            <p className="font-bold text-brand-dark">
               We have no generalists posing as experts. No expensive talent overhead taking on junior tasks or sitting idle. Instead, we call on a trusted, senior network of operators with a depth of experience, aligned to a single Committed Citizens method.
             </p>
           </div>

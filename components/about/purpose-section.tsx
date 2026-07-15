@@ -30,7 +30,7 @@ export function PurposeSection() {
             <p>
               Teams exhausted by transformation fatigue become energised. Marketers who were firefighting get to do the work they came to do. Boards who saw the function as a cost, start seeing it as a functioning engine of growth.
             </p>
-            <p>
+            <p className="font-bold text-brand-dark">
               Our work creates teams that are fast, confident, and in control. A group of committed citizens doing the most effective work of their careers.
             </p>
           </div>
