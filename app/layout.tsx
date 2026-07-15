@@ -665,6 +665,15 @@ p {
             gtag("set", "url_passthrough", false);
           `}
         </Script>
+        <link rel="preconnect" href="https://consent.cookiebot.com" />
+        <link rel="preconnect" href="https://consentcdn.cookiebot.com" />
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+        />
         {/* Apollo website visitor tracking - deferred until after the page is interactive */}
         <Script
           id="apollo-website-tracker"
@@ -712,30 +721,31 @@ p {
             </ul>
           </nav>
         </noscript>
-        {/* Preconnect to critical third-party origins */}
-        <link rel="preconnect" href="https://consent.cookiebot.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://js.supabase.co" />
-        {/* Cookiebot CMP - deferred to improve LCP */}
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
-          data-blockingmode="auto"
-          type="text/javascript"
-          strategy="lazyOnload"
-        />
-        {/* Google tag (gtag.js) - deferred to reduce blocking */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-76PXVCGPES"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics-consent-loader" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-76PXVCGPES');
+            (function () {
+              var loaded = false;
+
+              function loadAnalytics() {
+                if (loaded || !window.Cookiebot || !window.Cookiebot.consent || !window.Cookiebot.consent.statistics) return;
+                loaded = true;
+
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-76PXVCGPES';
+                document.head.appendChild(script);
+
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+                window.gtag('js', new Date());
+                window.gtag('config', 'G-76PXVCGPES');
+              }
+
+              window.addEventListener('CookiebotOnConsentReady', loadAnalytics);
+              window.addEventListener('CookiebotOnAccept', loadAnalytics);
+              loadAnalytics();
+            })();
           `}
         </Script>
         <Navigation />
