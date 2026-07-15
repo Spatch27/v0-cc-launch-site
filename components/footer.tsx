@@ -1,9 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { useEffect } from "react"
-import { fadeInUp, staggerContainer } from "@/lib/animations"
 
 declare global {
   interface Window {
@@ -29,14 +27,27 @@ const connectLinks = [
 
 export function Footer() {
   useEffect(() => {
-    const script = document.createElement("script")
-    script.src = "https://js.supascribe.com/v1/loader/Lh6325se05ekSo4cfYYlMSvZLs13.js"
-    script.async = true
-    document.body.appendChild(script)
+    const footer = document.querySelector("[data-site-footer]")
+    if (!footer) return
+
+    let script: HTMLScriptElement | null = null
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+
+        script = document.createElement("script")
+        script.src = "https://js.supascribe.com/v1/loader/Lh6325se05ekSo4cfYYlMSvZLs13.js"
+        script.async = true
+        document.body.appendChild(script)
+        observer.disconnect()
+      },
+      { rootMargin: "600px 0px" },
+    )
+
+    observer.observe(footer)
     return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script)
-      }
+      observer.disconnect()
+      script?.remove()
     }
   }, [])
 
@@ -48,7 +59,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="relative overflow-hidden text-brand-dark">
+    <footer data-site-footer className="relative overflow-hidden text-brand-dark">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -59,14 +70,9 @@ export function Footer() {
           transform: 'rotate(180deg)',
         }}
       />
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-        className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10 px-6 lg:px-12"
-      >
+      <div className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10 px-6 lg:px-12">
         <div className="mx-auto max-w-[1400px] space-y-12">
-          <motion.div variants={fadeInUp} className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
             <div className="w-full lg:w-1/3 lg:flex-shrink-0">
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
@@ -114,9 +120,9 @@ export function Footer() {
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
       <div className="relative z-10 border-t border-brand-dark/10 px-6 lg:px-12">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between py-4 pb-24 lg:pb-4">
           <p className="text-xs text-brand-dark">
