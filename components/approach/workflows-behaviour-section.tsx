@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { fadeInUp } from "@/lib/animations"
 import { Section } from "@/components/section"
-import LightbulbIllustration from "@/components/approach/lightbulb-illustration"
+import RocketIllustration from "@/components/home/rocket-illustration"
 
 export function WorkflowsBehaviourSection() {
   const ref = useRef(null)
@@ -21,20 +21,20 @@ export function WorkflowsBehaviourSection() {
       >
         <div>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Workflows follow behaviour.
+            Everyone gets a jetpack.
           </h2>
           <div className="space-y-6">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We keep hearing the same story. Marketing invests in a new platform. There's a town hall, they train the trainers - and within months the team has rebuilt their old spreadsheets. The technology works but the project failed.
+              We start with the business need and assess how your people get work done: where time goes, which decisions stall, and what gets in their way. Then we enable people to do more effective work - sometimes aided by agentic automations.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              The same thing is happening with AI - but on steroids. Teams are piloting agents without redesigning the workflows around them. Same pattern, same result: Technology that works in isolation but fails in practice.
+              Every change should give the team more lift. More confidence and capability. Less effort spent working around the system.
             </p>
           </div>
         </div>
         <div className="relative flex h-auto min-h-[300px] lg:min-h-[32rem] items-center justify-center overflow-hidden rounded-lg bg-[#e3dcdc]">
           <div className="w-full origin-center">
-            <LightbulbIllustration />
+            <RocketIllustration />
           </div>
         </div>
       </motion.div>

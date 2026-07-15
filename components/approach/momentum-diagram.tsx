@@ -5,15 +5,15 @@ import { fadeInUp, staggerContainer } from "@/lib/animations"
 
 const momentumItems = [
   {
-    name: "3A Framework™",
-    benefit: "We align objectives, activate teams, amplify results.",
+    name: "Fix This First",
+    benefit: "Identify the most pressing need and demonstrate impact.",
   },
   {
-    name: "Cadence Loop™",
-    benefit: "Proof of progress every six weeks. Guaranteed.",
+    name: "Cadence Loop",
+    benefit: "Progress made in six-week cycles that compound over time.",
   },
   {
-    name: "Telemetry Stack™",
+    name: "Telemetry Stack",
     benefit: "Live dashboards. No waiting for the end-of-quarter report.",
   },
 ]

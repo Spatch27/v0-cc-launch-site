@@ -104,13 +104,10 @@ export function ContactForm() {
             </h2>
             <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-white/70">
               <p>
-                The Drag Diagnostic is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most - and what to fix first.
+                Waypoint is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most - and what to fix first.
               </p>
               <p>
-                You'll walk away with a Flow Map: a single-page view of where friction is concentrated, what it's costing you, and which fix would yield the fastest return. Board-ready language for a budget conversation, not a feelings conversation.
-              </p>
-              <p>
-                Yours to keep, whether or not we work together.
+                You'll walk away with your Waypoint Marker: a two-page view of where drag is holding you back, what it's costing you, and where to start. Board-ready language for a budget conversation, not a feelings conversation.
               </p>
               <p className="font-medium text-brand-white">
                 Just fill in the form below and we'll start the ball rolling.

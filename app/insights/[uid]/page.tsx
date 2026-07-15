@@ -27,6 +27,70 @@ const articles: Record<
     seoDescription?: string
   }
 > = {
+  "the-plane-in-flight-problem": {
+    title: "The plane-in-flight problem.",
+    excerpt:
+      "Most marketing leaders are trapped between this quarter's deadlines and the deeper fixes the function actually needs. The deadlines always win - they don't have to.",
+    category: "Marketing Leadership",
+    date: "June 2026",
+    readTime: "4 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/plane-in-flight-problem.png",
+    body: [
+      {
+        type: "paragraph",
+        text: "There's always work to be done and work to be fixed. Most teams only ever do the first kind. We call it the plane-in-flight problem.",
+      },
+      {
+        type: "paragraph",
+        text: "It isn't a failure of will. It's a Catch-22: you're too busy to fix the thing that's actually making you busy.",
+      },
+      {
+        type: "paragraph",
+        text: "Examples abound. The campaign takes too long, and everyone knows why. The process gets worked around, and everyone feels it. But the fixes ask for the one resource already in short supply: attention. So a problem that's quietly costing you time and money never gets touched.",
+      },
+      {
+        type: "paragraph",
+        text: "The reason is structural, not personal. Any improvement arrives as 'work' before it arrives as 'help'. The gain sits somewhere in the future. The cost - scoping the fix, the meetings to align on it, the disruption to a team already at capacity - lands now. Weighed like that, doing nothing becomes the rational choice. Even when everyone agrees something costly is broken.",
+      },
+      {
+        type: "paragraph",
+        text: "This is why most marketing functions can't repair themselves in motion. The plane is in flight. You can't land it, strip the engine and rebuild it while the campaigns keep shipping and the board keeps asking for numbers. So the drag stays in the system, and over time it stops feeling like a problem at all. It just feels like the job.",
+      },
+      {
+        type: "heading2",
+        text: "The answer isn't a bigger intervention",
+      },
+      {
+        type: "paragraph",
+        text: "The instinct, once this finally gets named, is to reach for something big. A transformation programme. A new platform. A reorganisation.",
+      },
+      {
+        type: "paragraph",
+        text: "But the answer isn't a more substantial intervention. It's a less substantial one.",
+      },
+      {
+        type: "paragraph",
+        text: "Pick one workflow. Not the entire operating system - just one thing. Campaign approvals. Monthly reporting. Creative feedback. Whatever pain you can name out loud.",
+      },
+      {
+        type: "paragraph",
+        text: "Map it in 'plane language': where the work stumbles or stalls, how many steps, how many people, how many handoffs.",
+      },
+      {
+        type: "paragraph",
+        text: "Then change one thing. Measure one number. Over one month. Small enough that it doesn't compete with the work, specific enough that you'll know whether anything changed.",
+      },
+      {
+        type: "paragraph",
+        text: "Done this way, improvement stops being a project and becomes a habit. Because the hardest part was never spotting the drag. It's making sure that fixing it doesn't look like yet another thing to do.",
+      },
+    ],
+    seoTitle: "The plane-in-flight problem",
+    seoDescription:
+      "Why marketing teams can't fix broken processes while operations are ongoing, and how to build improvement into your workflow.",
+  },
   "indispensable-and-yet-unheard": {
     title: "Indispensable and yet unheard.",
     excerpt:

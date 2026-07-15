@@ -22,7 +22,7 @@ export default function HomePage() {
       <LazySection minHeight="500px" rootMargin="200px">
         <MomentumSection />
       </LazySection>
-      
+
       <LazySection minHeight="400px" rootMargin="200px">
         <WhatLooksLikeSection />
       </LazySection>
@@ -35,10 +35,10 @@ export default function HomePage() {
         <CtaBand
           heading="Not sure where to start? Start here."
           body={[
-            "The Drag Diagnostic is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most — and what to fix first.",
-            "You'll walk away with a Flow Map: a single-page view of where friction is concentrated, what it's costing you, and which fix would yield the fastest return. Board-ready language for a budget conversation, not a feelings conversation. Yours to keep, whether or not we work together."
+            "Waypoint is a free 60-minute session. No pitch. No audit. Just a conversation about your business, your team and the drag getting in their way.",
+            "Within 48 hours, you receive a two-page Waypoint Marker: a clear view of what is holding you back and where to begin, written in board-ready language for a budget conversation. It is yours to keep, whether we work together or not."
           ]}
-          ctaLabel="Book a Drag Diagnostic"
+          ctaLabel="Book your Waypoint"
           ctaHref="/contact#book"
           background="pink"
         />

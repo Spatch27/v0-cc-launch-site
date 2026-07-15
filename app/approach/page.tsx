@@ -28,8 +28,10 @@ export default function ApproachPage() {
       <EngagementsSection />
       <CtaBand
         heading="Before committing a budget, commit an hour."
-        description="Book a free Drag Diagnostic - a structured 60-minute conversation that shows you exactly where operational drag is costing you the most."
-        ctaLabel="Book a Drag Diagnostic"
+        body={[
+          "Book a free Waypoint - a structured 60-minute conversation that shows you exactly where operational drag is costing you the most."
+        ]}
+        ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"
         background="yellow-deep"
       />

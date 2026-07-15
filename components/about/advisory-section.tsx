@@ -15,16 +15,13 @@ export function AdvisorySection() {
           </h2>
           <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark">
             <p>
-              We operate a highly capable core, drawing on the talents of a network of specialist
-              practitioners in martech, agentic AI, data architecture, FS, and governance.
+              We operate a highly capable core, drawing on the talents of specialist practitioners in data architecture, agentic AI, martech, and governance.
             </p>
             <p>
-              Our advisory board is working, not ornamental. Senior operators we draw on directly in
-              delivery - shaping thinking, pressure-testing decisions, strengthening outcomes.
+              Our advisory board is working, not ornamental. Senior operators we draw on directly in delivery - shaping thinking, pressure-testing decisions, strengthening outcomes.
             </p>
-            <p className="font-medium text-brand-dark">
-              We have no generalists posing as experts. No paying for bench time. Just the right depth, at
-              the right moment, aligned to a single Committed Citizens method.
+            <p className="font-bold text-brand-dark">
+              We have no generalists posing as experts. No expensive talent overhead taking on junior tasks or sitting idle. Instead, we call on a trusted, senior network of operators with a depth of experience, aligned to a single Committed Citizens method.
             </p>
           </div>
         </motion.div>

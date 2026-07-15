@@ -8,34 +8,38 @@ import Link from "next/link"
 
 const engagements = [
   {
-    name: "Ignition6™",
-    tagline: "Your transformation story, your blockers mapped, your first six wins identified - including where AI agents would genuinely shorten cycles.",
-    outcome: "Board-ready in six weeks.",
-    duration: "6 weeks",
-    price: "£40K",
-    priceNote: null,
+    name: "Flow6",
+    description: [
+      "Our Drag Diagnostic assesses where momentum is lost and what that drag is costing you.",
+      "Our Flow Map plots Team, Process, Data and Tech. The map shows where work is slow, where the team is ready to move and what to fix first.",
+      "Our Progress Plan aligns your team, validates priorities and agrees the metrics for success. Together, we build a plan to liberate your team and unlock growth.",
+      "BOARD-READY IN SIX WEEKS.",
+    ],
+    duration: "SIX WEEKS",
     accentColor: "bg-brand-pink",
-    borderColor: "border-brand-pink",
+    price: "From £40k",
   },
   {
-    name: "Fly6™",
-    tagline: "Six pilots delivered, live ROI dashboards, governance embedded.",
-    outcome: "Results in a quarter.",
-    duration: "6 weeks",
-    price: "£60K",
-    priceNote: "+ outcome bonus",
+    name: "Fix6",
+    description: [
+      "We always start with a clear focus on the next best action, and we build the fix with your team and prove it through live work. That could mean restructuring roles, remapping workflows, or implementing agentic solutions. We measure the result against the baseline, capture the evidence and recommend the next move.",
+      "RESULTS IN A QUARTER.",
+    ],
+    duration: "SIX WEEKS",
     accentColor: "bg-brand-orange",
-    borderColor: "border-brand-orange",
+    price: "From £40k",
   },
   {
-    name: "Flow6™",
-    tagline: "Rhythm, adoption and continuous improvement built into your marketing operation.",
-    outcome: "Permanently.",
-    duration: "6-week rolling",
+    name: "Momentum6",
+    description: [
+      "Continuous improvement compounds to build a better engine.",
+      "A rolling programme of 6-week cycles, drawing on a suite of 59 customisable products covering 7 key areas. Every step creates value while adding up to something bigger: a new, more capable marketing operating model.",
+      "PERMANENTLY.",
+    ],
+    duration: "SIX-WEEK ROLLING",
+    accentColor: "bg-brand-yellow-deep",
     price: "£10K",
     priceNote: "/ week",
-    accentColor: "bg-brand-yellow-deep",
-    borderColor: "border-brand-yellow-deep",
   },
 ]
 
@@ -45,7 +49,7 @@ export function EngagementsSection() {
       {/* Header */}
       <motion.div variants={fadeInUp} className="mb-20">
         <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-          Three engagements, one goal.
+          Products that drive growth.
         </h2>
       </motion.div>
 
@@ -78,45 +82,35 @@ export function EngagementsSection() {
                 {engagement.name}
               </h3>
 
-              {/* Tagline */}
-              <p className="mb-4 text-base leading-relaxed text-brand-white/70">
-                {engagement.tagline}
-              </p>
-
-              {/* Outcome */}
-              <p className="mb-8 text-sm font-semibold text-brand-white/50 uppercase tracking-wide">
-                {engagement.outcome}
-              </p>
-
-              {/* Spacer */}
-              <div className="flex-1" />
-
-              {/* Price */}
-              <div className="border-t border-brand-white/10 pt-6">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-display text-3xl font-bold text-brand-white">
-                    {engagement.price}
-                  </span>
-                  {engagement.priceNote && (
-                    <span className="text-sm text-brand-white/40">
-                      {engagement.priceNote}
-                    </span>
-                  )}
-                </div>
+              {/* Description */}
+              <div className="flex flex-col gap-4 flex-1">
+                {engagement.description.map((paragraph) => (
+                  <p key={paragraph} className="text-base leading-relaxed text-brand-white/70">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
+
+              {/* Pricing */}
+              {engagement.price && (
+                <div className="border-t border-brand-white/10 mt-8 pt-6">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl font-bold text-brand-white">
+                      {engagement.price}
+                    </span>
+                    {engagement.priceNote && (
+                      <span className="text-sm text-brand-white/40">
+                        {engagement.priceNote}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Supporting Copy */}
-      <motion.div variants={fadeInUp} className="mt-16">
-        <div className="max-w-3xl">
-          <p className="text-lg leading-relaxed text-brand-white/70">
-            Most clients start with Ignition6™. Every new engagement begins with a two-week checkpoint. If you can't feel the momentum building, you walk away. No full invoice, no awkward conversations. This approach removes the risk and lets us prove value before you commit further.
-          </p>
-        </div>
-      </motion.div>
     </Section>
   )
 }

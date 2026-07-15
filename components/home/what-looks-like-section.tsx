@@ -11,37 +11,30 @@ const TAIL_BUFFER = 50
 
 const problems = [
   {
-    icon: "/icons/icon-customer.svg",
-    eyebrow: "CUSTOMER",
-    heading: "Falling through the gaps",
-    drag: "Your brand promise and the experience people actually get are drifting apart. Gaps open at the handoffs. Channels contradict each other.",
-    flow: "One orchestrated experience, end-to-end.",
-  },
-  {
     icon: "/icons/icon-team.svg",
     eyebrow: "TEAM",
-    heading: "Talented people, underperforming teams",
-    drag: "Great marketers joined to build bold work. They're stuck in approval loops and broken systems. The workaround has become the culture.",
+    heading: "Improved structure, capacity & culture.",
+    drag: "Talented people but under-performing teams. The workaround has become the culture. Teams set-up to work the way it used to work.",
+    flow: "The right people in the right roles, working effectively together.",
+  },
+  {
+    icon: "/icons/icon-process.svg",
+    eyebrow: "PROCESS",
+    heading: "Workflow redesign.",
+    drag: "Briefs that should take hours take days. Flawed approval loops and broken systems. Each \"fix\" adds another step.",
     flow: "Clear decision rights, protected focus, genuine ownership.",
   },
   {
     icon: "/icons/icon-data.svg",
     eyebrow: "DATA",
-    heading: "Flying blind on what's working",
+    heading: "Trusted numbers & decision making.",
     drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
-    flow: "A single, agreed view of what's happening, why, and what matters next.",
-  },
-  {
-    icon: "/icons/icon-process.svg",
-    eyebrow: "PROCESS",
-    heading: "Everything takes too long",
-    drag: "Briefs that should take hours take days. Approvals loop around six people when two would do. Each \"fix\" adds another step.",
-    flow: "Lean pathways, clean handoffs, fewer loops.",
+    flow: "A single, agreed view of what's happening, why, and what to do next.",
   },
   {
     icon: "/icons/icon-technology.svg",
-    eyebrow: "TECHNOLOGY",
-    heading: "Paying for tech nobody's using",
+    eyebrow: "TECH",
+    heading: "Maximum utility, zero redundancy.",
     drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
     flow: "A leaner, better-loved stack built around how people actually work.",
   },
@@ -118,7 +111,7 @@ export function WhatLooksLikeSection() {
         <div className="bg-white px-6 pb-4 pt-4 lg:px-12">
           <div className="mx-auto max-w-[1400px]">
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-              What it looks like.
+              Momentum leads to flow.
             </h2>
           </div>
         </div>

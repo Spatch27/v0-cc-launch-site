@@ -28,8 +28,7 @@ export function TeamSection() {
           The founders.
         </h2>
         <p className="max-w-2xl text-lg leading-relaxed text-brand-dark">
-          You won't be handed to a team you haven't met. You'll work with the founders and a handful
-          of discipline specialists.
+          You won't be handed to a team you haven't met. You'll work with the founders and a carefully selected network of senior discipline specialists.
         </p>
       </motion.div>
 
