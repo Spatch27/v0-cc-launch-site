@@ -1,45 +1,70 @@
 "use client"
 
-import dynamic from "next/dynamic"
+import { lazy, Suspense, type ComponentType, type ReactNode } from "react"
 import { LazySection } from "@/components/lazy-section"
 
-const AnimatedTypeSection = dynamic(
-  () => import("@/components/home/animated-type-section").then((module) => module.AnimatedTypeSection),
-  { ssr: false }
+const BuriedSection = lazy(() =>
+  import("@/components/home/buried-section").then((module) => ({ default: module.BuriedSection })),
 )
-const MomentumSection = dynamic(
-  () => import("@/components/home/momentum-section").then((module) => module.MomentumSection),
-  { ssr: false }
+const AnimatedTypeSection = lazy(() =>
+  import("@/components/home/animated-type-section").then((module) => ({ default: module.AnimatedTypeSection })),
 )
-const WhatLooksLikeSection = dynamic(
-  () => import("@/components/home/what-looks-like-section").then((module) => module.WhatLooksLikeSection),
-  { ssr: false }
+const MomentumSection = lazy(() =>
+  import("@/components/home/momentum-section").then((module) => ({ default: module.MomentumSection })),
 )
-const WhatFeelsLikeSection = dynamic(
-  () => import("@/components/home/what-feels-like-section").then((module) => module.WhatFeelsLikeSection),
-  { ssr: false }
+const WhatLooksLikeSection = lazy(() =>
+  import("@/components/home/what-looks-like-section").then((module) => ({ default: module.WhatLooksLikeSection })),
 )
-const CtaBand = dynamic(
-  () => import("@/components/cta-band").then((module) => module.CtaBand),
-  { ssr: false }
+const WhatFeelsLikeSection = lazy(() =>
+  import("@/components/home/what-feels-like-section").then((module) => ({ default: module.WhatFeelsLikeSection })),
 )
+const CtaBand = lazy(() =>
+  import("@/components/cta-band").then((module) => ({ default: module.CtaBand as ComponentType<CtaProps> })),
+)
+
+type CtaProps = {
+  heading: string
+  body: string[]
+  ctaLabel: string
+  ctaHref: string
+  background: "pink"
+}
+
+function DeferredSection({
+  minHeight,
+  children,
+  rootMargin = "350px",
+}: {
+  minHeight: string
+  children: ReactNode
+  rootMargin?: string
+}) {
+  return (
+    <LazySection minHeight={minHeight} rootMargin={rootMargin}>
+      <Suspense fallback={null}>{children}</Suspense>
+    </LazySection>
+  )
+}
 
 export function DeferredHomeSections() {
   return (
     <>
-      <LazySection minHeight="600px" rootMargin="500px">
+      <DeferredSection minHeight="700px" rootMargin="0px">
+        <BuriedSection />
+      </DeferredSection>
+      <DeferredSection minHeight="600px">
         <AnimatedTypeSection />
-      </LazySection>
-      <LazySection minHeight="900px" rootMargin="500px">
+      </DeferredSection>
+      <DeferredSection minHeight="900px">
         <MomentumSection />
-      </LazySection>
-      <LazySection minHeight="700px" rootMargin="500px">
+      </DeferredSection>
+      <DeferredSection minHeight="700px">
         <WhatLooksLikeSection />
-      </LazySection>
-      <LazySection minHeight="700px" rootMargin="500px">
+      </DeferredSection>
+      <DeferredSection minHeight="700px">
         <WhatFeelsLikeSection />
-      </LazySection>
-      <LazySection minHeight="500px" rootMargin="500px">
+      </DeferredSection>
+      <DeferredSection minHeight="500px">
         <CtaBand
           heading="Not sure where to start? Start here."
           body={[
@@ -50,7 +75,7 @@ export function DeferredHomeSections() {
           ctaHref="/contact#book"
           background="pink"
         />
-      </LazySection>
+      </DeferredSection>
     </>
   )
 }

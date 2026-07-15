@@ -35,7 +35,7 @@ export function HeroSection() {
       `}</style>
       <section className="relative min-h-svh bg-brand-orange px-6 lg:h-screen lg:px-12">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-52 pt-40 pb-24 lg:h-full lg:justify-between lg:gap-32 lg:pt-48 lg:pb-16">
-          <h1 className="cc-hero-heading max-w-5xl font-display font-bold leading-[0.95] tracking-tight text-brand-dark">
+          <h1 className="cc-hero-heading max-w-5xl font-display font-semibold leading-[0.95] tracking-tight text-brand-dark">
             Freedom
             <br />
             from <em>drag</em>.

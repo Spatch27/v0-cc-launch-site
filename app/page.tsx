@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import { HeroSection } from "@/components/home/hero-section"
-import { BuriedSection } from "@/components/home/buried-section"
 import { DeferredHomeSections } from "@/components/home/deferred-sections"
 
 export const metadata: Metadata = {
@@ -39,9 +38,8 @@ export default function HomePage() {
     <>
       {/* Above the fold - render immediately for fast LCP */}
       <HeroSection />
-      <BuriedSection />
 
-      {/* Below the fold - code-split and mounted shortly before scrolling into view */}
+      {/* Lower sections load shortly before scrolling into view. */}
       <DeferredHomeSections />
     </>
   )

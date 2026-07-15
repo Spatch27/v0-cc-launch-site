@@ -83,13 +83,13 @@ export function Navigation() {
 
       <header className={`fixed top-0 left-0 right-0 z-50 w-full px-6 py-4 transition-all duration-500 lg:px-12 lg:py-5 ${scrolled ? "bg-brand-light/20 backdrop-blur-2xl" : colors.bg}`}>
         <div className="mx-auto flex max-w-[1400px] items-center justify-between">
-          <Link href="/" className="group relative z-50 flex items-center" aria-label="Committed Citizens home">
+          <Link href="/" prefetch={false} className="group relative z-50 flex items-center" aria-label="Committed Citizens home">
             <Logo variant={logoVariant} className="h-10 w-auto lg:h-12" />
           </Link>
           <nav className="cc-desktop-navigation" aria-label="Main navigation">
             <div className="cc-navigation-lozenge relative flex items-center gap-1 bg-brand-dark px-2 py-2">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className={linkClass(link.href)}>
+                <Link key={link.href} href={link.href} prefetch={false} className={linkClass(link.href)}>
                   <NavLabel label={link.label} />
                 </Link>
               ))}
@@ -101,7 +101,7 @@ export function Navigation() {
       <nav className="cc-mobile-navigation fixed bottom-0 left-0 right-0 z-50 justify-center px-4 pt-2 pb-5" aria-label="Mobile navigation">
         <div className="cc-navigation-lozenge relative flex items-center gap-0.5 bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={linkClass(link.href, true)}>
+            <Link key={link.href} href={link.href} prefetch={false} className={linkClass(link.href, true)}>
               <NavLabel label={link.label} mobile />
             </Link>
           ))}
