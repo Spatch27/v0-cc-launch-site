@@ -8,9 +8,9 @@ import { CultureSection } from "@/components/about/culture-section"
 import { CtaBand } from "@/components/cta-band"
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About | Marketing Operations Consultancy & Advisory Board",
   description:
-    "Why Committed Citizens exists. Meet our founders and advisory board.",
+    "Meet the marketing transformation experts behind Committed Citizens. Our team combines marketing operations expertise with proven change management to help CMOs drive sustainable transformation.",
   openGraph: {
     title: "About | Committed Citizens",
     description: "Why Committed Citizens exists. Meet our founders and advisory board.",

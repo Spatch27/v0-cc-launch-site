@@ -4,9 +4,9 @@ import { OutcomesCaseStudies } from "@/components/outcomes/outcomes-case-studies
 import { CtaBand } from "@/components/cta-band"
 
 export const metadata: Metadata = {
-  title: "Outcomes",
+  title: "Marketing Transformation Results | Committed Citizens",
   description:
-    "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",
+    "See how our marketing operations consulting delivers measurable outcomes. Real results from marketing transformation and operational efficiency improvements for UK marketing teams.",
   openGraph: {
     title: "Outcomes | Committed Citizens",
     description: "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",

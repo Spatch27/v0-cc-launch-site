@@ -3,9 +3,9 @@ import { Section } from "@/components/section"
 import { CookieDeclaration } from "./cookie-declaration"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy | Committed Citizens Marketing Consultancy",
   description:
-    "Privacy policy for Committed Citizens. How we handle your data.",
+    "Privacy policy for Committed Citizens. How we handle your data and comply with GDPR and data protection regulations.",
   openGraph: {
     title: "Privacy Policy | Committed Citizens",
     description: "Privacy policy for Committed Citizens. How we handle your data.",

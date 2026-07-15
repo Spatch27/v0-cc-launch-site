@@ -10,9 +10,9 @@ import { EngagementsSection } from "@/components/approach/engagements-section"
 import { CtaBand } from "@/components/cta-band"
 
 export const metadata: Metadata = {
-  title: "Approach",
+  title: "Marketing Transformation Approach | Sustainable Change Methods",
   description:
-    "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
+    "Our proven marketing operations transformation methodology for CMOs. We blend people-first consulting with product team practices to remove operational drag and build sustainable marketing workflows.",
   openGraph: {
     title: "Approach | Committed Citizens",
     description: "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",

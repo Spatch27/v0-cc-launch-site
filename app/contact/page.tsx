@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import { ContactForm } from "@/components/contact/contact-form"
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact a Marketing Operations Consultant | Committed Citizens",
   description:
-    "Get in touch with Committed Citizens. Let's talk about removing operational drag from your marketing team.",
+    "Schedule a free Waypoint consultation with our marketing transformation experts. Discover how we can help your CMO's team streamline operations and eliminate workflow drag.",
   openGraph: {
     title: "Contact | Committed Citizens",
     description: "Get in touch with Committed Citizens. Let's talk about removing operational drag from your marketing team.",

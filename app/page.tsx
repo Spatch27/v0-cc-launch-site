@@ -9,13 +9,13 @@ import { CtaBand } from "@/components/cta-band"
 import { LazySection } from "@/components/lazy-section"
 
 export const metadata: Metadata = {
-  title: "Committed Citizens | Freedom from drag",
+  title: "Marketing Operations Consultancy | Committed Citizens UK",
   description:
-    "We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.",
+    "Marketing operations and transformation consultancy for CMOs. We help marketing teams remove operational drag and streamline workflows through embedded consulting and product team practices.",
   openGraph: {
-    title: "Committed Citizens | Freedom from drag",
+    title: "Marketing Operations Consultancy | Committed Citizens",
     description:
-      "We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.",
+      "Marketing operations and transformation consultancy for CMOs. We help marketing teams remove operational drag and streamline workflows.",
     url: "https://committedcitizens.co.uk",
     type: "website",
     locale: "en_GB",
