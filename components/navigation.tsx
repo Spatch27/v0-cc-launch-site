@@ -82,7 +82,8 @@ export function Navigation() {
           {/* Desktop nav lozenge -- hidden below lg */}
           <nav className="hidden lg:block" aria-label="Main navigation">
             <div
-              className="relative flex items-center gap-1 rounded-full bg-brand-dark px-2 py-2"
+              className="relative flex w-fit items-center gap-1 overflow-hidden bg-brand-dark px-2 py-2"
+              style={{ borderRadius: "9999px" }}
               onMouseLeave={() => setHoveredLink(null)}
             >
               {navLinks.map((link) => {
@@ -160,7 +161,8 @@ export function Navigation() {
         aria-label="Mobile navigation"
       >
         <div
-          className="relative flex items-center gap-0.5 rounded-full bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2"
+          className="relative flex w-fit max-w-full items-center gap-0.5 overflow-hidden bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2"
+          style={{ borderRadius: "9999px" }}
           onMouseLeave={() => setHoveredMobileLink(null)}
         >
           {navLinks.map((link) => {
