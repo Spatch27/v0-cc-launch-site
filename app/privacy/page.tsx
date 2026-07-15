@@ -6,6 +6,29 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy policy for Committed Citizens. How we handle your data.",
+  openGraph: {
+    title: "Privacy Policy | Committed Citizens",
+    description: "Privacy policy for Committed Citizens. How we handle your data.",
+    url: "https://committedcitizens.co.uk/privacy",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Committed Citizens",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Committed Citizens - Privacy Policy",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Committed Citizens",
+    description: "Privacy policy for Committed Citizens. How we handle your data.",
+    images: ["/og-image.jpg"],
+  },
 }
 
 export default function PrivacyPage() {

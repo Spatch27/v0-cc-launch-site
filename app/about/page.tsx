@@ -11,6 +11,29 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Why Committed Citizens exists. Meet our founders and advisory board.",
+  openGraph: {
+    title: "About | Committed Citizens",
+    description: "Why Committed Citizens exists. Meet our founders and advisory board.",
+    url: "https://committedcitizens.co.uk/about",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Committed Citizens",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Committed Citizens - About",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Committed Citizens",
+    description: "Why Committed Citizens exists. Meet our founders and advisory board.",
+    images: ["/og-image.jpg"],
+  },
 }
 
 export default function AboutPage() {

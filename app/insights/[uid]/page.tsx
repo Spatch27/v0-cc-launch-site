@@ -769,9 +769,37 @@ export async function generateMetadata({
     return { title: "Article Not Found" }
   }
 
+  const title = article.seoTitle || article.title
+  const description = article.seoDescription || article.excerpt
+  const url = `https://committedcitizens.co.uk/insights/${uid}`
+
   return {
-    title: article.seoTitle || article.title,
-    description: article.seoDescription || article.excerpt,
+    title: title,
+    description: description,
+    openGraph: {
+      title: `${title} | Committed Citizens`,
+      description: description,
+      url: url,
+      type: "article",
+      locale: "en_GB",
+      siteName: "Committed Citizens",
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: title,
+          type: "image/jpeg",
+        },
+      ],
+      publishedTime: new Date().toISOString(),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | Committed Citizens`,
+      description: description,
+      images: ["/og-image.jpg"],
+    },
   }
 }
 

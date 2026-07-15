@@ -13,6 +13,29 @@ export const metadata: Metadata = {
   title: "Approach",
   description:
     "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
+  openGraph: {
+    title: "Approach | Committed Citizens",
+    description: "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
+    url: "https://committedcitizens.co.uk/approach",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Committed Citizens",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Committed Citizens - Approach",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Approach | Committed Citizens",
+    description: "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
+    images: ["/og-image.jpg"],
+  },
 }
 
 export default function ApproachPage() {

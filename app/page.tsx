@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { HeroSection } from "@/components/home/hero-section"
 import { BuriedSection } from "@/components/home/buried-section"
 import { AnimatedTypeSection } from "@/components/home/animated-type-section"
@@ -6,6 +7,37 @@ import { WhatLooksLikeSection } from "@/components/home/what-looks-like-section"
 import { WhatFeelsLikeSection } from "@/components/home/what-feels-like-section"
 import { CtaBand } from "@/components/cta-band"
 import { LazySection } from "@/components/lazy-section"
+
+export const metadata: Metadata = {
+  title: "Committed Citizens | Freedom from drag",
+  description:
+    "We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.",
+  openGraph: {
+    title: "Committed Citizens | Freedom from drag",
+    description:
+      "We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.",
+    url: "https://committedcitizens.co.uk",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Committed Citizens",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Committed Citizens - Freedom from drag",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Committed Citizens | Freedom from drag",
+    description:
+      "We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.",
+    images: ["/og-image.jpg"],
+  },
+}
 
 export default function HomePage() {
   return (
