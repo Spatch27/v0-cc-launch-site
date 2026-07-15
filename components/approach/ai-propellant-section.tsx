@@ -30,13 +30,10 @@ export function AIPropellantSection() {
           </h2>
           <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We&apos;re not an AI consultancy. We&apos;re a transformation consultancy that knows how to put AI to work. We start with how your marketing actually operates - and work out where AI removes drag and where it creates new capability.
+              We&apos;re not an AI consultancy. We&apos;re a transformation consultancy that knows how to put AI to work. Most consultancies sell AI as the solution. We treat it as one part of the solution - powerful when it&apos;s embedded properly, wasteful when it isn&apos;t.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              Not every workflow needs an agent. And where they do, we redesign the workflows around them.
-            </p>
-            <p className="text-lg leading-relaxed text-brand-dark">
-              Most consultancies sell AI as the solution. We treat it as one part of the solution - powerful when it&apos;s embedded properly, wasteful when it isn&apos;t.
+              We start with how your marketing actually operates - and work out where AI removes drag and where it creates new capability. Not every task requires an agent. And where they do, we redesign the workflows around them.
             </p>
           </div>
         </div>
