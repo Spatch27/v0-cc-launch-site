@@ -310,7 +310,7 @@ p {
 }
 
 .rounded-full {
-  border-radius: 9999px;
+  border-radius: 9999px !important;
 }
 
 .rounded-lg {
