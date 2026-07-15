@@ -24,7 +24,7 @@ export function OutcomesHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
+          className="max-w-4xl text-balance font-display text-[clamp(2.8rem,7vw,6rem)] font-bold leading-[0.95] tracking-tight text-brand-white"
         >
           When the work flows, results <i>fly</i>.
         </motion.h1>
@@ -32,7 +32,7 @@ export function OutcomesHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="max-w-2xl self-end text-right text-lg leading-relaxed text-brand-white/50"
+          className="max-w-2xl self-end text-right text-xl leading-relaxed text-brand-white/50"
         >
           Marketing teams don't collapse, they get dragged down. Timelines stretch. Reporting gets contested. Smart people spend more time unblocking than building. The energy is there, but the momentum isn't.{' '}
           <br />

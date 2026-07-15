@@ -24,7 +24,7 @@ export function AboutHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeInOut" }}
-          className="max-w-4xl font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
+          className="max-w-4xl text-balance font-display text-[clamp(2.8rem,7vw,6rem)] font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
           Making marketing work, <em>work.</em>
         </motion.h1>
@@ -32,7 +32,7 @@ export function AboutHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark"
+          className="max-w-xl self-end text-right text-xl leading-relaxed text-brand-dark"
         >
           We started Committed Citizens after seeing what happens when marketing teams are freed from operational drag. <strong>The system serves the people, and the work flies.</strong>
         </motion.p>
