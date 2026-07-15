@@ -124,14 +124,34 @@ function FlowingCirclesSVGMobile() {
 
 export function MomentumDiagram() {
   return (
-    <motion.div
+    <>
+      <style>{`
+        .cc-momentum-desktop {
+          display: none;
+        }
+
+        .cc-momentum-mobile {
+          display: block;
+        }
+
+        @media (min-width: 768px) {
+          .cc-momentum-desktop {
+            display: block;
+          }
+
+          .cc-momentum-mobile {
+            display: none;
+          }
+        }
+      `}</style>
+      <motion.div
       initial="hidden"
       animate="visible"
       variants={staggerContainer}
       className="w-full"
     >
       {/* Desktop / Tablet Diagram */}
-      <motion.div variants={fadeInUp} className="hidden md:block w-full">
+      <motion.div variants={fadeInUp} className="cc-momentum-desktop w-full">
         <div className="relative">
           {/* SVG Flowing Circles */}
           <FlowingCirclesSVG />
@@ -176,7 +196,7 @@ export function MomentumDiagram() {
       </motion.div>
 
       {/* Mobile - Rotated circles diagram vertical orientation */}
-      <motion.div variants={fadeInUp} className="md:hidden w-full max-w-md mx-auto">
+      <motion.div variants={fadeInUp} className="cc-momentum-mobile w-full max-w-md mx-auto">
         <div className="relative">
           {/* SVG Flowing Circles - rotated */}
           <FlowingCirclesSVGMobile />
@@ -220,5 +240,6 @@ export function MomentumDiagram() {
         </div>
       </motion.div>
     </motion.div>
+    </>
   )
 }
