@@ -10,9 +10,9 @@ const engagements = [
   {
     name: "Flow6",
     description: [
-      "Our Drag Diagnostic assesses where momentum is lost, what that drag is costing and where improved flow is most readily accessible.",
+      "Our Drag Diagnostic assesses where momentum is lost and what that drag is costing you.",
       "Our Flow Map plots Team, Process, Data and Tech. The map shows where work is slow, where the team is ready to move and what to fix first.",
-      "Our Progress Plan aligns your team, validates priorities and agrees the metrics for success. Together, a plan to liberate your team and unlock growth.",
+      "Our Progress Plan aligns your team, validates priorities and agrees the metrics for success. Together, we build a plan to liberate your team and unlock growth.",
       "BOARD-READY IN SIX WEEKS.",
     ],
     duration: "SIX WEEKS",
