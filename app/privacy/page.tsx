@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Privacy Policy | Committed Citizens",
     description: "Privacy policy for Committed Citizens. How we handle your data.",
-    url: "https://committedcitizens.co.uk/privacy",
+    url: "https://www.committedcitizens.co.uk/privacy",
     type: "website",
     locale: "en_GB",
     siteName: "Committed Citizens",

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   description:
     'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
   applicationName: 'Committed Citizens',
-  metadataBase: new URL('https://committedcitizens.co.uk'),
+  metadataBase: new URL('https://www.committedcitizens.co.uk'),
   manifest: '/manifest.json',
   icons: {
     icon: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: 'Committed Citizens',
     title: 'Committed Citizens | Freedom from drag',
     description: 'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
-    url: 'https://committedcitizens.co.uk',
+    url: 'https://www.committedcitizens.co.uk',
     images: [
       {
         url: '/og-image.jpg',
@@ -78,7 +78,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Committed Citizens",
-              url: "https://committedcitizens.co.uk",
+              url: "https://www.committedcitizens.co.uk",
               logo: "https://committedcitizens.co.uk/logo.png",
               description: "Marketing operations and transformation consultancy helping CMOs remove operational drag and build sustainable marketing workflows.",
               sameAs: [
@@ -91,7 +91,7 @@ export default function RootLayout({
               contactPoint: {
                 "@type": "ContactPoint",
                 contactType: "Customer Service",
-                url: "https://committedcitizens.co.uk/contact",
+                url: "https://www.committedcitizens.co.uk/contact",
               },
             }),
           }}

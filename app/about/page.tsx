@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About | Committed Citizens",
     description: "Why Committed Citizens exists. Meet our founders and advisory board.",
-    url: "https://committedcitizens.co.uk/about",
+    url: "https://www.committedcitizens.co.uk/about",
     type: "website",
     locale: "en_GB",
     siteName: "Committed Citizens",

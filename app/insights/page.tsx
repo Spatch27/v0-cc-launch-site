@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Insights | Committed Citizens",
     description: "Thought leadership from Committed Citizens. Original thinking on marketing operations, transformation, and operational drag.",
-    url: "https://committedcitizens.co.uk/insights",
+    url: "https://www.committedcitizens.co.uk/insights",
     type: "website",
     locale: "en_GB",
     siteName: "Committed Citizens",

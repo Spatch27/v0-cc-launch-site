@@ -772,7 +772,7 @@ export async function generateMetadata({
 
   const title = article.seoTitle || article.title
   const description = article.seoDescription || article.excerpt
-  const url = `https://committedcitizens.co.uk/insights/${uid}`
+  const url = `https://www.committedcitizens.co.uk/insights/${uid}`
 
   return {
     title: title,
@@ -812,13 +812,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound()
   }
 
-  const articleUrl = `https://committedcitizens.co.uk/insights/${uid}`
+  const articleUrl = `https://www.committedcitizens.co.uk/insights/${uid}`
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.seoTitle || article.title,
     description: article.seoDescription || article.excerpt,
-    image: `https://committedcitizens.co.uk${article.heroImage}`,
+    image: `https://www.committedcitizens.co.uk${article.heroImage}`,
     datePublished: new Date().toISOString(),
     dateModified: new Date().toISOString(),
     author: {
@@ -830,7 +830,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       name: "Committed Citizens",
       logo: {
         "@type": "ImageObject",
-        url: "https://committedcitizens.co.uk/logo.png",
+        url: "https://www.committedcitizens.co.uk/logo.png",
       },
     },
     mainEntityOfPage: {

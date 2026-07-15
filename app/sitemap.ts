@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-const BASE_URL = "https://committedcitizens.co.uk"
+const BASE_URL = "https://www.committedcitizens.co.uk"
 
 // Import articles from the insights listing component
 const articles = [

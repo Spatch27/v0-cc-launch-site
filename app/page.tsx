@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "Marketing Operations Consultancy | Committed Citizens",
     description:
       "Marketing operations and transformation consultancy for CMOs. We help marketing teams remove operational drag and streamline workflows.",
-    url: "https://committedcitizens.co.uk",
+    url: "https://www.committedcitizens.co.uk",
     type: "website",
     locale: "en_GB",
     siteName: "Committed Citizens",
