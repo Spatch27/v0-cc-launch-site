@@ -9,13 +9,13 @@ import './globals.css'
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'swap',
+  display: 'optional',
 })
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-bricolage',
-  display: 'swap',
+  display: 'optional',
   weight: ['400', '500', '600', '700', '800'],
 })
 
