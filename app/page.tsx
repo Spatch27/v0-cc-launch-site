@@ -33,7 +33,7 @@ export default function HomePage() {
       
       <LazySection minHeight="300px" rootMargin="200px">
         <CtaBand
-          heading="Before you commit a budget, commit an hour."
+          heading="Not sure where to start? Start here."
           body={[
             "Waypoint is a free 60-minute working session. The hour is spent on your business, your team and the drag getting in their way.",
             "Within 48 hours, you receive a two-page Waypoint Marker: a clear view of what is holding you back and where to begin, written in language you can take into a budget conversation. It is yours to keep, whether we work together or not."
