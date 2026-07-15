@@ -25,10 +25,10 @@ export function WorkflowsBehaviourSection() {
           </h2>
           <div className="space-y-6">
             <p className="text-lg leading-relaxed text-brand-dark">
-              Workflows follow behaviour. We see how people get work done: where time goes, which decisions stall, what they trust and what gets in their way. Then we build processes around the people to help them do the work.
+              We start with the business need and assess how your people get work done: where time goes, which decisions stall, and what gets in their way. Then we enable people to do more effective work - sometimes aided by agentic automations.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              Every change should give the team more lift. Clearer decisions. More confidence. Less effort spent working around the system.
+              Every change should give the team more lift. More confidence and capability. Less effort spent working around the system.
             </p>
           </div>
         </div>
