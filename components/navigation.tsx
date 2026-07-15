@@ -79,7 +79,7 @@ export function Navigation() {
           border-radius: 9999px;
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 768px) {
           .cc-desktop-navigation {
             display: block;
           }
