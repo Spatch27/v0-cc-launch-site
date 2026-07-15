@@ -21,17 +21,17 @@ export function PurposeSection() {
       >
         <motion.div variants={fadeInUp}>
           <h2 className="mb-8 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Adoption is the only option.
+            Building forward momentum.
           </h2>
           <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark">
             <p>
               We've long believed that lasting change comes from people, not platforms. A small team of senior practitioners with the conviction and capability to make transformation stick. Not from the sidelines. Not via a slide deck. From inside the marketing function.
             </p>
             <p>
-              Teams exhausted by transformation fatigue become energised. Marketers who were firefighting start doing the work they came to do.
+              Teams exhausted by transformation fatigue become energised. Marketers who were firefighting get to do the work they came to do. Boards who saw the function as a cost, start seeing it as a functioning engine of growth.
             </p>
-            <p className="font-medium text-brand-dark">
-              We leave behind teams that are fast, confident, and in control. That's what committed citizens look like. And that's what we create.
+            <p>
+              Our work creates teams that are fast, confident, and in control. A group of committed citizens doing the most effective work of their careers.
             </p>
           </div>
         </motion.div>
