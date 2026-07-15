@@ -39,7 +39,7 @@ export function BuriedSection() {
 
           <motion.div variants={textChild} className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
-              Briefs that should take days, days weeks. Dashboards nobody trusts. Expensive martech gathering dust. AI stuck in pilot. Your best people spending more time unblocking work than doing it.
+              Briefs that should take days, take weeks. Dashboards nobody trusts. Expensive martech gathering dust. AI stuck in pilot. Your best people spending more time unblocking work than doing it.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
               Your talent isn&apos;t the problem, your operating model is. We work alongside your team to rebuild it, closing the gap between strategy and execution.
