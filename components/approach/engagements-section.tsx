@@ -17,6 +17,7 @@ const engagements = [
     ],
     duration: "SIX WEEKS",
     accentColor: "bg-brand-pink",
+    price: "£40k",
   },
   {
     name: "Fix6",
@@ -26,6 +27,7 @@ const engagements = [
     ],
     duration: "SIX WEEKS",
     accentColor: "bg-brand-orange",
+    price: "From £40k",
   },
   {
     name: "Momentum6",
@@ -36,6 +38,8 @@ const engagements = [
     ],
     duration: "SIX-WEEK ROLLING",
     accentColor: "bg-brand-yellow-deep",
+    price: "£10K",
+    priceNote: "/ week",
   },
 ]
 
@@ -79,13 +83,29 @@ export function EngagementsSection() {
               </h3>
 
               {/* Description */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 flex-1">
                 {engagement.description.map((paragraph) => (
                   <p key={paragraph} className="text-base leading-relaxed text-brand-white/70">
                     {paragraph}
                   </p>
                 ))}
               </div>
+
+              {/* Pricing */}
+              {engagement.price && (
+                <div className="border-t border-brand-white/10 mt-8 pt-6">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl font-bold text-brand-white">
+                      {engagement.price}
+                    </span>
+                    {engagement.priceNote && (
+                      <span className="text-sm text-brand-white/40">
+                        {engagement.priceNote}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         ))}
