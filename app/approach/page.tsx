@@ -41,6 +41,12 @@ export const metadata: Metadata = {
 export default function ApproachPage() {
   return (
     <>
+      <style>{`
+        .cc-approach-paired-section {
+          padding-top: 1.5rem;
+          padding-bottom: 1.5rem;
+        }
+      `}</style>
       <HeroPhilosophy />
       <WorkflowsBehaviourSection />
       <AIPropellantSection />

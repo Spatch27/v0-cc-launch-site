@@ -53,6 +53,10 @@ export function MomentumSection() {
           transform: translateY(-1.5rem);
         }
 
+        .cc-home-paired-modules > :not([hidden]) ~ :not([hidden]) {
+          margin-top: 3rem;
+        }
+
         @media (prefers-reduced-motion: reduce) {
           .cc-cta-label-track {
             transition: none;
@@ -64,7 +68,7 @@ export function MomentumSection() {
         }
       `}</style>
       <Section background="light" compact className="pt-12 md:pt-0">
-      <div className="space-y-20">
+      <div className="cc-home-paired-modules">
 
         {/* Measurable cycles — Text Left, Image Right */}
         <div ref={ref2} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">

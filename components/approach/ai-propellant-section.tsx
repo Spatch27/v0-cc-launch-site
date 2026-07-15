@@ -11,7 +11,7 @@ export function AIPropellantSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <Section background="light" compact>
+    <Section background="light" compact className="cc-approach-paired-section">
       <motion.div
         ref={ref}
         initial="hidden"
