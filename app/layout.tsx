@@ -112,12 +112,6 @@ body {
   display: none !important;
 }
 
-nav {
-  background: var(--brand-dark);
-  color: var(--brand-white);
-  padding: 0;
-  margin: 0;
-}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Bricolage Grotesque', sans-serif;
