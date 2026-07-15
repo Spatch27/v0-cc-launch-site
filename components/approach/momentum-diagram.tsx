@@ -1,5 +1,6 @@
 "use client"
 
+import { useId } from "react"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 
@@ -32,6 +33,7 @@ const momentumItems = [
  * continuously across all 6 arc segments.
  */
 function FlowingCirclesSVG() {
+  const gradientId = `momentum-desktop-${useId().replaceAll(":", "")}`
   const R = 130
   const sw = 52
   const pad = sw / 2 + 4
@@ -61,15 +63,23 @@ function FlowingCirclesSVG() {
       preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Layer 1 (back): orange centre ring, behind both junctions */}
-      <path d={F2} fill="none" stroke="#ff8600" strokeWidth={sw} />
-      <path d={R2} fill="none" stroke="#ff8600" strokeWidth={sw} />
+      <defs>
+        <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1="0" y1={cy} x2={vw} y2={cy}>
+          <stop offset="0%" stopColor="#ffd100" />
+          <stop offset="50%" stopColor="#ff8600" />
+          <stop offset="100%" stopColor="#fc66a7" />
+        </linearGradient>
+      </defs>
 
-      {/* Layer 2 (front): yellow and pink rings overlap the centre ring */}
-      <path d={F1} fill="none" stroke="#ffd100" strokeWidth={sw} />
-      <path d={R1} fill="none" stroke="#ffd100" strokeWidth={sw} />
-      <path d={F3} fill="none" stroke="#fc66a7" strokeWidth={sw} />
-      <path d={R3} fill="none" stroke="#fc66a7" strokeWidth={sw} />
+      {/* Centre arcs sit behind at both interlocking junctions. */}
+      <path d={F2} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R2} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+
+      {/* Outer arcs overlap the centre ring while sharing one continuous gradient. */}
+      <path d={F1} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R1} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={F3} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R3} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
     </svg>
   )
 }
@@ -79,6 +89,7 @@ function FlowingCirclesSVG() {
  * Same three interlocking rings but rotated 90 degrees
  */
 function FlowingCirclesSVGMobile() {
+  const gradientId = `momentum-mobile-${useId().replaceAll(":", "")}`
   const R = 130
   const sw = 52
   const pad = sw / 2 + 4
@@ -109,15 +120,23 @@ function FlowingCirclesSVGMobile() {
       preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Layer 1 (back): orange centre ring */}
-      <path d={F2} fill="none" stroke="#ff8600" strokeWidth={sw} />
-      <path d={R2} fill="none" stroke="#ff8600" strokeWidth={sw} />
+      <defs>
+        <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1={cx} y1="0" x2={cx} y2={vh}>
+          <stop offset="0%" stopColor="#ffd100" />
+          <stop offset="50%" stopColor="#ff8600" />
+          <stop offset="100%" stopColor="#fc66a7" />
+        </linearGradient>
+      </defs>
 
-      {/* Layer 2 (front): yellow and pink outer rings */}
-      <path d={F1} fill="none" stroke="#ffd100" strokeWidth={sw} />
-      <path d={R1} fill="none" stroke="#ffd100" strokeWidth={sw} />
-      <path d={F3} fill="none" stroke="#fc66a7" strokeWidth={sw} />
-      <path d={R3} fill="none" stroke="#fc66a7" strokeWidth={sw} />
+      {/* Centre arcs sit behind at both interlocking junctions. */}
+      <path d={F2} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R2} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+
+      {/* Outer arcs overlap the centre ring while sharing one continuous gradient. */}
+      <path d={F1} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R1} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={F3} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
+      <path d={R3} fill="none" stroke={`url(#${gradientId})`} strokeWidth={sw} />
     </svg>
   )
 }
