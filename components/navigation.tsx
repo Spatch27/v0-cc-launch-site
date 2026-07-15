@@ -63,6 +63,33 @@ export function Navigation() {
 
   return (
     <>
+      <style>{`
+        .cc-desktop-navigation {
+          display: none;
+        }
+
+        .cc-mobile-navigation {
+          display: flex;
+        }
+
+        .cc-navigation-lozenge {
+          width: max-content;
+          max-width: 100%;
+          overflow: hidden;
+          border-radius: 9999px;
+        }
+
+        @media (min-width: 768px) {
+          .cc-desktop-navigation {
+            display: block;
+          }
+
+          .cc-mobile-navigation {
+            display: none;
+          }
+        }
+      `}</style>
+
       {/* ─── Top bar: logo only on mobile, logo + nav lozenge on desktop ─── */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full px-6 py-4 transition-all duration-500 lg:px-12 lg:py-5 ${
@@ -80,9 +107,9 @@ export function Navigation() {
           </Link>
 
           {/* Desktop nav lozenge -- hidden below lg */}
-          <nav className="hidden lg:block" aria-label="Main navigation">
+          <nav className="cc-desktop-navigation" aria-label="Main navigation">
             <div
-              className="relative flex items-center gap-1 rounded-full bg-brand-dark px-2 py-2"
+              className="cc-navigation-lozenge relative flex items-center gap-1 bg-brand-dark px-2 py-2"
               onMouseLeave={() => setHoveredLink(null)}
             >
               {navLinks.map((link) => {
@@ -156,11 +183,11 @@ export function Navigation() {
 
       {/* ─── Bottom bar: mobile / tablet only (below lg) ─── */}
       <nav
-        className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 pb-5 pt-2 lg:hidden"
+        className="cc-mobile-navigation fixed bottom-0 left-0 right-0 z-50 justify-center px-4 pb-5 pt-2"
         aria-label="Mobile navigation"
       >
         <div
-          className="relative flex items-center gap-0.5 rounded-full bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2"
+          className="cc-navigation-lozenge relative flex items-center gap-0.5 bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2"
           onMouseLeave={() => setHoveredMobileLink(null)}
         >
           {navLinks.map((link) => {
