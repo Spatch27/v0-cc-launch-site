@@ -39,7 +39,7 @@ export function HeroSection() {
       <div className="mx-auto flex max-w-[1400px] flex-col pt-20 lg:pt-28 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
         {/* Main headline - visible immediately for LCP, no animation delay */}
         <h1
-          className="mt-20 max-w-5xl font-display text-6xl md:text-7xl lg:text-9xl font-bold leading-[0.95] tracking-tight text-brand-dark"
+          className="mt-20 max-w-5xl font-display text-6xl md:text-9xl font-bold leading-[0.95] tracking-tight text-brand-dark"
         >
           Freedom
           <br />
