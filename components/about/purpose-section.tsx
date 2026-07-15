@@ -21,11 +21,11 @@ export function PurposeSection() {
       >
         <motion.div variants={fadeInUp}>
           <h2 className="mb-8 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Building forward momentum.
+            Momentum, built-in.
           </h2>
           <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark">
             <p>
-              We've long believed that lasting change comes from people, not platforms. A small team of senior practitioners with the conviction and capability to make transformation stick. Not from the sidelines, from inside the marketing function.
+              We've long believed that lasting change comes from people, not platforms. A small team of senior practitioners with the conviction and capability to make transformation stick. Not from the sidelines but from inside the marketing function.
             </p>
             <p>
               Teams exhausted by transformation fatigue become energised. Marketers who were firefighting get to do the work they came to do. Boards who saw the function as a cost, start seeing it as a functioning engine of growth.
