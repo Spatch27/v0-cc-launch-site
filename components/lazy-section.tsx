@@ -54,11 +54,7 @@ export function LazySection({
       className={`${className} noscript-visible`} 
       style={{ minHeight: shouldRender ? undefined : minHeight }}
     >
-      {/* Always render children in DOM but hide visually until JS triggers */}
-      {/* noscript-visible class ensures content shows when JS is disabled */}
-      <div className={shouldRender ? undefined : "js-lazy-hidden"}>
-        {children}
-      </div>
+      {shouldRender ? children : null}
     </div>
   )
 }
