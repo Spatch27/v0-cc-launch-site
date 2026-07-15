@@ -54,9 +54,6 @@ function FlowingCirclesSVG() {
   const R2 = `M ${cx2 + R} ${cy} A ${R} ${R} 0 0 1 ${cx2 - R} ${cy}` // up over C2
   const R1 = `M ${cx1 + R} ${cy} A ${R} ${R} 0 0 0 ${cx1 - R} ${cy}` // down under C1
 
-  const x0 = cx1 - R - sw / 2 // leftmost pixel
-  const x1 = cx3 + R + sw / 2 // rightmost pixel
-
   return (
     <svg
       viewBox={`0 0 ${vw} ${vh}`}
@@ -64,24 +61,15 @@ function FlowingCirclesSVG() {
       preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <defs>
-        {/* Single gradient spanning full width in user-space coords */}
-        <linearGradient id="ringGrad" gradientUnits="userSpaceOnUse" x1={x0} y1={cy} x2={x1} y2={cy}>
-          <stop offset="0%" stopColor="#ffd100" />
-          <stop offset="50%" stopColor="#ff8600" />
-          <stop offset="100%" stopColor="#fc66a7" />
-        </linearGradient>
-      </defs>
+      {/* Layer 1 (back): orange centre ring, behind both junctions */}
+      <path d={F2} fill="none" stroke="#ff8600" strokeWidth={sw} />
+      <path d={R2} fill="none" stroke="#ff8600" strokeWidth={sw} />
 
-      {/* Layer 1 (back): C2 arcs - always behind at both junctions */}
-      <path d={F2} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-      <path d={R2} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-
-      {/* Layer 2 (front): C1 and C3 arcs - overlap C2 at the junctions */}
-      <path d={F1} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-      <path d={R1} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-      <path d={F3} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
-      <path d={R3} fill="none" stroke="url(#ringGrad)" strokeWidth={sw} />
+      {/* Layer 2 (front): yellow and pink rings overlap the centre ring */}
+      <path d={F1} fill="none" stroke="#ffd100" strokeWidth={sw} />
+      <path d={R1} fill="none" stroke="#ffd100" strokeWidth={sw} />
+      <path d={F3} fill="none" stroke="#fc66a7" strokeWidth={sw} />
+      <path d={R3} fill="none" stroke="#fc66a7" strokeWidth={sw} />
     </svg>
   )
 }
@@ -114,9 +102,6 @@ function FlowingCirclesSVGMobile() {
   const R2 = `M ${cx} ${cy2 + R} A ${R} ${R} 0 0 0 ${cx} ${cy2 - R}` // right arc over C2
   const R1 = `M ${cx} ${cy1 + R} A ${R} ${R} 0 0 1 ${cx} ${cy1 - R}` // left arc under C1
 
-  const y0 = cy1 - R - sw / 2
-  const y1 = cy3 + R + sw / 2
-
   return (
     <svg
       viewBox={`0 0 ${vw} ${vh}`}
@@ -124,24 +109,15 @@ function FlowingCirclesSVGMobile() {
       preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <defs>
-        {/* Vertical gradient: yellow at top → orange middle → pink at bottom */}
-        <linearGradient id="ringGradMobile" gradientUnits="userSpaceOnUse" x1={cx} y1={y0} x2={cx} y2={y1}>
-          <stop offset="0%" stopColor="#ffd100" />
-          <stop offset="50%" stopColor="#ff8600" />
-          <stop offset="100%" stopColor="#fc66a7" />
-        </linearGradient>
-      </defs>
+      {/* Layer 1 (back): orange centre ring */}
+      <path d={F2} fill="none" stroke="#ff8600" strokeWidth={sw} />
+      <path d={R2} fill="none" stroke="#ff8600" strokeWidth={sw} />
 
-      {/* Layer 1 (back): C2 arcs */}
-      <path d={F2} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-      <path d={R2} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-
-      {/* Layer 2 (front): C1 and C3 arcs */}
-      <path d={F1} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-      <path d={R1} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-      <path d={F3} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
-      <path d={R3} fill="none" stroke="url(#ringGradMobile)" strokeWidth={sw} />
+      {/* Layer 2 (front): yellow and pink outer rings */}
+      <path d={F1} fill="none" stroke="#ffd100" strokeWidth={sw} />
+      <path d={R1} fill="none" stroke="#ffd100" strokeWidth={sw} />
+      <path d={F3} fill="none" stroke="#fc66a7" strokeWidth={sw} />
+      <path d={R3} fill="none" stroke="#fc66a7" strokeWidth={sw} />
     </svg>
   )
 }
