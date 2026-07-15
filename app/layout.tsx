@@ -309,6 +309,98 @@ p {
   display: inline-block;
 }
 
+@media (min-width: 768px) {
+  .md\\:text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  .md\\:text-3xl {
+    font-size: 1.875rem;
+  }
+  
+  .md\\:text-4xl {
+    font-size: 2.25rem;
+  }
+  
+  .md\\:text-5xl {
+    font-size: 3rem;
+  }
+  
+  .md\\:text-6xl {
+    font-size: 3.75rem;
+  }
+  
+  .md\\:text-7xl {
+    font-size: 4.5rem;
+  }
+  
+  .md\\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  
+  .md\\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .md\\:gap-8 {
+    gap: 2rem;
+  }
+  
+  .md\\:flex-row {
+    flex-direction: row;
+  }
+  
+  .md\\:hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  
+  .lg\\:py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+  
+  .lg\\:text-6xl {
+    font-size: 3.75rem;
+  }
+  
+  .lg\\:text-7xl {
+    font-size: 4.5rem;
+  }
+  
+  .lg\\:text-8xl {
+    font-size: 6rem;
+  }
+  
+  .lg\\:text-9xl {
+    font-size: 8rem;
+  }
+  
+  .lg\\:gap-12 {
+    gap: 3rem;
+  }
+  
+  .lg\\:flex-row {
+    flex-direction: row;
+  }
+  
+  .lg\\:hidden {
+    display: none;
+  }
+  
+  .lg\\:block {
+    display: block;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
