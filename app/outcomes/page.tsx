@@ -4,9 +4,32 @@ import { OutcomesCaseStudies } from "@/components/outcomes/outcomes-case-studies
 import { CtaBand } from "@/components/cta-band"
 
 export const metadata: Metadata = {
-  title: "Outcomes",
+  title: "Marketing Transformation Results | Committed Citizens",
   description:
-    "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",
+    "See how our marketing operations consulting delivers measurable outcomes. Real results from marketing transformation and operational efficiency improvements for UK marketing teams.",
+  openGraph: {
+    title: "Outcomes | Committed Citizens",
+    description: "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",
+    url: "https://www.committedcitizens.co.uk/outcomes",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Committed Citizens",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Committed Citizens - Outcomes",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Outcomes | Committed Citizens",
+    description: "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",
+    images: ["/og-image.jpg"],
+  },
 }
 
 export default function OutcomesPage() {

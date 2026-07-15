@@ -8,9 +8,32 @@ import { CultureSection } from "@/components/about/culture-section"
 import { CtaBand } from "@/components/cta-band"
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About | Marketing Operations Consultancy & Advisory Board",
   description:
-    "Why Committed Citizens exists. Meet our founders and advisory board.",
+    "Meet the marketing transformation experts behind Committed Citizens. Our team combines marketing operations expertise with proven change management to help CMOs drive sustainable transformation.",
+  openGraph: {
+    title: "About | Committed Citizens",
+    description: "Why Committed Citizens exists. Meet our founders and advisory board.",
+    url: "https://www.committedcitizens.co.uk/about",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Committed Citizens",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Committed Citizens - About",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Committed Citizens",
+    description: "Why Committed Citizens exists. Meet our founders and advisory board.",
+    images: ["/og-image.jpg"],
+  },
 }
 
 export default function AboutPage() {

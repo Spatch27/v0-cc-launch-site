@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://committedcitizens.co.uk/sitemap.xml
+Sitemap: https://www.committedcitizens.co.uk/sitemap.xml

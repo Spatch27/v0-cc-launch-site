@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   description:
     'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
   applicationName: 'Committed Citizens',
-  metadataBase: new URL('https://committedcitizens.co.uk'),
+  metadataBase: new URL('https://www.committedcitizens.co.uk'),
   manifest: '/manifest.json',
   icons: {
     icon: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: 'Committed Citizens',
     title: 'Committed Citizens | Freedom from drag',
     description: 'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
-    url: 'https://committedcitizens.co.uk',
+    url: 'https://www.committedcitizens.co.uk',
     images: [
       {
         url: '/og-image.jpg',
@@ -69,6 +69,33 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable}`} data-scroll-behavior="smooth">
       <head>
+        {/* Organization Schema */}
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Committed Citizens",
+              url: "https://www.committedcitizens.co.uk",
+              logo: "https://committedcitizens.co.uk/logo.png",
+              description: "Marketing operations and transformation consultancy helping CMOs remove operational drag and build sustainable marketing workflows.",
+              sameAs: [
+                "https://www.linkedin.com/company/committed-citizens",
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "GB",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "Customer Service",
+                url: "https://www.committedcitizens.co.uk/contact",
+              },
+            }),
+          }}
+        />
         {/* Google Consent Mode - must load before gtag.js */}
         <Script
           id="google-consent-mode"
@@ -141,19 +168,23 @@ export default function RootLayout({
             </ul>
           </nav>
         </noscript>
-        {/* Cookiebot CMP */}
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://consent.cookiebot.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://js.supabase.co" />
+        {/* Cookiebot CMP - deferred to improve LCP */}
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
           data-blockingmode="auto"
           type="text/javascript"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        {/* Google tag (gtag.js) */}
+        {/* Google tag (gtag.js) - deferred to reduce blocking */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-76PXVCGPES"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`

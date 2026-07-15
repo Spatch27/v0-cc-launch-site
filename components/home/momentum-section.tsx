@@ -15,7 +15,7 @@ const textContainer = {
 
 const textChild = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeInOut" } },
 }
 
 export function MomentumSection() {
@@ -62,7 +62,7 @@ export function MomentumSection() {
             className="flex items-center justify-center w-full h-auto overflow-hidden rounded-lg min-h-[300px] md:min-h-[400px] lg:min-h-[600px]"
             initial={{ opacity: 0, x: 40, scale: 0.97 }}
             animate={inView2 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             <PaperPlaneIllustration />
           </motion.div>
@@ -99,7 +99,7 @@ export function MomentumSection() {
             className="order-last flex h-auto min-h-[300px] w-full items-center justify-center overflow-hidden rounded-lg md:min-h-[400px] lg:order-first lg:min-h-[500px]"
             initial={{ opacity: 0, x: 40, scale: 0.97 }}
             animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             <AnimatedGrowthArrow />
           </motion.div>

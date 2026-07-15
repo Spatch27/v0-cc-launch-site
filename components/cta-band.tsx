@@ -3,9 +3,8 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
-import { fadeInUp, textRollUp, textRollDown } from "@/lib/animations"
+import { fadeInUp } from "@/lib/animations"
 import { ArrowRight } from "lucide-react"
-import { useState } from "react"
 
 interface CtaBandProps {
   heading: string
@@ -48,7 +47,6 @@ export function CtaBand({
   ctaHref = "/contact",
   background = "yellow-light",
 }: CtaBandProps) {
-  const [isHovered, setIsHovered] = useState(false)
   const router = useRouter()
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -114,27 +112,8 @@ export function CtaBand({
               scroll={false}
               className={`group inline-flex w-fit items-center gap-3 rounded-lg px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
               style={{ borderRadius: "4px" }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
             >
-              <span className="relative inline-block overflow-hidden">
-                <motion.span
-                  initial="initial"
-                  animate={isHovered ? "hover" : "initial"}
-                  variants={textRollUp}
-                  className="block"
-                >
-                  {ctaLabel}
-                </motion.span>
-                <motion.span
-                  initial="initial"
-                  animate={isHovered ? "hover" : "initial"}
-                  variants={textRollDown}
-                  className="absolute inset-0 block"
-                >
-                  {ctaLabel}
-                </motion.span>
-              </span>
+              <span>{ctaLabel}</span>
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"

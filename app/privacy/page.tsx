@@ -3,9 +3,32 @@ import { Section } from "@/components/section"
 import { CookieDeclaration } from "./cookie-declaration"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy | Committed Citizens Marketing Consultancy",
   description:
-    "Privacy policy for Committed Citizens. How we handle your data.",
+    "Privacy policy for Committed Citizens. How we handle your data and comply with GDPR and data protection regulations.",
+  openGraph: {
+    title: "Privacy Policy | Committed Citizens",
+    description: "Privacy policy for Committed Citizens. How we handle your data.",
+    url: "https://www.committedcitizens.co.uk/privacy",
+    type: "website",
+    locale: "en_GB",
+    siteName: "Committed Citizens",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Committed Citizens - Privacy Policy",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Committed Citizens",
+    description: "Privacy policy for Committed Citizens. How we handle your data.",
+    images: ["/og-image.jpg"],
+  },
 }
 
 export default function PrivacyPage() {
