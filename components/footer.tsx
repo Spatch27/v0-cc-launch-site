@@ -90,9 +90,11 @@ export function Footer() {
                       <Link
                         href={link.href}
                         prefetch={false}
-                        className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                        className="group relative inline-block text-sm text-brand-dark font-medium after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                       >
-                        {link.label}
+                        <span className="block before:invisible before:block before:h-0 before:font-bold before:content-[attr(data-text)]" data-text={link.label}>
+                          {link.label}
+                        </span>
                       </Link>
                     </li>
                   ))}
@@ -109,9 +111,11 @@ export function Footer() {
                         href={link.href}
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
-                        className="relative inline-block text-sm text-brand-dark font-medium transition-all duration-300 hover:font-bold after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
+                        className="group relative inline-block text-sm text-brand-dark font-medium after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-brand-dark after:w-0 after:transition-all after:duration-300 hover:after:w-full"
                       >
-                        {link.label}
+                        <span className="block before:invisible before:block before:h-0 before:font-bold before:content-[attr(data-text)]" data-text={link.label}>
+                          {link.label}
+                        </span>
                       </a>
                     </li>
                   ))}
