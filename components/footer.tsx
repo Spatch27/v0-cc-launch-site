@@ -79,7 +79,7 @@ export function Footer() {
                 Original thinking on marketing, transformation, and removing operational drag. No spam, ever.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-10 lg:gap-16">
+            <div className="grid grid-cols-2 gap-10 lg:gap-16 flex-shrink-0">
               <div>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                   Navigate
