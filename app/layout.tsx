@@ -666,7 +666,7 @@ p {
           `}
         </Script>
         <link rel="preconnect" href="https://consent.cookiebot.com" />
-        <link rel="preconnect" href="https://consentcdn.cookiebot.com" />
+        <link rel="preconnect" href="https://consentcdn.cookiebot.com" crossOrigin="anonymous" />
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
@@ -695,21 +695,21 @@ p {
               d.style.setProperty('right', '0', 'important');
               d.style.setProperty('width', '100%', 'important');
               d.style.setProperty('max-width', '100%', 'important');
-              d.style.setProperty('max-height', '50vh', 'important');
+              d.style.setProperty('max-height', '30vh', 'important');
               d.style.setProperty('transform', 'none', 'important');
-              d.style.setProperty('border-radius', '16px 16px 0 0', 'important');
-              d.style.setProperty('display', 'flex', 'important');
-              d.style.setProperty('flex-direction', 'column', 'important');
-              d.style.setProperty('overflow', 'hidden', 'important');
+              d.style.setProperty('border-radius', '12px 12px 0 0', 'important');
+              d.style.setProperty('overflow-y', 'auto', 'important');
 
-              // Scroll the body copy, pin the footer buttons
-              if (body) {
-                body.style.setProperty('overflow-y', 'auto', 'important');
-                body.style.setProperty('flex', '1 1 auto', 'important');
-                body.style.setProperty('min-height', '0', 'important');
+              // Shrink the body text so it is not the LCP element
+              var contentText = document.getElementById('CybotCookiebotDialogBodyContentText');
+              if (contentText) {
+                contentText.style.setProperty('font-size', '11px', 'important');
+                contentText.style.setProperty('line-height', '1.3', 'important');
               }
+
+              // Keep footer buttons fully visible and tappable (GDPR)
               if (f) {
-                f.style.setProperty('flex', '0 0 auto', 'important');
+                f.style.setProperty('flex-shrink', '0', 'important');
               }
               return true;
             }
