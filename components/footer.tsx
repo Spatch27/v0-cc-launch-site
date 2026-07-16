@@ -69,8 +69,8 @@ export function Footer() {
       />
       <div className="relative z-10 pt-12 pb-8 lg:pt-16 lg:pb-10 px-6 lg:px-12">
         <div className="mx-auto max-w-[1400px] space-y-12">
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
-            <div className="w-full lg:w-1/3 lg:flex-shrink-0">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
+            <div className="w-full lg:max-w-xs lg:flex-shrink-0">
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
               </h3>
@@ -79,7 +79,7 @@ export function Footer() {
                 Original thinking on marketing, transformation, and removing operational drag. No spam, ever.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-10 lg:gap-16 flex-shrink-0">
+            <div className="grid grid-cols-2 gap-10 lg:gap-16 flex-shrink-0 lg:mr-0">
               <div>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                   Navigate
