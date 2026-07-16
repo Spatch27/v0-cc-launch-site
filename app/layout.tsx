@@ -665,6 +665,68 @@ p {
             gtag("set", "url_passthrough", false);
           `}
         </Script>
+        <link rel="preconnect" href="https://consent.cookiebot.com" />
+        <link rel="preconnect" href="https://consentcdn.cookiebot.com" />
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+        />
+        {/* Patch Cookiebot dialog to a bottom sheet on mobile via MutationObserver.
+            CSS !important is not sufficient because Cookiebot re-applies inline styles
+            after the dialog opens; this script wins by setting inline styles directly. */}
+        <Script id="cookiebot-mobile-patch" strategy="afterInteractive">{`
+          (function () {
+            if (typeof window === 'undefined' || window.innerWidth > 640) return;
+
+            function patchDialog() {
+              var d = document.getElementById('CybotCookiebotDialog');
+              var f = document.getElementById('CybotCookiebotDialogFooter');
+              var body = document.getElementById('CybotCookiebotDialogBody');
+              if (!d) return false;
+
+              // Position as bottom sheet
+              d.style.setProperty('position', 'fixed', 'important');
+              d.style.setProperty('top', 'auto', 'important');
+              d.style.setProperty('bottom', '0', 'important');
+              d.style.setProperty('left', '0', 'important');
+              d.style.setProperty('right', '0', 'important');
+              d.style.setProperty('width', '100%', 'important');
+              d.style.setProperty('max-width', '100%', 'important');
+              d.style.setProperty('max-height', '50vh', 'important');
+              d.style.setProperty('transform', 'none', 'important');
+              d.style.setProperty('border-radius', '16px 16px 0 0', 'important');
+              d.style.setProperty('display', 'flex', 'important');
+              d.style.setProperty('flex-direction', 'column', 'important');
+              d.style.setProperty('overflow', 'hidden', 'important');
+
+              // Scroll the body copy, pin the footer buttons
+              if (body) {
+                body.style.setProperty('overflow-y', 'auto', 'important');
+                body.style.setProperty('flex', '1 1 auto', 'important');
+                body.style.setProperty('min-height', '0', 'important');
+              }
+              if (f) {
+                f.style.setProperty('flex', '0 0 auto', 'important');
+              }
+              return true;
+            }
+
+            // Apply immediately if dialog already exists
+            if (!patchDialog()) {
+              // Otherwise watch for Cookiebot injecting the dialog
+              var obs = new MutationObserver(function () {
+                if (patchDialog()) obs.disconnect();
+              });
+              obs.observe(document.documentElement, { childList: true, subtree: true });
+            }
+
+            // Re-apply on CookiebotOnDialogDisplay in case Cookiebot resets styles
+            window.addEventListener('CookiebotOnDialogDisplay', patchDialog);
+          })();
+        `}</Script>
         {/* Apollo website visitor tracking - deferred until after the page is interactive */}
         <Script
           id="apollo-website-tracker"
@@ -712,30 +774,31 @@ p {
             </ul>
           </nav>
         </noscript>
-        {/* Preconnect to critical third-party origins */}
-        <link rel="preconnect" href="https://consent.cookiebot.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://js.supabase.co" />
-        {/* Cookiebot CMP - deferred to improve LCP */}
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="bc3d8b4b-cf51-4f81-a255-e89443188c10"
-          data-blockingmode="auto"
-          type="text/javascript"
-          strategy="lazyOnload"
-        />
-        {/* Google tag (gtag.js) - deferred to reduce blocking */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-76PXVCGPES"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics-consent-loader" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-76PXVCGPES');
+            (function () {
+              var loaded = false;
+
+              function loadAnalytics() {
+                if (loaded || !window.Cookiebot || !window.Cookiebot.consent || !window.Cookiebot.consent.statistics) return;
+                loaded = true;
+
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-76PXVCGPES';
+                document.head.appendChild(script);
+
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+                window.gtag('js', new Date());
+                window.gtag('config', 'G-76PXVCGPES');
+              }
+
+              window.addEventListener('CookiebotOnConsentReady', loadAnalytics);
+              window.addEventListener('CookiebotOnAccept', loadAnalytics);
+              loadAnalytics();
+            })();
           `}
         </Script>
         <Navigation />
