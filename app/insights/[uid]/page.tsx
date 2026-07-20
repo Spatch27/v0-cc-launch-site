@@ -108,7 +108,7 @@ const articles: Record<
       },
       {
         type: "paragraph",
-        text: "If your team continues to run into blocks and you're unsure where to start in reviewing your own marketing operating model, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If your team continues to run into blocks and you're unsure where to start in reviewing your own marketing operating model, speak to us about Waypoint - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
