@@ -28,6 +28,90 @@ const articles: Record<
     seoDescription?: string
   }
 > = {
+  "youre-not-mckinsey": {
+    title: "You're not McKinsey.",
+    excerpt:
+      "Agents are going to become an important part of evolving workflows. But they're not a quick fix. There are foundations that need to be laid first.",
+    category: "AI Agents",
+    date: "July 2026",
+    readTime: "3 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/youre-not-mckinsey.jpg",
+    seoTitle: "You're not McKinsey | Committed Citizens",
+    seoDescription:
+      "AI agents are not plug-and-play. Before deploying agents at scale, most organisations need to lay the operational foundations first.",
+    body: [
+      {
+        type: "paragraph",
+        text: "McKinsey tells us they now have 25,000 AI agents. I feel I've been told this 25,000 times. And I expect the same stat has launched 25,000 board presentations.",
+      },
+      {
+        type: "paragraph",
+        text: "The way it gets shared, you'd think deploying an effective agent is like spinning up a Spotify account. It isn't.",
+      },
+      {
+        type: "paragraph",
+        text: "An agent isn't plug-and-play. It's closer to a new process. And most organisations can't implement new processes well, let alone at scale.",
+      },
+      {
+        type: "paragraph",
+        text: "Think about what a process in your business actually demands. Someone has to define the workflow, clean the data, map the edge cases and set the quality standards. Then someone has to maintain all of it as the work changes underneath. That's skilled, unglamorous graft. It takes time. Lots of time. And it usually falls on the people who are already at capacity, on top of the day job.",
+      },
+      {
+        type: "paragraph",
+        text: "The work doesn't disappear once the agent is live either. There's oversight to be done. Agents still hallucinate. They exhibit wonky logic - maybe we're past 'glue on pizzas' but we're still a long way from perfect. There is a drift in the way they work because they hit situations they were never configured for.",
+      },
+      {
+        type: "paragraph",
+        text: "So, the work changes shape - yes - and for some tasks it can genuinely take less time once it's up and running.",
+      },
+      {
+        type: "paragraph",
+        text: "But the human dependency doesn't go away. It just moves.",
+      },
+      {
+        type: "heading2",
+        text: "The preconditions McKinsey already has",
+      },
+      {
+        type: "paragraph",
+        text: "McKinsey do have a genuine advantage that most firms don't, which is baked into their business model. They can run agents at scale because the preconditions are already there: clinically mapped processes, world-class data infrastructure, deep technical capability and the resources to invest properly.",
+      },
+      {
+        type: "paragraph",
+        text: "And there's the rub. Most marketing functions have none of those in place. Processes live in people's heads. Data sits in a dozen tools that don't talk to each other. The team is stretched. Drop agents into that and you don't get McKinsey's productivity. You get the same mess you had before, just running faster.",
+      },
+      {
+        type: "paragraph",
+        text: "Even McKinsey's rivals are unconvinced the headline number means much. EY and PwC have both said quietly that agent count is the wrong measure. Well quite. The value tends to sit in a handful of agents doing the heavy lifting, well - not in the headcount.",
+      },
+      {
+        type: "paragraph",
+        text: "Of course, the stat isn't wrong. But it's doing PR work as much as anything else. And boardrooms are lapping it up.",
+      },
+      {
+        type: "heading2",
+        text: "An argument for sequence, not against agents",
+      },
+      {
+        type: "paragraph",
+        text: "To be clear, none of this is an argument against agents. It's an argument for sequence.",
+      },
+      {
+        type: "paragraph",
+        text: "Map the workflow before you automate it. Fix the data before you feed it. Decide what good looks like before you ask a machine to deliver it. The firms that get value from agents are the ones that did the dull foundational work first.",
+      },
+      {
+        type: "paragraph",
+        text: "The honest answer if your board is clamouring for mass agentification: we're not McKinsey. Rushing the foundations doesn't accelerate transformation. It just makes the mess harder to clean up later.",
+      },
+      {
+        type: "paragraph",
+        text: "If your team continues to run into blocks and you're unsure where to start in reviewing your own marketing operating model, speak to us about Waypoint - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+      },
+    ],
+  },
   "the-plane-in-flight-problem": {
     title: "The plane-in-flight problem.",
     excerpt:
