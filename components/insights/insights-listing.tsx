@@ -11,6 +11,16 @@ import { ArrowRight } from "lucide-react"
 
 const articles = [
   {
+    id: "youre-not-mckinsey",
+    title: "You're not McKinsey.",
+    excerpt:
+      "Agents are going to become an important part of evolving workflows. But they're not a quick fix. There are foundations that need to be laid first.",
+    category: "AI Agents",
+    date: "June 2026",
+    readTime: "3 min read",
+    image: "/images/insights/youre-not-mckinsey.jpg",
+  },
+  {
     id: "the-plane-in-flight-problem",
     title: "The plane-in-flight problem.",
     excerpt:
