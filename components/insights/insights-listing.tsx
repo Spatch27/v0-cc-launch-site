@@ -16,7 +16,7 @@ const articles = [
     excerpt:
       "Agents are going to become an important part of evolving workflows. But they're not a quick fix. There are foundations that need to be laid first.",
     category: "AI Agents",
-    date: "June 2026",
+    date: "July 2026",
     readTime: "3 min read",
     image: "/images/insights/youre-not-mckinsey.jpg",
   },
