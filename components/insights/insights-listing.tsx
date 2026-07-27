@@ -11,6 +11,16 @@ import { ArrowRight } from "lucide-react"
 
 const articles = [
   {
+    id: "the-problem-might-be-your-fabric",
+    title: "The problem might be your fabric.",
+    excerpt:
+      "Lurking between your people and your processes is an invisible layer that might well determine how your team actually operates.",
+    category: "Fabric layer",
+    date: "July 2026",
+    readTime: "3 min read",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/The%20Problem%20Might%20Be%20Your%20Fabric%20120626-dnyGOrJhYut3T8VXuorVZqL25l1IPk.jpg",
+  },
+  {
     id: "youre-not-mckinsey",
     title: "You're not McKinsey.",
     excerpt:

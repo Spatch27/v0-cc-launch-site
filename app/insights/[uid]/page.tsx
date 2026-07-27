@@ -28,6 +28,86 @@ const articles: Record<
     seoDescription?: string
   }
 > = {
+  "the-problem-might-be-your-fabric": {
+    title: "The problem might be your fabric.",
+    excerpt:
+      "Lurking between your people and your processes is an invisible layer that might well determine how your team actually operates.",
+    category: "Fabric layer",
+    date: "July 2026",
+    readTime: "3 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/The%20Problem%20Might%20Be%20Your%20Fabric%20120626-dnyGOrJhYut3T8VXuorVZqL25l1IPk.jpg",
+    seoTitle: "The problem might be your fabric | Committed Citizens",
+    seoDescription:
+      "Lurking between your people and your processes is an invisible layer that might well determine how your team actually operates. The problem might be your fabric.",
+    body: [
+      {
+        type: "paragraph",
+        text: "The problem might be your fabric.",
+      },
+      {
+        type: "paragraph",
+        text: "And no, not summer linens or a crocodile-skin suit.",
+      },
+      {
+        type: "paragraph",
+        text: "The fabric in question belongs to Richard Thackeray, who uses it to describe the rhythms, behaviours and informal conditions that determine whether an organisation actually works. Not the org chart. Not the strategy deck. The connective tissue underneath both.",
+      },
+      {
+        type: "paragraph",
+        text: "Fabric sits between process and people.",
+      },
+      {
+        type: "paragraph",
+        text: "Process is the formal, documented way teams are meant to operate. People is capability, skill, motivation, energy. Fabric is everything in the gap: the unwritten agreements, the habits, the standards that hold when nobody is watching. It's what keeps the wheels on the bus going round and round.",
+      },
+      {
+        type: "paragraph",
+        text: "When the layer of fabric isn't there, when it breaks, or when it gets ditched, things fail. Expensive, important things.",
+      },
+      {
+        type: "paragraph",
+        text: "It sounds abstract until you see it. And most marketing leaders see it every day:",
+      },
+      {
+        type: "paragraph",
+        text: "The brand team that shares campaign dates too late for performance to plan properly. The junior strategist who doesn't feel safe flagging a flawed brief. The firm decision made in the room that then gets ignored and never followed up.",
+      },
+      {
+        type: "paragraph",
+        text: "By rights these should be visible. They aren't. They get normalised, explained away as \"how things work around here\", and the cost compounds out of sight. It's a handbrake left half on. The team still moves, just slower and with more effort than anyone can quite account for.",
+      },
+      {
+        type: "heading2",
+        text: "Drag lives in the fabric",
+      },
+      {
+        type: "paragraph",
+        text: "At Committed Citizens we call it drag. It shows up as laborious workarounds, conflicting reporting lines, sluggish decisions and meetings that exist to greenlight other meetings. None of it appears on a dashboard. All of it is a tax on your team's performance.",
+      },
+      {
+        type: "paragraph",
+        text: "The reason drag is hard to fix is the reason fabric is hard to see. It has no line in the budget and no owner on the org chart. It takes shape through culture, energy, conditions and standards - the things that resist measurement. A CMO can audit the tech stack in an afternoon. You can buy a tool, plug it in, and watch it underperform - not because the tool is bad, but because the fabric around it never changed. Which is the harder problem, because fabric lives in how people behave rather than in what they've written down.",
+      },
+      {
+        type: "paragraph",
+        text: "The people who hold it together are just as hard to spot. They're the glue and the grease: the ones who smooth the handovers, carry the context between teams, and make sure decisions actually land. It's rarely in their job description. Which is precisely why, when cost pressure arrives, they're often first in line for the axe. The saving looks clean on a spreadsheet. The drag it creates turns up months later, all over the place, and nobody connects the two.",
+      },
+      {
+        type: "heading2",
+        text: "The layer most organisations never examine",
+      },
+      {
+        type: "paragraph",
+        text: "This is uncomfortable for any leader chasing better marketing performance. The biggest constraints often aren't in the strategy or the technology. They're in the layer between - the one most organisations never think to examine, because it was never designed in the first place.",
+      },
+      {
+        type: "paragraph",
+        text: "Fabric is where drag hides. If you're not sure how to find it in your marketing engine - let alone fix it - we can help. Waypoint is a free, 60-minute look at where friction is costing you and what to tackle first.",
+      },
+    ],
+  },
   "youre-not-mckinsey": {
     title: "You're not McKinsey.",
     excerpt:
