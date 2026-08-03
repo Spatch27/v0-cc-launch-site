@@ -28,6 +28,82 @@ const articles: Record<
     seoDescription?: string
   }
 > = {
+  "your-ai-tools-are-not-your-team": {
+    title: "Your AI tools are not a team.",
+    excerpt:
+      "Some people reckon you can revolutionise your business by dropping AI tools into your existing workflow and calling them a team. That's crazy talk.",
+    category: "Agentic reality check",
+    date: "August 2026",
+    readTime: "3 min read",
+    author: "Ben Scoggins",
+    authorRole: "Co-founder",
+    heroImage: "/images/insights/your-ai-tools-are-not-your-team.png",
+    seoTitle: "Your AI tools are not a team | Committed Citizens",
+    seoDescription:
+      "Giving your AI tools job titles is the digital equivalent of over-promoting the intern. Real advantage comes from understanding how work actually flows before you introduce any tools.",
+    body: [
+      {
+        type: "paragraph",
+        text: "There's a tempting shortcut that regularly does the rounds: Pick some AI tools. Call them your \"team\". Watch productivity \"10X\".",
+      },
+      {
+        type: "paragraph",
+        text: "It's baloney.",
+      },
+      {
+        type: "heading2",
+        text: "Giving your AI tools job titles is the digital equivalent of over-promoting the intern.",
+      },
+      {
+        type: "paragraph",
+        text: "\"ChatGPT is now my Chief Strategy Officer\" sounds clever until you ask the boring questions. Strategy for what? Feeding what process? Reviewed by whom? Connected to which decision?",
+      },
+      {
+        type: "paragraph",
+        text: "Without those answers, you don't have an AI team. You have a group chat with a stack of paid subscriptions.",
+      },
+      {
+        type: "heading2",
+        text: "The advantage was never the tech. It's understanding how work actually flows.",
+      },
+      {
+        type: "paragraph",
+        text: "The marketers we know getting real value from AI start somewhere far less glamorous. They map the work first. Then they find where things are slow - the repeatable, structured, often dull tasks that swallow time without rewarding judgement. And only then do they introduce tools, with clear handoffs and human checkpoints.",
+      },
+      {
+        type: "paragraph",
+        text: "Notice the order. The tool choice is almost the last decision, not the first. That's the bit the \"Supercharge your productivity!\" peddlers tend to skip, because it doesn't fit their model. But it is the reality.",
+      },
+      {
+        type: "paragraph",
+        text: "Designing how work flows ain't glamorous. It looks like well-crafted briefs, clear ownership and - sharp intake of breath - flowcharts. None of it screams innovation. All of it is where genuine advantage gets built.",
+      },
+      {
+        type: "paragraph",
+        text: "The reason this matters goes beyond wasted licence fees. AI is an amplifier. Drop it into a sharp workflow and it makes good work faster. But drop it into a shonky one and you get the same mediocre work, just churned out at speed and at scale.",
+      },
+      {
+        type: "heading2",
+        text: "The drag was already in the system. The tool just helps you make more of it.",
+      },
+      {
+        type: "paragraph",
+        text: "This is why so many \"AI transformation\" projects underwhelm. They're hailed as turnkey magic but they were never going to be able to live up to that hype because the technology was never the constraint. The constraint was a set of processes nobody had looked at properly in years, held together by habit and the heroics of a few good people.",
+      },
+      {
+        type: "paragraph",
+        text: "So before you draw up an org chart for your bots, draw up an honest map of how work moves through your team. Where does it stall? Where does it get handed off badly? Where does judgement get wasted on tasks a machine could tee up?",
+      },
+      {
+        type: "paragraph",
+        text: "Get that right, and the tools take care of themselves. Skip it, and no job title in the world will save you.",
+      },
+      {
+        type: "paragraph",
+        text: "If you're not sure how to map the people, processes, data and tech of your marketing engine, we can help. The Drag Diagnostic is a free, 60-minute look at where friction is costing you and what to tackle first.",
+      },
+    ],
+  },
   "the-problem-might-be-your-fabric": {
     title: "The problem might be your fabric.",
     excerpt:

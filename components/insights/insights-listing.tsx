@@ -11,6 +11,16 @@ import { ArrowRight } from "lucide-react"
 
 const articles = [
   {
+    id: "your-ai-tools-are-not-your-team",
+    title: "Your AI tools are not a team.",
+    excerpt:
+      "Some people reckon you can revolutionise your business by dropping AI tools into your existing workflow and calling them a team. That's crazy talk.",
+    category: "Agentic reality check",
+    date: "August 2026",
+    readTime: "3 min read",
+    image: "/images/insights/your-ai-tools-are-not-your-team.png",
+  },
+  {
     id: "the-problem-might-be-your-fabric",
     title: "The problem might be your fabric.",
     excerpt:
