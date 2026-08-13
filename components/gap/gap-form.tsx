@@ -1,0 +1,342 @@
+"use client"
+
+import { useMemo, useState } from "react"
+import { CheckCircle } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { GapSlider } from "./gap-slider"
+
+const SLIDERS = [
+  { key: "funding", label: "Winning belief, budget and board confidence" },
+  { key: "howitruns", label: "How the work actually gets made and shipped" },
+  { key: "measurement", label: "Knowing what's working, and proving it" },
+  { key: "ai", label: "Getting AI to do something real" },
+  { key: "stack", label: "The stack, and data people trust" },
+  { key: "speed", label: "Speed, and how the team feels" },
+  { key: "agencies", label: "Agencies and partners" },
+] as const
+
+type ScanKey = (typeof SLIDERS)[number]["key"]
+
+const inputClass =
+  "w-full border-0 border-b-2 border-brand-dark/10 bg-transparent px-0 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/30 focus:border-brand-pink"
+
+const labelClass = "mb-3 block text-sm font-medium text-brand-dark"
+
+export function GapForm() {
+  const [scanValues, setScanValues] = useState<Record<ScanKey, number>>(() =>
+    Object.fromEntries(SLIDERS.map((s) => [s.key, 4])) as Record<ScanKey, number>
+  )
+  const [touched, setTouched] = useState<Set<ScanKey>>(new Set())
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const touchedCount = touched.size
+  const canSubmit = touchedCount === 7 && !loading
+
+  const markTouched = useMemo(
+    () => (key: ScanKey) =>
+      setTouched((prev) => {
+        if (prev.has(key)) return prev
+        const next = new Set(prev)
+        next.add(key)
+        return next
+      }),
+    []
+  )
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (!canSubmit) return
+
+    setLoading(true)
+    setError(null)
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    const scan = Object.fromEntries(SLIDERS.map((s) => [s.key, scanValues[s.key]])) as Record<ScanKey, number>
+    const maxValue = Math.max(...Object.values(scan))
+    const minValue = Math.min(...Object.values(scan))
+    const widest_gaps = SLIDERS.filter((s) => scan[s.key] === maxValue).map((s) => s.key)
+    const closest = SLIDERS.find((s) => scan[s.key] === minValue)?.key
+
+    try {
+      const body = {
+        submitted: new Date().toISOString(),
+        person: {
+          name: formData.get("name"),
+          role: formData.get("role"),
+          company: formData.get("company"),
+          email: formData.get("email"),
+          marketing_headcount: formData.get("marketing_headcount"),
+        },
+        biggest_difference: formData.get("biggest_difference"),
+        scan,
+        widest_gaps,
+        closest,
+        would_protect: formData.get("would_protect"),
+        recurring_fix: formData.get("recurring_fix"),
+      }
+
+      const res = await fetch("/api/gap", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      })
+
+      const data = await res.json()
+
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        setError(data.error || "Failed to submit form")
+      }
+    } catch (err) {
+      console.error("[v0] Gap form submission error:", err)
+      setError("An error occurred. Please try again.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-brand-white">
+      <div className="mx-auto max-w-[660px] px-6 pt-32 pb-32 lg:pt-40 lg:pb-24">
+        {/* Eyebrow */}
+        <div className="mb-6 flex items-center gap-2">
+          <span className="h-3.5 w-3.5 rounded-[3px] bg-brand-pink" aria-hidden="true" />
+          <span className="text-xs font-medium uppercase tracking-wide text-brand-dark">Committed Citizens</span>
+        </div>
+
+        {/* Title */}
+        <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
+          Where&apos;s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
+        </h1>
+
+        {/* Intro */}
+        <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
+          <p>
+            Most marketing functions aren&apos;t broken. They&apos;re surviving, and surviving looks enough like
+            working that nobody names the gap.
+          </p>
+          <p>
+            This names it. The gap between the marketing function you&apos;ve got and the one you need, in three
+            lines and seven sliders. It takes about two minutes.
+          </p>
+          <p>
+            Within two working days we&apos;ll send you a three-minute video: how big we think that gap is, three
+            things we think are holding it there, and where we&apos;d start.
+          </p>
+        </div>
+
+        {/* Footnote */}
+        <p className="mt-10 text-sm text-muted-foreground">
+          We do the work. You get two minutes of typing and three minutes of video you can watch on the train.
+        </p>
+        <hr className="mt-6 border-t border-brand-dark/10" />
+
+        {submitted ? (
+          <div className="flex flex-col gap-6 py-16">
+            <CheckCircle size={48} className="text-brand-pink" />
+            <h2 className="font-display text-3xl font-bold text-brand-dark">Thanks — the video is on its way.</h2>
+            <p className="text-lg text-brand-dark">
+              We&apos;ll be back to you within two working days with your three-minute video.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col">
+            {error && (
+              <div className="mt-8 rounded-lg border border-red-200 bg-red-50 p-4">
+                <p className="text-sm text-red-700">{error}</p>
+              </div>
+            )}
+
+            {/* Question 1 */}
+            <div className="py-10">
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">One</span>
+              <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
+                Compare the marketing function you&apos;ve got to the one you need. What&apos;s the biggest
+                difference between those two versions?
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">One line is plenty.</p>
+              <div className="mt-6">
+                <label htmlFor="biggest_difference" className="sr-only">
+                  Biggest difference
+                </label>
+                <input
+                  id="biggest_difference"
+                  name="biggest_difference"
+                  type="text"
+                  maxLength={180}
+                  className={inputClass}
+                  placeholder="e.g. the one we need plans, the one we've got reacts"
+                />
+              </div>
+            </div>
+            <hr className="border-t border-brand-dark/10" />
+
+            {/* Question 2 */}
+            <div className="py-10">
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Two</span>
+                <span className="flex items-center gap-2 text-sm font-medium text-brand-dark">
+                  <span
+                    className={cn(
+                      "h-2 w-2 rounded-full",
+                      touchedCount === 7 ? "bg-brand-pink" : "border border-brand-dark/20 bg-brand-light"
+                    )}
+                    aria-hidden="true"
+                  />
+                  {touchedCount} of 7
+                </span>
+              </div>
+              <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
+                And how far off is each of these from the version you need?
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Not a score for your team. This is the distance between the two versions, area by area.
+              </p>
+
+              <div className="mt-8 flex justify-between border-b border-brand-dark/10 pb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                <span>Already there</span>
+                <span>Nowhere near</span>
+              </div>
+
+              <div className="flex flex-col divide-y divide-brand-dark/10">
+                {SLIDERS.map((slider) => (
+                  <GapSlider
+                    key={slider.key}
+                    label={slider.label}
+                    value={scanValues[slider.key]}
+                    touched={touched.has(slider.key)}
+                    onChange={(value) => setScanValues((prev) => ({ ...prev, [slider.key]: value }))}
+                    onTouch={() => markTouched(slider.key)}
+                  />
+                ))}
+              </div>
+            </div>
+            <hr className="border-t border-brand-dark/10" />
+
+            {/* Question 3 */}
+            <div className="py-10">
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Three</span>
+              <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
+                What&apos;s the one part you&apos;d protect if you had to cut everything else?
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">A few words will do.</p>
+              <div className="mt-6">
+                <label htmlFor="would_protect" className="sr-only">
+                  What would you protect
+                </label>
+                <input
+                  id="would_protect"
+                  name="would_protect"
+                  type="text"
+                  className={inputClass}
+                  placeholder="e.g. the brand team, our events, the way we do research"
+                />
+              </div>
+            </div>
+            <hr className="border-t border-brand-dark/10" />
+
+            {/* Question 4 */}
+            <div className="py-10">
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Four</span>
+              <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
+                What&apos;s the fix that keeps coming back?
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Something you&apos;ve solved before and it didn&apos;t stick. Name it, that&apos;s all.
+              </p>
+              <div className="mt-6">
+                <label htmlFor="recurring_fix" className="sr-only">
+                  Recurring fix
+                </label>
+                <input
+                  id="recurring_fix"
+                  name="recurring_fix"
+                  type="text"
+                  className={inputClass}
+                  placeholder="e.g. attribution, the briefing process, agency handovers"
+                />
+              </div>
+            </div>
+            <hr className="border-t border-brand-dark/10" />
+
+            {/* Details panel */}
+            <div className="flex flex-col gap-8 py-10">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6">
+                <div>
+                  <label htmlFor="name" className={labelClass}>
+                    Name <span className="text-brand-pink">*</span>
+                  </label>
+                  <input id="name" name="name" type="text" required className={inputClass} placeholder="Your name" />
+                </div>
+                <div>
+                  <label htmlFor="email" className={labelClass}>
+                    Email <span className="text-brand-pink">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    className={inputClass}
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6">
+                <div>
+                  <label htmlFor="company" className={labelClass}>
+                    Company <span className="text-brand-pink">*</span>
+                  </label>
+                  <input
+                    id="company"
+                    name="company"
+                    type="text"
+                    required
+                    className={inputClass}
+                    placeholder="Company name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="role" className={labelClass}>
+                    Role
+                  </label>
+                  <input id="role" name="role" type="text" className={inputClass} placeholder="Your role" />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="marketing_headcount" className={labelClass}>
+                  Roughly how many people in marketing?
+                </label>
+                <input
+                  id="marketing_headcount"
+                  name="marketing_headcount"
+                  type="text"
+                  inputMode="numeric"
+                  className={inputClass}
+                  placeholder="a number is fine"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className="mt-4 w-full bg-brand-dark px-8 py-4 text-center font-display text-base font-semibold text-brand-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {loading ? "Sending..." : "Send me the video"}
+            </button>
+            <p className="mt-4 text-center text-sm text-muted-foreground">
+              Your answers stay between us. We don&apos;t share them, we don&apos;t publish them, and we don&apos;t
+              put you on a mailing list.
+            </p>
+          </form>
+        )}
+      </div>
+    </div>
+  )
+}
