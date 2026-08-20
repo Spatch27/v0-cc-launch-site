@@ -1,7 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
-import { CheckCircle } from "lucide-react"
+import { useEffect, useMemo, useRef, useState } from "react"
+import { CheckCircle, Send } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { GapSlider } from "./gap-slider"
 
@@ -22,6 +22,14 @@ const inputClass =
 
 const labelClass = "mb-3 block text-sm font-medium text-brand-dark"
 
+const STARTERS = [
+  { label: "Speed", stem: "The one we need moves " },
+  { label: "Proof", stem: "The one we need can show " },
+  { label: "Planning", stem: "The one we need plans, the one we've got " },
+  { label: "The team", stem: "The one we need frees the team to " },
+  { label: "The tools", stem: "The one we need actually uses " },
+] as const
+
 export function GapForm() {
   const [scanValues, setScanValues] = useState<Record<ScanKey, number>>(() =>
     Object.fromEntries(SLIDERS.map((s) => [s.key, 4])) as Record<ScanKey, number>
@@ -30,6 +38,33 @@ export function GapForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [q1, setQ1] = useState("")
+  const [starter, setStarter] = useState<string | null>(null)
+  const [caretTo, setCaretTo] = useState<number | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (caretTo !== null && inputRef.current) {
+      inputRef.current.focus()
+      inputRef.current.setSelectionRange(caretTo, caretTo)
+      setCaretTo(null)
+    }
+  }, [q1, caretTo])
+
+  function pickStarter(selected: (typeof STARTERS)[number]) {
+    if (starter === selected.label) {
+      setQ1("")
+      setStarter(null)
+      setCaretTo(0)
+      return
+    }
+
+    const untouched = q1 === "" || STARTERS.some((option) => q1 === option.stem)
+    const next = untouched ? selected.stem : q1
+    setQ1(next)
+    setStarter(selected.label)
+    setCaretTo(next.length)
+  }
 
   const touchedCount = touched.size
   const canSubmit = touchedCount === 7 && !loading
@@ -72,11 +107,12 @@ export function GapForm() {
           marketing_headcount: formData.get("marketing_headcount"),
         },
         biggest_difference: formData.get("biggest_difference"),
+        q1_starter_used: starter,
         scan,
         widest_gaps,
         closest,
         would_protect: formData.get("would_protect"),
-        recurring_fix: formData.get("recurring_fix"),
+        tried_and_didnt_stick: formData.get("tried_and_didnt_stick"),
       }
 
       const res = await fetch("/api/gap", {
@@ -103,12 +139,6 @@ export function GapForm() {
   return (
     <div className="min-h-screen bg-brand-white">
       <div className="mx-auto max-w-[660px] px-6 pt-32 pb-32 lg:pt-40 lg:pb-24">
-        {/* Eyebrow */}
-        <div className="mb-6 flex items-center gap-2">
-          <span className="h-3.5 w-3.5 rounded-[3px] bg-brand-pink" aria-hidden="true" />
-          <span className="text-xs font-medium uppercase tracking-wide text-brand-dark">Committed Citizens</span>
-        </div>
-
         {/* Title */}
         <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
           Where&apos;s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
@@ -117,23 +147,18 @@ export function GapForm() {
         {/* Intro */}
         <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
           <p>
-            Most marketing functions aren&apos;t broken. They&apos;re surviving, and surviving looks enough like
-            working that nobody names the gap.
+            Most marketing functions aren&apos;t broken, they&apos;re buried. More channels, shorter cycles, new tools
+            that only pay back if the function around them can keep up. And a board that wants proof by Friday.
           </p>
           <p>
-            This names it. The gap between the marketing function you&apos;ve got and the one you need, in three
-            lines and seven sliders. It takes about two minutes.
+            Capable teams become teams that cope. You sense a widening gap between the marketing function you&apos;ve
+            got and the one you need.
           </p>
           <p>
-            Within two working days we&apos;ll send you a three-minute video: how big we think that gap is, three
-            things we think are holding it there, and where we&apos;d start.
+            Four questions, two minutes of your time. Within a couple of days we&apos;ll send you a short video: how
+            big we think that gap is, three things we think are holding it there, and where we&apos;d start.
           </p>
         </div>
-
-        {/* Footnote */}
-        <p className="mt-10 text-sm text-muted-foreground">
-          We do the work. You get two minutes of typing and three minutes of video you can watch on the train.
-        </p>
         <hr className="mt-6 border-t border-brand-dark/10" />
 
         {submitted ? (
@@ -160,18 +185,45 @@ export function GapForm() {
                 difference between those two versions?
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">One line is plenty.</p>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-col gap-4">
                 <label htmlFor="biggest_difference" className="sr-only">
                   Biggest difference
                 </label>
                 <input
+                  ref={inputRef}
                   id="biggest_difference"
                   name="biggest_difference"
                   type="text"
                   maxLength={180}
+                  value={q1}
+                  onChange={(event) => {
+                    setQ1(event.target.value)
+                    setStarter(null)
+                  }}
                   className={inputClass}
                   placeholder="e.g. the one we need plans, the one we've got reacts"
                 />
+                <div className="flex flex-col gap-3">
+                  <p className="text-sm text-muted-foreground">Stuck? Start from one of these.</p>
+                  <div className="flex flex-wrap gap-2" aria-label="Starter answers">
+                    {STARTERS.map((option) => (
+                      <button
+                        key={option.label}
+                        type="button"
+                        aria-pressed={starter === option.label}
+                        className={cn(
+                          "rounded-full border px-[15px] py-2 text-sm text-brand-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink",
+                          starter === option.label
+                            ? "border-brand-pink bg-brand-pink font-medium"
+                            : "border-[#E3DCDC] bg-background hover:border-brand-pink hover:bg-[#FFE8F2]"
+                        )}
+                        onClick={() => pickStarter(option)}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
             <hr className="border-t border-brand-dark/10" />
@@ -250,12 +302,12 @@ export function GapForm() {
                 Something you&apos;ve solved before and it didn&apos;t stick. Name it, that&apos;s all.
               </p>
               <div className="mt-6">
-                <label htmlFor="recurring_fix" className="sr-only">
+                <label htmlFor="tried_and_didnt_stick" className="sr-only">
                   Recurring fix
                 </label>
                 <input
-                  id="recurring_fix"
-                  name="recurring_fix"
+                  id="tried_and_didnt_stick"
+                  name="tried_and_didnt_stick"
                   type="text"
                   className={inputClass}
                   placeholder="e.g. attribution, the briefing process, agency handovers"
@@ -326,9 +378,11 @@ export function GapForm() {
             <button
               type="submit"
               disabled={!canSubmit}
-              className="mt-4 w-full bg-brand-dark px-8 py-4 text-center font-display text-base font-semibold text-brand-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
+              className="group mt-4 inline-flex w-fit items-center gap-3 self-start rounded-lg border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white hover:text-brand-white disabled:cursor-not-allowed disabled:opacity-40"
+              style={{ borderRadius: "4px" }}
             >
-              {loading ? "Sending..." : "Send me the video"}
+              <span>{loading ? "Sending..." : "Send me the video"}</span>
+              <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </button>
             <p className="mt-4 text-center text-sm text-muted-foreground">
               Your answers stay between us. We don&apos;t share them, we don&apos;t publish them, and we don&apos;t
