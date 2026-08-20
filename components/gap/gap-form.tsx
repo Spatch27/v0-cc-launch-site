@@ -52,6 +52,13 @@ export function GapForm() {
   }, [q1, caretTo])
 
   function pickStarter(selected: (typeof STARTERS)[number]) {
+    if (starter === selected.label) {
+      setQ1("")
+      setStarter(null)
+      setCaretTo(0)
+      return
+    }
+
     const untouched = q1 === "" || STARTERS.some((option) => q1 === option.stem)
     const next = untouched ? selected.stem : q1
     setQ1(next)
@@ -132,12 +139,6 @@ export function GapForm() {
   return (
     <div className="min-h-screen bg-brand-white">
       <div className="mx-auto max-w-[660px] px-6 pt-32 pb-32 lg:pt-40 lg:pb-24">
-        {/* Eyebrow */}
-        <div className="mb-6 flex items-center gap-2">
-          <span className="h-3.5 w-3.5 rounded-[3px] bg-brand-pink" aria-hidden="true" />
-          <span className="text-xs font-medium uppercase tracking-wide text-brand-dark">Committed Citizens</span>
-        </div>
-
         {/* Title */}
         <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
           Where&apos;s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
