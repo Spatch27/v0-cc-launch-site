@@ -22,6 +22,12 @@ const inputClass =
 
 const labelClass = "mb-3 block text-sm font-medium text-brand-dark"
 
+const STARTERS = [
+  "The one we need plans, the one we've got reacts",
+  "We know the answer, but can't get it shipped",
+  "Our strategy is clear; the system around it isn't",
+]
+
 export function GapForm() {
   const [scanValues, setScanValues] = useState<Record<ScanKey, number>>(() =>
     Object.fromEntries(SLIDERS.map((s) => [s.key, 4])) as Record<ScanKey, number>
@@ -76,7 +82,7 @@ export function GapForm() {
         widest_gaps,
         closest,
         would_protect: formData.get("would_protect"),
-        recurring_fix: formData.get("recurring_fix"),
+        tried_and_didnt_stick: formData.get("tried_and_didnt_stick"),
       }
 
       const res = await fetch("/api/gap", {
@@ -160,7 +166,7 @@ export function GapForm() {
                 difference between those two versions?
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">One line is plenty.</p>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-col gap-4">
                 <label htmlFor="biggest_difference" className="sr-only">
                   Biggest difference
                 </label>
@@ -172,6 +178,25 @@ export function GapForm() {
                   className={inputClass}
                   placeholder="e.g. the one we need plans, the one we've got reacts"
                 />
+                <div className="flex flex-wrap gap-2" aria-label="Starter answers">
+                  {STARTERS.map((starter) => (
+                    <button
+                      key={starter}
+                      type="button"
+                      className="border border-brand-dark/15 px-3 py-2 text-left text-xs text-brand-dark transition-colors hover:border-brand-pink hover:bg-brand-yellow-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink"
+                      onClick={() => {
+                        const input = document.getElementById("biggest_difference") as HTMLInputElement | null
+                        if (input) {
+                          input.value = starter
+                          input.focus()
+                        }
+                      }}
+                    >
+                      {starter}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground">Or start with one of these.</p>
               </div>
             </div>
             <hr className="border-t border-brand-dark/10" />
@@ -250,12 +275,12 @@ export function GapForm() {
                 Something you&apos;ve solved before and it didn&apos;t stick. Name it, that&apos;s all.
               </p>
               <div className="mt-6">
-                <label htmlFor="recurring_fix" className="sr-only">
+                <label htmlFor="tried_and_didnt_stick" className="sr-only">
                   Recurring fix
                 </label>
                 <input
-                  id="recurring_fix"
-                  name="recurring_fix"
+                  id="tried_and_didnt_stick"
+                  name="tried_and_didnt_stick"
                   type="text"
                   className={inputClass}
                   placeholder="e.g. attribution, the briefing process, agency handovers"
@@ -323,6 +348,12 @@ export function GapForm() {
               </div>
             </div>
 
+            <details className="mt-8 border border-brand-dark/10 px-4 py-3 text-xs text-muted-foreground">
+              <summary className="cursor-pointer font-medium text-brand-dark">Developer payload</summary>
+              <pre className="mt-3 overflow-x-auto whitespace-pre-wrap font-mono text-[11px] leading-relaxed">
+                {JSON.stringify({ scan: scanValues, answered: touchedCount, widest_gaps: SLIDERS.filter((s) => scanValues[s.key] === Math.max(...Object.values(scanValues))).map((s) => s.key) }, null, 2)}
+              </pre>
+            </details>
             <button
               type="submit"
               disabled={!canSubmit}

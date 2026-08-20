@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
   const body = await request.json()
-  const { person, biggest_difference, scan, widest_gaps, closest, would_protect, recurring_fix } = body
+  const { person, biggest_difference, scan, widest_gaps, closest, would_protect, tried_and_didnt_stick } = body
 
   if (!person?.name || !person?.email || !person?.company) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
         <p>Widest gaps: ${JSON.stringify(widest_gaps)}</p>
         <p>Closest: ${closest}</p>
         <p>Would protect: ${would_protect || "N/A"}</p>
-        <p>Recurring fix: ${recurring_fix || "N/A"}</p>
+        <p>Fix that keeps coming back: ${tried_and_didnt_stick || "N/A"}</p>
       `,
     })
   }
