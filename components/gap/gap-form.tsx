@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { CheckCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { GapSlider } from "./gap-slider"
@@ -23,10 +23,12 @@ const inputClass =
 const labelClass = "mb-3 block text-sm font-medium text-brand-dark"
 
 const STARTERS = [
-  "The one we need plans, the one we've got reacts",
-  "We know the answer, but can't get it shipped",
-  "Our strategy is clear; the system around it isn't",
-]
+  { label: "Speed", stem: "The one we need moves " },
+  { label: "Proof", stem: "The one we need can show " },
+  { label: "Planning", stem: "The one we need plans, the one we've got " },
+  { label: "The team", stem: "The one we need frees the team to " },
+  { label: "The tools", stem: "The one we need actually uses " },
+] as const
 
 export function GapForm() {
   const [scanValues, setScanValues] = useState<Record<ScanKey, number>>(() =>
@@ -36,6 +38,26 @@ export function GapForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [q1, setQ1] = useState("")
+  const [starter, setStarter] = useState<string | null>(null)
+  const [caretTo, setCaretTo] = useState<number | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (caretTo !== null && inputRef.current) {
+      inputRef.current.focus()
+      inputRef.current.setSelectionRange(caretTo, caretTo)
+      setCaretTo(null)
+    }
+  }, [q1, caretTo])
+
+  function pickStarter(selected: (typeof STARTERS)[number]) {
+    const untouched = q1 === "" || STARTERS.some((option) => q1 === option.stem)
+    const next = untouched ? selected.stem : q1
+    setQ1(next)
+    setStarter(selected.label)
+    setCaretTo(next.length)
+  }
 
   const touchedCount = touched.size
   const canSubmit = touchedCount === 7 && !loading
@@ -78,6 +100,7 @@ export function GapForm() {
           marketing_headcount: formData.get("marketing_headcount"),
         },
         biggest_difference: formData.get("biggest_difference"),
+        q1_starter_used: starter,
         scan,
         widest_gaps,
         closest,
@@ -171,32 +194,40 @@ export function GapForm() {
                   Biggest difference
                 </label>
                 <input
+                  ref={inputRef}
                   id="biggest_difference"
                   name="biggest_difference"
                   type="text"
                   maxLength={180}
+                  value={q1}
+                  onChange={(event) => {
+                    setQ1(event.target.value)
+                    setStarter(null)
+                  }}
                   className={inputClass}
                   placeholder="e.g. the one we need plans, the one we've got reacts"
                 />
-                <div className="flex flex-wrap gap-2" aria-label="Starter answers">
-                  {STARTERS.map((starter) => (
-                    <button
-                      key={starter}
-                      type="button"
-                      className="border border-brand-dark/15 px-3 py-2 text-left text-xs text-brand-dark transition-colors hover:border-brand-pink hover:bg-brand-yellow-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink"
-                      onClick={() => {
-                        const input = document.getElementById("biggest_difference") as HTMLInputElement | null
-                        if (input) {
-                          input.value = starter
-                          input.focus()
-                        }
-                      }}
-                    >
-                      {starter}
-                    </button>
-                  ))}
+                <div className="flex flex-col gap-3">
+                  <p className="text-sm text-muted-foreground">Stuck? Start from one of these.</p>
+                  <div className="flex flex-wrap gap-2" aria-label="Starter answers">
+                    {STARTERS.map((option) => (
+                      <button
+                        key={option.label}
+                        type="button"
+                        aria-pressed={starter === option.label}
+                        className={cn(
+                          "rounded-full border px-[15px] py-2 text-sm text-brand-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink",
+                          starter === option.label
+                            ? "border-brand-pink bg-brand-pink font-medium"
+                            : "border-[#E3DCDC] bg-background hover:border-brand-pink hover:bg-[#FFE8F2]"
+                        )}
+                        onClick={() => pickStarter(option)}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <p className="text-xs text-muted-foreground">Or start with one of these.</p>
               </div>
             </div>
             <hr className="border-t border-brand-dark/10" />
