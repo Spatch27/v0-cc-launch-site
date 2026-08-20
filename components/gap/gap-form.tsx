@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import { CheckCircle } from "lucide-react"
+import { ArrowRight, CheckCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { GapSlider } from "./gap-slider"
 
@@ -375,18 +375,14 @@ export function GapForm() {
               </div>
             </div>
 
-            <details className="mt-8 border border-brand-dark/10 px-4 py-3 text-xs text-muted-foreground">
-              <summary className="cursor-pointer font-medium text-brand-dark">Developer payload</summary>
-              <pre className="mt-3 overflow-x-auto whitespace-pre-wrap font-mono text-[11px] leading-relaxed">
-                {JSON.stringify({ scan: scanValues, answered: touchedCount, widest_gaps: SLIDERS.filter((s) => scanValues[s.key] === Math.max(...Object.values(scanValues))).map((s) => s.key) }, null, 2)}
-              </pre>
-            </details>
             <button
               type="submit"
               disabled={!canSubmit}
-              className="mt-4 w-full bg-brand-dark px-8 py-4 text-center font-display text-base font-semibold text-brand-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
+              className="group mt-4 inline-flex w-fit items-center gap-3 self-start rounded-lg border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white disabled:cursor-not-allowed disabled:opacity-40"
+              style={{ borderRadius: "4px" }}
             >
-              {loading ? "Sending..." : "Send me the video"}
+              <span>{loading ? "Sending..." : "Send me the video"}</span>
+              <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </button>
             <p className="mt-4 text-center text-sm text-muted-foreground">
               Your answers stay between us. We don&apos;t share them, we don&apos;t publish them, and we don&apos;t
