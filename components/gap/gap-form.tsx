@@ -146,23 +146,18 @@ export function GapForm() {
         {/* Intro */}
         <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
           <p>
-            Most marketing functions aren&apos;t broken. They&apos;re surviving, and surviving looks enough like
-            working that nobody names the gap.
+            Most marketing functions aren&apos;t broken, they&apos;re buried. More channels, shorter cycles, new tools
+            that only pay back if the function around them can keep up. And a board that wants proof by Friday.
           </p>
           <p>
-            This names it. The gap between the marketing function you&apos;ve got and the one you need, in three
-            lines and seven sliders. It takes about two minutes.
+            Capable teams become teams that cope. You sense a widening gap between the marketing function you&apos;ve
+            got and the one you need.
           </p>
           <p>
-            Within two working days we&apos;ll send you a three-minute video: how big we think that gap is, three
-            things we think are holding it there, and where we&apos;d start.
+            Four questions, two minutes of your time. Within a couple of days we&apos;ll send you a short video: how
+            big we think that gap is, three things we think are holding it there, and where we&apos;d start.
           </p>
         </div>
-
-        {/* Footnote */}
-        <p className="mt-10 text-sm text-muted-foreground">
-          We do the work. You get two minutes of typing and three minutes of video you can watch on the train.
-        </p>
         <hr className="mt-6 border-t border-brand-dark/10" />
 
         {submitted ? (
