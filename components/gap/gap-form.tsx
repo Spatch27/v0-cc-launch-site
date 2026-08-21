@@ -267,7 +267,6 @@ export function GapForm() {
                 ))}
               </div>
             </div>
-            <hr className="border-t border-brand-dark/10" />
 
             {/* Question 3 */}
             <div className="py-10">
@@ -289,7 +288,6 @@ export function GapForm() {
                 />
               </div>
             </div>
-            <hr className="border-t border-brand-dark/10" />
 
             {/* Question 4 */}
             <div className="py-10">
@@ -313,7 +311,6 @@ export function GapForm() {
                 />
               </div>
             </div>
-            <hr className="border-t border-brand-dark/10" />
 
             {/* Details panel */}
             <div className="flex flex-col gap-8 py-10">
