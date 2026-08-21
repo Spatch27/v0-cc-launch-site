@@ -67,7 +67,6 @@ export function GapForm() {
   }
 
   const touchedCount = touched.size
-  const canSubmit = touchedCount === 7 && !loading
 
   const markTouched = useMemo(
     () => (key: ScanKey) =>
@@ -82,7 +81,7 @@ export function GapForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    if (!canSubmit) return
+    if (loading) return
 
     setLoading(true)
     setError(null)
@@ -377,8 +376,8 @@ export function GapForm() {
 
             <button
               type="submit"
-              disabled={!canSubmit}
-              className="group mt-4 inline-flex w-fit items-center gap-3 self-start rounded-lg border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white hover:text-brand-white disabled:cursor-not-allowed disabled:opacity-40"
+              disabled={loading}
+              className="group mt-4 inline-flex w-fit items-center gap-3 self-start rounded-lg border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white hover:text-brand-white disabled:opacity-50"
               style={{ borderRadius: "4px" }}
             >
               <span>{loading ? "Sending..." : "Send me the video"}</span>
