@@ -1,7 +1,9 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
+import { motion } from "framer-motion"
 import { CheckCircle, Send } from "lucide-react"
+import { textRollDown, textRollUp } from "@/lib/animations"
 import { cn } from "@/lib/utils"
 import { GapSlider } from "./gap-slider"
 
@@ -40,6 +42,7 @@ export function GapForm() {
   const [error, setError] = useState<string | null>(null)
   const [q1, setQ1] = useState("")
   const [starter, setStarter] = useState<string | null>(null)
+  const [isSubmitHovered, setIsSubmitHovered] = useState(false)
   const [caretTo, setCaretTo] = useState<number | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -381,8 +384,27 @@ export function GapForm() {
               disabled={loading}
               className="gap-send-button group mt-4 inline-flex w-fit items-center gap-3 self-start rounded-lg border-2 border-brand-dark bg-brand-light px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300 hover:bg-brand-white hover:text-brand-white disabled:opacity-50"
               style={{ borderRadius: "4px" }}
+              onMouseEnter={() => setIsSubmitHovered(true)}
+              onMouseLeave={() => setIsSubmitHovered(false)}
             >
-              <span>{loading ? "Sending..." : "Send me the video"}</span>
+              <span className="relative inline-block overflow-hidden">
+                <motion.span
+                  initial="initial"
+                  animate={isSubmitHovered ? "hover" : "initial"}
+                  variants={textRollUp}
+                  className="block"
+                >
+                  {loading ? "Sending..." : "Send me the video"}
+                </motion.span>
+                <motion.span
+                  initial="initial"
+                  animate={isSubmitHovered ? "hover" : "initial"}
+                  variants={textRollDown}
+                  className="absolute inset-0 block"
+                >
+                  {loading ? "Sending..." : "Send me the video"}
+                </motion.span>
+              </span>
               <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </button>
             <p className="mt-4 text-center text-sm text-muted-foreground">
