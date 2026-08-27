@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
+const permanentRedirects = [
+  ['/outputs', '/outcomes'],
+  ['/insights/building-resilient-marketing-systems', '/insights'],
+  ['/insights/case-for-marketing-product-teams', '/insights'],
+  ['/insights/embedded-consultancy-model', '/insights'],
+  ['/insights/rethinking-marketing-velocity', '/insights'],
+  ['/insights/marketing-operations-competitive-advantage', '/insights'],
+  ['/insights/removing-operational-drag', '/insights'],
+]
+
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
@@ -16,6 +26,12 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  async redirects() {
+    return permanentRedirects.flatMap(([source, destination]) => [
+      { source, destination, statusCode: 301 },
+      { source: `${source}/`, destination, statusCode: 301 },
+    ])
   },
 }
 

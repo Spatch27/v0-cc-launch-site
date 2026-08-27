@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /_next/static/
 
 Sitemap: https://www.committedcitizens.co.uk/sitemap.xml
