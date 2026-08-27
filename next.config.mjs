@@ -28,10 +28,11 @@ const nextConfig = {
     ],
   },
   async redirects() {
-    return permanentRedirects.flatMap(([source, destination]) => [
-      { source, destination, statusCode: 301 },
-      { source: `${source}/`, destination, statusCode: 301 },
-    ])
+    return permanentRedirects.map(([source, destination]) => ({
+      source,
+      destination,
+      statusCode: 301,
+    }))
   },
 }
 
