@@ -9,7 +9,7 @@ import { BackToInsights } from "@/components/insights/back-to-insights"
 import { BackToInsightsCta } from "@/components/insights/back-to-insights-cta"
 
 /**
- * Static article data used until Prismic is fully configured.
+ * Static article data.
  * Keys match the slugs used in the insights listing.
  */
 const articles: Record<
