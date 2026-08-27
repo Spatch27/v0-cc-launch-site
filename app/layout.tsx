@@ -626,7 +626,7 @@ p {
               logo: "https://committedcitizens.co.uk/logo.png",
               description: "Marketing operations and transformation consultancy helping CMOs remove operational drag and build sustainable marketing workflows.",
               sameAs: [
-                "https://www.linkedin.com/company/committed-citizens",
+                "https://www.linkedin.com/company/committedcitizens",
               ],
               address: {
                 "@type": "PostalAddress",
