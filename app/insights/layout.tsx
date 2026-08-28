@@ -1,6 +1,7 @@
 import type {Metadata} from "next"
 import {Suspense} from "react"
 import {draftMode} from "next/headers"
+import {VisualEditing} from "next-sanity/visual-editing"
 import {DisableDraftMode} from "@/components/disable-draft-mode"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,9 +28,12 @@ export default async function InsightsLayout({
     <>
       {children}
       {preview ? (
-        <Suspense fallback={null}>
-          <DisableDraftMode />
-        </Suspense>
+        <>
+          <VisualEditing />
+          <Suspense fallback={null}>
+            <DisableDraftMode />
+          </Suspense>
+        </>
       ) : null}
     </>
   )
