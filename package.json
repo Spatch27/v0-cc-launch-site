@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "import-insights-to-sanity": "tsx scripts/import-insights-to-sanity.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -69,6 +70,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@sanity/client": "^8.4.0",
     "@tailwindcss/postcss": "^4.1.13",
     "@types/node": "^22",
     "@types/react": "19.2.14",
@@ -76,6 +78,7 @@
     "postcss": "^8.5",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.9",
+    "tsx": "^4.23.12",
     "tw-animate-css": "1.3.3",
     "typescript": "5.7.3"
   }
