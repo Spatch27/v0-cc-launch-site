@@ -96,6 +96,8 @@ Insights pages also send `noindex` while Next.js draft mode is on.
 
 If Studio or Presentation fails on a Vercel preview hostname, add that preview origin in
 manage.sanity.io → API → CORS origins with credentials (production and localhost are already listed).
+`SANITY_API_READ_TOKEN` or `SANITY_API_WRITE_TOKEN` must be set for the Preview environment, not
+only Production, or `/api/draft-mode/enable` returns “Draft preview is not configured”.
 
 ## Still out of scope
 

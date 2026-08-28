@@ -2,21 +2,21 @@ import {defineEnableDraftMode} from "next-sanity/draft-mode"
 import {sanityClient} from "@/lib/sanity/client"
 import {getSanityPreviewToken} from "@/lib/sanity/preview-token"
 
-const token = getSanityPreviewToken()
-
-const enableDraftMode = token
-  ? defineEnableDraftMode({
-      client: sanityClient.withConfig({
-        token,
-        useCdn: false,
-      }),
-    })
-  : null
+export const dynamic = "force-dynamic"
 
 export async function GET(request: Request) {
-  if (!enableDraftMode) {
+  const token = getSanityPreviewToken()
+
+  if (!token) {
     return new Response("Draft preview is not configured", {status: 500})
   }
 
-  return enableDraftMode.GET(request)
+  const {GET: enableDraftMode} = defineEnableDraftMode({
+    client: sanityClient.withConfig({
+      token,
+      useCdn: false,
+    }),
+  })
+
+  return enableDraftMode(request)
 }
