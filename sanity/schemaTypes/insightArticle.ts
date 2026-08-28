@@ -23,6 +23,26 @@ function hasImageSource(value: unknown) {
     : "Add a Sanity image or an external/public image URL."
 }
 
+function isWebUrl(value: string | undefined, allowRelative = false) {
+  if (!value) {
+    return true
+  }
+
+  if (allowRelative && value.startsWith("/")) {
+    return true
+  }
+
+  try {
+    const url = new URL(value)
+
+    return ["http:", "https:"].includes(url.protocol) || "Enter a valid HTTP or HTTPS URL."
+  } catch {
+    return allowRelative
+      ? "Enter a root-relative path or a valid HTTP or HTTPS URL."
+      : "Enter a valid HTTP or HTTPS URL."
+  }
+}
+
 export const insightArticle = defineType({
   name: "insightArticle",
   title: "Insight article",
@@ -102,11 +122,7 @@ export const insightArticle = defineType({
           type: "string",
           description:
             "Migration fallback only, for example /images/insights/article.jpg or an HTTPS blob URL.",
-          validation: (Rule) =>
-            Rule.uri({
-              allowRelative: true,
-              scheme: ["http", "https"],
-            }),
+          validation: (Rule) => Rule.custom((value) => isWebUrl(value, true)),
         }),
         defineField({
           name: "alt",
@@ -159,10 +175,7 @@ export const insightArticle = defineType({
                     title: "URL",
                     type: "string",
                     validation: (Rule) =>
-                      Rule.required().uri({
-                        allowRelative: true,
-                        scheme: ["http", "https", "mailto", "tel"],
-                      }),
+                      Rule.required().custom((value) => isWebUrl(value, true)),
                   }),
                 ],
               }),
@@ -212,10 +225,7 @@ export const insightArticle = defineType({
               title: "External image URL",
               type: "string",
               description: "Migration fallback for an existing HTTPS asset.",
-              validation: (Rule) =>
-                Rule.uri({
-                  scheme: ["http", "https"],
-                }),
+              validation: (Rule) => Rule.custom((value) => isWebUrl(value)),
             }),
             defineField({
               name: "alt",
