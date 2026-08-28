@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Script from "next/script"
+import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import { Section } from "@/components/section"
@@ -27,9 +28,14 @@ export async function generateMetadata({
 }: ArticlePageProps): Promise<Metadata> {
   const { uid } = await params
   const article = await getInsightBySlug(uid)
+  const preview = (await draftMode()).isEnabled
+  const robots = preview ? { index: false as const, follow: false as const } : undefined
 
   if (!article) {
-    return { title: "Article Not Found" }
+    return {
+      title: "Article Not Found",
+      ...(robots ? { robots } : {}),
+    }
   }
 
   const title = article.seoTitle || article.title
@@ -39,6 +45,7 @@ export async function generateMetadata({
   return {
     title: title,
     description: description,
+    ...(robots ? { robots } : {}),
     openGraph: {
       title: `${title} | Committed Citizens`,
       description: description,

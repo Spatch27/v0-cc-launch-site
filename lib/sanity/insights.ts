@@ -1,6 +1,8 @@
+import {draftMode} from "next/headers"
 import type {InsightListingArticle} from "@/lib/insight-articles"
 import {formatInsightMonthYear} from "@/lib/insight-articles"
 import {sanityClient, sanityFetchOptions} from "./client"
+import {requireSanityPreviewToken} from "./preview-token"
 import {
   insightBySlugQuery,
   insightListingQuery,
@@ -12,6 +14,29 @@ import type {
   SanityInsightListingDoc,
   SanityInsightSitemapDoc,
 } from "./types"
+
+const previewFetchOptions = {
+  cache: "no-store" as const,
+  next: {revalidate: 0},
+}
+
+async function fetchInsightContent<T>(
+  query: string,
+  params: Record<string, unknown> = {},
+): Promise<T> {
+  if (!(await draftMode()).isEnabled) {
+    return sanityClient.fetch<T>(query, params, sanityFetchOptions)
+  }
+
+  return sanityClient
+    .withConfig({
+      token: requireSanityPreviewToken(),
+      useCdn: false,
+      perspective: "drafts",
+      stega: false,
+    })
+    .fetch<T>(query, params, previewFetchOptions)
+}
 
 function toListingArticle(doc: SanityInsightListingDoc): InsightListingArticle {
   return {
@@ -29,11 +54,7 @@ export async function getInsightListing(): Promise<{
   featured: InsightListingArticle | null
   remaining: InsightListingArticle[]
 }> {
-  const docs = await sanityClient.fetch<SanityInsightListingDoc[]>(
-    insightListingQuery,
-    {},
-    sanityFetchOptions,
-  )
+  const docs = await fetchInsightContent<SanityInsightListingDoc[]>(insightListingQuery)
 
   const featuredDoc = docs.find((doc) => doc.featured) ?? null
   const remaining = docs
@@ -47,11 +68,7 @@ export async function getInsightListing(): Promise<{
 }
 
 export async function getInsightBySlug(slug: string): Promise<SanityInsightArticle | null> {
-  return sanityClient.fetch<SanityInsightArticle | null>(
-    insightBySlugQuery,
-    {slug},
-    sanityFetchOptions,
-  )
+  return fetchInsightContent<SanityInsightArticle | null>(insightBySlugQuery, {slug})
 }
 
 export async function getInsightSlugs(): Promise<string[]> {

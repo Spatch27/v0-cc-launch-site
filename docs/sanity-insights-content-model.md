@@ -59,18 +59,22 @@ ordinary annotated link. It is not a content type.
 - `NEXT_PUBLIC_SANITY_DATASET`
 
 The same names are listed in `.env.example`. Copy that file to `.env.local` for local development.
-The public project ID and dataset name are not secrets; do not add API tokens or write keys.
+The public project ID and dataset name are not secrets. For Presentation/draft preview, set
+`SANITY_API_READ_TOKEN` (Viewer, preferred) or fall back to `SANITY_API_WRITE_TOKEN` (Editor).
+Those tokens are server-only: never paste them into client code, `.env.example` values, or logs.
 
 ### Run Studio locally
 
 1. Copy `.env.example` to `.env.local` (or export the two `NEXT_PUBLIC_` variables).
-2. `pnpm install` and `pnpm dev`.
-3. Open [http://localhost:3000/studio](http://localhost:3000/studio) and sign in with a Sanity
+2. For Presentation, also set `SANITY_API_READ_TOKEN` or `SANITY_API_WRITE_TOKEN` in `.env.local`.
+3. `pnpm install` and `pnpm dev`.
+4. Open [http://localhost:3000/studio](http://localhost:3000/studio) and sign in with a Sanity
    account that has access to the project.
 
 Public Insights routes fetch published documents with the client in `lib/sanity`. Editing a
 published document in Studio appears on the site after the 60s ISR window. Draft/Presentation
-preview is not wired.
+preview is wired for Insights: Studio Presentation maps articles to `/insights/{slug}` and the
+listing to `/insights`. Unsigned visitors cannot enable draft mode.
 
 ### CORS origins (Tim, in manage.sanity.io)
 
@@ -86,14 +90,20 @@ Add them under the project's API → CORS origins settings.
 ### Vercel
 
 Set `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` on the Production, Preview, and
-Development environments. `/studio` is `noindex` and is not in the sitemap; `robots.txt` disallows
-`/studio`.
+Development environments. Set `SANITY_API_READ_TOKEN` (preferred) or `SANITY_API_WRITE_TOKEN` for
+draft preview. `/studio` is `noindex` and is not in the sitemap; `robots.txt` disallows `/studio`.
+Insights pages also send `noindex` while Next.js draft mode is on.
+
+If Studio or Presentation fails on a Vercel preview hostname, add that preview origin in
+manage.sanity.io → API → CORS origins with credentials (production and localhost are already listed).
+`SANITY_API_READ_TOKEN` or `SANITY_API_WRITE_TOKEN` must be set for the Preview environment, not
+only Production, or `/api/draft-mode/enable` returns “Draft preview is not configured”.
 
 ## Still out of scope
 
 - Copying hero or inline images into the Sanity asset pipeline.
 - Extra document types beyond `insightArticle` and `author`.
-- Draft/Presentation preview.
+- Live overlays / stega click-to-edit (Presentation still loads the live layout with drafts).
 - New body structures, category normalization, computed read time, and public-page SEO, CTA,
   redirect, or visual-design changes.
 
@@ -115,7 +125,10 @@ The schema imports Sanity's schema helpers directly and is exported through
 
 Tokenless GROQ lives in `lib/sanity/queries.ts`. `lib/sanity/client.ts` uses
 `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET` with the same fallbacks as Studio,
-`useCdn: true`, perspective `published`, and `revalidate: 60`. No write token is required.
+`useCdn: true`, perspective `published`, and `revalidate: 60`. No token is attached to that client.
+When Next.js draft mode is on, listing and article fetches switch to perspective `drafts` with a
+server-only token (`SANITY_API_READ_TOKEN`, else `SANITY_API_WRITE_TOKEN`) and `cache: "no-store"`.
+Sitemap and `generateStaticParams` stay published-only.
 
 - Listing: featured via `featured == true`; remaining cards from the rest of the result set.
 - Article: by `slug.current`; author via `author->name` / `author->role`; hero/inline images via
@@ -150,5 +163,5 @@ Date mapping: month-year strings such as `August 2026` become `publishedAt`
 `insightLastModified` in `lib/insight-articles.ts`.
 
 Public `/insights`, `/insights/[uid]`, and the sitemap now read these documents from Sanity
-(tokenless GROQ, ISR 60s). Studio at `/studio` remains available. Draft/Presentation preview and
-image-asset migration are still out of scope.
+(tokenless GROQ, ISR 60s). Studio Presentation can preview unpublished drafts and edits using a
+server-only token and Next.js draft mode; anonymous `/insights` URLs stay published-only.
