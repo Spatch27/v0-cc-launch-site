@@ -16,9 +16,10 @@ mounted at `/studio`. The public Insights pages still render from hardcoded file
   `Marketing Leadership` casings, without making that accidental taxonomy a closed list.
 - `publishedAt`: a canonical datetime. Formatting it as `Month YYYY` is a frontend concern.
 - `readTime`: the current editorial string is retained rather than calculated.
-- `author`: a required reference to an `author` document with `name` and `role`. A later dataset
-  setup should create `Ben Scoggins — Co-founder` and `Tim Burley — Co-founder`; this PR performs
-  no dataset writes.
+- `author`: a required reference to an `author` document with `name` and `role`. The two authors
+  (`Ben Scoggins — Co-founder` and `Tim Burley — Co-founder`) and the 14 live articles were
+  imported by `scripts/import-insights-to-sanity.ts` (see the addendum). Public pages still do
+  not read Sanity.
 - `hero`: prefers a Sanity image and has optional alt text. `externalUrl` is a migration fallback
   that accepts both the current root-relative public paths and the existing HTTPS blob URL, so no
   image download is required to represent today's records.
@@ -91,7 +92,7 @@ Development environments. `/studio` is `noindex` and is not in the sitemap; `rob
 ## Still out of scope
 
 - GROQ fetches, a Sanity query client, or replacing hardcoded Insights pages.
-- Dataset writes, author seeds, article migration, and image copying.
+- Copying hero or inline images into the Sanity asset pipeline.
 - Extra document types beyond `insightArticle` and `author`.
 - New body structures, category normalization, computed read time, and public-page SEO, CTA,
   redirect, or visual-design changes.
@@ -104,10 +105,35 @@ The schema imports Sanity's schema helpers directly and is exported through
 - `Marketing Leadership` and `Marketing leadership` differ only by casing.
 - The live listing treats `articles[0]` as featured and then renders at most 12 following cards;
   it does not read `featured`.
-- Live dates are month-year strings. Migration will need an agreed canonical day/time for
-  `publishedAt`.
+- Live dates are month-year strings. The import maps them to `publishedAt` as the first of that
+  month UTC (see the addendum).
 - Open Graph and Twitter images are always `/og-image.jpg`, regardless of the article hero.
 - JSON-LD and Open Graph publication dates currently use `new Date()` rather than article data.
 
-The next stage is fetch/render integration and migration. Those changes should decide
-publication-date conversion and category cleanup before writing the 14 documents.
+The next stage is fetch/render integration. Switching the public site to read Sanity is
+intentionally out of scope until that PR.
+
+## Import addendum (28 August 2026)
+
+`scripts/import-insights-to-sanity.ts` writes the live Insights content into project `78xqw9ra`,
+dataset `production`, without changing public routes. Run it with `SANITY_API_WRITE_TOKEN` in the
+environment only (`pnpm import-insights-to-sanity`). It upserts by author `name` and article
+`slug.current`, so re-running updates rather than duplicating.
+
+Imported:
+
+- 2 `author` documents: Ben Scoggins (Co-founder) on 13 posts; Tim Burley (Co-founder) on
+  `i-cant-code` only.
+- 14 `insightArticle` documents whose slugs match the live ids in `lib/insight-articles.ts`.
+- Listing metadata (title, excerpt, category, date, readTime, hero URL) from
+  `lib/insight-articles.ts`. Body, author, and SEO fields from `app/insights/[uid]/page.tsx`.
+- `featured: true` only on `your-ai-tools-are-not-your-team` (the first listing item).
+- Hero images as `hero.externalUrl` (existing `/images/...` paths and the one HTTPS blob URL).
+  Inline images as `inlineImage.externalUrl`. Assets were not uploaded to Sanity.
+
+Date mapping: month-year strings such as `August 2026` become `publishedAt`
+`2026-08-01T00:00:00.000Z` (first of that month, UTC), using the same conversion as
+`insightLastModified` in `lib/insight-articles.ts`.
+
+The live Insights listing, article pages, sitemap, and robots.txt still use hardcoded files. Studio
+at `/studio` can show the imported documents; editing them does not change the public site.
