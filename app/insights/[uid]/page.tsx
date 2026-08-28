@@ -162,12 +162,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Right wide column: article content */}
           <article className="max-w-[720px]">
-            <p className="mb-10 text-xl leading-relaxed text-brand-dark/70">
-              {article.excerpt}
-            </p>
-
-            <hr className="mb-10 border-brand-dark/10" />
-
             <InsightArticleBody body={article.body ?? []} />
           </article>
         </div>
