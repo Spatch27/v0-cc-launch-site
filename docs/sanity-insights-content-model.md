@@ -2,8 +2,8 @@
 
 This design was checked against all 14 entries in `lib/insight-articles.ts`, their full records in
 `app/insights/[uid]/page.tsx`, and the ordering logic in
-`components/insights/insights-listing.tsx`. It defines schema only; it does not connect Sanity to
-the application.
+`components/insights/insights-listing.tsx`. The schema lives in `sanity/schemaTypes`. Studio is
+mounted at `/studio`. The public Insights pages still render from hardcoded files, not from Sanity.
 
 ## Decisions and fields
 
@@ -49,17 +49,55 @@ The checked slugs are:
 The paragraph currently scanned for “Get in touch to schedule a Drag Diagnostic” maps to an
 ordinary annotated link. It is not a content type.
 
-## Deliberately left out
+## Studio (embedded at `/studio`)
 
-- Studio configuration, routes, Sanity clients, `next-sanity`, GROQ, environment variables, and
-  application integration.
-- Dataset creation, author seeds, article migration, and image copying.
-- New body structures, category normalization, computed read time, and any frontend, SEO, CTA,
-  redirect, robots, sitemap, or JSON-LD changes.
+`sanity.config.ts` loads `schemaTypes` from `sanity/schemaTypes/index.ts` and points at project
+`78xqw9ra` / dataset `production` via:
+
+- `NEXT_PUBLIC_SANITY_PROJECT_ID`
+- `NEXT_PUBLIC_SANITY_DATASET`
+
+The same names are listed in `.env.example`. Copy that file to `.env.local` for local development.
+The public project ID and dataset name are not secrets; do not add API tokens or write keys.
+
+### Run Studio locally
+
+1. Copy `.env.example` to `.env.local` (or export the two `NEXT_PUBLIC_` variables).
+2. `pnpm install` and `pnpm dev`.
+3. Open [http://localhost:3000/studio](http://localhost:3000/studio) and sign in with a Sanity
+   account that has access to the project.
+
+The live Insights listing and article routes still read `lib/insight-articles.ts` and
+`app/insights/[uid]/page.tsx`. Editing documents in Studio will not change the public site until a
+later fetch/render PR.
+
+### CORS origins (Tim, in manage.sanity.io)
+
+Studio runs in the browser against the Sanity API, so these origins must be allowed with
+credentials:
+
+- `http://localhost:3000`
+- `https://committedcitizens.co.uk`
+- `https://www.committedcitizens.co.uk`
+
+Add them under the project's API → CORS origins settings.
+
+### Vercel
+
+Set `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` on the Production, Preview, and
+Development environments. `/studio` is `noindex` and is not in the sitemap; `robots.txt` disallows
+`/studio`.
+
+## Still out of scope
+
+- GROQ fetches, a Sanity query client, or replacing hardcoded Insights pages.
+- Dataset writes, author seeds, article migration, and image copying.
+- Extra document types beyond `insightArticle` and `author`.
+- New body structures, category normalization, computed read time, and public-page SEO, CTA,
+  redirect, or visual-design changes.
 
 The schema imports Sanity's schema helpers directly and is exported through
-`sanity/schemaTypes/index.ts`. No `sanity.config.ts` is needed to typecheck these modules, so none
-is included; a later Studio/integration PR can load `schemaTypes`.
+`sanity/schemaTypes/index.ts`. `sanity.config.ts` loads that export for Studio.
 
 ## Known follow-up mismatches
 
@@ -71,6 +109,5 @@ is included; a later Studio/integration PR can load `schemaTypes`.
 - Open Graph and Twitter images are always `/og-image.jpg`, regardless of the article hero.
 - JSON-LD and Open Graph publication dates currently use `new Date()` rather than article data.
 
-The next stage is explicitly Studio/configuration, fetch/render integration, and migration. Those
-changes should decide publication-date conversion and category cleanup before writing the 14
-documents.
+The next stage is fetch/render integration and migration. Those changes should decide
+publication-date conversion and category cleanup before writing the 14 documents.
