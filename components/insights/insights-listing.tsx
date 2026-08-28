@@ -8,9 +8,15 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { ArrowRight } from "lucide-react"
-import { insightArticles as articles } from "@/lib/insight-articles"
+import type { InsightListingArticle } from "@/lib/insight-articles"
 
-export function InsightsListing() {
+export function InsightsListing({
+  featured,
+  remainingArticles,
+}: {
+  featured: InsightListingArticle | null
+  remainingArticles: InsightListingArticle[]
+}) {
   const sectionRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -20,11 +26,6 @@ export function InsightsListing() {
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.93])
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
-
-  // Featured article is the most recent one
-  const featured = articles[0]
-
-  const remainingArticles = articles.slice(1)
 
   return (
     <>

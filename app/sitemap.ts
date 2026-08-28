@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next"
-import { insightArticles, insightLastModified } from "@/lib/insight-articles"
+import { getInsightSitemapEntries } from "@/lib/sanity/insights"
 
 const BASE_URL = "https://www.committedcitizens.co.uk"
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -42,9 +42,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const insightRoutes: MetadataRoute.Sitemap = insightArticles.map((article) => ({
+  const insightDocs = await getInsightSitemapEntries()
+  const insightRoutes: MetadataRoute.Sitemap = insightDocs.map((article) => ({
     url: `${BASE_URL}/insights/${article.id}`,
-    lastModified: insightLastModified(article.date),
+    lastModified: new Date(article.publishedAt),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }))
