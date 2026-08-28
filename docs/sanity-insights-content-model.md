@@ -3,7 +3,7 @@
 This design was checked against all 14 entries in `lib/insight-articles.ts`, their full records in
 `app/insights/[uid]/page.tsx`, and the ordering logic in
 `components/insights/insights-listing.tsx`. The schema lives in `sanity/schemaTypes`. Studio is
-mounted at `/studio`. The public Insights pages still render from hardcoded files, not from Sanity.
+mounted at `/studio`. Public Insights pages and the sitemap read published Sanity documents.
 
 ## Decisions and fields
 
@@ -18,8 +18,8 @@ mounted at `/studio`. The public Insights pages still render from hardcoded file
 - `readTime`: the current editorial string is retained rather than calculated.
 - `author`: a required reference to an `author` document with `name` and `role`. The two authors
   (`Ben Scoggins — Co-founder` and `Tim Burley — Co-founder`) and the 14 live articles were
-  imported by `scripts/import-insights-to-sanity.ts` (see the addendum). Public pages still do
-  not read Sanity.
+  imported by `scripts/import-insights-to-sanity.ts` (see the addendum). Public pages read
+  published documents from Sanity.
 - `hero`: prefers a Sanity image and has optional alt text. `externalUrl` is a migration fallback
   that accepts both the current root-relative public paths and the existing HTTPS blob URL, so no
   image download is required to represent today's records.
@@ -68,9 +68,9 @@ The public project ID and dataset name are not secrets; do not add API tokens or
 3. Open [http://localhost:3000/studio](http://localhost:3000/studio) and sign in with a Sanity
    account that has access to the project.
 
-The live Insights listing and article routes still read `lib/insight-articles.ts` and
-`app/insights/[uid]/page.tsx`. Editing documents in Studio will not change the public site until a
-later fetch/render PR.
+Public Insights routes fetch published documents with the client in `lib/sanity`. Editing a
+published document in Studio appears on the site after the 60s ISR window. Draft/Presentation
+preview is not wired.
 
 ### CORS origins (Tim, in manage.sanity.io)
 
@@ -91,9 +91,9 @@ Development environments. `/studio` is `noindex` and is not in the sitemap; `rob
 
 ## Still out of scope
 
-- GROQ fetches, a Sanity query client, or replacing hardcoded Insights pages.
 - Copying hero or inline images into the Sanity asset pipeline.
 - Extra document types beyond `insightArticle` and `author`.
+- Draft/Presentation preview.
 - New body structures, category normalization, computed read time, and public-page SEO, CTA,
   redirect, or visual-design changes.
 
@@ -103,15 +103,28 @@ The schema imports Sanity's schema helpers directly and is exported through
 ## Known follow-up mismatches
 
 - `Marketing Leadership` and `Marketing leadership` differ only by casing.
-- The live listing treats `articles[0]` as featured and then renders at most 12 following cards;
-  it does not read `featured`.
-- Live dates are month-year strings. The import maps them to `publishedAt` as the first of that
-  month UTC (see the addendum).
-- Open Graph and Twitter images are always `/og-image.jpg`, regardless of the article hero.
-- JSON-LD and Open Graph publication dates currently use `new Date()` rather than article data.
+- The listing now uses the `featured` boolean (currently only `your-ai-tools-are-not-your-team`).
+  Remaining cards are ordered by `publishedAt` desc, then `_createdAt` asc, and capped at 12.
+  That moves `weve-seen-enough` (March) out of the middle of the April cluster compared with the
+  old hardcoded array.
+- Display dates are `Month YYYY` from `publishedAt` in UTC (imported as the first of that month).
+- Open Graph and Twitter images are still `/og-image.jpg`, regardless of the article hero.
+- JSON-LD and Open Graph publication dates use `publishedAt`, not `new Date()`.
 
-The next stage is fetch/render integration. Switching the public site to read Sanity is
-intentionally out of scope until that PR.
+## Fetch addendum (28 August 2026)
+
+Tokenless GROQ lives in `lib/sanity/queries.ts`. `lib/sanity/client.ts` uses
+`NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET` with the same fallbacks as Studio,
+`useCdn: true`, perspective `published`, and `revalidate: 60`. No write token is required.
+
+- Listing: featured via `featured == true`; remaining cards from the rest of the result set.
+- Article: by `slug.current`; author via `author->name` / `author->role`; hero/inline images via
+  `coalesce(image.asset->url, externalUrl)`.
+- Sitemap: slug + `publishedAt` as `lastModified`.
+
+Hardcoded records remain in `lib/insight-articles.ts` (listing snapshot) and
+`scripts/hardcoded-insight-page-articles.ts` (full bodies) for the importer only. They are not the
+runtime source.
 
 ## Import addendum (28 August 2026)
 
@@ -126,7 +139,8 @@ Imported:
   `i-cant-code` only.
 - 14 `insightArticle` documents whose slugs match the live ids in `lib/insight-articles.ts`.
 - Listing metadata (title, excerpt, category, date, readTime, hero URL) from
-  `lib/insight-articles.ts`. Body, author, and SEO fields from `app/insights/[uid]/page.tsx`.
+  `lib/insight-articles.ts`. Body, author, and SEO fields from
+  `scripts/hardcoded-insight-page-articles.ts` (moved off the public article page).
 - `featured: true` only on `your-ai-tools-are-not-your-team` (the first listing item).
 - Hero images as `hero.externalUrl` (existing `/images/...` paths and the one HTTPS blob URL).
   Inline images as `inlineImage.externalUrl`. Assets were not uploaded to Sanity.
@@ -135,5 +149,6 @@ Date mapping: month-year strings such as `August 2026` become `publishedAt`
 `2026-08-01T00:00:00.000Z` (first of that month, UTC), using the same conversion as
 `insightLastModified` in `lib/insight-articles.ts`.
 
-The live Insights listing, article pages, sitemap, and robots.txt still use hardcoded files. Studio
-at `/studio` can show the imported documents; editing them does not change the public site.
+Public `/insights`, `/insights/[uid]`, and the sitemap now read these documents from Sanity
+(tokenless GROQ, ISR 60s). Studio at `/studio` remains available. Draft/Presentation preview and
+image-asset migration are still out of scope.

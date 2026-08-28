@@ -1,5 +1,8 @@
 import type { Metadata } from "next"
 import { InsightsListing } from "@/components/insights/insights-listing"
+import { getInsightListing } from "@/lib/sanity/insights"
+
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: "Marketing Operations Insights & Thought Leadership",
@@ -30,6 +33,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function InsightsPage() {
-  return <InsightsListing />
+export default async function InsightsPage() {
+  const { featured, remaining } = await getInsightListing()
+
+  return <InsightsListing featured={featured} remainingArticles={remaining} />
 }

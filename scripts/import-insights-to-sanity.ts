@@ -2,7 +2,7 @@
  * One-off importer: copy hardcoded Insights into Sanity (project 78xqw9ra / production).
  *
  * Reads live data from lib/insight-articles.ts (listing metadata) and
- * app/insights/[uid]/page.tsx (full records / body). Does not change public pages.
+ * scripts/hardcoded-insight-page-articles.ts (full records / body). Does not change public pages.
  *
  * Auth: SANITY_API_WRITE_TOKEN only. Never logs the token.
  *
@@ -10,18 +10,12 @@
  *   SANITY_API_WRITE_TOKEN=... pnpm import-insights-to-sanity
  */
 import {createClient, type SanityClient} from "@sanity/client"
-import {readFileSync} from "node:fs"
-import {dirname, join} from "node:path"
-import {fileURLToPath} from "node:url"
-import ts from "typescript"
 import {insightArticles, insightLastModified} from "../lib/insight-articles"
+import {hardcodedInsightPageArticles} from "./hardcoded-insight-page-articles"
 
 const PROJECT_ID = "78xqw9ra"
 const DATASET = "production"
 const API_VERSION = "2024-08-01"
-
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..")
-const PAGE_PATH = join(ROOT, "app/insights/[uid]/page.tsx")
 
 const DRAG_DIAGNOSTIC_TEXT = "Get in touch to schedule a Drag Diagnostic"
 const DRAG_DIAGNOSTIC_HREF = "/contact#book"
@@ -73,86 +67,8 @@ function requiredToken(): string {
   return token.trim()
 }
 
-function propertyName(name: ts.PropertyName): string | undefined {
-  if (ts.isIdentifier(name) || ts.isStringLiteral(name) || ts.isNumericLiteral(name)) {
-    return name.text
-  }
-  return undefined
-}
-
-function literalToValue(node: ts.Expression): unknown {
-  if (ts.isParenthesizedExpression(node)) {
-    return literalToValue(node.expression)
-  }
-  if (ts.isAsExpression(node) || ts.isTypeAssertionExpression(node)) {
-    return literalToValue(node.expression)
-  }
-  if (ts.isSatisfiesExpression(node)) {
-    return literalToValue(node.expression)
-  }
-  if (node.kind === ts.SyntaxKind.NullKeyword) {
-    return null
-  }
-  if (node.kind === ts.SyntaxKind.TrueKeyword) {
-    return true
-  }
-  if (node.kind === ts.SyntaxKind.FalseKeyword) {
-    return false
-  }
-  if (ts.isStringLiteralLike(node)) {
-    return node.text
-  }
-  if (ts.isNumericLiteral(node)) {
-    return Number(node.text)
-  }
-  if (ts.isArrayLiteralExpression(node)) {
-    return node.elements.map((element) => {
-      if (ts.isSpreadElement(element) || ts.isOmittedExpression(element)) {
-        fail("Unsupported array element while parsing insight page data.")
-      }
-      return literalToValue(element)
-    })
-  }
-  if (ts.isObjectLiteralExpression(node)) {
-    const record: Record<string, unknown> = {}
-    for (const prop of node.properties) {
-      if (!ts.isPropertyAssignment(prop)) {
-        fail("Unsupported object property while parsing insight page data.")
-      }
-      const key = propertyName(prop.name)
-      if (!key) {
-        fail("Unsupported object key while parsing insight page data.")
-      }
-      record[key] = literalToValue(prop.initializer)
-    }
-    return record
-  }
-  fail(`Unsupported syntax (${ts.SyntaxKind[node.kind]}) while parsing insight page data.`)
-}
-
 function loadPageArticles(): Record<string, PageArticle> {
-  const sourceText = readFileSync(PAGE_PATH, "utf8")
-  const source = ts.createSourceFile(PAGE_PATH, sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX)
-
-  let articlesNode: ts.Expression | undefined
-
-  const visit = (node: ts.Node) => {
-    if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) && node.name.text === "articles" && node.initializer) {
-      articlesNode = node.initializer
-    }
-    ts.forEachChild(node, visit)
-  }
-  visit(source)
-
-  if (!articlesNode) {
-    fail(`Could not find the articles record in ${PAGE_PATH}`)
-  }
-
-  const value = literalToValue(articlesNode)
-  if (!value || typeof value !== "object" || Array.isArray(value)) {
-    fail("Parsed articles value is not an object.")
-  }
-  return value as Record<string, PageArticle>
+  return hardcodedInsightPageArticles
 }
 
 function key(...parts: Array<string | number>): string {

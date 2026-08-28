@@ -36,6 +36,24 @@ export function insightLastModified(date: string): Date {
   return new Date(Date.UTC(year, month, 1))
 }
 
+/** Display Sanity `publishedAt` as "Month YYYY" in UTC, matching the live listing. */
+export function formatInsightMonthYear(iso: string): string {
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) {
+    return iso
+  }
+
+  return date.toLocaleDateString("en-GB", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  })
+}
+
+/**
+ * Listing snapshot used by `scripts/import-insights-to-sanity.ts` only.
+ * Public `/insights`, `/insights/[uid]`, and the sitemap read from Sanity.
+ */
 export const insightArticles: InsightListingArticle[] = [
   {
     id: "your-ai-tools-are-not-your-team",
