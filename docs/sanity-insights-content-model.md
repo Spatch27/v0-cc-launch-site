@@ -25,7 +25,8 @@ mounted at `/studio`. Public Insights pages and the sitemap read published Sanit
   image download is required to represent today's records.
 - optional `seoTitle` and `seoDescription`.
 - optional `featured`, defaulting to `false`, to replace array position as editorial intent.
-- `body`: required Portable Text, limited to the structures used by the live articles.
+- `body`: required Portable Text. Blocks support Normal and Heading 2, link annotations,
+  bold (`strong`), italic (`em`), and bullet lists, plus `code` and `inlineImage` objects.
 
 The checked slugs are:
 
@@ -44,6 +45,8 @@ The checked slugs are:
 | `paragraph {text}` | Standard block with `normal` style |
 | `heading2 {text}` | Standard block with `h2` style |
 | `paragraph-with-link` | Standard block with a link annotation on the linked span |
+| Bold / italic | `strong` / `em` decorators on spans |
+| Bullet list | Standard block with `listItem: "bullet"` (optional nested `level`) |
 | `code {text}` | `code` object containing `text` |
 | `image {src, alt, caption?}` | `inlineImage` object with a Sanity image or external URL, required alt, and optional caption |
 
@@ -104,8 +107,8 @@ only Production, or `/api/draft-mode/enable` returns “Draft preview is not con
 - Copying hero or inline images into the Sanity asset pipeline.
 - Extra document types beyond `insightArticle` and `author`.
 - Live overlays / stega click-to-edit (Presentation still loads the live layout with drafts).
-- New body structures, category normalization, computed read time, and public-page SEO, CTA,
-  redirect, or visual-design changes.
+- Numbered lists, category normalization, computed read time, and public-page SEO, CTA, redirect,
+  or visual-design changes.
 
 The schema imports Sanity's schema helpers directly and is exported through
 `sanity/schemaTypes/index.ts`. `sanity.config.ts` loads that export for Studio.

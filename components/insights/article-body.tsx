@@ -197,10 +197,6 @@ export function InsightArticleBody({body}: {body: SanityBodyBlock[]}) {
       continue
     }
 
-    if (block._type !== "block") {
-      continue
-    }
-
     nodes.push(renderTextBlock(block, key))
   }
 
