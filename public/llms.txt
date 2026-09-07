@@ -23,7 +23,8 @@ Important notes for agents:
 
 ## Insights
 - [Insights index](https://www.committedcitizens.co.uk/insights): Practitioner essays on operational drag, momentum, teams, and how marketing works.
-- [Your AI tools are not a team](https://www.committedcitizens.co.uk/insights/your-ai-tools-are-not-your-team): Featured — tools are not a substitute for operating-model change.
+- [Listen all of y’all it’s a sabotage!](https://www.committedcitizens.co.uk/insights/listen-all-of-yall): Featured — nearly a third of teams admit sabotaging AI adoption; that’s a leadership problem, not a workforce one to police.
+- [Your AI tools are not a team](https://www.committedcitizens.co.uk/insights/your-ai-tools-are-not-your-team): Tools are not a substitute for operating-model change.
 - [The problem might be your fabric](https://www.committedcitizens.co.uk/insights/the-problem-might-be-your-fabric): The invisible layer between people and process.
 - [You're not McKinsey](https://www.committedcitizens.co.uk/insights/youre-not-mckinsey): Agents need foundations first.
 - [The plane-in-flight problem](https://www.committedcitizens.co.uk/insights/the-plane-in-flight-problem): Quarter deadlines vs deeper fixes.

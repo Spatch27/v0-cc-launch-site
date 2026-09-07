@@ -4,6 +4,7 @@ import { Inter, Bricolage_Grotesque } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import { SITE_URL } from '@/lib/seo'
 import './globals.css'
 
 const inter = Inter({
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   description:
     'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
   applicationName: 'Committed Citizens',
-  metadataBase: new URL('https://www.committedcitizens.co.uk'),
+  metadataBase: new URL(SITE_URL),
   manifest: '/manifest.json',
   icons: {
     icon: [
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     siteName: 'Committed Citizens',
     title: 'Committed Citizens | Freedom from drag',
     description: 'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
-    url: 'https://www.committedcitizens.co.uk',
+    url: SITE_URL,
     images: [
       {
         url: '/og-image.jpg',

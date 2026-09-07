@@ -6,11 +6,13 @@ import { TeamSection } from "@/components/about/team-section"
 import { AdvisorySection } from "@/components/about/advisory-section"
 import { CultureSection } from "@/components/about/culture-section"
 import { CtaBand } from "@/components/cta-band"
+import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "About | Marketing Operations Consultancy & Advisory Board",
   description:
     "Meet the marketing transformation experts behind Committed Citizens. Our team combines marketing operations expertise with proven change management to help CMOs drive sustainable transformation.",
+  alternates: canonicalAlternates("/about"),
   openGraph: {
     title: "About | Committed Citizens",
     description: "Why Committed Citizens exists. Meet our founders and advisory board.",

@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next"
 import { getInsightSitemapEntries } from "@/lib/sanity/insights"
+import { SITE_URL } from "@/lib/seo"
 
-const BASE_URL = "https://www.committedcitizens.co.uk"
+const BASE_URL = SITE_URL
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -29,6 +30,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE_URL}/insights`,
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/gap`,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/contact`,

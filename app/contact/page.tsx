@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
 import { ContactForm } from "@/components/contact/contact-form"
+import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Contact a Marketing Operations Consultant | Committed Citizens",
+  title: "Contact a Marketing Operations Consultant",
   description:
     "Schedule a free Waypoint consultation with our marketing transformation experts. Discover how we can help your CMO's team streamline operations and eliminate workflow drag.",
+  alternates: canonicalAlternates("/contact"),
   openGraph: {
     title: "Contact | Committed Citizens",
     description: "Get in touch with Committed Citizens. Let's talk about removing operational drag from your marketing team.",
