@@ -1,4 +1,4 @@
-const SITE_URL = "https://www.committedcitizens.co.uk"
+import { SITE_URL } from "@/lib/seo"
 
 /** Absolute URL for JSON-LD. Keep relative public paths; leave https heroes as-is. */
 export function absoluteInsightUrl(pathOrUrl: string): string {

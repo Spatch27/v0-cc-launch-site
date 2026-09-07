@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { InsightsListing } from "@/components/insights/insights-listing"
 import { getInsightListing } from "@/lib/sanity/insights"
+import { canonicalAlternates } from "@/lib/seo"
 
 export const revalidate = 60
 
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   title: "Marketing Operations Insights & Thought Leadership",
   description:
     "Articles on marketing transformation, operations consulting, and removing workflow inefficiencies. Expert insights on building efficient marketing teams and sustainable operational change.",
+  alternates: canonicalAlternates("/insights"),
   openGraph: {
     title: "Insights | Committed Citizens",
     description: "Thought leadership from Committed Citizens. Original thinking on marketing operations, transformation, and operational drag.",

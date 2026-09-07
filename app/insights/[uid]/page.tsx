@@ -11,6 +11,7 @@ import { InsightArticleBody } from "@/components/insights/article-body"
 import { formatInsightMonthYear } from "@/lib/insight-articles"
 import { getInsightBySlug, getInsightSlugs } from "@/lib/sanity/insights"
 import { absoluteInsightUrl, insightPageUrl } from "@/lib/sanity/urls"
+import { brandedTitle, canonicalAlternates, withoutBrandSuffix } from "@/lib/seo"
 
 export const revalidate = 60
 
@@ -38,16 +39,17 @@ export async function generateMetadata({
     }
   }
 
-  const title = article.seoTitle || article.title
+  const title = withoutBrandSuffix(article.seoTitle || article.title)
   const description = article.seoDescription || article.excerpt
   const url = insightPageUrl(uid)
 
   return {
-    title: title,
-    description: description,
+    title,
+    description,
+    alternates: canonicalAlternates(`/insights/${uid}`),
     ...(robots ? { robots } : {}),
     openGraph: {
-      title: `${title} | Committed Citizens`,
+      title: brandedTitle(title),
       description: description,
       url: url,
       type: "article",
@@ -66,7 +68,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Committed Citizens`,
+      title: brandedTitle(title),
       description: description,
       images: ["/og-image.jpg"],
     },

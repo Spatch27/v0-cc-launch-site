@@ -8,11 +8,13 @@ import { PhilosophySection } from "@/components/approach/philosophy-section"
 import { MomentumSection } from "@/components/approach/momentum-section"
 import { EngagementsSection } from "@/components/approach/engagements-section"
 import { CtaBand } from "@/components/cta-band"
+import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Marketing Transformation Approach | Sustainable Change Methods",
   description:
     "Our proven marketing operations transformation methodology for CMOs. We blend people-first consulting with product team practices to remove operational drag and build sustainable marketing workflows.",
+  alternates: canonicalAlternates("/approach"),
   openGraph: {
     title: "Approach | Committed Citizens",
     description: "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",

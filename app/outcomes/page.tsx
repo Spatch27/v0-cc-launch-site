@@ -2,11 +2,13 @@ import type { Metadata } from "next"
 import { OutcomesHero } from "@/components/outcomes/outcomes-hero"
 import { OutcomesCaseStudies } from "@/components/outcomes/outcomes-case-studies"
 import { CtaBand } from "@/components/cta-band"
+import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Marketing Transformation Results | Committed Citizens",
+  title: "Marketing Transformation Results",
   description:
     "See how our marketing operations consulting delivers measurable outcomes. Real results from marketing transformation and operational efficiency improvements for UK marketing teams.",
+  alternates: canonicalAlternates("/outcomes"),
   openGraph: {
     title: "Outcomes | Committed Citizens",
     description: "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",

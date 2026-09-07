@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
 import { HeroSection } from "@/components/home/hero-section"
 import { DeferredHomeSections } from "@/components/home/deferred-sections"
+import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Marketing Operations Consultancy | Committed Citizens UK",
   description:
     "Marketing operations and transformation consultancy for CMOs. We help marketing teams remove operational drag and streamline workflows through embedded consulting and product team practices.",
+  alternates: canonicalAlternates("/"),
   openGraph: {
     title: "Marketing Operations Consultancy | Committed Citizens",
     description:

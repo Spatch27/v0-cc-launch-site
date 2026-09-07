@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
 import { Section } from "@/components/section"
 import { CookieDeclaration } from "./cookie-declaration"
+import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Committed Citizens Marketing Consultancy",
+  title: "Privacy Policy",
   description:
     "Privacy policy for Committed Citizens. How we handle your data and comply with GDPR and data protection regulations.",
+  alternates: canonicalAlternates("/privacy"),
   openGraph: {
     title: "Privacy Policy | Committed Citizens",
     description: "Privacy policy for Committed Citizens. How we handle your data.",

@@ -1,29 +1,33 @@
 import type { Metadata } from "next"
 import { GapForm } from "@/components/gap/gap-form"
+import { absoluteUrl, brandedTitle, canonicalAlternates } from "@/lib/seo"
+
+const title = "Where's the gap in your marketing?"
+const description =
+  "Four questions, two minutes. Within a couple of days we'll send you a short video: how big we think that gap is, three things we think are holding it there, and where we'd start."
 
 export const metadata: Metadata = {
-  title: "Where's the gap in your marketing? | Committed Citizens",
-  description:
-    "Three lines and seven sliders, about two minutes. We send back a three-minute video: how big we think the gap is and three things holding it there.",
+  title,
+  description,
+  alternates: canonicalAlternates("/gap"),
   openGraph: {
-    title: "Where's the gap in your marketing? | Committed Citizens",
-    description:
-      "Three lines and seven sliders, about two minutes. We send back a three-minute video: how big we think the gap is and three things holding it there.",
+    title: brandedTitle(title),
+    description,
+    url: absoluteUrl("/gap"),
     type: "website",
     images: [
       {
         url: "/gap-og-card.png",
         width: 1200,
         height: 630,
-        alt: "Where's the gap in your marketing? | Committed Citizens",
+        alt: brandedTitle(title),
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Where's the gap in your marketing? | Committed Citizens",
-    description:
-      "Three lines and seven sliders, about two minutes. We send back a three-minute video: how big we think the gap is and three things holding it there.",
+    title: brandedTitle(title),
+    description,
     images: ["/gap-og-card.png"],
   },
 }
