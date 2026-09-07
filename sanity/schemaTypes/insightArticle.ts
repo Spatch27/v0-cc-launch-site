@@ -161,9 +161,12 @@ export const insightArticle = defineType({
             {title: "Normal", value: "normal"},
             {title: "Heading 2", value: "h2"},
           ],
-          lists: [],
+          lists: [{title: "Bullet", value: "bullet"}],
           marks: {
-            decorators: [],
+            decorators: [
+              {title: "Strong", value: "strong"},
+              {title: "Emphasis", value: "em"},
+            ],
             annotations: [
               defineField({
                 name: "link",

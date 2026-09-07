@@ -15,6 +15,8 @@ export type SanityTextBlock = {
   _type: "block"
   _key?: string
   style?: "normal" | "h2" | string
+  listItem?: "bullet" | "number" | string
+  level?: number
   markDefs?: SanityLinkMark[]
   children?: SanitySpan[]
 }
