@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const permanentRedirects = [
   ['/outputs', '/outcomes'],
+  ['/insights/listen-all-of-y-all', '/insights/listen-all-of-yall'],
   ['/insights/building-resilient-marketing-systems', '/insights'],
   ['/insights/case-for-marketing-product-teams', '/insights'],
   ['/insights/embedded-consultancy-model', '/insights'],
