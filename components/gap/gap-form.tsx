@@ -162,7 +162,7 @@ export function GapForm() {
             got and the one you need.
           </p>
           <p>
-            Four questions, two minutes of your time. Within a couple of days we&apos;ll send you a short video: how
+            Five questions, five minutes of your time. Within a couple of days we&apos;ll send you a short video: how
             big we think that gap is, three things we think are holding it there, and where we&apos;d start.
           </p>
         </div>
