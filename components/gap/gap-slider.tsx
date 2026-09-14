@@ -1,17 +1,8 @@
 "use client"
 
 import { useId } from "react"
+import { GAP_VERDICTS } from "@/lib/gap"
 import { cn } from "@/lib/utils"
-
-export const GAP_VERDICTS: Record<number, string> = {
-  1: "Already there",
-  2: "Nearly there",
-  3: "Close",
-  4: "Some distance",
-  5: "A fair way",
-  6: "A long way",
-  7: "Nowhere near",
-}
 
 const STOPS = [1, 2, 3, 4, 5, 6, 7]
 

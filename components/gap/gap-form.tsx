@@ -3,21 +3,17 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle, Send } from "lucide-react"
+import {
+  GAP_AREAS,
+  type GapAreaKey,
+  buildGapAreasPayload,
+  defaultImportanceOrder,
+  importanceRanksFromOrder,
+} from "@/lib/gap"
 import { textRollDown, textRollUp } from "@/lib/animations"
 import { cn } from "@/lib/utils"
+import { GapRankList } from "./gap-rank-list"
 import { GapSlider } from "./gap-slider"
-
-const SLIDERS = [
-  { key: "funding", label: "Winning belief, budget and board confidence" },
-  { key: "howitruns", label: "How the work actually gets made and shipped" },
-  { key: "measurement", label: "Knowing what's working, and proving it" },
-  { key: "ai", label: "Getting AI to do something real" },
-  { key: "stack", label: "The stack, and data people trust" },
-  { key: "speed", label: "Speed, and how the team feels" },
-  { key: "agencies", label: "Agencies and partners" },
-] as const
-
-type ScanKey = (typeof SLIDERS)[number]["key"]
 
 const inputClass =
   "w-full border-0 border-b-2 border-brand-dark/10 bg-transparent px-0 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/30 focus:border-brand-pink"
@@ -33,10 +29,12 @@ const STARTERS = [
 ] as const
 
 export function GapForm() {
-  const [scanValues, setScanValues] = useState<Record<ScanKey, number>>(() =>
-    Object.fromEntries(SLIDERS.map((s) => [s.key, 4])) as Record<ScanKey, number>
+  const [scanValues, setScanValues] = useState<Record<GapAreaKey, number>>(() =>
+    Object.fromEntries(GAP_AREAS.map((s) => [s.key, 4])) as Record<GapAreaKey, number>
   )
-  const [touched, setTouched] = useState<Set<ScanKey>>(new Set())
+  const [importanceOrder, setImportanceOrder] = useState<GapAreaKey[]>(defaultImportanceOrder)
+  const [importanceTouched, setImportanceTouched] = useState(false)
+  const [touched, setTouched] = useState<Set<GapAreaKey>>(new Set())
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -72,7 +70,7 @@ export function GapForm() {
   const touchedCount = touched.size
 
   const markTouched = useMemo(
-    () => (key: ScanKey) =>
+    () => (key: GapAreaKey) =>
       setTouched((prev) => {
         if (prev.has(key)) return prev
         const next = new Set(prev)
@@ -92,11 +90,13 @@ export function GapForm() {
     const form = e.currentTarget
     const formData = new FormData(form)
 
-    const scan = Object.fromEntries(SLIDERS.map((s) => [s.key, scanValues[s.key]])) as Record<ScanKey, number>
+    const scan = Object.fromEntries(GAP_AREAS.map((s) => [s.key, scanValues[s.key]])) as Record<GapAreaKey, number>
     const maxValue = Math.max(...Object.values(scan))
     const minValue = Math.min(...Object.values(scan))
-    const widest_gaps = SLIDERS.filter((s) => scan[s.key] === maxValue).map((s) => s.key)
-    const closest = SLIDERS.find((s) => scan[s.key] === minValue)?.key
+    const widest_gaps = GAP_AREAS.filter((s) => scan[s.key] === maxValue).map((s) => s.key)
+    const closest = GAP_AREAS.find((s) => scan[s.key] === minValue)?.key
+    const importance = importanceRanksFromOrder(importanceOrder)
+    const areas = buildGapAreasPayload(scan, importanceOrder)
 
     try {
       const body = {
@@ -111,6 +111,12 @@ export function GapForm() {
         biggest_difference: formData.get("biggest_difference"),
         q1_starter_used: starter,
         scan,
+        importance,
+        importance_order: importanceOrder,
+        importance_touched: importanceTouched,
+        areas,
+        most_important: importanceOrder[0],
+        least_important: importanceOrder[importanceOrder.length - 1],
         widest_gaps,
         closest,
         would_protect: formData.get("would_protect"),
@@ -258,7 +264,7 @@ export function GapForm() {
               </div>
 
               <div className="flex flex-col divide-y divide-brand-dark/10">
-                {SLIDERS.map((slider) => (
+                {GAP_AREAS.map((slider) => (
                   <GapSlider
                     key={slider.key}
                     label={slider.label}
@@ -268,6 +274,22 @@ export function GapForm() {
                     onTouch={() => markTouched(slider.key)}
                   />
                 ))}
+              </div>
+
+              <div className="mt-12">
+                <h3 className="font-display text-xl font-semibold leading-snug text-brand-dark">
+                  And which of these matters most right now?
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Not the size of the gap — the one you&apos;d put first. Drag to rank, or use the arrows. 1 is most
+                  important, 7 is least. Each place is used once.
+                </p>
+                <GapRankList
+                  order={importanceOrder}
+                  onReorder={setImportanceOrder}
+                  touched={importanceTouched}
+                  onTouch={() => setImportanceTouched(true)}
+                />
               </div>
             </div>
 

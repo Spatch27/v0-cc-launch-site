@@ -1,16 +1,35 @@
 import { NextResponse } from "next/server"
+import { buildGapAreasPayload, formatGapScanEmailHtml, isValidScan, resolveImportanceOrder } from "@/lib/gap"
 
 export async function POST(request: Request) {
   const body = await request.json()
-  const { person, biggest_difference, scan, widest_gaps, closest, would_protect, tried_and_didnt_stick } = body
+  const {
+    person,
+    biggest_difference,
+    scan,
+    importance,
+    importance_order,
+    importance_touched,
+    widest_gaps,
+    closest,
+    would_protect,
+    tried_and_didnt_stick,
+  } = body
 
   if (!person?.name || !person?.email || !person?.company) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
   }
 
-  if (!scan || Object.keys(scan).length !== 7) {
+  if (!isValidScan(scan)) {
     return NextResponse.json({ error: "Missing scan answers" }, { status: 400 })
   }
+
+  const order = resolveImportanceOrder(importance, importance_order)
+  if (!order) {
+    return NextResponse.json({ error: "Missing importance ranking" }, { status: 400 })
+  }
+
+  const areas = buildGapAreasPayload(scan, order)
 
   // TODO: persist submission and trigger the two-day video follow-up workflow.
   if (process.env.RESEND_API_KEY) {
@@ -20,20 +39,17 @@ export async function POST(request: Request) {
       from: "webform@committedcitizens.co.uk",
       to: "info@committedcitizens.co.uk",
       subject: `New Gap Scan: ${person.name} (${person.company})`,
-      html: `
-        <h2>New Gap Scan</h2>
-        <p>Name: ${person.name}</p>
-        <p>Email: ${person.email}</p>
-        <p>Company: ${person.company}</p>
-        <p>Role: ${person.role || "N/A"}</p>
-        <p>Marketing headcount: ${person.marketing_headcount || "N/A"}</p>
-        <p>Biggest difference: ${biggest_difference || "N/A"}</p>
-        <p>Scan: ${JSON.stringify(scan)}</p>
-        <p>Widest gaps: ${JSON.stringify(widest_gaps)}</p>
-        <p>Closest: ${closest}</p>
-        <p>Would protect: ${would_protect || "N/A"}</p>
-        <p>Fix that keeps coming back: ${tried_and_didnt_stick || "N/A"}</p>
-      `,
+      html: formatGapScanEmailHtml({
+        person,
+        biggest_difference,
+        would_protect,
+        tried_and_didnt_stick,
+        scan,
+        widest_gaps: Array.isArray(widest_gaps) ? widest_gaps : [],
+        closest,
+        areas,
+        importance_touched: Boolean(importance_touched),
+      }),
     })
   }
 
