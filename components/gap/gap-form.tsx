@@ -12,8 +12,7 @@ import {
 } from "@/lib/gap"
 import { textRollDown, textRollUp } from "@/lib/animations"
 import { cn } from "@/lib/utils"
-import { GapRankList } from "./gap-rank-list"
-import { GapSlider } from "./gap-slider"
+import { GapAreaList } from "./gap-area-list"
 
 const inputClass =
   "w-full border-0 border-b-2 border-brand-dark/10 bg-transparent px-0 py-3 text-brand-dark outline-none transition-colors placeholder:text-brand-dark/30 focus:border-brand-pink"
@@ -255,42 +254,20 @@ export function GapForm() {
                 And how far off is each of these from the version you need?
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Not a score for your team. This is the distance between the two versions, area by area.
+                Not a score for your team. Drag the slider for gap size. Drag the grip, or use the arrows, to rank
+                importance — 1 at the top is most important.
               </p>
 
-              <div className="mt-8 flex justify-between border-b border-brand-dark/10 pb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                <span>Already there</span>
-                <span>Nowhere near</span>
-              </div>
-
-              <div className="flex flex-col divide-y divide-brand-dark/10">
-                {GAP_AREAS.map((slider) => (
-                  <GapSlider
-                    key={slider.key}
-                    label={slider.label}
-                    value={scanValues[slider.key]}
-                    touched={touched.has(slider.key)}
-                    onChange={(value) => setScanValues((prev) => ({ ...prev, [slider.key]: value }))}
-                    onTouch={() => markTouched(slider.key)}
-                  />
-                ))}
-              </div>
-
-              <div className="mt-12">
-                <h3 className="font-display text-xl font-semibold leading-snug text-brand-dark">
-                  And which of these matters most right now?
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Not the size of the gap — the one you&apos;d put first. Drag to rank, or use the arrows. 1 is most
-                  important, 7 is least. Each place is used once.
-                </p>
-                <GapRankList
-                  order={importanceOrder}
-                  onReorder={setImportanceOrder}
-                  touched={importanceTouched}
-                  onTouch={() => setImportanceTouched(true)}
-                />
-              </div>
+              <GapAreaList
+                order={importanceOrder}
+                onReorder={setImportanceOrder}
+                ranked={importanceTouched}
+                onRank={() => setImportanceTouched(true)}
+                scanValues={scanValues}
+                onScanChange={(key, value) => setScanValues((prev) => ({ ...prev, [key]: value }))}
+                touched={touched}
+                onSliderTouch={markTouched}
+              />
             </div>
 
             {/* Question 3 */}

@@ -3,28 +3,50 @@
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { ChevronDown, ChevronUp, GripVertical } from "lucide-react"
-import { GAP_AREAS, type GapAreaKey, moveItemInOrder } from "@/lib/gap"
+import { GAP_AREAS, GAP_VERDICTS, type GapAreaKey, type GapScan, moveItemInOrder } from "@/lib/gap"
 import { cn } from "@/lib/utils"
+import { GapSlider } from "./gap-slider"
 
 const AREA_LABEL: Record<GapAreaKey, string> = Object.fromEntries(
   GAP_AREAS.map((area) => [area.key, area.label])
 ) as Record<GapAreaKey, string>
 
-interface GapRankListProps {
+interface GapAreaListProps {
   order: GapAreaKey[]
   onReorder: (order: GapAreaKey[]) => void
-  touched: boolean
-  onTouch: () => void
+  ranked: boolean
+  onRank: () => void
+  scanValues: GapScan
+  onScanChange: (key: GapAreaKey, value: number) => void
+  touched: Set<GapAreaKey>
+  onSliderTouch: (key: GapAreaKey) => void
 }
 
-export function GapRankList({ order, onReorder, touched, onTouch }: GapRankListProps) {
+function isReorderHandle(target: EventTarget | null): boolean {
+  return Boolean((target as HTMLElement | null)?.closest("[data-reorder-handle]"))
+}
+
+function isSliderTarget(target: EventTarget | null): boolean {
+  return Boolean((target as HTMLElement | null)?.closest("[data-slider-target], input[type='range']"))
+}
+
+export function GapAreaList({
+  order,
+  onReorder,
+  ranked,
+  onRank,
+  scanValues,
+  onScanChange,
+  touched,
+  onSliderTouch,
+}: GapAreaListProps) {
   const [liveMessage, setLiveMessage] = useState("")
   const [draggingKey, setDraggingKey] = useState<GapAreaKey | null>(null)
   const listRef = useRef<HTMLUListElement>(null)
   const orderRef = useRef(order)
   const draggingKeyRef = useRef<GapAreaKey | null>(null)
   const onReorderRef = useRef(onReorder)
-  const onTouchRef = useRef(onTouch)
+  const onRankRef = useRef(onRank)
 
   useEffect(() => {
     orderRef.current = order
@@ -32,12 +54,12 @@ export function GapRankList({ order, onReorder, touched, onTouch }: GapRankListP
 
   useEffect(() => {
     onReorderRef.current = onReorder
-    onTouchRef.current = onTouch
-  }, [onReorder, onTouch])
+    onRankRef.current = onRank
+  }, [onReorder, onRank])
 
   function commit(next: GapAreaKey[]) {
     if (next.every((key, index) => key === orderRef.current[index])) return
-    onTouchRef.current()
+    onRankRef.current()
     onReorderRef.current(next)
     setLiveMessage(next.map((key, index) => `${index + 1}, ${AREA_LABEL[key]}`).join(". "))
   }
@@ -103,16 +125,20 @@ export function GapRankList({ order, onReorder, touched, onTouch }: GapRankListP
 
   return (
     <div className="mt-8">
-      <div className="flex items-baseline justify-between gap-4 border-b border-brand-dark/10 pb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+      <div className="flex justify-between border-b border-brand-dark/10 pb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+        <span>Already there</span>
+        <span>Nowhere near</span>
+      </div>
+      <div className="flex items-baseline justify-between gap-4 border-b border-brand-dark/10 py-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
         <span>1 — most important</span>
-        <span className={cn("normal-case tracking-normal", touched ? "font-semibold text-brand-dark" : "italic")}>
-          {touched ? "ranked" : "drag or use arrows"}
+        <span className={cn("normal-case tracking-normal", ranked ? "font-semibold text-brand-dark" : "italic")}>
+          {ranked ? "ranked" : "grip or arrows to rank"}
         </span>
       </div>
 
-      <ul ref={listRef} className="flex flex-col" aria-label="Importance ranking, 1 is most important">
+      <ul ref={listRef} className="flex flex-col" aria-label="Gap size and importance. 1 at the top is most important.">
         {order.map((key, index) => (
-          <RankRow
+          <AreaRow
             key={key}
             areaKey={key}
             label={AREA_LABEL[key]}
@@ -120,6 +146,10 @@ export function GapRankList({ order, onReorder, touched, onTouch }: GapRankListP
             isFirst={index === 0}
             isLast={index === order.length - 1}
             isDragging={draggingKey === key}
+            value={scanValues[key]}
+            sliderTouched={touched.has(key)}
+            onScanChange={(value) => onScanChange(key, value)}
+            onSliderTouch={() => onSliderTouch(key)}
             onMoveUp={() => move(index, -1)}
             onMoveDown={() => move(index, 1)}
             onDragStart={() => startDrag(key)}
@@ -135,13 +165,17 @@ export function GapRankList({ order, onReorder, touched, onTouch }: GapRankListP
   )
 }
 
-function RankRow({
+function AreaRow({
   areaKey,
   label,
   rank,
   isFirst,
   isLast,
   isDragging,
+  value,
+  sliderTouched,
+  onScanChange,
+  onSliderTouch,
   onMoveUp,
   onMoveDown,
   onDragStart,
@@ -152,52 +186,83 @@ function RankRow({
   isFirst: boolean
   isLast: boolean
   isDragging: boolean
+  value: number
+  sliderTouched: boolean
+  onScanChange: (value: number) => void
+  onSliderTouch: () => void
   onMoveUp: () => void
   onMoveDown: () => void
   onDragStart: () => void
 }) {
+  const verdict = GAP_VERDICTS[value]
+
+  function handleReorderPointer(event: React.PointerEvent | React.MouseEvent) {
+    if (isSliderTarget(event.target) || (event.target as HTMLElement).closest("button:not([data-reorder-handle])")) {
+      return
+    }
+    if (!isReorderHandle(event.target)) return
+    event.preventDefault()
+    onDragStart()
+  }
+
   return (
     <motion.li
       layout
       data-rank-key={areaKey}
       className={cn(
         "relative list-none select-none bg-brand-white",
-        isDragging ? "z-20 cursor-grabbing shadow-[0_10px_28px_rgba(28,25,23,0.12)]" : "cursor-grab"
+        isDragging && "z-20 shadow-[0_10px_28px_rgba(28,25,23,0.12)]"
       )}
-      onPointerDown={(event) => {
-        if ((event.target as HTMLElement).closest("button")) return
-        event.preventDefault()
-        onDragStart()
-      }}
-      onMouseDown={(event) => {
-        if ((event.target as HTMLElement).closest("button")) return
-        event.preventDefault()
-        onDragStart()
-      }}
+      onPointerDown={handleReorderPointer}
+      onMouseDown={handleReorderPointer}
     >
       <div
         className={cn(
-          "flex items-center gap-2 border-b border-brand-dark/10 py-3 touch-none sm:gap-3",
+          "flex items-start gap-2 border-b border-brand-dark/10 py-4 sm:gap-3",
           rank === 1 && "border-l-2 border-l-brand-pink pl-[calc(0.5rem-2px)] sm:pl-[calc(0.75rem-2px)]",
           rank !== 1 && "pl-2 sm:pl-3"
         )}
       >
         <span
+          data-reorder-handle="true"
+          aria-hidden="true"
           className={cn(
-            "flex size-8 shrink-0 items-center justify-center rounded-full font-display text-sm font-semibold",
+            "mt-0.5 flex size-8 shrink-0 cursor-grab items-center justify-center rounded-full font-display text-sm font-semibold touch-none active:cursor-grabbing",
             rank === 1 ? "bg-brand-pink text-brand-dark" : "bg-brand-light text-brand-dark"
           )}
-          aria-hidden="true"
         >
           {rank}
         </span>
 
-        <p className="min-w-0 flex-1 text-base font-medium text-brand-dark">{label}</p>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
+            <p className="text-base font-medium text-brand-dark">
+              <span className="sr-only">Importance rank {rank}. </span>
+              {label}
+            </p>
+            <span
+              className={cn(
+                "text-sm sm:shrink-0 sm:text-right",
+                sliderTouched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
+              )}
+            >
+              {sliderTouched ? `${verdict} (${value})` : "drag to answer"}
+            </span>
+          </div>
+          <GapSlider
+            label={`${label}, gap size`}
+            value={value}
+            touched={sliderTouched}
+            showHeader={false}
+            onChange={onScanChange}
+            onTouch={onSliderTouch}
+          />
+        </div>
 
-        <div className="flex shrink-0 items-center">
+        <div className="flex shrink-0 flex-col items-center sm:flex-row">
           <button
             type="button"
-            aria-label={`Move ${label} up`}
+            aria-label={`Move ${label} up in importance`}
             disabled={isFirst}
             onPointerDown={(event) => event.stopPropagation()}
             onMouseDown={(event) => event.stopPropagation()}
@@ -208,7 +273,7 @@ function RankRow({
           </button>
           <button
             type="button"
-            aria-label={`Move ${label} down`}
+            aria-label={`Move ${label} down in importance`}
             disabled={isLast}
             onPointerDown={(event) => event.stopPropagation()}
             onMouseDown={(event) => event.stopPropagation()}
@@ -217,9 +282,24 @@ function RankRow({
           >
             <ChevronDown size={20} />
           </button>
-          <span aria-hidden="true" className="flex size-11 items-center justify-center text-brand-dark/50">
+          <button
+            type="button"
+            data-reorder-handle="true"
+            aria-label={`Drag to change importance of ${label}`}
+            onPointerDown={(event) => {
+              event.preventDefault()
+              event.stopPropagation()
+              onDragStart()
+            }}
+            onMouseDown={(event) => {
+              event.preventDefault()
+              event.stopPropagation()
+              onDragStart()
+            }}
+            className="flex size-11 cursor-grab items-center justify-center text-brand-dark/50 touch-none active:cursor-grabbing hover:text-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink"
+          >
             <GripVertical size={20} />
-          </span>
+          </button>
         </div>
       </div>
     </motion.li>
