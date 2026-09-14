@@ -253,7 +253,7 @@ export function GapForm() {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 Here are 7 areas where a gap often exists between the version of marketing you have and the version
                 you need. Two steps to complete here — first click the number (from 1–7) that corresponds to the size
-                of the gap.
+                of the gap. Then follow the instruction in step THREE at the bottom of this list.
               </p>
 
               <GapAreaList
