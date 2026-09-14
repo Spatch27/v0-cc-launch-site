@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Reorder, useDragControls } from "framer-motion"
+import { Reorder } from "framer-motion"
 import { ChevronDown, ChevronUp, GripVertical } from "lucide-react"
 import { GAP_AREAS, type GapAreaKey, moveItemInOrder } from "@/lib/gap"
 import { cn } from "@/lib/utils"
@@ -87,20 +87,18 @@ function RankRow({
   onMoveUp: () => void
   onMoveDown: () => void
 }) {
-  const controls = useDragControls()
-
   return (
     <Reorder.Item
       value={areaKey}
       as="li"
-      dragListener={false}
-      dragControls={controls}
+      layout="position"
       whileDrag={{
         scale: 1.01,
         zIndex: 20,
         boxShadow: "0 10px 28px rgba(28, 25, 23, 0.12)",
+        cursor: "grabbing",
       }}
-      className="relative list-none select-none bg-brand-white"
+      className="relative cursor-grab list-none select-none bg-brand-white"
     >
       <div
         className={cn(
@@ -142,14 +140,12 @@ function RankRow({
           >
             <ChevronDown size={20} />
           </button>
-          <div
-            role="presentation"
+          <span
             aria-hidden="true"
-            onPointerDown={(event) => controls.start(event)}
-            className="flex size-11 cursor-grab items-center justify-center text-brand-dark/50 touch-none transition-colors hover:text-brand-dark active:cursor-grabbing"
+            className="flex size-11 items-center justify-center text-brand-dark/50"
           >
             <GripVertical size={20} />
-          </div>
+          </span>
         </div>
       </div>
     </Reorder.Item>
