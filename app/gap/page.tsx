@@ -4,7 +4,7 @@ import { absoluteUrl, brandedTitle, canonicalAlternates } from "@/lib/seo"
 
 const title = "Where's the gap in your marketing?"
 const description =
-  "Four questions, two minutes. Within a couple of days we'll send you a short video: how big we think that gap is, three things we think are holding it there, and where we'd start."
+  "Five questions, five minutes of your time. Within a couple of days we'll send you a short video: how big we think that gap is, three things we think are holding it there, and where we'd start."
 
 export const metadata: Metadata = {
   title,

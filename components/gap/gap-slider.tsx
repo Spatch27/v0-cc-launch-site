@@ -1,17 +1,8 @@
 "use client"
 
 import { useId } from "react"
+import { GAP_VERDICTS } from "@/lib/gap"
 import { cn } from "@/lib/utils"
-
-export const GAP_VERDICTS: Record<number, string> = {
-  1: "Already there",
-  2: "Nearly there",
-  3: "Close",
-  4: "Some distance",
-  5: "A fair way",
-  6: "A long way",
-  7: "Nowhere near",
-}
 
 const STOPS = [1, 2, 3, 4, 5, 6, 7]
 
@@ -21,6 +12,7 @@ interface GapSliderProps {
   touched: boolean
   onChange: (value: number) => void
   onTouch: () => void
+  showHeader?: boolean
 }
 
 const TOUCH_KEYS = new Set([
@@ -34,28 +26,39 @@ const TOUCH_KEYS = new Set([
   "PageDown",
 ])
 
-export function GapSlider({ label, value, touched, onChange, onTouch }: GapSliderProps) {
+export function GapSlider({ label, value, touched, onChange, onTouch, showHeader = true }: GapSliderProps) {
   const id = useId()
   const percent = ((value - 1) / 6) * 100
   const verdict = GAP_VERDICTS[value]
 
   return (
-    <div className="flex flex-col gap-3 py-5">
-      <div className="flex items-baseline justify-between gap-4">
-        <label htmlFor={id} className="text-base font-medium text-brand-dark">
+    <div className={cn("flex flex-col gap-3", showHeader ? "py-5" : "pt-3")}>
+      {showHeader ? (
+        <div className="flex items-baseline justify-between gap-4">
+          <label htmlFor={id} className="text-base font-medium text-brand-dark">
+            {label}
+          </label>
+          <span
+            className={cn(
+              "shrink-0 text-right text-sm",
+              touched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
+            )}
+          >
+            {touched ? `${verdict} (${value})` : "click 1–7"}
+          </span>
+        </div>
+      ) : (
+        <label htmlFor={id} className="sr-only">
           {label}
         </label>
-        <span
-          className={cn(
-            "shrink-0 text-right text-sm",
-            touched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
-          )}
-        >
-          {touched ? `${verdict} (${value})` : "drag to answer"}
-        </span>
-      </div>
+      )}
 
-      <div className="relative flex h-11 items-center touch-none">
+      <div
+        className="relative flex h-11 items-center touch-none"
+        data-slider-target="true"
+        onPointerDown={(event) => event.stopPropagation()}
+        onMouseDown={(event) => event.stopPropagation()}
+      >
         <div className="pointer-events-none absolute inset-x-0 h-1.5 rounded-full bg-brand-light" />
         {touched && (
           <div
@@ -72,7 +75,11 @@ export function GapSlider({ label, value, touched, onChange, onTouch }: GapSlide
           value={value}
           aria-label={label}
           aria-valuetext={verdict}
-          onPointerDown={onTouch}
+          onPointerDown={(event) => {
+            event.stopPropagation()
+            onTouch()
+          }}
+          onMouseDown={(event) => event.stopPropagation()}
           onKeyDown={(e) => {
             if (TOUCH_KEYS.has(e.key)) onTouch()
           }}
@@ -95,11 +102,28 @@ export function GapSlider({ label, value, touched, onChange, onTouch }: GapSlide
         />
       </div>
 
-      <div className="flex justify-between px-[2px] font-display text-xs text-muted-foreground">
+      <div
+        className="flex justify-between px-[2px] font-display text-xs text-muted-foreground"
+        data-slider-target="true"
+        onPointerDown={(event) => event.stopPropagation()}
+        onMouseDown={(event) => event.stopPropagation()}
+      >
         {STOPS.map((n) => (
-          <span key={n} className={cn(touched && value === n && "font-semibold text-brand-dark")}>
+          <button
+            key={n}
+            type="button"
+            aria-label={`Set gap size to ${n}, ${GAP_VERDICTS[n]}`}
+            onClick={() => {
+              onChange(n)
+              onTouch()
+            }}
+            className={cn(
+              "flex size-7 items-center justify-center rounded-sm transition-colors hover:text-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink",
+              touched && value === n && "font-semibold text-brand-dark"
+            )}
+          >
             {n}
-          </span>
+          </button>
         ))}
       </div>
     </div>
