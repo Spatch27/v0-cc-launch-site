@@ -160,12 +160,22 @@ export function formatGapScanEmailHtml(input: {
     .map(
       (area) => `
         <tr>
-          <td style="padding:8px;border:1px solid #ddd;text-align:center;">${importanceLetterFromRank(area.importance)} (${area.importance})</td>
+          <td style="padding:8px;border:1px solid #ddd;text-align:center;">${escapeHtml(area.importance_letter)}</td>
           <td style="padding:8px;border:1px solid #ddd;">${escapeHtml(area.label)}</td>
           <td style="padding:8px;border:1px solid #ddd;">${area.gap_size} — ${escapeHtml(area.gap_size_label)}</td>
         </tr>`
     )
     .join("")
+  const priorityOrder = ranked
+    .map((area) => `${area.importance_letter}: ${area.label} (gap size ${area.gap_size})`)
+    .join(" → ")
+  const areasDump = ranked.map((area) => ({
+    key: area.key,
+    gap_size: area.gap_size,
+    gap_size_label: area.gap_size_label,
+    importance: area.importance,
+    importance_letter: area.importance_letter,
+  }))
 
   const person = input.person
   const widest = input.widest_gaps
@@ -194,10 +204,12 @@ export function formatGapScanEmailHtml(input: {
       <tbody>${rows}
       </tbody>
     </table>
+    <p>Priority order (A = most important → G = least): ${escapeHtml(priorityOrder)}</p>
     <p>Importance ranked by respondent: ${input.importance_touched ? "yes" : "no (submitted in default listed order)"}</p>
     <p>Widest gaps: ${escapeHtml(widest || "N/A")}</p>
     <p>Closest: ${escapeHtml(String(closestLabel))}</p>
     <p>Scan (gap size by key): ${escapeHtml(JSON.stringify(input.scan))}</p>
+    <p>Areas (gap size + importance): ${escapeHtml(JSON.stringify(areasDump))}</p>
     <p>Would protect: ${escapeHtml(String(input.would_protect || "N/A"))}</p>
     <p>Fix that keeps coming back: ${escapeHtml(String(input.tried_and_didnt_stick || "N/A"))}</p>
   `
