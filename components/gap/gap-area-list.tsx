@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { ChevronDown, ChevronUp, GripVertical } from "lucide-react"
-import { GAP_AREAS, GAP_VERDICTS, type GapAreaKey, type GapScan, moveItemInOrder } from "@/lib/gap"
+import { GAP_AREAS, GAP_VERDICTS, importanceLetterFromRank, type GapAreaKey, type GapScan, moveItemInOrder } from "@/lib/gap"
 import { cn } from "@/lib/utils"
 import { GapSlider } from "./gap-slider"
 
@@ -59,7 +59,7 @@ export function GapAreaList({
     if (next.every((key, index) => key === orderRef.current[index])) return
     onRankRef.current()
     onReorderRef.current(next)
-    setLiveMessage(next.map((key, index) => `${index + 1}, ${AREA_LABEL[key]}`).join(". "))
+    setLiveMessage(next.map((key, index) => `${importanceLetterFromRank(index + 1)}, ${AREA_LABEL[key]}`).join(". "))
   }
 
   function move(index: number, direction: -1 | 1) {
@@ -128,10 +128,10 @@ export function GapAreaList({
         <span>Nowhere near</span>
       </div>
       <div className="flex items-baseline justify-between gap-4 border-b border-brand-dark/10 py-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-        <span>1 — most important</span>
+        <span>A — most important</span>
       </div>
 
-      <ul ref={listRef} className="flex flex-col" aria-label="Gap size and importance. 1 at the top is most important.">
+      <ul ref={listRef} className="flex flex-col" aria-label="Gap size and importance. A at the top is most important, G at the bottom is least important.">
         {order.map((key, index) => (
           <AreaRow
             key={key}
@@ -152,7 +152,7 @@ export function GapAreaList({
         ))}
       </ul>
 
-      <p className="mt-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">7 — least important</p>
+      <p className="mt-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">G — least important</p>
       <p className="sr-only" aria-live="polite">
         {liveMessage}
       </p>
@@ -190,6 +190,7 @@ function AreaRow({
   onDragStart: () => void
 }) {
   const verdict = GAP_VERDICTS[value]
+  const letter = importanceLetterFromRank(rank)
 
   function handleReorderPointer(event: React.PointerEvent | React.MouseEvent) {
     if (isSliderTarget(event.target) || (event.target as HTMLElement).closest("button:not([data-reorder-handle])")) {
@@ -224,13 +225,13 @@ function AreaRow({
             rank === 1 ? "bg-brand-pink text-brand-dark" : "bg-brand-light text-brand-dark"
           )}
         >
-          {rank}
+          {letter}
         </span>
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
             <p className="text-base font-medium text-brand-dark">
-              <span className="sr-only">Importance rank {rank}. </span>
+              <span className="sr-only">Importance {letter}. </span>
               {label}
             </p>
             <span
@@ -255,7 +256,7 @@ function AreaRow({
         <div className="flex shrink-0 flex-col items-center sm:flex-row">
           <button
             type="button"
-            aria-label={`Move ${label} up in importance`}
+            aria-label={`Move ${label} up in importance, currently ${letter}`}
             disabled={isFirst}
             onPointerDown={(event) => event.stopPropagation()}
             onMouseDown={(event) => event.stopPropagation()}
@@ -266,7 +267,7 @@ function AreaRow({
           </button>
           <button
             type="button"
-            aria-label={`Move ${label} down in importance`}
+            aria-label={`Move ${label} down in importance, currently ${letter}`}
             disabled={isLast}
             onPointerDown={(event) => event.stopPropagation()}
             onMouseDown={(event) => event.stopPropagation()}
@@ -278,7 +279,7 @@ function AreaRow({
           <button
             type="button"
             data-reorder-handle="true"
-            aria-label={`Drag to change importance of ${label}`}
+            aria-label={`Drag to change importance of ${label}, currently ${letter}`}
             onPointerDown={(event) => {
               event.preventDefault()
               event.stopPropagation()

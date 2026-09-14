@@ -279,7 +279,7 @@ export function GapForm() {
               </div>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 Now order this list (using the up/down arrows or the drag handle on the right-hand side of each
-                slider) so they are ranked in terms of importance to you, with 1 at the top (most important) and 7 at
+                slider) so they are ranked in terms of importance to you, with A at the top (most important) and G at
                 the bottom (least important).
               </p>
             </div>

@@ -14,6 +14,14 @@ export const GAP_AREA_KEYS: GapAreaKey[] = GAP_AREAS.map((area) => area.key)
 
 export const GAP_AREA_COUNT = GAP_AREAS.length
 
+export const IMPORTANCE_LETTERS = ["A", "B", "C", "D", "E", "F", "G"] as const
+
+export type ImportanceLetter = (typeof IMPORTANCE_LETTERS)[number]
+
+export function importanceLetterFromRank(rank: number): ImportanceLetter {
+  return IMPORTANCE_LETTERS[rank - 1] ?? "A"
+}
+
 export const GAP_VERDICTS: Record<number, string> = {
   1: "Already there",
   2: "Nearly there",
@@ -34,6 +42,7 @@ export type GapAreaPayload = {
   gap_size: number
   gap_size_label: string
   importance: number
+  importance_letter: ImportanceLetter
 }
 
 export function defaultImportanceOrder(): GapAreaKey[] {
@@ -89,6 +98,7 @@ export function buildGapAreasPayload(scan: GapScan, order: readonly GapAreaKey[]
     gap_size: scan[area.key],
     gap_size_label: GAP_VERDICTS[scan[area.key]] ?? String(scan[area.key]),
     importance: importance[area.key],
+    importance_letter: importanceLetterFromRank(importance[area.key]),
   }))
 }
 
@@ -150,7 +160,7 @@ export function formatGapScanEmailHtml(input: {
     .map(
       (area) => `
         <tr>
-          <td style="padding:8px;border:1px solid #ddd;text-align:center;">${area.importance}</td>
+          <td style="padding:8px;border:1px solid #ddd;text-align:center;">${importanceLetterFromRank(area.importance)} (${area.importance})</td>
           <td style="padding:8px;border:1px solid #ddd;">${escapeHtml(area.label)}</td>
           <td style="padding:8px;border:1px solid #ddd;">${area.gap_size} — ${escapeHtml(area.gap_size_label)}</td>
         </tr>`
@@ -172,7 +182,7 @@ export function formatGapScanEmailHtml(input: {
     <p>Marketing headcount: ${escapeHtml(String(person.marketing_headcount || "N/A"))}</p>
     <p>Biggest difference: ${escapeHtml(String(input.biggest_difference || "N/A"))}</p>
     <h3>Gap size and importance</h3>
-    <p>Gap size: 1 = already there, 7 = nowhere near.<br/>Importance: 1 = most important, 7 = least important.</p>
+    <p>Gap size: 1 = already there, 7 = nowhere near.<br/>Importance: A = most important, G = least important.</p>
     <table style="border-collapse:collapse;margin:12px 0;">
       <thead>
         <tr>
