@@ -44,7 +44,7 @@ export function GapSlider({ label, value, touched, onChange, onTouch, showHeader
               touched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
             )}
           >
-            {touched ? `${verdict} (${value})` : "drag to answer"}
+            {touched ? `${verdict} (${value})` : "click 1–7"}
           </span>
         </div>
       ) : (
@@ -102,11 +102,28 @@ export function GapSlider({ label, value, touched, onChange, onTouch, showHeader
         />
       </div>
 
-      <div className="flex justify-between px-[2px] font-display text-xs text-muted-foreground">
+      <div
+        className="flex justify-between px-[2px] font-display text-xs text-muted-foreground"
+        data-slider-target="true"
+        onPointerDown={(event) => event.stopPropagation()}
+        onMouseDown={(event) => event.stopPropagation()}
+      >
         {STOPS.map((n) => (
-          <span key={n} className={cn(touched && value === n && "font-semibold text-brand-dark")}>
+          <button
+            key={n}
+            type="button"
+            aria-label={`Set gap size to ${n}, ${GAP_VERDICTS[n]}`}
+            onClick={() => {
+              onChange(n)
+              onTouch()
+            }}
+            className={cn(
+              "flex size-7 items-center justify-center rounded-sm transition-colors hover:text-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink",
+              touched && value === n && "font-semibold text-brand-dark"
+            )}
+          >
             {n}
-          </span>
+          </button>
         ))}
       </div>
     </div>

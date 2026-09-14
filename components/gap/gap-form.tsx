@@ -235,7 +235,7 @@ export function GapForm() {
             </div>
             <hr className="border-t border-brand-dark/10" />
 
-            {/* Question 2 */}
+            {/* Questions 2 and 3 — same seven rows: gap size then importance */}
             <div className="py-10">
               <div className="flex items-baseline justify-between gap-4">
                 <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Two</span>
@@ -250,18 +250,32 @@ export function GapForm() {
                   {touchedCount} of 7
                 </span>
               </div>
-              <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
-                And how far off is each of these from the version you need?
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Not a score for your team. Drag the slider for gap size. Drag the grip, or use the arrows, to rank
-                importance — 1 at the top is most important.
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Here are 7 areas where a gap often exists between the version of marketing you have and the version
+                you need. Two steps to complete here — first click the number (from 1–7) that corresponds to the size
+                of the gap.
+              </p>
+
+              <div className="mt-10 flex items-baseline justify-between gap-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Three</span>
+                <span
+                  className={cn(
+                    "text-sm",
+                    importanceTouched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
+                  )}
+                >
+                  {importanceTouched ? "ranked" : "grip or arrows to rank"}
+                </span>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Now order this list (using the up/down arrows or the drag handle on the right-hand side of each
+                slider) so they are ranked in terms of importance to you, with 1 at the top (most important) and 7 at
+                the bottom (least important).
               </p>
 
               <GapAreaList
                 order={importanceOrder}
                 onReorder={setImportanceOrder}
-                ranked={importanceTouched}
                 onRank={() => setImportanceTouched(true)}
                 scanValues={scanValues}
                 onScanChange={(key, value) => setScanValues((prev) => ({ ...prev, [key]: value }))}
@@ -270,9 +284,9 @@ export function GapForm() {
               />
             </div>
 
-            {/* Question 3 */}
+            {/* Question 4 */}
             <div className="py-10">
-              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Three</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Four</span>
               <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
                 What&apos;s the one part you&apos;d protect if you had to cut everything else?
               </h2>
@@ -291,9 +305,9 @@ export function GapForm() {
               </div>
             </div>
 
-            {/* Question 4 */}
+            {/* Question 5 */}
             <div className="py-10">
-              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Four</span>
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Five</span>
               <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
                 What&apos;s the fix that keeps coming back?
               </h2>

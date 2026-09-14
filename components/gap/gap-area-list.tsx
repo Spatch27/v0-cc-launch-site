@@ -14,7 +14,6 @@ const AREA_LABEL: Record<GapAreaKey, string> = Object.fromEntries(
 interface GapAreaListProps {
   order: GapAreaKey[]
   onReorder: (order: GapAreaKey[]) => void
-  ranked: boolean
   onRank: () => void
   scanValues: GapScan
   onScanChange: (key: GapAreaKey, value: number) => void
@@ -33,7 +32,6 @@ function isSliderTarget(target: EventTarget | null): boolean {
 export function GapAreaList({
   order,
   onReorder,
-  ranked,
   onRank,
   scanValues,
   onScanChange,
@@ -131,9 +129,6 @@ export function GapAreaList({
       </div>
       <div className="flex items-baseline justify-between gap-4 border-b border-brand-dark/10 py-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
         <span>1 — most important</span>
-        <span className={cn("normal-case tracking-normal", ranked ? "font-semibold text-brand-dark" : "italic")}>
-          {ranked ? "ranked" : "grip or arrows to rank"}
-        </span>
       </div>
 
       <ul ref={listRef} className="flex flex-col" aria-label="Gap size and importance. 1 at the top is most important.">
@@ -218,9 +213,7 @@ function AreaRow({
     >
       <div
         className={cn(
-          "flex items-start gap-2 border-b border-brand-dark/10 py-4 sm:gap-3",
-          rank === 1 && "border-l-2 border-l-brand-pink pl-[calc(0.5rem-2px)] sm:pl-[calc(0.75rem-2px)]",
-          rank !== 1 && "pl-2 sm:pl-3"
+          "flex items-start gap-2 border-b border-brand-dark/10 py-4 pl-2 sm:gap-3 sm:pl-3"
         )}
       >
         <span
@@ -246,7 +239,7 @@ function AreaRow({
                 sliderTouched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
               )}
             >
-              {sliderTouched ? `${verdict} (${value})` : "drag to answer"}
+              {sliderTouched ? `${verdict} (${value})` : "click 1–7"}
             </span>
           </div>
           <GapSlider
