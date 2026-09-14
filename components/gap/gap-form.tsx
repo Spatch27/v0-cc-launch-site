@@ -256,6 +256,16 @@ export function GapForm() {
                 of the gap.
               </p>
 
+              <GapAreaList
+                order={importanceOrder}
+                onReorder={setImportanceOrder}
+                onRank={() => setImportanceTouched(true)}
+                scanValues={scanValues}
+                onScanChange={(key, value) => setScanValues((prev) => ({ ...prev, [key]: value }))}
+                touched={touched}
+                onSliderTouch={markTouched}
+              />
+
               <div className="mt-10 flex items-baseline justify-between gap-4">
                 <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Three</span>
                 <span
@@ -272,16 +282,6 @@ export function GapForm() {
                 slider) so they are ranked in terms of importance to you, with 1 at the top (most important) and 7 at
                 the bottom (least important).
               </p>
-
-              <GapAreaList
-                order={importanceOrder}
-                onReorder={setImportanceOrder}
-                onRank={() => setImportanceTouched(true)}
-                scanValues={scanValues}
-                onScanChange={(key, value) => setScanValues((prev) => ({ ...prev, [key]: value }))}
-                touched={touched}
-                onSliderTouch={markTouched}
-              />
             </div>
 
             {/* Question 4 */}
