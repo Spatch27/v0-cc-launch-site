@@ -1,4 +1,20 @@
+"use client"
+
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
+
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const prefersReducedMotion = useReducedMotion()
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  })
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.93])
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+
   return (
     <>
       <style>{`
@@ -31,9 +47,18 @@ export function HeroSection() {
           .cc-hero-subtitle {
             animation: none;
           }
+
+          .cc-home-hero {
+            opacity: 1 !important;
+            transform: none !important;
+          }
         }
       `}</style>
-      <section className="relative min-h-svh bg-brand-orange px-6 lg:h-screen lg:px-12">
+      <motion.section
+        ref={sectionRef}
+        style={prefersReducedMotion ? undefined : { scale, opacity }}
+        className="cc-home-hero relative min-h-svh bg-brand-orange px-6 lg:h-screen lg:px-12"
+      >
         <div className="mx-auto flex max-w-[1400px] flex-col gap-52 pt-40 pb-24 lg:h-full lg:justify-between lg:gap-32 lg:pt-48 lg:pb-16">
           <h1 className="cc-hero-heading max-w-5xl font-display font-semibold leading-[0.95] tracking-tight text-brand-dark">
             Freedom
@@ -47,7 +72,7 @@ export function HeroSection() {
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
     </>
   )
 }
