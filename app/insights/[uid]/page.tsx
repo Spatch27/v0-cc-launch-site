@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Script from "next/script"
 import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
 import Image from "next/image"
@@ -11,7 +10,8 @@ import { InsightArticleBody } from "@/components/insights/article-body"
 import { formatInsightMonthYear } from "@/lib/insight-articles"
 import { getInsightBySlug, getInsightSlugs } from "@/lib/sanity/insights"
 import { absoluteInsightUrl, insightPageUrl } from "@/lib/sanity/urls"
-import { brandedTitle, canonicalAlternates, withoutBrandSuffix } from "@/lib/seo"
+import { JsonLd } from "@/components/json-ld"
+import { brandedTitle, canonicalAlternates, LOGO_URL, withoutBrandSuffix } from "@/lib/seo"
 
 export const revalidate = 60
 
@@ -104,7 +104,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       name: "Committed Citizens",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.committedcitizens.co.uk/logo.png",
+        url: LOGO_URL,
       },
     },
     mainEntityOfPage: {
@@ -115,14 +115,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <>
-      {/* Article Schema */}
-      <Script
-        id={`article-schema-${uid}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleSchema),
-        }}
-      />
+      <JsonLd data={articleSchema} />
       {/* Article Header */}
       <section className="bg-brand-light px-6 pt-40 pb-12 lg:px-12 lg:pt-48 lg:pb-16">
         <div className="mx-auto max-w-[1400px]">

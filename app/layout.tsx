@@ -4,7 +4,8 @@ import { Inter, Bricolage_Grotesque } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
-import { SITE_URL } from '@/lib/seo'
+import { JsonLd } from '@/components/json-ld'
+import { SITE_URL, organizationJsonLd } from '@/lib/seo'
 import './globals.css'
 
 const inter = Inter({
@@ -614,33 +615,7 @@ p {
     scroll-behavior: auto !important;
   }
 }` }} />
-        {/* Organization Schema */}
-        <Script
-          id="organization-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Committed Citizens",
-              url: "https://www.committedcitizens.co.uk",
-              logo: "https://committedcitizens.co.uk/logo.png",
-              description: "Marketing operations and transformation consultancy helping CMOs remove operational drag and build sustainable marketing workflows.",
-              sameAs: [
-                "https://www.linkedin.com/company/committedcitizens",
-              ],
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "GB",
-              },
-              contactPoint: {
-                "@type": "ContactPoint",
-                contactType: "Customer Service",
-                url: "https://www.committedcitizens.co.uk/contact",
-              },
-            }),
-          }}
-        />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
         {/* Google Consent Mode - must load before gtag.js */}
         <Script
           id="google-consent-mode"
@@ -737,6 +712,7 @@ p {
         />
       </head>
       <body className="font-sans antialiased">
+        <JsonLd data={organizationJsonLd} />
         {/* No-JavaScript fallback: show navigation and content notice */}
         <noscript>
           <style dangerouslySetInnerHTML={{ __html: `

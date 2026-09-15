@@ -14,6 +14,7 @@ Important notes for agents:
 - [About](https://www.committedcitizens.co.uk/about): Founders Tim Burley and Ben Scoggins; how the small senior team and advisory board work.
 - [Approach](https://www.committedcitizens.co.uk/approach): Method — Fix This First, Cadence Loop, Telemetry Stack; AI as propellant not the product.
 - [Outcomes](https://www.committedcitizens.co.uk/outcomes): Example results from workflow, stack, transformation, and agentic-tool engagements.
+- [Gap](https://www.committedcitizens.co.uk/gap): Five questions on where the gap is in your marketing; we send a short video on where we’d start.
 - [Contact / Waypoint](https://www.committedcitizens.co.uk/contact): Free 60-minute Waypoint with founders; Waypoint Marker within 48 hours.
 
 ## Products
@@ -23,7 +24,8 @@ Important notes for agents:
 
 ## Insights
 - [Insights index](https://www.committedcitizens.co.uk/insights): Practitioner essays on operational drag, momentum, teams, and how marketing works.
-- [Listen all of y’all it’s a sabotage!](https://www.committedcitizens.co.uk/insights/listen-all-of-yall): Featured — nearly a third of teams admit sabotaging AI adoption; that’s a leadership problem, not a workforce one to police.
+- [There has to be slack in the system.](https://www.committedcitizens.co.uk/insights/there-has-to-be-slack-in-the-system): Featured — marketing isn’t great at delivering under pressure; lean works until you can’t afford breakage.
+- [Listen all of y’all it’s a sabotage!](https://www.committedcitizens.co.uk/insights/listen-all-of-yall): Nearly a third of teams admit sabotaging AI adoption; that’s a leadership problem, not a workforce one to police.
 - [Your AI tools are not a team](https://www.committedcitizens.co.uk/insights/your-ai-tools-are-not-your-team): Tools are not a substitute for operating-model change.
 - [The problem might be your fabric](https://www.committedcitizens.co.uk/insights/the-problem-might-be-your-fabric): The invisible layer between people and process.
 - [You're not McKinsey](https://www.committedcitizens.co.uk/insights/youre-not-mckinsey): Agents need foundations first.

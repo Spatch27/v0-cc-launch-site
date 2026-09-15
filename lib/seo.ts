@@ -25,3 +25,30 @@ export function brandedTitle(title: string): string {
 export function canonicalAlternates(path: string): NonNullable<Metadata["alternates"]> {
   return { canonical: absoluteUrl(path) }
 }
+
+export const LOGO_URL = `${SITE_URL}/logo.png`
+
+export const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: LOGO_URL,
+  description:
+    "Marketing operations and transformation consultancy helping CMOs remove operational drag and build sustainable marketing workflows.",
+  sameAs: ["https://www.linkedin.com/company/committedcitizens"],
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "GB",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "Customer Service",
+    url: `${SITE_URL}/contact`,
+  },
+} as const
+
+/** Serialize JSON-LD so a `</script>` in content cannot break out of the tag. */
+export function jsonLdString(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\\u003c")
+}

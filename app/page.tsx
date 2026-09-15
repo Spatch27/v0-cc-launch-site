@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { HeroSection } from "@/components/home/hero-section"
+import { HomeOverviewBand } from "@/components/home/home-overview-band"
 import { DeferredHomeSections } from "@/components/home/deferred-sections"
 import { canonicalAlternates } from "@/lib/seo"
 
@@ -40,6 +41,9 @@ export default function HomePage() {
     <>
       {/* Above the fold - render immediately for fast LCP */}
       <HeroSection />
+
+      {/* Compact SSR strip so bots and no-JS clients see products and Waypoint. */}
+      <HomeOverviewBand />
 
       {/* Lower sections load shortly before scrolling into view. */}
       <DeferredHomeSections />
