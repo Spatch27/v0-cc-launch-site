@@ -41,17 +41,22 @@ export function HeroSection() {
   return (
     <>
       <style>{`
-        .cc-home-hero {
-          overflow-x: clip;
+        .cc-hero-pin {
+          min-height: 100vh;
+          min-height: 100svh;
         }
 
-        .cc-hero-frame {
-          container-type: inline-size;
+        .cc-hero-scroll-room {
+          height: 100vh;
+          height: 100svh;
+          pointer-events: none;
         }
 
         .cc-hero-heading {
-          font-size: 3.75rem;
-          font-size: min(3.75rem, 16.8cqw);
+          flex-shrink: 0;
+          font-size: 2.25rem;
+          font-size: clamp(1.75rem, 11vw, 3.75rem);
+          font-size: clamp(1.75rem, calc((100vw - 3.5rem) / 6.4), 3.75rem);
         }
 
         .cc-hero-sr {
@@ -71,7 +76,6 @@ export function HeroSection() {
           flex-direction: column;
           align-items: flex-start;
           width: max-content;
-          max-width: 100%;
         }
 
         .cc-hero-line {
@@ -133,12 +137,18 @@ export function HeroSection() {
 
         @media (min-width: 768px) {
           .cc-hero-heading {
-            font-size: 8rem;
-            font-size: min(8rem, 16cqw);
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-size: clamp(3.5rem, calc((100vw - 4rem) / 6.4), 8rem);
           }
 
           .cc-hero-static-line + .cc-hero-static-line {
             margin-top: 0.28em;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .cc-hero-heading {
+            font-size: clamp(3.5rem, calc((100vw - 7rem) / 6.4), 8rem);
           }
         }
 
@@ -152,22 +162,9 @@ export function HeroSection() {
           }
         }
       `}</style>
-      <section
-        ref={sectionRef}
-        className={
-          prefersReducedMotion
-            ? "cc-home-hero relative min-h-svh bg-brand-orange lg:h-screen"
-            : "cc-home-hero relative h-[200svh] bg-brand-orange"
-        }
-      >
-        <div
-          className={
-            prefersReducedMotion
-              ? "relative min-h-svh px-6 lg:h-full lg:px-12"
-              : "sticky top-0 h-svh px-6 lg:px-12"
-          }
-        >
-          <div className="cc-hero-frame mx-auto flex h-full min-h-svh max-w-[1400px] flex-col justify-between gap-20 pt-32 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:min-h-0 lg:gap-32 lg:pt-44 lg:pb-20">
+      <section ref={sectionRef} className="cc-home-hero relative bg-brand-orange">
+        <div className="cc-hero-pin sticky top-0 px-6 lg:px-12">
+          <div className="mx-auto flex min-h-svh max-w-[1400px] flex-col justify-between gap-8 pt-28 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:min-h-svh lg:gap-32 lg:pt-44 lg:pb-20">
             <h1 className="cc-hero-heading font-display font-semibold leading-[0.95] tracking-tight text-brand-dark">
               {prefersReducedMotion ? (
                 <>
@@ -190,13 +187,14 @@ export function HeroSection() {
               )}
             </h1>
 
-            <div className="cc-hero-subtitle flex justify-end">
+            <div className="cc-hero-subtitle flex min-h-0 justify-end">
               <p className="max-w-2xl text-right text-xl leading-relaxed text-brand-dark">
                 We help CMOs build a stronger marketing function with AI. Starting with one live campaign, we redesign how work happens — and leave your team better equipped to own and improve it.
               </p>
             </div>
           </div>
         </div>
+        {prefersReducedMotion ? null : <div className="cc-hero-scroll-room" aria-hidden="true" />}
       </section>
     </>
   )
