@@ -22,21 +22,21 @@ export function AnimatedTypeSection() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Line 1: "Remove drag." - fade in quickly, hold for a long time, fade out
+  // Line 1: "Own the thinking." - fade in quickly, hold for a long time, fade out
   const line1Word1Opacity = useTransform(scrollYProgress, [0, 0.05, 0.25, 0.3, 0.35], [0, 1, 1, 1, 0])
   const line1Word1Y = useTransform(scrollYProgress, [0.25, 0.35], [0, -150])
 
   const line1Word2Opacity = useTransform(scrollYProgress, [0.02, 0.07, 0.25, 0.3, 0.37], [0, 1, 1, 1, 0])
   const line1Word2Y = useTransform(scrollYProgress, [0.25, 0.37], [0, -150])
 
-  // Line 2: "Build momentum." - fade in, hold, fade out
+  // Line 2: "Outsource the craft." - fade in, hold, fade out
   const line2Word1Opacity = useTransform(scrollYProgress, [0.38, 0.44, 0.6, 0.65, 0.7], [0, 1, 1, 1, 0])
   const line2Word1Y = useTransform(scrollYProgress, [0.6, 0.7], [0, -150])
 
   const line2Word2Opacity = useTransform(scrollYProgress, [0.4, 0.46, 0.6, 0.65, 0.72], [0, 1, 1, 1, 0])
   const line2Word2Y = useTransform(scrollYProgress, [0.6, 0.72], [0, -150])
 
-  // Line 3: "Unlock growth." - fade in, hold, then fade out gently
+  // Line 3: "Automate the rest." - fade in, hold, then fade out gently
   const line3Word1Opacity = useTransform(scrollYProgress, [0.73, 0.79, 0.88, 0.95], [0, 1, 1, 0])
   const line3Word1Y = useTransform(scrollYProgress, [0.73, 0.79, 0.88, 0.95], [50, 0, 0, -50])
 
@@ -73,51 +73,51 @@ export function AnimatedTypeSection() {
           {/* Text content that animates as you scroll - each phrase centered and stacked */}
           <div className="absolute inset-0 flex items-center justify-center px-4">
             <div className="relative text-center">
-              {/* Line 1: Remove drag. - positioned absolutely so phrases overlap in center */}
+              {/* Line 1: Own the thinking. - positioned absolutely so phrases overlap in center */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0">
                 <motion.span
                   style={{ opacity: line1Word1Opacity, y: line1Word1Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-brand-pink"
                 >
-                  Remove
+                  Own
                 </motion.span>
                 <motion.span
                   style={{ opacity: line1Word2Opacity, y: line1Word2Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-brand-pink"
                 >
-                  drag.
+                  the thinking.
                 </motion.span>
               </div>
 
-              {/* Line 2: Build momentum. */}
+              {/* Line 2: Outsource the craft. */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0">
                 <motion.span
                   style={{ opacity: line2Word1Opacity, y: line2Word1Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-brand-pink"
                 >
-                  Build
+                  Outsource
                 </motion.span>
                 <motion.span
                   style={{ opacity: line2Word2Opacity, y: line2Word2Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-brand-pink"
+                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-brand-pink"
                 >
-                  momentum.
+                  the craft.
                 </motion.span>
               </div>
 
-              {/* Line 3: Unlock growth. */}
+              {/* Line 3: Automate the rest. */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0">
                 <motion.span
                   style={{ opacity: line3Word1Opacity, y: line3Word1Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
+                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-yellow-300"
                 >
-                  Unlock
+                  Automate
                 </motion.span>
                 <motion.span
                   style={{ opacity: line3Word2Opacity, y: line3Word2Y }}
-                  className="font-display text-[clamp(3.5rem,12vw,12rem)] font-bold leading-[1.05] tracking-tight text-yellow-300"
+                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-yellow-300"
                 >
-                  growth.
+                  the rest.
                 </motion.span>
               </div>
             </div>

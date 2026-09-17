@@ -88,7 +88,7 @@ export function MomentumSection() {
             </motion.h3>
             <motion.div variants={textChild} className="flex flex-col items-start gap-8">
               <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
-                Each six-week cycle tackles one pressing problem across Team, Process, Data and Tech - starting with the one that's costing you most right now. Every cycle ends with results you can put in front of the board: greater effectiveness, driven by greater efficiency, that your team can feel day to day.
+                We start with one campaign, usually one you already know is harder than it should be. We look at how it runs today across Team, Process, Data and Tech. Then we rebuild it with your team, using AI where it makes the result better, running it live against the old version. Six weeks later you have a better campaign that runs faster, with the numbers to prove it.
               </p>
               <Link
                 href="/approach"
@@ -116,7 +116,7 @@ export function MomentumSection() {
           </motion.div>
         </div>
 
-        {/* People-first operating model — Text Right, Image Left */}
+        {/* Function-first — Text Right, Image Left */}
         <div ref={ref1} className="grid grid-cols-1 items-center gap-4 lg:grid-cols-2 lg:gap-12">
           <motion.div
             className="space-y-6"
@@ -128,17 +128,14 @@ export function MomentumSection() {
               variants={textChild}
               className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
             >
-              People are the difference.
+              Not tech-first. Not people-first. <em>Function-first</em>.
             </motion.h2>
             <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
               <p>
-                Transformation doesn&apos;t fail because the tech is wrong. It fails because teams reject it. Implementation isn&apos;t the endgame, adoption is.
+                We start with what marketing needs to deliver for the business. Then we examine the work, the decisions, and the connections. Get that right and the roles and the tech follow.
               </p>
               <p>
-                We start with a belief that tech solutions don&apos;t lead decision-making - people own the thinking. We strip away layers of tech that result in more workaround than work.
-              </p>
-              <p>
-                Similarly, AI raises the stakes but judgement still sits with people. What to stop, what to change and what to defend.
+                Give the time you save a purpose. Understand customers better. Improve work that&apos;s currently rushed. Add more opportunity or eliminate cost. Decide what matters, then build around it.
               </p>
             </motion.div>
           </motion.div>

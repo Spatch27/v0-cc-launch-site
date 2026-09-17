@@ -13,30 +13,30 @@ const problems = [
   {
     icon: "/icons/icon-team.svg",
     eyebrow: "TEAM",
-    heading: "Improved structure, capacity & culture.",
-    drag: "Talented people but under-performing teams. The workaround has become the culture. Teams set-up to work the way it used to work.",
-    flow: "The right people in the right roles, working effectively together.",
+    heading: "Clear ownership. Room to think.",
+    then: "Talented people in a structure built for how marketing used to work. AI takes on the tasks, but the decisions still pile up with the same few people.",
+    now: "People know what they own and what they can decide without asking.",
   },
   {
     icon: "/icons/icon-process.svg",
     eyebrow: "PROCESS",
-    heading: "Workflow redesign.",
-    drag: "Briefs that should take hours take days. Flawed approval loops and broken systems. Each \"fix\" adds another step.",
-    flow: "Clear decision rights, protected focus, genuine ownership.",
+    heading: "Work that flows end to end.",
+    then: "A task that takes minutes sits in approval for days. Every fix adds another step. The doing speeds up and the queue stays put.",
+    now: "Fewer handovers, clear decision rights, and AI built into the workflow, not bolted on.",
   },
   {
     icon: "/icons/icon-data.svg",
     eyebrow: "DATA",
     heading: "Trusted numbers & decision making.",
-    drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
-    flow: "A single, agreed view of what's happening, why, and what to do next.",
+    then: "Marketing's dashboard says one thing, finance says another. AI can analyse anything, but nobody trusts what goes in.",
+    now: "Numbers people agree on, early enough to shape a campaign before launch, not explain it after.",
   },
   {
     icon: "/icons/icon-technology.svg",
     eyebrow: "TECH",
-    heading: "Maximum utility, zero redundancy.",
-    drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
-    flow: "A leaner, better-loved stack built around how people actually work.",
+    heading: "Tech that earns its place.",
+    then: "Licences renew for platforms nobody opens. Every new AI tool promises the answer. The stack gets blamed for problems it didn't cause.",
+    now: "A leaner stack where every tool and agent is there for a reason, and someone owns it.",
   },
 ]
 
@@ -108,11 +108,14 @@ export function WhatLooksLikeSection() {
         style={{ top: `${navHeight}px` }}
       >
         {/* Title */}
-        <div className="bg-white px-6 pb-4 pt-4 lg:px-12">
+        <div className="bg-white px-6 pb-6 pt-4 lg:px-12">
           <div className="mx-auto max-w-[1400px]">
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-              Momentum leads to flow.
+              Four areas. And the gaps in between.
             </h2>
+            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-brand-dark">
+              Most of what holds marketing back sits between them: a decision waiting on data, a tool nobody owns, a process built for a team that&apos;s since changed.
+            </p>
           </div>
         </div>
 
@@ -154,12 +157,12 @@ export function WhatLooksLikeSection() {
                     </h3>
                     <div className="grid gap-8 lg:grid-cols-2">
                       <div>
-                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">DRAG</div>
-                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.drag}</p>
+                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">BUILT FOR THEN</div>
+                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.then}</p>
                       </div>
                       <div>
-                        <div className="mb-3 text-xs font-bold tracking-widest text-[#FF8600]">FLOW</div>
-                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.flow}</p>
+                        <div className="mb-3 text-xs font-bold tracking-widest text-[#FF8600]">BUILT FOR NOW</div>
+                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.now}</p>
                       </div>
                     </div>
                   </div>
