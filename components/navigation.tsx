@@ -36,6 +36,16 @@ function NavLabel({ label, mobile = false }: { label: string; mobile?: boolean }
   )
 }
 
+const DEFAULT_SCROLL_THRESHOLD = 20
+
+function homeMorphNavThreshold(): number {
+  const hero = document.querySelector<HTMLElement>(".cc-home-hero")
+  if (!hero) return DEFAULT_SCROLL_THRESHOLD
+  const morphEnd = Number(hero.dataset.ccMorphEnd)
+  if (!Number.isFinite(morphEnd) || morphEnd <= 0) return DEFAULT_SCROLL_THRESHOLD
+  return Math.max(DEFAULT_SCROLL_THRESHOLD, Math.round(hero.offsetHeight * morphEnd))
+}
+
 export function Navigation() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
@@ -45,12 +55,34 @@ export function Navigation() {
     heroColorMap["/"]
   const logoVariant = colors.isDark ? "white" : "dark"
 
-  const onScroll = useCallback(() => setScrolled(window.scrollY > 20), [])
+  const updateScrolled = useCallback(() => {
+    const threshold = pathname === "/" ? homeMorphNavThreshold() : DEFAULT_SCROLL_THRESHOLD
+    setScrolled(window.scrollY > threshold)
+  }, [pathname])
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [onScroll])
+    updateScrolled()
+    window.addEventListener("scroll", updateScrolled, { passive: true })
+    window.addEventListener("resize", updateScrolled)
+
+    let observer: ResizeObserver | null = null
+    const watchHero = () => {
+      if (observer || pathname !== "/") return
+      const hero = document.querySelector(".cc-home-hero")
+      if (!hero) return
+      observer = new ResizeObserver(updateScrolled)
+      observer.observe(hero)
+    }
+    watchHero()
+    const raf = window.requestAnimationFrame(watchHero)
+
+    return () => {
+      window.removeEventListener("scroll", updateScrolled)
+      window.removeEventListener("resize", updateScrolled)
+      window.cancelAnimationFrame(raf)
+      observer?.disconnect()
+    }
+  }, [pathname, updateScrolled])
 
   const linkClass = (href: string, mobile = false) => {
     const isActive = pathname === href

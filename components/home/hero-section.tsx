@@ -5,6 +5,9 @@ import { useRef } from "react"
 
 const HERO_COPY = "Bolder work in the world. Less work to put it there."
 
+/** Scroll progress (section start→end vs viewport start) at which the morph is fully settled. */
+const MORPH_PROGRESS_END = 0.4
+
 function MorphSlot({
   from,
   to,
@@ -36,7 +39,8 @@ export function HeroSection() {
   })
 
   // Slot inner is one line tall; -100% brings the replacement phrase into view.
-  const morphY = useTransform(scrollYProgress, [0, 0.4], ["0%", "-100%"])
+  // Keep in sync with data-cc-morph-end — Home nav stays on the hero colour until this progress.
+  const morphY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], ["0%", "-100%"])
 
   return (
     <>
@@ -162,7 +166,11 @@ export function HeroSection() {
           }
         }
       `}</style>
-      <section ref={sectionRef} className="cc-home-hero relative bg-brand-orange">
+      <section
+        ref={sectionRef}
+        className="cc-home-hero relative bg-brand-orange"
+        data-cc-morph-end={prefersReducedMotion ? undefined : String(MORPH_PROGRESS_END)}
+      >
         <div className="cc-hero-pin sticky top-0 px-6 lg:px-12">
           <div className="mx-auto flex min-h-svh max-w-[1400px] flex-col justify-between gap-8 pt-28 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:min-h-svh lg:gap-32 lg:pt-44 lg:pb-20">
             <h1 className="cc-hero-heading font-display font-bold leading-[0.95] tracking-tight text-brand-dark">
