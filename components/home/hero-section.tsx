@@ -27,6 +27,10 @@ export function HeroSection() {
           margin-top: 0.5em;
         }
 
+        .cc-hero-break {
+          display: block;
+        }
+
         .cc-hero-subtitle {
           animation: cc-hero-subtitle-in 700ms 200ms both cubic-bezier(0.22, 1, 0.36, 1);
         }
@@ -51,6 +55,10 @@ export function HeroSection() {
           .cc-hero-heading-line + .cc-hero-heading-line {
             margin-top: 0.22em;
           }
+
+          .cc-hero-break {
+            display: none;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -72,12 +80,10 @@ export function HeroSection() {
         <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-16 pt-32 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:h-full lg:gap-28 lg:pt-44 lg:pb-20">
           <h1 className="cc-hero-heading font-display font-semibold tracking-tight text-brand-dark">
             <span className="cc-hero-heading-line block">
-              <span className="md:hidden">Bolder work<br />in the world.</span>
-              <span className="hidden md:inline">Bolder work in the world.</span>
+              Bolder work<br className="cc-hero-break" /> in the world.
             </span>
             <span className="cc-hero-heading-line block">
-              <span className="md:hidden">Less work<br />to put it there.</span>
-              <span className="hidden md:inline">Less work to put it there.</span>
+              Less work<br className="cc-hero-break" /> to put it there.
             </span>
           </h1>
 

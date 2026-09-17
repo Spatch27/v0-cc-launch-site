@@ -77,19 +77,6 @@ function AreaCardBody({ item, headerHeight }: { item: Area; headerHeight?: numbe
   )
 }
 
-function FourAreasTitle() {
-  return (
-    <div className="mx-auto max-w-[1400px] px-6 pb-6 pt-2 lg:px-12 lg:pb-6 lg:pt-4">
-      <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-        Four areas. And the gaps in between.
-      </h2>
-      <p className="mt-4 max-w-3xl text-lg leading-relaxed text-brand-dark">
-        Most of what holds marketing back sits between them: a decision waiting on data, a tool nobody owns, a process built for a team that&apos;s since changed.
-      </p>
-    </div>
-  )
-}
-
 export function WhatLooksLikeSection() {
   const outerRef = useRef<HTMLDivElement>(null)
   const [navHeight, setNavHeight] = useState(80)
@@ -128,55 +115,140 @@ export function WhatLooksLikeSection() {
     }
   }, [])
 
+  const stackHeight = 400 + problems.length * CARD_HEADER_H
+
   return (
     <>
-      {/* Mobile / below tablet: normal document flow so every column is reachable */}
-      <div className="bg-white px-0 pt-16 pb-[var(--cc-mobile-nav-offset)] md:hidden">
-        <FourAreasTitle />
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-8 px-6">
-          {problems.map((item, i) => (
-            <div key={item.eyebrow} className={`${headerBg(i)} overflow-hidden`}>
-              <AreaCardBody item={item} />
-            </div>
-          ))}
-        </div>
-      </div>
+      <style>{`
+        .cc-areas {
+          background: #fff;
+          padding-top: 4rem;
+          padding-bottom: var(--cc-mobile-nav-offset, 6.5rem);
+          height: auto !important;
+        }
 
-      {/* Tablet / desktop: theatrical sticky stack */}
+        .cc-areas-sticky {
+          position: static;
+          overflow: visible;
+          background: #fff;
+        }
+
+        .cc-areas-title {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0.5rem 1.5rem 1.5rem;
+        }
+
+        .cc-areas-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          height: auto !important;
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+
+        .cc-areas-card {
+          position: relative !important;
+          top: auto !important;
+          transform: none !important;
+          width: 100%;
+        }
+
+        .cc-areas-card-frame {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        @media (min-width: 768px) {
+          .cc-areas {
+            position: relative;
+            padding-top: 4rem;
+            padding-bottom: 0;
+            height: var(--cc-areas-runway, 2800px) !important;
+          }
+
+          .cc-areas-sticky {
+            position: sticky;
+            top: var(--cc-areas-nav, 80px);
+            overflow: hidden;
+          }
+
+          .cc-areas-title {
+            padding: 1rem 3rem 1.5rem;
+          }
+
+          .cc-areas-stack {
+            display: block;
+            position: relative;
+            gap: 0;
+            height: var(--cc-areas-stack-h, 624px) !important;
+            max-width: none;
+            padding: 0;
+          }
+
+          .cc-areas-card {
+            position: absolute !important;
+            top: var(--cc-areas-card-top, 0px) !important;
+            transform: translateY(var(--cc-areas-card-y, 0px)) !important;
+            will-change: transform;
+          }
+
+          .cc-areas-card-frame {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .cc-areas {
+            padding-top: 6rem;
+          }
+
+          .cc-areas-card-frame {
+            padding: 0 3rem;
+          }
+        }
+      `}</style>
       <div
         ref={outerRef}
-        className="relative hidden bg-white pt-16 md:block lg:pt-24"
-        style={{ height: `${outerHeight}px` }}
+        className="cc-areas"
+        style={{
+          ["--cc-areas-runway" as string]: `${outerHeight}px`,
+          ["--cc-areas-stack-h" as string]: `${stackHeight}px`,
+          ["--cc-areas-nav" as string]: `${navHeight}px`,
+        }}
       >
-        <div
-          className="sticky overflow-hidden bg-white"
-          style={{ top: `${navHeight}px` }}
-        >
-          <FourAreasTitle />
-          <div className="relative" style={{ height: `${400 + problems.length * CARD_HEADER_H}px` }}>
-            {problems.map((item, i) => {
-              const finalTop = i * CARD_HEADER_H
-              const translateY = cardTranslates[i] ?? 0
-
-              return (
-                <div
-                  key={item.eyebrow}
-                  className="absolute w-full"
-                  style={{
-                    top: `${finalTop}px`,
-                    transform: `translateY(${translateY}px)`,
-                    zIndex: i + 1,
-                    willChange: "transform",
-                  }}
-                >
-                  <div className={`mx-auto max-w-[1400px] px-6 lg:px-12`}>
-                    <div className={headerBg(i)}>
-                      <AreaCardBody item={item} headerHeight={CARD_HEADER_H} />
-                    </div>
+        <div className="cc-areas-sticky">
+          <div className="cc-areas-title">
+            <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+              Four areas. And the gaps in between.
+            </h2>
+            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-brand-dark">
+              Most of what holds marketing back sits between them: a decision waiting on data, a tool nobody owns, a process built for a team that&apos;s since changed.
+            </p>
+          </div>
+          <div className="cc-areas-stack">
+            {problems.map((item, i) => (
+              <div
+                key={item.eyebrow}
+                className="cc-areas-card"
+                style={{
+                  ["--cc-areas-card-top" as string]: `${i * CARD_HEADER_H}px`,
+                  ["--cc-areas-card-y" as string]: `${cardTranslates[i] ?? 0}px`,
+                  zIndex: i + 1,
+                }}
+              >
+                <div className="cc-areas-card-frame">
+                  <div className={headerBg(i)}>
+                    <AreaCardBody item={item} headerHeight={CARD_HEADER_H} />
                   </div>
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </div>
