@@ -30,6 +30,8 @@ export function MomentumSection() {
       <style>{`
         .cc-cta-button {
           background-color: var(--brand-light);
+          border: 2px solid var(--brand-dark);
+          border-color: var(--brand-dark);
         }
 
         .cc-cta-label-track {
@@ -69,7 +71,7 @@ export function MomentumSection() {
           }
         }
       `}</style>
-      <Section background="light" compact className="pt-12 md:pt-0">
+      <Section background="light">
       <div className="cc-home-paired-modules">
 
         {/* Measurable cycles — Text Left, Image Right */}
@@ -92,8 +94,8 @@ export function MomentumSection() {
               </p>
               <Link
                 href="/approach"
-                className="cc-cta-button group inline-flex w-fit items-center gap-3 rounded-lg border-2 border-brand-dark px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300"
-                style={{ borderRadius: "4px" }}
+                className="cc-cta-button group inline-flex w-fit items-center gap-3 rounded-lg px-8 py-4 text-base font-semibold text-brand-dark transition-all duration-300"
+                style={{ borderRadius: "4px", border: "2px solid var(--brand-dark)" }}
               >
                 <span className="h-6 overflow-hidden">
                   <span className="cc-cta-label-track">

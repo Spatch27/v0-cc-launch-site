@@ -122,7 +122,7 @@ export function Footer() {
         </div>
       </div>
       <div className="relative z-10 border-t border-brand-dark/10 px-6 lg:px-12">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4 pb-24 lg:pb-4">
+        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4 pb-[max(6rem,var(--cc-mobile-nav-offset))] lg:pb-4">
           <p className="text-xs text-brand-dark">
             &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
           </p>

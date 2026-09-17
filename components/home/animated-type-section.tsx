@@ -72,50 +72,50 @@ export function AnimatedTypeSection() {
 
           {/* Text content that animates as you scroll - each phrase centered and stacked */}
           <div className="absolute inset-0 flex items-center justify-center px-4">
-            <div className="relative text-center">
-              {/* Line 1: Own the thinking. - positioned absolutely so phrases overlap in center */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0">
+            <div className="relative h-[3em] w-full max-w-[min(100%,22ch)] text-center font-display text-[clamp(2rem,7.2vw,8.5rem)] font-bold leading-[1.08] tracking-tight">
+              {/* Line 1: Own the thinking. — two-line lockup, nowrap so min-content cannot wrap to 3 lines */}
+              <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center">
                 <motion.span
                   style={{ opacity: line1Word1Opacity, y: line1Word1Y }}
-                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-brand-pink"
+                  className="whitespace-nowrap text-brand-pink"
                 >
                   Own
                 </motion.span>
                 <motion.span
                   style={{ opacity: line1Word2Opacity, y: line1Word2Y }}
-                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-brand-pink"
+                  className="whitespace-nowrap text-brand-pink"
                 >
                   the thinking.
                 </motion.span>
               </div>
 
               {/* Line 2: Outsource the craft. */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0">
+              <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center">
                 <motion.span
                   style={{ opacity: line2Word1Opacity, y: line2Word1Y }}
-                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-brand-pink"
+                  className="whitespace-nowrap text-brand-pink"
                 >
                   Outsource
                 </motion.span>
                 <motion.span
                   style={{ opacity: line2Word2Opacity, y: line2Word2Y }}
-                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-brand-pink"
+                  className="whitespace-nowrap text-brand-pink"
                 >
                   the craft.
                 </motion.span>
               </div>
 
               {/* Line 3: Automate the rest. */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0">
+              <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center">
                 <motion.span
                   style={{ opacity: line3Word1Opacity, y: line3Word1Y }}
-                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-yellow-300"
+                  className="whitespace-nowrap text-yellow-300"
                 >
                   Automate
                 </motion.span>
                 <motion.span
                   style={{ opacity: line3Word2Opacity, y: line3Word2Y }}
-                  className="font-display text-[clamp(2.5rem,8vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-yellow-300"
+                  className="whitespace-nowrap text-yellow-300"
                 >
                   the rest.
                 </motion.span>

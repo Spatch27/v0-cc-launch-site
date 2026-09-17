@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Inter, Bricolage_Grotesque } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
@@ -63,6 +63,10 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  viewportFit: 'cover',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -108,6 +112,11 @@ body {
 * {
   border-color: var(--border);
   outline-color: var(--brand-pink);
+}
+
+.cc-cta-button {
+  border: 2px solid var(--brand-dark);
+  border-color: var(--brand-dark);
 }
 
 #CookiebotWidget {

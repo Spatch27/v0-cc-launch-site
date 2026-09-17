@@ -73,6 +73,8 @@ export function CtaBand({
       <style>{`
         .cc-cta-button {
           background-color: var(--brand-light);
+          border: 2px solid var(--brand-dark);
+          border-color: var(--brand-dark);
         }
 
         .cc-cta-label-track {
@@ -106,7 +108,7 @@ export function CtaBand({
           }
         }
       `}</style>
-      <section className={`${bgMap[background]} ${textMap[background]} px-6 py-24 lg:px-12 lg:py-32`}>
+      <section className={`${bgMap[background]} ${textMap[background]} px-6 pt-24 pb-[calc(6rem+var(--cc-mobile-nav-offset))] lg:px-12 lg:py-32`}>
       <div className="mx-auto max-w-[1400px]">
         <motion.div
           initial="hidden"
@@ -148,7 +150,7 @@ export function CtaBand({
               onClick={handleClick}
               scroll={false}
               className={`cc-cta-button group inline-flex w-fit items-center gap-3 rounded-lg px-8 py-4 text-base font-semibold transition-all duration-300 ${btnMap[background]}`}
-              style={{ borderRadius: "4px" }}
+              style={{ borderRadius: "4px", border: "2px solid var(--brand-dark)" }}
             >
               <span className="h-6 overflow-hidden">
                 <span className="cc-cta-label-track">
