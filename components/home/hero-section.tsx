@@ -51,7 +51,7 @@ export function HeroSection() {
 
         .cc-hero-heading {
           font-size: 3.75rem;
-          font-size: min(3.75rem, 15.4cqw);
+          font-size: min(3.75rem, 16.8cqw);
         }
 
         .cc-hero-sr {
@@ -134,7 +134,7 @@ export function HeroSection() {
         @media (min-width: 768px) {
           .cc-hero-heading {
             font-size: 8rem;
-            font-size: min(8rem, 15.4cqw);
+            font-size: min(8rem, 16cqw);
           }
 
           .cc-hero-static-line + .cc-hero-static-line {
