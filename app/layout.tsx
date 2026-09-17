@@ -91,6 +91,7 @@ export default function RootLayout({
   --card-foreground: #181716;
   --border: #cbc4c4;
   --radius: 0rem;
+  --cc-mobile-nav-offset: calc(5.75rem + env(safe-area-inset-bottom, 0px));
 }
 
 html {

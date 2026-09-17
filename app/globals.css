@@ -13,6 +13,7 @@
   --brand-yellow-deep: #ffd100;
   --brand-white: #ffffff;
   --brand-grey: #9a9490;
+  --cc-mobile-nav-offset: calc(5.75rem + env(safe-area-inset-bottom, 0px));
 
   /* Semantic tokens */
   --background: #e3dcdc;

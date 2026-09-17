@@ -151,7 +151,10 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="relative z-10 h-[var(--cc-mobile-nav-offset)] md:hidden" aria-hidden />
+      <div
+        className="relative z-10 h-[calc(5.75rem+env(safe-area-inset-bottom,0px))] md:hidden"
+        aria-hidden
+      />
     </footer>
   )
 }
