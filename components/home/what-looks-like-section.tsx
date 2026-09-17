@@ -67,7 +67,7 @@ function AreaCardBody({ item, headerHeight }: { item: Area; headerHeight?: numbe
             <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">BUILT FOR THEN</div>
             <p className="text-base leading-relaxed text-brand-dark">{item.then}</p>
           </div>
-          <div className="border-l-[3px] border-[#C45A00] pl-4">
+          <div className="border-l-4 border-[#FF8600] pl-4">
             <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">BUILT FOR NOW</div>
             <p className="text-base leading-relaxed text-brand-dark">{item.now}</p>
           </div>
