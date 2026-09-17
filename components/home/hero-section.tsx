@@ -165,7 +165,7 @@ export function HeroSection() {
       <section ref={sectionRef} className="cc-home-hero relative bg-brand-orange">
         <div className="cc-hero-pin sticky top-0 px-6 lg:px-12">
           <div className="mx-auto flex min-h-svh max-w-[1400px] flex-col justify-between gap-8 pt-28 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:min-h-svh lg:gap-32 lg:pt-44 lg:pb-20">
-            <h1 className="cc-hero-heading font-display font-semibold leading-[0.95] tracking-tight text-brand-dark">
+            <h1 className="cc-hero-heading font-display font-bold leading-[0.95] tracking-tight text-brand-dark">
               {prefersReducedMotion ? (
                 <>
                   <span className="cc-hero-static-line block">Bolder work in the world.</span>
