@@ -69,7 +69,7 @@ export function HeroSection() {
         style={prefersReducedMotion ? undefined : { scale, opacity }}
         className="cc-home-hero relative min-h-svh bg-brand-orange px-6 lg:h-screen lg:px-12"
       >
-        <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-16 pt-32 pb-16 md:gap-24 md:pt-40 md:pb-20 lg:h-full lg:gap-28 lg:pt-44 lg:pb-20">
+        <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-16 pt-32 pb-28 md:gap-24 md:pt-40 md:pb-20 lg:h-full lg:gap-28 lg:pt-44 lg:pb-20">
           <h1 className="cc-hero-heading font-display font-semibold tracking-tight text-brand-dark">
             <span className="cc-hero-heading-line block">Bolder work in the world.</span>
             <span className="cc-hero-heading-line block">Less work to put it there.</span>

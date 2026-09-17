@@ -107,13 +107,13 @@ export function WhatLooksLikeSection() {
         className="sticky overflow-hidden bg-white"
         style={{ top: `${navHeight}px` }}
       >
-        {/* Title */}
-        <div className="bg-white px-6 pb-6 pt-4 lg:px-12">
+        {/* Title — compact on mobile so stacked cards keep enough viewport */}
+        <div className="bg-white px-6 pb-3 pt-2 lg:px-12 lg:pb-6 lg:pt-4">
           <div className="mx-auto max-w-[1400px]">
-            <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
+            <h2 className="font-display text-3xl font-bold leading-snug text-brand-dark md:text-5xl">
               Four areas. And the gaps in between.
             </h2>
-            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-brand-dark">
+            <p className="mt-2 max-w-3xl text-base leading-snug text-brand-dark md:mt-4 md:text-lg md:leading-relaxed">
               Most of what holds marketing back sits between them: a decision waiting on data, a tool nobody owns, a process built for a team that&apos;s since changed.
             </p>
           </div>
