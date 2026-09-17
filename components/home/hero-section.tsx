@@ -41,8 +41,17 @@ export function HeroSection() {
   return (
     <>
       <style>{`
+        .cc-home-hero {
+          overflow-x: clip;
+        }
+
+        .cc-hero-frame {
+          container-type: inline-size;
+        }
+
         .cc-hero-heading {
           font-size: 3.75rem;
+          font-size: min(3.75rem, 15.4cqw);
         }
 
         .cc-hero-sr {
@@ -125,6 +134,7 @@ export function HeroSection() {
         @media (min-width: 768px) {
           .cc-hero-heading {
             font-size: 8rem;
+            font-size: min(8rem, 15.4cqw);
           }
 
           .cc-hero-static-line + .cc-hero-static-line {
@@ -157,7 +167,7 @@ export function HeroSection() {
               : "sticky top-0 h-svh px-6 lg:px-12"
           }
         >
-          <div className="mx-auto flex h-full min-h-svh max-w-[1400px] flex-col justify-between gap-20 pt-32 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:min-h-0 lg:gap-32 lg:pt-44 lg:pb-20">
+          <div className="cc-hero-frame mx-auto flex h-full min-h-svh max-w-[1400px] flex-col justify-between gap-20 pt-32 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:min-h-0 lg:gap-32 lg:pt-44 lg:pb-20">
             <h1 className="cc-hero-heading font-display font-semibold leading-[0.95] tracking-tight text-brand-dark">
               {prefersReducedMotion ? (
                 <>
