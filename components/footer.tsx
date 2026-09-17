@@ -152,7 +152,7 @@ export function Footer() {
         </div>
       </div>
       <div
-        className="relative z-10 h-[calc(5.75rem+env(safe-area-inset-bottom,0px))] md:hidden"
+        className="relative z-10 h-[calc(6.5rem+env(safe-area-inset-bottom,0px))] md:hidden"
         aria-hidden
       />
     </footer>
