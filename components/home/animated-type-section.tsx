@@ -1,18 +1,21 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import Image from "next/image"
+
+const SR_COPY = "Not tech-first. Not people-first. Function-first."
 
 export function AnimatedTypeSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [imageLoaded, setImageLoaded] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   })
 
-  // Defer image loading until user scrolls
   useEffect(() => {
     const handleScroll = () => {
       setImageLoaded(true)
@@ -22,39 +25,111 @@ export function AnimatedTypeSection() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Line 1: "Own the thinking." - fade in quickly, hold for a long time, fade out
-  const line1Word1Opacity = useTransform(scrollYProgress, [0, 0.05, 0.25, 0.3, 0.35], [0, 1, 1, 1, 0])
-  const line1Word1Y = useTransform(scrollYProgress, [0.25, 0.35], [0, -150])
+  // Three stacked prefixes in a one-line slot: 0% / -100% / -200%.
+  const morphY = useTransform(
+    scrollYProgress,
+    [0, 0.16, 0.26, 0.48, 0.58, 1],
+    ["0%", "0%", "-100%", "-100%", "-200%", "-200%"],
+  )
+  const suffixPinkOpacity = useTransform(scrollYProgress, [0.48, 0.58], [1, 0])
+  const suffixYellowOpacity = useTransform(scrollYProgress, [0.48, 0.58], [0, 1])
+  const bgOpacity = useTransform(scrollYProgress, [0.84, 1], [1, 0])
 
-  const line1Word2Opacity = useTransform(scrollYProgress, [0.02, 0.07, 0.25, 0.3, 0.37], [0, 1, 1, 1, 0])
-  const line1Word2Y = useTransform(scrollYProgress, [0.25, 0.37], [0, -150])
-
-  // Line 2: "Outsource the craft." - fade in, hold, fade out
-  const line2Word1Opacity = useTransform(scrollYProgress, [0.38, 0.44, 0.6, 0.65, 0.7], [0, 1, 1, 1, 0])
-  const line2Word1Y = useTransform(scrollYProgress, [0.6, 0.7], [0, -150])
-
-  const line2Word2Opacity = useTransform(scrollYProgress, [0.4, 0.46, 0.6, 0.65, 0.72], [0, 1, 1, 1, 0])
-  const line2Word2Y = useTransform(scrollYProgress, [0.6, 0.72], [0, -150])
-
-  // Line 3: "Automate the rest." - fade in, hold, then fade out gently
-  const line3Word1Opacity = useTransform(scrollYProgress, [0.73, 0.79, 0.88, 0.95], [0, 1, 1, 0])
-  const line3Word1Y = useTransform(scrollYProgress, [0.73, 0.79, 0.88, 0.95], [50, 0, 0, -50])
-
-  const line3Word2Opacity = useTransform(scrollYProgress, [0.75, 0.81, 0.88, 0.95], [0, 1, 1, 0])
-  const line3Word2Y = useTransform(scrollYProgress, [0.75, 0.81, 0.88, 0.95], [50, 0, 0, -50])
-
-  // Background fades out at the very end so the section dissolves rather than snapping away
-  const bgOpacity = useTransform(scrollYProgress, [0.88, 1], [1, 0])
+  const lockup = prefersReducedMotion ? (
+    <p className="whitespace-nowrap text-center font-display text-[clamp(2rem,7.2vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-yellow-300">
+      Function-first.
+    </p>
+  ) : (
+    <>
+      <span className="cc-type-sr">{SR_COPY}</span>
+      <span className="cc-type-lockup" aria-hidden="true">
+        <span className="cc-type-slot">
+          <motion.span className="cc-type-slot-inner" style={{ y: morphY }}>
+            <span className="cc-type-phrase text-brand-pink">Not tech</span>
+            <span className="cc-type-phrase text-brand-pink">Not people</span>
+            <span className="cc-type-phrase text-yellow-300">Function</span>
+          </motion.span>
+        </span>
+        <span className="cc-type-suffix">
+          <motion.span className="text-brand-pink" style={{ opacity: suffixPinkOpacity }}>
+            -first.
+          </motion.span>
+          <motion.span className="text-yellow-300" style={{ opacity: suffixYellowOpacity }}>
+            -first.
+          </motion.span>
+        </span>
+      </span>
+    </>
+  )
 
   return (
     <div className="relative -mt-1">
+      <style>{`
+        .cc-type-sr {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+
+        .cc-type-lockup {
+          display: flex;
+          flex-direction: row;
+          align-items: baseline;
+          width: max-content;
+          max-width: 100%;
+          font-family: var(--font-display), 'Bricolage Grotesque', sans-serif;
+        }
+
+        .cc-type-slot {
+          display: block;
+          height: 1.12em;
+          overflow: hidden;
+        }
+
+        .cc-type-slot-inner {
+          display: block;
+          height: 100%;
+          will-change: transform;
+        }
+
+        .cc-type-phrase {
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-end;
+          height: 1.12em;
+          white-space: nowrap;
+        }
+
+        .cc-type-suffix {
+          display: grid;
+          flex: none;
+        }
+
+        .cc-type-suffix > * {
+          grid-area: 1 / 1;
+          white-space: nowrap;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .cc-type-slot-inner {
+            transform: none !important;
+          }
+        }
+      `}</style>
       <section
         ref={sectionRef}
-        className="relative h-[800vh] md:h-[600vh] w-full"
+        className={`relative w-full ${prefersReducedMotion ? "h-screen" : "h-[300vh] md:h-[260vh]"}`}
       >
-        {/* Sticky container that holds both background and text */}
-        <motion.div style={{ opacity: bgOpacity }} className="sticky top-0 h-screen w-full overflow-hidden">
-          {/* Background image - deferred until scroll to optimize LCP */}
+        <motion.div
+          style={prefersReducedMotion ? undefined : { opacity: bgOpacity }}
+          className="sticky top-0 h-screen w-full overflow-hidden"
+        >
           <div className="absolute inset-0">
             {imageLoaded && (
               <Image
@@ -70,56 +145,9 @@ export function AnimatedTypeSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
           </div>
 
-          {/* Text content that animates as you scroll - each phrase centered and stacked */}
           <div className="absolute inset-0 flex items-center justify-center px-4">
-            <div className="relative h-[3em] w-full max-w-[min(100%,22ch)] text-center font-display text-[clamp(2rem,7.2vw,8.5rem)] font-bold leading-[1.08] tracking-tight">
-              {/* Line 1: Own the thinking. — two-line lockup, nowrap so min-content cannot wrap to 3 lines */}
-              <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center">
-                <motion.span
-                  style={{ opacity: line1Word1Opacity, y: line1Word1Y }}
-                  className="whitespace-nowrap text-brand-pink"
-                >
-                  Own
-                </motion.span>
-                <motion.span
-                  style={{ opacity: line1Word2Opacity, y: line1Word2Y }}
-                  className="whitespace-nowrap text-brand-pink"
-                >
-                  the thinking.
-                </motion.span>
-              </div>
-
-              {/* Line 2: Outsource the craft. */}
-              <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center">
-                <motion.span
-                  style={{ opacity: line2Word1Opacity, y: line2Word1Y }}
-                  className="whitespace-nowrap text-brand-pink"
-                >
-                  Outsource
-                </motion.span>
-                <motion.span
-                  style={{ opacity: line2Word2Opacity, y: line2Word2Y }}
-                  className="whitespace-nowrap text-brand-pink"
-                >
-                  the craft.
-                </motion.span>
-              </div>
-
-              {/* Line 3: Automate the rest. */}
-              <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center">
-                <motion.span
-                  style={{ opacity: line3Word1Opacity, y: line3Word1Y }}
-                  className="whitespace-nowrap text-yellow-300"
-                >
-                  Automate
-                </motion.span>
-                <motion.span
-                  style={{ opacity: line3Word2Opacity, y: line3Word2Y }}
-                  className="whitespace-nowrap text-yellow-300"
-                >
-                  the rest.
-                </motion.span>
-              </div>
+            <div className="font-display text-[clamp(1.75rem,7.2vw,8.5rem)] font-bold leading-[1.08] tracking-tight">
+              {lockup}
             </div>
           </div>
         </motion.div>
