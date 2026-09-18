@@ -18,7 +18,7 @@ export function PhilosophySection() {
         </h2>
         <div className="max-w-3xl space-y-4">
           <p className="text-lg leading-relaxed text-brand-dark">
-            Not a consulting engagement. No lengthy discovery or dogmatism that your team quietly ignores. Nimble, iterative, focused on outcomes. We work with your team until the new ways of working are simply how things get done.
+            We&apos;re hands-on. A small team of specialists working alongside your people to build, test and learn in live work. Each engagement should leave you and your team more capable of making the next change yourselves.
           </p>
         </div>
       </motion.div>

@@ -10,10 +10,10 @@ import { fadeInUp } from "@/lib/animations"
 const operatingModelItems = {
   primary: [
     {
-      name: "Transformation Lead",
-      lines: ["Transformation", "Lead"],
+      name: "Orchestration Lead",
+      lines: ["Orchestration", "Lead"],
       description:
-        "Sharpens the problem. Aligns your C-Suite around a clear value case. Makes sure progress is visible from week one.",
+        "Sharpens the problem. Aligns your C-suite around what better looks like. Keeps every change tied to the result the business needs.",
       position: "top",
       cx: 500,
       cy: 140, // Top position
@@ -23,7 +23,7 @@ const operatingModelItems = {
       name: "Process & Ops Model Lead",
       lines: ["Process &", "Ops Model", "Lead"],
       description:
-        "Maps how work actually flows today. Redesigns the system, removes the handshake moments, installs governance that sticks.",
+        "Maps how the work really flows, including the handovers and exceptions nobody writes down. Redesigns it so people, tools and agents each do the right part.",
       position: "left",
       cx: 348, // Upper left
       cy: 251,
@@ -33,7 +33,7 @@ const operatingModelItems = {
       name: "People & Culture Lead",
       lines: ["People &", "Culture", "Lead"],
       description:
-        "New systems only stick if people believe in them. Builds capability, runs adoption programmes, embeds new habits at pace.",
+        "When the work changes, roles change. Helps your team shape the new way of working, build the judgement they'll need next and make it stick.",
       position: "right",
       cx: 652, // Upper right
       cy: 251,
@@ -45,7 +45,7 @@ const operatingModelItems = {
       name: "MarTech & Automation",
       lines: ["MarTech &", "Automation"],
       description:
-        "Brought in for your stack, not ours. Simplifies what you have, fits automation and agents where they'll actually shorten cycles.",
+        "Works with your stack, not ours. Builds agents where they make the work better and makes sure each one has an owner and a clear job.",
       cx: 403, // Lower left
       cy: 429,
       color: "#181716", // Dark
@@ -54,7 +54,7 @@ const operatingModelItems = {
       name: "Data & Analytics",
       lines: ["Data &", "Analytics"],
       description:
-        "Gets data clean, connected and trustworthy. Builds reporting that proves progress is real - so dashboards become something people rely on.",
+        "Gets data clean, connected and trusted, so AI has something reliable to work with and your team can prove what changed.",
       cx: 597, // Lower right
       cy: 429,
       color: "#181716", // Dark
