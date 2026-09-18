@@ -100,7 +100,7 @@ export function HeroSection() {
           font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
           font-size: 2.25rem;
           font-size: clamp(1.75rem, 11vw, 3.75rem);
-          font-size: clamp(1.75rem, calc((100vw - 3.5rem) / 6.4), 3.75rem);
+          font-size: clamp(1.75rem, calc((100vw - 3.5rem) / 7.3), 3.75rem);
         }
 
         .cc-hero-heading em,
@@ -260,7 +260,7 @@ export function HeroSection() {
         @media (min-width: 768px) {
           .cc-hero-heading {
             font-size: clamp(3.5rem, 10vw, 8rem);
-            font-size: clamp(3.5rem, calc((100vw - 4rem) / 6.4), 8rem);
+            font-size: clamp(3.5rem, calc((100vw - 4rem) / 7.3), 8rem);
           }
 
           .cc-hero-static-pair + .cc-hero-static-pair {
@@ -270,7 +270,7 @@ export function HeroSection() {
 
         @media (min-width: 1024px) {
           .cc-hero-heading {
-            font-size: clamp(3.5rem, calc((100vw - 7rem) / 6.4), 8rem);
+            font-size: clamp(3.5rem, calc((100vw - 7rem) / 7.3), 8rem);
           }
         }
 
