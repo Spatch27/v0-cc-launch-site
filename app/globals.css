@@ -39,8 +39,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), 'Inter', sans-serif;
-  --font-display: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-bricolage), sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
 
   /* Brand Colors */
@@ -89,7 +89,7 @@
     position: relative;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display), var(--font-bricolage), sans-serif;
+    font-family: var(--font-display), sans-serif;
   }
 }
 

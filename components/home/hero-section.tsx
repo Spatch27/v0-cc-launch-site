@@ -106,7 +106,7 @@ export function HeroSection() {
 
         .cc-hero-heading {
           flex-shrink: 0;
-          font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
+          font-family: var(--font-bricolage), sans-serif;
           font-size: 2.25rem;
           font-size: clamp(1.75rem, 11vw, 3.75rem);
           font-size: clamp(1.75rem, calc((100vw - 3.5rem) / 6.5), 3.75rem);

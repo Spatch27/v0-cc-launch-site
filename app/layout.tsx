@@ -11,13 +11,13 @@ import './globals.css'
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'optional',
+  display: 'swap',
 })
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-bricolage',
-  display: 'optional',
+  display: 'swap',
   weight: ['400', '500', '600', '700', '800'],
 })
 
@@ -108,7 +108,7 @@ body {
   overflow-x: clip;
   margin: 0;
   padding: 0;
-  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
 }
 
 * {
@@ -127,7 +127,7 @@ body {
 
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-bricolage), sans-serif;
   font-weight: 600;
   line-height: 1.2;
   margin: 0;
@@ -135,7 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -306,7 +306,7 @@ p {
 }
 
 .font-display {
-  font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-bricolage), sans-serif;
 }
 
 .leading-relaxed {
