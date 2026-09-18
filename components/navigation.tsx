@@ -38,12 +38,14 @@ function NavLabel({ label, mobile = false }: { label: string; mobile?: boolean }
 
 const DEFAULT_SCROLL_THRESHOLD = 20
 
-function homeMorphNavThreshold(): number {
+/** True once the Home hero sticky pin has released and the page below starts moving. */
+function homeHeroHasReleased(): boolean {
   const hero = document.querySelector<HTMLElement>(".cc-home-hero")
-  if (!hero) return DEFAULT_SCROLL_THRESHOLD
-  const morphEnd = Number(hero.dataset.ccMorphEnd)
-  if (!Number.isFinite(morphEnd) || morphEnd <= 0) return DEFAULT_SCROLL_THRESHOLD
-  return Math.max(DEFAULT_SCROLL_THRESHOLD, Math.round(hero.offsetHeight * morphEnd))
+  if (!hero) return window.scrollY > DEFAULT_SCROLL_THRESHOLD
+  const pin = hero.querySelector<HTMLElement>(".cc-hero-pin")
+  const room = hero.querySelector<HTMLElement>(".cc-hero-scroll-room")
+  if (!pin || !room) return window.scrollY > DEFAULT_SCROLL_THRESHOLD
+  return pin.getBoundingClientRect().top < -1
 }
 
 export function Navigation() {
@@ -56,8 +58,11 @@ export function Navigation() {
   const logoVariant = colors.isDark ? "white" : "dark"
 
   const updateScrolled = useCallback(() => {
-    const threshold = pathname === "/" ? homeMorphNavThreshold() : DEFAULT_SCROLL_THRESHOLD
-    setScrolled(window.scrollY > threshold)
+    if (pathname === "/") {
+      setScrolled(homeHeroHasReleased())
+      return
+    }
+    setScrolled(window.scrollY > DEFAULT_SCROLL_THRESHOLD)
   }, [pathname])
 
   useEffect(() => {

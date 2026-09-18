@@ -43,7 +43,7 @@ export function HeroSection() {
   })
 
   // Slot inner is one line tall; -100% brings the replacement phrase into view.
-  // Keep in sync with data-cc-morph-end — Home nav stays on the hero colour until this progress.
+  // Home nav overlay is tied to pin release (scroll-room), not this morph threshold.
   const morphY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], ["0%", "-100%"])
   const subtitleOpacity = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [0, 1])
   const subtitleY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [20, 0])
