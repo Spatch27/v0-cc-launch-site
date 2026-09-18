@@ -74,7 +74,7 @@ export function MomentumSection() {
       <Section background="light">
       <div className="cc-home-paired-modules">
 
-        {/* Function-first — Text Right, Image Left */}
+        {/* Function-led — Text Right, Image Left */}
         <div ref={ref1} className="grid grid-cols-1 items-center gap-4 lg:grid-cols-2 lg:gap-12">
           <motion.div
             className="space-y-6"
@@ -86,12 +86,9 @@ export function MomentumSection() {
               variants={textChild}
               className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
             >
-              What we mean by <em>function-first</em>.
+              Function-led. Not tech-led.
             </motion.h2>
             <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
-              <p className="font-display text-2xl font-bold leading-snug text-brand-dark md:text-3xl">
-                Function-led. Not tech-led.
-              </p>
               <p>
                 We start with what marketing needs to deliver for the business. Then we examine the work, the decisions, and the connections. Get that right and the roles and the tech follow.
               </p>
