@@ -1,29 +1,27 @@
 "use client"
 
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion"
-import { useRef } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
 
 const HERO_COPY = "Bolder work in the world. Less work to put it there."
 
 /** Scroll progress (section start→end vs viewport start) at which the morph is fully settled. */
-const MORPH_PROGRESS_END = 0.4
+const MORPH_PROGRESS_END = 0.3
 
 function MorphSlot({
   from,
   to,
   y,
-  align = "start",
   italic = false,
 }: {
   from: string
   to: string
   y: MotionValue<string>
-  align?: "start" | "end"
   italic?: boolean
 }) {
   const Phrase = italic ? "em" : "span"
   return (
-    <span className={`cc-hero-slot${align === "end" ? " cc-hero-slot-end" : ""}`}>
+    <span className="cc-hero-slot">
       <motion.span className="cc-hero-slot-inner" style={{ y }}>
         <Phrase className="cc-hero-phrase">{from}</Phrase>
         <Phrase className="cc-hero-phrase">{to}</Phrase>
@@ -32,43 +30,12 @@ function MorphSlot({
   )
 }
 
-/** Second-line morph whose left edge tracks Bolder → Less, not the full first-line unit. */
-function SubMorphSlot({
-  from,
-  to,
-  fromGhost,
-  toGhost,
-  y,
-}: {
-  from: string
-  to: string
-  fromGhost: string
-  toGhost: string
-  y: MotionValue<string>
-}) {
-  return (
-    <span className="cc-hero-sub-slot">
-      <motion.span className="cc-hero-slot-inner" style={{ y }}>
-        <span className="cc-hero-sub-row">
-          <span className="cc-hero-ghost-wrap">
-            <em className="cc-hero-ghost">{fromGhost}</em>
-            <span className="cc-hero-phrase">{from}</span>
-          </span>
-        </span>
-        <span className="cc-hero-sub-row">
-          <span className="cc-hero-ghost-wrap">
-            <em className="cc-hero-ghost">{toGhost}</em>
-            <span className="cc-hero-phrase">{to}</span>
-          </span>
-        </span>
-      </motion.span>
-    </span>
-  )
-}
-
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const bolderSizerRef = useRef<HTMLElement>(null)
+  const lessSizerRef = useRef<HTMLElement>(null)
   const prefersReducedMotion = useReducedMotion()
+  const [workShift, setWorkShift] = useState(0)
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -80,6 +47,39 @@ export function HeroSection() {
   const morphY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], ["0%", "-100%"])
   const subtitleOpacity = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [0, 1])
   const subtitleY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [20, 0])
+  const workX = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [0, workShift])
+
+  useLayoutEffect(() => {
+    if (prefersReducedMotion) return
+
+    const measure = () => {
+      const bolder = bolderSizerRef.current?.getBoundingClientRect().width ?? 0
+      const less = lessSizerRef.current?.getBoundingClientRect().width ?? 0
+      if (bolder <= 0 || less <= 0) return
+      const next = less - bolder
+      setWorkShift((prev) => (Math.abs(prev - next) < 0.25 ? prev : next))
+    }
+
+    let cancelled = false
+    const run = () => {
+      if (cancelled) return
+      measure()
+    }
+
+    void document.fonts.ready.then(run)
+    run()
+
+    const ro = new ResizeObserver(run)
+    if (bolderSizerRef.current) ro.observe(bolderSizerRef.current)
+    if (lessSizerRef.current) ro.observe(lessSizerRef.current)
+    window.addEventListener("resize", run)
+
+    return () => {
+      cancelled = true
+      ro.disconnect()
+      window.removeEventListener("resize", run)
+    }
+  }, [prefersReducedMotion])
 
   return (
     <>
@@ -90,8 +90,8 @@ export function HeroSection() {
         }
 
         .cc-hero-scroll-room {
-          height: 100vh;
-          height: 100svh;
+          height: 180vh;
+          height: 180svh;
           pointer-events: none;
         }
 
@@ -100,45 +100,32 @@ export function HeroSection() {
           font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
           font-size: 2.25rem;
           font-size: clamp(1.75rem, 11vw, 3.75rem);
-          font-size: clamp(1.75rem, calc((100vw - 3.5rem) / 7.3), 3.75rem);
+          font-size: clamp(1.75rem, calc((100vw - 3.5rem) / 6.5), 3.75rem);
+          font-weight: 600;
         }
 
         .cc-hero-heading em,
         .cc-hero-heading .cc-hero-phrase,
         .cc-hero-heading .cc-hero-work,
-        .cc-hero-heading .cc-hero-ghost,
+        .cc-hero-heading .cc-hero-sizer,
         .cc-hero-heading .cc-hero-static-lead,
         .cc-hero-heading .cc-hero-static-sub {
           font-family: inherit;
+          font-weight: 600;
         }
 
         .cc-hero-line-lead,
         .cc-hero-line-lead em,
         .cc-hero-work,
-        .cc-hero-ghost {
+        .cc-hero-sizer,
+        .cc-hero-static-lead {
           font-style: italic;
-          font-weight: 800;
-        }
-
-        .cc-hero-slot em,
-        .cc-hero-ghost {
-          padding-inline-end: 0.26em;
         }
 
         .cc-hero-line-sub,
-        .cc-hero-sub-slot .cc-hero-phrase {
-          font-style: normal;
-          font-weight: 500;
-        }
-
-        .cc-hero-static-lead {
-          font-style: italic;
-          font-weight: 800;
-        }
-
+        .cc-hero-line-sub .cc-hero-phrase,
         .cc-hero-static-sub {
           font-style: normal;
-          font-weight: 500;
         }
 
         .cc-hero-sr {
@@ -153,44 +140,41 @@ export function HeroSection() {
           border: 0;
         }
 
-        .cc-hero-lockup {
-          display: grid;
-          grid-template-columns: max-content max-content;
-          grid-template-rows: auto auto;
-          width: max-content;
-          column-gap: 0;
+        .cc-hero-sizers {
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: flex;
+          visibility: hidden;
+          pointer-events: none;
+          white-space: nowrap;
+          font-style: italic;
+          font-weight: 600;
         }
 
-        .cc-hero-line-lead {
-          display: contents;
+        .cc-hero-sizer {
+          display: inline-block;
+        }
+
+        .cc-hero-lockup {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: max-content;
+        }
+
+        .cc-hero-line {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end;
         }
 
         .cc-hero-slot {
-          grid-column: 1;
-          grid-row: 1;
           display: block;
-          height: 1.12em;
+          height: 1.05em;
           min-height: 0;
           overflow-x: visible;
           overflow-y: clip;
-        }
-
-        .cc-hero-work {
-          grid-column: 2;
-          grid-row: 1;
-          align-self: end;
-          flex: none;
-        }
-
-        .cc-hero-sub-slot {
-          grid-column: 1;
-          grid-row: 2;
-          display: block;
-          height: 1.12em;
-          min-height: 0;
-          margin-top: 0.12em;
-          overflow: visible;
-          clip-path: inset(0 -100vw 0 0);
         }
 
         .cc-hero-slot-inner {
@@ -203,41 +187,20 @@ export function HeroSection() {
         .cc-hero-work {
           display: flex;
           align-items: flex-end;
-          height: 1.12em;
+          height: 1.05em;
           white-space: nowrap;
         }
 
-        .cc-hero-slot-end .cc-hero-phrase {
-          justify-content: flex-end;
-        }
-
-        .cc-hero-sub-row {
-          display: flex;
-          justify-content: flex-end;
-          align-items: flex-end;
-          height: 1.12em;
-          width: 100%;
-        }
-
-        .cc-hero-ghost-wrap {
+        .cc-hero-work {
+          flex: none;
           position: relative;
-          display: block;
-          width: max-content;
-          height: 1.12em;
+          z-index: 1;
+          padding-inline-start: 0.22em;
+          will-change: transform;
         }
 
-        .cc-hero-ghost {
-          display: block;
-          visibility: hidden;
-          white-space: nowrap;
-          height: 1.12em;
-        }
-
-        .cc-hero-ghost-wrap .cc-hero-phrase {
-          position: absolute;
-          left: 0;
-          top: 0;
-          visibility: visible;
+        .cc-hero-line-sub {
+          margin-top: 0;
         }
 
         .cc-hero-static-pair {
@@ -245,32 +208,34 @@ export function HeroSection() {
           flex-direction: column;
           align-items: flex-start;
           width: max-content;
+          line-height: 0.9;
         }
 
         .cc-hero-static-pair + .cc-hero-static-pair {
-          margin-top: 0.4em;
+          margin-top: 0.28em;
         }
 
         .cc-hero-static-line {
           display: block;
           text-align: left;
           white-space: nowrap;
+          line-height: 0.9;
         }
 
         @media (min-width: 768px) {
           .cc-hero-heading {
             font-size: clamp(3.5rem, 10vw, 8rem);
-            font-size: clamp(3.5rem, calc((100vw - 4rem) / 7.3), 8rem);
+            font-size: clamp(3.5rem, calc((100vw - 4rem) / 6.5), 8rem);
           }
 
           .cc-hero-static-pair + .cc-hero-static-pair {
-            margin-top: 0.28em;
+            margin-top: 0.2em;
           }
         }
 
         @media (min-width: 1024px) {
           .cc-hero-heading {
-            font-size: clamp(3.5rem, calc((100vw - 7rem) / 7.3), 8rem);
+            font-size: clamp(3.5rem, calc((100vw - 7rem) / 6.5), 8rem);
           }
         }
 
@@ -280,7 +245,8 @@ export function HeroSection() {
             transform: none !important;
           }
 
-          .cc-hero-slot-inner {
+          .cc-hero-slot-inner,
+          .cc-hero-work {
             transform: none !important;
           }
         }
@@ -292,7 +258,7 @@ export function HeroSection() {
       >
         <div className="cc-hero-pin sticky top-0 px-6 lg:px-12">
           <div className="mx-auto flex min-h-svh max-w-[1400px] flex-col justify-between gap-8 pt-28 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:min-h-svh lg:gap-32 lg:pt-44 lg:pb-20">
-            <h1 className="cc-hero-heading font-display leading-[0.95] tracking-tight text-brand-dark">
+            <h1 className="cc-hero-heading font-display leading-[0.9] tracking-tight text-brand-dark">
               {prefersReducedMotion ? (
                 <>
                   <span className="cc-hero-static-pair">
@@ -311,18 +277,24 @@ export function HeroSection() {
               ) : (
                 <>
                   <span className="cc-hero-sr">{HERO_COPY}</span>
+                  <span className="cc-hero-sizers" aria-hidden="true">
+                    <em ref={bolderSizerRef} className="cc-hero-sizer">
+                      Bolder
+                    </em>
+                    <em ref={lessSizerRef} className="cc-hero-sizer">
+                      Less
+                    </em>
+                  </span>
                   <span className="cc-hero-lockup" aria-hidden="true">
                     <span className="cc-hero-line cc-hero-line-lead">
-                      <MorphSlot from="Bolder" to="Less" y={morphY} align="end" italic />
-                      <em className="cc-hero-work">&nbsp;work</em>
+                      <MorphSlot from="Bolder" to="Less" y={morphY} italic />
+                      <motion.em className="cc-hero-work" style={{ x: workX }}>
+                        work
+                      </motion.em>
                     </span>
-                    <SubMorphSlot
-                      from="in the world."
-                      to="to put it there."
-                      fromGhost="Bolder"
-                      toGhost="Less"
-                      y={morphY}
-                    />
+                    <span className="cc-hero-line cc-hero-line-sub">
+                      <MorphSlot from="in the world." to="to put it there." y={morphY} />
+                    </span>
                   </span>
                 </>
               )}
