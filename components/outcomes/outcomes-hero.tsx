@@ -34,7 +34,7 @@ export function OutcomesHero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="max-w-2xl self-end text-right text-xl leading-relaxed text-brand-white/50"
         >
-          Marketing teams don't collapse, they get dragged down. Timelines stretch. Reporting gets contested. Smart people spend more time unblocking than building. The energy is there, but the momentum isn't.{' '}
+          Good marketing teams rarely fall short for lack of talent. They get held back by how the work gets done. Timelines stretch. Numbers get argued over. Smart people spend more time unblocking work than doing it. Redesign how the work gets done, put AI to work in the right places, and the results follow.{' '}
           <br />
           <span className="font-semibold text-brand-white">Here are four examples of the work we do.</span>
         </motion.p>
