@@ -6,27 +6,29 @@ import { useLayoutEffect, useRef, useState } from "react"
 const HERO_COPY = "Bolder work in the world. Less work to put it there."
 
 /** Scroll progress (section start→end vs viewport start) at which the morph is fully settled. */
-const MORPH_PROGRESS_END = 0.3
+const MORPH_PROGRESS_END = 0.35
 
 function MorphSlot({
   from,
   to,
   y,
   italic = false,
+  width,
 }: {
   from: string
   to: string
   y: MotionValue<string>
   italic?: boolean
+  width?: MotionValue<number>
 }) {
   const Phrase = italic ? "em" : "span"
   return (
-    <span className="cc-hero-slot">
+    <motion.span className="cc-hero-slot" style={width ? { width } : undefined}>
       <motion.span className="cc-hero-slot-inner" style={{ y }}>
         <Phrase className="cc-hero-phrase">{from}</Phrase>
         <Phrase className="cc-hero-phrase">{to}</Phrase>
       </motion.span>
-    </span>
+    </motion.span>
   )
 }
 
@@ -35,7 +37,7 @@ export function HeroSection() {
   const bolderSizerRef = useRef<HTMLElement>(null)
   const lessSizerRef = useRef<HTMLElement>(null)
   const prefersReducedMotion = useReducedMotion()
-  const [workShift, setWorkShift] = useState(0)
+  const [wordWidths, setWordWidths] = useState({ bolder: 0, less: 0 })
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -47,7 +49,11 @@ export function HeroSection() {
   const morphY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], ["0%", "-100%"])
   const subtitleOpacity = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [0, 1])
   const subtitleY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [20, 0])
-  const workX = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [0, workShift])
+  const leadSlotWidth = useTransform(
+    scrollYProgress,
+    [0, MORPH_PROGRESS_END],
+    [wordWidths.bolder, wordWidths.less]
+  )
 
   useLayoutEffect(() => {
     if (prefersReducedMotion) return
@@ -56,8 +62,11 @@ export function HeroSection() {
       const bolder = bolderSizerRef.current?.getBoundingClientRect().width ?? 0
       const less = lessSizerRef.current?.getBoundingClientRect().width ?? 0
       if (bolder <= 0 || less <= 0) return
-      const next = less - bolder
-      setWorkShift((prev) => (Math.abs(prev - next) < 0.25 ? prev : next))
+      setWordWidths((prev) =>
+        Math.abs(prev.bolder - bolder) < 0.25 && Math.abs(prev.less - less) < 0.25
+          ? prev
+          : { bolder, less }
+      )
     }
 
     let cancelled = false
@@ -90,8 +99,8 @@ export function HeroSection() {
         }
 
         .cc-hero-scroll-room {
-          height: 180vh;
-          height: 180svh;
+          height: 140vh;
+          height: 140svh;
           pointer-events: none;
         }
 
@@ -161,20 +170,27 @@ export function HeroSection() {
           flex-direction: column;
           align-items: flex-start;
           width: max-content;
+          text-align: left;
         }
 
         .cc-hero-line {
           display: flex;
           flex-direction: row;
           align-items: flex-end;
+          justify-content: flex-start;
+          width: max-content;
+          text-align: left;
         }
 
         .cc-hero-slot {
           display: block;
+          flex: none;
           height: 1.05em;
+          min-width: 0;
           min-height: 0;
           overflow-x: visible;
           overflow-y: clip;
+          text-align: left;
         }
 
         .cc-hero-slot-inner {
@@ -186,17 +202,16 @@ export function HeroSection() {
         .cc-hero-phrase,
         .cc-hero-work {
           display: flex;
+          justify-content: flex-start;
           align-items: flex-end;
           height: 1.05em;
           white-space: nowrap;
+          text-align: left;
         }
 
         .cc-hero-work {
           flex: none;
-          position: relative;
-          z-index: 1;
           padding-inline-start: 0.22em;
-          will-change: transform;
         }
 
         .cc-hero-line-sub {
@@ -245,8 +260,7 @@ export function HeroSection() {
             transform: none !important;
           }
 
-          .cc-hero-slot-inner,
-          .cc-hero-work {
+          .cc-hero-slot-inner {
             transform: none !important;
           }
         }
@@ -287,10 +301,14 @@ export function HeroSection() {
                   </span>
                   <span className="cc-hero-lockup" aria-hidden="true">
                     <span className="cc-hero-line cc-hero-line-lead">
-                      <MorphSlot from="Bolder" to="Less" y={morphY} italic />
-                      <motion.em className="cc-hero-work" style={{ x: workX }}>
-                        work
-                      </motion.em>
+                      <MorphSlot
+                        from="Bolder"
+                        to="Less"
+                        y={morphY}
+                        italic
+                        width={wordWidths.bolder > 0 ? leadSlotWidth : undefined}
+                      />
+                      <em className="cc-hero-work">work</em>
                     </span>
                     <span className="cc-hero-line cc-hero-line-sub">
                       <MorphSlot from="in the world." to="to put it there." y={morphY} />
