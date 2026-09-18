@@ -74,7 +74,44 @@ export function MomentumSection() {
       <Section background="light">
       <div className="cc-home-paired-modules">
 
-        {/* Measurable cycles — Text Left, Image Right */}
+        {/* Function-first — Text Right, Image Left */}
+        <div ref={ref1} className="grid grid-cols-1 items-center gap-4 lg:grid-cols-2 lg:gap-12">
+          <motion.div
+            className="space-y-6"
+            variants={textContainer}
+            initial="hidden"
+            animate={inView1 ? "visible" : "hidden"}
+          >
+            <motion.h2
+              variants={textChild}
+              className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
+            >
+              What we mean by <em>function-first</em>.
+            </motion.h2>
+            <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
+              <p className="font-display text-2xl font-bold leading-snug text-brand-dark md:text-3xl">
+                Function-led. Not tech-led.
+              </p>
+              <p>
+                We start with what marketing needs to deliver for the business. Then we examine the work, the decisions, and the connections. Get that right and the roles and the tech follow.
+              </p>
+              <p>
+                Give the time you save a purpose. Understand customers better. Improve work that&apos;s currently rushed. Add more opportunity or eliminate cost. Decide what matters, then build around it.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="order-last flex h-auto min-h-[300px] w-full items-center justify-center overflow-hidden rounded-lg md:min-h-[400px] lg:order-first lg:min-h-[500px]"
+            initial={{ opacity: 0, x: 40, scale: 0.97 }}
+            animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <AnimatedGrowthArrow />
+          </motion.div>
+        </div>
+
+        {/* How we work — Text Left, Image Right */}
         <div ref={ref2} className="grid items-center gap-4 lg:gap-12 lg:grid-cols-2">
           <motion.div
             className="space-y-6"
@@ -115,40 +152,6 @@ export function MomentumSection() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             <PaperPlaneIllustration />
-          </motion.div>
-        </div>
-
-        {/* Function-first — Text Right, Image Left */}
-        <div ref={ref1} className="grid grid-cols-1 items-center gap-4 lg:grid-cols-2 lg:gap-12">
-          <motion.div
-            className="space-y-6"
-            variants={textContainer}
-            initial="hidden"
-            animate={inView1 ? "visible" : "hidden"}
-          >
-            <motion.h2
-              variants={textChild}
-              className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
-            >
-              What we mean by <em>function-first</em>.
-            </motion.h2>
-            <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
-              <p>
-                We start with what marketing needs to deliver for the business. Then we examine the work, the decisions, and the connections. Get that right and the roles and the tech follow.
-              </p>
-              <p>
-                Give the time you save a purpose. Understand customers better. Improve work that&apos;s currently rushed. Add more opportunity or eliminate cost. Decide what matters, then build around it.
-              </p>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="order-last flex h-auto min-h-[300px] w-full items-center justify-center overflow-hidden rounded-lg md:min-h-[400px] lg:order-first lg:min-h-[500px]"
-            initial={{ opacity: 0, x: 40, scale: 0.97 }}
-            animate={inView1 ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 40, scale: 0.97 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-          >
-            <AnimatedGrowthArrow />
           </motion.div>
         </div>
 
