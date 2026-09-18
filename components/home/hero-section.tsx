@@ -119,7 +119,7 @@ export function HeroSection() {
         .cc-hero-lockup {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
+          align-items: stretch;
           width: max-content;
         }
 
@@ -127,6 +127,11 @@ export function HeroSection() {
           display: flex;
           flex-direction: row;
           align-items: flex-end;
+          justify-content: flex-end;
+        }
+
+        .cc-hero-line-sub .cc-hero-slot {
+          width: 100%;
         }
 
         .cc-hero-slot {
@@ -162,8 +167,21 @@ export function HeroSection() {
           margin-top: 0.12em;
         }
 
-        .cc-hero-static-line + .cc-hero-static-line {
+        .cc-hero-static-pair {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          width: max-content;
+        }
+
+        .cc-hero-static-pair + .cc-hero-static-pair {
           margin-top: 0.4em;
+        }
+
+        .cc-hero-static-line {
+          display: block;
+          text-align: right;
+          white-space: nowrap;
         }
 
         @media (min-width: 768px) {
@@ -172,7 +190,7 @@ export function HeroSection() {
             font-size: clamp(3.5rem, calc((100vw - 4rem) / 6.4), 8rem);
           }
 
-          .cc-hero-static-line + .cc-hero-static-line {
+          .cc-hero-static-pair + .cc-hero-static-pair {
             margin-top: 0.28em;
           }
         }
@@ -204,13 +222,17 @@ export function HeroSection() {
             <h1 className="cc-hero-heading font-display leading-[0.95] tracking-tight text-brand-dark">
               {prefersReducedMotion ? (
                 <>
-                  <span className="cc-hero-static-line block">
-                    <em className="cc-hero-static-lead">Bolder work</em>
-                    <span className="cc-hero-static-sub"> in the world.</span>
+                  <span className="cc-hero-static-pair">
+                    <span className="cc-hero-static-line">
+                      <em className="cc-hero-static-lead">Bolder work</em>
+                    </span>
+                    <span className="cc-hero-static-line cc-hero-static-sub">in the world.</span>
                   </span>
-                  <span className="cc-hero-static-line block">
-                    <em className="cc-hero-static-lead">Less work</em>
-                    <span className="cc-hero-static-sub"> to put it there.</span>
+                  <span className="cc-hero-static-pair">
+                    <span className="cc-hero-static-line">
+                      <em className="cc-hero-static-lead">Less work</em>
+                    </span>
+                    <span className="cc-hero-static-line cc-hero-static-sub">to put it there.</span>
                   </span>
                 </>
               ) : (
@@ -222,7 +244,7 @@ export function HeroSection() {
                       <em className="cc-hero-work">&nbsp;work</em>
                     </span>
                     <span className="cc-hero-line cc-hero-line-sub">
-                      <MorphSlot from="in the world." to="to put it there." y={morphY} />
+                      <MorphSlot from="in the world." to="to put it there." y={morphY} align="end" />
                     </span>
                   </span>
                 </>
