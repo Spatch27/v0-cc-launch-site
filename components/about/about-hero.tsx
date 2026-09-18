@@ -18,8 +18,9 @@ export function AboutHero() {
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
-      className="relative min-h-svh lg:h-screen bg-brand-yellow-deep px-6 lg:px-12">
-      <div className="mx-auto flex max-w-[1400px] flex-col pt-40 lg:pt-48 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
+      className="relative flex min-h-svh flex-col bg-brand-yellow-deep px-6 lg:px-12"
+    >
+      <div className="mx-auto flex w-full min-h-svh max-w-[1400px] flex-col justify-between gap-10 pt-32 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-16 md:pt-40 md:pb-20 lg:gap-20 lg:pt-44 lg:pb-20">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,9 +33,9 @@ export function AboutHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="max-w-xl self-end text-right text-xl leading-relaxed text-brand-dark"
+          className="max-w-xl self-end text-right text-lg leading-relaxed text-brand-dark md:text-xl"
         >
-          We started Committed Citizens after seeing what happens when marketing teams are freed from operational drag. <strong>The system serves the people, and the work flies.</strong>
+          We're hands-on consultants who help CMOs redesign their marketing function for the way marketing works now. <strong>The right people make the right calls, AI does the heavy lifting, and the work flies.</strong>
         </motion.p>
       </div>
     </motion.section>

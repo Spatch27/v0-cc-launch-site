@@ -21,17 +21,17 @@ export function PurposeSection() {
       >
         <motion.div variants={fadeInUp}>
           <h2 className="mb-8 max-w-4xl font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Momentum, built-in.
+            Built from the inside.
           </h2>
           <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-dark">
             <p>
-              We've long believed that lasting change comes from people, not platforms. A small team of senior practitioners with the conviction and capability to make transformation stick. Not from the sidelines but from inside the marketing function.
+              We've both spent 25 years leading marketing teams and working inside agencies. We saw the same workflows fail again and again: approvals that stalled, handovers that dropped things, tools nobody used. When AI arrived, we saw a huge opportunity. We also saw that, handled badly, it would only make those problems worse, and faster. From inside an agency, we couldn't do much about either. So we started Committed Citizens.
             </p>
             <p>
-              Teams exhausted by transformation fatigue become energised. Marketers who were firefighting get to do the work they came to do. Boards who saw the function as a cost, start seeing it as a functioning engine of growth.
+              We work inside the marketing function, not from the sidelines. Teams worn out by the last transformation get their energy back. Marketers who were firefighting get to do the work they came to do. And marketing earns its place as an engine for growth.
             </p>
             <p className="font-bold text-brand-dark">
-              Our work creates teams that are fast, confident, and in control. A group of committed citizens doing the most effective work of their careers.
+              A group of committed citizens doing the most effective work of their careers.
             </p>
           </div>
         </motion.div>
