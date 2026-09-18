@@ -3,172 +3,255 @@
 import { useRef, useState, useEffect } from "react"
 
 const CARD_HEADER_H = 56
-const CARD_HEADER_H_MOBILE = 40
-// Scroll distance (px) allocated for each card to animate in
 const SCROLL_PER_CARD = 500
-// Extra scroll buffer after card 5 lands before the module starts scrolling away
 const TAIL_BUFFER = 50
 
 const problems = [
   {
     icon: "/icons/icon-team.svg",
     eyebrow: "TEAM",
-    heading: "Improved structure, capacity & culture.",
-    drag: "Talented people but under-performing teams. The workaround has become the culture. Teams set-up to work the way it used to work.",
-    flow: "The right people in the right roles, working effectively together.",
+    heading: "Clear ownership. Room to think.",
+    then: "Talented people in a structure built for how marketing used to work. AI takes on the tasks, but the decisions still pile up with the same few people.",
+    now: "People know what they own and what they can decide without asking.",
   },
   {
     icon: "/icons/icon-process.svg",
     eyebrow: "PROCESS",
-    heading: "Workflow redesign.",
-    drag: "Briefs that should take hours take days. Flawed approval loops and broken systems. Each \"fix\" adds another step.",
-    flow: "Clear decision rights, protected focus, genuine ownership.",
+    heading: "Work that flows end to end.",
+    then: "A task that takes minutes sits in approval for days. Every fix adds another step. The doing speeds up and the queue stays put.",
+    now: "Fewer handovers, clear decision rights, and AI built into the workflow, not bolted on.",
   },
   {
     icon: "/icons/icon-data.svg",
     eyebrow: "DATA",
     heading: "Trusted numbers & decision making.",
-    drag: "Marketing's dashboard says one thing, finance says another. Every decision becomes a debate about numbers instead of what to do next.",
-    flow: "A single, agreed view of what's happening, why, and what to do next.",
+    then: "Marketing's dashboard says one thing, finance says another. AI can analyse anything, but nobody trusts what goes in.",
+    now: "Numbers people agree on, early enough to shape a campaign before launch, not explain it after.",
   },
   {
     icon: "/icons/icon-technology.svg",
     eyebrow: "TECH",
-    heading: "Maximum utility, zero redundancy.",
-    drag: "Licences auto-renew for platforms nobody opens. Half the team still lives in spreadsheets. \"Tool work\" steals time from customer work.",
-    flow: "A leaner, better-loved stack built around how people actually work.",
+    heading: "Tech that earns its place.",
+    then: "Licences renew for platforms nobody opens. Every new AI tool promises the answer. The stack gets blamed for problems it didn't cause.",
+    now: "A leaner stack where every tool and agent is there for a reason, and someone owns it.",
   },
-]
+] as const
+
+type Area = (typeof problems)[number]
+
+function headerBg(index: number) {
+  return index % 2 === 0 ? "bg-[#FFEB3E]" : "bg-[#FFD100]"
+}
+
+function AreaCardBody({ item, headerHeight }: { item: Area; headerHeight?: number }) {
+  return (
+    <>
+      <div
+        className="flex items-center gap-3 px-6 text-brand-dark md:px-8"
+        style={headerHeight ? { height: `${headerHeight}px` } : { minHeight: "2.75rem" }}
+      >
+        <img
+          src={item.icon}
+          alt=""
+          className="h-8 w-8 shrink-0 md:h-10 md:w-10"
+          style={{ filter: "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)" }}
+        />
+        <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
+      </div>
+      <div className="bg-gray-100 p-6 md:p-8 lg:p-12">
+        <h3 className="mb-6 font-display text-2xl font-bold leading-tight text-brand-dark md:mb-8 md:text-3xl lg:text-4xl">
+          {item.heading}
+        </h3>
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div>
+            <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">BUILT FOR THEN</div>
+            <p className="text-base leading-relaxed text-brand-dark">{item.then}</p>
+          </div>
+          <div className="border-l-4 border-[#FF8600] pl-4">
+            <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">BUILT FOR NOW</div>
+            <p className="text-base leading-relaxed text-brand-dark">{item.now}</p>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
 
 export function WhatLooksLikeSection() {
   const outerRef = useRef<HTMLDivElement>(null)
   const [navHeight, setNavHeight] = useState(80)
   const [outerHeight, setOuterHeight] = useState(2800)
   const [cardTranslates, setCardTranslates] = useState<number[]>(problems.map(() => 0))
-  const [isMobile, setIsMobile] = useState(false)
-
-  const effectiveHeaderH = isMobile ? CARD_HEADER_H_MOBILE : CARD_HEADER_H
 
   useEffect(() => {
     const nav = document.querySelector("header")
     const navH = nav ? nav.offsetHeight : 80
     setNavHeight(navH)
 
-    // Detect if mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768) // md breakpoint
-    }
-    checkMobile()
-
-    // Total height = scroll runway for all card transitions + buffer after last card + viewport
-    // The sticky element unsticks when: scrolled >= outerHeight - viewportHeight
-    // We want that to happen after all cards have landed + TAIL_BUFFER
-    // All cards land at: (problems.length - 1) * SCROLL_PER_CARD
-    // So: outerHeight - viewportHeight = (n-1)*SCROLL_PER_CARD + TAIL_BUFFER
-    // outerHeight = (n-1)*SCROLL_PER_CARD + TAIL_BUFFER + viewportHeight
-    setOuterHeight((problems.length - 1) * SCROLL_PER_CARD + TAIL_BUFFER + window.innerHeight)
-
-    const handleScroll = () => {
+    const updateDesktopStack = () => {
+      if (window.innerWidth < 768) return
       if (!outerRef.current) return
-      const rect = outerRef.current.getBoundingClientRect()
-      // scrolled = how many px we've scrolled past the top of the outer section
-      const scrolled = Math.max(0, -rect.top)
 
+      setOuterHeight((problems.length - 1) * SCROLL_PER_CARD + TAIL_BUFFER + window.innerHeight)
+
+      const rect = outerRef.current.getBoundingClientRect()
+      const scrolled = Math.max(0, -rect.top)
       const translates = problems.map((_, i) => {
-        if (i === 0) return 0 // Card 1 is already in place
+        if (i === 0) return 0
         const start = (i - 1) * SCROLL_PER_CARD
         const end = i * SCROLL_PER_CARD
         const progress = Math.max(0, Math.min(1, (scrolled - start) / (end - start)))
-        // Starts 600px below its final position, slides up to 0
         return (1 - progress) * 600
       })
       setCardTranslates(translates)
     }
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("resize", checkMobile)
-    handleScroll()
+    updateDesktopStack()
+    window.addEventListener("scroll", updateDesktopStack, { passive: true })
+    window.addEventListener("resize", updateDesktopStack)
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", checkMobile)
+      window.removeEventListener("scroll", updateDesktopStack)
+      window.removeEventListener("resize", updateDesktopStack)
     }
   }, [])
 
+  const stackHeight = 400 + problems.length * CARD_HEADER_H
+
   return (
-    // Outer section — provides scroll runway. Once exhausted, the sticky block unsticks
-    // and the whole module (title + all headers + card 5) scrolls away as one.
-    <div
-      ref={outerRef}
-      className="relative bg-white pt-16 lg:pt-24"
-      style={{ height: `${outerHeight}px` }}
-    >
-      {/* Single sticky block — sits flush under nav when stuck, padded at rest via outer pt */}
+    <>
+      <style>{`
+        .cc-areas {
+          background: #fff;
+          padding-top: 4rem;
+          padding-bottom: var(--cc-mobile-nav-offset, 6.5rem);
+          height: auto !important;
+        }
+
+        .cc-areas-sticky {
+          position: static;
+          overflow: visible;
+          background: #fff;
+        }
+
+        .cc-areas-title {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0.5rem 1.5rem 1.5rem;
+        }
+
+        .cc-areas-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          height: auto !important;
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+
+        .cc-areas-card {
+          position: relative !important;
+          top: auto !important;
+          transform: none !important;
+          width: 100%;
+        }
+
+        .cc-areas-card-frame {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        @media (min-width: 768px) {
+          .cc-areas {
+            position: relative;
+            padding-top: 4rem;
+            padding-bottom: 0;
+            height: var(--cc-areas-runway, 2800px) !important;
+          }
+
+          .cc-areas-sticky {
+            position: sticky;
+            top: var(--cc-areas-nav, 80px);
+            overflow: hidden;
+          }
+
+          .cc-areas-title {
+            padding: 1rem 3rem 1.5rem;
+          }
+
+          .cc-areas-stack {
+            display: block;
+            position: relative;
+            gap: 0;
+            height: var(--cc-areas-stack-h, 624px) !important;
+            max-width: none;
+            padding: 0;
+          }
+
+          .cc-areas-card {
+            position: absolute !important;
+            top: var(--cc-areas-card-top, 0px) !important;
+            transform: translateY(var(--cc-areas-card-y, 0px)) !important;
+            will-change: transform;
+          }
+
+          .cc-areas-card-frame {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .cc-areas {
+            padding-top: 6rem;
+          }
+
+          .cc-areas-card-frame {
+            padding: 0 3rem;
+          }
+        }
+      `}</style>
       <div
-        className="sticky overflow-hidden bg-white"
-        style={{ top: `${navHeight}px` }}
+        ref={outerRef}
+        className="cc-areas"
+        style={{
+          ["--cc-areas-runway" as string]: `${outerHeight}px`,
+          ["--cc-areas-stack-h" as string]: `${stackHeight}px`,
+          ["--cc-areas-nav" as string]: `${navHeight}px`,
+        }}
       >
-        {/* Title */}
-        <div className="bg-white px-6 pb-4 pt-4 lg:px-12">
-          <div className="mx-auto max-w-[1400px]">
+        <div className="cc-areas-sticky">
+          <div className="cc-areas-title">
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-              Momentum leads to flow.
+              Four areas.
             </h2>
+            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-brand-dark">
+              Most of what holds marketing back sits between them: a decision waiting on data, a tool nobody owns, a process built for a team that&apos;s since changed.
+            </p>
           </div>
-        </div>
-
-        {/* Card stack — cards translate in from below, stacking on top of each other */}
-        <div className="relative" style={{ height: `${400 + problems.length * effectiveHeaderH}px` }}>
-          {problems.map((item, i) => {
-            // Each card's final resting top = i * effectiveHeaderH (stacked headers)
-            const finalTop = i * effectiveHeaderH
-            const translateY = cardTranslates[i] ?? 0
-            // Alternate header colors: pink for indices 0,2,4 (CUSTOMER, DATA, TECHNOLOGY)
-            // text-brand-dark for indices 1,3 (TEAM, PROCESS)
-            const isOrange = i % 2 === 0
-            const headerBgColor = isOrange ? "bg-[#FFEB3E]" : "bg-[#FFD100]"
-            const headerTextColor = isOrange ? "text-brand-dark" : "text-brand-dark"
-            const iconFilter = isOrange ? "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)" : "brightness(0) saturate(100%) invert(0.1) sepia(0) hue-rotate(0deg)"
-
-            return (
+          <div className="cc-areas-stack">
+            {problems.map((item, i) => (
               <div
                 key={item.eyebrow}
-                className="absolute w-full"
+                className="cc-areas-card"
                 style={{
-                  top: `${finalTop}px`,
-                  transform: `translateY(${translateY}px)`,
+                  ["--cc-areas-card-top" as string]: `${i * CARD_HEADER_H}px`,
+                  ["--cc-areas-card-y" as string]: `${cardTranslates[i] ?? 0}px`,
                   zIndex: i + 1,
-                  willChange: "transform",
                 }}
               >
-                <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-                  <div
-                    className={`flex items-center gap-3 ${headerBgColor} px-8 ${headerTextColor}`}
-                    style={{ height: `${effectiveHeaderH}px` }}
-                  >
-                    <img src={item.icon} alt={item.eyebrow} className="h-10 w-10 shrink-0" style={{ filter: iconFilter }} />
-                    <span className="text-sm font-bold tracking-widest">{item.eyebrow}</span>
-                  </div>
-                  <div className="bg-gray-100 p-8 lg:p-12">
-                    <h3 className="mb-8 font-display text-3xl font-bold leading-tight text-brand-dark lg:text-4xl">
-                      {item.heading}
-                    </h3>
-                    <div className="grid gap-8 lg:grid-cols-2">
-                      <div>
-                        <div className="mb-3 text-xs font-bold tracking-widest text-brand-dark">DRAG</div>
-                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.drag}</p>
-                      </div>
-                      <div>
-                        <div className="mb-3 text-xs font-bold tracking-widest text-[#FF8600]">FLOW</div>
-                        <p className="text-base leading-relaxed" style={{ color: "#181716" }}>{item.flow}</p>
-                      </div>
-                    </div>
+                <div className="cc-areas-card-frame">
+                  <div className={headerBg(i)}>
+                    <AreaCardBody item={item} headerHeight={CARD_HEADER_H} />
                   </div>
                 </div>
               </div>
-            )
-          })}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

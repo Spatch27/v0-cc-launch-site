@@ -21,14 +21,11 @@ export function WorkflowsBehaviourSection() {
       >
         <div>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Everyone gets a jetpack.
+            Do things better. Do better things.
           </h2>
           <div className="space-y-6">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We start with the business need and assess how your people get work done: where time goes, which decisions stall, and what gets in their way. Then we enable people to do more effective work - sometimes aided by agentic automations.
-            </p>
-            <p className="text-lg leading-relaxed text-brand-dark">
-              Every change should give the team more lift. More confidence and capability. Less effort spent working around the system.
+              We look at how the work really gets done: where time goes, which decisions stall and who owns what. Then we define with your team where ownership, specialist skills and automation belong. Roles will change, and the people help shape what comes next.
             </p>
           </div>
         </div>

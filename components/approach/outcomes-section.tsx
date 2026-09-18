@@ -25,10 +25,10 @@ export function OutcomesSection() {
           </h2>
           <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
-              Most transformation programmes are designed to sell a platform, not to fix value leakage. Over 40% of the average marketing budget goes on technology and the agencies that implement it. Less than a third reaches your customers.
+              Before we build we agree what success looks like. We measure against the starting point, and we distinguish the observable change from business results that take longer to land. Saved time is capacity; we look at how it gets used before claiming a return.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              We're platform-agnostic. No tech tie-ins, no renewal cycles to protect. Your operating model gets shaped around your team's needs - and the needs of the business - not someone else's contract terms.
+              We have no platform to sell and no licences to protect. Your workflows get shaped around what your business needs, not someone else&apos;s contract terms.
             </p>
           </div>
         </div>

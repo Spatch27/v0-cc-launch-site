@@ -3,7 +3,6 @@ import { HeroPhilosophy } from "@/components/approach/hero-philosophy"
 import { WorkflowsBehaviourSection } from "@/components/approach/workflows-behaviour-section"
 import { AIPropellantSection } from "@/components/approach/ai-propellant-section"
 import { OutcomesSection } from "@/components/approach/outcomes-section"
-import { ApproachPhilosophySection } from "@/components/approach/approach-philosophy-section"
 import { PhilosophySection } from "@/components/approach/philosophy-section"
 import { MomentumSection } from "@/components/approach/momentum-section"
 import { EngagementsSection } from "@/components/approach/engagements-section"
@@ -53,14 +52,13 @@ export default function ApproachPage() {
       <WorkflowsBehaviourSection />
       <AIPropellantSection />
       <OutcomesSection />
-      <ApproachPhilosophySection />
       <MomentumSection />
       <PhilosophySection />
       <EngagementsSection />
       <CtaBand
         heading="Before committing a budget, commit an hour."
         body={[
-          "Book a free Waypoint - a structured 60-minute conversation that shows you exactly where operational drag is costing you the most."
+          "Book a free Waypoint: 60 minutes with the founders to find the campaign to start with and where AI can make it better.",
         ]}
         ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"

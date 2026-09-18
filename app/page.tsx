@@ -6,12 +6,12 @@ import { canonicalAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Marketing Operations Consultancy | Committed Citizens UK",
   description:
-    "Marketing operations and transformation consultancy for CMOs. We help marketing teams remove operational drag and streamline workflows through embedded consulting and product team practices.",
+    "We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.",
   alternates: canonicalAlternates("/"),
   openGraph: {
-    title: "Marketing Operations Consultancy | Committed Citizens",
+    title: "Bolder work in the world | Committed Citizens",
     description:
-      "Marketing operations and transformation consultancy for CMOs. We help marketing teams remove operational drag and streamline workflows.",
+      "We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.",
     url: "https://www.committedcitizens.co.uk",
     type: "website",
     locale: "en_GB",
@@ -21,16 +21,16 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Committed Citizens - Freedom from drag",
+        alt: "Committed Citizens — Bolder work in the world. Less work to put it there.",
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Committed Citizens | Freedom from drag",
+    title: "Bolder work in the world | Committed Citizens",
     description:
-      "We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.",
+      "We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.",
     images: ["/og-image.jpg"],
   },
 }

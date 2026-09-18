@@ -76,7 +76,7 @@ export function Footer() {
               </h3>
               <div data-supascribe-embed-id="351913576742" data-supascribe-subscribe />
               <p className="mt-4 max-w-xs text-sm text-brand-dark">
-                Original thinking on marketing, transformation, and removing operational drag. No spam, ever.
+                Original thinking on marketing, AI and how the work gets done. No spam, ever.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-10 lg:gap-16 flex-shrink-0 lg:mr-0">
@@ -122,7 +122,7 @@ export function Footer() {
         </div>
       </div>
       <div className="relative z-10 border-t border-brand-dark/10 px-6 lg:px-12">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4 pb-24 lg:pb-4">
+        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4">
           <p className="text-xs text-brand-dark">
             &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
           </p>
@@ -151,6 +151,10 @@ export function Footer() {
           </div>
         </div>
       </div>
+      <div
+        className="relative z-10 h-[calc(6.5rem+env(safe-area-inset-bottom,0px))] md:hidden"
+        aria-hidden
+      />
     </footer>
   )
 }

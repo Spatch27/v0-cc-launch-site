@@ -26,14 +26,14 @@ export function AIPropellantSection() {
         </div>
         <div className="order-first lg:order-last">
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            AI as a propellant.
+            AI is no silver bullet.
           </h2>
           <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We&apos;re not an AI consultancy. We&apos;re a transformation consultancy that knows how to put AI to work. Most consultancies sell AI as the solution. We treat it as one part of the solution - powerful when it&apos;s embedded properly, wasteful when it isn&apos;t.
+              We&apos;re marketing consultants who put AI to work inside your function. AI is the propellant: it can help your team explore more possibilities, use evidence earlier, and automate busy-work that previously consumed time. Every agent gets an owner, clear limits and a way to check it&apos;s working.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              We start with how your marketing actually operates - and work out where AI removes drag and where it creates new capability. Not every task requires an agent. And where they do, we redesign the workflows around them.
+              We help you to decide what to do with the time that you save. This isn&apos;t a race to cut costs, it&apos;s a licence to create more effective marketing.
             </p>
           </div>
         </div>

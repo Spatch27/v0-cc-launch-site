@@ -33,9 +33,9 @@ export function InsightsListing({
       <motion.section
         ref={sectionRef}
         style={{ scale, opacity }}
-        className="relative min-h-svh lg:h-screen bg-brand-light px-6 lg:px-12"
+        className="relative flex min-h-svh flex-col bg-brand-light px-6 lg:px-12"
       >
-        <div className="mx-auto flex max-w-[1400px] flex-col pt-40 lg:pt-48 pb-24 lg:pb-16 gap-52 lg:gap-32 lg:h-full lg:justify-between">
+        <div className="mx-auto flex w-full min-h-svh max-w-[1400px] flex-col justify-between gap-10 pt-32 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-16 md:pt-40 md:pb-20 lg:gap-20 lg:pt-44 lg:pb-20">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -48,9 +48,9 @@ export function InsightsListing({
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-2xl self-end text-right text-xl leading-relaxed text-brand-dark"
+            className="max-w-2xl self-end text-right text-lg leading-relaxed text-brand-dark md:text-xl"
           >
-            We've spent years inside marketing functions watching the same gaps appear between what transformation promises and what it actually delivers. Here we share what we've learned - short pieces on dumping drag, mobilising momentum, transforming teams, and the future of how marketing works. <strong>Written by practitioners, not theorists.</strong>
+            We've spent years inside marketing functions, watching the same gap open up between what change promises and what it delivers. AI is widening that gap for some teams and closing it for others. Here we share what we've learned: short pieces on how marketing work gets done, where AI makes it better and what the marketing function of the future looks like. <strong>Written by practitioners, not theorists.</strong>
           </motion.p>
         </div>
       </motion.section>

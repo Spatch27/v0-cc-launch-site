@@ -9,6 +9,7 @@ interface OutcomeStudy {
   title: string
   project: string
   description: string
+  afterMetrics?: string
   metrics: { value: string; label: string }[]
   testimonial: string
   accentColor: string
@@ -16,10 +17,27 @@ interface OutcomeStudy {
 
 const allCaseStudies: OutcomeStudy[] = [
   {
+    client: "Top 5 retailer",
+    title: "Workarounds had become the work",
+    project: "Workflow redesign, agentic tools, training and change management",
+    description:
+      "The team was capable, but its tools weren't serving it. Time that should have gone on marketing was going on workarounds nobody questioned any more.\n\nWe redesigned the workflow, built agentic AI tools to take out the manual steps and ran the change programme with the team. The work got faster, and the team felt the difference within six weeks:",
+    metrics: [
+      { value: "100%", label: "team adoption" },
+      { value: "1,300", label: "hours saved in year one" },
+    ],
+    afterMetrics:
+      "Those hours went straight back into marketing. The team used them to get to grips with GEO, getting the brand ready for AI search while it was still an emerging discipline.",
+    testimonial:
+      "They demonstrated a great understanding of the way we work, and quickly delivered tech and tools as part of an evolved workflow.",
+    accentColor: "#fc66a7",
+  },
+  {
     client: "Global home security company",
-    title: "Customers falling through the gaps",
-    project: "Email marketing workflow re-engineering across EMEA",
-    description: "Customer intent was being missed because the handoffs between teams and platforms couldn't respond fast enough. Emails were going out late, to the wrong segments, or not at all. The workflow - not the platform - was the problem.\n\nWe re-engineered the end-to-end email workflow. Campaign cycle time dropped from 3 weeks to 6 days, resulting in:",
+    title: "Campaigns too slow to catch the customer",
+    project: "Email campaign workflow rebuilt across EMEA",
+    description:
+      "Customers were showing intent, but campaigns couldn't respond in time. Handovers between teams and platforms meant emails went out late, to the wrong segments, or not at all. The platform wasn't the problem. The workflow was.\n\nWe rebuilt the email workflow end to end. Campaign cycle time dropped from 3 weeks to 6 days, and:",
     metrics: [
       { value: "80%", label: "reduction in errors across 11 languages" },
       { value: "50%", label: "revenue increase in key campaigns" },
@@ -27,49 +45,36 @@ const allCaseStudies: OutcomeStudy[] = [
     ],
     testimonial:
       "They've enabled us to get the results we always wanted out of an expensive, integrated system.",
-    accentColor: "#fc66a7",
+    accentColor: "#ff8600",
   },
   {
     client: "Leading IT consultancy",
     title: "Flying blind on what's working",
     project: "Stack simplification and realignment / CX improvements",
-    description: "The stack had grown but trust in the data hadn't. Decisions were being made on instinct because dashboards couldn't be relied on. Journey breaks were going undetected until customers had already left.\n\nWe simplified the stack, rebuilt the data flows, and gave the team reporting they could actually act on:",
+    description:
+      "The stack had grown but trust in the data hadn't. Decisions came down to instinct because nobody could rely on the dashboards. Journeys were breaking, and nobody noticed until customers had gone.\n\nWe simplified the stack, cleaned up the workflows so everyone knew who did what, and rebuilt the data flows. The confusion went, and the team got reporting it could act on:",
     metrics: [
       { value: "60%", label: "increase in customer identity resolution" },
       { value: "250%", label: "traffic growth through organic channels" },
       { value: "300%", label: "uplift to conversion rates on campaign forms" },
     ],
     testimonial:
-      "They delivered a brilliant experience — great stakeholder mapping, flawless execution, and well-embedded adoption.",
-    accentColor: "#ff8600",
+      "They delivered a brilliant experience - great stakeholder mapping, flawless execution, and well-embedded adoption.",
+    accentColor: "#ffd100",
   },
   {
     client: "Top 10 wealth and asset management company",
-    title: "Paying for tech nobody's really using",
-    project:
-      "Business transformation, web integration, and marketing team alignment",
-    description: "A new digital experience that brought IT and marketing together for the first time. A new composable stack with a unified design system spanning both agency and inhouse platforms.\n\nWe created personalised journeys for key audiences and supported content operations that grew as the team did.",
+    title: "Five platforms, no single story",
+    project: "Business transformation, web integration, and marketing team alignment",
+    description:
+      "IT and marketing had never worked together like this before. Content was spread across five platforms, split between agency and in-house teams.\n\nWe brought in a new composable stack with one design system, and redesigned the workflows around it so both teams could use it well. We built personalised journeys for key audiences and set up content operations that grew with the team. The team came out more confident, delivering faster and more consistently:",
     metrics: [
       { value: "100%", label: "increase in content production capability" },
       { value: "5", label: "different content platforms reduced to a single headless CMS" },
       { value: "25%", label: "more traffic to a new consolidated site than the 2 it replaced" },
     ],
     testimonial:
-      "A business critical transformation at a crucial time for us — they executed it brilliantly.",
-    accentColor: "#ffd100",
-  },
-  {
-    client: "Top 5 UK retailer",
-    title: "Workarounds become the work",
-    project:
-      "Workflow assessment, agentic tool creation, training and change management",
-    description: "The team was capable but the tools weren't serving them. A workflow assessment revealed that time which should have been spent on marketing was being lost to workarounds that had quietly become standard practice.\n\nWe redesigned the workflow, built agentic AI tools to eliminate the manual steps, and ran the change programme to embed new ways of working. Impact felt within six weeks:",
-    metrics: [
-      { value: "100%", label: "team adoption" },
-      { value: "1,300", label: "man-hours saved in Year 1" },
-    ],
-    testimonial:
-      "They demonstrated a great understanding of the way we work, and quickly delivered tech and tools as part of an evolved workflow.",
+      "A business critical transformation at a crucial time for us - they executed it brilliantly.",
     accentColor: "#fc66a7",
   },
 ]
@@ -112,6 +117,12 @@ export function OutcomesCaseStudies() {
                   </div>
                 ))}
               </div>
+
+              {study.afterMetrics ? (
+                <div className="mt-8 leading-relaxed text-brand-dark">
+                  {study.afterMetrics}
+                </div>
+              ) : null}
             </div>
 
             {/* Right: testimonial */}

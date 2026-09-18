@@ -42,8 +42,8 @@ export default function OutcomesPage() {
       <CtaBand
         heading="See how we'd approach your challenge."
         body={[
-          "Waypoint is a free 60-minute working session. The hour is spent on your business, your team and the drag getting in their way.",
-          "Within 48 hours, you receive a two-page Waypoint Marker: a clear view of what is holding you back and where to begin, written in language you can take into a budget conversation. It is yours to keep, whether we work together or not."
+          "Waypoint is a free 60-minute session with the founders. No pitch. We do the homework on your business first, so the hour goes on your team, your ambitions and the best place to start.",
+          "Within 48 hours you get a two-page Waypoint Marker: where your function stands, the campaign to start with and where AI can make it better. It's yours to keep, whether we work together or not.",
         ]}
         ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"

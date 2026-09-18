@@ -13,6 +13,7 @@
   --brand-yellow-deep: #ffd100;
   --brand-white: #ffffff;
   --brand-grey: #9a9490;
+  --cc-mobile-nav-offset: calc(6.5rem + env(safe-area-inset-bottom, 0px));
 
   /* Semantic tokens */
   --background: #e3dcdc;
@@ -38,8 +39,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Inter Fallback', sans-serif;
-  --font-display: 'Bricolage Grotesque', 'Bricolage Grotesque Fallback', sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-bricolage), sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
 
   /* Brand Colors */
@@ -84,8 +85,11 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
     position: relative;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display), sans-serif;
   }
 }
 
@@ -96,6 +100,17 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
+  scroll-padding-bottom: var(--cc-mobile-nav-offset, 0px);
+}
+
+:root {
+  --cc-mobile-nav-offset: calc(6.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  :root {
+    --cc-mobile-nav-offset: 0px;
+  }
 }
 
 body {

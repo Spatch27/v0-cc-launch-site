@@ -12,15 +12,15 @@ Important notes for agents:
 ## Company
 - [Homepage](https://www.committedcitizens.co.uk/): Positioning and overview — Freedom from drag.
 - [About](https://www.committedcitizens.co.uk/about): Founders Tim Burley and Ben Scoggins; how the small senior team and advisory board work.
-- [Approach](https://www.committedcitizens.co.uk/approach): Method — Fix This First, Cadence Loop, Telemetry Stack; AI as propellant not the product.
+- [Approach](https://www.committedcitizens.co.uk/approach): Method — Build This First, Cadence Loop, Proof Points; AI as propellant, not a silver bullet.
 - [Outcomes](https://www.committedcitizens.co.uk/outcomes): Example results from workflow, stack, transformation, and agentic-tool engagements.
 - [Gap](https://www.committedcitizens.co.uk/gap): Five questions on where the gap is in your marketing; we send a short video on where we’d start.
 - [Contact / Waypoint](https://www.committedcitizens.co.uk/contact): Free 60-minute Waypoint with founders; Waypoint Marker within 48 hours.
 
 ## Products
-- [Flow6](https://www.committedcitizens.co.uk/approach): Six-week drag diagnostic, Flow Map, and Progress Plan. From £20k.
-- [Fix6](https://www.committedcitizens.co.uk/approach): Six-week build-and-prove fix with the client team. From £40k.
-- [Momentum6](https://www.committedcitizens.co.uk/approach): Rolling six-week cycles toward a new marketing operating model. From £5k/week.
+- [Bearing3](https://www.committedcitizens.co.uk/approach): Three-week team scan of the marketing function. Up to £20K.
+- [Flow6](https://www.committedcitizens.co.uk/approach): First six-week cycle rebuilding one campaign with the client team. Up to £40k.
+- [Momentum6](https://www.committedcitizens.co.uk/approach): Rolling six-week cycles toward a redesigned marketing function. Up to £40k per cycle.
 
 ## Insights
 - [Insights index](https://www.committedcitizens.co.uk/insights): Practitioner essays on operational drag, momentum, teams, and how marketing works.

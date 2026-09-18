@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Inter, Bricolage_Grotesque } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
@@ -11,13 +11,13 @@ import './globals.css'
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'optional',
+  display: 'swap',
 })
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-bricolage',
-  display: 'optional',
+  display: 'swap',
   weight: ['400', '500', '600', '700', '800'],
 })
 
@@ -63,6 +63,10 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  viewportFit: 'cover',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -87,6 +91,7 @@ export default function RootLayout({
   --card-foreground: #181716;
   --border: #cbc4c4;
   --radius: 0rem;
+  --cc-mobile-nav-offset: calc(6.5rem + env(safe-area-inset-bottom, 0px));
 }
 
 html {
@@ -103,11 +108,17 @@ body {
   overflow-x: clip;
   margin: 0;
   padding: 0;
+  font-family: var(--font-inter), sans-serif;
 }
 
 * {
   border-color: var(--border);
   outline-color: var(--brand-pink);
+}
+
+.cc-cta-button {
+  border: 2px solid var(--brand-dark);
+  border-color: var(--brand-dark);
 }
 
 #CookiebotWidget {
@@ -116,7 +127,7 @@ body {
 
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-bricolage), sans-serif;
   font-weight: 600;
   line-height: 1.2;
   margin: 0;
@@ -124,7 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -295,7 +306,7 @@ p {
 }
 
 .font-display {
-  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-bricolage), sans-serif;
 }
 
 .leading-relaxed {

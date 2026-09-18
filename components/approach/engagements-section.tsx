@@ -3,43 +3,37 @@
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
-import { ArrowRight } from "lucide-react"
-import Link from "next/link"
 
 const engagements = [
   {
-    name: "Flow6",
+    name: "Bearing3",
     description: [
-      "Our Drag Diagnostic assesses where momentum is lost and what that drag is costing you.",
-      "Our Flow Map plots Team, Process, Data and Tech. The map shows where work is slow, where the team is ready to move and what to fix first.",
-      "Our Progress Plan aligns your team, validates priorities and agrees the metrics for success. Together, we build a plan to liberate your team and unlock growth.",
-      "BOARD-READY IN SIX WEEKS.",
+      "A team scan of your business. Not a hackathon — we start with the function not the tech. Interviews with the CMO's key team. A half-day workshop with heads of department to test hypotheses. You get priorities mapped and how to address them.",
     ],
-    duration: "SIX WEEKS",
+    tagline: "Clarity & understanding.",
+    duration: "THREE WEEKS",
     accentColor: "bg-brand-pink",
-    price: "From £20k",
+    price: "Up to £20K",
   },
   {
-    name: "Fix6",
+    name: "Flow6",
     description: [
-      "We always start with a clear focus on the next best action, and we build the fix with your team and prove it through live work. That could mean restructuring roles, remapping workflows, or implementing agentic solutions. We measure the result against the baseline, capture the evidence and recommend the next move.",
-      "RESULTS IN A QUARTER.",
+      "Your first six-week cycle. We rebuild one campaign with your team across Team, Process, Data and Tech, with AI as the propellant. That could mean new decision rights, a redesigned workflow, or agents that take on the manual steps. You get a campaign that flows better, measured on speed and quality against how it ran before, and a clear view of what to tackle next.",
     ],
+    tagline: "Results in six weeks.",
     duration: "SIX WEEKS",
     accentColor: "bg-brand-orange",
-    price: "From £40k",
+    price: "Up to £40k",
   },
   {
     name: "Momentum6",
     description: [
-      "Continuous improvement compounds to build a better engine.",
-      "A rolling programme of 6-week cycles, drawing on a suite of 59 customisable products covering 7 key areas. Every step creates value while adding up to something bigger: a new, more capable marketing operating model.",
-      "PERMANENTLY.",
+      "The first campaign opens up the next opportunities: more campaigns, how the team is structured, how marketing works with the rest of the business. Each cycle takes one on and stands on its own. Together they add up to a redesigned marketing function.",
     ],
+    tagline: "One cycle at a time.",
     duration: "SIX-WEEK ROLLING",
     accentColor: "bg-brand-yellow-deep",
-    price: "From £5k",
-    priceNote: "/ week",
+    price: "Up to £40k per cycle",
   },
 ]
 
@@ -49,7 +43,7 @@ export function EngagementsSection() {
       {/* Header */}
       <motion.div variants={fadeInUp} className="mb-20">
         <h2 className="font-display text-4xl font-bold leading-snug text-brand-white md:text-5xl">
-          Products that drive growth.
+          Products that build momentum.
         </h2>
       </motion.div>
 
@@ -91,19 +85,18 @@ export function EngagementsSection() {
                 ))}
               </div>
 
+              {engagement.tagline && (
+                <p className="mt-6 text-xs font-semibold tracking-[0.15em] uppercase text-brand-white/50">
+                  {engagement.tagline}
+                </p>
+              )}
+
               {/* Pricing */}
               {engagement.price && (
                 <div className="border-t border-brand-white/10 mt-8 pt-6">
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-display text-3xl font-bold text-brand-white">
-                      {engagement.price}
-                    </span>
-                    {engagement.priceNote && (
-                      <span className="text-sm text-brand-white/40">
-                        {engagement.priceNote}
-                      </span>
-                    )}
-                  </div>
+                  <span className="font-display text-3xl font-bold text-brand-white">
+                    {engagement.price}
+                  </span>
                 </div>
               )}
             </div>

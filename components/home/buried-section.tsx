@@ -34,15 +34,15 @@ export function BuriedSection() {
             variants={textChild}
             className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
           >
-            You hired brilliant marketers. Then they got buried.
+            AI makes the doing faster. The work still waits.
           </motion.h2>
 
           <motion.div variants={textChild} className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
-              Briefs that should take days, take weeks. Dashboards nobody trusts. Expensive martech gathering dust. AI stuck in pilot. Your best people spending more time unblocking work than doing it.
+              A brief takes minutes to write and a week to sign off. Your team produces more ideas, assets and analysis than ever, and nobody&apos;s sure what to act on. The platform takes the blame, but the problem sits in how the work moves.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              Your talent isn&apos;t the problem, your operating model is. We work alongside your team to rebuild it, closing the gap between strategy and execution.
+              Every part of the business is working out what AI means for it. Marketing should be leading that conversation, with a clear view of what it can now do better. The functions that work this out now will pull ahead. The rest will spend the next few years catching up.
             </p>
           </motion.div>
         </motion.div>
