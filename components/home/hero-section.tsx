@@ -32,6 +32,40 @@ function MorphSlot({
   )
 }
 
+/** Second-line morph whose left edge tracks Bolder → Less, not the full first-line unit. */
+function SubMorphSlot({
+  from,
+  to,
+  fromGhost,
+  toGhost,
+  y,
+}: {
+  from: string
+  to: string
+  fromGhost: string
+  toGhost: string
+  y: MotionValue<string>
+}) {
+  return (
+    <span className="cc-hero-sub-slot">
+      <motion.span className="cc-hero-slot-inner" style={{ y }}>
+        <span className="cc-hero-sub-row">
+          <span className="cc-hero-ghost-wrap">
+            <em className="cc-hero-ghost">{fromGhost}</em>
+            <span className="cc-hero-phrase">{from}</span>
+          </span>
+        </span>
+        <span className="cc-hero-sub-row">
+          <span className="cc-hero-ghost-wrap">
+            <em className="cc-hero-ghost">{toGhost}</em>
+            <span className="cc-hero-phrase">{to}</span>
+          </span>
+        </span>
+      </motion.span>
+    </span>
+  )
+}
+
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const prefersReducedMotion = useReducedMotion()
@@ -72,6 +106,7 @@ export function HeroSection() {
         .cc-hero-heading em,
         .cc-hero-heading .cc-hero-phrase,
         .cc-hero-heading .cc-hero-work,
+        .cc-hero-heading .cc-hero-ghost,
         .cc-hero-heading .cc-hero-static-lead,
         .cc-hero-heading .cc-hero-static-sub {
           font-family: inherit;
@@ -79,17 +114,19 @@ export function HeroSection() {
 
         .cc-hero-line-lead,
         .cc-hero-line-lead em,
-        .cc-hero-work {
+        .cc-hero-work,
+        .cc-hero-ghost {
           font-style: italic;
           font-weight: 800;
         }
 
-        .cc-hero-slot em {
-          padding-inline-end: 0.12em;
+        .cc-hero-slot em,
+        .cc-hero-ghost {
+          padding-inline-end: 0.26em;
         }
 
         .cc-hero-line-sub,
-        .cc-hero-line-sub .cc-hero-phrase {
+        .cc-hero-sub-slot .cc-hero-phrase {
           font-style: normal;
           font-weight: 500;
         }
@@ -117,28 +154,43 @@ export function HeroSection() {
         }
 
         .cc-hero-lockup {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
+          display: grid;
+          grid-template-columns: max-content max-content;
+          grid-template-rows: auto auto;
           width: max-content;
+          column-gap: 0;
         }
 
-        .cc-hero-line {
-          display: flex;
-          flex-direction: row;
-          align-items: flex-end;
-          justify-content: flex-end;
-        }
-
-        .cc-hero-line-sub .cc-hero-slot {
-          width: 100%;
+        .cc-hero-line-lead {
+          display: contents;
         }
 
         .cc-hero-slot {
+          grid-column: 1;
+          grid-row: 1;
           display: block;
           height: 1.12em;
           min-height: 0;
-          overflow: hidden;
+          overflow-x: visible;
+          overflow-y: clip;
+        }
+
+        .cc-hero-work {
+          grid-column: 2;
+          grid-row: 1;
+          align-self: end;
+          flex: none;
+        }
+
+        .cc-hero-sub-slot {
+          grid-column: 1;
+          grid-row: 2;
+          display: block;
+          height: 1.12em;
+          min-height: 0;
+          margin-top: 0.12em;
+          overflow: visible;
+          clip-path: inset(0 -100vw 0 0);
         }
 
         .cc-hero-slot-inner {
@@ -159,18 +211,39 @@ export function HeroSection() {
           justify-content: flex-end;
         }
 
-        .cc-hero-work {
-          flex: none;
+        .cc-hero-sub-row {
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          height: 1.12em;
+          width: 100%;
         }
 
-        .cc-hero-line + .cc-hero-line {
-          margin-top: 0.12em;
+        .cc-hero-ghost-wrap {
+          position: relative;
+          display: block;
+          width: max-content;
+          height: 1.12em;
+        }
+
+        .cc-hero-ghost {
+          display: block;
+          visibility: hidden;
+          white-space: nowrap;
+          height: 1.12em;
+        }
+
+        .cc-hero-ghost-wrap .cc-hero-phrase {
+          position: absolute;
+          left: 0;
+          top: 0;
+          visibility: visible;
         }
 
         .cc-hero-static-pair {
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
+          align-items: flex-start;
           width: max-content;
         }
 
@@ -180,7 +253,7 @@ export function HeroSection() {
 
         .cc-hero-static-line {
           display: block;
-          text-align: right;
+          text-align: left;
           white-space: nowrap;
         }
 
@@ -243,9 +316,13 @@ export function HeroSection() {
                       <MorphSlot from="Bolder" to="Less" y={morphY} align="end" italic />
                       <em className="cc-hero-work">&nbsp;work</em>
                     </span>
-                    <span className="cc-hero-line cc-hero-line-sub">
-                      <MorphSlot from="in the world." to="to put it there." y={morphY} align="end" />
-                    </span>
+                    <SubMorphSlot
+                      from="in the world."
+                      to="to put it there."
+                      fromGhost="Bolder"
+                      toGhost="Less"
+                      y={morphY}
+                    />
                   </span>
                 </>
               )}
