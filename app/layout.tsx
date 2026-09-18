@@ -108,6 +108,7 @@ body {
   overflow-x: clip;
   margin: 0;
   padding: 0;
+  font-family: var(--font-inter), 'Inter', sans-serif;
 }
 
 * {
@@ -126,7 +127,7 @@ body {
 
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
   font-weight: 600;
   line-height: 1.2;
   margin: 0;
@@ -134,7 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -305,7 +306,7 @@ p {
 }
 
 .font-display {
-  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
 }
 
 .leading-relaxed {

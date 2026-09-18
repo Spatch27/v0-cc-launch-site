@@ -83,7 +83,7 @@ export function AnimatedTypeSection() {
           align-items: baseline;
           width: max-content;
           max-width: 100%;
-          font-family: var(--font-display), 'Bricolage Grotesque', sans-serif;
+          font-family: var(--font-bricolage), var(--font-display), sans-serif;
         }
 
         .cc-type-slot {
