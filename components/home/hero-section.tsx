@@ -44,6 +44,8 @@ export function HeroSection() {
   // Slot inner is one line tall; -100% brings the replacement phrase into view.
   // Keep in sync with data-cc-morph-end — Home nav stays on the hero colour until this progress.
   const morphY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], ["0%", "-100%"])
+  const subtitleOpacity = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [0, 1])
+  const subtitleY = useTransform(scrollYProgress, [0, MORPH_PROGRESS_END], [20, 0])
 
   return (
     <>
@@ -66,10 +68,31 @@ export function HeroSection() {
           font-size: clamp(1.75rem, calc((100vw - 3.5rem) / 6.4), 3.75rem);
         }
 
-        .cc-hero-heading em {
+        .cc-hero-line-lead,
+        .cc-hero-line-lead em,
+        .cc-hero-work {
           font-style: italic;
-          font-weight: inherit;
+          font-weight: 800;
+        }
+
+        .cc-hero-slot em {
           padding-inline-end: 0.12em;
+        }
+
+        .cc-hero-line-sub,
+        .cc-hero-line-sub .cc-hero-phrase {
+          font-style: normal;
+          font-weight: 500;
+        }
+
+        .cc-hero-static-lead {
+          font-style: italic;
+          font-weight: 800;
+        }
+
+        .cc-hero-static-sub {
+          font-style: normal;
+          font-weight: 500;
         }
 
         .cc-hero-sr {
@@ -134,21 +157,6 @@ export function HeroSection() {
           margin-top: 0.4em;
         }
 
-        .cc-hero-subtitle {
-          animation: cc-hero-subtitle-in 700ms 200ms both cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        @keyframes cc-hero-subtitle-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         @media (min-width: 768px) {
           .cc-hero-heading {
             font-size: clamp(3.5rem, 10vw, 8rem);
@@ -168,7 +176,8 @@ export function HeroSection() {
 
         @media (prefers-reduced-motion: reduce) {
           .cc-hero-subtitle {
-            animation: none;
+            opacity: 1 !important;
+            transform: none !important;
           }
 
           .cc-hero-slot-inner {
@@ -183,21 +192,27 @@ export function HeroSection() {
       >
         <div className="cc-hero-pin sticky top-0 px-6 lg:px-12">
           <div className="mx-auto flex min-h-svh max-w-[1400px] flex-col justify-between gap-8 pt-28 pb-[calc(7rem+env(safe-area-inset-bottom,0px))] md:gap-24 md:pt-40 md:pb-20 lg:min-h-svh lg:gap-32 lg:pt-44 lg:pb-20">
-            <h1 className="cc-hero-heading font-display font-bold leading-[0.95] tracking-tight text-brand-dark">
+            <h1 className="cc-hero-heading font-display leading-[0.95] tracking-tight text-brand-dark">
               {prefersReducedMotion ? (
                 <>
-                  <span className="cc-hero-static-line block"><em>Bolder</em> work in the world.</span>
-                  <span className="cc-hero-static-line block"><em>Less</em> work to put it there.</span>
+                  <span className="cc-hero-static-line block">
+                    <em className="cc-hero-static-lead">Bolder work</em>
+                    <span className="cc-hero-static-sub"> in the world.</span>
+                  </span>
+                  <span className="cc-hero-static-line block">
+                    <em className="cc-hero-static-lead">Less work</em>
+                    <span className="cc-hero-static-sub"> to put it there.</span>
+                  </span>
                 </>
               ) : (
                 <>
                   <span className="cc-hero-sr">{HERO_COPY}</span>
                   <span className="cc-hero-lockup" aria-hidden="true">
-                    <span className="cc-hero-line">
+                    <span className="cc-hero-line cc-hero-line-lead">
                       <MorphSlot from="Bolder" to="Less" y={morphY} align="end" italic />
-                      <span className="cc-hero-work">&nbsp;work</span>
+                      <em className="cc-hero-work">&nbsp;work</em>
                     </span>
-                    <span className="cc-hero-line">
+                    <span className="cc-hero-line cc-hero-line-sub">
                       <MorphSlot from="in the world." to="to put it there." y={morphY} />
                     </span>
                   </span>
@@ -205,11 +220,18 @@ export function HeroSection() {
               )}
             </h1>
 
-            <div className="cc-hero-subtitle flex min-h-0 justify-end">
+            <motion.div
+              className="cc-hero-subtitle flex min-h-0 justify-end"
+              style={
+                prefersReducedMotion
+                  ? undefined
+                  : { opacity: subtitleOpacity, y: subtitleY }
+              }
+            >
               <p className="max-w-2xl text-right text-xl leading-relaxed text-brand-dark">
                 We help CMOs build a stronger marketing function with AI. Starting with one live campaign, we redesign how work happens — and leave your team better equipped to own and improve it.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
         {prefersReducedMotion ? null : <div className="cc-hero-scroll-room" aria-hidden="true" />}
