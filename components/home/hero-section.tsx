@@ -13,17 +13,20 @@ function MorphSlot({
   to,
   y,
   align = "start",
+  italic = false,
 }: {
   from: string
   to: string
   y: MotionValue<string>
   align?: "start" | "end"
+  italic?: boolean
 }) {
+  const Phrase = italic ? "em" : "span"
   return (
     <span className={`cc-hero-slot${align === "end" ? " cc-hero-slot-end" : ""}`}>
       <motion.span className="cc-hero-slot-inner" style={{ y }}>
-        <span className="cc-hero-phrase">{from}</span>
-        <span className="cc-hero-phrase">{to}</span>
+        <Phrase className="cc-hero-phrase">{from}</Phrase>
+        <Phrase className="cc-hero-phrase">{to}</Phrase>
       </motion.span>
     </span>
   )
@@ -61,6 +64,11 @@ export function HeroSection() {
           font-size: 2.25rem;
           font-size: clamp(1.75rem, 11vw, 3.75rem);
           font-size: clamp(1.75rem, calc((100vw - 3.5rem) / 6.4), 3.75rem);
+        }
+
+        .cc-hero-heading em {
+          font-style: italic;
+          font-weight: inherit;
         }
 
         .cc-hero-sr {
@@ -176,19 +184,19 @@ export function HeroSection() {
             <h1 className="cc-hero-heading font-display font-bold leading-[0.95] tracking-tight text-brand-dark">
               {prefersReducedMotion ? (
                 <>
-                  <span className="cc-hero-static-line block">Bolder work in the world.</span>
-                  <span className="cc-hero-static-line block">Less work to put it there.</span>
+                  <span className="cc-hero-static-line block"><em>Bolder</em> work in the world.</span>
+                  <span className="cc-hero-static-line block"><em>Less</em> work to put it there.</span>
                 </>
               ) : (
                 <>
                   <span className="cc-hero-sr">{HERO_COPY}</span>
                   <span className="cc-hero-lockup" aria-hidden="true">
                     <span className="cc-hero-line">
-                      <MorphSlot from="Bolder" to="Less" y={morphY} align="end" />
+                      <MorphSlot from="Bolder" to="Less" y={morphY} align="end" italic />
                       <span className="cc-hero-work">&nbsp;work</span>
                     </span>
                     <span className="cc-hero-line">
-                      <MorphSlot from="in the world" to="to put it there" y={morphY} />
+                      <MorphSlot from="in the world." to="to put it there." y={morphY} />
                     </span>
                   </span>
                 </>
