@@ -69,6 +69,7 @@ export function HeroSection() {
         .cc-hero-heading em {
           font-style: italic;
           font-weight: inherit;
+          padding-inline-end: 0.12em;
         }
 
         .cc-hero-sr {
@@ -99,6 +100,7 @@ export function HeroSection() {
         .cc-hero-slot {
           display: block;
           height: 1.12em;
+          min-height: 0;
           overflow: hidden;
         }
 
