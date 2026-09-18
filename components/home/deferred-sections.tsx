@@ -46,7 +46,7 @@ function DeferredSection({
 export function DeferredHomeSections() {
   return (
     <>
-      <DeferredSection minHeight="700px" rootMargin="0px">
+      <DeferredSection minHeight="700px">
         <BuriedSection />
       </DeferredSection>
       <DeferredSection minHeight="900px">
