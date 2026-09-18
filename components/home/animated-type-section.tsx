@@ -28,12 +28,12 @@ export function AnimatedTypeSection() {
   // Three stacked prefixes in a one-line slot: 0% / -100% / -200%.
   const morphY = useTransform(
     scrollYProgress,
-    [0, 0.16, 0.26, 0.48, 0.58, 1],
+    [0, 0.1, 0.2, 0.34, 0.44, 1],
     ["0%", "0%", "-100%", "-100%", "-200%", "-200%"],
   )
-  const suffixPinkOpacity = useTransform(scrollYProgress, [0.48, 0.58], [1, 0])
-  const suffixYellowOpacity = useTransform(scrollYProgress, [0.48, 0.58], [0, 1])
-  const bgOpacity = useTransform(scrollYProgress, [0.84, 1], [1, 0])
+  const suffixPinkOpacity = useTransform(scrollYProgress, [0.34, 0.44], [1, 0])
+  const suffixYellowOpacity = useTransform(scrollYProgress, [0.34, 0.44], [0, 1])
+  const bgOpacity = useTransform(scrollYProgress, [0.78, 1], [1, 0])
 
   const lockup = prefersReducedMotion ? (
     <p className="whitespace-nowrap text-center font-display text-[clamp(2rem,7.2vw,8.5rem)] font-bold leading-[1.08] tracking-tight text-yellow-300">
@@ -90,6 +90,7 @@ export function AnimatedTypeSection() {
           display: block;
           height: 1.12em;
           overflow: hidden;
+          overflow: clip;
         }
 
         .cc-type-slot-inner {
@@ -124,7 +125,7 @@ export function AnimatedTypeSection() {
       `}</style>
       <section
         ref={sectionRef}
-        className={`relative w-full ${prefersReducedMotion ? "h-screen" : "h-[300vh] md:h-[260vh]"}`}
+        className={`relative w-full ${prefersReducedMotion ? "h-screen" : "h-[280vh]"}`}
       >
         <motion.div
           style={prefersReducedMotion ? undefined : { opacity: bgOpacity }}
