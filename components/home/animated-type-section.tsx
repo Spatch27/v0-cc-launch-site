@@ -60,7 +60,7 @@ export function AnimatedTypeSection() {
         .cc-type-lockup {
           display: flex;
           flex-direction: row;
-          align-items: baseline;
+          align-items: flex-end;
           justify-content: center;
           width: max-content;
           max-width: 100%;
@@ -69,9 +69,12 @@ export function AnimatedTypeSection() {
 
         .cc-type-slot {
           display: block;
+          flex: none;
           height: 1.12em;
-          overflow: hidden;
-          overflow: clip;
+          min-width: 0;
+          min-height: 0;
+          overflow-x: visible;
+          overflow-y: clip;
         }
 
         .cc-type-slot-inner {
