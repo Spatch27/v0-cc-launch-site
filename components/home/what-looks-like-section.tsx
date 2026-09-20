@@ -225,7 +225,7 @@ export function WhatLooksLikeSection() {
         <div className="cc-areas-sticky">
           <div className="cc-areas-title">
             <h2 className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-              Four areas.
+              Four areas. And the gaps in between.
             </h2>
             <p className="mt-4 max-w-3xl text-lg leading-relaxed text-brand-dark">
               Most of what holds marketing back sits between them: a decision waiting on data, a tool nobody owns, a process built for a team that&apos;s since changed.
