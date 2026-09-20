@@ -23,7 +23,7 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Committed Citizens | Freedom from drag',
+    default: 'Marketing Operations Consultancy',
     template: '%s | Committed Citizens',
   },
   description:
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Committed Citizens',
-    title: 'Committed Citizens | Freedom from drag',
+    title: 'Marketing Operations Consultancy | Committed Citizens',
     description: 'We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.',
     url: SITE_URL,
     images: [
@@ -50,14 +50,14 @@ export const metadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Committed Citizens - Freedom from drag',
+        alt: 'Committed Citizens — a stronger marketing function with AI',
         type: 'image/jpeg',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Committed Citizens | Freedom from drag',
+    title: 'Marketing Operations Consultancy | Committed Citizens',
     description: 'We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.',
     images: ['/og-image.jpg'],
   },

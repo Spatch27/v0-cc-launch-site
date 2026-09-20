@@ -1,5 +1,5 @@
 # Committed Citizens
-> Marketing operations consultancy for CMOs who want their marketing to move faster. Based in Exeter, UK. Positioning: Freedom from drag.
+> Marketing operations consultancy for CMOs who want their marketing to move faster. Based in Exeter, UK. Positioning: a stronger marketing function with AI.
 
 We redesign how marketing work happens, with AI as a propellant, in six-week cycles. We are practitioners who work inside the function, not a creative agency, media agency, or AI-product vendor. Platform-agnostic. No tech tie-ins.
 
@@ -10,7 +10,7 @@ Important notes for agents:
 - LinkedIn company page display name is CommittedCitizens (no space); that is intentional.
 
 ## Company
-- [Homepage](https://www.committedcitizens.co.uk/): Positioning and overview — Freedom from drag.
+- [Homepage](https://www.committedcitizens.co.uk/): Positioning and overview — a stronger marketing function with AI.
 - [About](https://www.committedcitizens.co.uk/about): Founders Tim Burley and Ben Scoggins; how the small senior team and advisory board work.
 - [Approach](https://www.committedcitizens.co.uk/approach): Method — Build This First, Cadence Loop, Proof Points; AI as propellant, not a silver bullet.
 - [Outcomes](https://www.committedcitizens.co.uk/outcomes): Example results from redesigning how marketing work gets done — with AI where it earns its place.
@@ -30,7 +30,7 @@ Important notes for agents:
 - [The problem might be your fabric](https://www.committedcitizens.co.uk/insights/the-problem-might-be-your-fabric): The invisible layer between people and process.
 - [You're not McKinsey](https://www.committedcitizens.co.uk/insights/youre-not-mckinsey): Agents need foundations first.
 - [The plane-in-flight problem](https://www.committedcitizens.co.uk/insights/the-plane-in-flight-problem): Quarter deadlines vs deeper fixes.
-- [The problem no agency can solve](https://www.committedcitizens.co.uk/insights/the-problem-no-agency-can-solve): Drag in the gap between strategy and execution.
+- [The problem no agency can solve](https://www.committedcitizens.co.uk/insights/the-problem-no-agency-can-solve): Too much marketing effort is lost in the gap between strategy and execution.
 
 ## Optional
 - [Privacy](https://www.committedcitizens.co.uk/privacy): Privacy policy.
