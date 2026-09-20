@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: '%s | Committed Citizens',
   },
   description:
-    'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
+    'We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.',
   applicationName: 'Committed Citizens',
   metadataBase: new URL(SITE_URL),
   manifest: '/manifest.json',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     siteName: 'Committed Citizens',
     title: 'Committed Citizens | Freedom from drag',
-    description: 'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
+    description: 'We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.',
     url: SITE_URL,
     images: [
       {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Committed Citizens | Freedom from drag',
-    description: 'We redesign how marketing work flows. An embedded consultancy that helps CMOs remove operational drag from their marketing teams.',
+    description: 'We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.',
     images: ['/og-image.jpg'],
   },
 }

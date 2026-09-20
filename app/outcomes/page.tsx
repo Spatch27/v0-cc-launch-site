@@ -5,13 +5,15 @@ import { CtaBand } from "@/components/cta-band"
 import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Marketing Transformation Results",
+  title: {
+    absolute: "Marketing Transformation Results | Committed Citizens",
+  },
   description:
-    "See how our marketing operations consulting delivers measurable outcomes. Real results from marketing transformation and operational efficiency improvements for UK marketing teams.",
+    "Real results from redesigning how marketing work gets done — with AI where it earns its place. Case studies across retail, security, IT consultancy and wealth.",
   alternates: canonicalAlternates("/outcomes"),
   openGraph: {
     title: "Outcomes | Committed Citizens",
-    description: "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",
+    description: "When the work flows, results fly. Proof from campaigns and functions we've redesigned with marketing teams.",
     url: "https://www.committedcitizens.co.uk/outcomes",
     type: "website",
     locale: "en_GB",
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Outcomes | Committed Citizens",
-    description: "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",
+    description: "When the work flows, results fly. Proof from campaigns and functions we've redesigned with marketing teams.",
     images: ["/og-image.jpg"],
   },
 }

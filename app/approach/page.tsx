@@ -10,13 +10,13 @@ import { CtaBand } from "@/components/cta-band"
 import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Marketing Transformation Approach | Sustainable Change Methods",
+  title: "Marketing Transformation Approach | One Campaign at a Time",
   description:
-    "Our proven marketing operations transformation methodology for CMOs. We blend people-first consulting with product team practices to remove operational drag and build sustainable marketing workflows.",
+    "We redesign how marketing works with CMOs and their teams, one campaign at a time. Six-week cycles, AI as a propellant, and a product-team operating model that builds the confidence to go further.",
   alternates: canonicalAlternates("/approach"),
   openGraph: {
     title: "Approach | Committed Citizens",
-    description: "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
+    description: "Pick one campaign. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
     url: "https://www.committedcitizens.co.uk/approach",
     type: "website",
     locale: "en_GB",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Approach | Committed Citizens",
-    description: "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
+    description: "Pick one campaign. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
     images: ["/og-image.jpg"],
   },
 }
