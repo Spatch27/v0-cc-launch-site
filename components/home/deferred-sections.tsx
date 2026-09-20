@@ -6,6 +6,9 @@ import { LazySection } from "@/components/lazy-section"
 const BuriedSection = lazy(() =>
   import("@/components/home/buried-section").then((module) => ({ default: module.BuriedSection })),
 )
+const AnimatedTypeSection = lazy(() =>
+  import("@/components/home/animated-type-section").then((module) => ({ default: module.AnimatedTypeSection })),
+)
 const MomentumSection = lazy(() =>
   import("@/components/home/momentum-section").then((module) => ({ default: module.MomentumSection })),
 )
@@ -48,6 +51,9 @@ export function DeferredHomeSections() {
     <>
       <DeferredSection minHeight="700px">
         <BuriedSection />
+      </DeferredSection>
+      <DeferredSection minHeight="600px">
+        <AnimatedTypeSection />
       </DeferredSection>
       <DeferredSection minHeight="900px">
         <MomentumSection />
