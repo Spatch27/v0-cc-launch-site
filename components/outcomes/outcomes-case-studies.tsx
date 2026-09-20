@@ -15,19 +15,25 @@ interface OutcomeStudy {
   accentColor: string
 }
 
+function metricsGridClass(count: number) {
+  if (count === 4) return "grid grid-cols-2 gap-6 md:grid-cols-4"
+  if (count === 2) return "grid grid-cols-2 gap-6"
+  return "grid grid-cols-2 gap-6 md:grid-cols-3"
+}
+
 const allCaseStudies: OutcomeStudy[] = [
   {
     client: "Top 5 retailer",
     title: "Workarounds had become the work",
-    project: "Workflow redesign, agentic tools, training and change management",
+    project: "Workflow redesign, AI-assisted reporting, training and change management",
     description:
-      "The team was capable, but its tools weren't serving it. Time that should have gone on marketing was going on workarounds nobody questioned any more.\n\nWe redesigned the workflow, built agentic AI tools to take out the manual steps and ran the change programme with the team. The work got faster, and the team felt the difference within six weeks:",
+      "The team was capable, but its tools weren't serving it. Time that should have gone on marketing was going on workarounds nobody questioned any more.\n\nWe mapped how the work really got done, redesigned the workflow, then built a system that used AI to pull together first and third-party data and present it in a form the team could act on. It went from days of manual assembly to something that ran itself. The team felt the difference within six weeks:",
     metrics: [
-      { value: "100%", label: "team adoption" },
-      { value: "1,300", label: "hours saved in year one" },
+      { value: "100%", label: "weekly active use, across both teams" },
+      { value: "1,300", label: "hours returned in year one (estimated)" },
     ],
     afterMetrics:
-      "Those hours went straight back into marketing. The team used them to get to grips with GEO, getting the brand ready for AI search while it was still an emerging discipline.",
+      "Those hours went straight back into marketing. The team used them to get to grips with GEO, getting the brand ready for AI search while it was still an emerging discipline. It was also their first reliable use of AI on a repeatable task, which is what moved it from proof of concept to something they trusted enough to build on.",
     testimonial:
       "They demonstrated a great understanding of the way we work, and quickly delivered tech and tools as part of an evolved workflow.",
     accentColor: "#fc66a7",
@@ -35,14 +41,16 @@ const allCaseStudies: OutcomeStudy[] = [
   {
     client: "Global home security company",
     title: "Campaigns too slow to catch the customer",
-    project: "Email campaign workflow rebuilt across EMEA",
+    project: "Email campaign workflow rebuilt across Europe",
     description:
-      "Customers were showing intent, but campaigns couldn't respond in time. Handovers between teams and platforms meant emails went out late, to the wrong segments, or not at all. The platform wasn't the problem. The workflow was.\n\nWe rebuilt the email workflow end to end. Campaign cycle time dropped from 3 weeks to 6 days, and:",
+      "Customers were showing intent, but campaigns couldn't respond in time. The platform had been installed on the assumption it would run cleanly on its own, so people worked round it. Emails went out late, to the wrong segments, or not at all.\n\nWe rebuilt the workflow end to end, moved the journeys from batch sends to intent-triggered, and built a loop that fed campaign results back into the copywriting so each campaign learned from the last. Campaign cycle time dropped from 3 weeks to 6 days, and:",
     metrics: [
       { value: "80%", label: "reduction in errors across 11 languages" },
-      { value: "50%", label: "revenue increase in key campaigns" },
+      { value: "50%", label: "revenue increase on Black Friday, like for like" },
       { value: "14", label: "customer journeys replatformed in 4 weeks" },
     ],
+    afterMetrics:
+      "The copy loop kept improving after we left. Because the workflow held, the AI inside it had something reliable to learn from.",
     testimonial:
       "They've enabled us to get the results we always wanted out of an expensive, integrated system.",
     accentColor: "#ff8600",
@@ -50,14 +58,17 @@ const allCaseStudies: OutcomeStudy[] = [
   {
     client: "Leading IT consultancy",
     title: "Flying blind on what's working",
-    project: "Stack simplification and realignment / CX improvements",
+    project: "Stack simplification, data flows rebuilt, platform AI put to work",
     description:
-      "The stack had grown but trust in the data hadn't. Decisions came down to instinct because nobody could rely on the dashboards. Journeys were breaking, and nobody noticed until customers had gone.\n\nWe simplified the stack, cleaned up the workflows so everyone knew who did what, and rebuilt the data flows. The confusion went, and the team got reporting it could act on:",
+      "The stack had grown but trust in the data hadn't. Decisions came down to instinct because nobody could rely on the dashboards. Journeys were breaking, and nobody noticed until customers had gone.\n\nWe simplified the stack, rebuilt the data flows and fixed identity resolution, then rewrote the workflows so ownership was clear and the platform's own AI features could actually be used. That last part is the bit most implementations skip, and it's why the AI in most platforms sits idle:",
     metrics: [
       { value: "60%", label: "increase in customer identity resolution" },
-      { value: "250%", label: "traffic growth through organic channels" },
+      { value: "250%", label: "traffic growth through organic channels, in six months" },
       { value: "300%", label: "uplift to conversion rates on campaign forms" },
+      { value: "57%", label: "reduction in licence fees, within 12 weeks" },
     ],
+    afterMetrics:
+      "We didn't build the AI here. We built the conditions in which it worked.",
     testimonial:
       "They delivered a brilliant experience - great stakeholder mapping, flawless execution, and well-embedded adoption.",
     accentColor: "#ffd100",
@@ -67,12 +78,14 @@ const allCaseStudies: OutcomeStudy[] = [
     title: "Five platforms, no single story",
     project: "Business transformation, web integration, and marketing team alignment",
     description:
-      "IT and marketing had never worked together like this before. Content was spread across five platforms, split between agency and in-house teams.\n\nWe brought in a new composable stack with one design system, and redesigned the workflows around it so both teams could use it well. We built personalised journeys for key audiences and set up content operations that grew with the team. The team came out more confident, delivering faster and more consistently:",
+      "IT and marketing had never worked together like this before. Content was spread across five platforms, split between agency and in-house teams, and the brand looked different depending on where you landed.\n\nWe brought in a new composable stack with one design system, and redesigned the workflows around it so both teams could use it well. We built personalised journeys for key audiences and set up content operations that grew with the team. The harder win was earning IT's trust in a marketing partner, which is what made the rest possible:",
     metrics: [
-      { value: "100%", label: "increase in content production capability" },
-      { value: "5", label: "different content platforms reduced to a single headless CMS" },
-      { value: "25%", label: "more traffic to a new consolidated site than the 2 it replaced" },
+      { value: "5→11", label: "pages a month, same team" },
+      { value: "5→1", label: "content platforms to one headless CMS" },
+      { value: "25%", label: "more traffic to the new consolidated site than the 2 it replaced" },
     ],
+    afterMetrics:
+      "Structured content in a headless stack with one design system is the foundation for content at machine speed. They have it, and they own it.",
     testimonial:
       "A business critical transformation at a crucial time for us - they executed it brilliantly.",
     accentColor: "#fc66a7",
@@ -107,7 +120,7 @@ export function OutcomesCaseStudies() {
               </div>
 
               {/* Metrics */}
-              <div className="grid grid-cols-3 gap-6">
+              <div className={metricsGridClass(study.metrics.length)}>
                 {study.metrics.map((m) => (
                   <div key={m.label}>
                     <span className="font-display text-4xl font-bold text-brand-dark">
