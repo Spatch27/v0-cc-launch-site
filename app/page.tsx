@@ -4,7 +4,9 @@ import { DeferredHomeSections } from "@/components/home/deferred-sections"
 import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Marketing Operations Consultancy",
+  title: {
+    absolute: "Marketing Operations Consultancy | Committed Citizens",
+  },
   description:
     "We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.",
   alternates: canonicalAlternates("/"),
