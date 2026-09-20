@@ -8,7 +8,7 @@ const engagements = [
   {
     name: "Bearing3",
     description: [
-      "A team scan of your business. Not a hackathon — we start with the function not the tech. Interviews with the CMO's key team. A half-day workshop with heads of department to test hypotheses. You get priorities mapped and how to address them.",
+      "Your function, scanned. We talk to the people who know how the work really runs, then test what we find with your heads of department. You get an honest picture of your team, the priorities that follow, and a starting measure for the first rebuild.",
     ],
     tagline: "Clarity & understanding.",
     duration: "THREE WEEKS",

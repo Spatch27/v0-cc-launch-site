@@ -45,10 +45,7 @@ export function HeroPhilosophy() {
         >
           <div className="max-w-2xl space-y-4 text-right text-lg leading-relaxed text-brand-dark md:text-xl">
             <p>
-              We work with CMOs and their teams to redesign how marketing works, one campaign at a time. Every six-week cycle rebuilds a workflow, proves the impact, and builds <strong>the confidence to go further.</strong>
-            </p>
-            <p>
-              The first redesign shows how your function really works: who decides, where work waits, and how teams collaborate with one another and the rest of the business. That&apos;s where the bigger opportunities show up — in roles, structure and culture.
+              We work with CMOs and their teams to redesign how marketing works, one campaign at a time. Every six-week cycle rebuilds a campaign workflow, proves the impact, and builds the confidence to go further.
             </p>
           </div>
         </motion.div>

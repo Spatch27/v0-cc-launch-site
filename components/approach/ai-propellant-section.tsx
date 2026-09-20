@@ -26,7 +26,7 @@ export function AIPropellantSection() {
         </div>
         <div className="order-first lg:order-last">
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            AI is no silver bullet.
+            AI as a propellant.
           </h2>
           <div className="space-y-4">
             <p className="text-lg leading-relaxed text-brand-dark">
