@@ -16,7 +16,7 @@ interface OutcomeStudy {
 }
 
 function metricsGridClass(count: number) {
-  if (count === 4) return "grid grid-cols-2 gap-6 md:grid-cols-4"
+  if (count === 4) return "grid grid-cols-2 gap-6 xl:grid-cols-4"
   if (count === 2) return "grid grid-cols-2 gap-6"
   return "grid grid-cols-2 gap-6 md:grid-cols-3"
 }
