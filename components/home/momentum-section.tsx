@@ -86,7 +86,8 @@ export function MomentumSection() {
               variants={textChild}
               className="font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl"
             >
-              Function-led. Not tech-led.
+              Do things better.<br />
+              Do better things.
             </motion.h2>
             <motion.div variants={textChild} className="max-w-3xl space-y-4 text-lg leading-relaxed text-brand-dark">
               <p>
