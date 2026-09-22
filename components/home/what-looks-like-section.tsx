@@ -24,7 +24,7 @@ const problems = [
   {
     icon: "/icons/icon-data.svg",
     eyebrow: "DATA",
-    heading: "Trusted numbers & decision making.",
+    heading: "Numbers people trust enough to act on.",
     then: "Marketing's dashboard says one thing, finance says another. AI can analyse anything, but nobody trusts what goes in.",
     now: "Numbers people agree on, early enough to shape a campaign before launch, not explain it after.",
   },
