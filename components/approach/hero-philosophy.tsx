@@ -45,7 +45,7 @@ export function HeroPhilosophy() {
         >
           <div className="max-w-2xl space-y-4 text-right text-lg leading-relaxed text-brand-dark md:text-xl">
             <p>
-              We work with CMOs and their teams to redesign how marketing works, one campaign at a time. Every six-week cycle rebuilds a campaign workflow, proves the impact, and builds the confidence to go further.
+              We work with CMOs and their teams to redesign how marketing works. Every six-week cycle rebuilds one thing, proves the impact, and provides the confidence to go further.
             </p>
           </div>
         </motion.div>
