@@ -327,7 +327,7 @@ export function HeroSection() {
               }
             >
               <p className="max-w-2xl text-right text-xl leading-relaxed text-brand-dark">
-                We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.
+                We help CMOs build a stronger marketing function with AI. Starting with one live campaign, we redesign how work happens - and leave your team better equipped to own and improve it.
               </p>
             </motion.div>
           </div>

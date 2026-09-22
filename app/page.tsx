@@ -8,12 +8,12 @@ export const metadata: Metadata = {
     absolute: "Marketing Operations Consultancy | Committed Citizens",
   },
   description:
-    "We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.",
+    "We help CMOs build a stronger marketing function with AI. Starting with one live campaign, we redesign how work happens - and leave your team better equipped to own and improve it.",
   alternates: canonicalAlternates("/"),
   openGraph: {
     title: "Bolder work in the world | Committed Citizens",
     description:
-      "We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.",
+      "We help CMOs build a stronger marketing function with AI. Starting with one live campaign, we redesign how work happens - and leave your team better equipped to own and improve it.",
     url: "https://www.committedcitizens.co.uk",
     type: "website",
     locale: "en_GB",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bolder work in the world | Committed Citizens",
     description:
-      "We help CMOs build a stronger marketing function with AI. We redesign how work happens, and leave your team better equipped to own and improve it.",
+      "We help CMOs build a stronger marketing function with AI. Starting with one live campaign, we redesign how work happens - and leave your team better equipped to own and improve it.",
     images: ["/og-image.jpg"],
   },
 }
