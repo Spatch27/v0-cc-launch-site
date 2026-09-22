@@ -36,6 +36,18 @@ function NavLabel({ label, mobile = false }: { label: string; mobile?: boolean }
   )
 }
 
+const DEFAULT_SCROLL_THRESHOLD = 20
+
+/** True once the Home hero sticky pin has released and the page below starts moving. */
+function homeHeroHasReleased(): boolean {
+  const hero = document.querySelector<HTMLElement>(".cc-home-hero")
+  if (!hero) return window.scrollY > DEFAULT_SCROLL_THRESHOLD
+  const pin = hero.querySelector<HTMLElement>(".cc-hero-pin")
+  const room = hero.querySelector<HTMLElement>(".cc-hero-scroll-room")
+  if (!pin || !room) return window.scrollY > DEFAULT_SCROLL_THRESHOLD
+  return pin.getBoundingClientRect().top < -1
+}
+
 export function Navigation() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
@@ -45,12 +57,37 @@ export function Navigation() {
     heroColorMap["/"]
   const logoVariant = colors.isDark ? "white" : "dark"
 
-  const onScroll = useCallback(() => setScrolled(window.scrollY > 20), [])
+  const updateScrolled = useCallback(() => {
+    if (pathname === "/") {
+      setScrolled(homeHeroHasReleased())
+      return
+    }
+    setScrolled(window.scrollY > DEFAULT_SCROLL_THRESHOLD)
+  }, [pathname])
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [onScroll])
+    updateScrolled()
+    window.addEventListener("scroll", updateScrolled, { passive: true })
+    window.addEventListener("resize", updateScrolled)
+
+    let observer: ResizeObserver | null = null
+    const watchHero = () => {
+      if (observer || pathname !== "/") return
+      const hero = document.querySelector(".cc-home-hero")
+      if (!hero) return
+      observer = new ResizeObserver(updateScrolled)
+      observer.observe(hero)
+    }
+    watchHero()
+    const raf = window.requestAnimationFrame(watchHero)
+
+    return () => {
+      window.removeEventListener("scroll", updateScrolled)
+      window.removeEventListener("resize", updateScrolled)
+      window.cancelAnimationFrame(raf)
+      observer?.disconnect()
+    }
+  }, [pathname, updateScrolled])
 
   const linkClass = (href: string, mobile = false) => {
     const isActive = pathname === href
@@ -98,7 +135,7 @@ export function Navigation() {
         </div>
       </header>
 
-      <nav className="cc-mobile-navigation fixed bottom-0 left-0 right-0 z-50 justify-center px-4 pt-2 pb-5" aria-label="Mobile navigation">
+      <nav className="cc-mobile-navigation fixed bottom-0 left-0 right-0 z-50 justify-center px-4 pt-2 pb-[max(1.25rem,env(safe-area-inset-bottom,0px))]" aria-label="Mobile navigation">
         <div className="cc-navigation-lozenge relative flex items-center gap-0.5 bg-brand-dark px-1.5 py-1.5 shadow-lg shadow-brand-dark/25 sm:gap-1 sm:px-2 sm:py-2">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href} prefetch={false} className={linkClass(link.href, true)}>

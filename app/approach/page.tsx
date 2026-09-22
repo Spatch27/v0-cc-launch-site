@@ -3,7 +3,6 @@ import { HeroPhilosophy } from "@/components/approach/hero-philosophy"
 import { WorkflowsBehaviourSection } from "@/components/approach/workflows-behaviour-section"
 import { AIPropellantSection } from "@/components/approach/ai-propellant-section"
 import { OutcomesSection } from "@/components/approach/outcomes-section"
-import { ApproachPhilosophySection } from "@/components/approach/approach-philosophy-section"
 import { PhilosophySection } from "@/components/approach/philosophy-section"
 import { MomentumSection } from "@/components/approach/momentum-section"
 import { EngagementsSection } from "@/components/approach/engagements-section"
@@ -11,13 +10,13 @@ import { CtaBand } from "@/components/cta-band"
 import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Marketing Transformation Approach | Sustainable Change Methods",
+  title: "Marketing Transformation Approach | One Campaign at a Time",
   description:
-    "Our proven marketing operations transformation methodology for CMOs. We blend people-first consulting with product team practices to remove operational drag and build sustainable marketing workflows.",
+    "We redesign how marketing works with CMOs and their teams, one campaign at a time. Six-week cycles, AI as a propellant, and a product-team operating model that builds the confidence to go further.",
   alternates: canonicalAlternates("/approach"),
   openGraph: {
     title: "Approach | Committed Citizens",
-    description: "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
+    description: "Pick one campaign. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
     url: "https://www.committedcitizens.co.uk/approach",
     type: "website",
     locale: "en_GB",
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Approach | Committed Citizens",
-    description: "Our people-first philosophy and operating model. We help your team build sustainable transformation through product team practices.",
+    description: "Pick one campaign. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
     images: ["/og-image.jpg"],
   },
 }
@@ -53,14 +52,13 @@ export default function ApproachPage() {
       <WorkflowsBehaviourSection />
       <AIPropellantSection />
       <OutcomesSection />
-      <ApproachPhilosophySection />
       <MomentumSection />
       <PhilosophySection />
       <EngagementsSection />
       <CtaBand
         heading="Before committing a budget, commit an hour."
         body={[
-          "Book a free Waypoint - a structured 60-minute conversation that shows you exactly where operational drag is costing you the most."
+          "Book a free Waypoint: 60 minutes with the founders to find the campaign to start with and where AI can make it better.",
         ]}
         ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"

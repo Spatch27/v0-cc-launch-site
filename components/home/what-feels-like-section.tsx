@@ -8,22 +8,22 @@ const benefits = [
   {
     title: "Rapid progress.",
     description:
-      "Six-week time-to-value cycles. No six-month roadmaps that slip before they ship.",
+      "Six-week cycles that end with something running, not a recommendation.",
   },
   {
-    title: "Fix that sticks.",
+    title: "Change that sticks.",
     description:
-      "Built around how your team actually works. So it gets used, not just implemented.",
+      "Built with your team, so that they understand it, own it, and know how to improve it.",
   },
   {
     title: "Proven impact.",
     description:
-      "Real-time telemetry. See progress as it happens, not at the end of the quarter.",
+      "We measure how long the campaign takes to get out the door, and agree with you how to judge its quality. Then we show you the difference.",
   },
   {
-    title: "Risk free.",
+    title: "Progress that builds.",
     description:
-      "If you don’t feel the benefit two weeks into your first six-week cycle, you don’t pay. Guaranteed.",
+      "Every campaign we rebuild shows us what else to take on, so each cycle sets up the next. Functional redesign in bite-sized chunks.",
   },
 ]
 

@@ -6,16 +6,16 @@ import { fadeInUp, staggerContainer } from "@/lib/animations"
 
 const momentumItems = [
   {
-    name: "Fix This First",
-    benefit: "Identify the most pressing need and demonstrate impact.",
+    name: "Build This First",
+    benefit: "Start with the campaign that matters most.",
   },
   {
     name: "Cadence Loop",
-    benefit: "Progress made in six-week cycles that compound over time.",
+    benefit: "Something new goes live every six weeks, and each cycle sets up the next.",
   },
   {
-    name: "Telemetry Stack",
-    benefit: "Live dashboards. No waiting for the end-of-quarter report.",
+    name: "Proof Points",
+    benefit: "Speed and quality, measured against how the campaign ran before.",
   },
 ]
 

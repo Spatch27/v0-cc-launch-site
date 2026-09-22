@@ -49,7 +49,7 @@ function DeferredSection({
 export function DeferredHomeSections() {
   return (
     <>
-      <DeferredSection minHeight="700px" rootMargin="0px">
+      <DeferredSection minHeight="700px">
         <BuriedSection />
       </DeferredSection>
       <DeferredSection minHeight="600px">
@@ -68,8 +68,8 @@ export function DeferredHomeSections() {
         <CtaBand
           heading="Not sure where to start? Start here."
           body={[
-            "Waypoint is a free 60-minute session. No pitch. No audit. Just a conversation about your business, your team and the drag getting in their way.",
-            "Within 48 hours, you receive a two-page Waypoint Marker: a clear view of what is holding you back and where to begin, written in board-ready language for a budget conversation. It is yours to keep, whether we work together or not.",
+            "Waypoint is a free 60-minute session with the founders. No pitch. We do the homework on your business first, so the hour goes on your team, your ambitions and the best place to start.",
+            "Within 48 hours you get a two-page Waypoint Marker: where your function stands, the campaign to start with and where AI can make it better. It's yours to keep, whether we work together or not.",
           ]}
           ctaLabel="Book your Waypoint"
           ctaHref="/contact#book"

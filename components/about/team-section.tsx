@@ -9,13 +9,13 @@ const founders = [
   {
     name: "Ben Scoggins",
     title: "Co-founder",
-    bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury's Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter.",
+    bio: "Ben has led marketing and digital teams for 25 years, supporting brands like PepsiCo, Johnson & Johnson and Sainsbury's Group. He defines commercial ambition, builds internal alignment, and keeps transformation tied to outcomes that matter. Years inside agencies showed him how often the way work gets done holds good marketing back.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Ben-0RROh8GKMj3uugyp2FPDwNpQNuvQRh.jpeg",
   },
   {
     name: "Tim Burley",
     title: "Co-founder",
-    bio: "Tim brings 25 years of senior marketing and strategy experience across Capita, the Eden Project and Kainos plc. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable.",
+    bio: "Tim brings 25 years of senior marketing and strategy experience across Capita, the Eden Project and Kainos plc. He sharpens objectives, aligns the C-Suite and creates the value case that keeps complex transformation moving and measurable. Time inside agencies showed him what AI could do for marketing, and what it could do to functions that weren't ready for it.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Tim-ARcry0CzD5L1O89DkgYSRzltBxg0Qv.jpeg",
   },
 ]

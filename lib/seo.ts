@@ -35,7 +35,7 @@ export const organizationJsonLd = {
   url: SITE_URL,
   logo: LOGO_URL,
   description:
-    "Marketing operations and transformation consultancy helping CMOs remove operational drag and build sustainable marketing workflows.",
+    "Marketing operations consultancy helping CMOs build a stronger marketing function with AI. We redesign how work happens, and leave teams better equipped to own and improve it.",
   sameAs: ["https://www.linkedin.com/company/committedcitizens"],
   address: {
     "@type": "PostalAddress",

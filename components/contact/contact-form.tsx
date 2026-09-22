@@ -90,7 +90,7 @@ export function ContactForm() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="max-w-xl self-end text-right text-xl leading-relaxed text-brand-dark"
           >
-            We&apos;re building a business that makes marketing work better. If you&apos;re a marketing leader who&apos;s frustrated by drag and ready for momentum, <strong>we&apos;d love to hear from you.</strong>
+            We&apos;re building a business that makes marketing work better. If you&apos;re a marketing leader who wants AI to make your function more effective, we&apos;d love to hear from you.
           </motion.p>
         </div>
       </motion.section>
@@ -109,13 +109,13 @@ export function ContactForm() {
             </h2>
             <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-white/70">
               <p>
-                Waypoint is a free 60-minute session. No pitch. No audit. Just a structured conversation about where operational drag is costing you the most - and what to fix first.
+                Waypoint is a free 60-minute session with the founders. No pitch. We do the homework on your business first, so the hour goes on your team, your ambitions and the best place to start.
               </p>
               <p>
-                You'll walk away with your Waypoint Marker: a two-page view of where drag is holding you back, what it's costing you, and where to start. Board-ready language for a budget conversation, not a feelings conversation.
+                Within 48 hours you get a two-page Waypoint Marker: where your function stands, the campaign to start with and where AI can make it better. It&apos;s written so you can take it straight into a budget conversation.
               </p>
               <p className="font-medium text-brand-white">
-                Just fill in the form below and we'll start the ball rolling.
+                Fill in the form below and we&apos;ll get the ball rolling.
               </p>
             </div>
 

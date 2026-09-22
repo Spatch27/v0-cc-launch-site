@@ -5,13 +5,15 @@ import { CtaBand } from "@/components/cta-band"
 import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Marketing Transformation Results",
+  title: {
+    absolute: "Marketing Transformation Results | Committed Citizens",
+  },
   description:
-    "See how our marketing operations consulting delivers measurable outcomes. Real results from marketing transformation and operational efficiency improvements for UK marketing teams.",
+    "Real results from redesigning how marketing work gets done — with AI where it earns its place. Case studies across retail, security, IT consultancy and wealth.",
   alternates: canonicalAlternates("/outcomes"),
   openGraph: {
     title: "Outcomes | Committed Citizens",
-    description: "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",
+    description: "When the work flows, results fly. Proof from campaigns and functions we've redesigned with marketing teams.",
     url: "https://www.committedcitizens.co.uk/outcomes",
     type: "website",
     locale: "en_GB",
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Outcomes | Committed Citizens",
-    description: "Proof that we deliver. Tangible evidence of operational uplift across marketing teams.",
+    description: "When the work flows, results fly. Proof from campaigns and functions we've redesigned with marketing teams.",
     images: ["/og-image.jpg"],
   },
 }
@@ -42,8 +44,8 @@ export default function OutcomesPage() {
       <CtaBand
         heading="See how we'd approach your challenge."
         body={[
-          "Waypoint is a free 60-minute working session. The hour is spent on your business, your team and the drag getting in their way.",
-          "Within 48 hours, you receive a two-page Waypoint Marker: a clear view of what is holding you back and where to begin, written in language you can take into a budget conversation. It is yours to keep, whether we work together or not."
+          "Waypoint is a free 60-minute session with the founders. No pitch. We do the homework on your business first, so the hour goes on your team, your ambitions and the best place to start.",
+          "Within 48 hours you get a two-page Waypoint Marker: where your function stands, the campaign to start with and where AI can make it better. It's yours to keep, whether we work together or not.",
         ]}
         ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"

@@ -6,13 +6,13 @@ import { canonicalAlternates } from "@/lib/seo"
 export const revalidate = 60
 
 export const metadata: Metadata = {
-  title: "Marketing Operations Insights & Thought Leadership",
+  title: "Marketing Operations Insights | Thinking that Drives Action",
   description:
-    "Articles on marketing transformation, operations consulting, and removing workflow inefficiencies. Expert insights on building efficient marketing teams and sustainable operational change.",
+    "Short pieces on how marketing work gets done, where AI makes it better, and what the marketing function of the future looks like. Written by practitioners, not theorists.",
   alternates: canonicalAlternates("/insights"),
   openGraph: {
     title: "Insights | Committed Citizens",
-    description: "Thought leadership from Committed Citizens. Original thinking on marketing operations, transformation, and operational drag.",
+    description: "Thinking that drives action. Insights on marketing work, AI, and the function of the future — from practitioners, not theorists.",
     url: "https://www.committedcitizens.co.uk/insights",
     type: "website",
     locale: "en_GB",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Insights | Committed Citizens",
-    description: "Thought leadership from Committed Citizens. Original thinking on marketing operations, transformation, and operational drag.",
+    description: "Thinking that drives action. Insights on marketing work, AI, and the function of the future — from practitioners, not theorists.",
     images: ["/og-image.jpg"],
   },
 }

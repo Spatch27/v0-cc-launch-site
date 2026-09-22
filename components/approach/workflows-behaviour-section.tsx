@@ -21,14 +21,16 @@ export function WorkflowsBehaviourSection() {
       >
         <div>
           <h2 className="mb-8 font-display text-4xl font-bold leading-snug text-brand-dark md:text-5xl">
-            Everyone gets a jetpack.
+            Own.<br />
+            Outsource.<br />
+            Automate.
           </h2>
           <div className="space-y-6">
             <p className="text-lg leading-relaxed text-brand-dark">
-              We start with the business need and assess how your people get work done: where time goes, which decisions stall, and what gets in their way. Then we enable people to do more effective work - sometimes aided by agentic automations.
+              Marketers own the thinking. The craft goes to the right experts. The repetitive work goes to bots that do it better.
             </p>
             <p className="text-lg leading-relaxed text-brand-dark">
-              Every change should give the team more lift. More confidence and capability. Less effort spent working around the system.
+              The first redesign shows how your function really works: where time goes, which decisions stall and who owns what. That&apos;s where the bigger opportunities show up, in roles, structure and culture. From there we work out with your team what stays with people, what goes to specialists and what a bot can run.
             </p>
           </div>
         </div>
