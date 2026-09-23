@@ -256,8 +256,7 @@ function AreaRow({
             data-reorder-handle="true"
             aria-hidden="true"
             className={cn(
-              "mt-0.5 flex size-8 shrink-0 cursor-grab items-center justify-center rounded-full font-display text-sm font-semibold touch-none active:cursor-grabbing",
-              rank === 1 ? "bg-brand-pink text-brand-dark" : "bg-brand-light text-brand-dark"
+                "mt-0.5 flex size-8 shrink-0 cursor-grab items-center justify-center rounded-full bg-brand-pink font-display text-sm font-semibold text-brand-dark touch-none active:cursor-grabbing"
             )}
           >
             {letter}
