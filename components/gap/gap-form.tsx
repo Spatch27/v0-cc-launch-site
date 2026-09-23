@@ -202,12 +202,12 @@ export function GapForm() {
                   you need.
                 </p>
                 <p>
-                  First, for each area click the number (1–7) that corresponds to the size of the gap (1 = ALREADY THERE
-                  and 7 = NOWHERE NEAR)
+                  <strong className="font-semibold">First,</strong> for each area click the number (1–7) that
+                  corresponds to the size of the gap (1 = ALREADY THERE and 7 = NOWHERE NEAR)
                 </p>
                 <p>
-                  Second drag them into order of importance (A should be the most important area and G should be the
-                  least).
+                  <strong className="font-semibold">Second,</strong> drag them into order of importance (A should be the
+                  most important area and G should be the least).
                 </p>
               </div>
 
