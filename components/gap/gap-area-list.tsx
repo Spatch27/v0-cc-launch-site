@@ -123,15 +123,17 @@ export function GapAreaList({
 
   return (
     <div className="mt-8">
-      <div className="flex justify-between border-b border-brand-dark/10 pb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+      <div className="flex justify-between text-xs font-medium uppercase tracking-wide text-muted-foreground">
         <span>Already there</span>
         <span>Nowhere near</span>
       </div>
-      <div className="flex items-baseline justify-between gap-4 border-b border-brand-dark/10 py-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
-        <span>A — most important</span>
-      </div>
+      <p className="mt-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">A — most important</p>
 
-      <ul ref={listRef} className="flex flex-col" aria-label="Gap size and importance. A at the top is most important, G at the bottom is least important.">
+      <ul
+        ref={listRef}
+        className="mt-3 flex flex-col gap-3"
+        aria-label="Gap size and importance. A at the top is most important, G at the bottom is least important."
+      >
         {order.map((key, index) => (
           <AreaRow
             key={key}
@@ -152,7 +154,7 @@ export function GapAreaList({
         ))}
       </ul>
 
-      <p className="mt-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">G — least important</p>
+      <p className="mt-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">G — least important</p>
       <p className="sr-only" aria-live="polite">
         {liveMessage}
       </p>
@@ -206,54 +208,53 @@ function AreaRow({
       layout
       data-rank-key={areaKey}
       className={cn(
-        "relative list-none select-none bg-brand-white",
-        isDragging && "z-20 shadow-[0_10px_28px_rgba(28,25,23,0.12)]"
+        "relative list-none select-none overflow-hidden rounded-lg border border-brand-dark/20 bg-brand-white",
+        isDragging && "z-20 border-brand-dark shadow-[0_12px_28px_rgba(24,23,22,0.16)]"
       )}
       onPointerDown={handleReorderPointer}
       onMouseDown={handleReorderPointer}
     >
-      <div
-        className={cn(
-          "flex items-start gap-2 border-b border-brand-dark/10 py-4 pl-2 sm:gap-3 sm:pl-3"
-        )}
-      >
-        <span
-          data-reorder-handle="true"
-          aria-hidden="true"
-          className={cn(
-            "mt-0.5 flex size-8 shrink-0 cursor-grab items-center justify-center rounded-full font-display text-sm font-semibold touch-none active:cursor-grabbing",
-            rank === 1 ? "bg-brand-pink text-brand-dark" : "bg-brand-light text-brand-dark"
-          )}
-        >
-          {letter}
-        </span>
-
-        <div className="min-w-0 flex-1">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
-            <p className="text-base font-medium text-brand-dark">
-              <span className="sr-only">Importance {letter}. </span>
-              {label}
-            </p>
+      <div className="flex items-stretch">
+        <div className="min-w-0 flex-1 px-3 py-3 sm:px-4">
+          <div className="flex items-start gap-3">
             <span
+              data-reorder-handle="true"
+              aria-hidden="true"
               className={cn(
-                "text-sm sm:shrink-0 sm:text-right",
-                sliderTouched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
+                "mt-0.5 flex size-8 shrink-0 cursor-grab items-center justify-center rounded-full font-display text-sm font-semibold touch-none active:cursor-grabbing",
+                rank === 1 ? "bg-brand-pink text-brand-dark" : "bg-brand-light text-brand-dark"
               )}
             >
-              {sliderTouched ? `${verdict} (${value})` : "click 1–7"}
+              {letter}
             </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
+                <p className="text-base font-medium text-brand-dark">
+                  <span className="sr-only">Importance {letter}. </span>
+                  {label}
+                </p>
+                <span
+                  className={cn(
+                    "text-sm sm:shrink-0 sm:text-right",
+                    sliderTouched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
+                  )}
+                >
+                  {sliderTouched ? `${verdict} (${value})` : "click 1–7"}
+                </span>
+              </div>
+              <GapSlider
+                label={`${label}, gap size`}
+                value={value}
+                touched={sliderTouched}
+                showHeader={false}
+                onChange={onScanChange}
+                onTouch={onSliderTouch}
+              />
+            </div>
           </div>
-          <GapSlider
-            label={`${label}, gap size`}
-            value={value}
-            touched={sliderTouched}
-            showHeader={false}
-            onChange={onScanChange}
-            onTouch={onSliderTouch}
-          />
         </div>
 
-        <div className="flex shrink-0 flex-col items-center sm:flex-row">
+        <div className="flex shrink-0 flex-col items-center justify-center border-l border-brand-dark/10 bg-brand-light/70">
           <button
             type="button"
             aria-label={`Move ${label} up in importance, currently ${letter}`}
