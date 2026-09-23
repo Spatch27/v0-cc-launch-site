@@ -14,11 +14,11 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   </g>
   <text x="160" y="112" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="600" fill="#e3dcdc">Committed Citizens</text>
 
-  <text x="80" y="248" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff">Where&#8217;s the</text>
-  <rect x="348" y="204" width="118" height="62" fill="#ffeb3e"/>
-  <text x="362" y="248" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="46" font-weight="800" fill="#181716">gap</text>
-  <text x="80" y="322" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff">between the marketing you&#8217;ve got</text>
-  <text x="80" y="396" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff">and the one AI makes possible?</text>
+  <text x="80" y="292" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="56" font-weight="800" fill="#ffffff">The</text>
+  <rect x="192" y="238" width="136" height="76" fill="#ffeb3e"/>
+  <text x="209" y="292" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="56" font-weight="800" fill="#181716">gap</text>
+  <text x="342" y="292" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="56" font-weight="800" fill="#ffffff">between your marketing</text>
+  <text x="80" y="364" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="56" font-weight="800" fill="#ffffff">and the one AI makes possible.</text>
 
   <text x="80" y="492" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="500" fill="#e3dcdc">Four questions, two minutes.</text>
   <text x="80" y="536" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="500" fill="#e3dcdc">A short personal video within two working days.</text>
