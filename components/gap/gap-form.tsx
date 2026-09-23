@@ -121,12 +121,12 @@ export function GapForm() {
 
         <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
           <p>
-            A stronger marketing function can change what your business is able to achieve — if how the work gets done
-            keeps up with what AI makes possible.
+            You’ve added tools, developed capabilities and changed how your team works. Your people still hold the
+            pieces together: chasing decisions, reconciling data and moving work between systems.
           </p>
           <p>
-            Yet the work still waits on decisions, moves between teams, and depends on people joining the pieces
-            together. You sense a gap between the function you’ve got and the one you need.
+            AI creates an opportunity to rethink that arrangement. What could your marketing function achieve if less of
+            your team’s effort went into making the work happen?
           </p>
           <p>
             <strong className="font-semibold">Four questions, two minutes.</strong> Within two working days we’ll send
