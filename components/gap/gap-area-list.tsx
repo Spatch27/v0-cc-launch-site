@@ -173,7 +173,6 @@ export function GapAreaList({
         <span>Already there</span>
         <span>Nowhere near</span>
       </div>
-      <p className="mt-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">A — most important</p>
 
       <ul
         ref={listRef}
@@ -201,7 +200,6 @@ export function GapAreaList({
         ))}
       </ul>
 
-      <p className="mt-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">G — least important</p>
       <p className="sr-only" aria-live="polite">
         {liveMessage}
       </p>

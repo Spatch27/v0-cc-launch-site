@@ -196,11 +196,20 @@ export function GapForm() {
               <h2 id="gap-q2-score" className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
                 How big is the gap in each area?
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Here are 7 areas where a gap often exists between the version of marketing you have and the version you
-                need. First, click the number from 1–7 that corresponds to the size of the gap. Then rank the list,
-                using the instruction under it.
-              </p>
+              <div className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                <p>
+                  Below is a list of areas where a gap often exists between the marketing function you have and the one
+                  you need.
+                </p>
+                <p>
+                  First, for each area click the number (1–7) that corresponds to the size of the gap (lower number
+                  equals smaller gap)
+                </p>
+                <p>
+                  Second drag them into order of importance (A should be the most important area and G should be the
+                  least).
+                </p>
+              </div>
 
               <GapAreaList
                 order={importanceOrder}
@@ -211,23 +220,6 @@ export function GapForm() {
                 touched={touched}
                 onSliderTouch={markTouched}
               />
-
-              <div id="gap-q2-rank" className="mt-10 flex items-baseline justify-between gap-4">
-                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Then rank</span>
-                <span
-                  className={cn(
-                    "text-sm",
-                    importanceTouched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
-                  )}
-                >
-                  {importanceTouched ? "ranked" : "grip or arrows to rank"}
-                </span>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Now order this list (using the up/down arrows or the drag handle on the right-hand side of each slider)
-                so they are ranked in terms of importance to you, with A at the top (most important) and G at the bottom
-                (least important).
-              </p>
             </div>
 
             <div className="py-10">
