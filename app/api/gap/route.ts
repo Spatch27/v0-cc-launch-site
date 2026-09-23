@@ -1,35 +1,19 @@
 import { NextResponse } from "next/server"
-import { buildGapAreasPayload, formatGapScanEmailHtml, isValidScan, resolveImportanceOrder } from "@/lib/gap"
+import { buildFocusAreas, formatGapScanEmailHtml, isValidFocusAreas, optionalText } from "@/lib/gap"
 
 export async function POST(request: Request) {
   const body = await request.json()
-  const {
-    person,
-    biggest_difference,
-    scan,
-    importance,
-    importance_order,
-    importance_touched,
-    widest_gaps,
-    closest,
-    would_protect,
-    tried_and_didnt_stick,
-  } = body
+  const { person, must_achieve, focus_areas, would_protect, shows_the_gap } = body
 
   if (!person?.name || !person?.email || !person?.company) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
   }
 
-  if (!isValidScan(scan)) {
-    return NextResponse.json({ error: "Missing scan answers" }, { status: 400 })
+  if (!isValidFocusAreas(focus_areas)) {
+    return NextResponse.json({ error: "Pick one or two areas" }, { status: 400 })
   }
 
-  const order = resolveImportanceOrder(importance, importance_order)
-  if (!order) {
-    return NextResponse.json({ error: "Missing importance ranking" }, { status: 400 })
-  }
-
-  const areas = buildGapAreasPayload(scan, order)
+  const areas = buildFocusAreas(focus_areas)
 
   // TODO: persist submission and trigger the two-day video follow-up workflow.
   if (process.env.RESEND_API_KEY) {
@@ -41,14 +25,10 @@ export async function POST(request: Request) {
       subject: `New Gap Scan: ${person.name} (${person.company})`,
       html: formatGapScanEmailHtml({
         person,
-        biggest_difference,
-        would_protect,
-        tried_and_didnt_stick,
-        scan,
-        widest_gaps: Array.isArray(widest_gaps) ? widest_gaps : [],
-        closest,
-        areas,
-        importance_touched: Boolean(importance_touched),
+        must_achieve: optionalText(must_achieve),
+        focus_areas: areas,
+        would_protect: optionalText(would_protect),
+        shows_the_gap: optionalText(shows_the_gap),
       }),
     })
   }
