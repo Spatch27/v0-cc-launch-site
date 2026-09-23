@@ -2,7 +2,7 @@ export const GAP_AREAS = [
   { key: "funding", label: "Winning belief, budget and board confidence" },
   { key: "howitruns", label: "How the work gets planned, decided and shipped" },
   { key: "measurement", label: "Knowing what’s working, and proving it" },
-  { key: "ai", label: "Getting useful work out of the tools you already have" },
+  { key: "ai", label: "Getting useful work out of AI and the tools you already have" },
   { key: "stack", label: "The stack, and data people trust" },
   { key: "speed", label: "Speed, and how the team feels" },
   { key: "agencies", label: "Agencies and partners" },

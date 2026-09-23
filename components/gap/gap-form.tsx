@@ -122,7 +122,7 @@ export function GapForm() {
         <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
           <p>
             A stronger marketing function can change what your business is able to achieve — if how the work gets done
-            keeps up with what’s now possible.
+            keeps up with what AI makes possible.
           </p>
           <p>
             Yet the work still waits on decisions, moves between teams, and depends on people joining the pieces
