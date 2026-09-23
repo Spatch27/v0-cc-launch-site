@@ -116,7 +116,7 @@ export function GapForm() {
     <div className="min-h-screen bg-brand-white">
       <div className="mx-auto max-w-[660px] px-6 pt-32 pb-32 lg:pt-40 lg:pb-24">
         <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
-          Where’s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
+          Where’s the <span className="bg-brand-yellow-light px-1">gap</span> between the marketing you’ve got and the one AI makes possible?
         </h1>
 
         <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">

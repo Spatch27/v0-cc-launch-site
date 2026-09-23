@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { GapForm } from "@/components/gap/gap-form"
 import { absoluteUrl, brandedTitle, canonicalAlternates } from "@/lib/seo"
 
-const title = "Where’s the gap in your marketing?"
+const title = "Where’s the gap between the marketing you’ve got and the one AI makes possible?"
 const description =
   "Four questions, two minutes. Within two working days we’ll send you a short personal video: our initial read on the opportunity, what may be getting in the way, and where we’d begin."
 
