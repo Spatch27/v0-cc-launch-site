@@ -1,9 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle, Send } from "lucide-react"
-import { FOCUS_AREA_MAX, GAP_AREA_KEYS, type GapAreaKey } from "@/lib/gap"
+import {
+  GAP_AREAS,
+  type GapAreaKey,
+  buildGapAreasPayload,
+  defaultImportanceOrder,
+  importanceRanksFromOrder,
+} from "@/lib/gap"
 import { textRollDown, textRollUp } from "@/lib/animations"
 import { cn } from "@/lib/utils"
 import { GapAreaList } from "./gap-area-list"
@@ -16,47 +22,50 @@ const labelClass = "mb-3 block text-sm font-medium text-brand-dark"
 const hintClass = "mt-1 text-sm italic text-muted-foreground"
 
 export function GapForm() {
-  const [focusAreas, setFocusAreas] = useState<GapAreaKey[]>([])
-  const [areaError, setAreaError] = useState<string | null>(null)
+  const [scanValues, setScanValues] = useState<Record<GapAreaKey, number>>(() =>
+    Object.fromEntries(GAP_AREAS.map((area) => [area.key, 4])) as Record<GapAreaKey, number>
+  )
+  const [importanceOrder, setImportanceOrder] = useState<GapAreaKey[]>(defaultImportanceOrder)
+  const [importanceTouched, setImportanceTouched] = useState(false)
+  const [touched, setTouched] = useState<Set<GapAreaKey>>(new Set())
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isSubmitHovered, setIsSubmitHovered] = useState(false)
 
-  const atLimit = focusAreas.length >= FOCUS_AREA_MAX
+  const touchedCount = touched.size
 
-  function toggleArea(key: GapAreaKey) {
-    if (focusAreas.includes(key)) {
-      setAreaError(null)
-      setFocusAreas(focusAreas.filter((item) => item !== key))
-      return
-    }
-    if (atLimit) {
-      setAreaError("Pick one or two — deselect one to change your choice.")
-      return
-    }
-    setAreaError(null)
-    setFocusAreas([...focusAreas, key])
-  }
+  const markTouched = useMemo(
+    () => (key: GapAreaKey) =>
+      setTouched((prev) => {
+        if (prev.has(key)) return prev
+        const next = new Set(prev)
+        next.add(key)
+        return next
+      }),
+    []
+  )
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (loading) return
 
-    const selected = GAP_AREA_KEYS.filter((key) => focusAreas.includes(key))
-    if (selected.length < 1 || selected.length > FOCUS_AREA_MAX) {
-      setAreaError("Pick one or two areas.")
-      setError("Pick one or two areas.")
-      document.getElementById("gap-q2")?.scrollIntoView({ behavior: "smooth", block: "center" })
-      return
-    }
-
     setLoading(true)
     setError(null)
-    setAreaError(null)
 
     const form = e.currentTarget
     const formData = new FormData(form)
+
+    const scan = Object.fromEntries(GAP_AREAS.map((area) => [area.key, scanValues[area.key]])) as Record<
+      GapAreaKey,
+      number
+    >
+    const maxValue = Math.max(...Object.values(scan))
+    const minValue = Math.min(...Object.values(scan))
+    const widest_gaps = GAP_AREAS.filter((area) => scan[area.key] === maxValue).map((area) => area.key)
+    const closest = GAP_AREAS.find((area) => scan[area.key] === minValue)?.key
+    const importance = importanceRanksFromOrder(importanceOrder)
+    const areas = buildGapAreasPayload(scan, importanceOrder)
 
     try {
       const body = {
@@ -69,7 +78,15 @@ export function GapForm() {
           marketing_headcount: formData.get("marketing_headcount"),
         },
         must_achieve: formData.get("must_achieve"),
-        focus_areas: selected,
+        scan,
+        importance,
+        importance_order: importanceOrder,
+        importance_touched: importanceTouched,
+        areas,
+        most_important: importanceOrder[0],
+        least_important: importanceOrder[importanceOrder.length - 1],
+        widest_gaps,
+        closest,
         would_protect: formData.get("would_protect"),
         shows_the_gap: formData.get("shows_the_gap"),
       }
@@ -171,33 +188,47 @@ export function GapForm() {
                   <span
                     className={cn(
                       "h-2 w-2 rounded-full",
-                      focusAreas.length > 0 ? "bg-brand-pink" : "border border-brand-dark/20 bg-brand-light"
+                      touchedCount === 7 ? "bg-brand-pink" : "border border-brand-dark/20 bg-brand-light"
                     )}
                     aria-hidden="true"
                   />
-                  {focusAreas.length === 0 ? "Pick 1 or 2" : `${focusAreas.length} selected`}
+                  {touchedCount} of 7
                 </span>
               </div>
-              <h2 id="gap-q2-heading" className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
-                Which one or two areas matter most right now?
+              <h2 id="gap-q2-score" className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
+                How big is the gap in each area?
               </h2>
-              <p id="gap-q2-intro" className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Seven places a gap often shows up. Pick the one or two that matter most — no need to cover all seven.
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Here are 7 areas where a gap often exists between the version of marketing you have and the version you
+                need. First, click the number from 1–7 that corresponds to the size of the gap. Then rank the list,
+                using the instruction under it.
               </p>
-              <div role="group" aria-labelledby="gap-q2-heading" aria-describedby="gap-q2-intro">
-                <GapAreaList selected={focusAreas} atLimit={atLimit} onToggle={toggleArea} />
+
+              <GapAreaList
+                order={importanceOrder}
+                onReorder={setImportanceOrder}
+                onRank={() => setImportanceTouched(true)}
+                scanValues={scanValues}
+                onScanChange={(key, value) => setScanValues((prev) => ({ ...prev, [key]: value }))}
+                touched={touched}
+                onSliderTouch={markTouched}
+              />
+
+              <div id="gap-q2-rank" className="mt-10 flex items-baseline justify-between gap-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Then rank</span>
+                <span
+                  className={cn(
+                    "text-sm",
+                    importanceTouched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
+                  )}
+                >
+                  {importanceTouched ? "ranked" : "grip or arrows to rank"}
+                </span>
               </div>
-              {areaError && (
-                <p className="mt-4 text-sm text-red-700" role="alert">
-                  {areaError}
-                </p>
-              )}
-              <p className="sr-only" aria-live="polite">
-                {focusAreas.length === 0
-                  ? "None selected. Pick one or two."
-                  : atLimit
-                    ? "Two areas selected."
-                    : "One area selected. You can pick one more."}
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Now order this list (using the up/down arrows or the drag handle on the right-hand side of each slider)
+                so they are ranked in terms of importance to you, with A at the top (most important) and G at the bottom
+                (least important).
               </p>
             </div>
             <hr className="border-t border-brand-dark/10" />
