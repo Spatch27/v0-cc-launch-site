@@ -1,8 +1,8 @@
 export const GAP_AREAS = [
   { key: "funding", label: "Winning belief, budget and board confidence" },
-  { key: "howitruns", label: "How the work actually gets made and shipped" },
-  { key: "measurement", label: "Knowing what's working, and proving it" },
-  { key: "ai", label: "Getting AI to do something real" },
+  { key: "howitruns", label: "How the work gets planned, decided and shipped" },
+  { key: "measurement", label: "Knowing what’s working, and proving it" },
+  { key: "ai", label: "Getting useful work out of AI and the tools you already have" },
   { key: "stack", label: "The stack, and data people trust" },
   { key: "speed", label: "Speed, and how the team feels" },
   { key: "agencies", label: "Agencies and partners" },
@@ -138,6 +138,12 @@ function escapeHtml(value: string): string {
     .replaceAll('"', "&quot;")
 }
 
+export function optionalText(value: unknown): string | null {
+  if (typeof value !== "string") return null
+  const trimmed = value.trim()
+  return trimmed.length > 0 ? trimmed : null
+}
+
 export function formatGapScanEmailHtml(input: {
   person: {
     name: string
@@ -146,9 +152,9 @@ export function formatGapScanEmailHtml(input: {
     role?: string | null
     marketing_headcount?: string | null
   }
-  biggest_difference?: string | null
+  must_achieve?: string | null
   would_protect?: string | null
-  tried_and_didnt_stick?: string | null
+  shows_the_gap?: string | null
   scan: GapScan
   widest_gaps: GapAreaKey[]
   closest: GapAreaKey | undefined
@@ -190,7 +196,7 @@ export function formatGapScanEmailHtml(input: {
     <p>Company: ${escapeHtml(String(person.company))}</p>
     <p>Role: ${escapeHtml(String(person.role || "N/A"))}</p>
     <p>Marketing headcount: ${escapeHtml(String(person.marketing_headcount || "N/A"))}</p>
-    <p>Biggest difference: ${escapeHtml(String(input.biggest_difference || "N/A"))}</p>
+    <p>What must marketing achieve that it cannot reliably do today? ${escapeHtml(String(input.must_achieve || "N/A"))}</p>
     <h3>Gap size and importance</h3>
     <p>Gap size: 1 = already there, 7 = nowhere near.<br/>Importance: A = most important, G = least important.</p>
     <table style="border-collapse:collapse;margin:12px 0;">
@@ -211,6 +217,6 @@ export function formatGapScanEmailHtml(input: {
     <p>Scan (gap size by key): ${escapeHtml(JSON.stringify(input.scan))}</p>
     <p>Areas (gap size + importance): ${escapeHtml(JSON.stringify(areasDump))}</p>
     <p>Would protect: ${escapeHtml(String(input.would_protect || "N/A"))}</p>
-    <p>Fix that keeps coming back: ${escapeHtml(String(input.tried_and_didnt_stick || "N/A"))}</p>
+    <p>Campaign or piece of work that shows the gap: ${escapeHtml(String(input.shows_the_gap || "N/A"))}</p>
   `
 }
