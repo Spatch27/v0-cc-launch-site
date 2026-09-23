@@ -134,7 +134,6 @@ export function GapForm() {
             we’d begin.
           </p>
         </div>
-        <hr className="mt-6 border-t border-brand-dark/10" />
 
         {submitted ? (
           <div className="flex flex-col gap-6 py-16">
@@ -179,7 +178,6 @@ export function GapForm() {
                 />
               </div>
             </div>
-            <hr className="border-t border-brand-dark/10" />
 
             <div className="py-10" id="gap-q2">
               <div className="flex items-baseline justify-between gap-4">
@@ -231,7 +229,6 @@ export function GapForm() {
                 (least important).
               </p>
             </div>
-            <hr className="border-t border-brand-dark/10" />
 
             <div className="py-10">
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Three</span>
@@ -247,7 +244,6 @@ export function GapForm() {
                 <input id="would_protect" name="would_protect" type="text" className={inputClass} />
               </div>
             </div>
-            <hr className="border-t border-brand-dark/10" />
 
             <div className="py-10">
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Four</span>
