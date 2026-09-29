@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle, Send } from "lucide-react"
 import {
@@ -19,17 +19,11 @@ const inputClass =
 
 const labelClass = "mb-3 block text-sm font-medium text-brand-dark"
 
-const STARTERS = [
-  { label: "Speed", stem: "The one we need moves " },
-  { label: "Proof", stem: "The one we need can show " },
-  { label: "Planning", stem: "The one we need plans, the one we've got " },
-  { label: "The team", stem: "The one we need frees the team to " },
-  { label: "The tools", stem: "The one we need actually uses " },
-] as const
+const hintClass = "mt-1 text-sm italic text-muted-foreground"
 
 export function GapForm() {
   const [scanValues, setScanValues] = useState<Record<GapAreaKey, number>>(() =>
-    Object.fromEntries(GAP_AREAS.map((s) => [s.key, 4])) as Record<GapAreaKey, number>
+    Object.fromEntries(GAP_AREAS.map((area) => [area.key, 4])) as Record<GapAreaKey, number>
   )
   const [importanceOrder, setImportanceOrder] = useState<GapAreaKey[]>(defaultImportanceOrder)
   const [importanceTouched, setImportanceTouched] = useState(false)
@@ -37,34 +31,7 @@ export function GapForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [q1, setQ1] = useState("")
-  const [starter, setStarter] = useState<string | null>(null)
   const [isSubmitHovered, setIsSubmitHovered] = useState(false)
-  const [caretTo, setCaretTo] = useState<number | null>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    if (caretTo !== null && inputRef.current) {
-      inputRef.current.focus()
-      inputRef.current.setSelectionRange(caretTo, caretTo)
-      setCaretTo(null)
-    }
-  }, [q1, caretTo])
-
-  function pickStarter(selected: (typeof STARTERS)[number]) {
-    if (starter === selected.label) {
-      setQ1("")
-      setStarter(null)
-      setCaretTo(0)
-      return
-    }
-
-    const untouched = q1 === "" || STARTERS.some((option) => q1 === option.stem)
-    const next = untouched ? selected.stem : q1
-    setQ1(next)
-    setStarter(selected.label)
-    setCaretTo(next.length)
-  }
 
   const touchedCount = touched.size
 
@@ -89,11 +56,14 @@ export function GapForm() {
     const form = e.currentTarget
     const formData = new FormData(form)
 
-    const scan = Object.fromEntries(GAP_AREAS.map((s) => [s.key, scanValues[s.key]])) as Record<GapAreaKey, number>
+    const scan = Object.fromEntries(GAP_AREAS.map((area) => [area.key, scanValues[area.key]])) as Record<
+      GapAreaKey,
+      number
+    >
     const maxValue = Math.max(...Object.values(scan))
     const minValue = Math.min(...Object.values(scan))
-    const widest_gaps = GAP_AREAS.filter((s) => scan[s.key] === maxValue).map((s) => s.key)
-    const closest = GAP_AREAS.find((s) => scan[s.key] === minValue)?.key
+    const widest_gaps = GAP_AREAS.filter((area) => scan[area.key] === maxValue).map((area) => area.key)
+    const closest = GAP_AREAS.find((area) => scan[area.key] === minValue)?.key
     const importance = importanceRanksFromOrder(importanceOrder)
     const areas = buildGapAreasPayload(scan, importanceOrder)
 
@@ -107,8 +77,7 @@ export function GapForm() {
           email: formData.get("email"),
           marketing_headcount: formData.get("marketing_headcount"),
         },
-        biggest_difference: formData.get("biggest_difference"),
-        q1_starter_used: starter,
+        must_achieve: formData.get("must_achieve"),
         scan,
         importance,
         importance_order: importanceOrder,
@@ -119,7 +88,7 @@ export function GapForm() {
         widest_gaps,
         closest,
         would_protect: formData.get("would_protect"),
-        tried_and_didnt_stick: formData.get("tried_and_didnt_stick"),
+        shows_the_gap: formData.get("shows_the_gap"),
       }
 
       const res = await fetch("/api/gap", {
@@ -146,34 +115,36 @@ export function GapForm() {
   return (
     <div className="min-h-screen bg-brand-white">
       <div className="mx-auto max-w-[660px] px-6 pt-32 pb-32 lg:pt-40 lg:pb-24">
-        {/* Title */}
         <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
-          Where&apos;s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
+          Where’s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
         </h1>
 
-        {/* Intro */}
         <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
           <p>
-            Most marketing functions aren&apos;t broken, they&apos;re buried. More channels, shorter cycles, new tools
-            that only pay back if the function around them can keep up. And a board that wants proof by Friday.
+            You’ve added tools, developed capabilities and changed how your team works. Your people still hold the
+            pieces together: chasing decisions, reconciling data and moving work between systems.
           </p>
           <p>
-            Capable teams become teams that cope. You sense a widening gap between the marketing function you&apos;ve
-            got and the one you need.
+            AI creates an opportunity to rethink that arrangement. What could your marketing function achieve if less of
+            your team’s effort went into making the work happen?
           </p>
           <p>
-            Five questions, five minutes of your time. Within a couple of days we&apos;ll send you a short video: how
-            big we think that gap is, three things we think are holding it there, and where we&apos;d start.
+            <strong className="font-semibold">Four questions, two minutes.</strong> Within two working days we’ll send
+            you a short personal video: our initial read on the opportunity, what may be getting in the way, and where
+            we’d begin.
           </p>
         </div>
-        <hr className="mt-6 border-t border-brand-dark/10" />
 
         {submitted ? (
           <div className="flex flex-col gap-6 py-16">
             <CheckCircle size={48} className="text-brand-pink" />
             <h2 className="font-display text-3xl font-bold text-brand-dark">Thanks — the video is on its way.</h2>
-            <p className="text-lg text-brand-dark">
-              We&apos;ll be back to you within two working days with your three-minute video.
+            <p className="text-lg leading-relaxed text-brand-dark">
+              We’ll be back to you within two working days with a short personal video.
+            </p>
+            <p className="text-lg leading-relaxed text-brand-dark">
+              If there’s a useful next step, Waypoint is a free hour with the founders to explore your situation and
+              identify where to start. That start is often one live campaign.
             </p>
           </div>
         ) : (
@@ -184,59 +155,31 @@ export function GapForm() {
               </div>
             )}
 
-            {/* Question 1 */}
             <div className="py-10">
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">One</span>
               <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
-                Compare the marketing function you&apos;ve got to the one you need. What&apos;s the biggest
-                difference between those two versions?
+                What must marketing achieve that it cannot reliably do today?
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">One line is plenty.</p>
-              <div className="mt-6 flex flex-col gap-4">
-                <label htmlFor="biggest_difference" className="sr-only">
-                  Biggest difference
+              <p className={hintClass}>
+                e.g. plan with confidence / ship campaigns faster / prove what’s working / free the team for
+                higher-value work
+              </p>
+              <div className="mt-6">
+                <label htmlFor="must_achieve" className="sr-only">
+                  What must marketing achieve that it cannot reliably do today?
                 </label>
                 <input
-                  ref={inputRef}
-                  id="biggest_difference"
-                  name="biggest_difference"
+                  id="must_achieve"
+                  name="must_achieve"
                   type="text"
                   maxLength={180}
-                  value={q1}
-                  onChange={(event) => {
-                    setQ1(event.target.value)
-                    setStarter(null)
-                  }}
                   className={inputClass}
-                  placeholder="e.g. the one we need plans, the one we've got reacts"
                 />
-                <div className="flex flex-col gap-3">
-                  <p className="text-sm text-muted-foreground">Stuck? Start from one of these.</p>
-                  <div className="flex flex-wrap gap-2" aria-label="Starter answers">
-                    {STARTERS.map((option) => (
-                      <button
-                        key={option.label}
-                        type="button"
-                        aria-pressed={starter === option.label}
-                        className={cn(
-                          "rounded-full border px-[15px] py-2 text-sm text-brand-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink",
-                          starter === option.label
-                            ? "border-brand-pink bg-brand-pink font-medium"
-                            : "border-[#E3DCDC] bg-background hover:border-brand-pink hover:bg-[#FFE8F2]"
-                        )}
-                        onClick={() => pickStarter(option)}
-                      >
-                        {option.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
-            <hr className="border-t border-brand-dark/10" />
 
-            {/* Questions 2 and 3 — same seven rows: gap size then importance */}
-            <div className="py-10">
+            <div className="py-10" id="gap-q2">
               <div className="flex items-baseline justify-between gap-4">
                 <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Two</span>
                 <span className="flex items-center gap-2 text-sm font-medium text-brand-dark">
@@ -250,11 +193,23 @@ export function GapForm() {
                   {touchedCount} of 7
                 </span>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Here are 7 areas where a gap often exists between the version of marketing you have and the version
-                you need. Two steps to complete here — first click the number (from 1–7) that corresponds to the size
-                of the gap. Then follow the instruction in step THREE at the bottom of this list.
-              </p>
+              <h2 id="gap-q2-score" className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
+                How big is the gap in each area?
+              </h2>
+              <div className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                <p>
+                  Below is a list of areas where a gap often exists between the marketing function you have and the one
+                  you need.
+                </p>
+                <p>
+                  <strong className="font-semibold">First,</strong> for each area click the number (1–7) that
+                  corresponds to the size of the gap (1 = ALREADY THERE and 7 = NOWHERE NEAR)
+                </p>
+                <p>
+                  <strong className="font-semibold">Second,</strong> drag them into order of importance (A should be the
+                  most important area and G should be the least).
+                </p>
+              </div>
 
               <GapAreaList
                 order={importanceOrder}
@@ -265,70 +220,41 @@ export function GapForm() {
                 touched={touched}
                 onSliderTouch={markTouched}
               />
-
-              <div className="mt-10 flex items-baseline justify-between gap-4">
-                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Three</span>
-                <span
-                  className={cn(
-                    "text-sm",
-                    importanceTouched ? "font-semibold text-brand-dark" : "italic text-muted-foreground"
-                  )}
-                >
-                  {importanceTouched ? "ranked" : "grip or arrows to rank"}
-                </span>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Now order this list (using the up/down arrows or the drag handle on the right-hand side of each
-                slider) so they are ranked in terms of importance to you, with A at the top (most important) and G at
-                the bottom (least important).
-              </p>
             </div>
 
-            {/* Question 4 */}
+            <div className="py-10">
+              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Three</span>
+              <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
+                What’s the one part you’d protect if you had to cut everything else?
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">A few words will do.</p>
+              <p className={hintClass}>e.g. the brand team, our events, the way we do research</p>
+              <div className="mt-6">
+                <label htmlFor="would_protect" className="sr-only">
+                  What’s the one part you’d protect if you had to cut everything else?
+                </label>
+                <input id="would_protect" name="would_protect" type="text" className={inputClass} />
+              </div>
+            </div>
+
             <div className="py-10">
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Four</span>
               <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
-                What&apos;s the one part you&apos;d protect if you had to cut everything else?
+                Name a campaign or piece of work that shows the gap — and what makes it harder than it should be.
               </h2>
-              <p className="mt-2 text-sm text-muted-foreground">A few words will do.</p>
-              <div className="mt-6">
-                <label htmlFor="would_protect" className="sr-only">
-                  What would you protect
-                </label>
-                <input
-                  id="would_protect"
-                  name="would_protect"
-                  type="text"
-                  className={inputClass}
-                  placeholder="e.g. the brand team, our events, the way we do research"
-                />
-              </div>
-            </div>
-
-            {/* Question 5 */}
-            <div className="py-10">
-              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Five</span>
-              <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
-                What&apos;s the fix that keeps coming back?
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Something you&apos;ve solved before and it didn&apos;t stick. Name it, that&apos;s all.
+              <p className="mt-2 text-sm text-muted-foreground">Something live or recent. One short answer is enough.</p>
+              <p className={hintClass}>
+                e.g. Q4 always-on — approvals stall every cycle / weekly competitive report — still assembled by hand /
+                product launch — briefs bounce between teams
               </p>
               <div className="mt-6">
-                <label htmlFor="tried_and_didnt_stick" className="sr-only">
-                  Recurring fix
+                <label htmlFor="shows_the_gap" className="sr-only">
+                  Name a campaign or piece of work that shows the gap — and what makes it harder than it should be.
                 </label>
-                <input
-                  id="tried_and_didnt_stick"
-                  name="tried_and_didnt_stick"
-                  type="text"
-                  className={inputClass}
-                  placeholder="e.g. attribution, the briefing process, agency handovers"
-                />
+                <input id="shows_the_gap" name="shows_the_gap" type="text" className={inputClass} />
               </div>
             </div>
 
-            {/* Details panel */}
             <div className="flex flex-col gap-8 py-10">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6">
                 <div>
@@ -421,8 +347,8 @@ export function GapForm() {
               <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </button>
             <p className="mt-4 text-center text-sm text-muted-foreground">
-              Your answers stay between us. We don&apos;t share them, we don&apos;t publish them, and we don&apos;t
-              put you on a mailing list.
+              Your answers stay between us. We don’t share them, we don’t publish them, and we don’t put you on a
+              mailing list.
             </p>
           </form>
         )}

@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server"
-import { buildGapAreasPayload, formatGapScanEmailHtml, isValidScan, resolveImportanceOrder } from "@/lib/gap"
+import {
+  buildGapAreasPayload,
+  formatGapScanEmailHtml,
+  isValidScan,
+  optionalText,
+  resolveImportanceOrder,
+} from "@/lib/gap"
 
 export async function POST(request: Request) {
   const body = await request.json()
   const {
     person,
-    biggest_difference,
+    must_achieve,
     scan,
     importance,
     importance_order,
@@ -13,7 +19,7 @@ export async function POST(request: Request) {
     widest_gaps,
     closest,
     would_protect,
-    tried_and_didnt_stick,
+    shows_the_gap,
   } = body
 
   if (!person?.name || !person?.email || !person?.company) {
@@ -41,9 +47,9 @@ export async function POST(request: Request) {
       subject: `New Gap Scan: ${person.name} (${person.company})`,
       html: formatGapScanEmailHtml({
         person,
-        biggest_difference,
-        would_protect,
-        tried_and_didnt_stick,
+        must_achieve: optionalText(must_achieve),
+        would_protect: optionalText(would_protect),
+        shows_the_gap: optionalText(shows_the_gap),
         scan,
         widest_gaps: Array.isArray(widest_gaps) ? widest_gaps : [],
         closest,
