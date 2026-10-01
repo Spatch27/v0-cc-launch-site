@@ -25,6 +25,9 @@ const hintClass = "mt-1 text-sm italic text-muted-foreground"
 const questionGridClass =
   "grid items-start gap-12 py-10 lg:grid-cols-[280px_1fr] lg:gap-20"
 
+/** Same cap as the Insights article body, so answers end where article text does. */
+const answerColumnClass = "min-w-0 lg:max-w-[720px]"
+
 export function GapForm() {
   const [scanValues, setScanValues] = useState<Record<GapAreaKey, number>>(() =>
     Object.fromEntries(GAP_AREAS.map((area) => [area.key, 4])) as Record<GapAreaKey, number>
@@ -117,8 +120,8 @@ export function GapForm() {
   }
 
   return (
-    <div className="min-h-screen bg-brand-white">
-      <div className="mx-auto max-w-[1400px] px-6 pt-32 pb-32 lg:px-12 lg:pt-40 lg:pb-24">
+    <div className="min-h-screen bg-brand-white px-6 pt-32 pb-32 lg:px-12 lg:pt-40 lg:pb-24">
+      <div className="mx-auto max-w-[1400px]">
         <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
           Where’s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
         </h1>
@@ -171,7 +174,7 @@ export function GapForm() {
                   higher-value work
                 </p>
               </div>
-              <div className="min-w-0">
+              <div className={answerColumnClass}>
                 <label htmlFor="must_achieve" className="sr-only">
                   What must marketing achieve that it cannot reliably do today?
                 </label>
@@ -219,7 +222,7 @@ export function GapForm() {
                 </div>
               </div>
 
-              <div className="min-w-0">
+              <div className={answerColumnClass}>
                 <GapAreaList
                   order={importanceOrder}
                   onReorder={setImportanceOrder}
@@ -241,7 +244,7 @@ export function GapForm() {
                 <p className="mt-2 text-sm text-muted-foreground">A few words will do.</p>
                 <p className={hintClass}>e.g. the brand team, our events, the way we do research</p>
               </div>
-              <div className="min-w-0">
+              <div className={answerColumnClass}>
                 <label htmlFor="would_protect" className="sr-only">
                   What’s the one part you’d protect if you had to cut everything else?
                 </label>
@@ -261,7 +264,7 @@ export function GapForm() {
                   product launch — briefs bounce between teams
                 </p>
               </div>
-              <div className="min-w-0">
+              <div className={answerColumnClass}>
                 <label htmlFor="shows_the_gap" className="sr-only">
                   Name a campaign or piece of work that shows the gap — and what makes it harder than it should be.
                 </label>
@@ -270,7 +273,7 @@ export function GapForm() {
             </div>
 
             <div className={questionGridClass}>
-              <div className="flex min-w-0 flex-col gap-8 lg:col-start-2">
+              <div className={cn(answerColumnClass, "flex flex-col gap-8 lg:col-start-2")}>
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6">
                   <div>
                     <label htmlFor="name" className={labelClass}>
