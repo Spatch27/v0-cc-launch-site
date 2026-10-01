@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { ChevronDown, ChevronUp, GripVertical } from "lucide-react"
 import { GAP_AREAS, GAP_VERDICTS, importanceLetterFromRank, type GapAreaKey, type GapScan, moveItemInOrder } from "@/lib/gap"
@@ -12,6 +12,17 @@ const AREA_LABEL: Record<GapAreaKey, string> = Object.fromEntries(
 ) as Record<GapAreaKey, string>
 
 const DRAG_THRESHOLD = 8
+const SWAP_MS = 220
+
+function prefersReducedMotion(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+}
+
+function clearRowMotion(row: HTMLElement) {
+  row.style.transition = "none"
+  row.style.transform = ""
+  row.style.zIndex = ""
+}
 
 interface GapAreaListProps {
   order: GapAreaKey[]
@@ -70,6 +81,11 @@ export function GapAreaList({
   const dragRef = useRef<ActiveDrag | null>(null)
   const onReorderRef = useRef(onReorder)
   const onRankRef = useRef(onRank)
+  const swapFrom = useRef<Map<string, number> | null>(null)
+  const swapScroll = useRef(0)
+  const swapKey = useRef<GapAreaKey | null>(null)
+  const swapGeneration = useRef(0)
+  const pendingFocus = useRef<string | null>(null)
 
   useEffect(() => {
     orderRef.current = order
@@ -90,9 +106,74 @@ export function GapAreaList({
   const commitRef = useRef(commit)
   commitRef.current = commit
 
-  function move(index: number, direction: -1 | 1) {
-    commit(moveItemInOrder(orderRef.current, index, direction))
+  function move(key: GapAreaKey, direction: -1 | 1) {
+    const index = orderRef.current.indexOf(key)
+    if (index < 0) return
+    const next = moveItemInOrder(orderRef.current, index, direction)
+    if (next.every((item, itemIndex) => item === orderRef.current[itemIndex])) return
+
+    const rows = listRef.current?.querySelectorAll<HTMLElement>("[data-rank-key]")
+    const from = new Map<string, number>()
+    rows?.forEach((row) => {
+      const rankKey = row.dataset.rankKey
+      if (rankKey) from.set(rankKey, row.getBoundingClientRect().top)
+    })
+    rows?.forEach(clearRowMotion)
+    swapFrom.current = from
+    swapScroll.current = window.scrollY
+    swapKey.current = key
+    swapGeneration.current += 1
+    pendingFocus.current = `${key}:${direction === -1 ? "up" : "down"}`
+    commit(next)
   }
+
+  useLayoutEffect(() => {
+    const from = swapFrom.current
+    const raisedKey = swapKey.current
+    const generation = swapGeneration.current
+    const scrollBefore = swapScroll.current
+    swapFrom.current = null
+    swapKey.current = null
+    if (!from || from.size === 0 || dragRef.current) return
+    if (prefersReducedMotion()) return
+
+    const scrollDelta = window.scrollY - scrollBefore
+    const rows = listRef.current?.querySelectorAll<HTMLElement>("[data-rank-key]")
+    rows?.forEach((row) => {
+      const rankKey = row.dataset.rankKey
+      if (!rankKey) return
+      const before = from.get(rankKey)
+      if (before == null) return
+      clearRowMotion(row)
+      const delta = before - scrollDelta - row.getBoundingClientRect().top
+      if (Math.abs(delta) < 1) return
+      row.style.transform = `translateY(${delta}px)`
+      if (rankKey === raisedKey) row.style.zIndex = "2"
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (swapGeneration.current !== generation) return
+          row.style.transition = `transform ${SWAP_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`
+          row.style.transform = "translateY(0)"
+        })
+      })
+      row.addEventListener(
+        "transitionend",
+        (event) => {
+          if (event.propertyName !== "transform" || swapGeneration.current !== generation) return
+          clearRowMotion(row)
+        },
+        { once: true }
+      )
+    })
+  }, [order])
+
+  useEffect(() => {
+    const control = pendingFocus.current
+    if (!control) return
+    pendingFocus.current = null
+    const button = listRef.current?.querySelector<HTMLButtonElement>(`[data-move-control="${control}"]`)
+    if (button && !button.disabled) button.focus({ preventScroll: true })
+  }, [order])
 
   function beginDrag(key: GapAreaKey, event: React.PointerEvent) {
     const row = (event.currentTarget as HTMLElement).closest<HTMLElement>("[data-rank-key]")
@@ -174,6 +255,7 @@ export function GapAreaList({
       <ul
         ref={listRef}
         className="mt-3 flex flex-col gap-3"
+        style={{ overflowAnchor: "none" }}
         aria-label="Gap size and importance. A at the top is most important, G at the bottom is least important."
       >
         {order.map((key, index) => (
@@ -190,8 +272,8 @@ export function GapAreaList({
             sliderTouched={touched.has(key)}
             onScanChange={(value) => onScanChange(key, value)}
             onSliderTouch={() => onSliderTouch(key)}
-            onMoveUp={() => move(index, -1)}
-            onMoveDown={() => move(index, 1)}
+            onMoveUp={() => move(key, -1)}
+            onMoveDown={() => move(key, 1)}
             onDragStart={(event) => beginDrag(key, event)}
           />
         ))}
@@ -293,6 +375,7 @@ function AreaRow({
       <div className="flex shrink-0 flex-col items-center justify-center border-l border-brand-dark/10 bg-brand-light/70">
         <button
           type="button"
+          data-move-control={`${areaKey}:up`}
           aria-label={`Move ${label} up in importance, currently ${letter}`}
           disabled={isFirst}
           onPointerDown={(event) => event.stopPropagation()}
@@ -303,6 +386,7 @@ function AreaRow({
         </button>
         <button
           type="button"
+          data-move-control={`${areaKey}:down`}
           aria-label={`Move ${label} down in importance, currently ${letter}`}
           disabled={isLast}
           onPointerDown={(event) => event.stopPropagation()}
@@ -358,7 +442,7 @@ function AreaRow({
   }
 
   return (
-    <li data-rank-key={areaKey} className="list-none" onPointerDown={handleReorderPointer}>
+    <li data-rank-key={areaKey} className="relative list-none" onPointerDown={handleReorderPointer}>
       {card}
     </li>
   )
