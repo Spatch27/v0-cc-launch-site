@@ -125,7 +125,7 @@ export function MomentumSection() {
             </motion.h3>
             <motion.div variants={textChild} className="flex flex-col items-start gap-8">
               <p className="max-w-3xl text-lg leading-relaxed text-brand-dark">
-                We start with one campaign, usually one you already know is harder than it should be. We look at how it runs today across Team, Process, Data and Tech. Then we rebuild it with your team, using AI where it makes the result better, running it live against the old version. Six weeks later you have a better campaign that runs faster, with the numbers to prove it.
+                We start with one thing you already know is harder than it should be. We look at how it runs across Team, Process, Data and Tech. Then we rebuild it with your team, using AI where it makes the result better, running it live against the old version. Six weeks later you have a clear functional improvement with the numbers to prove it.
               </p>
               <Link
                 href="/approach"
