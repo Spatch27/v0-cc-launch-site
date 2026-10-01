@@ -100,7 +100,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If you're not sure how to map the people, processes, data and tech of your marketing engine, we can help. The Drag Diagnostic is a free, 60-minute look at where friction is costing you and what to tackle first.",
+        text: "If you're not sure how to map the people, processes, data and tech of your marketing engine, we can help. Waypoint is a free, 30-minute look at where friction is costing you and what to tackle first.",
       },
     ],
   },
@@ -180,7 +180,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "Fabric is where drag hides. If you're not sure how to find it in your marketing engine - let alone fix it - we can help. Waypoint is a free, 60-minute look at where friction is costing you and what to tackle first.",
+        text: "Fabric is where drag hides. If you're not sure how to find it in your marketing engine - let alone fix it - we can help. Waypoint is a free, 30-minute look at where friction is costing you and what to tackle first.",
       },
     ],
   },
@@ -264,7 +264,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If your team continues to run into blocks and you're unsure where to start in reviewing your own marketing operating model, speak to us about Waypoint - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If your team continues to run into blocks and you're unsure where to start in reviewing your own marketing operating model, speak to us about Waypoint - a free, 30-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
@@ -409,7 +409,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If you're a CMO or an experienced Marketing Ops leader and this sounds familiar but you're unsure where to start, contact us to book a free Drag Diagnostic - a 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If you're a CMO or an experienced Marketing Ops leader and this sounds familiar but you're unsure where to start, contact us to book a free Waypoint - a 30-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
@@ -551,7 +551,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If all that sounds sensible but daunting, contact us to book a free Drag Diagnostic - a 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If all that sounds sensible but daunting, contact us to book a free Waypoint - a 30-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
@@ -596,7 +596,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If this all sounds sensible but you're unsure where to start in reviewing your own marketing operating model, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If this all sounds sensible but you're unsure where to start in reviewing your own marketing operating model, speak to us about Waypoint - a free, 30-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
@@ -653,7 +653,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If all this sounds sensible enough but you're unsure where to start, book a Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If all this sounds sensible enough but you're unsure where to start, book a Waypoint - a free, 30-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
@@ -811,7 +811,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If you're a marketing leader who's tired of watching good people fight bad systems, start with a conversation. Our Drag Diagnostic is free, takes an hour, and gives you something useful whether we work together or not.",
+        text: "If you're a marketing leader who's tired of watching good people fight bad systems, start with a conversation. Waypoint is a free 30 minute conversation with the founders, and it gives you something useful whether we work together or not.",
       },
     ],
   },
@@ -868,7 +868,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If that sounds sensible but you're unsure where to start, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If that sounds sensible but you're unsure where to start, speak to us about Waypoint - a free, 30-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
@@ -925,7 +925,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If you want to swim in data rather than drown in it, speak to us about the Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If you want to swim in data rather than drown in it, speak to us about Waypoint - a free, 30-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },
@@ -990,7 +990,7 @@ export const hardcodedInsightPageArticles: Record<string, HardcodedInsightPageAr
       },
       {
         type: "paragraph",
-        text: "If you want a marketing engine the board can believe in, you need to start by understanding where you're experiencing operational drag. We can help. Get in touch to schedule a Drag Diagnostic - a free, 60-minute conversation about where friction is costing you the most and what to tackle first.",
+        text: "If you want a marketing engine the board can believe in, you need to start by understanding where you're experiencing operational drag. We can help. Get in touch to schedule your Waypoint - a free, 30-minute conversation about where friction is costing you the most and what to tackle first.",
       },
     ],
   },

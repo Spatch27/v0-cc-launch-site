@@ -17,8 +17,8 @@ const PROJECT_ID = "78xqw9ra"
 const DATASET = "production"
 const API_VERSION = "2024-08-01"
 
-const DRAG_DIAGNOSTIC_TEXT = "Get in touch to schedule a Drag Diagnostic"
-const DRAG_DIAGNOSTIC_HREF = "/contact#book"
+const WAYPOINT_LINK_TEXT = "Get in touch to schedule your Waypoint"
+const WAYPOINT_LINK_HREF = "/contact#book"
 
 const EXPECTED_AUTHORS = [
   {name: "Ben Scoggins", role: "Co-founder", idHint: "author-ben-scoggins"},
@@ -157,9 +157,9 @@ function bodyToPortableText(slug: string, blocks: PageBodyBlock[]): PortableNode
     }
 
     if (block.type === "paragraph") {
-      if (block.text.includes(DRAG_DIAGNOSTIC_TEXT)) {
-        const [before, after] = block.text.split(DRAG_DIAGNOSTIC_TEXT)
-        return annotatedParagraph(blockKey, before ?? "", DRAG_DIAGNOSTIC_TEXT, DRAG_DIAGNOSTIC_HREF, after ?? "")
+      if (block.text.includes(WAYPOINT_LINK_TEXT)) {
+        const [before, after] = block.text.split(WAYPOINT_LINK_TEXT)
+        return annotatedParagraph(blockKey, before ?? "", WAYPOINT_LINK_TEXT, WAYPOINT_LINK_HREF, after ?? "")
       }
       return normalBlock(blockKey, [textSpan(`${blockKey}-s0`, block.text)])
     }
