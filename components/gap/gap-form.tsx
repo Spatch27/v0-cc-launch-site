@@ -21,12 +21,54 @@ const labelClass = "mb-3 block text-sm font-medium text-brand-dark"
 
 const hintClass = "mt-1 text-sm italic text-muted-foreground"
 
-/** Same container grid as Insights articles: 280px question column, fluid answer column. */
-const questionGridClass =
-  "grid items-start gap-12 py-10 lg:grid-cols-[280px_1fr] lg:gap-20"
+/**
+ * Insights article columns: 280px question column, answer column capped at the
+ * article body width (720px). Heading and short-question inputs share this grid
+ * so their right edge is the answer column's right edge.
+ */
+const columnGridClass = "gap-columns grid lg:grid-cols-[280px_minmax(0,720px)] lg:gap-x-12"
+
+const questionGridClass = cn(columnGridClass, "items-start gap-12 py-10")
 
 /** Same cap as the Insights article body, so answers end where article text does. */
 const answerColumnClass = "min-w-0 lg:max-w-[720px]"
+
+function ShortQuestion({
+  kicker,
+  title,
+  note,
+  example,
+  fieldId,
+  maxLength,
+}: {
+  kicker: string
+  title: string
+  note: string
+  example: string
+  fieldId: string
+  maxLength?: number
+}) {
+  return (
+    <div className={cn(columnGridClass, "py-10")}>
+      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground lg:col-start-1 lg:row-start-1">
+        {kicker}
+      </span>
+      <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark lg:col-start-1 lg:row-start-2 lg:self-end">
+        {title}
+      </h2>
+      <div className="lg:col-start-1 lg:row-start-3">
+        <p className="mt-2 text-sm text-muted-foreground">{note}</p>
+        <p className={hintClass}>{example}</p>
+      </div>
+      <div className={cn(answerColumnClass, "gap-short-field lg:col-start-2 lg:row-start-2 lg:self-end")}>
+        <label htmlFor={fieldId} className="sr-only">
+          {title}
+        </label>
+        <input id={fieldId} name={fieldId} type="text" maxLength={maxLength} className={inputClass} />
+      </div>
+    </div>
+  )
+}
 
 export function GapForm() {
   const [scanValues, setScanValues] = useState<Record<GapAreaKey, number>>(() =>
@@ -122,37 +164,54 @@ export function GapForm() {
   return (
     <div className="min-h-screen bg-brand-white px-6 pt-32 pb-32 lg:px-12 lg:pt-40 lg:pb-24">
       <div className="mx-auto max-w-[1400px]">
-        <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
-          Where’s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
-        </h1>
+        <style>{`
+          @media (max-width: 1023px) {
+            .gap-short-field { margin-top: 1.5rem; }
+          }
+          @media (min-width: 1024px) {
+            .gap-columns {
+              grid-template-columns: 280px minmax(0, 720px);
+              column-gap: 3rem;
+            }
+          }
+        `}</style>
+        <div className={columnGridClass}>
+          <div className="lg:col-span-2">
+            <h1 className="font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
+              Where’s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
+            </h1>
 
-        <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
-          <p>
-            You’ve added tools, developed capabilities and changed how your team works. Your people still hold the
-            pieces together: chasing decisions, reconciling data and moving work between systems.
-          </p>
-          <p>
-            AI creates an opportunity to rethink that arrangement. What could your marketing function achieve if less of
-            your team’s effort went into making the work happen?
-          </p>
-          <p>
-            <strong className="font-semibold">Four questions, two minutes.</strong> Within two working days we’ll send
-            you a short personal video: our initial read on the opportunity, what may be getting in the way, and where
-            we’d begin.
-          </p>
+            <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
+              <p>
+                You’ve added tools, developed capabilities and changed how your team works. Your people still hold the
+                pieces together: chasing decisions, reconciling data and moving work between systems.
+              </p>
+              <p>
+                AI creates an opportunity to rethink that arrangement. What could your marketing function achieve if less of
+                your team’s effort went into making the work happen?
+              </p>
+              <p>
+                <strong className="font-semibold">Four questions, two minutes.</strong> Within two working days we’ll send
+                you a short personal video: our initial read on the opportunity, what may be getting in the way, and where
+                we’d begin.
+              </p>
+            </div>
+          </div>
         </div>
 
         {submitted ? (
-          <div className="flex flex-col gap-6 py-16">
-            <CheckCircle size={48} className="text-brand-pink" />
-            <h2 className="font-display text-3xl font-bold text-brand-dark">Thanks — the video is on its way.</h2>
-            <p className="text-lg leading-relaxed text-brand-dark">
-              We’ll be back to you within two working days with a short personal video.
-            </p>
-            <p className="text-lg leading-relaxed text-brand-dark">
-              If there’s a useful next step, Waypoint is a free hour with the founders to explore your situation and
-              identify where to start. That start is often one live campaign.
-            </p>
+          <div className={cn(columnGridClass, "py-16")}>
+            <div className="flex flex-col gap-6 lg:col-span-2">
+              <CheckCircle size={48} className="text-brand-pink" />
+              <h2 className="font-display text-3xl font-bold text-brand-dark">Thanks — the video is on its way.</h2>
+              <p className="text-lg leading-relaxed text-brand-dark">
+                We’ll be back to you within two working days with a short personal video.
+              </p>
+              <p className="text-lg leading-relaxed text-brand-dark">
+                If there’s a useful next step, Waypoint is a free hour with the founders to explore your situation and
+                identify where to start. That start is often one live campaign.
+              </p>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col">
@@ -162,31 +221,14 @@ export function GapForm() {
               </div>
             )}
 
-            <div className={questionGridClass}>
-              <div>
-                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">One</span>
-                <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
-                  What must marketing achieve that it cannot reliably do today?
-                </h2>
-                <p className="mt-2 text-sm text-muted-foreground">One line is plenty.</p>
-                <p className={hintClass}>
-                  e.g. plan with confidence / ship campaigns faster / prove what’s working / free the team for
-                  higher-value work
-                </p>
-              </div>
-              <div className={answerColumnClass}>
-                <label htmlFor="must_achieve" className="sr-only">
-                  What must marketing achieve that it cannot reliably do today?
-                </label>
-                <input
-                  id="must_achieve"
-                  name="must_achieve"
-                  type="text"
-                  maxLength={180}
-                  className={inputClass}
-                />
-              </div>
-            </div>
+            <ShortQuestion
+              kicker="One"
+              title="What must marketing achieve that it cannot reliably do today?"
+              note="One line is plenty."
+              example="e.g. plan with confidence / ship campaigns faster / prove what’s working / free the team for higher-value work"
+              fieldId="must_achieve"
+              maxLength={180}
+            />
 
             <div className={questionGridClass} id="gap-q2">
               <div className="lg:sticky lg:top-32 lg:self-start">
@@ -235,42 +277,21 @@ export function GapForm() {
               </div>
             </div>
 
-            <div className={questionGridClass}>
-              <div>
-                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Three</span>
-                <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
-                  What’s the one part you’d protect if you had to cut everything else?
-                </h2>
-                <p className="mt-2 text-sm text-muted-foreground">A few words will do.</p>
-                <p className={hintClass}>e.g. the brand team, our events, the way we do research</p>
-              </div>
-              <div className={answerColumnClass}>
-                <label htmlFor="would_protect" className="sr-only">
-                  What’s the one part you’d protect if you had to cut everything else?
-                </label>
-                <input id="would_protect" name="would_protect" type="text" className={inputClass} />
-              </div>
-            </div>
+            <ShortQuestion
+              kicker="Three"
+              title="What’s the one part you’d protect if you had to cut everything else?"
+              note="A few words will do."
+              example="e.g. the brand team, our events, the way we do research"
+              fieldId="would_protect"
+            />
 
-            <div className={questionGridClass}>
-              <div>
-                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Four</span>
-                <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
-                  Name a campaign or piece of work that shows the gap — and what makes it harder than it should be.
-                </h2>
-                <p className="mt-2 text-sm text-muted-foreground">Something live or recent. One short answer is enough.</p>
-                <p className={hintClass}>
-                  e.g. Q4 always-on — approvals stall every cycle / weekly competitive report — still assembled by hand /
-                  product launch — briefs bounce between teams
-                </p>
-              </div>
-              <div className={answerColumnClass}>
-                <label htmlFor="shows_the_gap" className="sr-only">
-                  Name a campaign or piece of work that shows the gap — and what makes it harder than it should be.
-                </label>
-                <input id="shows_the_gap" name="shows_the_gap" type="text" className={inputClass} />
-              </div>
-            </div>
+            <ShortQuestion
+              kicker="Four"
+              title="Name a campaign or piece of work that shows the gap — and what makes it harder than it should be."
+              note="Something live or recent. One short answer is enough."
+              example="e.g. Q4 always-on — approvals stall every cycle / weekly competitive report — still assembled by hand / product launch — briefs bounce between teams"
+              fieldId="shows_the_gap"
+            />
 
             <div className={questionGridClass}>
               <div className={cn(answerColumnClass, "flex flex-col gap-8 lg:col-start-2")}>
