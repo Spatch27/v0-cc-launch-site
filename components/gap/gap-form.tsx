@@ -191,9 +191,9 @@ export function GapForm() {
                 your team’s effort went into making the work happen?
               </p>
               <p>
-                <strong className="font-semibold">Four questions, two minutes.</strong> Within two working days we’ll send
-                you a short personal video: our initial read on the opportunity, what may be getting in the way, and where
-                we’d begin.
+                <strong className="font-semibold">Four questions, two minutes.</strong> We’ll send you a short personal
+                video after you submit, in response to your answers: our initial read on the opportunity, what may be
+                getting in the way, and where we’d begin.
               </p>
             </div>
           </div>
@@ -248,14 +248,14 @@ export function GapForm() {
                 <h2 id="gap-q2-score" className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark">
                   How big is the gap in each area?
                 </h2>
-                <div className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                <div className="mt-2 space-y-4 text-sm leading-relaxed text-muted-foreground">
                   <p>
                     Here is a list of areas where a gap often exists between the marketing function you have and the one
                     you need.
                   </p>
                   <p>
                     <strong className="font-semibold">Select</strong> the number on each that corresponds to the size of
-                    the gap currently (1 = already there, 7 = nowhere near)
+                    the gap currently (1 = already there, 7 = nowhere near).
                   </p>
                   <p>
                     Then, <strong className="font-semibold">drag</strong> them into order of importance to you (A = most
