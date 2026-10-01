@@ -57,7 +57,7 @@ export function WhatFeelsLikeSection() {
               delay: i * 0.1,
               ease: "easeInOut",
             }}
-            className="group flex flex-col gap-4 border-l-4 border-brand-pink bg-brand-white p-8 transition-all duration-300 hover:border-brand-dark hover:shadow-lg"
+            className="group flex flex-col gap-4 border-l-4 border-brand-pink! bg-brand-white p-8 transition-all duration-300 hover:border-brand-dark hover:shadow-lg"
           >
             <h3 className="font-display text-2xl font-bold text-brand-dark">
               {item.title}
