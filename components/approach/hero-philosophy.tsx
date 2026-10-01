@@ -30,7 +30,7 @@ export function HeroPhilosophy() {
           className="mt-10 lg:mt-20"
         >
           <h1 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold leading-[0.95] tracking-tight text-brand-dark text-balance">
-            Pick one campaign. <br />
+            Pick one thing. <br />
             Start there.
           </h1>
         </motion.div>

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   alternates: canonicalAlternates("/approach"),
   openGraph: {
     title: "Approach | Committed Citizens",
-    description: "Pick one campaign. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
+    description: "Pick one thing. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
     url: "https://www.committedcitizens.co.uk/approach",
     type: "website",
     locale: "en_GB",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Approach | Committed Citizens",
-    description: "Pick one campaign. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
+    description: "Pick one thing. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
     images: ["/og-image.jpg"],
   },
 }
