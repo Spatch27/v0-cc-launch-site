@@ -109,13 +109,13 @@ export function ContactForm() {
             </h2>
             <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-brand-white/70">
               <p>
-                Waypoint is a free 60-minute session with the founders. No pitch. We do the homework on your business first, so the hour goes on your team, your ambitions and the best place to start.
+                Waypoint is a free 30-minute session with the founders. No pitch. We do the homework on your business first, so the time goes on your team, your ambitions and the best place to start.
               </p>
               <p>
-                Within 48 hours you get a two-page Waypoint Marker: where your function stands, the campaign to start with and where AI can make it better. It&apos;s written so you can take it straight into a budget conversation.
+                Within 48 hours you get a two-page Waypoint Marker: where your function stands, the proposed first fix and how AI can make it better. It’s written so you can take it straight into a budget conversation.
               </p>
               <p className="font-medium text-brand-white">
-                Fill in the form below and we&apos;ll get the ball rolling.
+                Fill in the form below and we’ll get the ball rolling.
               </p>
             </div>
 
