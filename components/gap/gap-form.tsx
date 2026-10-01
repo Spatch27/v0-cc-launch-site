@@ -250,16 +250,16 @@ export function GapForm() {
                 </h2>
                 <div className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
                   <p>
-                    Below is a list of areas where a gap often exists between the marketing function you have and the one
+                    Here is a list of areas where a gap often exists between the marketing function you have and the one
                     you need.
                   </p>
                   <p>
-                    <strong className="font-semibold">First,</strong> for each area click the number (1–7) that
-                    corresponds to the size of the gap (1 = ALREADY THERE and 7 = NOWHERE NEAR)
+                    <strong className="font-semibold">Select</strong> the number on each that corresponds to the size of
+                    the gap currently (1 = already there, 7 = nowhere near)
                   </p>
                   <p>
-                    <strong className="font-semibold">Second,</strong> drag them into order of importance (A should be the
-                    most important area and G should be the least).
+                    Then, <strong className="font-semibold">drag</strong> them into order of importance to you (A = most
+                    important, G = least important).
                   </p>
                 </div>
               </div>
