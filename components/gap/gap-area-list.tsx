@@ -13,6 +13,10 @@ const AREA_LABEL: Record<GapAreaKey, string> = Object.fromEntries(
 
 const DRAG_THRESHOLD = 8
 const SWAP_MS = 220
+const EDGE_ZONE = 96
+const MAX_SCROLL_SPEED = 980
+const MIN_SCROLL_SPEED = 140
+const REDUCED_SCROLL_SPEED = 240
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -22,6 +26,24 @@ function clearRowMotion(row: HTMLElement) {
   row.style.transition = "none"
   row.style.transform = ""
   row.style.zIndex = ""
+}
+
+function autoScrollSpeed(clientY: number): number {
+  const height = window.innerHeight
+  let direction = 0
+  let proximity = 0
+  if (clientY < EDGE_ZONE) {
+    direction = -1
+    proximity = (EDGE_ZONE - clientY) / EDGE_ZONE
+  } else if (clientY > height - EDGE_ZONE) {
+    direction = 1
+    proximity = (clientY - (height - EDGE_ZONE)) / EDGE_ZONE
+  } else {
+    return 0
+  }
+  proximity = Math.min(1, Math.max(0, proximity))
+  if (prefersReducedMotion()) return direction * REDUCED_SCROLL_SPEED
+  return direction * (MIN_SCROLL_SPEED + (MAX_SCROLL_SPEED - MIN_SCROLL_SPEED) * proximity)
 }
 
 interface GapAreaListProps {
@@ -43,6 +65,7 @@ type ActiveDrag = {
   width: number
   height: number
   dy: number
+  lastClientY: number
 }
 
 function isReorderHandle(target: EventTarget | null): boolean {
@@ -189,8 +212,25 @@ export function GapAreaList({
       width: rect.width,
       height: rect.height,
       dy: 0,
+      lastClientY: event.clientY,
+    }
+    const handle = event.currentTarget as HTMLElement
+    if (!handle.hasPointerCapture(event.pointerId)) {
+      handle.setPointerCapture(event.pointerId)
     }
     setDragKey(key)
+  }
+
+  function placeDraggedRow(drag: ActiveDrag) {
+    if (Math.abs(drag.dy) < DRAG_THRESHOLD) return
+    const list = listRef.current
+    if (!list) return
+    const centerY = drag.originTop + drag.dy + drag.height / 2
+    const insertAt = insertionIndex(centerY, drag.key, list)
+    if (insertAt === orderRef.current.indexOf(drag.key)) return
+    const next = orderRef.current.filter((key) => key !== drag.key)
+    next.splice(insertAt, 0, drag.key)
+    commitRef.current(next)
   }
 
   function endDrag(pointerId?: number) {
@@ -205,19 +245,12 @@ export function GapAreaList({
       const drag = dragRef.current
       if (!drag || event.pointerId !== drag.pointerId) return
       event.preventDefault()
+      drag.lastClientY = event.clientY
       drag.dy = event.clientY - drag.startClientY
       if (overlayRef.current) {
         overlayRef.current.style.transform = `translate3d(0, ${drag.dy}px, 0)`
       }
-      if (Math.abs(drag.dy) < DRAG_THRESHOLD) return
-      const list = listRef.current
-      if (!list) return
-      const centerY = drag.originTop + drag.dy + drag.height / 2
-      const insertAt = insertionIndex(centerY, drag.key, list)
-      if (insertAt === orderRef.current.indexOf(drag.key)) return
-      const next = orderRef.current.filter((key) => key !== drag.key)
-      next.splice(insertAt, 0, drag.key)
-      commitRef.current(next)
+      placeDraggedRow(drag)
     }
 
     function onUp(event: PointerEvent) {
@@ -238,11 +271,31 @@ export function GapAreaList({
     if (!dragKey) return
     const previousCursor = document.body.style.cursor
     const previousUserSelect = document.body.style.userSelect
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior
     document.body.style.cursor = "grabbing"
     document.body.style.userSelect = "none"
+    document.documentElement.style.scrollBehavior = "auto"
+    let frame = 0
+    let lastTime = performance.now()
+    const tick = (now: number) => {
+      const drag = dragRef.current
+      if (!drag) return
+      const dt = Math.min(50, now - lastTime) / 1000
+      lastTime = now
+      const speed = Math.abs(drag.dy) < DRAG_THRESHOLD ? 0 : autoScrollSpeed(drag.lastClientY)
+      if (speed !== 0) {
+        const before = window.scrollY
+        window.scrollTo({ top: before + speed * dt, behavior: "instant" })
+        if (window.scrollY !== before) placeDraggedRow(drag)
+      }
+      frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
     return () => {
+      cancelAnimationFrame(frame)
       document.body.style.cursor = previousCursor
       document.body.style.userSelect = previousUserSelect
+      document.documentElement.style.scrollBehavior = previousScrollBehavior
     }
   }, [dragKey])
 
@@ -424,6 +477,7 @@ function AreaRow({
         {createPortal(
           <div
             ref={overlayRef}
+            data-drag-overlay="true"
             className="pointer-events-none fixed z-50 rounded-lg shadow-[0_12px_28px_rgba(24,23,22,0.16)]"
             style={{
               top: drag.originTop,
