@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-/** Publication from the previous Supascribe embed settings (`substack` host). */
+/** Publication host previously configured on the newsletter embed. */
 const SUBSTACK_PUBLICATION_URL = "https://committedcitizens.substack.com"
 const SUBSTACK_EMBED_URL = `${SUBSTACK_PUBLICATION_URL}/embed`
 
