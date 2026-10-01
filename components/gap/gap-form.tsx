@@ -191,9 +191,9 @@ export function GapForm() {
                 your team’s effort went into making the work happen?
               </p>
               <p>
-                <strong className="font-semibold">Four questions, two minutes.</strong> Within two working days we’ll send
-                you a short personal video: our initial read on the opportunity, what may be getting in the way, and where
-                we’d begin.
+                <strong className="font-semibold">Four questions, two minutes.</strong> We’ll send you a short personal
+                video after you submit, in response to your answers: our initial read on the opportunity, what may be
+                getting in the way, and where we’d begin.
               </p>
             </div>
           </div>
