@@ -208,8 +208,8 @@ export function GapForm() {
                 We’ll be back to you within two working days with a short personal video.
               </p>
               <p className="text-lg leading-relaxed text-brand-dark">
-                If there’s a useful next step, Waypoint is a free hour with the founders to explore your situation and
-                identify where to start. That start is often one live campaign.
+                If there’s a useful next step, Waypoint is a free, 30-minute call with the founders to find where your
+                team’s hours are going and which one thing to fix first.
               </p>
             </div>
           </div>
