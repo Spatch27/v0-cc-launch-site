@@ -3,4 +3,9 @@ export const SUBSTACK_PUBLICATION_URL = "https://committedcitizens.substack.com"
 
 export const SUBSTACK_SUBSCRIBE_URL = `${SUBSTACK_PUBLICATION_URL}/subscribe`
 
-export const SUBSTACK_FREE_SIGNUP_URL = `${SUBSTACK_PUBLICATION_URL}/api/v1/free`
+/** Substack prefills `input[name=email]` from this query parameter. */
+export function substackSubscribeUrl(email: string) {
+  const url = new URL(SUBSTACK_SUBSCRIBE_URL)
+  url.searchParams.set("email", email)
+  return url.toString()
+}

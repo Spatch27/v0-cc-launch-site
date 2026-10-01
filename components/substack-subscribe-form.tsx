@@ -1,70 +1,28 @@
 "use client"
 
-import { useState } from "react"
-import { SUBSTACK_SUBSCRIBE_URL } from "@/lib/substack"
+import { substackSubscribeUrl } from "@/lib/substack"
 
-type Status = "idle" | "loading" | "success" | "error"
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export function SubstackSubscribeForm() {
-  const [status, setStatus] = useState<Status>("idle")
-  const [message, setMessage] = useState("")
-  const [showFallback, setShowFallback] = useState(false)
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const form = event.currentTarget
-    const email = String(new FormData(form).get("email") || "").trim()
-    setStatus("loading")
-    setMessage("")
-    setShowFallback(false)
+    const input = form.elements.namedItem("email")
+    if (!(input instanceof HTMLInputElement)) return
 
-    try {
-      const response = await fetch("/api/substack/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          first_url: window.location.href,
-          first_referrer: document.referrer,
-          current_url: window.location.href,
-          current_referrer: document.referrer,
-          referral_code: "",
-        }),
-      })
-      const data = (await response.json()) as {
-        ok?: boolean
-        requiresConfirmation?: boolean
-        error?: string
-        fallback?: boolean
-      }
-
-      if (response.ok && data.ok) {
-        setStatus("success")
-        setMessage(
-          data.requiresConfirmation
-            ? "Check your inbox to confirm."
-            : "You're subscribed.",
-        )
-        form.reset()
-        return
-      }
-
-      setStatus("error")
-      setMessage(data.error || "We couldn't complete that here.")
-      setShowFallback(Boolean(data.fallback))
-    } catch {
-      setStatus("error")
-      setMessage("We couldn't complete that here.")
-      setShowFallback(true)
+    const email = input.value.trim()
+    input.value = email
+    if (!EMAIL_PATTERN.test(email)) {
+      input.setCustomValidity("Enter a valid email address.")
+      input.reportValidity()
+      return
     }
-  }
 
-  if (status === "success") {
-    return (
-      <p className="text-sm font-medium text-brand-dark" role="status">
-        {message}
-      </p>
-    )
+    input.setCustomValidity("")
+    const url = substackSubscribeUrl(email)
+    const opened = window.open(url, "_blank", "noopener,noreferrer")
+    if (!opened) window.location.assign(url)
   }
 
   const controlFont =
@@ -87,32 +45,16 @@ export function SubstackSubscribeForm() {
           autoComplete="email"
           inputMode="email"
           placeholder="Enter your email"
-          disabled={status === "loading"}
+          onInput={(event) => event.currentTarget.setCustomValidity("")}
           className={`min-w-0 flex-1 border-0 bg-brand-light py-2.5 pl-4 pr-3 text-base leading-6 text-brand-dark outline-none placeholder:text-brand-dark/80 disabled:opacity-60 ${controlFont}`}
         />
         <button
           type="submit"
-          disabled={status === "loading"}
           className={`inline-flex shrink-0 items-center bg-brand-dark px-4 py-2.5 text-sm font-semibold leading-5 text-brand-light disabled:opacity-60 ${controlFont}`}
         >
           Subscribe
         </button>
       </div>
-      {status === "error" ? (
-        <div className="mt-3 space-y-2" role="alert">
-          <p className="text-sm text-brand-dark">{message}</p>
-          {showFallback ? (
-            <a
-              href={SUBSTACK_SUBSCRIBE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative inline-block text-sm font-medium text-brand-dark after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-dark after:transition-all after:duration-300 hover:after:w-full"
-            >
-              Subscribe on Substack
-            </a>
-          ) : null}
-        </div>
-      ) : null}
     </form>
   )
 }
