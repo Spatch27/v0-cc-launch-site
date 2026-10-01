@@ -49,10 +49,10 @@ export function Footer() {
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
               </h3>
-              <p className="mb-4 max-w-xs text-sm text-brand-dark">
+              <SubstackSubscribeForm />
+              <p className="mt-4 max-w-xs text-sm text-brand-dark">
                 Original thinking on marketing, AI and how the work gets done. No spam, ever.
               </p>
-              <SubstackSubscribeForm />
             </div>
             <div className="grid grid-cols-2 gap-10 lg:gap-16 flex-shrink-0 lg:mr-0">
               <div>

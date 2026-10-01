@@ -67,9 +67,15 @@ export function SubstackSubscribeForm() {
     )
   }
 
+  const controlFont =
+    "[font-family:system-ui,-apple-system,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif]"
+
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <div className="flex items-end gap-2">
+      <div
+        className="flex h-12 w-full items-stretch overflow-hidden rounded-[4px] border-2"
+        style={{ borderColor: "#181716" }}
+      >
         <label htmlFor="substack-email" className="sr-only">
           Email
         </label>
@@ -80,16 +86,16 @@ export function SubstackSubscribeForm() {
           required
           autoComplete="email"
           inputMode="email"
-          placeholder="Email address"
+          placeholder="Enter your email"
           disabled={status === "loading"}
-          className="min-w-0 flex-1 border-0 border-b-2 border-brand-dark/20 bg-transparent px-0 py-2 text-sm text-brand-dark outline-none transition-colors placeholder:text-brand-dark/40 focus:border-brand-pink disabled:opacity-60"
+          className={`min-w-0 flex-1 border-0 bg-brand-light py-2.5 pl-4 pr-3 text-base leading-6 text-brand-dark outline-none placeholder:text-brand-dark/80 disabled:opacity-60 ${controlFont}`}
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="shrink-0 bg-brand-dark px-3 py-2 text-sm font-medium text-brand-white transition-opacity disabled:opacity-60"
+          className={`inline-flex shrink-0 items-center bg-brand-dark px-4 py-2.5 text-sm font-semibold leading-5 text-brand-light disabled:opacity-60 ${controlFont}`}
         >
-          {status === "loading" ? "Subscribing…" : "Subscribe"}
+          Subscribe
         </button>
       </div>
       {status === "error" ? (
