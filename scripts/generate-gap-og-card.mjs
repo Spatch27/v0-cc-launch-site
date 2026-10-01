@@ -20,7 +20,7 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   <text x="258" y="380" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="62" font-weight="800" fill="#ffffff">in your marketing?</text>
 
   <text x="80" y="492" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="500" fill="#e3dcdc">Four questions, two minutes.</text>
-  <text x="80" y="536" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="500" fill="#e3dcdc">A short personal video within two working days.</text>
+  <text x="80" y="536" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="500" fill="#e3dcdc">A short personal video in response to your answers.</text>
 </svg>`
 
 await sharp(Buffer.from(svg))
