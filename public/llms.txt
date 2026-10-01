@@ -17,10 +17,8 @@ Important notes for agents:
 - [Gap](https://www.committedcitizens.co.uk/gap): Four questions, two minutes, on where the gap is in your marketing; a short personal video within two working days.
 - [Contact / Waypoint](https://www.committedcitizens.co.uk/contact): Free 30-minute Waypoint with founders; two-page Waypoint Marker within 48 hours.
 
-## Products
-- [Flow6](https://www.committedcitizens.co.uk/approach): Six-week cycle rebuilding one thing with the client team. £40K, or £15K if you stop at two weeks.
-- [Momentum6](https://www.committedcitizens.co.uk/approach): Rolling six-week cycles toward a redesigned marketing function. £40K per cycle.
-- [Pathfinder6](https://www.committedcitizens.co.uk/approach): Senior founder support between full cycles. £10K per cycle.
+## Next step
+- [Approach](https://www.committedcitizens.co.uk/approach): After a Waypoint, we fix one thing in six weeks: the workflow, the tools and the team using them. The fix runs in live work, the team uses it every week, and the hours are measured before and after.
 
 ## Insights
 - [Insights index](https://www.committedcitizens.co.uk/insights): Practitioner essays on marketing work, AI, the function of the future, and how marketing works.

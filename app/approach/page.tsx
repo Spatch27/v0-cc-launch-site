@@ -12,7 +12,7 @@ import { canonicalAlternates } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Marketing Transformation Approach | One Thing at a Time",
   description:
-    "We redesign how marketing works with CMOs and their teams, one thing at a time. Six-week cycles, AI as a propellant, and a product-team operating model that builds the confidence to go further.",
+    "We redesign how marketing works with CMOs and their teams, one thing at a time. We fix that one thing in six weeks: the workflow, the tools and the team using them.",
   alternates: canonicalAlternates("/approach"),
   openGraph: {
     title: "Approach | Committed Citizens",
