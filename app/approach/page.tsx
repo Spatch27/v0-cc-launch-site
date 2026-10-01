@@ -58,7 +58,7 @@ export default function ApproachPage() {
       <CtaBand
         heading="Before committing a budget, commit an hour."
         body={[
-          "Book a free Waypoint: 60 minutes with the founders to find the campaign to start with and where AI can make it better.",
+          "Book a free Waypoint: 30 minutes with the founders to find the place to start with and how AI can make it better.",
         ]}
         ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"
