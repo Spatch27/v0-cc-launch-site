@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect } from "react"
+import { SubstackSubscribeForm } from "@/components/substack-subscribe-form"
 
 declare global {
   interface Window {
@@ -26,31 +26,6 @@ const connectLinks = [
 ]
 
 export function Footer() {
-  useEffect(() => {
-    const footer = document.querySelector("[data-site-footer]")
-    if (!footer) return
-
-    let script: HTMLScriptElement | null = null
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return
-
-        script = document.createElement("script")
-        script.src = "https://js.supascribe.com/v1/loader/Lh6325se05ekSo4cfYYlMSvZLs13.js"
-        script.async = true
-        document.body.appendChild(script)
-        observer.disconnect()
-      },
-      { rootMargin: "600px 0px" },
-    )
-
-    observer.observe(footer)
-    return () => {
-      observer.disconnect()
-      script?.remove()
-    }
-  }, [])
-
   const handleCookieSettings = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     if (window.Cookiebot?.show) {
@@ -74,7 +49,7 @@ export function Footer() {
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
               </h3>
-              <div data-supascribe-embed-id="351913576742" data-supascribe-subscribe />
+              <SubstackSubscribeForm />
               <p className="mt-4 max-w-xs text-sm text-brand-dark">
                 Original thinking on marketing, AI and how the work gets done. No spam, ever.
               </p>
