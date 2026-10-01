@@ -205,7 +205,7 @@ export function GapForm() {
               <CheckCircle size={48} className="text-brand-pink" />
               <h2 className="font-display text-3xl font-bold text-brand-dark">Thanks — the video is on its way.</h2>
               <p className="text-lg leading-relaxed text-brand-dark">
-                We’ll be back to you within two working days with a short personal video.
+                We’ll be back to you shortly with a short personal video.
               </p>
               <p className="text-lg leading-relaxed text-brand-dark">
                 If there’s a useful next step, Waypoint is a free, 30-minute call with the founders to find where your
