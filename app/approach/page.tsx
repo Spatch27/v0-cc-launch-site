@@ -56,7 +56,7 @@ export default function ApproachPage() {
       <PhilosophySection />
       <EngagementsSection />
       <CtaBand
-        heading="Before committing a budget, commit 30 minutes."
+        heading="Before committing a budget, commit half an hour."
         body={[
           "Book a free Waypoint: 30 minutes with the founders to find the place to start with and how AI can make it better.",
         ]}
