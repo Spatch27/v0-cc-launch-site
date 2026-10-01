@@ -18,12 +18,12 @@ const benefits = [
   {
     title: "Proven impact.",
     description:
-      "We measure how long the campaign takes to get out the door, and agree with you how to judge its quality. Then we show you the difference.",
+      "We measure how long it takes to get out the door, and agree with you how to judge its quality. Then we show you the difference.",
   },
   {
     title: "Progress that builds.",
     description:
-      "Every campaign we rebuild shows us what else to take on, so each cycle sets up the next. Functional redesign in bite-sized chunks.",
+      "Each one we rebuild shows us what else to take on, so each cycle sets up the next. Functional redesign in bite-sized chunks.",
   },
 ]
 

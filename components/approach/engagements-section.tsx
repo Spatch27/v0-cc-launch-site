@@ -9,7 +9,7 @@ const engagements = [
     eyebrow: "START BUILDING",
     name: "Initial6",
     description: [
-      "We rebuild one campaign with your team. That might mean new decision rights, a redesigned workflow, or agents that take on the manual steps. You get a campaign that runs better, measured on speed and quality against how it ran before. Through this process, we see how your function really works: where time goes, which decisions stall, who owns what. That tells us where to focus next.",
+      "We rebuild one thing with your team. That might mean new decision rights, a redesigned workflow, or agents that take on the manual steps. You get a first fix that runs better, measured on speed and quality against how it ran before. Through this process, we see how your function really works: where time goes, which decisions stall, who owns what. That tells us where to focus next.",
     ],
     duration: "SIX WEEKS",
     accentColor: "bg-brand-orange",
@@ -18,7 +18,7 @@ const engagements = [
     eyebrow: "KEEP COMPOUNDING",
     name: "Momentum6",
     description: [
-      "Rolling 6-week cycles. Sometimes that’s another campaign, or the bigger stuff no single campaign can fix — who owns what, how decisions get made, the data everyone relies on, the tools that earn their place. This is also where we make the change safe to scale. We train your team as we go, so they can run what we’ve built and spot the next thing to improve.",
+      "Rolling 6-week cycles. Sometimes that’s another thing, or the bigger stuff no single fix can cover — who owns what, how decisions get made, the data everyone relies on, the tools that earn their place. This is also where we make the change safe to scale. We train your team as we go, so they can run what we’ve built and spot the next thing to improve.",
     ],
     duration: "SIX-WEEK ROLLING",
     accentColor: "bg-brand-yellow-deep",

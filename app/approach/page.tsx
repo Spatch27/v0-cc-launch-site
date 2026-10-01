@@ -10,9 +10,9 @@ import { CtaBand } from "@/components/cta-band"
 import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Marketing Transformation Approach | One Campaign at a Time",
+  title: "Marketing Transformation Approach | One Thing at a Time",
   description:
-    "We redesign how marketing works with CMOs and their teams, one campaign at a time. Six-week cycles, AI as a propellant, and a product-team operating model that builds the confidence to go further.",
+    "We redesign how marketing works with CMOs and their teams, one thing at a time. Six-week cycles, AI as a propellant, and a product-team operating model that builds the confidence to go further.",
   alternates: canonicalAlternates("/approach"),
   openGraph: {
     title: "Approach | Committed Citizens",
@@ -56,7 +56,7 @@ export default function ApproachPage() {
       <PhilosophySection />
       <EngagementsSection />
       <CtaBand
-        heading="Before committing a budget, commit an hour."
+        heading="Before committing a budget, commit 30 minutes."
         body={[
           "Book a free Waypoint: 30 minutes with the founders to find the place to start with and how AI can make it better.",
         ]}
