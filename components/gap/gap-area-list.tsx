@@ -168,7 +168,7 @@ export function GapAreaList({
   const activeDrag = dragKey ? dragRef.current : null
 
   return (
-    <div className="mt-8">
+    <div className="relative">
       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">A = most important</p>
 
       <ul
@@ -197,7 +197,9 @@ export function GapAreaList({
         ))}
       </ul>
 
-      <p className="mt-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">G = least important</p>
+      <div className="absolute top-full left-0 mt-3">
+        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">G = least important</p>
+      </div>
       <p className="sr-only" aria-live="polite">
         {liveMessage}
       </p>
