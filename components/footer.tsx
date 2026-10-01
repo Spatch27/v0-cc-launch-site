@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { SubstackSubscribeForm } from "@/components/substack-subscribe-form"
 
 declare global {
   interface Window {
@@ -9,10 +10,6 @@ declare global {
     }
   }
 }
-
-/** Publication host previously configured on the newsletter embed. */
-const SUBSTACK_PUBLICATION_URL = "https://committedcitizens.substack.com"
-const SUBSTACK_EMBED_URL = `${SUBSTACK_PUBLICATION_URL}/embed`
 
 const navigateLinks = [
   { label: "Approach", href: "/approach" },
@@ -52,25 +49,10 @@ export function Footer() {
               <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-dark">
                 Subscribe to our Substack
               </h3>
-              <div className="w-full overflow-hidden bg-transparent">
-                <iframe
-                  src={SUBSTACK_EMBED_URL}
-                  title="Subscribe to the Committed Citizens Substack"
-                  loading="lazy"
-                  className="block h-[320px] w-full border-0 bg-transparent"
-                />
-              </div>
-              <a
-                href={SUBSTACK_PUBLICATION_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative mt-3 inline-block text-sm font-medium text-brand-dark after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-dark after:transition-all after:duration-300 hover:after:w-full"
-              >
-                Subscribe on Substack
-              </a>
-              <p className="mt-4 max-w-xs text-sm text-brand-dark">
+              <p className="mb-4 max-w-xs text-sm text-brand-dark">
                 Original thinking on marketing, AI and how the work gets done. No spam, ever.
               </p>
+              <SubstackSubscribeForm />
             </div>
             <div className="grid grid-cols-2 gap-10 lg:gap-16 flex-shrink-0 lg:mr-0">
               <div>
