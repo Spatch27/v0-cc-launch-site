@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { ChevronDown, ChevronUp, GripVertical } from "lucide-react"
 import { GAP_AREAS, GAP_VERDICTS, importanceLetterFromRank, type GapAreaKey, type GapScan, moveItemInOrder } from "@/lib/gap"
@@ -12,6 +12,39 @@ const AREA_LABEL: Record<GapAreaKey, string> = Object.fromEntries(
 ) as Record<GapAreaKey, string>
 
 const DRAG_THRESHOLD = 8
+const SWAP_MS = 220
+const EDGE_ZONE = 96
+const MAX_SCROLL_SPEED = 980
+const MIN_SCROLL_SPEED = 140
+const REDUCED_SCROLL_SPEED = 240
+
+function prefersReducedMotion(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+}
+
+function clearRowMotion(row: HTMLElement) {
+  row.style.transition = "none"
+  row.style.transform = ""
+  row.style.zIndex = ""
+}
+
+function autoScrollSpeed(clientY: number): number {
+  const height = window.innerHeight
+  let direction = 0
+  let proximity = 0
+  if (clientY < EDGE_ZONE) {
+    direction = -1
+    proximity = (EDGE_ZONE - clientY) / EDGE_ZONE
+  } else if (clientY > height - EDGE_ZONE) {
+    direction = 1
+    proximity = (clientY - (height - EDGE_ZONE)) / EDGE_ZONE
+  } else {
+    return 0
+  }
+  proximity = Math.min(1, Math.max(0, proximity))
+  if (prefersReducedMotion()) return direction * REDUCED_SCROLL_SPEED
+  return direction * (MIN_SCROLL_SPEED + (MAX_SCROLL_SPEED - MIN_SCROLL_SPEED) * proximity)
+}
 
 interface GapAreaListProps {
   order: GapAreaKey[]
@@ -32,6 +65,7 @@ type ActiveDrag = {
   width: number
   height: number
   dy: number
+  lastClientY: number
 }
 
 function isReorderHandle(target: EventTarget | null): boolean {
@@ -70,6 +104,11 @@ export function GapAreaList({
   const dragRef = useRef<ActiveDrag | null>(null)
   const onReorderRef = useRef(onReorder)
   const onRankRef = useRef(onRank)
+  const swapFrom = useRef<Map<string, number> | null>(null)
+  const swapScroll = useRef(0)
+  const swapKey = useRef<GapAreaKey | null>(null)
+  const swapGeneration = useRef(0)
+  const pendingFocus = useRef<string | null>(null)
 
   useEffect(() => {
     orderRef.current = order
@@ -90,9 +129,74 @@ export function GapAreaList({
   const commitRef = useRef(commit)
   commitRef.current = commit
 
-  function move(index: number, direction: -1 | 1) {
-    commit(moveItemInOrder(orderRef.current, index, direction))
+  function move(key: GapAreaKey, direction: -1 | 1) {
+    const index = orderRef.current.indexOf(key)
+    if (index < 0) return
+    const next = moveItemInOrder(orderRef.current, index, direction)
+    if (next.every((item, itemIndex) => item === orderRef.current[itemIndex])) return
+
+    const rows = listRef.current?.querySelectorAll<HTMLElement>("[data-rank-key]")
+    const from = new Map<string, number>()
+    rows?.forEach((row) => {
+      const rankKey = row.dataset.rankKey
+      if (rankKey) from.set(rankKey, row.getBoundingClientRect().top)
+    })
+    rows?.forEach(clearRowMotion)
+    swapFrom.current = from
+    swapScroll.current = window.scrollY
+    swapKey.current = key
+    swapGeneration.current += 1
+    pendingFocus.current = `${key}:${direction === -1 ? "up" : "down"}`
+    commit(next)
   }
+
+  useLayoutEffect(() => {
+    const from = swapFrom.current
+    const raisedKey = swapKey.current
+    const generation = swapGeneration.current
+    const scrollBefore = swapScroll.current
+    swapFrom.current = null
+    swapKey.current = null
+    if (!from || from.size === 0 || dragRef.current) return
+    if (prefersReducedMotion()) return
+
+    const scrollDelta = window.scrollY - scrollBefore
+    const rows = listRef.current?.querySelectorAll<HTMLElement>("[data-rank-key]")
+    rows?.forEach((row) => {
+      const rankKey = row.dataset.rankKey
+      if (!rankKey) return
+      const before = from.get(rankKey)
+      if (before == null) return
+      clearRowMotion(row)
+      const delta = before - scrollDelta - row.getBoundingClientRect().top
+      if (Math.abs(delta) < 1) return
+      row.style.transform = `translateY(${delta}px)`
+      if (rankKey === raisedKey) row.style.zIndex = "2"
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (swapGeneration.current !== generation) return
+          row.style.transition = `transform ${SWAP_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`
+          row.style.transform = "translateY(0)"
+        })
+      })
+      row.addEventListener(
+        "transitionend",
+        (event) => {
+          if (event.propertyName !== "transform" || swapGeneration.current !== generation) return
+          clearRowMotion(row)
+        },
+        { once: true }
+      )
+    })
+  }, [order])
+
+  useEffect(() => {
+    const control = pendingFocus.current
+    if (!control) return
+    pendingFocus.current = null
+    const button = listRef.current?.querySelector<HTMLButtonElement>(`[data-move-control="${control}"]`)
+    if (button && !button.disabled) button.focus({ preventScroll: true })
+  }, [order])
 
   function beginDrag(key: GapAreaKey, event: React.PointerEvent) {
     const row = (event.currentTarget as HTMLElement).closest<HTMLElement>("[data-rank-key]")
@@ -108,8 +212,25 @@ export function GapAreaList({
       width: rect.width,
       height: rect.height,
       dy: 0,
+      lastClientY: event.clientY,
+    }
+    const handle = event.currentTarget as HTMLElement
+    if (!handle.hasPointerCapture(event.pointerId)) {
+      handle.setPointerCapture(event.pointerId)
     }
     setDragKey(key)
+  }
+
+  function placeDraggedRow(drag: ActiveDrag) {
+    if (Math.abs(drag.dy) < DRAG_THRESHOLD) return
+    const list = listRef.current
+    if (!list) return
+    const centerY = drag.originTop + drag.dy + drag.height / 2
+    const insertAt = insertionIndex(centerY, drag.key, list)
+    if (insertAt === orderRef.current.indexOf(drag.key)) return
+    const next = orderRef.current.filter((key) => key !== drag.key)
+    next.splice(insertAt, 0, drag.key)
+    commitRef.current(next)
   }
 
   function endDrag(pointerId?: number) {
@@ -124,19 +245,12 @@ export function GapAreaList({
       const drag = dragRef.current
       if (!drag || event.pointerId !== drag.pointerId) return
       event.preventDefault()
+      drag.lastClientY = event.clientY
       drag.dy = event.clientY - drag.startClientY
       if (overlayRef.current) {
         overlayRef.current.style.transform = `translate3d(0, ${drag.dy}px, 0)`
       }
-      if (Math.abs(drag.dy) < DRAG_THRESHOLD) return
-      const list = listRef.current
-      if (!list) return
-      const centerY = drag.originTop + drag.dy + drag.height / 2
-      const insertAt = insertionIndex(centerY, drag.key, list)
-      if (insertAt === orderRef.current.indexOf(drag.key)) return
-      const next = orderRef.current.filter((key) => key !== drag.key)
-      next.splice(insertAt, 0, drag.key)
-      commitRef.current(next)
+      placeDraggedRow(drag)
     }
 
     function onUp(event: PointerEvent) {
@@ -157,23 +271,44 @@ export function GapAreaList({
     if (!dragKey) return
     const previousCursor = document.body.style.cursor
     const previousUserSelect = document.body.style.userSelect
+    const previousScrollBehavior = document.documentElement.style.scrollBehavior
     document.body.style.cursor = "grabbing"
     document.body.style.userSelect = "none"
+    document.documentElement.style.scrollBehavior = "auto"
+    let frame = 0
+    let lastTime = performance.now()
+    const tick = (now: number) => {
+      const drag = dragRef.current
+      if (!drag) return
+      const dt = Math.min(50, now - lastTime) / 1000
+      lastTime = now
+      const speed = Math.abs(drag.dy) < DRAG_THRESHOLD ? 0 : autoScrollSpeed(drag.lastClientY)
+      if (speed !== 0) {
+        const before = window.scrollY
+        window.scrollTo({ top: before + speed * dt, behavior: "instant" })
+        if (window.scrollY !== before) placeDraggedRow(drag)
+      }
+      frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
     return () => {
+      cancelAnimationFrame(frame)
       document.body.style.cursor = previousCursor
       document.body.style.userSelect = previousUserSelect
+      document.documentElement.style.scrollBehavior = previousScrollBehavior
     }
   }, [dragKey])
 
   const activeDrag = dragKey ? dragRef.current : null
 
   return (
-    <div className="mt-8">
+    <div className="relative">
       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">A = most important</p>
 
       <ul
         ref={listRef}
         className="mt-3 flex flex-col gap-3"
+        style={{ overflowAnchor: "none" }}
         aria-label="Gap size and importance. A at the top is most important, G at the bottom is least important."
       >
         {order.map((key, index) => (
@@ -190,14 +325,16 @@ export function GapAreaList({
             sliderTouched={touched.has(key)}
             onScanChange={(value) => onScanChange(key, value)}
             onSliderTouch={() => onSliderTouch(key)}
-            onMoveUp={() => move(index, -1)}
-            onMoveDown={() => move(index, 1)}
+            onMoveUp={() => move(key, -1)}
+            onMoveDown={() => move(key, 1)}
             onDragStart={(event) => beginDrag(key, event)}
           />
         ))}
       </ul>
 
-      <p className="mt-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">G = least important</p>
+      <div className="absolute top-full left-0 mt-3">
+        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">G = least important</p>
+      </div>
       <p className="sr-only" aria-live="polite">
         {liveMessage}
       </p>
@@ -291,6 +428,7 @@ function AreaRow({
       <div className="flex shrink-0 flex-col items-center justify-center border-l border-brand-dark/10 bg-brand-light/70">
         <button
           type="button"
+          data-move-control={`${areaKey}:up`}
           aria-label={`Move ${label} up in importance, currently ${letter}`}
           disabled={isFirst}
           onPointerDown={(event) => event.stopPropagation()}
@@ -301,6 +439,7 @@ function AreaRow({
         </button>
         <button
           type="button"
+          data-move-control={`${areaKey}:down`}
           aria-label={`Move ${label} down in importance, currently ${letter}`}
           disabled={isLast}
           onPointerDown={(event) => event.stopPropagation()}
@@ -338,6 +477,7 @@ function AreaRow({
         {createPortal(
           <div
             ref={overlayRef}
+            data-drag-overlay="true"
             className="pointer-events-none fixed z-50 rounded-lg shadow-[0_12px_28px_rgba(24,23,22,0.16)]"
             style={{
               top: drag.originTop,
@@ -356,7 +496,7 @@ function AreaRow({
   }
 
   return (
-    <li data-rank-key={areaKey} className="list-none" onPointerDown={handleReorderPointer}>
+    <li data-rank-key={areaKey} className="relative list-none" onPointerDown={handleReorderPointer}>
       {card}
     </li>
   )
