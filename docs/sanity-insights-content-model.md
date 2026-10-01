@@ -50,7 +50,7 @@ The checked slugs are:
 | `code {text}` | `code` object containing `text` |
 | `image {src, alt, caption?}` | `inlineImage` object with a Sanity image or external URL, required alt, and optional caption |
 
-The paragraph currently scanned for “Get in touch to schedule a Drag Diagnostic” maps to an
+The paragraph currently scanned for “Get in touch to schedule your Waypoint” maps to an
 ordinary annotated link. It is not a content type.
 
 ## Studio (embedded at `/studio`)

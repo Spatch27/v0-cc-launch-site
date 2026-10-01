@@ -254,6 +254,41 @@ export function HeroSection() {
           }
         }
 
+        .cc-hero-support {
+          max-width: 42rem;
+          text-wrap: balance;
+        }
+
+        .cc-hero-support-lead::after {
+          content: " ";
+        }
+
+        .cc-hero-support-keep {
+          white-space: nowrap;
+        }
+
+        @media (min-width: 1024px) {
+          .cc-hero-support {
+            width: max-content;
+            max-width: 100%;
+          }
+
+          .cc-hero-support-lead {
+            display: block;
+          }
+
+          .cc-hero-support-lead::after {
+            content: none;
+          }
+
+          .cc-hero-support-rest {
+            display: block;
+            max-width: 45ch;
+            margin-left: auto;
+            text-wrap: wrap;
+          }
+        }
+
         @media (prefers-reduced-motion: reduce) {
           .cc-hero-subtitle {
             opacity: 1 !important;
@@ -326,8 +361,9 @@ export function HeroSection() {
                   : { opacity: subtitleOpacity, y: subtitleY }
               }
             >
-              <p className="max-w-2xl text-right text-xl leading-relaxed text-brand-dark">
-                We help CMOs build a stronger marketing function with AI. Starting with one live campaign, we redesign how work happens - and leave your team better equipped to own and improve it.
+              <p className="cc-hero-support text-right text-xl leading-relaxed text-brand-dark">
+                <span className="cc-hero-support-lead">We help CMOs build a stronger marketing function with AI.</span>
+                <span className="cc-hero-support-rest">Redesign how <span className="cc-hero-support-keep">work happens - and</span> leave your team better equipped to own and improve it.</span>
               </p>
             </motion.div>
           </div>

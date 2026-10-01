@@ -76,10 +76,9 @@ export default function AboutPage() {
       <TeamSection />
       <AdvisorySection />
       <CtaBand 
-        heading="Want to meet the team?" 
+        heading="Start with a conversation."
         body={[
-          "Start with a conversation.",
-          "Book a free Waypoint: 60 minutes with the founders to find the campaign to start with and where AI can make it better.",
+          "Book a free Waypoint: 30 minutes with the founders to identify the best place to start and how AI can make it better.",
         ]}
         ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"

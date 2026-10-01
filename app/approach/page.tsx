@@ -10,13 +10,13 @@ import { CtaBand } from "@/components/cta-band"
 import { canonicalAlternates } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  title: "Marketing Transformation Approach | One Campaign at a Time",
+  title: "Marketing Transformation Approach | One Thing at a Time",
   description:
-    "We redesign how marketing works with CMOs and their teams, one campaign at a time. Six-week cycles, AI as a propellant, and a product-team operating model that builds the confidence to go further.",
+    "We redesign how marketing works with CMOs and their teams, one thing at a time. Six-week cycles, AI as a propellant, and a product-team operating model that builds the confidence to go further.",
   alternates: canonicalAlternates("/approach"),
   openGraph: {
     title: "Approach | Committed Citizens",
-    description: "Pick one campaign. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
+    description: "Pick one thing. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
     url: "https://www.committedcitizens.co.uk/approach",
     type: "website",
     locale: "en_GB",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Approach | Committed Citizens",
-    description: "Pick one campaign. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
+    description: "Pick one thing. Start there. We redesign marketing workflows with AI as a propellant — six weeks at a time.",
     images: ["/og-image.jpg"],
   },
 }
@@ -56,9 +56,9 @@ export default function ApproachPage() {
       <PhilosophySection />
       <EngagementsSection />
       <CtaBand
-        heading="Before committing a budget, commit an hour."
+        heading="Before committing a budget, commit half an hour."
         body={[
-          "Book a free Waypoint: 60 minutes with the founders to find the campaign to start with and where AI can make it better.",
+          "Book a free Waypoint: 30 minutes with the founders to find the place to start with and how AI can make it better.",
         ]}
         ctaLabel="Book your Waypoint"
         ctaHref="/contact#book"

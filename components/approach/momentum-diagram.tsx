@@ -7,15 +7,15 @@ import { fadeInUp, staggerContainer } from "@/lib/animations"
 const momentumItems = [
   {
     name: "Build This First",
-    benefit: "Start with the campaign that matters most.",
+    benefit: "Start with the fix that matters most.",
   },
   {
     name: "Cadence Loop",
-    benefit: "Something new goes live every six weeks, and each cycle sets up the next.",
+    benefit: "Each six-week cycle sets up the next.",
   },
   {
     name: "Proof Points",
-    benefit: "Speed and quality, measured against how the campaign ran before.",
+    benefit: "Speed and quality, measured against how it ran before the fix.",
   },
 ]
 
@@ -162,6 +162,82 @@ export function MomentumDiagram() {
             display: none;
           }
         }
+
+        .cc-ring-copy {
+          text-wrap: balance;
+        }
+
+        .cc-momentum-mobile .cc-ring-copy {
+          width: 11rem;
+        }
+
+        .cc-momentum-desktop .cc-ring-copy {
+          width: 12rem;
+        }
+
+        .cc-ring-title,
+        .cc-ring-benefit {
+          text-wrap: balance;
+        }
+
+        .cc-ring-title {
+          margin-bottom: 0.5rem;
+          font-size: 1.125rem;
+          line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+          .cc-momentum-desktop .cc-ring-title {
+            margin-bottom: 0.75rem;
+          }
+        }
+
+        .cc-ring-benefit {
+          font-size: 0.875rem;
+          line-height: 1.375;
+        }
+
+        @media (min-width: 1024px) {
+          .cc-ring-title {
+            font-size: 1.375rem;
+          }
+
+          .cc-ring-benefit {
+            font-size: 1.0625rem;
+          }
+
+          .cc-momentum-desktop .cc-ring-copy {
+            width: 13.5rem;
+          }
+        }
+
+        @media (min-width: 1280px) {
+          .cc-ring-title {
+            font-size: 1.75rem;
+          }
+
+          .cc-ring-benefit {
+            font-size: 1.25rem;
+          }
+
+          .cc-momentum-desktop .cc-ring-copy {
+            width: 16rem;
+          }
+        }
+
+        @media (min-width: 1536px) {
+          .cc-ring-title {
+            font-size: 2rem;
+          }
+
+          .cc-ring-benefit {
+            font-size: 1.375rem;
+          }
+
+          .cc-momentum-desktop .cc-ring-copy {
+            width: 18rem;
+          }
+        }
       `}</style>
       <motion.div
       initial="hidden"
@@ -179,33 +255,33 @@ export function MomentumDiagram() {
           <div className="absolute inset-0">
             {/* Left circle (C1) - yellow accent */}
             <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center" style={{ left: '19%' }}>
-              <div className="text-center w-48">
-                <h4 className="font-display text-lg lg:text-xl font-bold text-white leading-tight mb-3">
+              <div className="cc-ring-copy text-center">
+                <h4 className="cc-ring-title font-display font-bold text-white">
                   {momentumItems[0].name}
                 </h4>
-                <p className="text-sm lg:text-base text-brand-yellow-deep font-medium leading-snug">
+                <p className="cc-ring-benefit text-brand-yellow-deep font-medium">
                   {momentumItems[0].benefit}
                 </p>
               </div>
             </div>
             {/* Center circle (C2) - orange accent */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center px-4">
-              <div className="text-center w-48">
-                <h4 className="font-display text-lg lg:text-xl font-bold text-white leading-tight mb-3">
+              <div className="cc-ring-copy text-center">
+                <h4 className="cc-ring-title font-display font-bold text-white">
                   {momentumItems[1].name}
                 </h4>
-                <p className="text-sm lg:text-base text-brand-orange font-medium leading-snug">
+                <p className="cc-ring-benefit text-brand-orange font-medium">
                   {momentumItems[1].benefit}
                 </p>
               </div>
             </div>
             {/* Right circle (C3) - pink accent */}
             <div className="absolute top-1/2 -translate-y-1/2 translate-x-1/2 flex items-center justify-center" style={{ right: '19%' }}>
-              <div className="text-center w-48">
-                <h4 className="font-display text-lg lg:text-xl font-bold text-white leading-tight mb-3">
+              <div className="cc-ring-copy text-center">
+                <h4 className="cc-ring-title font-display font-bold text-white">
                   {momentumItems[2].name}
                 </h4>
-                <p className="text-sm lg:text-base text-brand-pink font-medium leading-snug">
+                <p className="cc-ring-benefit text-brand-pink font-medium">
                   {momentumItems[2].benefit}
                 </p>
               </div>
@@ -224,33 +300,33 @@ export function MomentumDiagram() {
           <div className="absolute inset-0">
             {/* Top circle (C1) - yellow accent */}
             <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center" style={{ top: '19%' }}>
-              <div className="text-center w-44">
-                <h4 className="font-display text-lg font-bold text-white leading-tight mb-2">
+              <div className="cc-ring-copy text-center">
+                <h4 className="cc-ring-title font-display font-bold text-white">
                   {momentumItems[0].name}
                 </h4>
-                <p className="text-sm text-brand-yellow-deep font-medium leading-snug">
+                <p className="cc-ring-benefit text-brand-yellow-deep font-medium">
                   {momentumItems[0].benefit}
                 </p>
               </div>
             </div>
             {/* Middle circle (C2) - orange accent */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-              <div className="text-center w-44">
-                <h4 className="font-display text-lg font-bold text-white leading-tight mb-2">
+              <div className="cc-ring-copy text-center">
+                <h4 className="cc-ring-title font-display font-bold text-white">
                   {momentumItems[1].name}
                 </h4>
-                <p className="text-sm text-brand-orange font-medium leading-snug">
+                <p className="cc-ring-benefit text-brand-orange font-medium">
                   {momentumItems[1].benefit}
                 </p>
               </div>
             </div>
             {/* Bottom circle (C3) - pink accent */}
             <div className="absolute left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center" style={{ bottom: '19%' }}>
-              <div className="text-center w-44">
-                <h4 className="font-display text-lg font-bold text-white leading-tight mb-2">
+              <div className="cc-ring-copy text-center">
+                <h4 className="cc-ring-title font-display font-bold text-white">
                   {momentumItems[2].name}
                 </h4>
-                <p className="text-sm text-brand-pink font-medium leading-snug">
+                <p className="cc-ring-benefit text-brand-pink font-medium">
                   {momentumItems[2].benefit}
                 </p>
               </div>
