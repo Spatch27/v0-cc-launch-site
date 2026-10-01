@@ -16,6 +16,39 @@ export function HeroPhilosophy() {
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   return (
+    <>
+      <style>{`
+        .cc-approach-support {
+          max-width: 42rem;
+          text-wrap: balance;
+        }
+
+        .cc-approach-support-lead::after {
+          content: " ";
+        }
+
+        @media (min-width: 1024px) {
+          .cc-approach-support {
+            width: max-content;
+            max-width: 100%;
+          }
+
+          .cc-approach-support-lead {
+            display: block;
+          }
+
+          .cc-approach-support-lead::after {
+            content: none;
+          }
+
+          .cc-approach-support-rest {
+            display: block;
+            max-width: 51ch;
+            margin-left: auto;
+            text-wrap: wrap;
+          }
+        }
+      `}</style>
     <motion.section
       ref={sectionRef}
       style={{ scale, opacity }}
@@ -43,13 +76,15 @@ export function HeroPhilosophy() {
           transition={{ delay: 0.2 }}
           className="self-end"
         >
-          <div className="max-w-2xl space-y-4 text-right text-lg leading-relaxed text-brand-dark md:text-xl">
-            <p>
-              We work with CMOs and their teams to redesign how marketing works. Every six-week cycle rebuilds one thing, proves the impact, and provides the confidence to go further.
+          <div className="space-y-4 text-right text-lg leading-relaxed text-brand-dark md:text-xl">
+            <p className="cc-approach-support">
+              <span className="cc-approach-support-lead">We work with CMOs and their teams to redesign how marketing works.</span>
+              <span className="cc-approach-support-rest">Every six-week cycle rebuilds one thing, proves the impact, and provides the confidence to go further.</span>
             </p>
           </div>
         </motion.div>
       </div>
     </motion.section>
+    </>
   )
 }
