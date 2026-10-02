@@ -8,7 +8,7 @@ export const HERO_FOCUS_OPTIONS = [
 
 export type HeroFocus = (typeof HERO_FOCUS_OPTIONS)[number]["value"]
 
-/** Vertical object-position for each dropdown value. Horizontal position stays centred. */
+/** Vertical object-position for each crop-focus choice. Horizontal position stays centred. */
 const HERO_FOCUS_OBJECT_POSITION: Record<HeroFocus, string> = {
   top: "center 0%",
   upper: "center 25%",
