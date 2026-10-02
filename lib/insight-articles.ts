@@ -1,4 +1,4 @@
-import type {HeroFocus} from "@/lib/sanity/heroFocus"
+import type {SanityHeroHotspot} from "@/lib/sanity/types"
 
 export type InsightListingArticle = {
   id: string
@@ -8,8 +8,8 @@ export type InsightListingArticle = {
   date: string
   readTime: string
   image: string
-  /** Empty keeps the listing's existing crop. */
-  heroFocus?: HeroFocus | null
+  /** Present only for Sanity image heroes that have a saved hotspot. */
+  heroHotspot?: SanityHeroHotspot | null
 }
 
 const MONTHS: Record<string, number> = {

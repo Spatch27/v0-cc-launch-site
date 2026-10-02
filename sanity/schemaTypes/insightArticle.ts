@@ -1,5 +1,4 @@
 import {defineArrayMember, defineField, defineType} from "sanity"
-import {HeroFocusInput} from "../components/HeroFocusInput"
 
 const currentCategories = [
   "Agentic reality check",
@@ -113,15 +112,10 @@ export const insightArticle = defineType({
           name: "image",
           title: "Sanity image",
           type: "image",
-        }),
-        defineField({
-          name: "heroFocus",
-          title: "Crop focus",
-          type: "string",
           description:
-            "Which part of the hero image to keep when it is cropped. Press the selected choice again to clear it and keep the current crop.",
-          components: {
-            input: HeroFocusInput,
+            "Drag the hotspot to set the focus point for the crop on the article page and the Insights listing.",
+          options: {
+            hotspot: true,
           },
         }),
         defineField({
