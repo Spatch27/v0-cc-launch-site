@@ -1,5 +1,4 @@
 import {defineArrayMember, defineField, defineType} from "sanity"
-import {HERO_FOCUS_OPTIONS} from "@/lib/sanity/heroFocus"
 
 const currentCategories = [
   "Agentic reality check",
@@ -120,11 +119,15 @@ export const insightArticle = defineType({
           type: "string",
           description: "Which part of the hero image to keep when it is cropped.",
           options: {
-            list: HERO_FOCUS_OPTIONS.map((option) => ({
-              title: option.title,
-              value: option.value,
-            })),
-            layout: "dropdown",
+            list: [
+              {title: "Top", value: "top"},
+              {title: "Upper", value: "upper"},
+              {title: "Centre", value: "centre"},
+              {title: "Lower", value: "lower"},
+              {title: "Bottom", value: "bottom"},
+            ],
+            layout: "radio",
+            direction: "horizontal",
           },
         }),
         defineField({
