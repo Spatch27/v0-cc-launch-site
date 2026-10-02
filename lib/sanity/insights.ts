@@ -10,6 +10,8 @@ import {
   insightSlugsQuery,
 } from "./queries"
 import type {
+  SanityHeroHotspot,
+  SanityImageCrop,
   SanityInsightArticle,
   SanityInsightListingDoc,
   SanityInsightSitemapDoc,
@@ -38,6 +40,39 @@ async function fetchInsightContent<T>(
     .fetch<T>(query, params, previewFetchOptions)
 }
 
+function mapCrop(crop: SanityImageCrop | null | undefined): SanityImageCrop | null {
+  if (!crop) {
+    return null
+  }
+
+  const {top, bottom, left, right} = crop
+  const edges = [top, bottom, left, right]
+
+  if (edges.every((edge) => typeof edge === "number" && Number.isFinite(edge))) {
+    return {top, bottom, left, right}
+  }
+
+  return null
+}
+
+function mapHeroHotspot(
+  hotspot: SanityHeroHotspot | null | undefined,
+): SanityHeroHotspot | null {
+  if (
+    !hotspot ||
+    typeof hotspot.x !== "number" ||
+    typeof hotspot.y !== "number" ||
+    !Number.isFinite(hotspot.x) ||
+    !Number.isFinite(hotspot.y)
+  ) {
+    return null
+  }
+
+  const crop = mapCrop(hotspot.crop)
+
+  return crop ? {x: hotspot.x, y: hotspot.y, crop} : {x: hotspot.x, y: hotspot.y}
+}
+
 function toListingArticle(doc: SanityInsightListingDoc): InsightListingArticle {
   return {
     id: doc.id,
@@ -47,6 +82,7 @@ function toListingArticle(doc: SanityInsightListingDoc): InsightListingArticle {
     date: formatInsightMonthYear(doc.publishedAt),
     readTime: doc.readTime,
     image: doc.image || "",
+    heroHotspot: mapHeroHotspot(doc.heroHotspot),
   }
 }
 
@@ -68,7 +104,16 @@ export async function getInsightListing(): Promise<{
 }
 
 export async function getInsightBySlug(slug: string): Promise<SanityInsightArticle | null> {
-  return fetchInsightContent<SanityInsightArticle | null>(insightBySlugQuery, {slug})
+  const article = await fetchInsightContent<SanityInsightArticle | null>(insightBySlugQuery, {slug})
+
+  if (!article) {
+    return null
+  }
+
+  return {
+    ...article,
+    heroHotspot: mapHeroHotspot(article.heroHotspot),
+  }
 }
 
 export async function getInsightSlugs(): Promise<string[]> {

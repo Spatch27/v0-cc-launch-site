@@ -112,6 +112,8 @@ export const insightArticle = defineType({
           name: "image",
           title: "Sanity image",
           type: "image",
+          description:
+            "Drag the hotspot to set the focus point for the crop on the article page and the Insights listing.",
           options: {
             hotspot: true,
           },

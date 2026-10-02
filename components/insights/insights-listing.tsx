@@ -9,6 +9,16 @@ import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { ArrowRight } from "lucide-react"
 import type { InsightListingArticle } from "@/lib/insight-articles"
+import { objectPositionFromHotspot } from "@/lib/sanity/hotspot"
+
+function listingImageStyle(article: InsightListingArticle) {
+  if (!article.image || article.image.endsWith(".svg")) {
+    return undefined
+  }
+
+  const objectPosition = objectPositionFromHotspot(article.heroHotspot)
+  return objectPosition ? { objectPosition } : undefined
+}
 
 export function InsightsListing({
   featured,
@@ -71,6 +81,7 @@ export function InsightsListing({
                     alt={featured.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    style={listingImageStyle(featured)}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 ) : (
@@ -128,6 +139,7 @@ export function InsightsListing({
                       width={600}
                       height={337}
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      style={listingImageStyle(article)}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
