@@ -1,6 +1,6 @@
 "use client"
 
-import type {CSSProperties, MouseEvent} from "react"
+import type {CSSProperties, MouseEvent, PointerEvent} from "react"
 import {set, unset, type StringInputProps} from "sanity"
 import {
   HERO_FOCUS_OPTIONS,
@@ -8,6 +8,15 @@ import {
   nextHeroFocus,
   type HeroFocus,
 } from "../../lib/sanity/heroFocus"
+
+/**
+ * Sanity copies a boolean onto elementProps.readOnly for every string input.
+ * That DOM flag is not a document lock. The document form passes readOnly: true
+ * only when the open document cannot be edited.
+ */
+function isDocumentReadOnly(readOnly: unknown): boolean {
+  return readOnly === true
+}
 
 const choiceStyle = (selected: boolean, locked: boolean): CSSProperties => ({
   appearance: "button",
@@ -23,19 +32,17 @@ const choiceStyle = (selected: boolean, locked: boolean): CSSProperties => ({
   background: selected ? "#101112" : "#ffffff",
   color: selected ? "#ffffff" : "#101112",
   font: "inherit",
+  fontWeight: selected ? 600 : 400,
   lineHeight: 1.2,
+  outline: "2px solid transparent",
+  outlineOffset: 2,
 })
 
-/**
- * Crop focus is a row of buttons, not Sanity's radio or select list.
- * Those widgets are an invisible native input. The site CSS around Studio
- * (overflow clipping and form-control resets) stops a click from changing them.
- * Mouse down is cancelled so a focus update cannot drop the click before it lands.
- */
 export function HeroFocusInput(props: StringInputProps) {
   const {elementProps, onChange, readOnly, value} = props
   const current = typeof value === "string" && isHeroFocus(value) ? value : undefined
-  const locked = Boolean(readOnly || elementProps.readOnly)
+  const locked = isDocumentReadOnly(readOnly)
+  const currentLabel = HERO_FOCUS_OPTIONS.find((option) => option.value === current)?.title
 
   const choose = (choice: HeroFocus) => {
     if (locked) return
@@ -43,38 +50,59 @@ export function HeroFocusInput(props: StringInputProps) {
     onChange(next ? set(next) : unset())
   }
 
-  const keepClick = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
+  const chooseFromPointer = (choice: HeroFocus, event: PointerEvent<HTMLButtonElement>) => {
+    if (event.button !== 0) return
+    choose(choice)
+  }
+
+  const chooseFromKeyboard = (choice: HeroFocus, event: MouseEvent<HTMLButtonElement>) => {
+    if (event.detail !== 0) return
+    choose(choice)
   }
 
   return (
-    <div
-      ref={elementProps.ref}
-      id={elementProps.id}
-      aria-describedby={elementProps["aria-describedby"]}
-      aria-label="Crop focus"
-      role="group"
-      tabIndex={-1}
-      onBlur={elementProps.onBlur}
-      onFocus={elementProps.onFocus}
-      style={{...elementProps.style, display: "flex", flexWrap: "wrap", gap: 8, position: "relative"}}
-    >
-      {HERO_FOCUS_OPTIONS.map((option) => {
-        const selected = current === option.value
-        return (
-          <button
-            key={option.value}
-            type="button"
-            aria-pressed={selected}
-            disabled={locked}
-            onMouseDown={keepClick}
-            onClick={() => choose(option.value)}
-            style={choiceStyle(selected, locked)}
-          >
-            {option.title}
-          </button>
-        )
-      })}
+    <div>
+      <style>
+        {".hero-focus-choice:focus-visible{outline:2px solid #101112 !important}"}
+      </style>
+      <div
+        ref={elementProps.ref}
+        id={elementProps.id}
+        aria-describedby={elementProps["aria-describedby"]}
+        aria-label="Crop focus"
+        role="group"
+        onBlur={elementProps.onBlur}
+        onFocus={elementProps.onFocus}
+        style={{
+          ...elementProps.style,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          position: "relative",
+          outline: "none",
+        }}
+      >
+        {HERO_FOCUS_OPTIONS.map((option) => {
+          const selected = current === option.value
+          return (
+            <button
+              key={option.value}
+              type="button"
+              className="hero-focus-choice"
+              aria-pressed={selected}
+              aria-disabled={locked || undefined}
+              onPointerDown={(event) => chooseFromPointer(option.value, event)}
+              onClick={(event) => chooseFromKeyboard(option.value, event)}
+              style={choiceStyle(selected, locked)}
+            >
+              {option.title}
+            </button>
+          )
+        })}
+      </div>
+      <p style={{margin: "8px 0 0", fontSize: 13, lineHeight: 1.4, color: "#515164"}}>
+        {currentLabel ? `Selected: ${currentLabel}` : "Not set (current crop)"}
+      </p>
     </div>
   )
 }
