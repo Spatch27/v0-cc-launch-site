@@ -14,11 +14,11 @@ export default function StudioLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="fixed inset-0 z-[100] h-[100dvh] w-full overflow-hidden bg-white">
+    <div className="fixed inset-0 z-[100] h-[100dvh] w-full overflow-visible bg-white">
       <style
         dangerouslySetInnerHTML={{
           __html:
-            "#CookiebotWidget,#CybotCookiebotDialog,#CybotCookiebotDialogBodyUnderlay{display:none!important}",
+            "#CookiebotWidget,#CybotCookiebotDialog,#CybotCookiebotDialogBodyUnderlay{display:none!important}html:has(#sanity),body:has(#sanity){overflow:visible!important}",
         }}
       />
       {children}

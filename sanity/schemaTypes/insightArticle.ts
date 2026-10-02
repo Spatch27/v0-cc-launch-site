@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from "sanity"
+import {HeroFocusInput} from "../components/HeroFocusInput"
 
 const currentCategories = [
   "Agentic reality check",
@@ -117,17 +118,10 @@ export const insightArticle = defineType({
           name: "heroFocus",
           title: "Crop focus",
           type: "string",
-          description: "Which part of the hero image to keep when it is cropped.",
-          options: {
-            list: [
-              {title: "Top", value: "top"},
-              {title: "Upper", value: "upper"},
-              {title: "Centre", value: "centre"},
-              {title: "Lower", value: "lower"},
-              {title: "Bottom", value: "bottom"},
-            ],
-            layout: "radio",
-            direction: "horizontal",
+          description:
+            "Which part of the hero image to keep when it is cropped. Press the selected choice again to clear it and keep the current crop.",
+          components: {
+            input: HeroFocusInput,
           },
         }),
         defineField({

@@ -22,8 +22,19 @@ export function isHeroFocus(value: string | null | undefined): value is HeroFocu
 }
 
 /**
+ * Next stored value when an editor presses a crop-focus choice.
+ * Pressing the current choice clears the field so the page keeps its existing crop.
+ */
+export function nextHeroFocus(
+  current: string | null | undefined,
+  choice: HeroFocus,
+): HeroFocus | undefined {
+  return current === choice ? undefined : choice
+}
+
+/**
  * CSS object-position for a crop-focus choice.
- * Undefined when the field is empty or not one of the dropdown values, so callers can keep their existing crop.
+ * Undefined when the field is empty or not one of the known choices, so callers can keep their existing crop.
  */
 export function objectPositionFromHeroFocus(
   focus: string | null | undefined,
