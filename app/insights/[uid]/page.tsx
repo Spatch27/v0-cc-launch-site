@@ -8,6 +8,7 @@ import { BackToInsights } from "@/components/insights/back-to-insights"
 import { BackToInsightsCta } from "@/components/insights/back-to-insights-cta"
 import { InsightArticleBody } from "@/components/insights/article-body"
 import { formatInsightMonthYear } from "@/lib/insight-articles"
+import { objectPositionFromHotspot } from "@/lib/sanity/hotspot"
 import { getInsightBySlug, getInsightSlugs } from "@/lib/sanity/insights"
 import { absoluteInsightUrl, insightPageUrl } from "@/lib/sanity/urls"
 import { JsonLd } from "@/components/json-ld"
@@ -87,6 +88,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const publishedAt = article.publishedAt
   const displayDate = formatInsightMonthYear(publishedAt)
   const isSvgHero = article.heroImage.endsWith(".svg")
+  const heroObjectPosition = isSvgHero
+    ? undefined
+    : (objectPositionFromHotspot(article.heroHotspot) ?? "center 35%")
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -142,7 +146,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               alt={article.heroAlt || article.title}
               fill
               className={isSvgHero ? "object-contain" : "object-cover"}
-              style={isSvgHero ? undefined : { objectPosition: "center 35%" }}
+              style={heroObjectPosition ? { objectPosition: heroObjectPosition } : undefined}
               priority
               sizes="(max-width: 1400px) 100vw, 1400px"
             />

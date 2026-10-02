@@ -38,6 +38,21 @@ export type SanityInlineImageBlock = {
 
 export type SanityBodyBlock = SanityTextBlock | SanityCodeBlock | SanityInlineImageBlock
 
+/** Crop fractions stored by Sanity when an editor trims the image. */
+export type SanityImageCrop = {
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
+/** Focal point for the hero crop. `x` and `y` are 0–1 from the top-left. */
+export type SanityHeroHotspot = {
+  x: number
+  y: number
+  crop?: SanityImageCrop | null
+}
+
 export type SanityInsightListingDoc = {
   id: string
   title: string
@@ -47,6 +62,7 @@ export type SanityInsightListingDoc = {
   readTime: string
   featured: boolean
   image: string
+  heroHotspot: SanityHeroHotspot | null
 }
 
 export type SanityInsightArticle = {
@@ -62,6 +78,7 @@ export type SanityInsightArticle = {
   authorRole: string
   heroImage: string
   heroAlt: string
+  heroHotspot: SanityHeroHotspot | null
   body: SanityBodyBlock[]
 }
 
