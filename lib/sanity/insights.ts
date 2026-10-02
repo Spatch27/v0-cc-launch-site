@@ -2,6 +2,7 @@ import {draftMode} from "next/headers"
 import type {InsightListingArticle} from "@/lib/insight-articles"
 import {formatInsightMonthYear} from "@/lib/insight-articles"
 import {sanityClient, sanityFetchOptions} from "./client"
+import {isHeroFocus, type HeroFocus} from "./heroFocus"
 import {requireSanityPreviewToken} from "./preview-token"
 import {
   insightBySlugQuery,
@@ -10,8 +11,6 @@ import {
   insightSlugsQuery,
 } from "./queries"
 import type {
-  SanityHeroHotspot,
-  SanityImageCrop,
   SanityInsightArticle,
   SanityInsightListingDoc,
   SanityInsightSitemapDoc,
@@ -40,37 +39,8 @@ async function fetchInsightContent<T>(
     .fetch<T>(query, params, previewFetchOptions)
 }
 
-function mapCrop(crop: SanityImageCrop | null | undefined): SanityImageCrop | null {
-  if (!crop) {
-    return null
-  }
-
-  const {top, bottom, left, right} = crop
-  const edges = [top, bottom, left, right]
-
-  if (edges.every((edge) => typeof edge === "number" && Number.isFinite(edge))) {
-    return {top, bottom, left, right}
-  }
-
-  return null
-}
-
-function mapHeroHotspot(
-  hotspot: SanityHeroHotspot | null | undefined,
-): SanityHeroHotspot | null {
-  if (
-    !hotspot ||
-    typeof hotspot.x !== "number" ||
-    typeof hotspot.y !== "number" ||
-    !Number.isFinite(hotspot.x) ||
-    !Number.isFinite(hotspot.y)
-  ) {
-    return null
-  }
-
-  const crop = mapCrop(hotspot.crop)
-
-  return crop ? {x: hotspot.x, y: hotspot.y, crop} : {x: hotspot.x, y: hotspot.y}
+function mapHeroFocus(focus: string | null | undefined): HeroFocus | null {
+  return isHeroFocus(focus) ? focus : null
 }
 
 function toListingArticle(doc: SanityInsightListingDoc): InsightListingArticle {
@@ -82,7 +52,7 @@ function toListingArticle(doc: SanityInsightListingDoc): InsightListingArticle {
     date: formatInsightMonthYear(doc.publishedAt),
     readTime: doc.readTime,
     image: doc.image || "",
-    heroHotspot: mapHeroHotspot(doc.heroHotspot),
+    heroFocus: mapHeroFocus(doc.heroFocus),
   }
 }
 
@@ -112,7 +82,7 @@ export async function getInsightBySlug(slug: string): Promise<SanityInsightArtic
 
   return {
     ...article,
-    heroHotspot: mapHeroHotspot(article.heroHotspot),
+    heroFocus: mapHeroFocus(article.heroFocus),
   }
 }
 

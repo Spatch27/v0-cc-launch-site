@@ -9,14 +9,14 @@ import { fadeInUp, staggerContainer } from "@/lib/animations"
 import { Section } from "@/components/section"
 import { ArrowRight } from "lucide-react"
 import type { InsightListingArticle } from "@/lib/insight-articles"
-import { objectPositionFromHotspot } from "@/lib/sanity/hotspot"
+import { objectPositionFromHeroFocus } from "@/lib/sanity/heroFocus"
 
 function listingImageStyle(article: InsightListingArticle) {
   if (!article.image || article.image.endsWith(".svg")) {
     return undefined
   }
 
-  const objectPosition = objectPositionFromHotspot(article.heroHotspot)
+  const objectPosition = objectPositionFromHeroFocus(article.heroFocus)
   return objectPosition ? { objectPosition } : undefined
 }
 
