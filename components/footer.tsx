@@ -1,7 +1,50 @@
 "use client"
 
 import Link from "next/link"
+import Script from "next/script"
+import { memo } from "react"
 import { SubstackSubscribeForm } from "@/components/substack-subscribe-form"
+
+const WEBSITE_CARBON_BADGE_SRC =
+  "https://unpkg.com/website-carbon-badges@1.1.3/b.min.js"
+
+let carbonBadgeRerunPending = false
+
+// next/script loads and runs the official badge once, after hydration.
+// A later mount (client-side navigation that recreates the footer) gets a
+// fresh empty #wcb, and the cached script does not run again. Refill it.
+function rerunWebsiteCarbonBadge() {
+  const badge = document.getElementById("wcb")
+  if (!badge || badge.querySelector("#wcb_p") || carbonBadgeRerunPending) return
+
+  carbonBadgeRerunPending = true
+  const script = document.createElement("script")
+  script.src = WEBSITE_CARBON_BADGE_SRC
+  script.async = true
+  script.setAttribute("data-cookieconsent", "ignore")
+  const clearPending = () => {
+    carbonBadgeRerunPending = false
+  }
+  script.addEventListener("load", clearPending)
+  script.addEventListener("error", clearPending)
+  document.body.appendChild(script)
+}
+
+// Memoized so a parent re-render cannot wipe the markup the badge script injects.
+const WebsiteCarbonBadge = memo(function WebsiteCarbonBadge() {
+  return (
+    <>
+      <div id="wcb" className="carbonbadge max-w-full" />
+      <Script
+        id="website-carbon-badge"
+        src={WEBSITE_CARBON_BADGE_SRC}
+        strategy="afterInteractive"
+        data-cookieconsent="ignore"
+        onReady={rerunWebsiteCarbonBadge}
+      />
+    </>
+  )
+})
 
 declare global {
   interface Window {
@@ -35,6 +78,17 @@ export function Footer() {
 
   return (
     <footer data-site-footer className="relative overflow-hidden text-brand-dark">
+      {/* The head critical CSS sets unlayered .items-center, which beats Tailwind's
+          layered md:items-baseline. This rule is more specific, so desktop can
+          share a text baseline while mobile stays centered. */}
+      <style>{`
+        @media (min-width: 48rem) {
+          [data-site-footer] .footer-legal-row,
+          [data-site-footer] .footer-legal-meta {
+            align-items: baseline;
+          }
+        }
+      `}</style>
       <img
         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CC%20blend%20background-VpfgyiS6MyAjc7Ce2dMvMIdbEjmz3U.webp"
         alt=""
@@ -97,11 +151,14 @@ export function Footer() {
         </div>
       </div>
       <div className="relative z-10 border-t border-brand-dark/10 px-6 lg:px-12">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-2 py-4">
-          <p className="text-xs text-brand-dark">
-            &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
-          </p>
-          <div className="flex flex-wrap items-center gap-6">
+        <div className="footer-legal-row mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-3 py-4">
+          <div className="footer-legal-meta flex max-w-full flex-wrap items-center gap-x-6 gap-y-3">
+            <p className="text-xs text-brand-dark">
+              &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
+            </p>
+            <WebsiteCarbonBadge />
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <a
               href="#"
               onClick={handleCookieSettings}
