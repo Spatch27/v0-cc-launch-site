@@ -78,6 +78,17 @@ export function Footer() {
 
   return (
     <footer data-site-footer className="relative overflow-hidden text-brand-dark">
+      {/* The head critical CSS sets unlayered .items-center, which beats Tailwind's
+          layered md:items-baseline. This rule is more specific, so desktop can
+          share a text baseline while mobile stays centered. */}
+      <style>{`
+        @media (min-width: 48rem) {
+          [data-site-footer] .footer-legal-row,
+          [data-site-footer] .footer-legal-meta {
+            align-items: baseline;
+          }
+        }
+      `}</style>
       <img
         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CC%20blend%20background-VpfgyiS6MyAjc7Ce2dMvMIdbEjmz3U.webp"
         alt=""
@@ -140,8 +151,8 @@ export function Footer() {
         </div>
       </div>
       <div className="relative z-10 border-t border-brand-dark/10 px-6 lg:px-12">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-3 py-4">
-          <div className="flex max-w-full flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="footer-legal-row mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-3 py-4">
+          <div className="footer-legal-meta flex max-w-full flex-wrap items-center gap-x-6 gap-y-3">
             <p className="text-xs text-brand-dark">
               &copy; {new Date().getFullYear()} Committed Citizens Ltd. All rights reserved.
             </p>
