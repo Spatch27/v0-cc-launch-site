@@ -2,14 +2,8 @@
 
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
-import { CheckCircle, Send } from "lucide-react"
-import {
-  GAP_AREAS,
-  type GapAreaKey,
-  buildGapAreasPayload,
-  defaultImportanceOrder,
-  importanceRanksFromOrder,
-} from "@/lib/gap"
+import { CheckCircle, ChevronDown, Send } from "lucide-react"
+import { GAP_AREAS, type GapAreaKey, buildGapAreasPayload, isGapAreaKey } from "@/lib/gap"
 import { textRollDown, textRollUp } from "@/lib/animations"
 import { cn } from "@/lib/utils"
 import { GapAreaList } from "./gap-area-list"
@@ -70,12 +64,65 @@ function ShortQuestion({
   )
 }
 
+function FocusQuestion({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+  const title = "Of the 7 areas above, which is the most important area of focus for you right now?"
+  const selected = GAP_AREAS.find((area) => area.key === value)
+
+  return (
+    <div className={cn(columnGridClass, "py-10")}>
+      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground lg:col-start-1 lg:row-start-1">
+        Three
+      </span>
+      <h2
+        id="gap-q3"
+        className="mt-2 font-display text-xl font-semibold leading-snug text-brand-dark lg:col-start-1 lg:row-start-2 lg:self-end"
+      >
+        {title}
+      </h2>
+      <p className="mt-2 text-sm text-muted-foreground lg:col-start-1 lg:row-start-3">Choose one.</p>
+      <div className={cn(answerColumnClass, "gap-short-field lg:col-start-2 lg:row-start-2 lg:self-end")}>
+        <label htmlFor="most_important" className="sr-only">
+          {title}
+        </label>
+        <div className="group relative">
+          <select
+            id="most_important"
+            name="most_important"
+            required
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
+            className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
+          >
+            <option value="" disabled>
+              Select an area
+            </option>
+            {GAP_AREAS.map((area) => (
+              <option key={area.key} value={area.key}>
+                {area.label}
+              </option>
+            ))}
+          </select>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none border-b-2 border-brand-dark/10 py-3 pr-8 text-base leading-snug text-brand-dark transition-colors group-focus-within:border-brand-pink"
+          >
+            {selected ? selected.label : <span className="text-brand-dark/30">Select an area</span>}
+          </div>
+          <ChevronDown
+            aria-hidden="true"
+            className="pointer-events-none absolute top-1/2 right-0 size-5 -translate-y-1/2 text-brand-dark/50"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function GapForm() {
   const [scanValues, setScanValues] = useState<Record<GapAreaKey, number>>(() =>
     Object.fromEntries(GAP_AREAS.map((area) => [area.key, 4])) as Record<GapAreaKey, number>
   )
-  const [importanceOrder, setImportanceOrder] = useState<GapAreaKey[]>(defaultImportanceOrder)
-  const [importanceTouched, setImportanceTouched] = useState(false)
+  const [focusArea, setFocusArea] = useState("")
   const [touched, setTouched] = useState<Set<GapAreaKey>>(new Set())
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -105,6 +152,14 @@ export function GapForm() {
     const form = e.currentTarget
     const formData = new FormData(form)
 
+    const mostImportant = formData.get("most_important")
+    if (!isGapAreaKey(mostImportant)) {
+      setError("Choose the most important area of focus.")
+      setLoading(false)
+      document.getElementById("most_important")?.focus()
+      return
+    }
+
     const scan = Object.fromEntries(GAP_AREAS.map((area) => [area.key, scanValues[area.key]])) as Record<
       GapAreaKey,
       number
@@ -113,8 +168,7 @@ export function GapForm() {
     const minValue = Math.min(...Object.values(scan))
     const widest_gaps = GAP_AREAS.filter((area) => scan[area.key] === maxValue).map((area) => area.key)
     const closest = GAP_AREAS.find((area) => scan[area.key] === minValue)?.key
-    const importance = importanceRanksFromOrder(importanceOrder)
-    const areas = buildGapAreasPayload(scan, importanceOrder)
+    const areas = buildGapAreasPayload(scan)
 
     try {
       const body = {
@@ -128,15 +182,10 @@ export function GapForm() {
         },
         must_achieve: formData.get("must_achieve"),
         scan,
-        importance,
-        importance_order: importanceOrder,
-        importance_touched: importanceTouched,
         areas,
-        most_important: importanceOrder[0],
-        least_important: importanceOrder[importanceOrder.length - 1],
+        most_important: mostImportant,
         widest_gaps,
         closest,
-        would_protect: formData.get("would_protect"),
         shows_the_gap: formData.get("shows_the_gap"),
       }
 
@@ -177,8 +226,8 @@ export function GapForm() {
         `}</style>
         <div className={columnGridClass}>
           <div className="lg:col-span-2">
-            <h1 className="font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
-              Where’s the <span className="bg-brand-yellow-light px-1">gap</span> in your marketing?
+            <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
+              Four questions, 2 minutes, 1 diagnosis
             </h1>
 
             <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
@@ -254,21 +303,14 @@ export function GapForm() {
                     you need.
                   </p>
                   <p>
-                    <strong className="font-semibold">Select</strong> the number on each that corresponds to the size of
-                    the gap currently (1 = already there, 7 = nowhere near).
-                  </p>
-                  <p>
-                    Then, <strong className="font-semibold">drag</strong> them into order of importance to you (A = most
-                    important, G = least important).
+                    Select the number on each that corresponds to the size of the gap currently (1 = already there, 7 =
+                    nowhere near).
                   </p>
                 </div>
               </div>
 
               <div className={answerColumnClass}>
                 <GapAreaList
-                  order={importanceOrder}
-                  onReorder={setImportanceOrder}
-                  onRank={() => setImportanceTouched(true)}
                   scanValues={scanValues}
                   onScanChange={(key, value) => setScanValues((prev) => ({ ...prev, [key]: value }))}
                   touched={touched}
@@ -277,13 +319,7 @@ export function GapForm() {
               </div>
             </div>
 
-            <ShortQuestion
-              kicker="Three"
-              title="What’s the one part you’d protect if you had to cut everything else?"
-              note="A few words will do."
-              example="e.g. the brand team, our events, the way we do research"
-              fieldId="would_protect"
-            />
+            <FocusQuestion value={focusArea} onChange={setFocusArea} />
 
             <ShortQuestion
               kicker="Four"
