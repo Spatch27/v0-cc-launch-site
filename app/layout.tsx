@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Inter, Bricolage_Grotesque } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/react'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
@@ -8,17 +8,19 @@ import { JsonLd } from '@/components/json-ld'
 import { SITE_URL, organizationJsonLd } from '@/lib/seo'
 import './globals.css'
 
-const inter = Inter({
-  subsets: ['latin'],
+const inter = localFont({
+  src: './fonts/inter-latin.woff2',
   variable: '--font-inter',
   display: 'swap',
+  weight: '100 900',
 })
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
+const bricolage = localFont({
+  src: './fonts/bricolage-grotesque-latin.woff2',
   variable: '--font-bricolage',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
+  weight: '200 800',
+  declarations: [{ prop: 'font-stretch', value: '100%' }],
 })
 
 export const metadata: Metadata = {
