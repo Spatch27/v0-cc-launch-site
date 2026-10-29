@@ -2,25 +2,14 @@ import { NextResponse } from "next/server"
 import {
   buildGapAreasPayload,
   formatGapScanEmailHtml,
+  isGapAreaKey,
   isValidScan,
   optionalText,
-  resolveImportanceOrder,
 } from "@/lib/gap"
 
 export async function POST(request: Request) {
   const body = await request.json()
-  const {
-    person,
-    must_achieve,
-    scan,
-    importance,
-    importance_order,
-    importance_touched,
-    widest_gaps,
-    closest,
-    would_protect,
-    shows_the_gap,
-  } = body
+  const { person, must_achieve, scan, most_important, widest_gaps, closest, shows_the_gap } = body
 
   if (!person?.name || !person?.email || !person?.company) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
@@ -30,12 +19,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing scan answers" }, { status: 400 })
   }
 
-  const order = resolveImportanceOrder(importance, importance_order)
-  if (!order) {
-    return NextResponse.json({ error: "Missing importance ranking" }, { status: 400 })
+  if (!isGapAreaKey(most_important)) {
+    return NextResponse.json({ error: "Choose the most important area of focus." }, { status: 400 })
   }
 
-  const areas = buildGapAreasPayload(scan, order)
+  const areas = buildGapAreasPayload(scan)
 
   // TODO: persist submission and trigger the two-day video follow-up workflow.
   if (process.env.RESEND_API_KEY) {
@@ -48,13 +36,12 @@ export async function POST(request: Request) {
       html: formatGapScanEmailHtml({
         person,
         must_achieve: optionalText(must_achieve),
-        would_protect: optionalText(would_protect),
         shows_the_gap: optionalText(shows_the_gap),
         scan,
         widest_gaps: Array.isArray(widest_gaps) ? widest_gaps : [],
-        closest,
+        closest: isGapAreaKey(closest) ? closest : undefined,
         areas,
-        importance_touched: Boolean(importance_touched),
+        most_important,
       }),
     })
   }

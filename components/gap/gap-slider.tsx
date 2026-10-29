@@ -53,12 +53,7 @@ export function GapSlider({ label, value, touched, onChange, onTouch, showHeader
         </label>
       )}
 
-      <div
-        className="relative flex h-11 items-center touch-none"
-        data-slider-target="true"
-        onPointerDown={(event) => event.stopPropagation()}
-        onMouseDown={(event) => event.stopPropagation()}
-      >
+      <div className="relative flex h-11 items-center touch-none">
         <div className="pointer-events-none absolute inset-x-0 h-1.5 rounded-full bg-brand-light" />
         {touched && (
           <div
@@ -75,11 +70,7 @@ export function GapSlider({ label, value, touched, onChange, onTouch, showHeader
           value={value}
           aria-label={label}
           aria-valuetext={verdict}
-          onPointerDown={(event) => {
-            event.stopPropagation()
-            onTouch()
-          }}
-          onMouseDown={(event) => event.stopPropagation()}
+          onPointerDown={() => onTouch()}
           onKeyDown={(e) => {
             if (TOUCH_KEYS.has(e.key)) onTouch()
           }}
@@ -102,12 +93,7 @@ export function GapSlider({ label, value, touched, onChange, onTouch, showHeader
         />
       </div>
 
-      <div
-        className="flex justify-between px-[2px] font-display text-xs text-muted-foreground"
-        data-slider-target="true"
-        onPointerDown={(event) => event.stopPropagation()}
-        onMouseDown={(event) => event.stopPropagation()}
-      >
+      <div className="flex justify-between px-[2px] font-display text-xs text-muted-foreground">
         {STOPS.map((n) => (
           <button
             key={n}
