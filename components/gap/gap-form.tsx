@@ -226,8 +226,10 @@ export function GapForm() {
         `}</style>
         <div className={columnGridClass}>
           <div className="lg:col-span-2">
-            <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
-              Four questions, 2 minutes, 1 diagnosis
+            <h1 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold leading-[0.95] tracking-tight text-brand-dark">
+              <span className="block">4 questions</span>
+              <span className="block">2 minutes</span>
+              <span className="block">1 diagnosis</span>
             </h1>
 
             <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
