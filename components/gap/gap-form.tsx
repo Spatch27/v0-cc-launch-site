@@ -211,7 +211,7 @@ export function GapForm() {
   }
 
   return (
-    <div className="min-h-screen bg-brand-white px-6 pt-32 pb-32 lg:px-12 lg:pt-40 lg:pb-24">
+    <div className="min-h-screen bg-brand-white px-6 pb-32 lg:px-12 lg:pb-24">
       <div className="mx-auto max-w-[1400px]">
         <style>{`
           @media (max-width: 1023px) {
@@ -224,30 +224,6 @@ export function GapForm() {
             }
           }
         `}</style>
-        <div className={columnGridClass}>
-          <div className="lg:col-span-2">
-            <h1 className="text-balance font-display text-[clamp(2rem,6vw,3rem)] font-bold leading-[1.05] text-brand-dark">
-              Four questions, 2 minutes, 1 diagnosis
-            </h1>
-
-            <div className="mt-8 flex flex-col gap-5 text-base leading-relaxed text-brand-dark">
-              <p>
-                You’ve added tools, developed capabilities and changed how your team works. Your people still hold the
-                pieces together: chasing decisions, reconciling data and moving work between systems.
-              </p>
-              <p>
-                AI creates an opportunity to rethink that arrangement. What could your marketing function achieve if less of
-                your team’s effort went into making the work happen?
-              </p>
-              <p>
-                <strong className="font-semibold">Four questions, two minutes.</strong> We’ll send you a short personal
-                video after you submit, in response to your answers: our initial read on the opportunity, what may be
-                getting in the way, and where we’d begin.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {submitted ? (
           <div className={cn(columnGridClass, "py-16")}>
             <div className="flex flex-col gap-6 lg:col-span-2">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { GapForm } from "@/components/gap/gap-form"
+import { GapHero } from "@/components/gap/gap-hero"
 import { absoluteUrl, brandedTitle, canonicalAlternates } from "@/lib/seo"
 
 const title = "Where’s the gap in your marketing?"
@@ -33,5 +34,10 @@ export const metadata: Metadata = {
 }
 
 export default function GapPage() {
-  return <GapForm />
+  return (
+    <>
+      <GapHero />
+      <GapForm />
+    </>
+  )
 }
