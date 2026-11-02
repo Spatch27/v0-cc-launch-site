@@ -1,9 +1,9 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle, ChevronDown, Send } from "lucide-react"
-import { GAP_AREAS, type GapAreaKey, buildGapAreasPayload, isGapAreaKey, optionalText } from "@/lib/gap"
+import { GAP_AREAS, type GapAreaKey, buildGapAreasPayload, isGapAreaKey, isValidEmail, optionalText } from "@/lib/gap"
 import { textRollDown, textRollUp } from "@/lib/animations"
 import { cn } from "@/lib/utils"
 import { GapAreaList } from "./gap-area-list"
@@ -23,6 +23,30 @@ const hintClass = "mt-1 text-sm italic text-muted-foreground"
 const columnGridClass = "gap-columns grid lg:grid-cols-[280px_minmax(0,720px)] lg:gap-x-12"
 
 const questionGridClass = cn(columnGridClass, "items-start gap-12 py-10")
+
+/** Extra space between the fixed header's bottom edge and the scrolled target. */
+const NAV_CLEARANCE_GAP = 16
+
+type GapFieldId = "most_important" | "name" | "email"
+
+type GapScrollIntent = {
+  nonce: number
+  targetId: string
+  focusId: string
+}
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+}
+
+function FieldAlert({ id, message }: { id: string; message: string | null }) {
+  if (!message) return null
+  return (
+    <p id={id} role="alert" aria-live="assertive" className="mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+      {message}
+    </p>
+  )
+}
 
 /** Same cap as the Insights article body, so answers end where article text does. */
 const answerColumnClass = "min-w-0 lg:max-w-[720px]"
@@ -64,12 +88,20 @@ function ShortQuestion({
   )
 }
 
-function FocusQuestion({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+function FocusQuestion({
+  value,
+  onChange,
+  error,
+}: {
+  value: string
+  onChange: (value: string) => void
+  error: string | null
+}) {
   const title = "Of the 7 areas above, which is the most important area of focus for you right now?"
   const selected = GAP_AREAS.find((area) => area.key === value)
 
   return (
-    <div className={cn(columnGridClass, "py-10")}>
+    <div id="gap-q3-block" className={cn(columnGridClass, "gap-scroll-target py-10")}>
       <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground lg:col-start-1 lg:row-start-1">
         Three
       </span>
@@ -90,6 +122,8 @@ function FocusQuestion({ value, onChange }: { value: string; onChange: (value: s
             name="most_important"
             required
             value={value}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? "gap-most-important-error" : undefined}
             onChange={(event) => onChange(event.target.value)}
             className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
           >
@@ -113,12 +147,15 @@ function FocusQuestion({ value, onChange }: { value: string; onChange: (value: s
             className="pointer-events-none absolute top-1/2 right-0 size-5 -translate-y-1/2 text-brand-dark/50"
           />
         </div>
+        <FieldAlert id="gap-most-important-error" message={error} />
       </div>
     </div>
   )
 }
 
 export function GapForm() {
+  const rootRef = useRef<HTMLDivElement>(null)
+  const scrollNonce = useRef(0)
   const [scanValues, setScanValues] = useState<Record<GapAreaKey, number>>(() =>
     Object.fromEntries(GAP_AREAS.map((area) => [area.key, 4])) as Record<GapAreaKey, number>
   )
@@ -127,9 +164,52 @@ export function GapForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [fieldError, setFieldError] = useState<{ field: GapFieldId; message: string } | null>(null)
+  const [scrollIntent, setScrollIntent] = useState<GapScrollIntent | null>(null)
   const [isSubmitHovered, setIsSubmitHovered] = useState(false)
 
   const touchedCount = touched.size
+
+  useEffect(() => {
+    const header = document.querySelector("header")
+    const root = rootRef.current
+    if (!header || !root) return
+
+    const apply = () => {
+      const clearance = Math.ceil(header.getBoundingClientRect().height) + NAV_CLEARANCE_GAP
+      root.style.setProperty("--gap-nav-clearance", `${clearance}px`)
+    }
+
+    apply()
+    const observer = new ResizeObserver(apply)
+    observer.observe(header)
+    window.addEventListener("resize", apply)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener("resize", apply)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!scrollIntent) return
+    let cancelled = false
+    const frame = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        if (cancelled) return
+        const target = document.getElementById(scrollIntent.targetId)
+        target?.scrollIntoView({
+          behavior: prefersReducedMotion() ? "auto" : "smooth",
+          block: "start",
+          inline: "nearest",
+        })
+        document.getElementById(scrollIntent.focusId)?.focus({ preventScroll: true })
+      })
+    })
+    return () => {
+      cancelled = true
+      window.cancelAnimationFrame(frame)
+    }
+  }, [scrollIntent])
 
   const markTouched = useMemo(
     () => (key: GapAreaKey) =>
@@ -142,32 +222,48 @@ export function GapForm() {
     []
   )
 
+  function queueScroll(targetId: string, focusId: string) {
+    scrollNonce.current += 1
+    setScrollIntent({ nonce: scrollNonce.current, targetId, focusId })
+  }
+
+  function revealField(field: GapFieldId, targetId: string, message: string) {
+    setError(null)
+    setFieldError({ field, message })
+    queueScroll(targetId, field)
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (loading) return
-
-    setLoading(true)
-    setError(null)
 
     const form = e.currentTarget
     const formData = new FormData(form)
 
     const mostImportant = formData.get("most_important")
     if (!isGapAreaKey(mostImportant)) {
-      setError("Choose the most important area of focus.")
-      setLoading(false)
-      document.getElementById("most_important")?.focus()
+      revealField("most_important", "gap-q3-block", "Choose the most important area of focus.")
       return
     }
 
     const name = optionalText(formData.get("name"))
     const email = optionalText(formData.get("email"))
-    if (!name || !email) {
-      setError("Name and email are required.")
-      setLoading(false)
-      document.getElementById(name ? "email" : "name")?.focus()
+    if (!name) {
+      revealField("name", "gap-name-field", "Name and email are required.")
       return
     }
+    if (!email) {
+      revealField("email", "gap-email-field", "Name and email are required.")
+      return
+    }
+    if (!isValidEmail(email)) {
+      revealField("email", "gap-email-field", "Enter a valid email address.")
+      return
+    }
+
+    setLoading(true)
+    setError(null)
+    setFieldError(null)
 
     const scan = Object.fromEntries(GAP_AREAS.map((area) => [area.key, scanValues[area.key]])) as Record<
       GapAreaKey,
@@ -206,21 +302,28 @@ export function GapForm() {
 
       if (res.ok) {
         setSubmitted(true)
+        queueScroll("gap-success", "gap-success")
       } else {
         setError(data.error || "Failed to submit form")
+        queueScroll("gap-form-error", "gap-form-error")
       }
     } catch (err) {
       console.error("[v0] Gap form submission error:", err)
       setError("An error occurred. Please try again.")
+      queueScroll("gap-form-error", "gap-form-error")
     } finally {
       setLoading(false)
     }
   }
 
+  const nameError = fieldError?.field === "name" ? fieldError.message : null
+  const emailError = fieldError?.field === "email" ? fieldError.message : null
+
   return (
-    <div className="min-h-screen bg-brand-white px-6 pb-32 lg:px-12 lg:pb-24">
+    <div ref={rootRef} className="min-h-screen bg-brand-white px-6 pb-32 lg:px-12 lg:pb-24">
       <div className="mx-auto max-w-[1400px]">
         <style>{`
+          .gap-scroll-target { scroll-margin-top: var(--gap-nav-clearance, 6rem); }
           @media (max-width: 1023px) {
             .gap-short-field { margin-top: 1.5rem; }
           }
@@ -233,7 +336,13 @@ export function GapForm() {
         `}</style>
         {submitted ? (
           <div className={cn(columnGridClass, "py-16")}>
-            <div className="flex flex-col gap-6 lg:col-span-2">
+            <div
+              id="gap-success"
+              tabIndex={-1}
+              role="status"
+              aria-live="polite"
+              className="gap-scroll-target flex flex-col gap-6 outline-none lg:col-span-2"
+            >
               <CheckCircle size={48} className="text-brand-pink" />
               <h2 className="font-display text-3xl font-bold text-brand-dark">Thanks — the video is on its way.</h2>
               <p className="text-lg leading-relaxed text-brand-dark">
@@ -246,9 +355,15 @@ export function GapForm() {
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col">
+          <form noValidate onSubmit={handleSubmit} className="flex flex-col">
             {error && (
-              <div className="mt-8 rounded-lg border border-red-200 bg-red-50 p-4">
+              <div
+                id="gap-form-error"
+                tabIndex={-1}
+                role="alert"
+                aria-live="assertive"
+                className="gap-scroll-target mt-8 rounded-lg border border-red-200 bg-red-50 p-4 outline-none"
+              >
                 <p className="text-sm text-red-700">{error}</p>
               </div>
             )}
@@ -302,7 +417,14 @@ export function GapForm() {
               </div>
             </div>
 
-            <FocusQuestion value={focusArea} onChange={setFocusArea} />
+            <FocusQuestion
+              value={focusArea}
+              error={fieldError?.field === "most_important" ? fieldError.message : null}
+              onChange={(value) => {
+                setFocusArea(value)
+                setFieldError((current) => (current?.field === "most_important" ? null : current))
+              }}
+            />
 
             <ShortQuestion
               kicker="Four"
@@ -315,13 +437,24 @@ export function GapForm() {
             <div className={questionGridClass}>
               <div className={cn(answerColumnClass, "flex flex-col gap-8 lg:col-start-2")}>
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6">
-                  <div>
+                  <div id="gap-name-field" className="gap-scroll-target">
                     <label htmlFor="name" className={labelClass}>
                       Name <span className="text-brand-pink">*</span>
                     </label>
-                    <input id="name" name="name" type="text" required className={inputClass} placeholder="Your name" />
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      aria-invalid={nameError ? true : undefined}
+                      aria-describedby={nameError ? "gap-name-error" : undefined}
+                      className={cn(inputClass, nameError && "border-red-400")}
+                      placeholder="Your name"
+                      onChange={() => setFieldError((current) => (current?.field === "name" ? null : current))}
+                    />
+                    <FieldAlert id="gap-name-error" message={nameError} />
                   </div>
-                  <div>
+                  <div id="gap-email-field" className="gap-scroll-target">
                     <label htmlFor="email" className={labelClass}>
                       Email <span className="text-brand-pink">*</span>
                     </label>
@@ -330,9 +463,13 @@ export function GapForm() {
                       name="email"
                       type="email"
                       required
-                      className={inputClass}
+                      aria-invalid={emailError ? true : undefined}
+                      aria-describedby={emailError ? "gap-email-error" : undefined}
+                      className={cn(inputClass, emailError && "border-red-400")}
                       placeholder="your@email.com"
+                      onChange={() => setFieldError((current) => (current?.field === "email" ? null : current))}
                     />
+                    <FieldAlert id="gap-email-error" message={emailError} />
                   </div>
                 </div>
                 <div>
