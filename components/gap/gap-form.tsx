@@ -27,7 +27,13 @@ const questionGridClass = cn(columnGridClass, "items-start gap-12 py-10")
 /** Extra space between the fixed header's bottom edge and the scrolled target. */
 const NAV_CLEARANCE_GAP = 16
 
-type GapFieldId = "most_important" | "name" | "email"
+type GapFieldId = "must_achieve" | "scan" | "most_important" | "shows_the_gap" | "name" | "email"
+
+type GapFieldError = {
+  field: GapFieldId
+  message: string
+  area?: GapAreaKey
+}
 
 type GapScrollIntent = {
   nonce: number
@@ -57,17 +63,24 @@ function ShortQuestion({
   note,
   example,
   fieldId,
+  scrollId,
   maxLength,
+  error,
+  onValueChange,
 }: {
   kicker: string
   title: string
   note: string
   example: string
   fieldId: string
+  scrollId: string
   maxLength?: number
+  error: string | null
+  onValueChange: () => void
 }) {
+  const errorId = `${fieldId}-error`
   return (
-    <div className={cn(columnGridClass, "py-10")}>
+    <div id={scrollId} className={cn(columnGridClass, "gap-scroll-target py-10")}>
       <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground lg:col-start-1 lg:row-start-1">
         {kicker}
       </span>
@@ -82,7 +95,19 @@ function ShortQuestion({
         <label htmlFor={fieldId} className="sr-only">
           {title}
         </label>
-        <input id={fieldId} name={fieldId} type="text" maxLength={maxLength} className={inputClass} />
+        <input
+          id={fieldId}
+          name={fieldId}
+          type="text"
+          required
+          aria-required="true"
+          maxLength={maxLength}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? errorId : undefined}
+          className={cn(inputClass, error && "border-red-400")}
+          onChange={onValueChange}
+        />
+        <FieldAlert id={errorId} message={error} />
       </div>
     </div>
   )
@@ -121,6 +146,7 @@ function FocusQuestion({
             id="most_important"
             name="most_important"
             required
+            aria-required="true"
             value={value}
             aria-invalid={error ? true : undefined}
             aria-describedby={error ? "gap-most-important-error" : undefined}
@@ -164,7 +190,7 @@ export function GapForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [fieldError, setFieldError] = useState<{ field: GapFieldId; message: string } | null>(null)
+  const [fieldError, setFieldError] = useState<GapFieldError | null>(null)
   const [scrollIntent, setScrollIntent] = useState<GapScrollIntent | null>(null)
   const [isSubmitHovered, setIsSubmitHovered] = useState(false)
 
@@ -227,10 +253,14 @@ export function GapForm() {
     setScrollIntent({ nonce: scrollNonce.current, targetId, focusId })
   }
 
-  function revealField(field: GapFieldId, targetId: string, message: string) {
+  function revealField(field: GapFieldId, targetId: string, focusId: string, message: string, area?: GapAreaKey) {
     setError(null)
-    setFieldError({ field, message })
-    queueScroll(targetId, field)
+    setFieldError({ field, message, area })
+    queueScroll(targetId, focusId)
+  }
+
+  function clearFieldError(field: GapFieldId) {
+    setFieldError((current) => (current?.field === field ? null : current))
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -240,24 +270,44 @@ export function GapForm() {
     const form = e.currentTarget
     const formData = new FormData(form)
 
+    const mustAchieve = optionalText(formData.get("must_achieve"))
+    if (!mustAchieve) {
+      revealField("must_achieve", "gap-q1-block", "must_achieve", "Tell us what marketing must achieve.")
+      return
+    }
+
+    const firstUntouched = GAP_AREAS.find((area) => !touched.has(area.key))
+    if (firstUntouched) {
+      const focusId = `gap-slider-${firstUntouched.key}`
+      const targetId = firstUntouched.key === GAP_AREAS[0].key ? "gap-q2" : `gap-area-${firstUntouched.key}`
+      revealField("scan", targetId, focusId, "Select the gap size for each area.", firstUntouched.key)
+      return
+    }
+
     const mostImportant = formData.get("most_important")
     if (!isGapAreaKey(mostImportant)) {
-      revealField("most_important", "gap-q3-block", "Choose the most important area of focus.")
+      revealField("most_important", "gap-q3-block", "most_important", "Choose the most important area of focus.")
+      return
+    }
+
+    const showsTheGap = optionalText(formData.get("shows_the_gap"))
+    if (!showsTheGap) {
+      revealField("shows_the_gap", "gap-q4-block", "shows_the_gap", "Name a campaign or piece of work that shows the gap.")
       return
     }
 
     const name = optionalText(formData.get("name"))
     const email = optionalText(formData.get("email"))
     if (!name) {
-      revealField("name", "gap-name-field", "Name and email are required.")
+      revealField("name", "gap-name-field", "name", "Name and email are required.")
       return
     }
     if (!email) {
-      revealField("email", "gap-email-field", "Name and email are required.")
+      revealField("email", "gap-email-field", "email", "Name and email are required.")
       return
     }
     if (!isValidEmail(email)) {
-      revealField("email", "gap-email-field", "Enter a valid email address.")
+      revealField("email", "gap-email-field", "email", "Enter a valid email address.")
       return
     }
 
@@ -283,13 +333,13 @@ export function GapForm() {
           email,
         },
         anything_else: optionalText(formData.get("anything_else")),
-        must_achieve: formData.get("must_achieve"),
+        must_achieve: mustAchieve,
         scan,
         areas,
         most_important: mostImportant,
         widest_gaps,
         closest,
-        shows_the_gap: formData.get("shows_the_gap"),
+        shows_the_gap: showsTheGap,
       }
 
       const res = await fetch("/api/gap", {
@@ -374,10 +424,13 @@ export function GapForm() {
               note="One line is plenty."
               example="e.g. plan with confidence / ship campaigns faster / prove what’s working / free the team for higher-value work"
               fieldId="must_achieve"
+              scrollId="gap-q1-block"
               maxLength={180}
+              error={fieldError?.field === "must_achieve" ? fieldError.message : null}
+              onValueChange={() => clearFieldError("must_achieve")}
             />
 
-            <div className={questionGridClass} id="gap-q2">
+            <div className={cn(questionGridClass, "gap-scroll-target")} id="gap-q2">
               <div className="lg:sticky lg:top-32 lg:self-start">
                 <div className="flex items-baseline justify-between gap-4">
                   <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Two</span>
@@ -412,7 +465,12 @@ export function GapForm() {
                   scanValues={scanValues}
                   onScanChange={(key, value) => setScanValues((prev) => ({ ...prev, [key]: value }))}
                   touched={touched}
-                  onSliderTouch={markTouched}
+                  onSliderTouch={(key) => {
+                    markTouched(key)
+                    clearFieldError("scan")
+                  }}
+                  invalidArea={fieldError?.field === "scan" ? fieldError.area ?? null : null}
+                  errorMessage={fieldError?.field === "scan" ? fieldError.message : null}
                 />
               </div>
             </div>
@@ -422,7 +480,7 @@ export function GapForm() {
               error={fieldError?.field === "most_important" ? fieldError.message : null}
               onChange={(value) => {
                 setFocusArea(value)
-                setFieldError((current) => (current?.field === "most_important" ? null : current))
+                clearFieldError("most_important")
               }}
             />
 
@@ -432,6 +490,9 @@ export function GapForm() {
               note="Something live or recent. One short answer is enough."
               example="e.g. Q4 always-on — approvals stall every cycle / weekly competitive report — still assembled by hand / product launch — briefs bounce between teams"
               fieldId="shows_the_gap"
+              scrollId="gap-q4-block"
+              error={fieldError?.field === "shows_the_gap" ? fieldError.message : null}
+              onValueChange={() => clearFieldError("shows_the_gap")}
             />
 
             <div className={questionGridClass}>
@@ -446,11 +507,12 @@ export function GapForm() {
                       name="name"
                       type="text"
                       required
+                      aria-required="true"
                       aria-invalid={nameError ? true : undefined}
                       aria-describedby={nameError ? "gap-name-error" : undefined}
                       className={cn(inputClass, nameError && "border-red-400")}
                       placeholder="Your name"
-                      onChange={() => setFieldError((current) => (current?.field === "name" ? null : current))}
+                      onChange={() => clearFieldError("name")}
                     />
                     <FieldAlert id="gap-name-error" message={nameError} />
                   </div>
@@ -463,18 +525,19 @@ export function GapForm() {
                       name="email"
                       type="email"
                       required
+                      aria-required="true"
                       aria-invalid={emailError ? true : undefined}
                       aria-describedby={emailError ? "gap-email-error" : undefined}
                       className={cn(inputClass, emailError && "border-red-400")}
                       placeholder="your@email.com"
-                      onChange={() => setFieldError((current) => (current?.field === "email" ? null : current))}
+                      onChange={() => clearFieldError("email")}
                     />
                     <FieldAlert id="gap-email-error" message={emailError} />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="anything_else" className={labelClass}>
-                    Anything else we should know?
+                    Anything else we should know? (optional)
                   </label>
                   <textarea
                     id="anything_else"
