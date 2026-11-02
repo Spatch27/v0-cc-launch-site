@@ -6,7 +6,8 @@ import { TeamSection } from "@/components/about/team-section"
 import { AdvisorySection } from "@/components/about/advisory-section"
 import { CultureSection } from "@/components/about/culture-section"
 import { CtaBand } from "@/components/cta-band"
-import { canonicalAlternates } from "@/lib/seo"
+import { JsonLd } from "@/components/json-ld"
+import { canonicalAlternates, founderPersonJsonLd } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "About | Marketing Operations Consultancy & Advisory Board",
@@ -41,6 +42,9 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      {founderPersonJsonLd.map((person) => (
+        <JsonLd key={person["@id"]} data={person} />
+      ))}
       <AboutHero />
       <PurposeSection />
       <section className="relative w-screen left-1/2 -translate-x-1/2 h-[600px] flex items-center justify-center overflow-hidden">

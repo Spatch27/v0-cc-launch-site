@@ -49,3 +49,14 @@ export const insightSitemapQuery = groq`
     publishedAt
   }
 `
+
+/** Published insight rows for /llms.txt. Drafts are excluded even if the client perspective changes. */
+export const insightLlmsQuery = groq`
+  *[_type == "insightArticle" && defined(slug.current) && defined(title) && !(_id in path("drafts.**"))]
+    | order(publishedAt desc, _createdAt asc) {
+      "slug": slug.current,
+      title,
+      excerpt,
+      "featured": featured == true
+    }
+`
