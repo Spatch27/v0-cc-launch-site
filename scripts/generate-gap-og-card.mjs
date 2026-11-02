@@ -1,30 +1,32 @@
-import fs from "node:fs"
+import { execFileSync } from "node:child_process"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 import sharp from "sharp"
 
-const outputPath = path.join(process.cwd(), "public/gap-og-card.png")
+// Static 1200×630 share card for /gap, served from public/gap-og-card.png.
+// Pink field (#fc66a7, the /gap header band), charcoal type, dark CC wordmark.
+// Headline outlines are Bricolage Grotesque Bold; body outlines are Inter Medium.
+//
+//   pip install fonttools brotli uharfbuzz
+//   node scripts/generate-gap-og-card.mjs
 
-const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#181716"/>
-  <rect x="0" y="0" width="16" height="630" fill="#ffeb3e"/>
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..")
+const script = path.join(root, "scripts/generate-gap-og-card.py")
+const outputPath = path.join(root, "public/gap-og-card.png")
 
-  <g transform="translate(64,48) scale(0.38)" fill="#ffeb3e">
-    <path d="M200.6,125v145.58c-40.2,0-72.79-32.59-72.79-72.79s32.59-72.79,72.79-72.79ZM252.19,270.58v-64.4l-45.23,64.4h45.23ZM206.96,125l45.23,64.4v-64.4h-45.23Z"/>
-  </g>
-  <text x="160" y="112" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="600" fill="#e3dcdc">Committed Citizens</text>
-
-  <text x="80" y="292" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="62" font-weight="800" fill="#ffffff">Where's the</text>
-  <rect x="80" y="318" width="162" height="82" fill="#ffeb3e"/>
-  <text x="98" y="380" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="62" font-weight="800" fill="#181716">gap</text>
-  <text x="258" y="380" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="62" font-weight="800" fill="#ffffff">in your marketing?</text>
-
-  <text x="80" y="492" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="500" fill="#e3dcdc">Four questions, two minutes.</text>
-  <text x="80" y="536" font-family="Inter, Liberation Sans, Arial, sans-serif" font-size="26" font-weight="500" fill="#e3dcdc">A short personal video in response to your answers.</text>
-</svg>`
+const svg = execFileSync("python3", [script, root], {
+  encoding: "utf8",
+  maxBuffer: 16 * 1024 * 1024,
+})
 
 await sharp(Buffer.from(svg))
+  .resize(1200, 630)
   .png({ compressionLevel: 9 })
   .toFile(outputPath)
 
-console.log(`Wrote ${outputPath}`)
+const meta = await sharp(outputPath).metadata()
+if (meta.width !== 1200 || meta.height !== 630) {
+  throw new Error(`Expected 1200×630, got ${meta.width}×${meta.height}`)
+}
+
+console.log(`Wrote ${outputPath} (${meta.width}×${meta.height})`)
