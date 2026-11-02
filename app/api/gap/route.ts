@@ -5,14 +5,26 @@ import {
   isGapAreaKey,
   isValidScan,
   optionalText,
+  readGapPerson,
 } from "@/lib/gap"
 
 export async function POST(request: Request) {
-  const body = await request.json()
-  const { person, must_achieve, scan, most_important, widest_gaps, closest, shows_the_gap } = body
+  let body: Record<string, unknown>
+  try {
+    const parsed = await request.json()
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return NextResponse.json({ error: "Name and email are required." }, { status: 400 })
+    }
+    body = parsed as Record<string, unknown>
+  } catch {
+    return NextResponse.json({ error: "Name and email are required." }, { status: 400 })
+  }
 
-  if (!person?.name || !person?.email || !person?.company) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+  const { must_achieve, scan, most_important, widest_gaps, closest, shows_the_gap, anything_else } = body
+  const person = readGapPerson(body.person)
+
+  if (!person) {
+    return NextResponse.json({ error: "Name and email are required." }, { status: 400 })
   }
 
   if (!isValidScan(scan)) {
@@ -32,13 +44,14 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: "webform@committedcitizens.co.uk",
       to: "info@committedcitizens.co.uk",
-      subject: `New Gap Scan: ${person.name} (${person.company})`,
+      subject: `New Gap Scan: ${person.name}`,
       html: formatGapScanEmailHtml({
         person,
+        anything_else: optionalText(anything_else),
         must_achieve: optionalText(must_achieve),
         shows_the_gap: optionalText(shows_the_gap),
         scan,
-        widest_gaps: Array.isArray(widest_gaps) ? widest_gaps : [],
+        widest_gaps: Array.isArray(widest_gaps) ? widest_gaps.filter(isGapAreaKey) : [],
         closest: isGapAreaKey(closest) ? closest : undefined,
         areas,
         most_important,

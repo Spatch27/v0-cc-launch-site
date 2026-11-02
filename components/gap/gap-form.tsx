@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle, ChevronDown, Send } from "lucide-react"
-import { GAP_AREAS, type GapAreaKey, buildGapAreasPayload, isGapAreaKey } from "@/lib/gap"
+import { GAP_AREAS, type GapAreaKey, buildGapAreasPayload, isGapAreaKey, optionalText } from "@/lib/gap"
 import { textRollDown, textRollUp } from "@/lib/animations"
 import { cn } from "@/lib/utils"
 import { GapAreaList } from "./gap-area-list"
@@ -160,6 +160,15 @@ export function GapForm() {
       return
     }
 
+    const name = optionalText(formData.get("name"))
+    const email = optionalText(formData.get("email"))
+    if (!name || !email) {
+      setError("Name and email are required.")
+      setLoading(false)
+      document.getElementById(name ? "email" : "name")?.focus()
+      return
+    }
+
     const scan = Object.fromEntries(GAP_AREAS.map((area) => [area.key, scanValues[area.key]])) as Record<
       GapAreaKey,
       number
@@ -174,12 +183,10 @@ export function GapForm() {
       const body = {
         submitted: new Date().toISOString(),
         person: {
-          name: formData.get("name"),
-          role: formData.get("role"),
-          company: formData.get("company"),
-          email: formData.get("email"),
-          marketing_headcount: formData.get("marketing_headcount"),
+          name,
+          email,
         },
+        anything_else: optionalText(formData.get("anything_else")),
         must_achieve: formData.get("must_achieve"),
         scan,
         areas,
@@ -328,38 +335,15 @@ export function GapForm() {
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6">
-                  <div>
-                    <label htmlFor="company" className={labelClass}>
-                      Company <span className="text-brand-pink">*</span>
-                    </label>
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      required
-                      className={inputClass}
-                      placeholder="Company name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="role" className={labelClass}>
-                      Role
-                    </label>
-                    <input id="role" name="role" type="text" className={inputClass} placeholder="Your role" />
-                  </div>
-                </div>
                 <div>
-                  <label htmlFor="marketing_headcount" className={labelClass}>
-                    Roughly how many people in marketing?
+                  <label htmlFor="anything_else" className={labelClass}>
+                    Anything else we should know?
                   </label>
-                  <input
-                    id="marketing_headcount"
-                    name="marketing_headcount"
-                    type="text"
-                    inputMode="numeric"
-                    className={inputClass}
-                    placeholder="a number is fine"
+                  <textarea
+                    id="anything_else"
+                    name="anything_else"
+                    rows={4}
+                    className={`${inputClass} min-h-28 resize-y`}
                   />
                 </div>
 
