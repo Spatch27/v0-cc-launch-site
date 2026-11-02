@@ -74,14 +74,30 @@ export function optionalText(value: unknown): string | null {
   return trimmed.length > 0 ? trimmed : null
 }
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+export function isValidEmail(value: string): boolean {
+  return EMAIL_PATTERN.test(value)
+}
+
+export type GapPerson = {
+  name: string
+  email: string
+}
+
+/** Name and email only. Extra person fields such as company are ignored. */
+export function readGapPerson(person: unknown): GapPerson | null {
+  if (!person || typeof person !== "object" || Array.isArray(person)) return null
+  const record = person as Record<string, unknown>
+  const name = optionalText(record.name)
+  const email = optionalText(record.email)
+  if (!name || !email || !isValidEmail(email)) return null
+  return { name, email }
+}
+
 export function formatGapScanEmailHtml(input: {
-  person: {
-    name: string
-    email: string
-    company: string
-    role?: string | null
-    marketing_headcount?: string | null
-  }
+  person: GapPerson
+  anything_else?: string | null
   must_achieve?: string | null
   shows_the_gap?: string | null
   scan: GapScan
@@ -111,13 +127,12 @@ export function formatGapScanEmailHtml(input: {
   const closestLabel = input.closest ? gapAreaLabel(input.closest) : "N/A"
   const focusLabel = gapAreaLabel(input.most_important)
 
+  const anythingElse = input.anything_else ? escapeHtml(input.anything_else).replaceAll("\n", "<br>") : "N/A"
+
   return `
     <h2>New Gap Scan</h2>
     <p>Name: ${escapeHtml(String(person.name))}</p>
     <p>Email: ${escapeHtml(String(person.email))}</p>
-    <p>Company: ${escapeHtml(String(person.company))}</p>
-    <p>Role: ${escapeHtml(String(person.role || "N/A"))}</p>
-    <p>Marketing headcount: ${escapeHtml(String(person.marketing_headcount || "N/A"))}</p>
     <p>What must marketing achieve that it cannot reliably do today? ${escapeHtml(String(input.must_achieve || "N/A"))}</p>
     <h3>Gap size</h3>
     <p>1 = already there, 7 = nowhere near.</p>
@@ -138,5 +153,6 @@ export function formatGapScanEmailHtml(input: {
     <p>Scan (gap size by key): ${escapeHtml(JSON.stringify(input.scan))}</p>
     <p>Areas (gap size): ${escapeHtml(JSON.stringify(areasDump))}</p>
     <p>Campaign or piece of work that shows the gap: ${escapeHtml(String(input.shows_the_gap || "N/A"))}</p>
+    <p>Anything else we should know? ${anythingElse}</p>
   `
 }
