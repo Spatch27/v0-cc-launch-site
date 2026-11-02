@@ -21,10 +21,9 @@ export async function POST(request: Request) {
   }
 
   const { must_achieve, scan, most_important, widest_gaps, closest, shows_the_gap, anything_else } = body
-  const person = readGapPerson(body.person)
-
-  if (!person) {
-    return NextResponse.json({ error: "Name and email are required." }, { status: 400 })
+  const achieved = optionalText(must_achieve)
+  if (!achieved) {
+    return NextResponse.json({ error: "Tell us what marketing must achieve." }, { status: 400 })
   }
 
   if (!isValidScan(scan)) {
@@ -33,6 +32,16 @@ export async function POST(request: Request) {
 
   if (!isGapAreaKey(most_important)) {
     return NextResponse.json({ error: "Choose the most important area of focus." }, { status: 400 })
+  }
+
+  const showsGap = optionalText(shows_the_gap)
+  if (!showsGap) {
+    return NextResponse.json({ error: "Name a campaign or piece of work that shows the gap." }, { status: 400 })
+  }
+
+  const person = readGapPerson(body.person)
+  if (!person) {
+    return NextResponse.json({ error: "Name and email are required." }, { status: 400 })
   }
 
   const areas = buildGapAreasPayload(scan)
@@ -48,8 +57,8 @@ export async function POST(request: Request) {
       html: formatGapScanEmailHtml({
         person,
         anything_else: optionalText(anything_else),
-        must_achieve: optionalText(must_achieve),
-        shows_the_gap: optionalText(shows_the_gap),
+        must_achieve: achieved,
+        shows_the_gap: showsGap,
         scan,
         widest_gaps: Array.isArray(widest_gaps) ? widest_gaps.filter(isGapAreaKey) : [],
         closest: isGapAreaKey(closest) ? closest : undefined,

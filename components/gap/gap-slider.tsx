@@ -13,6 +13,9 @@ interface GapSliderProps {
   onChange: (value: number) => void
   onTouch: () => void
   showHeader?: boolean
+  inputId?: string
+  invalid?: boolean
+  describedBy?: string
 }
 
 const TOUCH_KEYS = new Set([
@@ -26,8 +29,19 @@ const TOUCH_KEYS = new Set([
   "PageDown",
 ])
 
-export function GapSlider({ label, value, touched, onChange, onTouch, showHeader = true }: GapSliderProps) {
-  const id = useId()
+export function GapSlider({
+  label,
+  value,
+  touched,
+  onChange,
+  onTouch,
+  showHeader = true,
+  inputId,
+  invalid = false,
+  describedBy,
+}: GapSliderProps) {
+  const generatedId = useId()
+  const id = inputId ?? generatedId
   const percent = ((value - 1) / 6) * 100
   const verdict = GAP_VERDICTS[value]
 
@@ -70,6 +84,9 @@ export function GapSlider({ label, value, touched, onChange, onTouch, showHeader
           value={value}
           aria-label={label}
           aria-valuetext={verdict}
+          aria-required="true"
+          aria-invalid={invalid ? true : undefined}
+          aria-describedby={invalid ? describedBy : undefined}
           onPointerDown={() => onTouch()}
           onKeyDown={(e) => {
             if (TOUCH_KEYS.has(e.key)) onTouch()

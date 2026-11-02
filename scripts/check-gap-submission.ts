@@ -73,6 +73,12 @@ async function main() {
     `valid submission without company should succeed, got ${accepted.status} ${JSON.stringify(accepted.json)}`
   )
 
+  const missingAchieve = await post({ ...validBody, must_achieve: "   " })
+  assert(missingAchieve.status === 400, "blank question one is rejected")
+
+  const missingShows = await post({ ...validBody, shows_the_gap: "" })
+  assert(missingShows.status === 400, "blank question four is rejected")
+
   const missingEmail = await post({ ...validBody, person: { name: "Ada" } })
   assert(missingEmail.status === 400, "missing email is rejected")
 
