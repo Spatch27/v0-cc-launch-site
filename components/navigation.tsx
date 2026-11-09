@@ -22,6 +22,7 @@ const heroColorMap: Record<string, { bg: string; isDark: boolean }> = {
   "/contact": { bg: "bg-brand-yellow-light", isDark: false },
   "/privacy": { bg: "bg-brand-dark", isDark: true },
   "/gap": { bg: "bg-brand-pink", isDark: false },
+  "/waypoint": { bg: "bg-brand-pink", isDark: false },
 }
 
 function NavLabel({ label, mobile = false }: { label: string; mobile?: boolean }) {
