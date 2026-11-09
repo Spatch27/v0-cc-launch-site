@@ -10,7 +10,8 @@ test.beforeEach(async ({ page }) => {
 
 test("spoken interview page can be checked and corrected without hiding the written form", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1, name: /where.s the gap in your marketing/i })).toBeVisible()
-  await expect(page.getByText(/headphones are best/i)).toBeVisible()
+  await expect(page.getByText(/headphones are best/i)).toHaveCount(0)
+  await expect(page.getByText(/answer itself/i)).toHaveCount(0)
   await expect(page.getByText(/tell me how to spell anything i.ve got wrong/i)).toBeVisible()
   await expect(page.getByText(/you can edit a field too/i)).toBeVisible()
 

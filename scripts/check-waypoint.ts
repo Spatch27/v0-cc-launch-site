@@ -1,5 +1,6 @@
 import { rm } from "fs/promises"
 import { GAP_AREAS, type GapScan } from "../lib/gap"
+import { duplexOpen, leakFromPlayback, readMicProcessing, shouldSendMic } from "../lib/voice/aec"
 import { buildSessionUpdate, INTERVIEW_VOICE } from "../lib/voice/instructions"
 import { resampleLinear } from "../lib/voice/audio"
 import { redactEvent } from "../lib/voice/redact"
@@ -125,6 +126,24 @@ async function main() {
   assert(resampled.length === 240, `resample length should be 240, got ${resampled.length}`)
   const same = resampleLinear(new Float32Array([0.25, -0.5]), 24000, 24000)
   assert(same.length === 2 && same[1] === -0.5, "matching rates keep the samples")
+
+  const applied = readMicProcessing({ echoCancellation: true, noiseSuppression: true, autoGainControl: true })
+  assert(applied.echoCancellation && applied.noiseSuppression && applied.autoGainControl, "applied processing is read from settings")
+  assert(!readMicProcessing({}).echoCancellation, "a missing echoCancellation setting is not treated as on")
+  assert(duplexOpen({ echoCancellation: true, playback: "webrtc", leak: false }), "speakerphone stays full duplex when cancellation is on the WebRTC path")
+  assert(!duplexOpen({ echoCancellation: true, playback: "direct", leak: false }), "direct speaker playback is not full duplex")
+  assert(!duplexOpen({ echoCancellation: false, playback: "webrtc", leak: false }), "WebRTC playback without cancellation is not full duplex")
+  assert(shouldSendMic(true, true), "full duplex keeps the mic open while the interviewer speaks")
+  assert(!shouldSendMic(false, true), "half duplex does not upload the mic during playback")
+  assert(shouldSendMic(false, false), "half duplex uploads the mic once playback has finished")
+  assert(
+    leakFromPlayback({ quietRms: 0.004, meanPlaybackRms: 0.03, peakPlaybackRms: 0.04, windows: 6 }),
+    "flat residual energy during playback is treated as leaked speaker audio",
+  )
+  assert(
+    !leakFromPlayback({ quietRms: 0.004, meanPlaybackRms: 0.05, peakPlaybackRms: 0.2, windows: 6 }),
+    "a loud peak during playback stays barge-in, not a mute",
+  )
 
   const redacted = redactEvent({
     type: "response.output_audio.delta",

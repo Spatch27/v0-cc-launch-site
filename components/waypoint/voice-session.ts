@@ -1,3 +1,4 @@
+import { duplexOpen, leakFromPlayback, readMicProcessing, shouldSendMic, type MicProcessing } from "@/lib/voice/aec"
 import {
   floatToPcm16Base64,
   pcm16Base64ToFloat32,
@@ -5,6 +6,7 @@ import {
   rms,
   TARGET_RATE,
 } from "@/lib/voice/audio"
+import { attachSpeakerReference, type SpeakerReference } from "@/lib/voice/echo-path"
 import { buildSessionUpdate, REALTIME_URL } from "@/lib/voice/instructions"
 import { createVoiceLogger, createVoiceSessionId, type VoiceLogger } from "@/lib/voice/logger"
 import { parseResearch, type IdentityFields, type WaypointResearch } from "@/lib/waypoint"
@@ -29,6 +31,7 @@ export type VoiceHandlers = {
   persist: (research: WaypointResearch, transcript: string) => Promise<PersistResult>
   onError: (message: string) => void
   onLiveChange: (live: boolean) => void
+  onEchoCancellation: (available: boolean) => void
 }
 
 type ToolCall = { name: string; callId: string; args: Record<string, unknown> }
@@ -60,7 +63,10 @@ class PcmPlayer {
   drainMax = 0
   private drainCallback: (() => void) | null = null
 
-  constructor(private readonly ctx: AudioContext) {}
+  constructor(
+    private readonly ctx: AudioContext,
+    private readonly output: AudioNode,
+  ) {}
 
   resetTurn() {
     this.leadArmed = false
@@ -72,13 +78,17 @@ class PcmPlayer {
     return Math.max(0, (this.nextTime - this.ctx.currentTime) * 1000)
   }
 
+  isPlaying(): boolean {
+    return this.sources.length > 0
+  }
+
   enqueue(samples: Float32Array) {
     if (!samples.length || this.ctx.state === "closed") return
     const buffer = this.ctx.createBuffer(1, samples.length, TARGET_RATE)
     buffer.copyToChannel(samples, 0)
     const source = this.ctx.createBufferSource()
     source.buffer = buffer
-    source.connect(this.ctx.destination)
+    source.connect(this.output)
     const now = this.ctx.currentTime
     let startAt: number
     if (!this.leadArmed) {
@@ -159,6 +169,16 @@ export class WaypointVoiceSession {
   private createdAt = 0
   private turn = emptyTurn()
   private audioIn = emptyAudioIn()
+  private gatedInWindow = 0
+  private outputEl: HTMLAudioElement | null = null
+  private speaker: SpeakerReference | null = null
+  private micProcessing: MicProcessing | null = null
+  private playbackPath: "webrtc" | "direct" | "pending" = "pending"
+  private leak = false
+  private quietRms = 0.004
+  private playSum = 0
+  private playPeak = 0
+  private playWindows = 0
 
   constructor(handlers: () => VoiceHandlers) {
     this.handlers = handlers
@@ -173,9 +193,9 @@ export class WaypointVoiceSession {
 
   async start(ctx: AudioContext) {
     this.ctx = ctx
-    this.player = new PcmPlayer(ctx)
     this.logger = createVoiceLogger(this.sessionId)
     this.logger.log("start", { url: REALTIME_URL, target_rate: TARGET_RATE })
+    this.armPlayback(ctx)
     this.handlers().onLiveChange(true)
     this.setPhase("connecting")
 
@@ -220,6 +240,14 @@ export class WaypointVoiceSession {
     if (dropped > 20) this.logger?.log("play.stop", { reason: by, dropped_ms: Math.round(dropped) })
     this.logger?.log("stop", { by, phase: this.phase })
     this.stream?.getTracks().forEach((track) => track.stop())
+    this.speaker?.close()
+    this.speaker = null
+    if (this.outputEl) {
+      this.outputEl.pause()
+      this.outputEl.srcObject = null
+      this.outputEl.remove()
+      this.outputEl = null
+    }
     if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) {
       this.ws.close()
     }
@@ -254,10 +282,10 @@ export class WaypointVoiceSession {
     const started = performance.now()
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: {
-        channelCount: 1,
-        echoCancellation: true,
-        noiseSuppression: true,
-        autoGainControl: true,
+        channelCount: { ideal: 1 },
+        echoCancellation: { ideal: true },
+        noiseSuppression: { ideal: true },
+        autoGainControl: { ideal: true },
       },
       video: false,
     })
@@ -268,11 +296,17 @@ export class WaypointVoiceSession {
     this.stream = stream
     const track = stream.getAudioTracks()[0]
     this.micTrack = track ?? null
+    const settings = track?.getSettings() ?? {}
+    this.micProcessing = readMicProcessing(settings)
     this.logger?.log("mic.ok", {
       ms: Math.round(performance.now() - started),
       label: track?.label ?? "",
-      settings: track?.getSettings() ?? {},
+      settings,
+      echoCancellation: this.micProcessing.echoCancellation,
+      noiseSuppression: this.micProcessing.noiseSuppression,
+      autoGainControl: this.micProcessing.autoGainControl,
     })
+    this.publishEchoMode()
     await ctx.audioWorklet.addModule("/waypoint-pcm-capture.js")
     if (this.stopped) return
     const source = ctx.createMediaStreamSource(stream)
@@ -299,8 +333,12 @@ export class WaypointVoiceSession {
   private onMicChunk(samples: Float32Array) {
     if (this.stopped || !this.ctx) return
     const level = rms(samples)
+    const playing = this.player?.isPlaying() ?? false
+    this.observeLevel(level, playing)
+    const gated = !shouldSendMic(this.isDuplex(), playing)
     const encoded = floatToPcm16Base64(resampleLinear(samples, this.ctx.sampleRate, TARGET_RATE))
-    this.noteAudioIn(encoded.bytes, level)
+    this.noteAudioIn(encoded.bytes, level, gated)
+    if (gated) return
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
       this.pendingAudio.push(encoded.base64)
       if (this.pendingAudio.length > MAX_PENDING_CHUNKS) this.pendingAudio.shift()
@@ -309,18 +347,20 @@ export class WaypointVoiceSession {
     this.ws.send(JSON.stringify({ type: "input_audio_buffer.append", audio: encoded.base64 }))
   }
 
-  private noteAudioIn(bytes: number, level: number) {
+  private noteAudioIn(bytes: number, level: number, gated: boolean) {
     const now = performance.now()
     if (!this.audioIn.started) this.audioIn.started = now
     this.audioIn.chunks += 1
     this.audioIn.bytes += bytes
     this.audioIn.rmsMax = Math.max(this.audioIn.rmsMax, level)
     this.audioIn.rmsSum += level
+    if (gated) this.gatedInWindow += 1
     if (now - this.audioIn.started < 2000) return
     const chunks = this.audioIn.chunks
     this.logger?.log("audio.in", {
       chunks,
       bytes: this.audioIn.bytes,
+      gated: this.gatedInWindow,
       rms_max: Number(this.audioIn.rmsMax.toFixed(4)),
       rms_avg: Number((this.audioIn.rmsSum / Math.max(1, chunks)).toFixed(4)),
       pending: this.pendingAudio.length,
@@ -328,6 +368,7 @@ export class WaypointVoiceSession {
       phase: this.phase,
     })
     this.audioIn = emptyAudioIn()
+    this.gatedInWindow = 0
     this.audioIn.started = now
   }
 
@@ -458,6 +499,12 @@ export class WaypointVoiceSession {
   }
 
   private onSpeechStarted() {
+    const playing = (this.player?.isPlaying() ?? false) || this.phase === "speaking"
+    if (playing && !this.isDuplex()) {
+      this.send({ type: "input_audio_buffer.clear" })
+      this.logger?.log("aec.gate", { reason: "speech-while-gated" })
+      return
+    }
     const dropped = this.player?.halt() ?? 0
     this.logger?.log("play.stop", { reason: "barge-in", dropped_ms: Math.round(dropped) })
     this.setPhase("listening")
@@ -590,6 +637,105 @@ export class WaypointVoiceSession {
     this.phase = phase
     this.logger?.log("phase", { phase })
     this.handlers().onPhase(phase)
+  }
+
+  private armPlayback(ctx: AudioContext) {
+    const bus = ctx.createGain()
+    bus.gain.value = 1
+    const streamDest = ctx.createMediaStreamDestination()
+    bus.connect(streamDest)
+    this.player = new PcmPlayer(ctx, bus)
+    const audio = document.createElement("audio")
+    audio.autoplay = true
+    audio.setAttribute("playsinline", "")
+    audio.setAttribute("data-waypoint-playback", "")
+    audio.style.cssText = "position:fixed;width:1px;height:1px;opacity:0;pointer-events:none"
+    document.body.appendChild(audio)
+    // Unlock the element inside the click, before any await. srcObject replaces this once the loopback is up.
+    audio.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="
+    void audio.play().catch(() => undefined)
+    this.outputEl = audio
+    const track = streamDest.stream.getAudioTracks()[0]
+    if (!track) {
+      this.useDirectPlayback(ctx, bus)
+      return
+    }
+    void attachSpeakerReference(track, audio)
+      .then((reference) => {
+        if (this.stopped) {
+          reference.close()
+          return
+        }
+        this.speaker = reference
+        this.playbackPath = "webrtc"
+        this.logger?.log("aec.path", { playback: "webrtc" })
+        this.publishEchoMode()
+      })
+      .catch((err: unknown) => {
+        this.logger?.error("aec", err)
+        this.useDirectPlayback(ctx, bus)
+      })
+  }
+
+  private useDirectPlayback(ctx: AudioContext, bus: GainNode) {
+    if (this.playbackPath === "direct") return
+    bus.connect(ctx.destination)
+    this.playbackPath = "direct"
+    this.logger?.log("aec.path", { playback: "direct" })
+    this.publishEchoMode()
+  }
+
+  private isDuplex(): boolean {
+    return duplexOpen({
+      echoCancellation: this.micProcessing?.echoCancellation === true,
+      playback: this.playbackPath,
+      leak: this.leak,
+    })
+  }
+
+  private publishEchoMode() {
+    if (!this.micProcessing || this.playbackPath === "pending") return
+    const available = this.micProcessing.echoCancellation && this.playbackPath === "webrtc"
+    this.logger?.log("aec.mode", {
+      echoCancellation: this.micProcessing.echoCancellation,
+      noiseSuppression: this.micProcessing.noiseSuppression,
+      autoGainControl: this.micProcessing.autoGainControl,
+      playback: this.playbackPath,
+      duplex: this.isDuplex(),
+    })
+    this.handlers().onEchoCancellation(available)
+  }
+
+  private observeLevel(level: number, playing: boolean) {
+    if (!playing) {
+      this.playSum = 0
+      this.playPeak = 0
+      this.playWindows = 0
+      if (this.phase !== "speaking") this.quietRms = this.quietRms * 0.92 + level * 0.08
+      return
+    }
+    this.playSum += level
+    this.playPeak = Math.max(this.playPeak, level)
+    this.playWindows += 1
+    if (this.leak || !this.isDuplex()) return
+    const mean = this.playSum / this.playWindows
+    if (
+      leakFromPlayback({
+        quietRms: this.quietRms,
+        meanPlaybackRms: mean,
+        peakPlaybackRms: this.playPeak,
+        windows: this.playWindows,
+      })
+    ) {
+      this.leak = true
+      this.logger?.log("aec.fallback", {
+        reason: "residual-echo",
+        quiet_rms: Number(this.quietRms.toFixed(4)),
+        playback_rms: Number(mean.toFixed(4)),
+        peak_rms: Number(this.playPeak.toFixed(4)),
+      })
+      this.send({ type: "input_audio_buffer.clear" })
+    }
   }
 
   private fail(message: string, where: string, err: unknown, ms?: number) {

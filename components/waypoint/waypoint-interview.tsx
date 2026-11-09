@@ -84,6 +84,7 @@ export function WaypointInterview() {
   const [fieldError, setFieldError] = useState<{ field: string; message: string } | null>(null)
   const [sending, setSending] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [echoUnavailable, setEchoUnavailable] = useState(false)
 
   const hasDetail = Boolean(identity.name || identity.email || identity.role || identity.company)
   const status = live ? statusCopy(phase) : ""
@@ -162,6 +163,7 @@ export function WaypointInterview() {
       liveRef.current = next
       setLive(next)
     },
+    onEchoCancellation: (available) => setEchoUnavailable(!available),
   }
 
   useEffect(() => {
@@ -179,6 +181,7 @@ export function WaypointInterview() {
       return
     }
     setBanner(null)
+    setEchoUnavailable(false)
     liveRef.current = true
     const ctx = createVoiceContext()
     void ctx.resume()
@@ -273,9 +276,11 @@ export function WaypointInterview() {
         </div>
 
         <div className="order-1 flex flex-col gap-8 lg:order-2">
-          <p className="max-w-[62ch] text-base leading-relaxed text-brand-dark">
-            Headphones are best. On speakers the microphone can hear the reply, and the interviewer will answer itself.
-          </p>
+          {echoUnavailable && (
+            <p className="max-w-[62ch] text-sm leading-relaxed text-muted-foreground">
+              This browser can’t cancel speaker echo. You can keep talking; the interviewer will finish speaking before listening again. A headset is optional.
+            </p>
+          )}
 
           <div className="flex flex-col items-start gap-3">
             <button
