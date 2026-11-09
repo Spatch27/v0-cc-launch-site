@@ -1,13 +1,4 @@
-import {
-  GAP_AREAS,
-  GAP_VERDICTS,
-  type GapAreaKey,
-  type GapScan,
-  isGapAreaKey,
-  isValidEmail,
-  isValidScan,
-  optionalText,
-} from "@/lib/gap"
+import { GAP_AREAS, type GapAreaKey, isGapAreaKey, isValidEmail, optionalText } from "@/lib/gap"
 
 export type IdentityKey = "name" | "email" | "role" | "company"
 
@@ -35,7 +26,6 @@ export type PressingProject = {
 export type WaypointResearch = {
   tenure: string
   function_now_and_next: string
-  scan: GapScan
   area_notes: Record<GapAreaKey, AreaNote>
   pressing_project: PressingProject
   anything_else: string | null
@@ -44,8 +34,6 @@ export type WaypointResearch = {
 export type WaypointArea = {
   key: GapAreaKey
   label: string
-  gap_size: number
-  gap_size_label: string
   success: string
   opportunity: string
 }
@@ -57,7 +45,6 @@ export type WaypointBody = {
   person: IdentityFields
   tenure: string
   function_now_and_next: string
-  scan: GapScan
   areas: WaypointArea[]
   pressing_project: PressingProject
   anything_else: string | null
@@ -90,38 +77,6 @@ export function coerceAreaKey(value: unknown): GapAreaKey | null {
   return LABEL_TO_KEY.get(value.trim().toLowerCase()) ?? null
 }
 
-function readScore(value: unknown): number | null {
-  const number = typeof value === "string" && value.trim() !== "" ? Number(value) : value
-  if (typeof number !== "number" || !Number.isInteger(number) || number < 1 || number > 7) return null
-  return number
-}
-
-function scanFromAreas(value: unknown): GapScan | null {
-  if (!Array.isArray(value)) return null
-  const scan = {} as GapScan
-  for (const area of GAP_AREAS) {
-    const item = value
-      .map((entry) => asRecord(entry))
-      .find((entry) => entry && coerceAreaKey(entry.key) === area.key)
-    const score = item ? readScore(item.gap_size) : null
-    if (score === null) return null
-    scan[area.key] = score
-  }
-  return isValidScan(scan) ? scan : null
-}
-
-export function readScan(value: unknown): GapScan | null {
-  const record = asRecord(value)
-  if (!record) return null
-  const scan = {} as GapScan
-  for (const area of GAP_AREAS) {
-    const score = readScore(record[area.key] ?? record[area.label])
-    if (score === null) return null
-    scan[area.key] = score
-  }
-  return isValidScan(scan) ? scan : null
-}
-
 function readNote(value: unknown): AreaNote | null {
   const record = asRecord(value)
   if (!record) return null
@@ -152,17 +107,6 @@ export function readAreaNotes(value: unknown): Record<GapAreaKey, AreaNote> | nu
   }
   if (!GAP_AREAS.every((area) => notes[area.key])) return null
   return notes
-}
-
-function firstMissingScore(value: unknown): string {
-  const record = asRecord(value)
-  for (const area of GAP_AREAS) {
-    const score = record ? readScore(record[area.key] ?? record[area.label]) : null
-    if (score === null) {
-      return `Ask how big the gap is for ${area.label}, from 1 (already there) to 7 (nowhere near).`
-    }
-  }
-  return "Ask for a gap score from 1 to 7 for each area."
 }
 
 function firstMissingNote(value: unknown): string {
@@ -206,9 +150,6 @@ export function parseResearch(input: unknown): { ok: true; value: WaypointResear
     return { ok: false, error: "Ask about the marketing function they have, and the one they will need next." }
   }
 
-  const scan = readScan(record.scan) ?? scanFromAreas(record.areas)
-  if (!scan) return { ok: false, error: firstMissingScore(record.scan ?? record.areas) }
-
   const areaNotes = readAreaNotes(record.area_notes ?? record.areas)
   if (!areaNotes) return { ok: false, error: firstMissingNote(record.area_notes ?? record.areas) }
 
@@ -220,7 +161,6 @@ export function parseResearch(input: unknown): { ok: true; value: WaypointResear
     value: {
       tenure,
       function_now_and_next: functionNow,
-      scan,
       area_notes: areaNotes,
       pressing_project: project.value,
       anything_else: optionalText(record.anything_else),
@@ -302,8 +242,6 @@ function areasFromResearch(research: WaypointResearch): WaypointArea[] {
   return GAP_AREAS.map((area) => ({
     key: area.key,
     label: area.label,
-    gap_size: research.scan[area.key],
-    gap_size_label: GAP_VERDICTS[research.scan[area.key]] ?? String(research.scan[area.key]),
     success: research.area_notes[area.key].success,
     opportunity: research.area_notes[area.key].opportunity,
   }))
@@ -354,7 +292,6 @@ export function parseWaypointBody(input: unknown): { ok: true; body: WaypointBod
       },
       tenure: research.value.tenure,
       function_now_and_next: research.value.function_now_and_next,
-      scan: research.value.scan,
       areas: areasFromResearch(research.value),
       pressing_project: research.value.pressing_project,
       anything_else: research.value.anything_else,
@@ -378,7 +315,6 @@ export function buildWaypointBody(input: {
     person: input.identity,
     tenure: input.research.tenure,
     function_now_and_next: input.research.function_now_and_next,
-    scan: input.research.scan,
     area_notes: input.research.area_notes,
     pressing_project: input.research.pressing_project,
     anything_else: input.research.anything_else,
@@ -401,7 +337,6 @@ export function formatWaypointEmailHtml(body: WaypointBody): string {
       (area) => `
         <tr>
           <td style="padding:8px;border:1px solid #ddd;">${escapeHtml(area.label)}</td>
-          <td style="padding:8px;border:1px solid #ddd;">${area.gap_size} — ${escapeHtml(area.gap_size_label)}</td>
           <td style="padding:8px;border:1px solid #ddd;">${escapeHtml(area.success)}</td>
           <td style="padding:8px;border:1px solid #ddd;">${escapeHtml(area.opportunity)}</td>
         </tr>`,
@@ -422,12 +357,10 @@ export function formatWaypointEmailHtml(body: WaypointBody): string {
     <p>How long in the role: ${escapeHtml(body.tenure)}</p>
     <p>The function they have, and the one they will need: ${escapeHtml(body.function_now_and_next)}</p>
     <h3>Seven areas</h3>
-    <p>1 = already there, 7 = nowhere near.</p>
     <table style="border-collapse:collapse;margin:12px 0;">
       <thead>
         <tr>
           <th style="padding:8px;border:1px solid #ddd;text-align:left;">Area</th>
-          <th style="padding:8px;border:1px solid #ddd;text-align:left;">Gap</th>
           <th style="padding:8px;border:1px solid #ddd;text-align:left;">How it feels</th>
           <th style="padding:8px;border:1px solid #ddd;text-align:left;">Opportunity</th>
         </tr>

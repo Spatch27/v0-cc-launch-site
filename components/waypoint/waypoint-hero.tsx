@@ -17,7 +17,7 @@ export function WaypointHero() {
             Where’s the gap in your marketing?
           </h1>
           <p className="mt-5 max-w-[60ch] text-balance text-lg leading-relaxed lg:text-xl">
-            Tell us about the function you have, the one you’ll need next, and the project that can’t wait. We’ll read your details back. Tell us how to spell anything we’ve got wrong. Then a short personal video, with our initial read and where we’d begin.
+            Tell us about the function you have, the one you’ll need next, and the project that can’t wait. We’ll read your details back once, near the start. Tell us how to spell anything we’ve got wrong. Then a short personal video, with our initial read and where we’d begin.
           </p>
           <ul className="waypoint-hero-rule mt-7 grid grid-cols-3 gap-x-3 border-y border-brand-dark py-3 lg:hidden" aria-label="What this takes">
             {stats.map((stat) => (

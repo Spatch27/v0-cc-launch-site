@@ -23,15 +23,12 @@ function assert(condition: unknown, message: string) {
 }
 
 function research(): WaypointResearch {
-  const scan = Object.fromEntries(GAP_AREAS.map((area) => [area.key, 3])) as GapScan
-  scan.funding = 7
   const area_notes = Object.fromEntries(
     GAP_AREAS.map((area) => [area.key, { success: `${area.key} feels uneven`, opportunity: `${area.key} could be simpler` }]),
   ) as WaypointResearch["area_notes"]
   return {
     tenure: "Three years",
     function_now_and_next: "We ship, but we cannot prove it. Next we need a function the board believes.",
-    scan,
     area_notes,
     pressing_project: {
       what: "The always-on relaunch",
@@ -50,6 +47,12 @@ async function main() {
   assert(!JSON.stringify(session.session).includes('"eve"'), "session config does not set eve")
   assert(session.session.audio.input.transcription.model === "grok-transcribe", "user transcription is enabled")
   assert(session.session.turn_detection.type === "server_vad", "server VAD is on")
+  assert(session.session.instructions.includes("Do not ask for a number"), "Leo is told not to score the seven areas")
+  assert(!session.session.instructions.includes("nowhere near"), "Leo is not given a 1 to 7 scale")
+  assert(session.session.instructions.includes("That is the only details check"), "personal details are checked once, at the start")
+  assert(!session.session.instructions.includes("once more at the end"), "Leo does not re-check personal details at the close")
+  assert(!JSON.stringify(session.session.tools).includes('"scan"'), "the save tool has no score payload")
+  assert(!JSON.stringify(session.session.tools).includes('"minimum"'), "the save tool has no numeric score")
   for (const term of session.session.audio.input.transcription.keyterms) {
     assert(term.length <= 50, `keyterm too long: ${term}`)
   }
@@ -82,6 +85,10 @@ async function main() {
   assert(html.includes("Email: right@example.com"), "email leads with the corrected address")
   assert(html.includes("these fields win"), "email tells the team to prefer the checked details")
   assert(html.indexOf("Name: Smyth") < html.indexOf("guessed Smith"), "the checked name comes before the transcript guess")
+  assert(!html.includes("already there"), "the email does not include a 1 to 7 scale")
+  assert(!("scan" in body.body), "the saved interview has no score object")
+  const withScores = parseResearch({ ...research(), scan: { funding: 7 } })
+  assert(withScores.ok && !("scan" in withScores.value), "a numeric score sent by the model is dropped")
 
   const badEmail = buildWaypointBody({
     identity: { name: "Smyth", email: "not-an-email", role: "CMO", company: "Northwind" },
@@ -106,7 +113,8 @@ async function main() {
   )
   assert(rejected.status === 400, "the waypoint route rejects an invalid email")
 
-  const gapScan = research().scan
+  const gapScan = Object.fromEntries(GAP_AREAS.map((area) => [area.key, 4])) as GapScan
+  gapScan.funding = 7
   const gap = await postGap(
     new Request("http://local.test/api/gap", {
       method: "POST",

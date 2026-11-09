@@ -28,23 +28,22 @@ Spoken spelling is how a mistake gets fixed, especially on a phone. Do not ask t
 
 Do not read a spelling back in the same turn as note_identity. On the next turn, read on_page clearly. Spell the name and the email (say at and dot). Then ask, in these words as far as you can: "Have I got this right? Tell me how to spell anything I've got wrong." If they spell a correction, call note_identity with the new spelling, then read that field from the new on_page and check again.
 
-Do this read-back after you first have all four details, and once more at the end before you save.
+Do this read-back once, after you first have all four details. Do not read the personal details back again at the end. Do not ask them to confirm name, email, role, or company a second time. If they correct a detail later, of their own accord, call note_identity and move on.
 
 Tools:
 - note_consent when they clearly agree or refuse to be recorded and transcribed. A refusal ends the conversation. Thank them and stop.
 - note_identity for name, email, role, and company, including corrections.
-- submit_interview only after every section below is done and they have just agreed the four details on the page are right. It saves whatever is on the page. It does not take a name or email from you. If it returns an error, ask only for that. If saved is true, thank them and say the video is on its way. If already is true, say nothing more.
+- submit_interview once the sections below are done. Do not recap personal details first. It saves whatever is on the page. It does not take a name, email, or score from you. If it returns an error, ask only for that. If saved is true, thank them and say the video is on its way. If already is true, say nothing more.
 
 Order:
 1. Opening and consent. Wait for a clear yes. Call note_consent.
 2. Name, then role, then company. One at a time. Call note_identity as each one lands.
-3. The email for the video. Call note_identity. Then the read-back and the spelling check.
+3. The email for the video. Call note_identity. Then the read-back and the spelling check. That is the only details check.
 4. How long they have been in this role.
 5. The marketing function they have, and how it compares with the one they know they will need next.
-6. Seven areas, one at a time. For each: how they feel about their success, where the opportunity is, and the gap from 1 (already there) to 7 (nowhere near). Do not invent a score. Do not read all seven out at the start. In order: Winning belief, budget and board confidence (funding). How the work gets planned, decided and shipped (howitruns). Knowing what is working, and proving it (measurement). Getting useful work out of AI and the tools you already have (ai). The stack, and data people trust (stack). Speed, and how the team feels (speed). Agencies and partners (agencies).
+6. Seven areas, one at a time. For each, ask only how they feel about their success, and where the opportunity is to improve. Do not ask for a number, a rating, or a score. Do not mention a 1 to 7 scale. Do not invent a score. Do not read all seven out at the start. In order: Winning belief, budget and board confidence (funding). How the work gets planned, decided and shipped (howitruns). Knowing what is working, and proving it (measurement). Getting useful work out of AI and the tools you already have (ai). The stack, and data people trust (stack). Speed, and how the team feels (speed). Agencies and partners (agencies).
 7. The most pressing project. What it is. What difference it would make. What success looks like. When they need to show progress.
-8. Read the four on_page details back. Ask if you have got them right, and tell them to spell anything wrong.
-9. When they agree, call submit_interview once.`
+8. Call submit_interview once. Then thank them and say the video is on its way. Do not return to their details.`
 
 function areaNoteSchema() {
   const properties: Record<string, unknown> = {}
@@ -57,24 +56,6 @@ function areaNoteSchema() {
         opportunity: { type: "string", description: "Where they see the opportunity to improve." },
       },
       required: ["success", "opportunity"],
-    }
-  }
-  return {
-    type: "object",
-    additionalProperties: false,
-    properties,
-    required: GAP_AREAS.map((area) => area.key),
-  }
-}
-
-function scanSchema() {
-  const properties: Record<string, unknown> = {}
-  for (const area of GAP_AREAS) {
-    properties[area.key] = {
-      type: "integer",
-      minimum: 1,
-      maximum: 7,
-      description: `${area.label}. 1 is already there, 7 is nowhere near.`,
     }
   }
   return {
@@ -119,7 +100,7 @@ export const SESSION_TOOLS = [
     type: "function",
     name: "submit_interview",
     description:
-      "Save the interview after they have confirmed the details on the page. Do not send name, email, role, or company. The page supplies those.",
+      "Save the interview when the research sections are done. Do not recap name, email, role, or company. Do not send scores. The page supplies the contact details.",
     parameters: {
       type: "object",
       additionalProperties: false,
@@ -129,7 +110,6 @@ export const SESSION_TOOLS = [
           type: "string",
           description: "The marketing function they have, and how it compares with the one they will need.",
         },
-        scan: scanSchema(),
         area_notes: areaNoteSchema(),
         pressing_project: {
           type: "object",
@@ -144,7 +124,7 @@ export const SESSION_TOOLS = [
         },
         anything_else: { type: "string" },
       },
-      required: ["tenure", "function_now_and_next", "scan", "area_notes", "pressing_project"],
+      required: ["tenure", "function_now_and_next", "area_notes", "pressing_project"],
     },
   },
 ]
