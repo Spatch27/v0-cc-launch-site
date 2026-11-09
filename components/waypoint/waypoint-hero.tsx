@@ -1,5 +1,5 @@
 const stats = [
-  { value: "7", label: "areas we talk through" },
+  { value: "5", label: "areas we talk through" },
   { value: "1", label: "project that can’t wait" },
   { value: "1", label: "personal video in reply" },
 ] as const

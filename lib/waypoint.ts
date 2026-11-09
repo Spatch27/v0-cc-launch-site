@@ -1,4 +1,17 @@
-import { GAP_AREAS, type GapAreaKey, isGapAreaKey, isValidEmail, optionalText } from "@/lib/gap"
+import { isValidEmail, optionalText } from "@/lib/gap"
+
+/** Spoken-interview areas. The written /gap form keeps its own seven. */
+export const WAYPOINT_AREAS = [
+  { key: "funding", label: "Winning belief, budget and board confidence" },
+  { key: "howitruns", label: "How the work gets planned, decided and shipped" },
+  { key: "ai", label: "Getting useful work out of AI and the tools you already have" },
+  { key: "technology", label: "Broader technology and how you use it in marketing" },
+  { key: "speed", label: "Speed, and how the team feels" },
+] as const
+
+export type WaypointAreaKey = (typeof WAYPOINT_AREAS)[number]["key"]
+
+export const UNCOVERED_QUESTION = "Is there anything we haven’t covered today that would be useful for us to know?"
 
 export type IdentityKey = "name" | "email" | "role" | "company"
 
@@ -26,13 +39,13 @@ export type PressingProject = {
 export type WaypointResearch = {
   tenure: string
   function_now_and_next: string
-  area_notes: Record<GapAreaKey, AreaNote>
+  area_notes: Record<WaypointAreaKey, AreaNote>
   pressing_project: PressingProject
-  anything_else: string | null
+  anything_not_covered: string
 }
 
 export type WaypointArea = {
-  key: GapAreaKey
+  key: WaypointAreaKey
   label: string
   success: string
   opportunity: string
@@ -47,7 +60,7 @@ export type WaypointBody = {
   function_now_and_next: string
   areas: WaypointArea[]
   pressing_project: PressingProject
-  anything_else: string | null
+  anything_not_covered: string
   transcript: string
 }
 
@@ -60,8 +73,8 @@ export type FieldIssue = {
 
 const IDENTITY_KEYS: IdentityKey[] = ["name", "email", "role", "company"]
 
-const LABEL_TO_KEY = new Map<string, GapAreaKey>()
-for (const area of GAP_AREAS) {
+const LABEL_TO_KEY = new Map<string, WaypointAreaKey>()
+for (const area of WAYPOINT_AREAS) {
   LABEL_TO_KEY.set(area.key, area.key)
   LABEL_TO_KEY.set(area.label.toLowerCase(), area.key)
 }
@@ -71,8 +84,7 @@ function asRecord(value: unknown): Record<string, unknown> | null {
   return value as Record<string, unknown>
 }
 
-export function coerceAreaKey(value: unknown): GapAreaKey | null {
-  if (isGapAreaKey(value)) return value
+export function coerceAreaKey(value: unknown): WaypointAreaKey | null {
   if (typeof value !== "string") return null
   return LABEL_TO_KEY.get(value.trim().toLowerCase()) ?? null
 }
@@ -86,8 +98,8 @@ function readNote(value: unknown): AreaNote | null {
   return { success, opportunity }
 }
 
-export function readAreaNotes(value: unknown): Record<GapAreaKey, AreaNote> | null {
-  const notes = {} as Record<GapAreaKey, AreaNote>
+export function readAreaNotes(value: unknown): Record<WaypointAreaKey, AreaNote> | null {
+  const notes = {} as Record<WaypointAreaKey, AreaNote>
   if (Array.isArray(value)) {
     for (const item of value) {
       const record = asRecord(item)
@@ -105,14 +117,14 @@ export function readAreaNotes(value: unknown): Record<GapAreaKey, AreaNote> | nu
       if (key && note) notes[key] = note
     }
   }
-  if (!GAP_AREAS.every((area) => notes[area.key])) return null
+  if (!WAYPOINT_AREAS.every((area) => notes[area.key])) return null
   return notes
 }
 
 function firstMissingNote(value: unknown): string {
   const record = asRecord(value)
   const list = Array.isArray(value) ? value : null
-  for (const area of GAP_AREAS) {
+  for (const area of WAYPOINT_AREAS) {
     const fromRecord = record ? readNote(record[area.key] ?? record[area.label]) : null
     const fromList = list
       ?.map((item) => asRecord(item))
@@ -156,6 +168,11 @@ export function parseResearch(input: unknown): { ok: true; value: WaypointResear
   const project = readProject(record.pressing_project)
   if (!project.ok) return project
 
+  const uncovered = optionalText(record.anything_not_covered ?? record.anything_else)
+  if (!uncovered) {
+    return { ok: false, error: `Ask: ${UNCOVERED_QUESTION}` }
+  }
+
   return {
     ok: true,
     value: {
@@ -163,7 +180,7 @@ export function parseResearch(input: unknown): { ok: true; value: WaypointResear
       function_now_and_next: functionNow,
       area_notes: areaNotes,
       pressing_project: project.value,
-      anything_else: optionalText(record.anything_else),
+      anything_not_covered: uncovered,
     },
   }
 }
@@ -239,7 +256,7 @@ export function validateIdentity(identity: IdentityFields, consent: boolean): { 
 }
 
 function areasFromResearch(research: WaypointResearch): WaypointArea[] {
-  return GAP_AREAS.map((area) => ({
+  return WAYPOINT_AREAS.map((area) => ({
     key: area.key,
     label: area.label,
     success: research.area_notes[area.key].success,
@@ -294,7 +311,7 @@ export function parseWaypointBody(input: unknown): { ok: true; body: WaypointBod
       function_now_and_next: research.value.function_now_and_next,
       areas: areasFromResearch(research.value),
       pressing_project: research.value.pressing_project,
-      anything_else: research.value.anything_else,
+      anything_not_covered: research.value.anything_not_covered,
       transcript,
     },
   }
@@ -317,7 +334,7 @@ export function buildWaypointBody(input: {
     function_now_and_next: input.research.function_now_and_next,
     area_notes: input.research.area_notes,
     pressing_project: input.research.pressing_project,
-    anything_else: input.research.anything_else,
+    anything_not_covered: input.research.anything_not_covered,
     transcript: input.transcript,
   })
 }
@@ -344,7 +361,7 @@ export function formatWaypointEmailHtml(body: WaypointBody): string {
     .join("")
   const project = body.pressing_project
   const transcript = escapeHtml(body.transcript).replaceAll("\n", "<br>")
-  const anything = body.anything_else ? escapeHtml(body.anything_else).replaceAll("\n", "<br>") : "N/A"
+  const uncovered = escapeHtml(body.anything_not_covered).replaceAll("\n", "<br>")
 
   return `
     <h2>Spoken marketing-gap interview</h2>
@@ -356,7 +373,7 @@ export function formatWaypointEmailHtml(body: WaypointBody): string {
     <p>Consent to record and transcribe: yes</p>
     <p>How long in the role: ${escapeHtml(body.tenure)}</p>
     <p>The function they have, and the one they will need: ${escapeHtml(body.function_now_and_next)}</p>
-    <h3>Seven areas</h3>
+    <h3>Five areas</h3>
     <table style="border-collapse:collapse;margin:12px 0;">
       <thead>
         <tr>
@@ -373,7 +390,8 @@ export function formatWaypointEmailHtml(body: WaypointBody): string {
     <p>Difference: ${escapeHtml(project.difference)}</p>
     <p>Success: ${escapeHtml(project.success)}</p>
     <p>Progress by: ${escapeHtml(project.progress_by)}</p>
-    <p>Anything else: ${anything}</p>
+    <h3>${escapeHtml(UNCOVERED_QUESTION)}</h3>
+    <p>${uncovered}</p>
     <h3>Transcript</h3>
     <p>${transcript}</p>
   `

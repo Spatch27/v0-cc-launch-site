@@ -1,4 +1,4 @@
-import { GAP_AREAS } from "@/lib/gap"
+import { UNCOVERED_QUESTION, WAYPOINT_AREAS } from "@/lib/waypoint"
 
 /** Built-in Grok voice. Personality stays in the instructions; this is only the voice id. */
 export const INTERVIEW_VOICE = "leo"
@@ -9,11 +9,9 @@ const KEYTERMS = [
   "Committed Citizens",
   "Winning belief, budget and board confidence",
   "How the work gets planned, decided and shipped",
-  "Knowing what's working, and proving it",
   "Getting useful work out of AI",
-  "The stack, and data people trust",
+  "Broader technology and how you use it",
   "Speed, and how the team feels",
-  "Agencies and partners",
 ]
 
 export const INTERVIEW_INSTRUCTIONS = `You are a research interviewer for Committed Citizens, speaking with a senior marketer. Warm, sharp, and brief. You are not a call-centre agent. You do not sell, pitch, or give advice.
@@ -41,13 +39,14 @@ Order:
 3. The email for the video. Call note_identity. Then the read-back and the spelling check. That is the only details check.
 4. How long they have been in this role.
 5. The marketing function they have, and how it compares with the one they know they will need next.
-6. Seven areas, one at a time. For each, ask only how they feel about their success, and where the opportunity is to improve. Do not ask for a number, a rating, or a score. Do not mention a 1 to 7 scale. Do not invent a score. Do not read all seven out at the start. In order: Winning belief, budget and board confidence (funding). How the work gets planned, decided and shipped (howitruns). Knowing what is working, and proving it (measurement). Getting useful work out of AI and the tools you already have (ai). The stack, and data people trust (stack). Speed, and how the team feels (speed). Agencies and partners (agencies).
+6. Five areas, one at a time. For each, ask only how they feel about their success, and where the opportunity is to improve. Do not ask for a number, a rating, or a score. Do not mention a 1 to 7 scale. Do not invent a score. Do not read all five out at the start. Use these words, in order: Winning belief, budget and board confidence (funding). How the work gets planned, decided and shipped (howitruns). Getting useful work out of AI and the tools you already have (ai). Broader technology and how you use it in marketing (technology). Speed, and how the team feels (speed).
 7. The most pressing project. What it is. What difference it would make. What success looks like. When they need to show progress.
-8. Call submit_interview once. Then thank them and say the video is on its way. Do not return to their details.`
+8. Ask exactly: "${UNCOVERED_QUESTION}" If they have nothing to add, record that in their words. Do not recap their personal details.
+9. Call submit_interview once, including that answer. Then thank them and say the video is on its way. Do not return to their details.`
 
 function areaNoteSchema() {
   const properties: Record<string, unknown> = {}
-  for (const area of GAP_AREAS) {
+  for (const area of WAYPOINT_AREAS) {
     properties[area.key] = {
       type: "object",
       description: area.label,
@@ -62,7 +61,7 @@ function areaNoteSchema() {
     type: "object",
     additionalProperties: false,
     properties,
-    required: GAP_AREAS.map((area) => area.key),
+    required: WAYPOINT_AREAS.map((area) => area.key),
   }
 }
 
@@ -122,9 +121,12 @@ export const SESSION_TOOLS = [
           },
           required: ["what", "difference", "success", "progress_by"],
         },
-        anything_else: { type: "string" },
+        anything_not_covered: {
+          type: "string",
+          description: UNCOVERED_QUESTION,
+        },
       },
-      required: ["tenure", "function_now_and_next", "area_notes", "pressing_project"],
+      required: ["tenure", "function_now_and_next", "area_notes", "pressing_project", "anything_not_covered"],
     },
   },
 ]

@@ -11,6 +11,8 @@ import {
   EMPTY_IDENTITY,
   formatWaypointEmailHtml,
   parseResearch,
+  UNCOVERED_QUESTION,
+  WAYPOINT_AREAS,
   type WaypointResearch,
 } from "../lib/waypoint"
 import { POST as postGap } from "../app/api/gap/route"
@@ -24,7 +26,7 @@ function assert(condition: unknown, message: string) {
 
 function research(): WaypointResearch {
   const area_notes = Object.fromEntries(
-    GAP_AREAS.map((area) => [area.key, { success: `${area.key} feels uneven`, opportunity: `${area.key} could be simpler` }]),
+    WAYPOINT_AREAS.map((area) => [area.key, { success: `${area.key} feels uneven`, opportunity: `${area.key} could be simpler` }]),
   ) as WaypointResearch["area_notes"]
   return {
     tenure: "Three years",
@@ -36,7 +38,7 @@ function research(): WaypointResearch {
       success: "One brief, one owner, a date that holds",
       progress_by: "Before the March board",
     },
-    anything_else: null,
+    anything_not_covered: "Nothing else today.",
   }
 }
 
@@ -47,7 +49,15 @@ async function main() {
   assert(!JSON.stringify(session.session).includes('"eve"'), "session config does not set eve")
   assert(session.session.audio.input.transcription.model === "grok-transcribe", "user transcription is enabled")
   assert(session.session.turn_detection.type === "server_vad", "server VAD is on")
-  assert(session.session.instructions.includes("Do not ask for a number"), "Leo is told not to score the seven areas")
+  assert(session.session.instructions.includes("Do not ask for a number"), "Leo is told not to score the areas")
+  for (const area of WAYPOINT_AREAS) {
+    assert(session.session.instructions.includes(area.label), `Leo covers ${area.label}`)
+  }
+  assert(session.session.instructions.includes(UNCOVERED_QUESTION), "Leo asks the closing question")
+  assert(!session.session.instructions.includes("Agencies and partners"), "agencies is no longer an interview area")
+  assert(!session.session.instructions.includes("Knowing what"), "measurement is no longer an interview area")
+  assert(!session.session.instructions.includes("data people trust"), "the stack is no longer an interview area")
+  assert(WAYPOINT_AREAS.length === 5, "the spoken interview has five areas")
   assert(!session.session.instructions.includes("nowhere near"), "Leo is not given a 1 to 7 scale")
   assert(session.session.instructions.includes("That is the only details check"), "personal details are checked once, at the start")
   assert(!session.session.instructions.includes("once more at the end"), "Leo does not re-check personal details at the close")
@@ -86,6 +96,12 @@ async function main() {
   assert(html.includes("these fields win"), "email tells the team to prefer the checked details")
   assert(html.indexOf("Name: Smyth") < html.indexOf("guessed Smith"), "the checked name comes before the transcript guess")
   assert(!html.includes("already there"), "the email does not include a 1 to 7 scale")
+  assert(html.includes(UNCOVERED_QUESTION), "the email asks what was not covered")
+  assert(html.includes("Nothing else today."), "the email keeps the closing answer")
+  assert(html.includes("Broader technology and how you use it in marketing"), "the email includes the technology area")
+  assert(!html.includes("Agencies and partners"), "the email does not include a removed area")
+  const missingClose = parseResearch({ ...research(), anything_not_covered: "  " })
+  assert(!missingClose.ok, "the closing question is required")
   assert(!("scan" in body.body), "the saved interview has no score object")
   const withScores = parseResearch({ ...research(), scan: { funding: 7 } })
   assert(withScores.ok && !("scan" in withScores.value), "a numeric score sent by the model is dropped")

@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { CheckCircle } from "lucide-react"
-import { GAP_AREAS } from "@/lib/gap"
 import { cn } from "@/lib/utils"
 import {
   applySpokenIdentity,
@@ -11,6 +10,7 @@ import {
   EMPTY_IDENTITY,
   type IdentityFields,
   type IdentityKey,
+  WAYPOINT_AREAS,
   type WaypointResearch,
 } from "@/lib/waypoint"
 import {
@@ -255,11 +255,12 @@ export function WaypointInterview() {
           <ol className="mt-4 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-muted-foreground">
             <li>Your name, role, and company, and how long you’ve been in the role.</li>
             <li>The marketing function you have, and the one you know you’ll need next.</li>
-            <li>Seven areas: how each one feels, and where it could be better.</li>
+            <li>Five areas: how each one feels, and where it could be better.</li>
             <li>The most pressing thing on the list: what it is, the difference it would make, what success looks like, and when you need to show progress.</li>
+            <li>Whether there’s anything we haven’t covered that would be useful to know.</li>
           </ol>
-          <ul className="mt-6 space-y-3 text-sm leading-snug text-brand-dark" aria-label="The seven areas">
-            {GAP_AREAS.map((area, index) => (
+          <ul className="mt-6 space-y-3 text-sm leading-snug text-brand-dark" aria-label="The five areas">
+            {WAYPOINT_AREAS.map((area, index) => (
               <li key={area.key} className="flex gap-3">
                 <span className="font-medium tabular-nums text-brand-dark/50">{index + 1}</span>
                 <span>{area.label}</span>
