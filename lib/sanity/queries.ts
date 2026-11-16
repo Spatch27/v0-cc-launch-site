@@ -50,6 +50,30 @@ export const insightSitemapQuery = groq`
   }
 `
 
+/**
+ * Published insight text for the hidden Ask CC trial. Drafts are excluded.
+ * Body text is plain paragraphs only, so the model is not given image assets.
+ */
+export const insightChatContextQuery = groq`
+  *[_type == "insightArticle" && defined(slug.current) && defined(title) && !(_id in path("drafts.**"))]
+    | order(publishedAt desc, _createdAt asc) {
+      title,
+      "slug": slug.current,
+      excerpt,
+      category,
+      "authorName": author->name,
+      body[]{
+        _type,
+        _type == "block" => {
+          "text": array::join(children[].text, "")
+        },
+        _type == "code" => {
+          "text": text
+        }
+      }
+    }
+`
+
 /** Published insight rows for /llms.txt. Drafts are excluded even if the client perspective changes. */
 export const insightLlmsQuery = groq`
   *[_type == "insightArticle" && defined(slug.current) && defined(title) && !(_id in path("drafts.**"))]

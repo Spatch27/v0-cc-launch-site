@@ -38,6 +38,14 @@ const nextConfig = {
       statusCode: 301,
     }))
   },
+  async headers() {
+    return [
+      {
+        source: "/chatbot",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ]
+  },
 }
 
 export default nextConfig
